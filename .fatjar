@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Aug 29 13:38:16 CEST 2008
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=/Users/d/SemaSpace/sema.jar
+manifest.mergeall=true
+manifest.mainclass=semaGL.SwingSema
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=
