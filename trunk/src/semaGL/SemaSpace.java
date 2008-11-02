@@ -196,16 +196,16 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		//		font = Font.decode("Arial Unicode MS").deriveFont(172f);
 		font = Font.decode("Times New Roman").deriveFont(172f);
 		FontRenderContext context = FTFont.STANDARDCONTEXT;
-		outlinefont = new FTGLOutlineFont(font,context);
-		polyfont = new FTGLPolygonFont(font,context);
+//		outlinefont = new FTGLOutlineFont(font,context);
+//		polyfont = new FTGLPolygonFont(font,context);
 		texturefont = new FTGLTextureFont(font,context);
 		//		geofont = new FTGLPolygonFont(font, context);
-		polyfont.setGLGLU(gl, glu);
-		polyfont.faceSize(10f);
-		outlinefont.setGLGLU(gl, glu);
-		outlinefont.faceSize(10f);
+//		polyfont.setGLGLU(gl, glu);
+//		polyfont.faceSize(10f);
+//		outlinefont.setGLGLU(gl, glu);
+//		outlinefont.faceSize(10f);
 		texturefont.setGLGLU(gl, glu);
-		//		texturefont.faceSize(10f);
+		texturefont.faceSize(70f);
 	}
 
 	public void display(GLAutoDrawable gLDrawable) {

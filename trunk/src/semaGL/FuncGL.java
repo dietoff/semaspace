@@ -75,14 +75,14 @@ public class FuncGL {
 		
 		gl.glPushMatrix();
 //		gl.glLoadName(id);
-		gl.glScalef(0.09f, 0.09f, 0.09f);
+		gl.glScalef(0.2f, 0.2f, 0.2f);
 		gl.glLineWidth(1f);
 		gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
 		
 		String[] lines = text.split("\n"); 
-		gl.glTranslatef(offset*10f, -offset*5f, 0);
+		gl.glTranslatef(offset*3f, -offset*2f, 0);
 		for (int i = 0; i<lines.length; i++){
-			gl.glTranslatef(0, offset*15f, 0);
+			gl.glTranslatef(0, offset*7f, 0);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
 			app.texturefont.render(lines[i]);
 		}
