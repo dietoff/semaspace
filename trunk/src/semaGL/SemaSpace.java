@@ -196,14 +196,14 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		//		font = Font.decode("Arial Unicode MS").deriveFont(172f);
 		font = Font.decode("Times New Roman").deriveFont(172f);
 		FontRenderContext context = FTFont.STANDARDCONTEXT;
-//		outlinefont = new FTGLOutlineFont(font,context);
-//		polyfont = new FTGLPolygonFont(font,context);
+		//		outlinefont = new FTGLOutlineFont(font,context);
+		//		polyfont = new FTGLPolygonFont(font,context);
 		texturefont = new FTGLTextureFont(font,context);
 		//		geofont = new FTGLPolygonFont(font, context);
-//		polyfont.setGLGLU(gl, glu);
-//		polyfont.faceSize(10f);
-//		outlinefont.setGLGLU(gl, glu);
-//		outlinefont.faceSize(10f);
+		//		polyfont.setGLGLU(gl, glu);
+		//		polyfont.faceSize(10f);
+		//		outlinefont.setGLGLU(gl, glu);
+		//		outlinefont.faceSize(10f);
 		texturefont.setGLGLU(gl, glu);
 		texturefont.faceSize(70f);
 	}
@@ -323,24 +323,22 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void render(){
 		GL gl = glD.getGL();
-
-		if (!moved) {
-			if (FOG&&!flat) gl.glEnable(GL.GL_FOG); else gl.glDisable(GL.GL_FOG);
-			gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-			
-			cam.posIncrement(glD, yRotInc, xRotInc, zInc, focus); 
-			
-			if (edges) layout.renderEdges(gl, fonttype);
-			if (!tree) layout.renderClusters(gl);
-			//			layout.renderTags(gl,ns.view);
-			layout.renderLabels(gl,fonttype);
-			layout.renderNodes(gl,fonttype);
-			//			layout.renderSelection(fonttype);
-			gl.glFlush();
-			gl.glFinish();
-		}
-		else
-		{
+		//		if (!moved) {
+		if (FOG&&!flat) gl.glEnable(GL.GL_FOG); else gl.glDisable(GL.GL_FOG);
+		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+		cam.posIncrement(glD, yRotInc, xRotInc, zInc, focus); 
+		if (edges) layout.renderEdges(gl, fonttype);
+		if (!tree) layout.renderClusters(gl);
+		//			layout.renderTags(gl,ns.view);
+		layout.renderLabels(gl,fonttype);
+		layout.renderNodes(gl,fonttype);
+		//			layout.renderSelection(fonttype);
+		gl.glFlush();
+		gl.glFinish();
+		//		}
+		//		else
+		//		{
+		if (moved) {
 			setOverID(selectCoord());
 			if (pressed) select(); //initiate picking
 			clearRollover();
@@ -381,14 +379,14 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		glu.gluPerspective(FOV, h, znear, zfar);
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 		cam.posIncrement(glD, yRotInc, xRotInc, zInc, focus);
-		
+
 		layout.renderNodes(gl, 0); //render the nets.viewwork 
 		layout.renderEdges(gl, 0);
-//		gl.glFlush();
+		//		gl.glFlush();
 
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glPopMatrix();
-//		gl.glMatrixMode(GL.GL_MODELVIEW); // Select The Modelview Matrix
+		//		gl.glMatrixMode(GL.GL_MODELVIEW); // Select The Modelview Matrix
 		hits = gl.glRenderMode(GL.GL_RENDER);
 		int overID=-1;
 		if (hits!=0){
