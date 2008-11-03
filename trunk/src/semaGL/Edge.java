@@ -184,7 +184,7 @@ class Edge extends GraphElement{
 		gl.glTranslatef(midP.x,midP.y,midP.z);
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
-		if (font==1) gl.glRotatef(25, 0, 0, 1);
+		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
 		FuncGL.renderText(app, rText, textcolor,0, font, getId(), distToCam); //render text in dark grey, with alpha of edge
 		gl.glPopMatrix();
 	}
