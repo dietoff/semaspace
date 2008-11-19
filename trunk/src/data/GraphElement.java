@@ -1,25 +1,23 @@
-package semaGL;
+package data;
 
 import java.util.HashMap;
-
-import javax.media.opengl.GL;
-
+import semaGL.*;
 
 
 public abstract class GraphElement {
-	int id; 
-	float[] defaultcolor ={.5f,.5f,.5f,0.7f}; //free
-	float[] color ={.5f,.5f,.5f,0.7f}; //free
-	float[] textColor ={0f,0f,0f,0.8f};
-	float[] color2 = null;
-	float[] white ={1f,1f,1f,0.8f};
-	float alpha=0.8f;
-	String name;
-	String altName;
+	public int id; 
+	public float[] defaultcolor ={.5f,.5f,.5f,0.7f}; //free
+	public float[] color ={.5f,.5f,.5f,0.7f}; //free
+	public float[] textColor ={0f,0f,0f,0.8f};
+	public float[] color2 = null;
+	public float[] white ={1f,1f,1f,0.8f};
+	public float alpha=0.8f;
+	public String name;
+	public String altName;
 	SemaSpace app;
-	HashMap<String,String> attributes;
-	boolean rollover;
-	protected boolean colored = false;
+	public HashMap<String,String> attributes;
+	public boolean rollover;
+	public boolean colored = false;
 
 	GraphElement() {
 		this(null,"");
@@ -34,7 +32,7 @@ public abstract class GraphElement {
 		attributes = new HashMap<String, String>();		
 	}
 
-	protected void genColorFromAtt(){
+	public void genColorFromAtt(){
 		float[] col=defaultcolor.clone();
 		col[3]=alpha;
 
@@ -61,7 +59,7 @@ public abstract class GraphElement {
 	}
 
 
-	protected String genTextSelAttributes() {
+	public String genTextSelAttributes() {
 		String id=name;
 		if (altName!=null)  id = altName;
 		String a = attributes.get(app.getAttribute());
@@ -74,7 +72,7 @@ public abstract class GraphElement {
 		return disp;
 	}
 
-	String genTextAttributeList(){
+	public String genTextAttributeList(){
 		String content = attributes.toString();
 		content = content.substring(1, content.length()-1);
 		String result = content.replaceAll(", ", "\n");
@@ -84,17 +82,17 @@ public abstract class GraphElement {
 	void genId() {
 		id = name.hashCode();
 	}
-	int getId() {
+	public int getId() {
 		return id;
 	}
-	String getName() {
+	public String getName() {
 		return name;
 	}
 	void setName(String name) {
 		this.name = name;
 		genId();
 	}
-	boolean hasAttribute(String key) {
+	public boolean hasAttribute(String key) {
 		return attributes.containsKey(key);
 	}
 	public String getAttribute(String key) {
@@ -128,9 +126,5 @@ public abstract class GraphElement {
 
 	public void setRollover(boolean b) {
 		rollover = b;
-	}
-	void render(GL gl) {
-		// TODO Auto-generated method stub
-		return;
 	}
 }

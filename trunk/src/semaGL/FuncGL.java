@@ -11,6 +11,8 @@ import nehe.TextureReader.Texture;
 import com.sun.opengl.util.BufferUtil;
 import com.sun.opengl.util.GLUT;
 
+import data.Vector3D;
+
 
 public class FuncGL {
 

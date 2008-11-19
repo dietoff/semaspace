@@ -1,6 +1,5 @@
-package semaGL;
+package UI;
 
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -10,7 +9,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.Event;
-import java.awt.FlowLayout;
 
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLDrawableFactory;
@@ -46,6 +44,11 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
+import data.*;
+
+import semaGL.*;
+import sun.security.krb5.internal.UDPClient;
 import UI.SimButton;
 import java.awt.BorderLayout;
 import java.io.File;
@@ -69,7 +72,6 @@ public class SwingSema {
 		//Set Look & Feel
 		try {
 			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-			//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -93,18 +95,6 @@ public class SwingSema {
 				application.setSema(space);
 				application.getMainWindow().setVisible(true);
 				application.jSplitPane.setRightComponent(semaGLDisplay.getJPanel());
-
-				//				semaGLDisplay.addFocusListener(new FocusAdapter() {
-				//					public void focusLost(FocusEvent evt) {
-				//						//						application.redrawUI();
-				//						space.setCalc(false);
-				//
-				//					}
-				//					public void focusGained(FocusEvent evt) {
-				//						//						application.redrawUI();
-				//						space.setCalc(true);
-				//					}
-				//				});
 				semaGLDisplay.start();
 			}
 		});
@@ -138,7 +128,6 @@ public class SwingSema {
 	private SimButton selectAButton = null;
 	private SimButton selectBButton = null;
 	private SimButton addEdgeButton = null;
-	private JFrame diffusionFrame = null;  //  @jve:decl-index=0:visual-constraint="785,664"
 	private JMenuItem exitMenuItem;
 	private JMenuItem saveMenuItem;
 	private JMenuItem openNodeMenuItem;
@@ -174,15 +163,11 @@ public class SwingSema {
 	private JLabel sizeLabel;
 	private JSlider sizeSlider;
 	private JLabel display;
-	private SimButton inflateButton;
-	private SimButton shuffleButton;
-	private JCheckBox draw3d;
 	private JCheckBox noRender;
 	private JCheckBox drawedges;
 	private SimButton texButton1;
 	private JPanel viewTab;
 	private JLabel jLabel2;
-	private JCheckBox directedGraph;
 	private SimButton SimButton2;
 	private SimButton expandnet;
 	private SimButton expand2;
@@ -195,8 +180,25 @@ public class SwingSema {
 	private JLabel depthLabel;
 	private JSlider depth;
 	private SimButton searchButton;
-	private JCheckBox drawclusters;
+	private JCheckBox tiltBox;
+	private SimButton simButton17;
+	private SimButton simButton15;
+	private JLabel jLabel15;
 	private JLabel jLabel12;
+	private JLabel jLabel14;
+	private JLabel jLabel13;
+	private SimButton simButton14;
+	private JCheckBox directedGraph;
+	private JCheckBox draw3d;
+	private SimButton simButton13;
+	private SimButton simButton12;
+	private SimButton simButton11;
+	private SimButton shuffleButton;
+	private SimButton simButton6;
+	private SimButton boxButton;
+	private SimButton inflateButton;
+	private SimButton simButton10;
+	private JCheckBox drawclusters;
 	private JScrollPane nets;
 	private SimButton clear;
 	private SimButton saveNet;
@@ -204,14 +206,11 @@ public class SwingSema {
 	private SimButton loadNodeAtt;
 	private JButton loadNet;
 	private JPanel file;
-	private SimButton simButton10;
 	private JCheckBox jCheckBox1;
 	private SimButton simButton9;
 	private JCheckBox renderTextures;
 	private SimButton simButton8;
 	private SimButton simButton7;
-	private SimButton simButton6;
-	private SimButton boxButton;
 	private JCheckBox add;
 	private JLabel jLabel11;
 	private SimButton simButton5;
@@ -226,24 +225,6 @@ public class SwingSema {
 	private JList nodeList;
 	private JTextArea jTextFieldMsg;
 	private JFrame statusMessage;
-	private JPanel diffusionPane = null;
-	private JPanel jPanel11 = null;
-	private JSlider spawnSlider = null;
-	private JSlider multiplicitySlider = null;
-	private JSlider numStepsSlider = null;
-	private SimButton setStartButton = null;
-	private SimButton propagateButton = null;
-	private JLabel ageLabel2 = null;
-	private JLabel ageLabel21 = null;
-	private JLabel numSteps = null;
-	private SimButton swapButton = null;
-	private SimButton resetButton = null;
-	private JLabel ageSlider2 = null;
-	private JSlider age2Slider = null;
-	private JSlider feedbackSlider = null;
-	private JLabel feedback = null;
-	JCheckBox visitedBox = null;
-
 	private JFrame mainWindow;
 	private DefaultListModel nodeAttModel;
 	private DefaultListModel edgeAttModel;
@@ -284,31 +265,7 @@ public class SwingSema {
 		}
 		return addEdgeButton;
 	}
-	/**
-	 * This method initializes age2Slider	
-	 * 	
-	 * @return javax.swing.JSlider	
-	 */
-	private JSlider getAge2Slider() {
-		if (age2Slider == null) {
-			age2Slider = new JSlider();
-			age2Slider.setPaintTrack(false);
-			age2Slider.setMinimum(1);
-			age2Slider.setMaximum(100);
-			age2Slider.setMajorTickSpacing(10);
-			age2Slider.setMinorTickSpacing(5);
-			age2Slider.setPaintTicks(true);
-			age2Slider.setInverted(true);
-			age2Slider.setMinimum(1);
-			age2Slider.setValue((int)app.getAgeThresh());
-			age2Slider.addChangeListener(new javax.swing.event.ChangeListener() {
-				public void stateChanged(javax.swing.event.ChangeEvent e) {
-					app.setAgeThresh(age2Slider.getValue());
-				}
-			});
-		}
-		return age2Slider;
-	}
+
 
 	/**
 	 * This method initializes columnAField	
@@ -333,37 +290,6 @@ public class SwingSema {
 		}
 		return columnBField;
 	}
-
-	/**
-	 * This method initializes diffusionFrame	
-	 * 	
-	 * @return javax.swing.JFrame	
-	 */
-	private JFrame getDiffusionFrame() {
-		if (diffusionFrame == null) {
-			diffusionFrame = new JFrame();
-			diffusionFrame.setAlwaysOnTop(true);
-			diffusionFrame.setSize(new Dimension(288, 223));
-			diffusionFrame.setTitle("diffusion simulation");
-			diffusionFrame.setContentPane(getDiffusionPane());
-		}
-		return diffusionFrame;
-	}
-
-	/**
-	 * This method initializes diffusionPane	
-	 * 	
-	 * @return javax.swing.JPanel	
-	 */
-	private JPanel getDiffusionPane() {
-		if (diffusionPane == null) {
-			diffusionPane = new JPanel();
-			diffusionPane.setLayout(new BorderLayout());
-			diffusionPane.add(getJPanel11(), BorderLayout.CENTER);
-		}
-		return diffusionPane;
-	}
-
 
 
 	/**
@@ -439,32 +365,6 @@ public class SwingSema {
 		return edgeWndSplitPane;
 	}
 
-	/**
-	 * This method initializes feedbackSlider	
-	 * 	
-	 * @return javax.swing.JSlider	
-	 */
-	private JSlider getFeedbackSlider() {
-		if (feedbackSlider == null) {
-			feedbackSlider = new JSlider();
-			feedbackSlider.setName("growth factor");
-			feedbackSlider.setMajorTickSpacing(50);
-			feedbackSlider.setMaximum(100);
-			feedbackSlider.setMinimum(0);
-			feedbackSlider.setMinorTickSpacing(10);
-			feedbackSlider.setValue(app.diffusor.getFeedback());
-			feedbackSlider.setPaintLabels(false);
-			feedbackSlider.setPaintTicks(true);
-			feedbackSlider.setPaintTrack(false);
-			feedbackSlider.setToolTipText("set probability to add new nodes");
-			feedbackSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-				public void stateChanged(javax.swing.event.ChangeEvent e) {
-					app.diffusor.setFeedback(feedbackSlider.getValue());
-				}
-			});
-		}
-		return feedbackSlider;
-	}
 
 	/**
 	 * This method initializes mainWindow
@@ -476,7 +376,6 @@ public class SwingSema {
 		if (mainWindow == null) {
 			mainWindow = new JFrame();
 			mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			//			mainWindow.setJMenuBar(getJJMenuBar());
 			mainWindow.setSize(1000,600);
 			mainWindow.setTitle("SemaSpace");
 			mainWindow.setContentPane(getJSplitPane());
@@ -497,7 +396,6 @@ public class SwingSema {
 			statusMessage.setTitle("RenderStatus");
 			statusMessage.getContentPane().add(getJTextFieldMsg(), BorderLayout.CENTER);
 			statusMessage.setBounds(400, 650, 400, 200);
-			//			statusMessage.setAlwaysOnTop(true);
 			statusMessage.setSize(400, 200);
 			getJTextFieldMsg().setSize(statusMessage.getSize());
 		}
@@ -522,242 +420,20 @@ public class SwingSema {
 		return jJMenuBar;
 	}
 
-	/**
-	 * This method initializes jPanel11	
-	 * 	
-	 * @return javax.swing.JPanel	
-	 */
-	private JPanel getJPanel11() {
-		if (jPanel11 == null) {				
-			GridBagConstraints gridBagConstraints74 = new GridBagConstraints();
-			gridBagConstraints74.gridx = 1;
-			gridBagConstraints74.anchor = GridBagConstraints.WEST;
-			gridBagConstraints74.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints74.gridy = 6;
-			GridBagConstraints gridBagConstraints76 = new GridBagConstraints();
-			gridBagConstraints76.gridx = 2;
-			gridBagConstraints76.gridy = 1;
-			feedback = new JLabel();
-			feedback.setFont(new Font("Dialog", Font.PLAIN, 12));
-			feedback.setText("feedback");
-			GridBagConstraints gridBagConstraints75 = new GridBagConstraints();
-			gridBagConstraints75.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints75.gridy = 1;
-			gridBagConstraints75.weightx = 1.0;
-			gridBagConstraints75.gridwidth = 2;
-			gridBagConstraints75.gridx = 0;
-			GridBagConstraints gridBagConstraints73 = new GridBagConstraints();
-			gridBagConstraints73.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints73.gridy = 4;
-			gridBagConstraints73.weightx = 1.0;
-			gridBagConstraints73.gridwidth = 2;
-			gridBagConstraints73.gridx = 0;
-			GridBagConstraints gridBagConstraints72 = new GridBagConstraints();
-			gridBagConstraints72.gridx = 2;
-			gridBagConstraints72.gridy = 4;
-			ageSlider2 = new JLabel();
-			ageSlider2.setFont(new Font("Dialog", Font.PLAIN, 12));
-			ageSlider2.setText("age display");
-			GridBagConstraints gridBagConstraints71 = new GridBagConstraints();
-			gridBagConstraints71.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints71.gridy = 3;
-			gridBagConstraints71.weightx = 1.0;
-			gridBagConstraints71.gridwidth = 2;
-			gridBagConstraints71.gridx = 0;
-			GridBagConstraints gridBagConstraints70 = new GridBagConstraints();
-			gridBagConstraints70.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints70.gridy = 3;
-			gridBagConstraints70.weightx = 1.0;
-			gridBagConstraints70.gridwidth = 2;
-			gridBagConstraints70.gridx = 0;
-			GridBagConstraints gridBagConstraints27 = new GridBagConstraints();
-			gridBagConstraints27.gridx = 0;					gridBagConstraints27.gridy = 6;
-			GridBagConstraints gridBagConstraints69 = new GridBagConstraints();
-			gridBagConstraints69.gridx = 2;
-			gridBagConstraints69.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints69.gridy = 5;
-			GridBagConstraints gridBagConstraints68 = new GridBagConstraints();
-			gridBagConstraints68.gridx = 2;
-			gridBagConstraints68.gridy = 3;
-			numSteps = new JLabel();
-			numSteps.setFont(new Font("Dialog", Font.PLAIN, 12));
-			numSteps.setText("num steps");
-			GridBagConstraints gridBagConstraints67 = new GridBagConstraints();
-			gridBagConstraints67.gridx = 2;
-			gridBagConstraints67.gridy = 2;
-			ageLabel21 = new JLabel();
-			ageLabel21.setFont(new Font("Dialog", Font.PLAIN, 12));
-			ageLabel21.setText("multiplicity");
-			GridBagConstraints gridBagConstraints66 = new GridBagConstraints();
-			gridBagConstraints66.gridx = 2;
-			gridBagConstraints66.gridy = 0;
-			ageLabel2 = new JLabel();
-			ageLabel2.setFont(new Font("Dialog", Font.PLAIN, 12));
-			ageLabel2.setText("growth");
-			GridBagConstraints gridBagConstraints65 = new GridBagConstraints();
-			gridBagConstraints65.gridx = 1;
-			gridBagConstraints65.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints65.gridy = 5;
-			GridBagConstraints gridBagConstraints64 = new GridBagConstraints();
-			gridBagConstraints64.gridx = 0;
-			gridBagConstraints64.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints64.gridy = 5;
-			GridBagConstraints gridBagConstraints63 = new GridBagConstraints();
-			gridBagConstraints63.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints63.gridy = 3;
-			gridBagConstraints63.weightx = 1.0;
-			gridBagConstraints63.gridwidth = 2;
-			gridBagConstraints63.gridx = 0;
-			GridBagConstraints gridBagConstraints62 = new GridBagConstraints();
-			gridBagConstraints62.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints62.gridy = 2;
-			gridBagConstraints62.weightx = 1.0;
-			gridBagConstraints62.gridwidth = 2;
-			gridBagConstraints62.gridx = 0;
-			GridBagConstraints gridBagConstraints61 = new GridBagConstraints();
-			gridBagConstraints61.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints61.gridy = 0;
-			gridBagConstraints61.weightx = 1.0;
-			gridBagConstraints61.anchor = GridBagConstraints.CENTER;
-			gridBagConstraints61.gridwidth = 2;
-			gridBagConstraints61.gridx = 0;
-			GridBagConstraints gridBagConstraints60 = new GridBagConstraints();
-			gridBagConstraints60.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints60.gridy = 1;
-			gridBagConstraints60.weightx = 1.0;
-			gridBagConstraints60.anchor = GridBagConstraints.CENTER;
-			gridBagConstraints60.gridwidth = 2;
-			gridBagConstraints60.gridx = 0;
-			jPanel11 = new JPanel();
-			jPanel11.setLayout(new GridBagLayout());
-			jPanel11.add(getFeedbackSlider(), gridBagConstraints60);
-			jPanel11.add(getSpawnSlider(), gridBagConstraints61);
-			jPanel11.add(getMultiplicitySlider(), gridBagConstraints62);
-			jPanel11.add(getNumStepsSlider(), gridBagConstraints63);
-			jPanel11.add(getSetStartButton(), gridBagConstraints64);
-			jPanel11.add(getPropagateButton(), gridBagConstraints65);
-			jPanel11.add(ageLabel2, gridBagConstraints66);
-			jPanel11.add(ageLabel21, gridBagConstraints67);
-			jPanel11.add(numSteps, gridBagConstraints68);
-			jPanel11.add(getSwapButton(), gridBagConstraints69);
-			jPanel11.add(getResetButton(), gridBagConstraints27);
-			jPanel11.add(ageSlider2, gridBagConstraints72);
-			jPanel11.add(getAge2Slider(), gridBagConstraints73);
-			jPanel11.add(feedback, gridBagConstraints76);
-			jPanel11.add(getVisitedBox(), gridBagConstraints74);
-		}
-		return jPanel11;
-	}
+
 
 	private JTextArea getJTextFieldMsg() {
 		if(jTextFieldMsg == null) {
 			jTextFieldMsg = new JTextArea();
 			jTextFieldMsg.setText("jTextField1");
+			jTextFieldMsg.setLineWrap(true);
 			jTextFieldMsg.setWrapStyleWord(true);
-			//			jTextFieldMsg.setVisible(true);
 			getStatusMessage().setVisible(true);
 		}
 		return jTextFieldMsg;
 	}
 
-	/**
-	 * This method initializes multiplicitySlider	
-	 * 	
-	 * @return javax.swing.JSlider	
-	 */
-	private JSlider getMultiplicitySlider() {
-		if (multiplicitySlider == null) {
-			multiplicitySlider = new JSlider();
-			multiplicitySlider.setName("multiplicity");
-			multiplicitySlider.setMinimum(1);
-			multiplicitySlider.setMaximum(10);
-			multiplicitySlider.setPaintLabels(false);
-			multiplicitySlider.setPaintTrack(false);
-			multiplicitySlider.setPaintTicks(true);
-			multiplicitySlider.setMajorTickSpacing(10);
-			multiplicitySlider.setMinorTickSpacing(1);
-			multiplicitySlider.setValue(app.diffusor.getMult());
-			multiplicitySlider.setSnapToTicks(true);
-			multiplicitySlider.setToolTipText("set how many copies will be generated on average");
-			multiplicitySlider.addChangeListener(new javax.swing.event.ChangeListener() {
-				public void stateChanged(javax.swing.event.ChangeEvent e) {
-					app.diffusor.setMult(multiplicitySlider.getValue()); //  Auto-generated Event stub stateChanged()
-				}
-			});
-		}
-		return multiplicitySlider;
-	}
 
-
-
-
-
-
-
-
-	/**
-	 * This method initializes numStepsSlider	
-	 * 	
-	 * @return javax.swing.JSlider	
-	 */
-	private JSlider getNumStepsSlider() {
-		if (numStepsSlider == null) {
-			numStepsSlider = new JSlider();
-			numStepsSlider.setName("num steps");
-			numStepsSlider.setMinimum(1);
-			numStepsSlider.setMaximum(10);
-			numStepsSlider.setPaintLabels(false);
-			numStepsSlider.setPaintTrack(false);
-			numStepsSlider.setPaintTicks(true);
-			numStepsSlider.setValue(app.diffusor.getSteps());
-			numStepsSlider.setMajorTickSpacing(10);
-			numStepsSlider.setMinorTickSpacing(1);
-			numStepsSlider.setSnapToTicks(true);
-			numStepsSlider.setToolTipText("set number of steps calculated");
-			numStepsSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-				public void stateChanged(javax.swing.event.ChangeEvent e) {
-					app.diffusor.setSteps(numStepsSlider.getValue()); //  Auto-generated Event stub stateChanged()
-				}
-			});
-		}
-		return numStepsSlider;
-	}
-
-	/**
-	 * This method initializes propagateButton	
-	 * 	
-	 * @return javax.swing.SimButton	
-	 */
-	private SimButton getPropagateButton() {
-		if (propagateButton == null) {
-			propagateButton = new SimButton();
-			propagateButton.setText("propagate");
-			propagateButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.diffusor.propagate(); //  Auto-generated Event stub actionPerformed()
-				}
-			});
-		}
-		return propagateButton;
-	}
-
-	/**
-	 * This method initializes resetButton	
-	 * 	
-	 * @return javax.swing.SimButton	
-	 */
-	private SimButton getResetButton() {
-		if (resetButton == null) {
-			resetButton = new SimButton();
-			resetButton.setText("reset");
-			resetButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.diffusor.reset(); 
-				}
-			});
-		}
-		return resetButton;
-	}
 
 	/**
 	 * This method initializes selectAButton	
@@ -797,87 +473,6 @@ public class SwingSema {
 		return selectBButton;
 	}
 
-	/**
-	 * This method initializes setStartButton	
-	 * 	
-	 * @return javax.swing.SimButton	
-	 */
-	private SimButton getSetStartButton() {
-		if (setStartButton == null) {
-			setStartButton = new SimButton();
-			setStartButton.setText("start");
-			setStartButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.diffusor.setStart(); //  Auto-generated Event stub actionPerformed()
-				}
-			});
-		}
-		return setStartButton;
-	}
-
-	/**
-	 * This method initializes contagiousSlider	
-	 * 	
-	 * @return javax.swing.JSlider	
-	 */
-	private JSlider getSpawnSlider() {
-		if (spawnSlider == null) {
-			spawnSlider = new JSlider();
-			spawnSlider.setName("growth factor");
-			spawnSlider.setMinimum(0);
-			spawnSlider.setMaximum(100);
-			spawnSlider.setPaintLabels(false);
-			spawnSlider.setPaintTrack(false);
-			spawnSlider.setPaintTicks(true);
-			spawnSlider.setValue(app.diffusor.getProp());
-			spawnSlider.setMinorTickSpacing(10);
-			spawnSlider.setMajorTickSpacing(50);
-			spawnSlider.setToolTipText("set probability to add new nodes");
-			spawnSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-				public void stateChanged(javax.swing.event.ChangeEvent e) {
-					app.diffusor.setProp(spawnSlider.getValue()); 
-				}
-			});
-		}
-		return spawnSlider;
-	}
-
-	/**
-	 * This method initializes swapButton	
-	 * 	
-	 * @return javax.swing.SimButton	
-	 */
-	private SimButton getSwapButton() {
-		if (swapButton == null) {
-			swapButton = new SimButton();
-			swapButton.setText("isolate");
-			swapButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.diffusor.showQueue(); //  Auto-generated Event stub actionPerformed()
-				}
-			});
-		}
-		return swapButton;
-	}
-
-	/**
-	 * This method initializes visitedBox	
-	 * 	
-	 * @return javax.swing.JCheckBox	
-	 */
-	private JCheckBox getVisitedBox() {
-		if (visitedBox == null) {
-			visitedBox = new JCheckBox();
-			visitedBox.setText("multiple visits");
-			visitedBox.setSelected(app.diffusor.allowVisit);
-			visitedBox.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.diffusor.allowVisit = !app.diffusor.allowVisit;	 
-				}
-			});
-		}
-		return visitedBox;
-	}
 
 
 	private void newETable() {
@@ -888,15 +483,15 @@ public class SwingSema {
 	}
 
 	public void setCounter() {
-		String title = "SemaSpace - "+app.nets.global.nNodes.size()+" Nodes, "+app.nets.global.nEdges.size()+" Edges";
-		if (app.net!=app.nets.global) title+="; visible: "+app.net.nNodes.size()+" Nodes, "+app.net.nEdges.size()+" Edges";
+		String title = "SemaSpace - "+app.ns.global.nNodes.size()+" Nodes, "+app.ns.global.nEdges.size()+" Edges";
+		if (app.ns.view!=app.ns.global) title+="; visible: "+app.ns.view.nNodes.size()+" Nodes, "+app.ns.view.nEdges.size()+" Edges";
 		getMainWindow().setTitle(title);
 	}
 
 	public void setMsg(String msg){
 		getJTextFieldMsg().setText(msg);
 	}
-	protected void setSema(SemaSpace space) {
+	public void setSema(SemaSpace space) {
 		app = space;
 		app.setSwing(this);
 	}
@@ -948,6 +543,7 @@ public class SwingSema {
 							change = false;
 							if (edgeAttModel.contains(out))	edgeAttList.setSelectedValue(out, true);
 							else edgeAttList.setSelectedIndex(0);
+							getSearchTerm().setText("");
 						} else change = true;
 					}
 				}
@@ -955,7 +551,7 @@ public class SwingSema {
 		} else {
 			nodeAttModel.clear();
 			nodeAttModel.addElement("none");
-			for (String s : app.nets.global.nodeattributes) {
+			for (String s : app.ns.global.nodeattributes) {
 				nodeAttModel.addElement(s);
 			}
 		}
@@ -1000,6 +596,7 @@ public class SwingSema {
 							change = false;
 							if (nodeAttModel.contains(out)) nodeAttList.setSelectedValue(out, true);
 							else nodeAttList.setSelectedIndex(0);
+							getSearchTerm().setText("");
 						} else change = true;
 					} 
 					//					textHilight();
@@ -1023,7 +620,7 @@ public class SwingSema {
 	private JTabbedPane getControlPanel() {
 		if (controlPanel == null) {
 			controlPanel = new JTabbedPane();
-			controlPanel.setPreferredSize(new java.awt.Dimension(219,525));
+			controlPanel.setMinimumSize(new Dimension(217, 320));
 			controlPanel.addTab("files", null, getFile(), null);
 			controlPanel.addTab("view", null, getDataTab(), null);
 			controlPanel.addTab("render", null, getViewTab(), null);
@@ -1034,11 +631,11 @@ public class SwingSema {
 	private JSplitPane getJSplitPane1() {
 		if (jSplitPane1 == null) {
 			jSplitPane1 = new JSplitPane();
-			jSplitPane1.setPreferredSize(new java.awt.Dimension(214,499));
 			jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 			jSplitPane1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 			jSplitPane1.setDividerSize(0);
 			jSplitPane1.setDoubleBuffered(true);
+			jSplitPane1.setMinimumSize(new java.awt.Dimension(230, 400));
 			jSplitPane1.add(getJSplitPane2(), JSplitPane.TOP);
 			jSplitPane1.add(getInspectors(), JSplitPane.BOTTOM);
 		}
@@ -1074,7 +671,6 @@ public class SwingSema {
 				public void valueChanged(ListSelectionEvent e) {
 					String out = (String) nodeList.getSelectedValue();
 					if (out!=null) app.setPickID(out.hashCode());
-					//					System.out.println(out); 
 				}
 			});
 		}
@@ -1099,309 +695,48 @@ public class SwingSema {
 
 	private JPanel getDataTab() {
 		if (dataTab == null) {
-			GridBagConstraints gridBagConstraints123 = new GridBagConstraints();
-			gridBagConstraints123.gridx = 2;
-			gridBagConstraints123.anchor = GridBagConstraints.CENTER;
-			gridBagConstraints123.insets = new Insets(15, 0, 0, 0);
-			gridBagConstraints123.gridy = 26;
-			GridBagConstraints gridBagConstraints211 = new GridBagConstraints();
-			gridBagConstraints211.gridx = 2;
-			gridBagConstraints211.anchor = GridBagConstraints.WEST;
-			gridBagConstraints211.gridy = 18;
-			GridBagConstraints gridBagConstraints122 = new GridBagConstraints();
-			gridBagConstraints122.fill = GridBagConstraints.BOTH;
-			gridBagConstraints122.gridy = 18;
-			gridBagConstraints122.weightx = 1.0;
-			gridBagConstraints122.gridwidth = 2;
-			gridBagConstraints122.gridx = 0;
-			GridBagConstraints gridBagConstraints121 = new GridBagConstraints();
-			gridBagConstraints121.gridx = 2;
-			gridBagConstraints121.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints121.gridy = 7;
-			GridBagConstraints gridBagConstraints310 = new GridBagConstraints();
-			gridBagConstraints310.gridx = 2;
-			gridBagConstraints310.anchor = GridBagConstraints.WEST;
-			gridBagConstraints310.gridy = 13;
-			GridBagConstraints gridBagConstraints120 = new GridBagConstraints();
-			gridBagConstraints120.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints120.gridy = 13;
-			gridBagConstraints120.weightx = 1.0;
-			gridBagConstraints120.gridwidth = 2;
-			gridBagConstraints120.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints120.gridx = 0;
-			GridBagConstraints gridBagConstraints210 = new GridBagConstraints();
-			gridBagConstraints210.gridx = 0;
-			gridBagConstraints210.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints210.gridy = 6;
-			GridBagConstraints gridBagConstraints119 = new GridBagConstraints();
-			gridBagConstraints119.gridx = 1;
-			gridBagConstraints119.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints119.gridy = 6;
-			GridBagConstraints gridBagConstraints118 = new GridBagConstraints();
-			gridBagConstraints118.gridx = 2;
-			gridBagConstraints118.anchor = GridBagConstraints.WEST;
-			gridBagConstraints118.gridy = 20;
-			GridBagConstraints gridBagConstraints29 = new GridBagConstraints();
-			gridBagConstraints29.gridx = 2;
-			gridBagConstraints29.gridy = 25;
-			GridBagConstraints gridBagConstraints117 = new GridBagConstraints();
-			gridBagConstraints117.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints117.gridy = 0;
-			gridBagConstraints117.gridwidth = 3;
-			gridBagConstraints117.anchor = GridBagConstraints.WEST;
-			gridBagConstraints117.gridx = 0;
-			GridBagConstraints gridBagConstraints116 = new GridBagConstraints();
-			gridBagConstraints116.gridx = 0;
-			gridBagConstraints116.insets = new Insets(15, 0, 0, 0);
-			gridBagConstraints116.gridwidth = 2;
-			gridBagConstraints116.anchor = GridBagConstraints.CENTER;
-			gridBagConstraints116.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints116.gridy = 26;
-			GridBagConstraints gridBagConstraints115 = new GridBagConstraints();
-			gridBagConstraints115.gridx = 0;
-			gridBagConstraints115.gridwidth = 1;
-			gridBagConstraints115.anchor = GridBagConstraints.WEST;
-			gridBagConstraints115.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints115.gridy = 25;
-			GridBagConstraints gridBagConstraints114 = new GridBagConstraints();
-			gridBagConstraints114.gridx = 2;
-			gridBagConstraints114.gridy = 2;
-			GridBagConstraints gridBagConstraints113 = new GridBagConstraints();
-			gridBagConstraints113.gridx = 0;
-			gridBagConstraints113.anchor = GridBagConstraints.WEST;
-			gridBagConstraints113.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints113.gridy = 22;
-			GridBagConstraints gridBagConstraints111 = new GridBagConstraints();
-			gridBagConstraints111.gridx = 0;
-			gridBagConstraints111.anchor = GridBagConstraints.WEST;
-			gridBagConstraints111.gridy = 24;
-			GridBagConstraints gridBagConstraints110 = new GridBagConstraints();
-			gridBagConstraints110.gridx = 1;
-			gridBagConstraints110.anchor = GridBagConstraints.WEST;
-			gridBagConstraints110.gridy = 21;
-			GridBagConstraints gridBagConstraints26 = new GridBagConstraints();
-			gridBagConstraints26.gridx = 1;
-			gridBagConstraints26.gridy = 23;
-			GridBagConstraints gridBagConstraints19 = new GridBagConstraints();
-			gridBagConstraints19.gridx = 2;
-			gridBagConstraints19.anchor = GridBagConstraints.WEST;
-			gridBagConstraints19.gridy = 23;
-			GridBagConstraints gridBagConstraints18 = new GridBagConstraints();
-			gridBagConstraints18.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints18.gridy = 21;
-			gridBagConstraints18.weightx = 1.0;
-			gridBagConstraints18.gridwidth = 1;
-			gridBagConstraints18.gridx = 0;
-			GridBagConstraints gridBagConstraints17 = new GridBagConstraints();
-			gridBagConstraints17.gridx = 0;
-			gridBagConstraints17.gridwidth = 1;
-			gridBagConstraints17.anchor = GridBagConstraints.WEST;
-			gridBagConstraints17.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints17.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints17.gridy = 7;
-			GridBagConstraints gridBagConstraints25 = new GridBagConstraints();
-			gridBagConstraints25.gridx = 2;
-			gridBagConstraints25.anchor = GridBagConstraints.WEST;
-			gridBagConstraints25.gridy = 16;
-			GridBagConstraints gridBagConstraints16 = new GridBagConstraints();
-			gridBagConstraints16.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints16.gridy = 16;
-			gridBagConstraints16.weightx = 1.0;
-			gridBagConstraints16.gridwidth = 2;
-			gridBagConstraints16.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints16.gridx = 0;
-			GridBagConstraints gridBagConstraints15 = new GridBagConstraints();
-			gridBagConstraints15.gridx = 1;
-			gridBagConstraints15.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints15.gridy = 20;
-			GridBagConstraints gridBagConstraints42 = new GridBagConstraints();
-			gridBagConstraints42.gridx = 0;
-			gridBagConstraints42.anchor = GridBagConstraints.WEST;
-			gridBagConstraints42.gridheight = 1;
-			gridBagConstraints42.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints42.gridwidth = 3;
-			gridBagConstraints42.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints42.gridy = 9;
-			GridBagConstraints gridBagConstraints33 = new GridBagConstraints();
-			gridBagConstraints33.gridx = 0;
-			gridBagConstraints33.anchor = GridBagConstraints.WEST;
-			gridBagConstraints33.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints33.gridwidth = 3;
-			gridBagConstraints33.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints33.gridy = 1;
-			GridBagConstraints gridBagConstraints24 = new GridBagConstraints();
-			gridBagConstraints24.gridx = 0;
-			gridBagConstraints24.gridwidth = 3;
-			gridBagConstraints24.anchor = GridBagConstraints.WEST;
-			gridBagConstraints24.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints24.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints24.gridy = 4;
-			GridBagConstraints gridBagConstraints14 = new GridBagConstraints();
-			gridBagConstraints14.gridx = 1;
-			gridBagConstraints14.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints14.gridy = 2;
-			GridBagConstraints gridBagConstraints23 = new GridBagConstraints();
-			gridBagConstraints23.gridx = 2;
-			gridBagConstraints23.anchor = GridBagConstraints.EAST;
-			gridBagConstraints23.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints23.gridwidth = 1;
-			gridBagConstraints23.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints23.gridy = 6;
-			GridBagConstraints gridBagConstraints13 = new GridBagConstraints();
-			gridBagConstraints13.gridx = 0;
-			gridBagConstraints13.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints13.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints13.gridy = 2;
-			GridBagConstraints gridBagConstraints22 = new GridBagConstraints();
-			gridBagConstraints22.gridx = 2;
-			gridBagConstraints22.anchor = GridBagConstraints.WEST;
-			gridBagConstraints22.gridy = 21;
-			GridBagConstraints gridBagConstraints12 = new GridBagConstraints();
-			gridBagConstraints12.gridx = 0;
-			gridBagConstraints12.anchor = GridBagConstraints.WEST;
-			gridBagConstraints12.gridy = 21;
-			GridBagConstraints gridBagConstraints8 = new GridBagConstraints();
-			gridBagConstraints8.gridx = 2;
-			gridBagConstraints8.anchor = GridBagConstraints.WEST;
-			gridBagConstraints8.gridy = 19;
-			GridBagConstraints gridBagConstraints7 = new GridBagConstraints();
-			gridBagConstraints7.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints7.gridy = 19;
-			gridBagConstraints7.weightx = 1.0;
-			gridBagConstraints7.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints7.gridwidth = 2;
-			gridBagConstraints7.gridx = 0;
-			GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
-			gridBagConstraints6.gridx = 2;
-			gridBagConstraints6.anchor = GridBagConstraints.WEST;
-			gridBagConstraints6.gridy = 14;
-			GridBagConstraints gridBagConstraints51 = new GridBagConstraints();
-			gridBagConstraints51.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints51.gridy = 14;
-			gridBagConstraints51.weightx = 1.0;
-			gridBagConstraints51.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints51.gridwidth = 2;
-			gridBagConstraints51.gridx = 0;
-			GridBagConstraints gridBagConstraints41 = new GridBagConstraints();
-			gridBagConstraints41.gridx = 2;
-			gridBagConstraints41.anchor = GridBagConstraints.WEST;
-			gridBagConstraints41.gridy = 12;
-			GridBagConstraints gridBagConstraints32 = new GridBagConstraints();
-			gridBagConstraints32.gridx = 2;
-			gridBagConstraints32.anchor = GridBagConstraints.WEST;
-			gridBagConstraints32.gridy = 11;
-			GridBagConstraints gridBagConstraints21 = new GridBagConstraints();
-			gridBagConstraints21.gridx = 2;
-			gridBagConstraints21.anchor = GridBagConstraints.WEST;
-			gridBagConstraints21.gridy = 10;
-			GridBagConstraints gridBagConstraints11 = new GridBagConstraints();
-			gridBagConstraints11.gridx = 2;
-			gridBagConstraints11.gridy = 8;
-			GridBagConstraints gridBagConstraints31 = new GridBagConstraints();
-			gridBagConstraints31.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints31.gridy = 8;
-			gridBagConstraints31.weightx = 1.0;
-			gridBagConstraints31.anchor = GridBagConstraints.WEST;
-			gridBagConstraints31.gridwidth = 2;
-			gridBagConstraints31.insets = new Insets(3, 0, 2, 0);
-			gridBagConstraints31.gridx = 0;
-			GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
-			gridBagConstraints5.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints5.gridx = 0;
-			gridBagConstraints5.gridy = 20;
-			gridBagConstraints5.anchor = GridBagConstraints.WEST;
-			gridBagConstraints5.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints5.weightx = 0.0;
-			gridBagConstraints5.gridwidth = 1;
-			GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
-			gridBagConstraints4.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints4.gridwidth = 2;
-			gridBagConstraints4.gridx = 0;
-			gridBagConstraints4.gridy = 12;
-			gridBagConstraints4.weightx = 1.0;
-			gridBagConstraints4.insets = new Insets(0, 0, 0, 0);
-			GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
-			gridBagConstraints3.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints3.gridwidth = 2;
-			gridBagConstraints3.gridx = 0;
-			gridBagConstraints3.gridy = 11;
-			gridBagConstraints3.weightx = 1.0;
-			gridBagConstraints3.insets = new Insets(0, 0, 0, 0);
-			GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
-			gridBagConstraints2.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints2.gridwidth = 2;
-			gridBagConstraints2.gridx = 0;
-			gridBagConstraints2.gridy = 10;
-			gridBagConstraints2.weightx = 1.0;
-			gridBagConstraints2.insets = new Insets(0, 0, 0, 0);
-			GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
-			gridBagConstraints1.insets = new Insets(0, 0, 0, 0);
-			gridBagConstraints1.gridy = 5;
-			gridBagConstraints1.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints1.weightx = 0.0;
-			gridBagConstraints1.anchor = GridBagConstraints.EAST;
-			gridBagConstraints1.gridx = 2;
-			GridBagConstraints gridBagConstraints = new GridBagConstraints();
-			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints.gridx = 0;
-			gridBagConstraints.gridy = 5;
-			gridBagConstraints.weightx = 1.0;
-			gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-			gridBagConstraints.gridwidth = 2;
-			gridBagConstraints.insets = new Insets(5, 5, 5, 5);
 			dataTab = new JPanel();
-			dataTab.setPreferredSize(new java.awt.Dimension(220, 240));
-			dataTab.setMinimumSize(new Dimension(220,33));
-			GridBagLayout controlPanelLayout = new GridBagLayout();
-			dataTab.setLayout(controlPanelLayout);
+			dataTab.setLayout(null);
 			dataTab.setFont(new java.awt.Font("Dialog",0,10));
-			dataTab.add(getSearchTerm(), new GridBagConstraints(0, 2, 2, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			dataTab.add(getSearchButton(), new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getDepth(), new GridBagConstraints(0, 5, 2, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(3, 0, 2, 0), 0, 0));
-			dataTab.add(getDepthLabel(), new GridBagConstraints(2, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			dataTab.add(getSeachSelButton(), new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getSearch(), new GridBagConstraints(0, 1, 3, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			dataTab.add(getElimButton1(), new GridBagConstraints(1, 8, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getInterrupt(), new GridBagConstraints(2, 10, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			dataTab.add(getRandomCenter(), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getShowAll(), new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getExpand2(), new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getExpandnet(), new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getSimButton2(), new GridBagConstraints(0, 8, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getJCheckBox1(), new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			dataTab.add(getJLabel2(), new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			dataTab.add(getJSlider1(), new GridBagConstraints(0, 9, 2, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(3, 0, 2, 0), 0, 0));
-			dataTab.add(getJLabel7(), new GridBagConstraints(2, 9, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			dataTab.add(getSimButton1(), new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getSimButton2x(), new GridBagConstraints(2, 12, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getSimButton3(), new GridBagConstraints(1, 12, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getJLabel8(), new GridBagConstraints(0, 11, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			dataTab.add(getJCheckBox2(), new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			dataTab.add(getSimButton7(), new GridBagConstraints(2, 8, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getSimButton8(), new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			dataTab.add(getSimButton9(), new GridBagConstraints(2, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			controlPanelLayout.columnWidths = new int[] {7, 7, 7};
-			controlPanelLayout.rowHeights = new int[] {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7};
-			controlPanelLayout.columnWeights = new double[] {0.1, 0.1, 0.1};
-			controlPanelLayout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1};
-			controlPanelLayout.columnWeights = new double[] {0.1, 0.1, 0.1};
-			controlPanelLayout.columnWidths = new int[] {7, 7, 7};
-			controlPanelLayout.rowWeights = new double[] {0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.1, 0.1, 0.1, 0.0, 0.1, 0.0, 0.1};
-			controlPanelLayout.rowHeights = new int[] {20, 7, 7, 7, 7, 7, 20, 20, 20, 20, 7, 20, 7, 7};
-			//			controlPanel.setAlignmentY(Component.TOP_ALIGNMENT);
-			//			controlPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-			//			controlPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			dataTab.add(getSearchTerm());
+			dataTab.add(getSearchButton());
+			dataTab.add(getDepth());
+			dataTab.add(getDepthLabel());
+			dataTab.add(getSeachSelButton());
+			dataTab.add(getSearch());
+			dataTab.add(getElimButton1());
+			dataTab.add(getInterrupt());
+			dataTab.add(getRandomCenter());
+			dataTab.add(getShowAll());
+			dataTab.add(getExpand2());
+			dataTab.add(getExpandnet());
+			dataTab.add(getSimButton1());
+			dataTab.add(getSimButton2());
+			dataTab.add(getJLabel2());
+			dataTab.add(getJSlider1());
+			dataTab.add(getJLabel7());
+			dataTab.add(getSimButton2x());
+			dataTab.add(getSimButton3());
+			dataTab.add(getJLabel8());
+			dataTab.add(getJCheckBox2());
+			dataTab.add(getSimButton7());
+			dataTab.add(getSimButton8());
+			dataTab.add(getSimButton9());
+			dataTab.add(getSimButton12());
+			dataTab.add(getSimButton13());
+			dataTab.add(getSimButton14());
+			dataTab.add(getJLabel13());
+			dataTab.add(getSimButton17());
 		}
 		return dataTab;
 	}
 	private JTextField getSearchTerm() {
 		if (searchTerm == null) {
 			searchTerm = new JTextField();
-			searchTerm.setPreferredSize(new Dimension(100,20));
 			searchTerm.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+			searchTerm.setBounds(2, 19, 116, 15);
 			searchTerm.addKeyListener(new KeyAdapter() {
 				public void keyReleased(java.awt.event.KeyEvent e) {
-					//					System.out.println(searchTerm.getText()+" key:"+e.getKeyCode());
 					if (e.getKeyCode()==10) app.netSearchSubstring(searchTerm.getText(),add.isSelected());
 					textHilight();
 				}
@@ -1419,7 +754,7 @@ public class SwingSema {
 			searchButton.setFont(new java.awt.Font("Dialog",0,10));
 			searchButton.setVerticalAlignment(SwingConstants.CENTER);
 			searchButton.setVerticalTextPosition(SwingConstants.CENTER);
-			searchButton.setPreferredSize(new java.awt.Dimension(0,0));
+			searchButton.setBounds(166, 19, 45, 15);
 			searchButton.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netSearchSubstring(searchTerm.getText(), add.isSelected());
@@ -1430,7 +765,7 @@ public class SwingSema {
 		return searchButton;
 	}
 	private void textHilight() {
-		app.net.app.clearFrames(app.net);
+		app.clearFrames(app.ns.view);
 		if (searchTerm.getText().length()>0) app.findSubstringAttributes(searchTerm.getText(), app.getAttribute());
 	}
 	private JSlider getDepth() {
@@ -1443,10 +778,11 @@ public class SwingSema {
 			depth.setMajorTickSpacing(1);
 			depth.setPaintTrack(false);
 			depth.setSnapToTicks(true);
-			depth.setFont(new java.awt.Font("Verdana",0,7));
+			depth.setFont(new java.awt.Font("Dialog",0,7));
 			depth.setInverted(false);
 			depth.setToolTipText("searchdepth");
 			depth.setOpaque(false);
+			depth.setBounds(0, 59, 140, 31);
 			depth.addChangeListener(new ChangeListener() {
 				public void stateChanged(javax.swing.event.ChangeEvent e) {
 					app.setDepth(depth.getValue());
@@ -1460,6 +796,7 @@ public class SwingSema {
 			depthLabel = new JLabel();
 			depthLabel.setText("search steps");
 			depthLabel.setFont(new java.awt.Font("Dialog",0,10));
+			depthLabel.setBounds(144, 75, 61, 13);
 		}
 		return depthLabel;
 	}
@@ -1468,9 +805,10 @@ public class SwingSema {
 		if (seachSelButton == null) {
 			seachSelButton = new SimButton();
 			seachSelButton.setFont(new java.awt.Font("Dialog",0,10));
-			seachSelButton.setText("search picked");
+			seachSelButton.setText("picked");
 			seachSelButton.setVerticalAlignment(SwingConstants.CENTER);
 			seachSelButton.setVerticalTextPosition(SwingConstants.CENTER);
+			seachSelButton.setBounds(144, 40, 67, 15);
 			seachSelButton.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netSearchPicked(add.isSelected());
@@ -1484,6 +822,7 @@ public class SwingSema {
 			search = new JLabel();
 			search.setText("search");
 			search.setFont(new java.awt.Font("Dialog",1,11));
+			search.setBounds(0, 0, 210, 14);
 			//			search.setBackground(new java.awt.Color(192,192,192));
 		}
 		return search;
@@ -1495,12 +834,11 @@ public class SwingSema {
 			elimButton1.setText("leaf nodes");
 			elimButton1.setVerticalAlignment(SwingConstants.CENTER);
 			elimButton1.setVerticalTextPosition(SwingConstants.CENTER);
-			elimButton1.setPreferredSize(new Dimension(0,0));
 			elimButton1.setToolTipText("remove leave nodes");
+			elimButton1.setBounds(73, 190, 67, 15);
 			elimButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.net.clustersDelete();
-					//					SemaSpace.globalNet.eliminateClusters();
+					app.netRemoveLeafs();
 				}
 			});
 		}
@@ -1510,9 +848,10 @@ public class SwingSema {
 		if (interrupt == null) {
 			interrupt = new SimButton();
 			interrupt.setVisible(false);
+			interrupt.setBounds(0, 0, 0, 0);
 			interrupt.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.net.interrupt();
+					app.ns.view.interrupt();
 				}
 			});
 		}
@@ -1524,7 +863,8 @@ public class SwingSema {
 			randomCenter.setFont(new java.awt.Font("Dialog",0,10));
 			randomCenter.setVerticalAlignment(SwingConstants.CENTER);
 			randomCenter.setVerticalTextPosition(SwingConstants.CENTER);
-			randomCenter.setText("search random");
+			randomCenter.setText("random");
+			randomCenter.setBounds(73, 40, 67, 15);
 			randomCenter.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netStartRandom(add.isSelected());
@@ -1540,6 +880,7 @@ public class SwingSema {
 			showAll.setVerticalAlignment(SwingConstants.CENTER);
 			showAll.setVerticalTextPosition(SwingConstants.CENTER);
 			showAll.setText("show all");
+			showAll.setBounds(2, 40, 67, 15);
 			showAll.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netShowAll(); //  Auto-generated Event stub actionPerformed()
@@ -1552,10 +893,10 @@ public class SwingSema {
 		if (expand2 == null) {
 			expand2 = new SimButton();
 			expand2.setFont(new java.awt.Font("Dialog",0,10));
-			expand2.setText("expand picked");
+			expand2.setText("picked");
 			expand2.setVerticalAlignment(SwingConstants.CENTER);
 			expand2.setVerticalTextPosition(SwingConstants.CENTER);
-			expand2.setPreferredSize(new Dimension(0,0));
+			expand2.setBounds(144, 114, 67, 15);
 			expand2.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netExpandNode(); //  Auto-generated Event stub actionPerformed()
@@ -1567,15 +908,15 @@ public class SwingSema {
 	private SimButton getExpandnet() {
 		if (expandnet == null) {
 			expandnet = new SimButton();
-			expandnet.setText("expand all");
+			expandnet.setText("all");
 			expandnet.setVerticalAlignment(SwingConstants.CENTER);
 			expandnet.setVerticalTextPosition(SwingConstants.CENTER);
 			expandnet.setFont(new java.awt.Font("Dialog",0,10));
-			expandnet.setPreferredSize(new Dimension(0,0));
 			expandnet.setMargin(new java.awt.Insets(2,2,2,2));
+			expandnet.setBounds(2, 114, 67, 15);
 			expandnet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.netExpand();
+					app.netExpandAll();
 				}
 			});
 		}
@@ -1588,8 +929,8 @@ public class SwingSema {
 			SimButton2.setVerticalAlignment(SwingConstants.CENTER);
 			SimButton2.setVerticalTextPosition(SwingConstants.CENTER);
 			SimButton2.setFont(new java.awt.Font("Dialog",0,10));
-			SimButton2.setPreferredSize(new Dimension(0,0));
 			SimButton2.setToolTipText("remove isolated nodes");
+			SimButton2.setBounds(2, 171, 67, 15);
 			SimButton2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delIsolated();
@@ -1598,64 +939,35 @@ public class SwingSema {
 		}
 		return SimButton2;
 	}
-	private JCheckBox getJCheckBox1() {
-		if (directedGraph == null) {
-			directedGraph = new JCheckBox();
-			directedGraph.setText("directed graph");
-			directedGraph.setMargin(new java.awt.Insets(0,0,0,0));
-			directedGraph.setContentAreaFilled(false);
-			directedGraph.setFont(new java.awt.Font("Dialog",0,10));
-			directedGraph.setSelected(app.directed);
-			directedGraph.addActionListener(new ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.directed=directedGraph.isSelected();
-					app.net.setDirected(app.directed);
-					app.updatePick();
-				}
-			});
-		}
-		return directedGraph;
-	}
 	private JLabel getJLabel2() {
 		if (jLabel2 == null) {
 			jLabel2 = new JLabel();
 			jLabel2.setText("remove");
 			jLabel2.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel2.setBounds(1, 133, 51, 14);
 		}
 		return jLabel2;
 	}
 	private JPanel getViewTab() {
 		if (viewTab == null) {
 			viewTab = new JPanel();
-			GridBagLayout viewLayout = new GridBagLayout();
-			viewLayout.columnWidths = new int[] {7, 7, 7};
-			viewLayout.rowHeights = new int[] {7, 7, 7, 20, 20, 20, 20, 7, 7, 20, 20, 20, 20};
-			viewLayout.columnWeights = new double[] {0.1, 0.1, 0.1};
-			viewLayout.rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-			viewTab.setLayout(viewLayout);
+			viewTab.setLayout(null);
 			//			viewTab.setBackground(new java.awt.Color(192,192,192));
-			viewTab.add(getTexButton1(), new GridBagConstraints(2, 8, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			viewTab.add(getEdgBox1(), new GridBagConstraints(2, 12, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getNoRender(), new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getJCheckBox(), new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getShuffleButton(), new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			viewTab.add(getInflateButton(), new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			viewTab.add(getDisplay(), new GridBagConstraints(0, 0, 3, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getSizeSlider(), new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getSizeLabel(), new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getPicSizeSlider(), new GridBagConstraints(0, 5, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getJLabel9(), new GridBagConstraints(2, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getJSlider2(), new GridBagConstraints(0, 6, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getJLabel10(), new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getSimButton4(), new GridBagConstraints(0, 10, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			viewTab.add(getSimButton5(), new GridBagConstraints(1, 10, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			viewTab.add(getJLabel11(), new GridBagConstraints(0, 9, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getBoxLayout(), new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			viewTab.add(getCircle(), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			viewTab.add(getJCheckBox2x(), new GridBagConstraints(0, 12, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getSimButton10(), new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-			viewTab.add(getJLabel12(), new GridBagConstraints(0, 11, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			viewTab.add(getDrawClusters(), new GridBagConstraints(1, 12, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			viewTab.add(getTexButton1());
+			viewTab.add(getEdgBox1());
+			viewTab.add(getNoRender());
+			viewTab.add(getDisplay());
+			viewTab.add(getSizeSlider());
+			viewTab.add(getSizeLabel());
+			viewTab.add(getPicSizeSlider());
+			viewTab.add(getJLabel9());
+			viewTab.add(getJSlider2());
+			viewTab.add(getJLabel10());
+			viewTab.add(getSimButton4());
+			viewTab.add(getSimButton5());
+			viewTab.add(getJLabel11());
+			viewTab.add(getJCheckBox2x());
+			viewTab.add(getDrawClusters());
 		}
 		return viewTab;
 	}
@@ -1667,10 +979,11 @@ public class SwingSema {
 			texButton1.setText("reload Tex");
 			texButton1.setPreferredSize(new Dimension(60,20));
 			texButton1.setMargin(new java.awt.Insets(2,2,2,2));
-			texButton1.setVisible(false);
+			texButton1.setVisible(true);
+			texButton1.setBounds(0, 0, 0, 0);
 			texButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.fileIO.loadTexturesUrl( app.texfolder, app.net, app.thumbsize);
+					app.fileIO.loadTexturesUrl( app.texfolder, app.ns.view, app.thumbsize);
 				}
 			});
 		}
@@ -1683,10 +996,11 @@ public class SwingSema {
 			drawedges.setMargin(new java.awt.Insets(0,0,0,0));
 			drawedges.setContentAreaFilled(false);
 			drawedges.setFont(new java.awt.Font("Dialog",0,10));
-			drawedges.setSelected(app.edges);
+			drawedges.setBounds(144, 36, 50, 17);
+			drawedges.setSelected(app.isEdges());
 			drawedges.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.edges=drawedges.isSelected();
+					app.setEdges(drawedges.isSelected());
 				}
 			});
 		}
@@ -1695,72 +1009,27 @@ public class SwingSema {
 	private JCheckBox getNoRender() {
 		if (noRender == null) {
 			noRender = new JCheckBox();
-			noRender.setSelected(app.render);
+			noRender.setSelected(app.isRender());
 			noRender.setText("render on / off");
 			noRender.setToolTipText("allows to speed up operations by interupting rendering");
 			noRender.setMargin(new java.awt.Insets(0,0,0,0));
 			noRender.setContentAreaFilled(false);
 			noRender.setFont(new java.awt.Font("Dialog",0,10));
+			noRender.setBounds(1, 18, 93, 17);
 			noRender.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.render=noRender.isSelected(); 
+					app.setRender(noRender.isSelected()); 
 				}
 			});
 		}
 		return noRender;
-	}
-	private JCheckBox getJCheckBox() {
-		if (draw3d == null) {
-			draw3d = new JCheckBox();
-			draw3d.setText("3D");
-			draw3d.setMargin(new java.awt.Insets(0,0,0,0));
-			draw3d.setContentAreaFilled(false);
-			draw3d.setFont(new java.awt.Font("Dialog",0,10));
-			draw3d.setSelected(!app.get3D());
-			draw3d.addActionListener(new ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.toggle3D();
-					draw3d.setSelected(!app.get3D());
-				}
-			});
-		}
-		return draw3d;
-	}
-	private SimButton getShuffleButton() {
-		if (shuffleButton == null) {
-			shuffleButton = new SimButton();
-			shuffleButton.setFont(new Font("Dialog",Font.PLAIN,10));
-			shuffleButton.setToolTipText("randomize layout");
-			shuffleButton.setText("shuffle");
-			shuffleButton.setPreferredSize(new Dimension(60,20));
-			shuffleButton.addActionListener(new ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.layout.layoutNodePosRandomize();
-				}
-			});
-		}
-		return shuffleButton;
-	}
-	private SimButton getInflateButton() {
-		if (inflateButton == null) {
-			inflateButton = new SimButton();
-			inflateButton.setPreferredSize(new Dimension(60,20));
-			inflateButton.setFont(new Font("Dialog",Font.PLAIN,10));
-			inflateButton.setToolTipText("stretch the whole layout");
-			inflateButton.setText("inflate");
-			inflateButton.addMouseListener(new MouseAdapter() {
-				public void mousePressed(java.awt.event.MouseEvent e) {
-					app.setInflate(true);
-				}
-			});
-		}
-		return inflateButton;
 	}
 	private JLabel getDisplay() {
 		if (display == null) {
 			display = new JLabel();
 			display.setText("display");
 			display.setFont(new java.awt.Font("Dialog",1,11));
+			display.setBounds(0, 0, 210, 14);
 		}
 		return display;
 	}
@@ -1771,6 +1040,7 @@ public class SwingSema {
 			sizeSlider.setOpaque(false);
 			sizeSlider.setToolTipText("set base node size");
 			sizeSlider.setName("sizeSlider");
+			sizeSlider.setBounds(1, 71, 140, 16);
 			sizeSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setSize((float)sizeSlider.getValue());
@@ -1784,43 +1054,45 @@ public class SwingSema {
 			sizeLabel = new JLabel();
 			sizeLabel.setText("nodeSize");
 			sizeLabel.setFont(new java.awt.Font("Dialog",0,10));
+			sizeLabel.setBounds(144, 73, 44, 13);
 		}
 		return sizeLabel;
 	}
 	private JPanel getLayoutTab() {
 		if (layoutTab == null) {
 			layoutTab = new JPanel();
-			GridBagLayout jPanel1Layout = new GridBagLayout();
-			jPanel1Layout.columnWidths = new int[] {7, 7, 7};
-			jPanel1Layout.rowHeights = new int[] {7, 7, 20, 7, 7, 7, 20, 20, 20, 7, 7, 20, 7, 7, 20, 20};
-			jPanel1Layout.columnWeights = new double[] {0.1, 0.1, 0.1};
-			jPanel1Layout.rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1};
-			layoutTab.setLayout(jPanel1Layout);
-			//			layoutTab.setBackground(new java.awt.Color(192,192,192));
-			layoutTab.add(getValenzSlider(), new GridBagConstraints(0, 12, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getDistanceSlider(), new GridBagConstraints(0, 14, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getGroupRadius(), new GridBagConstraints(0, 6, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getPushSlider(), new GridBagConstraints(0, 9, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getRepellStSlider(), new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getStretchSlider(), new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getStrengthSlider(), new GridBagConstraints(0, 13, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getValenzLabel(), new GridBagConstraints(2, 12, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getDistLabel(), new GridBagConstraints(2, 14, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getGroup(), new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getPushLabel(), new GridBagConstraints(2, 9, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getPushLabel1(), new GridBagConstraints(2, 10, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getPushLabel11(), new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getStrengthLabel(), new GridBagConstraints(2, 13, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getForces(), new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getClusters(), new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getRadialBox(), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getTreeBox(), new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getRepNeighbors(), new GridBagConstraints(1, 8, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getRepellBox1(), new GridBagConstraints(0, 8, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getJLabel3(), new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getJLabel4(), new GridBagConstraints(0, 7, 2, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getJLabel5(), new GridBagConstraints(0, 11, 2, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-			layoutTab.add(getJCheckBox1x(), new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			layoutTab.setLayout(null);
+			//			layoutTab.setMinimumSize(new java.awt.Dimension(10, 280));
+			layoutTab.add(getValenzSlider());
+			layoutTab.add(getDistanceSlider());
+			layoutTab.add(getGroupRadius());
+			layoutTab.add(getPushSlider());
+			layoutTab.add(getRepellStSlider());
+			layoutTab.add(getStretchSlider());
+			layoutTab.add(getStrengthSlider());
+			layoutTab.add(getValenzLabel());
+			layoutTab.add(getDistLabel());
+			layoutTab.add(getGroup());
+			layoutTab.add(getPushLabel());
+			layoutTab.add(getPushLabel1());
+			layoutTab.add(getPushLabel11());
+			layoutTab.add(getStrengthLabel());
+			layoutTab.add(getForces());
+			layoutTab.add(getClusters());
+			layoutTab.add(getRadialBox());
+			layoutTab.add(getTreeBox());
+			layoutTab.add(getRepNeighbors());
+			layoutTab.add(getRepellBox1());
+			layoutTab.add(getJLabel3());
+			layoutTab.add(getJLabel4());
+			layoutTab.add(getJLabel5());
+			layoutTab.add(getJCheckBox1x());
+			layoutTab.add(getSimButton10());
+			layoutTab.add(getInflateButton());
+			layoutTab.add(getBoxLayout());
+			layoutTab.add(getCircle());
+			layoutTab.add(getShuffleButton());
+			layoutTab.add(getJCheckBox());
 		}
 		return layoutTab;
 	}
@@ -1831,6 +1103,7 @@ public class SwingSema {
 			valenzSlider.setOpaque(false);
 			valenzSlider.setToolTipText("note distance: set valence influence");
 			valenzSlider.setName("valenz");
+			valenzSlider.setBounds(0, 201, 151, 16);
 			valenzSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setVal((float)valenzSlider.getValue()/100f);
@@ -1847,6 +1120,7 @@ public class SwingSema {
 			distanceSlider.setOpaque(false);
 			distanceSlider.setToolTipText("set base node size");
 			distanceSlider.setName("distance");
+			distanceSlider.setBounds(0, 235, 151, 16);
 			distanceSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setDistance((float)distanceSlider.getValue());
@@ -1863,6 +1137,7 @@ public class SwingSema {
 			groupRadius.setOpaque(false);
 			groupRadius.setToolTipText("set cluster radius");
 			groupRadius.setName("group radius");
+			groupRadius.setBounds(0, 91, 151, 16);
 			groupRadius.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setClusterRad(groupRadius.getValue()/10f); //  Auto-generated Event stub stateChanged()
@@ -1879,6 +1154,7 @@ public class SwingSema {
 			pushSlider.setOpaque(false);
 			pushSlider.setToolTipText("set repell distance factor");
 			pushSlider.setName("repell");
+			pushSlider.setBounds(0, 149, 151, 16);
 			pushSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setRepell((float)pushSlider.getValue());
@@ -1895,6 +1171,7 @@ public class SwingSema {
 			repellStSlider.setValue((int)(app.getRepStr()*100));
 			repellStSlider.setToolTipText("set repell strength factor");
 			repellStSlider.setName("rep. st.");
+			repellStSlider.setBounds(0, 165, 151, 16);
 			repellStSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setRepStr((float)repellStSlider.getValue()/100f);
@@ -1911,6 +1188,7 @@ public class SwingSema {
 			stretchSlider.setOpaque(false);
 			stretchSlider.setToolTipText("set permanent inflate force (only use if graph is connected)");
 			stretchSlider.setName("permInfl");
+			stretchSlider.setBounds(0, 21, 151, 16);
 			stretchSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setPermInflate(stretchSlider.getValue()); //  Auto-generated Event stub stateChanged()
@@ -1927,6 +1205,7 @@ public class SwingSema {
 			strengthSlider.setOpaque(false);
 			strengthSlider.setToolTipText("set repell distance factor");
 			strengthSlider.setName("repell");
+			strengthSlider.setBounds(0, 217, 151, 16);
 			strengthSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setStrength((float)strengthSlider.getValue()/100f);
@@ -1940,7 +1219,7 @@ public class SwingSema {
 			valenzLabel = new JLabel();
 			valenzLabel.setText("degree f.");
 			valenzLabel.setFont(new java.awt.Font("Dialog",0,10));
-			valenzLabel.setPreferredSize(new Dimension(46,16));
+			valenzLabel.setBounds(148, 202, 44, 13);
 		}
 		return valenzLabel;
 	}
@@ -1949,6 +1228,7 @@ public class SwingSema {
 			distLabel = new JLabel();
 			distLabel.setText("distance");
 			distLabel.setFont(new java.awt.Font("Dialog",0,10));
+			distLabel.setBounds(148, 236, 41, 13);
 		}
 		return distLabel;
 	}
@@ -1957,6 +1237,7 @@ public class SwingSema {
 			group = new JLabel();
 			group.setText("radius");
 			group.setFont(new java.awt.Font("Dialog",0,10));
+			group.setBounds(148, 92, 30, 13);
 		}
 		return group;
 	}
@@ -1965,6 +1246,7 @@ public class SwingSema {
 			pushLabel = new JLabel();
 			pushLabel.setText("distance");
 			pushLabel.setFont(new java.awt.Font("Dialog",0,10));
+			pushLabel.setBounds(148, 150, 41, 13);
 		}
 		return pushLabel;
 	}
@@ -1973,6 +1255,7 @@ public class SwingSema {
 			pushLabel1 = new JLabel();
 			pushLabel1.setText("strength");
 			pushLabel1.setFont(new java.awt.Font("Dialog",0,10));
+			pushLabel1.setBounds(148, 166, 41, 13);
 		}
 		return pushLabel1;
 	}
@@ -1981,6 +1264,7 @@ public class SwingSema {
 			pushLabel11 = new JLabel();
 			pushLabel11.setText("inflate");
 			pushLabel11.setFont(new java.awt.Font("Dialog",0,10));
+			pushLabel11.setBounds(148, 24, 32, 13);
 		}
 		return pushLabel11;
 	}
@@ -1989,6 +1273,7 @@ public class SwingSema {
 			strengthLabel = new JLabel();
 			strengthLabel.setText("strength");
 			strengthLabel.setFont(new java.awt.Font("Dialog",0,10));
+			strengthLabel.setBounds(148, 218, 41, 13);
 		}
 		return strengthLabel;
 	}
@@ -1997,6 +1282,7 @@ public class SwingSema {
 			forces = new JLabel();
 			forces.setText("global layout");
 			forces.setFont(new java.awt.Font("Dialog",1,11));
+			forces.setBounds(0, 0, 151, 14);
 		}
 		return forces;
 	}
@@ -2008,10 +1294,11 @@ public class SwingSema {
 			clusters.setMargin(new java.awt.Insets(0,0,0,0));
 			clusters.setContentAreaFilled(false);
 			clusters.setFont(new java.awt.Font("Dialog",0,10));
+			clusters.setBounds(0, 72, 33, 17);
 			clusters.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setCluster(clusters.isSelected());
-					app.net.updateNet();
+					app.ns.view.updateNet();
 				}
 			});
 		}
@@ -2025,6 +1312,7 @@ public class SwingSema {
 			timeBox.setMargin(new java.awt.Insets(0,0,0,0));
 			timeBox.setContentAreaFilled(false);
 			timeBox.setFont(new java.awt.Font("Dialog",0,10));
+			timeBox.setBounds(61, 41, 61, 17);
 			timeBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setTime(timeBox.isSelected());
@@ -2041,6 +1329,7 @@ public class SwingSema {
 			treeBox.setMargin(new java.awt.Insets(0,0,0,0));
 			treeBox.setContentAreaFilled(false);
 			treeBox.setFont(new java.awt.Font("Dialog",0,10));
+			treeBox.setBounds(145, 41, 49, 17);
 			treeBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setTree(treeBox.isSelected());
@@ -2057,6 +1346,7 @@ public class SwingSema {
 			repNeighbors.setMargin(new java.awt.Insets(0,0,0,0));
 			repNeighbors.setContentAreaFilled(false);
 			repNeighbors.setFont(new java.awt.Font("Dialog",0,10));
+			repNeighbors.setBounds(61, 130, 59, 17);
 			repNeighbors.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setRepN(!app.isRepN());
@@ -2073,6 +1363,7 @@ public class SwingSema {
 			repellBox1.setMargin(new java.awt.Insets(0,0,0,0));
 			repellBox1.setContentAreaFilled(false);
 			repellBox1.setFont(new java.awt.Font("Dialog",0,10));
+			repellBox1.setBounds(0, 130, 33, 17);
 			repellBox1.setSelected(app.repell);
 			repellBox1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -2088,6 +1379,7 @@ public class SwingSema {
 			jLabel3 = new JLabel();
 			jLabel3.setText("clusters");
 			jLabel3.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel3.setBounds(0, 58, 151, 14);
 		}
 		return jLabel3;
 	}
@@ -2096,6 +1388,7 @@ public class SwingSema {
 			jLabel4 = new JLabel();
 			jLabel4.setText("repulsive forces (slow)");
 			jLabel4.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel4.setBounds(0, 112, 151, 14);
 		}
 		return jLabel4;
 	}
@@ -2104,6 +1397,7 @@ public class SwingSema {
 			jLabel5 = new JLabel();
 			jLabel5.setText("attractive forces");
 			jLabel5.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel5.setBounds(0, 184, 151, 14);
 		}
 		return jLabel5;
 	}
@@ -2169,16 +1463,16 @@ public class SwingSema {
 	}
 
 	private void loadNetwork() {
-		boolean t = app.render;
-		app.render=false;
+		boolean t = app.isRender();
+		app.setRender(false);
 		int returnVal = openFile.showOpenDialog(openFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File filename =openFile.getSelectedFile();
 			app.edgeListLoad(filename);
-//			app.setFilename(filename);
+			//			app.setFilename(filename);
 			//			app.netLoad();
 			setCounter();
-			app.render=t;
+			app.setRender(t);
 		}
 	}
 
@@ -2197,15 +1491,14 @@ public class SwingSema {
 	}
 
 	private void loadNodeAttributes() {
-		boolean t = app.render;
-		app.render=false;
+		boolean t = app.isRender();
+		app.setRender(false);
 		int returnVal = openFile.showOpenDialog(openFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			String filename = openFile.getSelectedFile().getAbsoluteFile().toString();
 			app.nodeListLoad(openFile.getSelectedFile());
-			app.setNodefile(filename);
 			setCounter();
-			app.render=t;
+			app.setRender(t);
 		}
 	}
 	private JMenuItem getSaveMenuItem() {
@@ -2240,8 +1533,8 @@ public class SwingSema {
 
 	public void updateUI(NetStack n) {
 		initNetList(n);
-		initNodeList(n.global);
-		initEdgeList(n.global);
+		initNodeList(n.getView());
+		initEdgeList(n.view);
 		initAttList();
 		setCounter();
 		initSliders();
@@ -2251,12 +1544,12 @@ public class SwingSema {
 	private void initAttList() {
 		nodeAttModel.clear();
 		nodeAttModel.addElement("none");
-		for (String s : app.nets.global.nodeattributes) {
+		for (String s : app.ns.global.nodeattributes) {
 			nodeAttModel.addElement(s);
 		}
 		edgeAttModel.clear();
 		edgeAttModel.addElement("none");
-		for (String s : app.nets.global.edgeattributes) {
+		for (String s : app.ns.global.edgeattributes) {
 			edgeAttModel.addElement(s);
 		}
 
@@ -2299,13 +1592,14 @@ public class SwingSema {
 		}
 	}
 	private void initCheckboxes() {
+		tiltBox.setSelected(app.tilt);
 		repellBox1.setSelected(app.repell);
 		repNeighbors.setSelected(app.isRepN());
 		treeBox.setSelected(app.isTree());
 		timeBox.setSelected(app.isTree());
 		clusters.setSelected(app.isCluster());
-		noRender.setSelected(app.render);
-		drawedges.setSelected(app.edges);
+		noRender.setSelected(app.isRender());
+		drawedges.setSelected(app.isEdges());
 		draw3d.setSelected(!app.get3D());
 		fadenodes.setSelected(app.fadeNodes);
 		forceBox.setSelected(app.getCalc());
@@ -2321,13 +1615,13 @@ public class SwingSema {
 			jSlider1.setInverted(false);
 			jSlider1.setMajorTickSpacing(1);
 			jSlider1.setSnapToTicks(true);
-			jSlider1.setPaintTicks(false);
 			jSlider1.setPaintTrack(false);
 			jSlider1.setPaintLabels(true);
 			jSlider1.setFont(new java.awt.Font("Dialog",0,7));
 			jSlider1.setToolTipText("searchdepth");
 			jSlider1.setOpaque(false);
 			jSlider1.setName("jSlider1");
+			jSlider1.setBounds(0, 214, 134, 35);
 			jSlider1.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setPickdepth(jSlider1.getValue());
@@ -2343,6 +1637,7 @@ public class SwingSema {
 			jLabel7 = new JLabel();
 			jLabel7.setText("pick steps");
 			jLabel7.setFont(new java.awt.Font("Dialog",0,10));
+			jLabel7.setBounds(146, 231, 49, 13);
 		}
 		return jLabel7;
 	}
@@ -2354,8 +1649,8 @@ public class SwingSema {
 			simButton1.setVerticalAlignment(SwingConstants.CENTER);
 			simButton1.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton1.setFont(new java.awt.Font("Dialog",0,10));
-			simButton1.setPreferredSize(new Dimension(0,0));
 			simButton1.setToolTipText("remove the picked node");
+			simButton1.setBounds(2, 152, 67, 15);
 			simButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delSelected();
@@ -2372,7 +1667,7 @@ public class SwingSema {
 			simButton2.setVerticalAlignment(SwingConstants.CENTER);
 			simButton2.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton2.setFont(new java.awt.Font("Dialog",0,10));
-			simButton2.setPreferredSize(new Dimension(0,0));
+			simButton2.setBounds(144, 273, 67, 15);
 			simButton2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.locksRemove();
@@ -2389,7 +1684,7 @@ public class SwingSema {
 			simButton3.setVerticalAlignment(SwingConstants.CENTER);
 			simButton3.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton3.setFont(new java.awt.Font("Dialog",0,10));
-			simButton3.setPreferredSize(new Dimension(0,0));
+			simButton3.setBounds(73, 273, 67, 15);
 			simButton3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.lockAll();
@@ -2404,6 +1699,7 @@ public class SwingSema {
 			jLabel8 = new JLabel();
 			jLabel8.setText("locks");
 			jLabel8.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel8.setBounds(0, 255, 51, 14);
 		}
 		return jLabel8;
 	}
@@ -2416,6 +1712,7 @@ public class SwingSema {
 			picSizeSlider.setToolTipText("set pic size as multiplier of node size");
 			picSizeSlider.setOpaque(false);
 			picSizeSlider.setName("jSlider2");
+			picSizeSlider.setBounds(1, 91, 140, 16);
 			picSizeSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setPicSize(picSizeSlider.getValue());
@@ -2430,6 +1727,7 @@ public class SwingSema {
 			jLabel9 = new JLabel();
 			jLabel9.setText("picSize");
 			jLabel9.setFont(new java.awt.Font("Dialog",0,10));
+			jLabel9.setBounds(144, 92, 34, 13);
 		}
 		return jLabel9;
 	}
@@ -2442,6 +1740,7 @@ public class SwingSema {
 			jSlider2.setToolTipText("set pic size as multiplier of node size");
 			jSlider2.setOpaque(false);
 			jSlider2.setName("jSlider2");
+			jSlider2.setBounds(1, 111, 140, 16);
 			jSlider2.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setNodeVar(jSlider2.getValue()/10f);
@@ -2456,6 +1755,7 @@ public class SwingSema {
 			jLabel10 = new JLabel();
 			jLabel10.setText("nodeVar");
 			jLabel10.setFont(new java.awt.Font("Dialog",0,10));
+			jLabel10.setBounds(144, 112, 41, 13);
 		}
 		return jLabel10;
 	}
@@ -2465,6 +1765,7 @@ public class SwingSema {
 			jSplitPane2 = new JSplitPane();
 			jSplitPane2.setOrientation(JSplitPane.VERTICAL_SPLIT);
 			jSplitPane2.setDividerSize(0);
+			jSplitPane2.setMinimumSize(new Dimension(230,375));
 			jSplitPane2.add(getControlPanel(), JSplitPane.TOP);
 			jSplitPane2.add(getJPanel1(), JSplitPane.BOTTOM);
 		}
@@ -2474,16 +1775,12 @@ public class SwingSema {
 	private JPanel getJPanel1() {
 		if(midPanels == null) {
 			midPanels = new JPanel();
-			GridBagLayout jPanel1Layout = new GridBagLayout();
-			jPanel1Layout.rowWeights = new double[] {0.1, 0.1};
-			jPanel1Layout.rowHeights = new int[] {7, 7};
-			jPanel1Layout.columnWeights = new double[] {0.1, 0.1};
-			jPanel1Layout.columnWidths = new int[] {7, 7};
-			midPanels.setLayout(jPanel1Layout);
-			midPanels.add(getFadeNodes(), new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			midPanels.add(getFontslider(), new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-			midPanels.add(getJLabel1(), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-			midPanels.add(getForceBox(), new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			midPanels.setLayout(null);
+			midPanels.add(getFadeNodes());
+			midPanels.add(getFontslider());
+			midPanels.add(getJLabel1());
+			midPanels.add(getForceBox());
+			midPanels.add(getJCheckBox2xx());
 		}
 		return midPanels;
 	}
@@ -2494,11 +1791,12 @@ public class SwingSema {
 			fadenodes.setMargin(new java.awt.Insets(0,0,0,0));
 			fadenodes.setContentAreaFilled(false);
 			fadenodes.setFont(new java.awt.Font("Dialog",0,10));
+			fadenodes.setBounds(2, 1, 75, 17);
 			fadenodes.setSelected(app.fadeNodes);
 			fadenodes.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.fadeNodes=fadenodes.isSelected();
-					app.net.app.layout.applyPickColors();
+					app.layout.applyPickColors();
 				}
 			});
 		}
@@ -2508,12 +1806,12 @@ public class SwingSema {
 		if (fontslider == null) {
 			fontslider = new JSlider();
 			fontslider.setFont(new Font("Dialog",Font.PLAIN,10));
+			fontslider.setMinimum(0);
 			fontslider.setMaximum(3);
 			fontslider.setMajorTickSpacing(1);
 			fontslider.setSnapToTicks(true);
 			fontslider.setToolTipText("font");
 			fontslider.setName("fontslider");
-			fontslider.setMinimum(1);
 			fontslider.setPaintTrack(false);
 			fontslider.setPaintTicks(true);
 			fontslider.setValue(app.getFonttype());
@@ -2521,6 +1819,7 @@ public class SwingSema {
 			fontslider.setInverted(true);
 			fontslider.setValue(1);
 			fontslider.setOpaque(false);
+			fontslider.setBounds(0, 20, 103, 30);
 			fontslider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setFonttype(fontslider.getValue());
@@ -2534,6 +1833,7 @@ public class SwingSema {
 			jLabel1 = new JLabel();
 			jLabel1.setText("labeltype");
 			jLabel1.setFont(new java.awt.Font("Dialog",0,10));
+			jLabel1.setBounds(125, 28, 45, 13);
 		}
 		return jLabel1;
 	}
@@ -2546,6 +1846,7 @@ public class SwingSema {
 			forceBox.setMargin(new java.awt.Insets(0,0,0,0));
 			forceBox.setContentAreaFilled(false);
 			forceBox.setFont(new java.awt.Font("Dialog",0,10));
+			forceBox.setBounds(85, 1, 85, 17);
 			forceBox.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.setCalc(!app.getCalc());
@@ -2562,7 +1863,7 @@ public class SwingSema {
 			simButton4.setText("reset");
 			simButton4.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton4.setToolTipText("set the camera to 0,0");
-			simButton4.setPreferredSize(new Dimension(60,20));
+			simButton4.setBounds(1, 189, 65, 15);
 			simButton4.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.resetCam();
@@ -2575,10 +1876,10 @@ public class SwingSema {
 	private SimButton getSimButton5() {
 		if(simButton5 == null) {
 			simButton5 = new SimButton();
-			simButton5.setText("focus picked");
+			simButton5.setText("to picked");
 			simButton5.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton5.setToolTipText("set the camera to selected node");
-			simButton5.setPreferredSize(new Dimension(60,20));
+			simButton5.setBounds(71, 189, 65, 15);
 			simButton5.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.camOnSelected();
@@ -2593,6 +1894,7 @@ public class SwingSema {
 			jLabel11 = new JLabel();
 			jLabel11.setText("viewpoint");
 			jLabel11.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel11.setBounds(0, 170, 73, 14);
 		}
 		return jLabel11;
 	}
@@ -2605,40 +1907,9 @@ public class SwingSema {
 			add.setMargin(new java.awt.Insets(0,0,0,0));
 			add.setContentAreaFilled(false);
 			add.setFont(new java.awt.Font("Dialog",0,10));
+			add.setBounds(122, 19, 39, 15);
 		}
 		return add;
-	}
-
-	private SimButton getBoxLayout() {
-		if(boxButton == null) {
-			boxButton = new SimButton();
-			boxButton.setText("box");
-			boxButton.setFont(new Font("Dialog",Font.PLAIN,10));
-			boxButton.setToolTipText("arrange nodes in boxshape");
-			boxButton.setPreferredSize(new Dimension(60,20));
-			boxButton.addMouseListener(new MouseAdapter() {
-				public void mousePressed(MouseEvent e) {
-					app.layoutBox();
-				}
-			});
-		}
-		return boxButton;
-	}
-
-	private SimButton getCircle() {
-		if(simButton6 == null) {
-			simButton6 = new SimButton();
-			simButton6.setText("circle");
-			simButton6.setFont(new Font("Dialog",Font.PLAIN,10));
-			simButton6.setToolTipText("arrange nodes in circular shape");
-			simButton6.setPreferredSize(new Dimension(60,20));
-			simButton6.addMouseListener(new MouseAdapter() {
-				public void mousePressed(MouseEvent e) {
-					app.layoutCircle();
-				}
-			});
-		}
-		return simButton6;
 	}
 
 	private SimButton getSimButton7() {
@@ -2648,8 +1919,8 @@ public class SwingSema {
 			simButton7.setVerticalAlignment(SwingConstants.CENTER);
 			simButton7.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton7.setFont(new java.awt.Font("Dialog",0,10));
-			simButton7.setPreferredSize(new Dimension(0,0));
 			simButton7.setToolTipText("remove all nodes from view");
+			simButton7.setBounds(144, 190, 67, 15);
 			simButton7.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delAll();
@@ -2666,8 +1937,8 @@ public class SwingSema {
 			simButton8.setVerticalAlignment(SwingConstants.CENTER);
 			simButton8.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton8.setFont(new java.awt.Font("Dialog",0,10));
-			simButton8.setPreferredSize(new Dimension(0,0));
 			simButton8.setToolTipText("remove nodes within pickrange");
+			simButton8.setBounds(73, 152, 67, 15);
 			simButton8.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delRegion(false);
@@ -2685,6 +1956,7 @@ public class SwingSema {
 			renderTextures.setContentAreaFilled(false);
 			renderTextures.setSelected(app.textures);
 			renderTextures.setFont(new java.awt.Font("Dialog",0,10));
+			renderTextures.setBounds(1, 36, 62, 17);
 			renderTextures.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.textures=renderTextures.isSelected();
@@ -2702,7 +1974,7 @@ public class SwingSema {
 			simButton9.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton9.setFont(new java.awt.Font("Dialog",0,10));
 			simButton9.setToolTipText("remove the nodes outside the pickregion");
-			simButton9.setPreferredSize(new Dimension(0,0));
+			simButton9.setBounds(144, 152, 67, 15);
 			simButton9.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delRegion(true);
@@ -2720,6 +1992,7 @@ public class SwingSema {
 			jCheckBox1.setContentAreaFilled(false);
 			jCheckBox1.setFont(new java.awt.Font("Dialog",0,10));
 			jCheckBox1.setVisible(false);
+			jCheckBox1.setBounds(0, 0, 0, 0);
 			jCheckBox1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setTree(treeBox.isSelected());
@@ -2729,32 +2002,21 @@ public class SwingSema {
 		return jCheckBox1;
 	}
 
-	private SimButton getSimButton10() {
-		if(simButton10 == null) {
-			simButton10 = new SimButton();
-			simButton10.setText("force");
-			simButton10.setFont(new Font("Dialog",Font.PLAIN,10));
-			simButton10.setToolTipText("arrange nodes with force based algorithm");
-			simButton10.setPreferredSize(new Dimension(60,20));
-			simButton10.addMouseListener(new MouseAdapter() {
-				public void mousePressed(MouseEvent e) {
-					app.layoutForce();
-				}
-			});
-		}
-		return simButton10;
-	}
-
 	private JPanel getFile() {
 		if(file == null) {
 			file = new JPanel();
-			FlowLayout fileLayout = new FlowLayout();
-			file.setLayout(fileLayout);
+			file.setLayout(null);
 			file.add(getLoadNet());
 			file.add(getLoadNodeAtt());
 			file.add(getSetImgDir());
 			file.add(getSaveNet());
 			file.add(getClear());
+			file.add(getSimButton11());
+			file.add(getJCheckBox1());
+			file.add(getJLabel14());
+			file.add(getJLabel12());
+			file.add(getJLabel15());
+			file.add(getSimButton15());
 		}
 		return file;
 	}
@@ -2763,6 +2025,7 @@ public class SwingSema {
 		if(loadNet == null) {
 			loadNet = new SimButton();
 			loadNet.setText("add net");
+			loadNet.setBounds(2, 18, 67, 15);
 			loadNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					loadNetwork();
@@ -2776,6 +2039,7 @@ public class SwingSema {
 		if(loadNodeAtt == null) {
 			loadNodeAtt = new SimButton();
 			loadNodeAtt.setText("add attrib");
+			loadNodeAtt.setBounds(73, 18, 67, 15);
 			loadNodeAtt.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					loadNodeAttributes();
@@ -2786,20 +2050,21 @@ public class SwingSema {
 	}
 
 	private void setImageDir() {
-		boolean t = app.render;
-		app.render=false;
+		boolean t = app.isRender();
+		app.setRender(false);
 		int returnVal = openPicDir.showOpenDialog(openPicDir);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			app.setTexFolder(openPicDir.getSelectedFile().getAbsolutePath()+"/");
-			app.fileIO.loadTextures(app.texfolder, app.net);
+			app.fileIO.loadTextures(app.texfolder, app.ns.view);
 		}
-		app.render=t;
+		app.setRender(t);
 	}
 
 	private SimButton getSetImgDir() {
 		if(imgDir == null) {
 			imgDir = new SimButton();
 			imgDir.setText("img dir");
+			imgDir.setBounds(144, 18, 67, 15);
 			imgDir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					setImageDir();
@@ -2810,21 +2075,22 @@ public class SwingSema {
 	}
 
 	private void saveNetwork() {
-		boolean t = app.render;
-		app.render=false;
+		boolean t = app.isRender();
+		app.setRender(false);
 		int returnVal = saveFile.showSaveDialog(saveFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			app.net.saveNet(saveFile.getSelectedFile().toString());
-			app.net.saveNodeData(saveFile.getSelectedFile().toString()+".n"); 
-			app.net.saveEdgeData(saveFile.getSelectedFile().toString()+".e");
+			app.ns.view.saveNet(saveFile.getSelectedFile().toString());
+			app.ns.view.saveNodeData(saveFile.getSelectedFile().toString()+".n"); 
+			app.ns.view.saveEdgeData(saveFile.getSelectedFile().toString()+".e");
 		}
-		app.render=t;
+		app.setRender(t);
 	}
 
 	private SimButton getSaveNet() {
 		if(saveNet == null) {
 			saveNet = new SimButton();
-			saveNet.setText("save net");
+			saveNet.setText("export");
+			saveNet.setBounds(73, 128, 67, 15);
 			saveNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					saveNetwork();
@@ -2836,11 +2102,12 @@ public class SwingSema {
 	private SimButton getClear() {
 		if (clear == null) {
 			clear = new SimButton();
-			clear.setText("delete all");
+			clear.setText("delete by att");
+			clear.setBounds(2, 83, 67, 15);
 			clear.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.clearNets();
-					updateUI(app.nets);
+					app.delNodesAtt();
+					updateUI(app.ns);
 				}
 			});
 		}
@@ -2855,16 +2122,7 @@ public class SwingSema {
 		}
 		return nets;
 	}
-	
-	private JLabel getJLabel12() {
-		if(jLabel12 == null) {
-			jLabel12 = new JLabel();
-			jLabel12.setText("elements");
-			jLabel12.setFont(new java.awt.Font("Dialog",1,11));
-		}
-		return jLabel12;
-	}
-	
+
 	private JCheckBox getDrawClusters() {
 		if(drawclusters == null) {
 			drawclusters = new JCheckBox();
@@ -2872,6 +2130,7 @@ public class SwingSema {
 			drawclusters.setMargin(new java.awt.Insets(0,0,0,0));
 			drawclusters.setContentAreaFilled(false);
 			drawclusters.setFont(new java.awt.Font("Dialog",0,10));
+			drawclusters.setBounds(72, 36, 59, 17);
 			drawclusters.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.drawClusters=drawclusters.isSelected();
@@ -2879,5 +2138,278 @@ public class SwingSema {
 			});
 		}
 		return drawclusters;
+	}
+	private SimButton getSimButton10() {
+		if(simButton10 == null) {
+			simButton10 = new SimButton();
+			simButton10.setText("force");
+			simButton10.setFont(new Font("Dialog",Font.PLAIN,10));
+			simButton10.setToolTipText("arrange nodes with force based algorithm");
+			simButton10.setBounds(144, 277, 67, 15);
+			simButton10.addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent e) {
+					app.layoutForce();
+				}
+			});
+		}
+		return simButton10;
+	}
+	private SimButton getInflateButton() {
+		if (inflateButton == null) {
+			inflateButton = new SimButton();
+			inflateButton.setFont(new Font("Dialog",Font.PLAIN,10));
+			inflateButton.setToolTipText("stretch the whole layout");
+			inflateButton.setText("inflate");
+			inflateButton.setBounds(1, 259, 67, 15);
+			inflateButton.addMouseListener(new MouseAdapter() {
+				public void mousePressed(java.awt.event.MouseEvent e) {
+					app.setInflate(true);
+				}
+			});
+		}
+		return inflateButton;
+	}
+	private SimButton getBoxLayout() {
+		if(boxButton == null) {
+			boxButton = new SimButton();
+			boxButton.setText("box");
+			boxButton.setFont(new Font("Dialog",Font.PLAIN,10));
+			boxButton.setToolTipText("arrange nodes in boxshape");
+			boxButton.setBounds(1, 277, 67, 15);
+			boxButton.addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent e) {
+					app.layoutBox();
+				}
+			});
+		}
+		return boxButton;
+	}
+	private SimButton getCircle() {
+		if(simButton6 == null) {
+			simButton6 = new SimButton();
+			simButton6.setText("circle");
+			simButton6.setFont(new Font("Dialog",Font.PLAIN,10));
+			simButton6.setToolTipText("arrange nodes in circular shape");
+			simButton6.setBounds(72, 277, 67, 15);
+			simButton6.addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent e) {
+					app.layoutCircle();
+				}
+			});
+		}
+		return simButton6;
+	}
+	private SimButton getShuffleButton() {
+		if (shuffleButton == null) {
+			shuffleButton = new SimButton();
+			shuffleButton.setFont(new Font("Dialog",Font.PLAIN,10));
+			shuffleButton.setToolTipText("randomize layout");
+			shuffleButton.setText("shuffle");
+			shuffleButton.setBounds(72, 259, 67, 15);
+			shuffleButton.addActionListener(new ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					app.layout.layoutNodePosRandomize();
+				}
+			});
+		}
+		return shuffleButton;
+	}
+
+	private SimButton getSimButton11() {
+		if(simButton11 == null) {
+			simButton11 = new SimButton();
+			simButton11.setText("delete all");
+			simButton11.setBounds(73, 83, 67, 15);
+			simButton11.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.clearNets();
+					updateUI(app.ns);
+				}
+			});
+		}
+		return simButton11;
+	}
+
+	private SimButton getSimButton12() {
+		if(simButton12 == null) {
+			simButton12 = new SimButton();
+			simButton12.setText("framed");
+			simButton12.setVerticalAlignment(SwingConstants.CENTER);
+			simButton12.setVerticalTextPosition(SwingConstants.CENTER);
+			simButton12.setFont(new java.awt.Font("Dialog",0,10));
+			simButton12.setToolTipText("remove the picked node");
+			simButton12.setBounds(73, 171, 67, 15);
+			simButton12.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.delFramed(false);
+				}
+			});
+		}
+		return simButton12;
+	}
+
+	private SimButton getSimButton13() {
+		if(simButton13 == null) {
+			simButton13 = new SimButton();
+			simButton13.setText("inv. framed");
+			simButton13.setVerticalAlignment(SwingConstants.CENTER);
+			simButton13.setVerticalTextPosition(SwingConstants.CENTER);
+			simButton13.setFont(new java.awt.Font("Dialog",0,10));
+			simButton13.setToolTipText("remove the picked node");
+			simButton13.setBounds(144, 171, 67, 15);
+			simButton13.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.delFramed(true);
+				}
+			});
+		}
+		return simButton13;
+	}
+	private JCheckBox getJCheckBox() {
+		if (draw3d == null) {
+			draw3d = new JCheckBox();
+			draw3d.setText("3D");
+			draw3d.setMargin(new java.awt.Insets(0,0,0,0));
+			draw3d.setContentAreaFilled(false);
+			draw3d.setFont(new java.awt.Font("Dialog",0,10));
+			draw3d.setBounds(0, 41, 60, 17);
+			draw3d.setSelected(!app.get3D());
+			draw3d.addActionListener(new ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					app.toggle3D();
+					draw3d.setSelected(!app.get3D());
+				}
+			});
+		}
+		return draw3d;
+	}
+	private JCheckBox getJCheckBox1() {
+		if (directedGraph == null) {
+			directedGraph = new JCheckBox();
+			directedGraph.setText("directed graph");
+			directedGraph.setMargin(new java.awt.Insets(0,0,0,0));
+			directedGraph.setContentAreaFilled(false);
+			directedGraph.setFont(new java.awt.Font("Dialog",0,10));
+			directedGraph.setBounds(1, 37, 92, 17);
+			directedGraph.setSelected(app.directed);
+			directedGraph.addActionListener(new ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					app.directed=directedGraph.isSelected();
+					app.ns.view.updateAdLists(app.directed);
+					app.updatePick();
+				}
+			});
+		}
+		return directedGraph;
+	}
+
+	private SimButton getSimButton14() {
+		if(simButton14 == null) {
+			simButton14 = new SimButton();
+			simButton14.setText("framed");
+			simButton14.setVerticalAlignment(SwingConstants.CENTER);
+			simButton14.setVerticalTextPosition(SwingConstants.CENTER);
+			simButton14.setFont(new java.awt.Font("Dialog",0,10));
+			simButton14.setBounds(73, 114, 67, 15);
+			simButton14.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.netExpandFramed(); //  Auto-generated Event stub actionPerformed()
+				}
+			});
+		}
+		return simButton14;
+	}
+
+	private JLabel getJLabel13() {
+		if(jLabel13 == null) {
+			jLabel13 = new JLabel();
+			jLabel13.setText("expand");
+			jLabel13.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel13.setBounds(0, 95, 210, 14);
+		}
+		return jLabel13;
+	}
+
+	private JLabel getJLabel14() {
+		if(jLabel14 == null) {
+			jLabel14 = new JLabel();
+			jLabel14.setText("source files");
+			jLabel14.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel14.setBounds(2, 0, 210, 14);
+		}
+		return jLabel14;
+	}
+
+	private JLabel getJLabel12() {
+		if(jLabel12 == null) {
+			jLabel12 = new JLabel();
+			jLabel12.setText("delete");
+			jLabel12.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel12.setBounds(2, 65, 210, 14);
+		}
+		return jLabel12;
+	}
+
+	private JLabel getJLabel15() {
+		if(jLabel15 == null) {
+			jLabel15 = new JLabel();
+			jLabel15.setText("save");
+			jLabel15.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel15.setBounds(2, 108, 210, 14);
+		}
+		return jLabel15;
+	}
+
+	private SimButton getSimButton15() {
+		if(simButton15 == null) {
+			simButton15 = new SimButton();
+			simButton15.setText("save net");
+			simButton15.setBounds(2, 128, 67, 15);
+			simButton15.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					simButton15ActionPerformed(evt);
+				}
+			});
+		}
+		return simButton15;
+	}
+
+	private void simButton15ActionPerformed(ActionEvent evt) {
+		app.saveNet();
+	}
+
+	private SimButton getSimButton17() {
+		if(simButton17 == null) {
+			simButton17 = new SimButton();
+			simButton17.setText("clusters");
+			simButton17.setVerticalAlignment(SwingConstants.CENTER);
+			simButton17.setVerticalTextPosition(SwingConstants.CENTER);
+			simButton17.setFont(new java.awt.Font("Dialog",0,10));
+			simButton17.setToolTipText("remove clusters");
+			simButton17.setBounds(1, 190, 67, 15);
+			simButton17.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.netRemoveClusters();
+				}
+			});
+		}
+		return simButton17;
+	}
+	
+	private JCheckBox getJCheckBox2xx() {
+		if(tiltBox == null) {
+			tiltBox = new JCheckBox();
+			tiltBox.setText("30¡");
+			tiltBox.setMargin(new java.awt.Insets(0,0,0,0));
+			tiltBox.setContentAreaFilled(false);
+			tiltBox.setFont(new java.awt.Font("Dialog",0,10));
+			tiltBox.setBounds(176, 11, 85, 47);
+			tiltBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.tilt=tiltBox.isSelected();
+				}
+			});
+		}
+		return tiltBox;
 	}
 }	

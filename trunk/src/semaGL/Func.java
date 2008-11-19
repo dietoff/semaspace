@@ -32,7 +32,7 @@ public class Func {
 //		System.out.println(color[0]);
 		return color;
 	}
-	static int packColors(int age, float[] col) {
+	public static int packColors(int age, float[] col) {
 		int N = 256;
 		int r = Math.min(Math.round(col[0]*N),N-1);
 		int g = Math.min(Math.round(col[1]*N),N-1);

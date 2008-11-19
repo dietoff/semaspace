@@ -19,6 +19,9 @@ import java.nio.channels.FileChannel;
 
 import javax.imageio.ImageIO;
 
+import data.Net;
+import data.Node;
+
 import nehe.TextureReader;
 
 public class FileIO {
@@ -128,7 +131,7 @@ public class FileIO {
 		return gd.getDefaultConfiguration();
 	}
 
-	static String loadFile(File file_) {
+	public static String loadFile(File file_) {
 		String file="";
 		try {
 			file = fileRead(file_);

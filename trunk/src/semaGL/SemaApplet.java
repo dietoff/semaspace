@@ -6,6 +6,9 @@ import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import data.*;
+import UI.SemaTheme;
+import UI.SwingSema;
 
 import com.sun.opengl.util.FPSAnimator;
 

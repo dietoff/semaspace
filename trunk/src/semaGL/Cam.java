@@ -4,6 +4,8 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.glu.GLU;
 
+import data.Vector3D;
+
 /**
  * OpenGL Camera class
  * @author d

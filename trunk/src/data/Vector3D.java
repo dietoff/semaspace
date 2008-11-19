@@ -1,7 +1,7 @@
 /**
  * 
  */
-package semaGL;
+package data;
 
 public final class Vector3D {
 	public float x;
@@ -10,7 +10,7 @@ public final class Vector3D {
 
 	public float z;
 
-	Vector3D(float x_, float y_, float z_) {
+	public Vector3D(float x_, float y_, float z_) {
 		x = x_;
 		y = y_;
 		z = z_;
@@ -22,36 +22,36 @@ public final class Vector3D {
 		z = 0f;
 	}
 
-	Vector3D() {
+	public Vector3D() {
 		x = 0f;
 		y = 0f;
 		z = 0f;
 	}
 
-	void setX(float x_) {
+	public void setX(float x_) {
 		x = x_;
 	}
 
-	void setY(float y_) {
+	public void setY(float y_) {
 		y = y_;
 	}
 
-	void setZ(float z_) {
+	public void setZ(float z_) {
 		z = z_;
 	}
 
-	void setXY(float x_, float y_) {
+	public void setXY(float x_, float y_) {
 		x = x_;
 		y = y_;
 	}
 
-	void setXYZ(float x_, float y_, float z_) {
+	public void setXYZ(float x_, float y_, float z_) {
 		x = x_;
 		y = y_;
 		z = z_;
 	}
 
-	void setXYZ(Vector3D v) {
+	public void setXYZ(Vector3D v) {
 		x = v.x;
 		y = v.y;
 		z = v.z;
@@ -143,25 +143,5 @@ public final class Vector3D {
 	public Vector3D cross(Vector3D v1, Vector3D v2){
 		Vector3D v = new Vector3D(v1.y*v2.z-v1.z*v2.y,v1.x*v2.z-v1.z*v2.x,v1.x*v2.y-v1.y*v2.x);
 		return v;
-	}
-}
-
-  class BBox3D {
-	public Vector3D min = new Vector3D();
-	public Vector3D max= new Vector3D();
-	public Vector3D size = new Vector3D();
-	public Vector3D center = new Vector3D();
-	BBox3D(Vector3D min_, Vector3D max_) {
-		min = min_;
-		max = max_;
-		size.setXYZ(max);
-		size.sub(min);
-	}
-
-	BBox3D() {
-		min.setXYZ(0f,0f,0f);
-		max.setXYZ(0f,0f,0f);
-		size.setXYZ(0f,0f,0f);
-		center.setXYZ(0f,0f,0f);
 	}
 }
