@@ -11,7 +11,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Map.Entry;
 import javax.media.opengl.GL;
-
+import data.*;
+import semaGL.SemaSpace;
 
 public class Layouter {
 
@@ -20,15 +21,17 @@ public class Layouter {
 	private float innerRad=100;
 	private boolean first=true;
 	//	private BBox3D bounds;
+	private GraphRenderer nr;
 
 	Layouter (SemaSpace app_) {
 		app= app_;
+		nr = new GraphRenderer(app_);
 	}
 	public void applyAttributeColors() {
-		for (Node n:app.ns.view.nNodes) n.genColorFromAtt();
-		for (Edge e:app.ns.view.nEdges) e.genColorFromAtt();
+		for (Node n:app.ns.getView().nNodes) n.genColorFromAtt();
+		for (Edge e:app.ns.getView().nEdges) e.genColorFromAtt();
 	}
-	void applyPickColors() {
+	public void applyPickColors() {
 		float[] nodeHSV = new float[3];
 		nodeHSV = Func.RGBtoHSV(app.frameColor);
 		float[] pickHSV = new float[3];
@@ -559,42 +562,20 @@ public class Layouter {
 			cl=n.cluster;
 			float rad = cl.size();
 			if (rad!=0&&app.drawClusters) {
-				renderFan(gl, cl, n);
+				nr.renderFan(gl, cl, n);
 			}
 		}
-	}
-	private void renderFan(GL gl, HashSet<Node> nodes, Node center) {
-		float[] col = Func.parseColorInt(center.name.hashCode()+"");
-		col[3]=Math.min(center.alpha, 0.1f);
-		gl.glColor4fv(col, 0);
-		Node tmp=null;
-		int jcount=0;
-		gl.glPushMatrix();
-		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
-		gl.glBegin(GL.GL_TRIANGLE_FAN);
-		gl.glVertex3f(center.pos.x, center.pos.y, center.pos.z);
-		for (Node bref : nodes){
-			if (bref != null) {
-				if (jcount==0) tmp=bref;
-				gl.glVertex3f(bref.pos.x, bref.pos.y, bref.pos.z);
-				jcount++;
-			}
-		}
-		gl.glVertex3f(tmp.pos.x, tmp.pos.y, tmp.pos.z);
-		gl.glEnd();
-		gl.glPopMatrix();
 	}
 
 	public  void renderEdges(GL gl, int text) {
 		for (Edge eref: net.nEdges) {
-			eref.genColorFromAtt();
-			eref.render(gl);
+			nr.renderEdges(gl, eref);
 		}
 	}
 
 	void renderLabels(GL gl, int text) {
-		for (Node nref: net.nNodes)	nref.renderLabels(gl,text);
-		for (Edge eref: net.nEdges) eref.renderLabels(gl,text);
+		for (Node nref: net.nNodes)	nr.renderNodeLabels(gl, nref, text);
+		for (Edge eref: net.nEdges) nr.renderEdgeLabels(gl, eref, text);
 	}
 	public  void renderNodes(GL gl,  int text) {
 		applyPickColors();
@@ -608,12 +589,12 @@ public class Layouter {
 		//			n.render();
 		//		}
 		for (Node n: net.nNodes) {
-			n.render(gl);
+			nr.renderNodes(gl, n);
 		}
 	}
 	public void renderTags(GL gl, Net net) {
 		for (Node n:net.tags.keySet()) {
-			renderFan(gl, net.tags.get(n).nNodes, n);
+			nr.renderFan(gl, net.tags.get(n).nNodes, n);
 		}
 	}
 

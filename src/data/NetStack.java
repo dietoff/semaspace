@@ -1,29 +1,31 @@
-package semaGL;
+package data;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import semaGL.SemaSpace;
+
 public class NetStack {
 	HashMap<String,HashSet<Edge>> nets;
 	SemaSpace app;
-	Net global;
-	Net view;
+	public Net global;
+	public Net view;
 
-	NetStack(SemaSpace app_) {
+	public NetStack(SemaSpace app_) {
 		nets = new HashMap<String, HashSet<Edge>>();
 		nets.put("none", new HashSet<Edge>());
 		app = app_;
 		global = new Net(app);
-		view = new Net(app);
+		setView(new Net(app));
 	}
 
 	public void clear() {
 		nets.clear();
 		nets.put("none", new HashSet<Edge>());
 		global.clearNet();
-		view = new Net(app);
+		setView(new Net(app));
 	}
 
 	public void add(Net n){
@@ -69,31 +71,39 @@ public class NetStack {
 
 	public Net search(Node n, int searchdepth, boolean add) {
 		if (n==null) {
-			view = global;
+			setView(global);
 		}
 		else {
 			Net s;
 			s = global.generateSearchNet(global, n, searchdepth);
-			if (add) view.netMerge(s); else view = s;
+			if (add) getView().netMerge(s); else setView(s);
 		}
-		return view;
+		return getView();
 	}
 	
 	public Net search(String n, int searchdepth, boolean add) {
 		Net s;
 		s = global.generateSearchNet(global, n, searchdepth);
-		if (add) view.netMerge(s); else view = s;
-		return view;
+		if (add) getView().netMerge(s); else setView(s);
+		return getView();
 	}
 	
 	public Net search(String n, int searchdepth, boolean add, String attribute) {
 		Net s;
 		s = global.generateAttribSearchNet(global, n, searchdepth, attribute);
-		if (add) view.netMerge(s); else view = s;
-		return view;
+		if (add) getView().netMerge(s); else setView(s);
+		return getView();
 	}
 
 	public HashSet<Edge> getSubnet(String out) {
 		return nets.get(out);
+	}
+
+	public void setView(Net view) {
+		this.view = view;
+	}
+
+	public Net getView() {
+		return view;
 	}
 }

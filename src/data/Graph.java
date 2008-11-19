@@ -1,4 +1,4 @@
-package semaGL;
+package data;
 
 public class Graph {
 

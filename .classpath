@@ -6,14 +6,14 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaApplet/lib/gluegen-rt.jar">
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/gluegen-rt.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/d/Documents/workspace_java/SemaApplet/lib"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/d/Documents/workspace_java/SemaSpace/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaApplet/lib/jogl.jar">
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/jogl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/d/Documents/workspace_java/SemaApplet/lib"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/d/Documents/workspace_java/SemaSpace/lib"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/jftgl"/>

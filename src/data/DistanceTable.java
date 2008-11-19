@@ -1,4 +1,4 @@
-package semaGL;
+package data;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -82,12 +82,12 @@ public class DistanceTable {
 		distTable.clear();
 		distMap.clear();
 	}
-	int getNodeDistance(Node n){
+	public int getNodeDistance(Node n){
 		if (distTable.get(n)==null)
 			return Integer.MAX_VALUE;
 		else return distTable.get(n);
 	}
-	HashSet<Node> getNodesAtDistance (int i) {
+	public HashSet<Node> getNodesAtDistance (int i) {
 		return distMap.get(i);
 	}
 
@@ -144,7 +144,7 @@ public class DistanceTable {
 			}
 		}
 	}
-	void clearPick() {
+	public void clearPick() {
 		for (Node nodeN:net.nNodes)	{
 			nodeN.pickDistance=Integer.MAX_VALUE;
 		}

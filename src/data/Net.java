@@ -1,4 +1,4 @@
-package semaGL;
+package data;
 
 import java.beans.FeatureDescriptor;
 import java.io.File;
@@ -10,6 +10,11 @@ import java.util.Set;
 
 import javax.naming.TimeLimitExceededException;
 
+import semaGL.FileIO;
+import semaGL.Func;
+import semaGL.SemaSpace;
+import semaGL.WildcardToRegex;
+
 /**
  * @author d
  *
@@ -26,31 +31,31 @@ import javax.naming.TimeLimitExceededException;
  * @author d
  *
  */
-class Net {
+public class Net {
 	public SemaSpace app;
-	HashSet<Node> nNodes;
-	HashSet<Edge> nEdges;
-	HashSet<Node> fNodes;
-	HashSet<Node> repNodes;
-	HashMap<String,Edge> eTable;
+	public HashSet<Node> nNodes;
+	public HashSet<Edge> nEdges;
+	public HashSet<Node> fNodes;
+	public HashSet<Node> repNodes;
+	public HashMap<String,Edge> eTable;
 	private HashMap<Integer, Edge> eTableID;
 	HashMap<String, Node> nTable; 							//hashtable for name lookup
 	private HashMap<Integer, Node> nTableID; 				//hashtable for id lookup
-	HashMap<Node, Vector3D> posTable;						//hashtable for locked positions
-	HashMap<Node, Float> timeTable;
+	public HashMap<Node, Vector3D> posTable;						//hashtable for locked positions
+	public HashMap<Node, Float> timeTable;
 	//	BBox3D bounds;
 	int depth= 1;
 	private int maxdepth;
 	public boolean opt=false;
 	private HashSet<String> nTriangles;
-	HashSet<String> nodeattributes;
-	HashSet<String> edgeattributes;
+	public HashSet<String> nodeattributes;
+	public HashSet<String> edgeattributes;
 	boolean directed;
-	HashMap<Node, Net> tags;
+	public HashMap<Node, Net> tags;
 	private String lineBreak;
 	private String separator;
 	private String value;
-	DistanceTable distances;
+	public DistanceTable distances;
 
 	public Net(SemaSpace app_) {
 		app = app_;
@@ -380,16 +385,16 @@ class Net {
 	 */
 	public HashSet<Edge> edgelistLoad(File file_) {
 		HashSet<Edge> edges = null;
-		boolean a = app.render;
+		boolean a = app.isRender();
 		boolean b = app.calculate;
-		app.render=false;
+		app.setRender(false);
 		app.calculate=true;
 		String file=FileIO.loadFile(file_);
 		if (file!=null&&file.length()>0) {
 			edges = edgelistParse(file); 
 			updateNet();
 		}
-		app.render=a;
+		app.setRender(a);
 		app.calculate=b;
 		return edges;
 	}
@@ -400,14 +405,14 @@ class Net {
 	 */
 	public HashSet<Edge> edgelistLoad2(File file_) {
 		HashSet<Edge> edges = null;
-		boolean a = app.render;
+		boolean a = app.isRender();
 		boolean b = app.calculate;
-		app.render=false;
+		app.setRender(false);
 		app.calculate=true;
 		String file=FileIO.loadFile(file_);
 		if (file!=null&&file.length()>0)  edges = edgelistParse2(file); 
 		updateNet();
-		app.render=a;
+		app.setRender(a);
 		app.calculate=b;
 		return edges;
 	}
@@ -415,7 +420,7 @@ class Net {
 	 * parse an edge list (format 1)
 	 * @param content
 	 */
-	HashSet<Edge> edgelistParse(String content) {
+	public HashSet<Edge> edgelistParse(String content) {
 		lineBreak = "\r\n|\n+|\r+|\f+";
 		separator = "\t+";
 		value = "=";
@@ -653,7 +658,7 @@ class Net {
 	 * @param depth
 	 * @return
 	 */
-	Net generateSearchNet(Net source, HashSet<Node> searchNodes,  int depth) {
+	public Net generateSearchNet(Net source, HashSet<Node> searchNodes,  int depth) {
 		source.updateAdLists(app.directed);
 		Node nodeA;
 		Node nodeB;
@@ -744,11 +749,11 @@ class Net {
 		return result;
 	}
 
-	Edge getEdgeByID(int id){
+	public Edge getEdgeByID(int id){
 		return eTableID.get(id);
 	}
 
-	Node getNodeByID(int id){
+	public Node getNodeByID(int id){
 		return nTableID.get(id);
 	}
 	public Vector3D getPosByID(int pickID_)  {
@@ -757,7 +762,7 @@ class Net {
 		else
 			return selected.pos;
 	}
-	GraphElement getByID(int overID) {
+	public GraphElement getByID(int overID) {
 		Node n = getNodeByID(overID);
 		if (n!=null) return n; 
 		else return getEdgeByID(overID);
@@ -940,7 +945,7 @@ class Net {
 		if (app.isCluster()) findClusters(); else clearClusters();// recalculate the clusters, since they might have changed ... 
 	}
 
-	void updateNet() {
+	public void updateNet() {
 		updateAdLists(app.directed); //update adj. lists etc.
 		findTagged();
 		timeTable.clear();
