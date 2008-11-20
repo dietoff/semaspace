@@ -23,14 +23,14 @@ public class FuncGL {
 		app=space;
 	}
 
-	static void renderText( SemaSpace app, String text, float[] textColor, float offset , int font, int id, float distToCam) {
+	static void renderText( SemaSpace app, String text, float[] textColor, float offset , int font, int id, float distToCam, boolean centerOnNode) {
 
 		switch (font){
 		case 0:
-			renderHiqTxt(app, text, textColor, id, offset);
+			renderHiqTxt(app, text, textColor, id, offset, centerOnNode);
 			break;
 		case 1:
-			renderTxt(app, text, textColor, id, offset);
+			renderTxt(app, text, textColor, id, offset, centerOnNode);
 			break;
 		case 2:
 			renderBtxt(app, text, textColor, id, offset, distToCam);
@@ -72,19 +72,20 @@ public class FuncGL {
 		gl.glPopMatrix();
 	}
 	
-	static void renderHiqTxt( SemaSpace app, String text, float[] textColor, int id, float offset) {
+	static void renderHiqTxt( SemaSpace app, String text, float[] textColor, int id, float offset, boolean center) {
 		GL gl=app.glD.getGL();
 		
 		gl.glPushMatrix();
 //		gl.glLoadName(id);
-		gl.glScalef(0.2f, 0.2f, 0.2f);
+		float scale = offset*0.025f;
+		gl.glScalef(scale, scale, scale);
 		gl.glLineWidth(1f);
 		gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
 		
 		String[] lines = text.split("\n"); 
-		gl.glTranslatef(offset*3f, -offset*2f, 0);
+		if (!center) gl.glTranslatef(40, 90, 0);
 		for (int i = 0; i<lines.length; i++){
-			gl.glTranslatef(0, offset*7f, 0);
+			gl.glTranslatef(0, -60f, 0);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
 			app.texturefont.render(lines[i]);
 		}
@@ -92,19 +93,25 @@ public class FuncGL {
 		gl.glPopMatrix();
 	}
 	
-	static void renderTxt(SemaSpace app, String text, float[] textColor, int id, float offset) {
+	static void renderTxt(SemaSpace app, String text, float[] textColor, int id, float offset, boolean center) {
 		GL gl=app.glD.getGL();
 		gl.glLoadName(id);
-		
+		int fontsize = 8;
+		int off = fontsize;
+		if (center) off = 0;
 		String[] lines = text.split("\n"); 
 		for (int i = 0; i<lines.length; i++){
+			gl.glPushMatrix();
+			float scale = offset*0.01f;
+			gl.glScalef(scale, scale, scale);
 			gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
 			gl.glLineWidth(3);
 			gl.glColor4f(1f,1f,1f,1f);
-			renderStrokeString( app, GLUT.STROKE_ROMAN, lines[i], offset, offset-i*15f); // Print GL Text To The Screen
+			renderStrokeString( app, GLUT.STROKE_ROMAN, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
 			gl.glLineWidth(app.textwidth);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
-			renderStrokeString( app, GLUT.STROKE_ROMAN, lines[i], offset, offset-i*15f); // Print GL Text To The Screen
+			renderStrokeString( app, GLUT.STROKE_ROMAN, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
+			gl.glPopMatrix();
 		}
 	}
 	
@@ -117,7 +124,6 @@ public class FuncGL {
 	private static void stroke(SemaSpace app, int font, String string,
 			float offset, float offsety, GL gl) {
 		gl.glPushMatrix();
-		gl.glScalef(0.1f, 0.1f, 0.1f);
 		gl.glTranslatef(offset*10f, offsety*10f, 0);
 	
 		// Render The Text
@@ -152,6 +158,13 @@ public class FuncGL {
 	static void arrowHead(GL gl, float size, Vector3D pos, Vector3D dir) {
 		gl.glBegin(GL.GL_TRIANGLES);
 		gl.glVertex3f(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
+		gl.glVertex3f(pos.x-size*dir.x+size*0.2f*dir.y,pos.y-size*dir.y-size*0.2f*dir.x,pos.z-size*dir.z);
+		gl.glVertex3f(pos.x,pos.y,pos.z);
+		gl.glEnd();
+	}
+	static void symArrowHead(GL gl, float size, Vector3D pos, Vector3D dir) {
+		gl.glBegin(GL.GL_TRIANGLES);
+		gl.glVertex3f(pos.x-size*dir.x-size*0.2f*dir.y,pos.y-size*dir.y+size*0.2f*dir.x,pos.z-size*dir.z);
 		gl.glVertex3f(pos.x-size*dir.x+size*0.2f*dir.y,pos.y-size*dir.y-size*0.2f*dir.x,pos.z-size*dir.z);
 		gl.glVertex3f(pos.x,pos.y,pos.z);
 		gl.glEnd();

@@ -22,11 +22,9 @@ public class Node extends GraphElement {
 	//	boolean colored;
 	public int pickDistance=Integer.MAX_VALUE;
 	public String imgurl = null;
-	private boolean frame = false;
 	private boolean locked = false;
 	public boolean spiralcluster = false;
-	boolean clusterCenter = false;
-	boolean clusterPart = false;
+	boolean partOfGroup = false;
 	private Float time = null;
 
 
@@ -46,14 +44,6 @@ public class Node extends GraphElement {
 	
 	public float size() {
 		return app.nodeSize+getDegree()*app.getNodevar();
-	}
-
-	public boolean isFrame() {
-		return frame;
-	}
-
-	public void setFrame(boolean b) {
-		frame  = b;
 	}
 
 	public void setPickColor(float[] col) {

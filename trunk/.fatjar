@@ -1,14 +1,14 @@
 #Fat Jar Configuration File
-#Fri Aug 29 13:38:16 CEST 2008
+#Wed Nov 19 18:32:49 CET 2008
 onejar.license.required=false
-manifest.classpath=
+manifest.classpath=.
 manifest.removesigners=true
 onejar.checkbox=false
 jarname=/Users/d/SemaSpace/sema.jar
 manifest.mergeall=true
-manifest.mainclass=semaGL.SwingSema
+manifest.mainclass=UI.SwingSema
 manifest.file=<createnew>
 jarname.isextern=true
 onejar.expand=
-excludes=
+excludes=<po|SemaSpace>~.svn/;<po|SemaSpace>~.DS_Store;<po|SemaSpace>~messages.properties
 includes=
