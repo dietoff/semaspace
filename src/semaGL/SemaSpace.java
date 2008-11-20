@@ -317,9 +317,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (FOG&&!flat) gl.glEnable(GL.GL_FOG); else gl.glDisable(GL.GL_FOG);
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 		cam.posIncrement(glD, yRotInc, xRotInc, zInc, focus); 
+		layout.renderGroups(gl,ns.view,fonttype);
 		if (isEdges()) layout.renderEdges(gl, fonttype);
 		if (!tree) layout.renderClusters(gl);
-		layout.renderGroups(gl,ns.view);
 		if (fonttype==0) layout.renderLabels(gl,fonttype); //workaround for gl transform bug in ftgl library
 		layout.renderNodes(gl,fonttype);
 		if (fonttype!=0) layout.renderLabels(gl,fonttype);

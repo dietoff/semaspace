@@ -576,13 +576,6 @@ public class Layouter {
 	void renderLabels(GL gl, int text) {
 		for (Node nref: net.nNodes)	nr.renderNodeLabels(gl, nref, text);
 		for (Edge eref: net.nEdges) nr.renderEdgeLabels(gl, eref, text);
-		
-		
-		for (String n:net.groups.keySet()) {
-			Net group = net.groups.get(n);
-			Node center = group.hasNode(n);
-			nr.renderGroupLabels(gl, center, text);
-		}
 	}
 	
 	public  void renderNodes(GL gl,  int text) {
@@ -600,12 +593,17 @@ public class Layouter {
 			nr.renderNodes(gl, n);
 		}
 	}
-	public void renderGroups(GL gl, Net net) {
+	public void renderGroups(GL gl, Net net, int fonttype) {
 		for (String n:net.groups.keySet()) {
 			Net group = net.groups.get(n);
 			Node center = group.hasNode(n);
 			nr.renderStar(gl, group.nNodes, center);
 			
+			for (String m:net.groups.keySet()) {
+				Net group1 = net.groups.get(m);
+				 center = group1.hasNode(m);
+				nr.renderGroupLabels(gl, center, fonttype);
+			}
 //			nr.renderNodes(gl, center);
 			
 //			for (Node eref: group.nNodes) {
