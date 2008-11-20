@@ -1,14 +1,11 @@
 package data;
 
-import java.beans.FeatureDescriptor;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
-
-import javax.naming.TimeLimitExceededException;
+import java.util.Map.Entry;
 
 import semaGL.FileIO;
 import semaGL.Func;
@@ -16,18 +13,7 @@ import semaGL.SemaSpace;
 import semaGL.WildcardToRegex;
 
 /**
- * @author d
- *
- */
-/**
- * @author d
- *
- */
-/**
- * @author d
- *
- */
-/**
+ * a graph consisting of edges and nodes
  * @author d
  *
  */
@@ -45,13 +31,12 @@ public class Net {
 	public HashMap<Node, Float> timeTable;
 	//	BBox3D bounds;
 	int depth= 1;
-	private int maxdepth;
 	public boolean opt=false;
 	private HashSet<String> nTriangles;
 	public HashSet<String> nodeattributes;
 	public HashSet<String> edgeattributes;
 	boolean directed;
-	public HashMap<Node, Net> tags;
+	public HashMap<String, Net> groups;
 	private String lineBreak;
 	private String separator;
 	private String value;
@@ -67,7 +52,7 @@ public class Net {
 		nTableID = new HashMap<Integer, Node>(); 
 		eTable = new HashMap<String,Edge>();
 		eTableID = new HashMap<Integer, Edge>(); 
-		tags = new HashMap<Node, Net>();
+		groups = new HashMap<String, Net>();
 		nNodes = new HashSet<Node>();
 		nEdges = new HashSet<Edge>();
 		fNodes = new HashSet<Node>();
@@ -179,6 +164,11 @@ public class Net {
 		newEdge = addEdge(node1,node2);
 		return newEdge;
 	}
+
+
+	public Node hasNode(String name){
+		return nTable.get(name);
+	}
 	/**
 	 * Adds an existing node to the network
 	 * @param node
@@ -223,7 +213,7 @@ public class Net {
 		Node newObj;
 		if (!nTable.containsKey(name)) {
 			newObj = new Node(app, name, pos); 
-			newObj.setPickColor(app.frameColor);
+			newObj.setPickColor(app.pickGradEnd);
 			nNodes.add(newObj);
 			fNodes.add(newObj);
 			nTable.put(name, newObj);
@@ -333,8 +323,8 @@ public class Net {
 		clone.nTable.putAll(nTable);
 		clone.nTableID.putAll(nTableID);
 		clone.timeTable.putAll(timeTable);
-		clone.tags.putAll(tags);
-//		clone.updateNet();
+		clone.groups.putAll(groups);
+		//		clone.updateNet();
 		return clone;
 	}
 
@@ -356,7 +346,7 @@ public class Net {
 		// recompute connectivity, clusters ... 
 		updateNet();
 	}
-	
+
 	/**
 	 * delete leaf nodes (nodes with only one connection)
 	 */
@@ -377,7 +367,7 @@ public class Net {
 		// recompute connectivity, clusters ... 
 		updateNet();
 	}
-	
+
 	/**
 	 * load an edge list (format 1)
 	 *
@@ -537,14 +527,14 @@ public class Net {
 				comp.clear();
 				comp.addAll(bref.adList);
 				comp.addAll(bref.inList);
-				if (comp.size()==1) {
+				if (comp.size()==1&&!bref.partOfGroup) {
 					n.cluster.add(bref);
 					posTable.remove(bref);
 					bref.setLocked(false);
 				}
 			}
 
-			if ((n.cluster.size()<2)||n.clusterCenter)
+			if ((n.cluster.size()<2))
 				n.cluster.clear();
 			else{
 				for (Node yy:n.cluster){
@@ -554,27 +544,27 @@ public class Net {
 		}
 	}
 
-	public void  findTagged(){
-		//		for (Node n:nNodes) {
-		//			
-		//			//create tag net
-		//			if (n.clusterCenter) {
-		//				Net tagnet = new Net(app);
-		//				for (Node m:n.adList) tagnet.addNode(m);
-		//				for (Node m:n.inList) tagnet.addNode(m);
-		//				Node last = null;
-		//				Node first = null;
-		//				for (Node m:tagnet.nNodes) {
-		//					if (last!=null) tagnet.addEdge(last, m); else first = m;
-		//					last = m;
-		//				}
-		//				// add edge ring for connecting the boundary
-		//				tagnet.addEdge(last, first);
-		//				fNodes.remove(n);
-		//				// register them for later use
-		//				tags.put(n,tagnet);
-		//			}
-		//		}
+	public void  findGroups(){
+		for (Node n:nNodes) {
+			if (n.partOfGroup) {
+				String groupname = n.attributes.get("group");
+				String gps[] = groupname.split(",");
+
+				Net grp;
+				for (String gn:gps){
+					if (groups.containsKey(gn)) {
+						grp = groups.get(gn);
+					} else {
+						grp = new Net(app);
+						Node center = grp.addNode(gn);
+						//					addNode(center);
+						groups.put(gn, grp);
+					}
+					grp.addNode(n);
+					grp.addEdge(gn, n.name);
+				}
+			}
+		}
 	}
 
 
@@ -633,7 +623,7 @@ public class Net {
 
 			addN = new Node(app, name, Func.rnd(-nNodes.size(),nNodes.size()), Func.rnd(-nNodes.size(),nNodes.size()), Func.rnd(-nNodes.size(),nNodes.size()));
 			addNode(addN);
-			addN.setPickColor(app.frameColor);
+			addN.setPickColor(app.pickGradEnd);
 		}
 
 		// create random edges
@@ -686,7 +676,7 @@ public class Net {
 				if (tmp!=null) searchNodes.add(tmp);
 			}
 		}
-//		resultNet.updateNet();
+		//		resultNet.updateNet();
 		return resultNet;
 	}
 
@@ -794,7 +784,7 @@ public class Net {
 		edgeattributes.clear();
 		distances.clear();
 		timeTable.clear();
-		tags.clear();
+		groups.clear();
 		updateNet();
 	}
 	public void netMerge (Net net) {
@@ -810,7 +800,7 @@ public class Net {
 		eTableID.putAll(net.eTableID);
 		nTableID.putAll(net.nTableID);
 		timeTable.putAll(net.timeTable);
-		tags.putAll(net.tags);
+		groups.putAll(net.groups);
 		nodeattributes.addAll(net.nodeattributes);
 		edgeattributes.addAll(net.edgeattributes);
 		distances.clear();
@@ -844,15 +834,22 @@ public class Net {
 				for (int j=1; j<cols.length;j++) {
 					String val[]=cols[j].split(value);	
 					if (val.length>1) {
-						tmp.setAttribute(val[0].toLowerCase().trim(), val[1].trim());
-						nodeattributes.add(val[0].toLowerCase().trim());
+						String key = val[0].toLowerCase().trim();
+						String value = val[1].trim();
+
+						if (tmp.hasAttribute(key)) {
+							String attribute = tmp.getAttribute(key);
+							if (attribute!=value) tmp.setAttribute(key, attribute+","+value);
+						} else {
+							tmp.setAttribute(key, value);
+							nodeattributes.add(key);
+						}
 						parseAttributes(tmp);
 					}
 				}
 			}
 		}
 	}
-
 
 	//second format: the first line specifies the name of the attribute
 	public void nodelistParse2(String file) {
@@ -870,8 +867,16 @@ public class Net {
 				tmp = nTable.get(cols[0]);
 				if (tmp!=null){
 					for (int j=1; j<cols.length;j++) {
-						if (cols[j].length()>0) {
-							tmp.setAttribute(fields[j].toLowerCase(), cols[j]);
+						String value = cols[j];
+						if (value.length()>0) {
+							String key = fields[j].toLowerCase();
+
+							if (tmp.hasAttribute(key)) {
+								String attribute = tmp.getAttribute(key);
+								if (!attribute.contentEquals(value)) tmp.setAttribute(key, attribute+","+value);
+							} else {
+								tmp.setAttribute(key, value);
+							}
 							parseAttributes(tmp);
 						}
 					}
@@ -881,11 +886,12 @@ public class Net {
 	}
 
 	private void parseAttributes(Node tmp) {
+		if (tmp.hasAttribute("name")) tmp.altName=tmp.getAttribute("name");
 		if (tmp.hasAttribute("color")) tmp.setColor(Func.parseColorInt(tmp.getAttribute("color")));
 		if (tmp.hasAttribute("color2")) tmp.setColor2(Func.parseColorInt(tmp.getAttribute("color2")));
 		if (tmp.hasAttribute("project")) tmp.altName=tmp.getAttribute("project");
 		if (tmp.hasAttribute("person")) tmp.altName=tmp.getAttribute("person");
-		if (tmp.hasAttribute("tagged")) tmp.clusterCenter=true; else tmp.clusterCenter=false;
+		if (tmp.hasAttribute("group")) tmp.partOfGroup=true; else tmp.partOfGroup=false;
 		if (tmp.hasAttribute("year")){
 			try {
 				tmp.setTime(Float.parseFloat(tmp.getAttribute("year")));
@@ -895,32 +901,37 @@ public class Net {
 		}
 	}
 
-	public void saveEdgeData( String filename){
-		String outString="";
-		for (String nRef :eTable.keySet()){
-			Edge tmp = eTable.get(nRef);
-			if (tmp.ages!=null){
-				for (int i = 0; i< tmp.ages.size(); i++) {
-					outString+=nRef+"\t"+tmp.ages.get(i)+"\t"+tmp.text.get(i)+"\n";
-				}
-			}
-		}
-		FileIO.fileWrite(filename, outString); 
-	}
-
 	public void saveNet(String filename) {
 		String outString="";
 
-		for (Edge nRef :nEdges){
-			outString+=nRef.getA().name+"\t"+nRef.getB().name+"\n";
+		for (Edge e :nEdges){
+			outString+=e.getA().name+"\t"+e.getB().name;
+			if (e.attributes.size()>1) {
+				String attributes = "";
+				for (Entry ent:e.attributes.entrySet()) {
+					if (ent.getKey()!="id") attributes+="\t"+ent.getKey()+"="+ent.getValue();
+				}
+				outString+=attributes;
+			}
+			outString+="\n";
 		}
 		FileIO.fileWrite(filename, outString); 
 	}
+
 	public void saveNodeData( String filename){
 		String outString="";
-		//		for (Node nRef :nNodes){
-		//		outString+=nRef.name+"\t"+nRef.altName+"\t"+nRef.vote+"\t"+nRef.pageViews+"\t"+nRef.scraped()+"\n";
-		//		}
+		for (Node n :nNodes){
+			outString+=n.name; //+"\t"+nRef.altName+"\t";
+			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) outString += "\tname="+n.altName;
+			if (n.attributes.size()>1) {
+				String attributes = "";
+				for (Entry ent:n.attributes.entrySet()) {
+					if (ent.getKey()!="id") attributes+="\t"+ent.getKey()+"="+ent.getValue();
+				}
+				outString+=attributes;
+			}
+			outString+="\n";
+		}
 		FileIO.fileWrite(filename, outString); 
 	}
 
@@ -947,7 +958,7 @@ public class Net {
 
 	public void updateNet() {
 		updateAdLists(app.directed); //update adj. lists etc.
-		findTagged();
+		findGroups();
 		timeTable.clear();
 		for (Node n:nNodes) {
 			if (n.getTime()!=null) timeTable.put(n, n.getTime());
@@ -966,7 +977,7 @@ public class Net {
 		for ( Integer n:net.eTableID.keySet()) eTableID.remove(n);
 		for ( Integer n:net.nTableID.keySet()) nTableID.remove(n);
 		for ( Node n:net.timeTable.keySet()) timeTable.remove(n);
-		for ( Node n:net.tags.keySet()) tags.remove(n);
+		for ( String n:net.groups.keySet()) groups.remove(n);
 		nodeattributes.removeAll(net.nodeattributes);
 		edgeattributes.removeAll(net.edgeattributes);
 		distances.clear();

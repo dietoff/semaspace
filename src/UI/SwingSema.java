@@ -180,9 +180,15 @@ public class SwingSema {
 	private JLabel depthLabel;
 	private JSlider depth;
 	private SimButton searchButton;
+	private JLabel jLabel17;
+	private JSlider jSlider4;
+	private JSlider jSlider3;
+	private JLabel jLabel16;
+	private SimButton simButton16;
+	private SimButton simButton15;
 	private JCheckBox tiltBox;
 	private SimButton simButton17;
-	private SimButton simButton15;
+	private SimButton saveNetButton;
 	private JLabel jLabel15;
 	private JLabel jLabel12;
 	private JLabel jLabel14;
@@ -497,11 +503,6 @@ public class SwingSema {
 	}
 
 	private void initSliders() {
-		//		feedbackSlider.setValue(app.diffusor.getFeedback());
-		//		multiplicitySlider.setValue(app.diffusor.getMult());
-		//		numStepsSlider.setValue(app.diffusor.getSteps());
-		//		spawnSlider.setValue(app.diffusor.getProp());
-		//		age2Slider.setValue((int)app.getAgeThresh());
 		depth.setValue((int) (app.getDepth()));
 		fontslider.setValue(app.getFonttype());
 		sizeSlider.setValue((int)(app.getSize()));
@@ -513,6 +514,8 @@ public class SwingSema {
 		distanceSlider.setValue((int)app.getDistance());
 		picSizeSlider.setValue(app.getPicSize());
 		jSlider2.setValue((int)app.getNodevar()*10);
+		jSlider3.setValue((int)app.getLabelsize()*10);
+		jSlider4.setValue((int)app.getLabelVar()*10);
 	}
 
 
@@ -952,7 +955,6 @@ public class SwingSema {
 		if (viewTab == null) {
 			viewTab = new JPanel();
 			viewTab.setLayout(null);
-			//			viewTab.setBackground(new java.awt.Color(192,192,192));
 			viewTab.add(getTexButton1());
 			viewTab.add(getEdgBox1());
 			viewTab.add(getNoRender());
@@ -968,6 +970,10 @@ public class SwingSema {
 			viewTab.add(getJLabel11());
 			viewTab.add(getJCheckBox2x());
 			viewTab.add(getDrawClusters());
+			viewTab.add(getJLabel16());
+			viewTab.add(getJSlider3());
+			viewTab.add(getJSlider4());
+			viewTab.add(getJLabel17());
 		}
 		return viewTab;
 	}
@@ -1040,7 +1046,7 @@ public class SwingSema {
 			sizeSlider.setOpaque(false);
 			sizeSlider.setToolTipText("set base node size");
 			sizeSlider.setName("sizeSlider");
-			sizeSlider.setBounds(1, 71, 140, 16);
+			sizeSlider.setBounds(1, 70, 140, 16);
 			sizeSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setSize((float)sizeSlider.getValue());
@@ -1054,7 +1060,7 @@ public class SwingSema {
 			sizeLabel = new JLabel();
 			sizeLabel.setText("nodeSize");
 			sizeLabel.setFont(new java.awt.Font("Dialog",0,10));
-			sizeLabel.setBounds(144, 73, 44, 13);
+			sizeLabel.setBounds(144, 70, 44, 13);
 		}
 		return sizeLabel;
 	}
@@ -1712,7 +1718,7 @@ public class SwingSema {
 			picSizeSlider.setToolTipText("set pic size as multiplier of node size");
 			picSizeSlider.setOpaque(false);
 			picSizeSlider.setName("jSlider2");
-			picSizeSlider.setBounds(1, 91, 140, 16);
+			picSizeSlider.setBounds(1, 90, 140, 16);
 			picSizeSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setPicSize(picSizeSlider.getValue());
@@ -1727,7 +1733,7 @@ public class SwingSema {
 			jLabel9 = new JLabel();
 			jLabel9.setText("picSize");
 			jLabel9.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel9.setBounds(144, 92, 34, 13);
+			jLabel9.setBounds(144, 90, 34, 13);
 		}
 		return jLabel9;
 	}
@@ -1740,7 +1746,7 @@ public class SwingSema {
 			jSlider2.setToolTipText("set pic size as multiplier of node size");
 			jSlider2.setOpaque(false);
 			jSlider2.setName("jSlider2");
-			jSlider2.setBounds(1, 111, 140, 16);
+			jSlider2.setBounds(1, 110, 140, 16);
 			jSlider2.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setNodeVar(jSlider2.getValue()/10f);
@@ -1755,7 +1761,7 @@ public class SwingSema {
 			jLabel10 = new JLabel();
 			jLabel10.setText("nodeVar");
 			jLabel10.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel10.setBounds(144, 112, 41, 13);
+			jLabel10.setBounds(144, 110, 41, 13);
 		}
 		return jLabel10;
 	}
@@ -2017,6 +2023,8 @@ public class SwingSema {
 			file.add(getJLabel12());
 			file.add(getJLabel15());
 			file.add(getSimButton15());
+			file.add(getSimButton15x());
+			file.add(getSimButton16());
 		}
 		return file;
 	}
@@ -2081,7 +2089,6 @@ public class SwingSema {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			app.ns.view.saveNet(saveFile.getSelectedFile().toString());
 			app.ns.view.saveNodeData(saveFile.getSelectedFile().toString()+".n"); 
-			app.ns.view.saveEdgeData(saveFile.getSelectedFile().toString()+".e");
 		}
 		app.setRender(t);
 	}
@@ -2090,7 +2097,7 @@ public class SwingSema {
 		if(saveNet == null) {
 			saveNet = new SimButton();
 			saveNet.setText("export");
-			saveNet.setBounds(73, 128, 67, 15);
+			saveNet.setBounds(144, 128, 67, 15);
 			saveNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					saveNetwork();
@@ -2237,7 +2244,7 @@ public class SwingSema {
 			simButton12.setVerticalAlignment(SwingConstants.CENTER);
 			simButton12.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton12.setFont(new java.awt.Font("Dialog",0,10));
-			simButton12.setToolTipText("remove the picked node");
+			simButton12.setToolTipText("remove framed Graphelements");
 			simButton12.setBounds(73, 171, 67, 15);
 			simButton12.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -2255,7 +2262,7 @@ public class SwingSema {
 			simButton13.setVerticalAlignment(SwingConstants.CENTER);
 			simButton13.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton13.setFont(new java.awt.Font("Dialog",0,10));
-			simButton13.setToolTipText("remove the picked node");
+			simButton13.setToolTipText("remove graphElements not framed");
 			simButton13.setBounds(144, 171, 67, 15);
 			simButton13.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -2353,7 +2360,7 @@ public class SwingSema {
 	private JLabel getJLabel15() {
 		if(jLabel15 == null) {
 			jLabel15 = new JLabel();
-			jLabel15.setText("save");
+			jLabel15.setText("subnets");
 			jLabel15.setFont(new java.awt.Font("Dialog",1,11));
 			jLabel15.setBounds(2, 108, 210, 14);
 		}
@@ -2361,21 +2368,17 @@ public class SwingSema {
 	}
 
 	private SimButton getSimButton15() {
-		if(simButton15 == null) {
-			simButton15 = new SimButton();
-			simButton15.setText("save net");
-			simButton15.setBounds(2, 128, 67, 15);
-			simButton15.addActionListener(new ActionListener() {
+		if(saveNetButton == null) {
+			saveNetButton = new SimButton();
+			saveNetButton.setText("save");
+			saveNetButton.setBounds(2, 128, 67, 15);
+			saveNetButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					simButton15ActionPerformed(evt);
+					app.saveNet();
 				}
 			});
 		}
-		return simButton15;
-	}
-
-	private void simButton15ActionPerformed(ActionEvent evt) {
-		app.saveNet();
+		return saveNetButton;
 	}
 
 	private SimButton getSimButton17() {
@@ -2411,5 +2414,89 @@ public class SwingSema {
 			});
 		}
 		return tiltBox;
+	}
+	
+	private SimButton getSimButton15x() {
+		if(simButton15 == null) {
+			simButton15 = new SimButton();
+			simButton15.setText("remove");
+			simButton15.setBounds(73, 128, 67, 15);
+			simButton15.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					app.removeNet((String)netList.getSelectedValue());
+				}
+			});
+		}
+		return simButton15;
+	}
+	
+	private SimButton getSimButton16() {
+		if(simButton16 == null) {
+			simButton16 = new SimButton();
+			simButton16.setText("show");
+			simButton16.setBounds(2, 147, 67, 15);
+			simButton16.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					app.setView((String)netList.getSelectedValue());
+				}
+			});
+		}
+		return simButton16;
+	}
+	
+	private JLabel getJLabel16() {
+		if(jLabel16 == null) {
+			jLabel16 = new JLabel();
+			jLabel16.setText("labelSize");
+			jLabel16.setFont(new java.awt.Font("Dialog",0,10));
+			jLabel16.setBounds(144, 130, 60, 15);
+		}
+		return jLabel16;
+	}
+	
+	private JSlider getJSlider3() {
+		if(jSlider3 == null) {
+			jSlider3 = new JSlider();
+			jSlider3.setMaximum(200);
+			jSlider3.setMinimum(0);
+			jSlider3.setToolTipText("set label size");
+			jSlider3.setOpaque(false);
+			jSlider3.setName("jSlider3");
+			jSlider3.setBounds(1, 130, 140, 16);
+			jSlider3.addChangeListener(new ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					app.setLabelsize(jSlider3.getValue()/10f);
+				}
+			});
+		}
+		return jSlider3;
+	}
+	
+	private JSlider getJSlider4() {
+		if(jSlider4 == null) {
+			jSlider4 = new JSlider();
+			jSlider4.setMaximum(20);
+			jSlider4.setMinimum(0);
+			jSlider4.setToolTipText("set label variance");
+			jSlider4.setOpaque(false);
+			jSlider4.setName("jSlider4");
+			jSlider4.setBounds(1, 150, 140, 16);
+			jSlider4.addChangeListener(new ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					app.setLabelVar(jSlider4.getValue()/10f);
+				}
+			});
+		}
+		return jSlider4;
+	}
+	
+	private JLabel getJLabel17() {
+		if(jLabel17 == null) {
+			jLabel17 = new JLabel();
+			jLabel17.setText("labelVar");
+			jLabel17.setFont(new java.awt.Font("Dialog",0,10));
+			jLabel17.setBounds(144, 150, 60, 15);
+		}
+		return jLabel17;
 	}
 }	

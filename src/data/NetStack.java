@@ -59,10 +59,14 @@ public class NetStack {
 		}else return false;
 	}
 	
-	public void addEdges(HashSet<Edge> e) {
+	public void addSubnet(HashSet<Edge> e) {
 		if (e!=null&&e.size()>0) {
 			nets.put("subnet"+nets.size(),e);
 		}
+	}
+	
+	public void removeSubnet(String net) {
+		nets.remove(net);
 	}
 	
 	public void nodeListLoad(File file2) {
@@ -105,5 +109,12 @@ public class NetStack {
 
 	public Net getView() {
 		return view;
+	}
+
+	public void setView(String net) {
+		view.clearNet();
+		HashSet<Edge> edges = nets.get(net);
+		for (Edge e:edges) view.addEdge(e);
+		view.updateNet();
 	}
 }

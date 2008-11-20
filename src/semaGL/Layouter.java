@@ -17,7 +17,7 @@ import semaGL.SemaSpace;
 public class Layouter {
 
 	private SemaSpace app;
-	private Net net;
+	protected Net net;
 	private float innerRad=100;
 	private boolean first=true;
 	//	private BBox3D bounds;
@@ -33,9 +33,9 @@ public class Layouter {
 	}
 	public void applyPickColors() {
 		float[] nodeHSV = new float[3];
-		nodeHSV = Func.RGBtoHSV(app.frameColor);
+		nodeHSV = Func.RGBtoHSV(app.pickGradEnd);
 		float[] pickHSV = new float[3];
-		pickHSV = Func.RGBtoHSV(app.pickColor);
+		pickHSV = Func.RGBtoHSV(app.pickGradStart);
 
 		for (Node n :net.nNodes) {
 			//	calculate hue based on network distance from selected node
@@ -177,14 +177,14 @@ public class Layouter {
 			if (rad>20)
 				clusterSpiral(gl, xRot, yRot, aref); 
 			else
-//					if (rad>0) 
+				//					if (rad>0) 
 				clusterCircle(gl, xRot, yRot, aref);
 		}
 	}
 	public Net getNet() {
 		return net;
 	}
-	
+
 	public void layoutCenterOnPivot() {
 		Vector3D v;
 		if (app.isRadial()&&app.isTree()) 
@@ -576,7 +576,15 @@ public class Layouter {
 	void renderLabels(GL gl, int text) {
 		for (Node nref: net.nNodes)	nr.renderNodeLabels(gl, nref, text);
 		for (Edge eref: net.nEdges) nr.renderEdgeLabels(gl, eref, text);
+		
+		
+		for (String n:net.groups.keySet()) {
+			Net group = net.groups.get(n);
+			Node center = group.hasNode(n);
+			nr.renderGroupLabels(gl, center, text);
+		}
 	}
+	
 	public  void renderNodes(GL gl,  int text) {
 		applyPickColors();
 		//		Vector3D cam = new Vector3D(app.cam.getX(),app.cam.getY(),app.cam.getZ());
@@ -592,9 +600,22 @@ public class Layouter {
 			nr.renderNodes(gl, n);
 		}
 	}
-	public void renderTags(GL gl, Net net) {
-		for (Node n:net.tags.keySet()) {
-			nr.renderFan(gl, net.tags.get(n).nNodes, n);
+	public void renderGroups(GL gl, Net net) {
+		for (String n:net.groups.keySet()) {
+			Net group = net.groups.get(n);
+			Node center = group.hasNode(n);
+			nr.renderStar(gl, group.nNodes, center);
+			
+//			nr.renderNodes(gl, center);
+			
+//			for (Node eref: group.nNodes) {
+//				nr.renderNodes(gl, eref);
+//				nr.renderNodeLabels(gl, eref, 2);
+//			}
+//			
+//			for (Edge eref: group.nEdges) {
+//				nr.renderEdges(gl, eref);
+//			}
 		}
 	}
 
@@ -603,9 +624,9 @@ public class Layouter {
 	}
 	void setNodeColor(int level, Node m) {
 		float[] nodeHSV = new float[3];
-		nodeHSV = Func.RGBtoHSV(app.frameColor);
+		nodeHSV = Func.RGBtoHSV(app.pickGradEnd);
 		float[] pickHSV = new float[3];
-		pickHSV = Func.RGBtoHSV(app.pickColor);
+		pickHSV = Func.RGBtoHSV(app.pickGradStart);
 
 		if (m.hasAttribute("color")) m.setColor(Func.parseColorInt(m.getAttribute("color")));
 		else {
@@ -636,21 +657,20 @@ public class Layouter {
 			}
 		}
 	}
-	public void layoutTags(Net net2) {
-		for (Node n:net2.tags.keySet()) {
-
-			//			for (Node m:net2.tags.get(n).nNodes) {
-			//				layoutConstrainCircle(m,n.pos.x,n.pos.y,1000f);
-			//			}
-
-			layoutDistance(app.nodeSize*4f, 0, 1f, net2.tags.get(n));
-			//			layoutRepNeighbors(0.5f, 50, net2.tags.get(n));
-			layoutRepell(app.nodeSize*4f, .5f, net2.tags.get(n));
-			layoutInflate(net2.nNodes.size()+10f, net2);
-			n.pos.setXYZ(calcPivot(net2.tags.get(n)));
-
+	public void layoutGroups(Net net) {
+		
+		 
+		for (String n:net.groups.keySet()) {
+			Net group = net.groups.get(n);
+			Vector3D center = calcPivot(group.nNodes);
+			group.hasNode(n).pos.setXYZ(center);
+			
+//			layoutDistance(app.nodeSize*4f, 0, 1f, group);
+//			layoutRepell(app.nodeSize*4f, .5f, group);
+//			layoutInflate(net.nNodes.size()+10f, net);
 		}
 	}
+
 	public void layoutBox(HashSet<Node> nodes) {
 		int total=0;
 		int step=0;

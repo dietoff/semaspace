@@ -11,6 +11,7 @@ public abstract class GraphElement {
 	public float[] textColor ={0f,0f,0f,0.8f};
 	public float[] color2 = null;
 	public float[] white ={1f,1f,1f,0.8f};
+	private boolean frame = false;
 	public float alpha=0.8f;
 	public String name;
 	public String altName;
@@ -44,7 +45,7 @@ public abstract class GraphElement {
 		if (attributes!=null){
 			String a = attributes.get(app.getAttribute());
 			if (a!=null) {
-				color = Func.parseColorInt(String.valueOf(attributes.get(app.getAttribute()).hashCode()*726.12344381f).hashCode());
+				color = colorFunction(attributes.get(app.getAttribute()));
 				colored = true;
 				alpha = 0.7f;
 			} else {
@@ -56,6 +57,9 @@ public abstract class GraphElement {
 			colored = false;
 		}
 		return;
+	}
+	public static float[] colorFunction(String param) {
+		return Func.parseColorInt(String.valueOf(param.hashCode()*726.12344381f).hashCode());
 	}
 
 
@@ -126,5 +130,13 @@ public abstract class GraphElement {
 
 	public void setRollover(boolean b) {
 		rollover = b;
+	}
+	
+	public boolean isFrame() {
+		return frame;
+	}
+
+	public void setFrame(boolean b) {
+		frame  = b;
 	}
 }
