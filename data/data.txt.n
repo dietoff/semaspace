@@ -17,35 +17,35 @@
 02 view of limitlessness	Sicht=GD-View	GD_View=02 view of limitlessness				
 02 view of openness	Sicht=GD-View	GD_View=02 view of openness		OG_Kontext=Theories		
 02 view of virtuality	Sicht=GD-View	GD_View=02 view of virtuality				
-03 interdisciplinarity view	Sicht=GD-View	GD_View=03 interdisciplinarity view		OG_Kontext=Erg‰nzung		
+03 interdisciplinarity view	Sicht=GD-View	GD_View=03 interdisciplinarity view		OG_Kontext=Erg√§nzung		
 03 machine view - robots	Sicht=GD-View	GD_View=03 machine view - robots				Sparte=C
 03 service view / project view	Sicht=GD-View	GD_View=03 service view / project view		OG_Kontext=SocieHistory		
 03 synaesthetic view	Sicht=GD-View	GD_View=03 synaesthetic view			Quelle=SN	Sparte=M
-03 view of multifunctionality	Sicht=GD-View	GD_View=03 view of multifunctionality		OG_Kontext=Erg‰nzung		
+03 view of multifunctionality	Sicht=GD-View	GD_View=03 view of multifunctionality		OG_Kontext=Erg√§nzung		
 03 view of PC/computer/video technology	Sicht=GD-View	GD_View=03 view of PC/computer/video technology				
 04 influential thinkers	Sicht=GD-View	GD_View=04 influential thinkers				
 04 methods view	Sicht=GD-View	GD_View=04 methods view				
 04 view of criticism / valuation	Sicht=GD-View	GD_View=04 view of criticism / valuation				
 04 view of ideas	Sicht=GD-View	GD_View=04 view of ideas				
-04 view of innovation	Sicht=GD-View	GD_View=04 view of innovation		OG_Kontext=Erg‰nzung	Quelle=SN	
+04 view of innovation	Sicht=GD-View	GD_View=04 view of innovation		OG_Kontext=Erg√§nzung	Quelle=SN	
 04 view of intention	Sicht=GD-View	GD_View=04 view of intention				
 05 functional view	Sicht=GD-View	GD_View=05 functional view				
 05 interface view	Sicht=GD-View	GD_View=05 interface view				
 05 procedure view	Sicht=GD-View	GD_View=05 procedure view				
 05 tool view / instruments	Sicht=GD-View	GD_View=05 tool view / instruments			Quelle=SN	
 05 view of artistic production	Sicht=GD-View	GD_View=05 view of artistic production			Quelle=SN	
-05 view of the working world	Sicht=GD-View	GD_View=05 view of the working world		OG_Kontext=Erg‰nzung		
-06 education view	Sicht=GD-View	GD_View=06 education view		OG_Kontext=Erg‰nzung		
+05 view of the working world	Sicht=GD-View	GD_View=05 view of the working world		OG_Kontext=Erg√§nzung		
+06 education view	Sicht=GD-View	GD_View=06 education view		OG_Kontext=Erg√§nzung		
 06 gestural view	Sicht=GD-View	GD_View=06 gestural view			Quelle=SN	Sparte=P
 06 habitual view	Sicht=GD-View	GD_View=06 habitual view				
-06 view of designing gestures	Sicht=GD-View	GD_View=06 view of designing gestures		OG_Kontext=Erg‰nzung		
+06 view of designing gestures	Sicht=GD-View	GD_View=06 view of designing gestures		OG_Kontext=Erg√§nzung		
 06 view of educators (in teaching)	Sicht=GD-View	GD_View=06 view of educators (in teaching)				
 06 view of instruction	Sicht=GD-View	GD_View=06 view of instruction				
 07 body extensions	Sicht=GD-View	GD_View=07 body extensions				
-07 media-critical view	Sicht=GD-View	GD_View=07 media-critical view		OG_Kontext=Erg‰nzung		
+07 media-critical view	Sicht=GD-View	GD_View=07 media-critical view		OG_Kontext=Erg√§nzung		
 07 subversion view	Sicht=GD-View	GD_View=07 subversion view			Quelle=SN	
-07 transport view	Sicht=GD-View	GD_View=07 transport view		OG_Kontext=Erg‰nzung	Quelle=SN	
-07 view of communication	Sicht=GD-View	GD_View=07 view of communication		OG_Kontext=Erg‰nzung		
+07 transport view	Sicht=GD-View	GD_View=07 transport view		OG_Kontext=Erg√§nzung	Quelle=SN	
+07 view of communication	Sicht=GD-View	GD_View=07 view of communication		OG_Kontext=Erg√§nzung		
 07 view of electronic media	Sicht=GD-View	GD_View=07 view of electronic media			Quelle=SN	
 07 view of media	Sicht=GD-View	GD_View=07 view of media			Quelle=SN	
 07 view of telecommunications	Sicht=GD-View	GD_View=07 view of telecommunications				Sparte=N
@@ -58,44 +58,44 @@
 08 view of portability	Sicht=GD-View	GD_View=08 view of portability				
 08 view of sexuality	Sicht=GD-View	GD_View=08 view of sexuality				
 09 emotional view	Sicht=GD-View	GD_View=09 emotional view			Quelle=SN	
-09 everyday view	Sicht=GD-View	GD_View=09 everyday view		OG_Kontext=Erg‰nzung		
+09 everyday view	Sicht=GD-View	GD_View=09 everyday view		OG_Kontext=Erg√§nzung		
 09 supply view	Sicht=GD-View	GD_View=09 supply view				
 09 view of agriculture	Sicht=GD-View	GD_View=09 view of agriculture				
 09 view of clothing	Sicht=GD-View	GD_View=09 view of clothing				
 09 view of commodity world	Sicht=GD-View	GD_View=09 view of commodity world				
 10 Internet view	Sicht=GD-View	GD_View=10 Internet view				Sparte=N
 10 observer view	Sicht=GD-View	GD_View=10 observer view				
-10 psychoanalytical view	Sicht=GD-View	GD_View=10 psychoanalytical view		OG_Kontext=Erg‰nzung		
+10 psychoanalytical view	Sicht=GD-View	GD_View=10 psychoanalytical view		OG_Kontext=Erg√§nzung		
 10 psychological view	Sicht=GD-View	GD_View=10 psychological view				
 10 psychophysical view	Sicht=GD-View	GD_View=10 psychophysical view				
 10 recipient view	Sicht=GD-View	GD_View=10 recipient view				
 10 view of networks	Sicht=GD-View	GD_View=10 view of networks				Sparte=N
-10 view of the mood	Sicht=GD-View	GD_View=10 view of the mood		OG_Kontext=Erg‰nzung		
+10 view of the mood	Sicht=GD-View	GD_View=10 view of the mood		OG_Kontext=Erg√§nzung		
 10 view of the mood  (Stimmung, Laune)	Sicht=GD-View	GD_View=10 view of the mood  (Stimmung, Laune)				
 11 feminist view	Sicht=GD-View	GD_View=11 feminist view				
-11 intercultural view	Sicht=GD-View	GD_View=11 intercultural view		OG_Kontext=Erg‰nzung		
+11 intercultural view	Sicht=GD-View	GD_View=11 intercultural view		OG_Kontext=Erg√§nzung		
 11 legal view	Sicht=GD-View	GD_View=11 legal view				
 11 light view	Sicht=GD-View	GD_View=11 light view			Quelle=SN	
 11 political view	Sicht=GD-View	GD_View=11 political view				
 11 view of worldviews	Sicht=GD-View	GD_View=11 view of worldviews			Quelle=SN	
 12 aesthetic view	Sicht=GD-View	GD_View=12 aesthetic view			Quelle=SN	
-12 color view	Sicht=GD-View	GD_View=12 color view		OG_Kontext=Erg‰nzung	Quelle=SN	
-12 ethical view	Sicht=GD-View	GD_View=12 ethical view		OG_Kontext=Erg‰nzung		
+12 color view	Sicht=GD-View	GD_View=12 color view		OG_Kontext=Erg√§nzung	Quelle=SN	
+12 ethical view	Sicht=GD-View	GD_View=12 ethical view		OG_Kontext=Erg√§nzung		
 12 light view	Sicht=GD-View	GD_View=12 light view			Quelle=SN	
-12 memorial view	Sicht=GD-View	GD_View=12 memorial view		OG_Kontext=Erg‰nzung		
+12 memorial view	Sicht=GD-View	GD_View=12 memorial view		OG_Kontext=Erg√§nzung		
 12 view of concern	Sicht=GD-View	GD_View=12 view of concern				
 12 visual view	Sicht=GD-View	GD_View=12 visual view			Quelle=SN	
 128-Bit-Rendering	Sicht=informatics	GD_View=128-Bit-Rendering				
 13 achievement view	Sicht=GD-View	GD_View=13 achievement view				
 13 achievement view / Leistungssicht	Sicht=GD-View	GD_View=13 achievement view / Leistungssicht				
-13 energetic view	Sicht=GD-View	GD_View=13 energetic view		OG_Kontext=Erg‰nzung		
+13 energetic view	Sicht=GD-View	GD_View=13 energetic view		OG_Kontext=Erg√§nzung		
 13 identity view	Sicht=GD-View	GD_View=13 identity view				
 13 intensity view	Sicht=GD-View	GD_View=13 intensity view			Quelle=SN	
 13 view of destruction	Sicht=GD-View	GD_View=13 view of destruction				
 13 view of dramatization	Sicht=GD-View	GD_View=13 view of dramatization			Quelle=SN	
 13 view of hybridity	Sicht=GD-View	GD_View=13 view of hybridity				Sparte=H
 14 actor view	Sicht=GD-View	GD_View=14 actor view				Sparte=P
-14 artist view	Sicht=GD-View	GD_View=14 artist view		OG_Kontext=Erg‰nzung		
+14 artist view	Sicht=GD-View	GD_View=14 artist view		OG_Kontext=Erg√§nzung		
 14 authors view	Sicht=GD-View	GD_View=14 authors view				
 14 existential view	Sicht=GD-View	GD_View=14 existential view				
 14 resaercher view	Sicht=GD-View	GD_View=14 resaercher view				
@@ -116,12 +116,12 @@
 16 artifical life view	Sicht=GD-View	GD_View=16 artifical life view				
 16 discourse view	Sicht=GD-View	GD_View=16 discourse view				
 16 epistemological view	Sicht=GD-View	GD_View=16 epistemological view				
-16 impact/effect view	Sicht=GD-View	GD_View=16 impact/effect view		OG_Kontext=Erg‰nzung	Quelle=SN	
-16 perception view	Sicht=GD-View	GD_View=16 perception view		OG_Kontext=Erg‰nzung	Quelle=SN	
+16 impact/effect view	Sicht=GD-View	GD_View=16 impact/effect view		OG_Kontext=Erg√§nzung	Quelle=SN	
+16 perception view	Sicht=GD-View	GD_View=16 perception view		OG_Kontext=Erg√§nzung	Quelle=SN	
 16 view of knowledge management	Sicht=GD-View	GD_View=16 view of knowledge management		OG_Kontext=InfoMedia		
 17 artifical life view	Sicht=GD-View	GD_View=17 artifical life view				Sparte=C
 17 media philosophy view	Sicht=GD-View	GD_View=17 media philosophy view			Quelle=SN	
-17 view of animals	Sicht=GD-View	GD_View=17 view of animals		OG_Kontext=Erg‰nzung		
+17 view of animals	Sicht=GD-View	GD_View=17 view of animals		OG_Kontext=Erg√§nzung		
 17 view of cognition	Sicht=GD-View	GD_View=17 view of cognition				
 17 view of genetic	Sicht=GD-View	GD_View=17 view of genetic				
 17 view of nature	Sicht=GD-View	GD_View=17 view of nature				
@@ -130,25 +130,25 @@
 18 object view	Sicht=GD-View	GD_View=18 object view				
 18 product view	Sicht=GD-View	GD_View=18 product view				
 18 similarity and touch	Sicht=GD-View	GD_View=18 similarity and touch				
-18 tactile haptic view	Sicht=GD-View	GD_View=18 tactile haptic view		OG_Kontext=Erg‰nzung		
+18 tactile haptic view	Sicht=GD-View	GD_View=18 tactile haptic view		OG_Kontext=Erg√§nzung		
 18 view of framing	Sicht=GD-View	GD_View=18 view of framing				
-18 view of projection	Sicht=GD-View	GD_View=18 view of projection		OG_Kontext=Erg‰nzung	Quelle=SN	
+18 view of projection	Sicht=GD-View	GD_View=18 view of projection		OG_Kontext=Erg√§nzung	Quelle=SN	
 18 view of the art work	Sicht=GD-View	GD_View=18 view of the art work				
 18 view of the installation	Sicht=GD-View	GD_View=18 view of the installation			Quelle=SN	
 18 view of the picture	Sicht=GD-View	GD_View=18 view of the picture				
 19 archeological view	Sicht=GD-View	GD_View=19 archeological view				
 19 material view	Sicht=GD-View	GD_View=19 material view			Quelle=SN	
-19 olfactory "view" (smell)	Sicht=GD-View	GD_View=19 olfactory "view" (smell)		OG_Kontext=Erg‰nzung		
+19 olfactory "view" (smell)	Sicht=GD-View	GD_View=19 olfactory "view" (smell)		OG_Kontext=Erg√§nzung		
 19 presentation view	Sicht=GD-View	GD_View=19 presentation view				
 19 view of exhibition	Sicht=GD-View	GD_View=19 view of exhibition				
 19 view of gravity	Sicht=GD-View	GD_View=19 view of gravity				
 19 view of representation	Sicht=GD-View	GD_View=19 view of representation		OG_Kontext=Technology		
 2,5D	Sicht=informatics	GD_View=2,5D				Sparte=D
-20 archive view	Sicht=GD-View	GD_View=20 archive view		OG_Kontext=Erg‰nzung		
-20 art historical view	Sicht=GD-View	GD_View=20 art historical view		OG_Kontext=Erg‰nzung		
+20 archive view	Sicht=GD-View	GD_View=20 archive view		OG_Kontext=Erg√§nzung		
+20 art historical view	Sicht=GD-View	GD_View=20 art historical view		OG_Kontext=Erg√§nzung		
 20 historical view	Sicht=GD-View	GD_View=20 historical view				
 20 history of technology view	Sicht=GD-View	GD_View=20 history of technology view				
-20 museum view	Sicht=GD-View	GD_View=20 museum view		OG_Kontext=Erg‰nzung		
+20 museum view	Sicht=GD-View	GD_View=20 museum view		OG_Kontext=Erg√§nzung		
 20 view of storage media	Sicht=GD-View	GD_View=20 view of storage media				
 20 view of the collection	Sicht=GD-View	GD_View=20 view of the collection				
 21 design view	Sicht=GD-View	GD_View=21 design view				
@@ -162,15 +162,15 @@
 21 view of the future	Sicht=GD-View	GD_View=21 view of the future				
 22 athletic aspects	Sicht=GD-View	GD_View=22 athletic aspects				
 22 celebration view	Sicht=GD-View	GD_View=22 celebration view				
-22 entertainment view	Sicht=GD-View	GD_View=22 entertainment view		OG_Kontext=Erg‰nzung	Quelle=SN	
+22 entertainment view	Sicht=GD-View	GD_View=22 entertainment view		OG_Kontext=Erg√§nzung	Quelle=SN	
 22 experience view	Sicht=GD-View	GD_View=22 experience view				
 22 view of fashion / adornment	Sicht=GD-View	GD_View=22 view of fashion / adornment				
-22 view of pop culture	Sicht=GD-View	GD_View=22 view of pop culture		OG_Kontext=Erg‰nzung	Quelle=SN	
+22 view of pop culture	Sicht=GD-View	GD_View=22 view of pop culture		OG_Kontext=Erg√§nzung	Quelle=SN	
 22 view of public appearances	Sicht=GD-View	GD_View=22 view of public appearances				
 22 view of the public space	Sicht=GD-View	GD_View=22 view of the public space				
 23 battle view	Sicht=GD-View	GD_View=23 battle view				
-23 curators¥view	Sicht=GD-View	GD_View=23 curators¥view		OG_Kontext=Erg‰nzung		
-23 manager¥s view	Sicht=GD-View	GD_View=23 manager¥s view				
+23 curators¬¥view	Sicht=GD-View	GD_View=23 curators¬¥view		OG_Kontext=Erg√§nzung		
+23 manager¬¥s view	Sicht=GD-View	GD_View=23 manager¬¥s view				
 23 power-theoretical view	Sicht=GD-View	GD_View=23 power-theoretical view		OG_Kontext=InfoMedia		
 23 view of exhibition organizers	Sicht=GD-View	GD_View=23 view of exhibition organizers				
 23 view of organizing institution	Sicht=GD-View	GD_View=23 view of organizing institution				
@@ -178,13 +178,13 @@
 24 structural/structuring view	Sicht=GD-View	GD_View=24 structural/structuring view		OG_Kontext=Theories	Quelle=SN	
 24 tectonic view	Sicht=GD-View	GD_View=24 tectonic view				
 24 topological view	Sicht=GD-View	GD_View=24 topological view				
-24 view of informatics	Sicht=GD-View	GD_View=24 view of informatics		OG_Kontext=Erg‰nzung		
+24 view of informatics	Sicht=GD-View	GD_View=24 view of informatics		OG_Kontext=Erg√§nzung		
 24 view of magnitude	Sicht=GD-View	GD_View=24 view of magnitude				
 24 view of magnitude (Groesse, Ausdehnung, Wichtigkeit)	Sicht=GD-View	GD_View=24 view of magnitude (Groesse, Ausdehnung, Wichtigkeit)				
 24 view of mathematics	Sicht=GD-View	GD_View=24 view of mathematics			Quelle=SN	
 24 view of the field	Sicht=GD-View	GD_View=24 view of the field				
 24 view of the in-between (space)	Sicht=GD-View	GD_View=24 view of the in-between (space)				
-25 acoustic "view"	Sicht=GD-View	GD_View=25 acoustic "view"		OG_Kontext=Erg‰nzung	Quelle=SN	Sparte=M
+25 acoustic "view"	Sicht=GD-View	GD_View=25 acoustic "view"		OG_Kontext=Erg√§nzung	Quelle=SN	Sparte=M
 25 architectonic view	Sicht=GD-View	GD_View=25 architectonic view			Quelle=SN	
 25 cybernetic view	Sicht=GD-View	GD_View=25 cybernetic view				Sparte=C
 25 formal view	Sicht=GD-View	GD_View=25 formal view				
@@ -213,7 +213,7 @@
 28 pragmatistic view	Sicht=GD-View	GD_View=28 pragmatistic view				
 28 radio view	Sicht=GD-View	GD_View=28 radio view			Quelle=SN	Sparte=M
 28 role view	Sicht=GD-View	GD_View=28 role view				
-28 view of action	Sicht=GD-View	GD_View=28 view of action		OG_Kontext=Erg‰nzung	Quelle=SN	Sparte=P
+28 view of action	Sicht=GD-View	GD_View=28 view of action		OG_Kontext=Erg√§nzung	Quelle=SN	Sparte=P
 29 anthropological view	Sicht=GD-View	GD_View=29 anthropological view				
 29 ethnological view	Sicht=GD-View	GD_View=29 ethnological view				
 29 ritual view	Sicht=GD-View	GD_View=29 ritual view				
@@ -224,7 +224,7 @@
 2nd order cybernetics	Sicht=GD-View	GD_View=2nd order cybernetics				Sparte=C
 30 behavior view	Sicht=GD-View	GD_View=30 behavior view				Sparte=P
 30 therapeutic view	Sicht=GD-View	GD_View=30 therapeutic view				
-30 view of handicaps	Sicht=GD-View	GD_View=30 view of handicaps		OG_Kontext=Erg‰nzung	Quelle=SN	
+30 view of handicaps	Sicht=GD-View	GD_View=30 view of handicaps		OG_Kontext=Erg√§nzung	Quelle=SN	
 31 linguistic view	Sicht=GD-View	GD_View=31 linguistic view				
 31 magical view	Sicht=GD-View	GD_View=31 magical view				
 31 mythic view	Sicht=GD-View	GD_View=31 mythic view			Quelle=SN	
@@ -240,7 +240,7 @@
 32 competitive view	Sicht=GD-View	GD_View=32 competitive view				
 32 culture of laughter view	Sicht=GD-View	GD_View=32 culture of laughter view				
 32 gaming view	Sicht=GD-View	GD_View=32 gaming view			Quelle=SN	Sparte=GI
-32 liveness view	Sicht=GD-View	GD_View=32 liveness view		OG_Kontext=Erg‰nzung	Quelle=SN	
+32 liveness view	Sicht=GD-View	GD_View=32 liveness view		OG_Kontext=Erg√§nzung	Quelle=SN	
 32 playful view	Sicht=GD-View	GD_View=32 gaming view		OG_Kontext=Aesthetics	Quelle=SN	Sparte=GP
 32 theater studies view	Sicht=GD-View	GD_View=32 theater studies view				
 32 theater view / opera view	Sicht=GD-View	GD_View=32 theater view / opera view		OG_Kontext=Technology	Quelle=SN	Sparte=P
@@ -320,12 +320,12 @@ Aesthetikdiskurs	Sicht=theory	GD_View=12 aesthetic view	JJJJ=1979
 Aesthetisch generative Basisprogramme		GD_View=12 aesthetic view				
 Aesthetische Codes	Sicht=representation	GD_View=12 aesthetic view	JJJJ=1986,1997			
 Aesthetische Information		GD_View=12 aesthetic view	JJJJ=2003			
-affective computing	Sicht=theory	GD_View=09 emotional view		OG_Kontext=Erg‰nzung	Quelle=SW	Sparte=P
+affective computing	Sicht=theory	GD_View=09 emotional view		OG_Kontext=Erg√§nzung	Quelle=SW	Sparte=P
 Africa	Sicht=world	GD_View=11 intercultural view		OG_Kontext=SocieHistory		
 Agent	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=A-Life-Tech	Quelle=SW	
 agent behaviour						
 Agression	Sicht=body	GD_View=09 emotional view	JJJJ=1994	OG_Kontext=Abstracta		
-Agression, Fleisch, Lust, Verr¸cktheit, Blutrausch und Phantasie	Sicht=body	GD_View=13 energetic view				
+Agression, Fleisch, Lust, Verr√ºcktheit, Blutrausch und Phantasie	Sicht=body	GD_View=13 energetic view				
 AI	Sicht=informatics	GD_View=16 AI view		OG_Kontext=A-Life-Tech		
 AI lite	Sicht=informatics	GD_View=16 AI view				
 airflow sensor		GD_View=14 view of sensor technology	JJJJ=1999			
@@ -396,9 +396,9 @@ animierter Dokumentarfilm						Sparte=A
 anisotrop filtering						
 Anlagenvisualisierung						Sparte=DA
 Annotation			JJJJ=2005			
-Anonymit‰t						
+Anonymit√§t						
 anonymization					Quelle=PF	
-Anreicherung (der realen Welt)	Sicht=representation	GD_View=19 presentation view		OG_Kontext=Erg‰nzung		
+Anreicherung (der realen Welt)	Sicht=representation	GD_View=19 presentation view		OG_Kontext=Erg√§nzung		
 Anreicherung des taeglichen Lebens mit digitalen Informationen						
 Anrufbeantworter						
 antennas						
@@ -413,14 +413,14 @@ Anwendungsprogramme	Sicht=software
 Anwendungssystem	Sicht=software					
 Apache	Sicht=software			OG_Kontext=InfoMedia		Sparte=N
 Apfelmaennchen						Sparte=D
-Apparate	Sicht=hardware	GD_View=03 machine view - robots	JJJJ=(n)	OG_Kontext=Erg‰nzung	Quelle=SN	
+Apparate	Sicht=hardware	GD_View=03 machine view - robots	JJJJ=(n)	OG_Kontext=Erg√§nzung	Quelle=SN	
 Apparative Kleidung						
-apparative Kunst	Sicht=hardware	GD_View=03 machine view - robots	JJJJ=(1986)	OG_Kontext=Erg‰nzung		
+apparative Kunst	Sicht=hardware	GD_View=03 machine view - robots	JJJJ=(1986)	OG_Kontext=Erg√§nzung		
 apparative Medizin			JJJJ=(1996)			
 apparative Prothesen		GD_View=03 machine view - robots	JJJJ=(1980)			
 apparative Technik		GD_View=03 machine view - robots	JJJJ=(1997)			
 apparatives Ambiente		GD_View=03 machine view - robots				
-Apparatur	Sicht=hardware	GD_View=03 machine view - robots		OG_Kontext=Erg‰nzung		
+Apparatur	Sicht=hardware	GD_View=03 machine view - robots		OG_Kontext=Erg√§nzung		
 Apparatus		GD_View=03 machine view - robots				
 appearance					Quelle=PF	Sparte=P
 Apple			JJJJ=(1984)			
@@ -429,7 +429,7 @@ application	Sicht=software				Quelle=SN
 application software	Sicht=software					
 applied webart	Sicht=art					Sparte=N
 applied zoosemiotics (Louis Bec)						Sparte=DA
-AR	Sicht=software			OG_Kontext=Erg‰nzung		
+AR	Sicht=software			OG_Kontext=Erg√§nzung		
 AR-Browser	Sicht=software					Sparte=N
 ArcheoGuide-System	Sicht=software		JJJJ=(1994)			Sparte=I
 ArchiMedia						
@@ -439,7 +439,7 @@ Architektur	Sicht=world	GD_View=25 architectonic view		OG_Kontext=Theories	Quell
 Architektur und Harmonie		GD_View=25 architectonic view	JJJJ=(2001)		Quelle=SN	Sparte=M
 Architekturdiskurs	Sicht=theory	GD_View=25 architectonic view				
 Architektursimulation	Sicht=representation	GD_View=25 architectonic view	JJJJ=(n)			Sparte=A
-Architektursoftware	Sicht=software	GD_View=25 architectonic view	JJJJ=(1999)	OG_Kontext=Erg‰nzung		
+Architektursoftware	Sicht=software	GD_View=25 architectonic view	JJJJ=(1999)	OG_Kontext=Erg√§nzung		
 Architekturtheoretischer Diskurs	Sicht=theory	GD_View=25 architectonic view	JJJJ=2007	OG_Kontext=Theories		
 Architekturvisualisierung		GD_View=25 architectonic view				Sparte=A
 Archive	Sicht=culture	GD_View=20 archive view		OG_Kontext=InfoMedia		
@@ -448,18 +448,18 @@ archive research	Sicht=science	GD_View=20 archive view
 archive science	Sicht=science	GD_View=20 archive view	JJJJ=2004			
 Archivinstallation		GD_View=20 archive view	JJJJ=2006			
 Arduino			JJJJ=1969			
-ARPANET	Sicht=comtech			OG_Kontext=Erg‰nzung		Sparte=N
-ARS	Sicht=culture		JJJJ=2004	OG_Kontext=Erg‰nzung		
+ARPANET	Sicht=comtech			OG_Kontext=Erg√§nzung		Sparte=N
+ARS	Sicht=culture		JJJJ=2004	OG_Kontext=Erg√§nzung		
 ars acustica	Sicht=art					Sparte=M
 Ars Astronautica	Sicht=art				Quelle=SW	
 ars combinatoria	Sicht=art					
 Ars Digitalis	Sicht=art		JJJJ=(1979)		Quelle=SW	
 ars electronica	Sicht=art				Quelle=SW	
-ARS Gr¸nder	Sicht=culture		JJJJ=1979			
+ARS Gr√ºnder	Sicht=culture		JJJJ=1979			
 ars intermedia	Sicht=art		JJJJ=2004	OG_Kontext=Technology		
 ars memoria			JJJJ=(n)			
 ars technologica						
-ARS Vorl‰ufer	Sicht=culture		JJJJ=2004	OG_Kontext=Genre		
+ARS Vorl√§ufer	Sicht=culture		JJJJ=2004	OG_Kontext=Genre		
 ARSBOX virtual prototyping						
 AR-surgery	Sicht=interface	GD_View=08 view of medicine		OG_Kontext=Body Human		
 AR-System						
@@ -531,7 +531,7 @@ artistic concepts	Sicht=art
 artistic holography	Sicht=art					Sparte=B
 artistic re-packaging	Sicht=art	GD_View=04 view of innovation				
 artistic software	Sicht=software	GD_View=05 tool view / instruments				
-arts management	Sicht=culture	GD_View=23 manager¥s view		OG_Kontext=Erg‰nzung		
+arts management	Sicht=culture	GD_View=23 manager¬¥s view		OG_Kontext=Erg√§nzung		
 ASCII	Sicht=informatics	GD_View=24 view of informatics	JJJJ=2005			Sparte=C
 ascii art	Sicht=art		JJJJ=2005			Sparte=D
 Associativity	Sicht=informatics				Quelle=PF	
@@ -559,7 +559,7 @@ Audiotechnik / Audiosoftware	Sicht=software		JJJJ=(2000)	OG_Kontext=Technology		
 audiovisual environment suite	Sicht=software		JJJJ=2005			Sparte=M
 audiovisual performance	Sicht=software	GD_View=26 performance view	JJJJ=2005			Sparte=PM
 audiovisual project	Sicht=art	GD_View=03 synaesthetic view		OG_Kontext=Genre		Sparte=MA
-audiovisuelle Praesenz	Sicht=art			OG_Kontext=Erg‰nzung		Sparte=M
+audiovisuelle Praesenz	Sicht=art			OG_Kontext=Erg√§nzung		Sparte=M
 audiovisuelle Wahrnehmung					Quelle=SN	Sparte=M
 auditive digital storytelling						Sparte=M
 auditive Wahrnehmung					Quelle=SN	Sparte=M
@@ -569,7 +569,7 @@ Aufzeichnungsverfahren					Quelle=SN
 aufzeigende Projekte		GD_View=03 service view / project view				
 Augen Tracking			JJJJ=(1997)		Quelle=SN	
 augengesteuert						
-augmentation	Sicht=representation	GD_View=19 presentation view	JJJJ=(n)	OG_Kontext=Erg‰nzung		
+augmentation	Sicht=representation	GD_View=19 presentation view	JJJJ=(n)	OG_Kontext=Erg√§nzung		
 augmentative Kommunikation						
 augmented holograms						Sparte=DA
 augmented prototyping	Sicht=informatics		JJJJ=(1999) 2005,2007			
@@ -620,14 +620,14 @@ Bandbreite	Sicht=comtech		JJJJ=(1984)
 Bandkonzerte			JJJJ=1992			Sparte=M
 bandpass  filter			JJJJ=2004			
 Bandwidth	Sicht=comtech		JJJJ=2007		Quelle=SW	Sparte=N
-Bar codes	Sicht=representation	GD_View=19 presentation view	JJJJ=1992	OG_Kontext=Erg‰nzung	Quelle=SW	
+Bar codes	Sicht=representation	GD_View=19 presentation view	JJJJ=1992	OG_Kontext=Erg√§nzung	Quelle=SW	
 Barcode	Sicht=representation	GD_View=19 presentation view				
 barrierefreies Internet						Sparte=N
 BASIC	Sicht=informatics	GD_View=24 view of informatics	JJJJ=(1990)			
 basic modalities of space - aspects of digital space						
 Basissoftware	Sicht=software					
 Baudot-Art (5 Bit Baudot Code)	Sicht=art	GD_View=15 typographical view				
-BBS	Sicht=comtech			OG_Kontext=Erg‰nzung		Sparte=N
+BBS	Sicht=comtech			OG_Kontext=Erg√§nzung		Sparte=N
 BCI - Brain-Computer Interface (EEG-Signalanalyse in Echtzeit)		GD_View=14 view of sensor technology				
 BCI-Anwendung		GD_View=14 view of sensor technology				
 Beam						
@@ -647,25 +647,25 @@ berauschen, betrunken machen			JJJJ=(1995)
 best public "watchdog" service		GD_View=03 service view / project view	JJJJ=(1995)			
 best public information service		GD_View=03 service view / project view				
 Besucherprotokoll		GD_View=10 recipient view	JJJJ=(1999)			
-Betriebssystem	Sicht=software		JJJJ=(1994)	OG_Kontext=Erg‰nzung		
+Betriebssystem	Sicht=software		JJJJ=(1994)	OG_Kontext=Erg√§nzung		
 bewegliches Display	Sicht=interface	GD_View=05 interface view	JJJJ=2004			
 bewegte Projektion						
 Bewegung						
 Bewegungssensor	Sicht=interface	GD_View=14 view of sensor technology				
 Bewegungssimulation			JJJJ=(1999)			
-Bewegungstracking				OG_Kontext=Erg‰nzung		
+Bewegungstracking				OG_Kontext=Erg√§nzung		
 beyond hierarchy			JJJJ=1990			
 beyond the office of the future						
 Beziehungsgefuege						
 Bi-Gender Show						Sparte=P
 Bike	Sicht=world			OG_Kontext=Technology		
 bike as interface	Sicht=interface	GD_View=05 interface view	JJJJ=2006			Sparte=I
-Bildauslˆschung						Sparte=D
+Bildausl√∂schung						Sparte=D
 Bildbearbeitung						
 Bildbegriff			JJJJ=(1994,2001)			Sparte=D
 Bilddatenbank	Sicht=software			OG_Kontext=InfoMedia		
 Bilddialog			JJJJ=2004			
-Bildfluﬂ						
+Bildflu√ü						
 bildgebende Medien	Sicht=media	GD_View=15 diagrammatic view				Sparte=DA
 Bildgenerierung	Sicht=representation			OG_Kontext=Aesthetics		Sparte=DA
 Bildkompression	Sicht=representation	GD_View=19 presentation view				
@@ -719,12 +719,12 @@ blade server	Sicht=hardware		JJJJ=2007
 Blasendisplay	Sicht=interface					
 Blend Shape	Sicht=software		JJJJ=(n)			Sparte=A
 Blickerfassungssystem	Sicht=software					
-Blickrichtungserfassung	Sicht=interface	GD_View=14 view of sensor technology	JJJJ=1989	OG_Kontext=Erg‰nzung		
+Blickrichtungserfassung	Sicht=interface	GD_View=14 view of sensor technology	JJJJ=1989	OG_Kontext=Erg√§nzung		
 Blockdiagramm	Sicht=representation					
 blog			JJJJ=2005,2006			Sparte=N
 blogging	Sicht=culture					Sparte=N
 Blogging Live journal						Sparte=N
-Blogosph‰re	Sicht=culture		JJJJ=2004			Sparte=N
+Blogosph√§re	Sicht=culture		JJJJ=2004			Sparte=N
 blue box			JJJJ=2005			Sparte=V
 bluetooth	Sicht=comtech		JJJJ=2007			
 board game	Sicht=culture	GD_View=32 gaming view	JJJJ=(2001)			Sparte=G
@@ -768,22 +768,22 @@ browser	Sicht=software			OG_Kontext=InfoMedia		Sparte=N
 browser art	Sicht=art					Sparte=N
 BTX	Sicht=comtech					Sparte=N
 Buchstabenmystik			JJJJ=(1999)			
-B¸hnenbildprojektion		GD_View=18 view of projection				
-B¸hnenwerk					Quelle=SN	Sparte=P
+B√ºhnenbildprojektion		GD_View=18 view of projection				
+B√ºhnenwerk					Quelle=SN	Sparte=P
 Bueromaschinen						
 bugs	Sicht=informatics	GD_View=24 view of informatics	JJJJ=(2001)			
 building/space organization: mnemotechniques - memory theater						
 Bulletin Board Systems	Sicht=software					Sparte=N
 BUS			JJJJ=(1995)			
-C@C  computer aided curating		GD_View=23 curators¥view	JJJJ=2006			Sparte=N
+C@C  computer aided curating		GD_View=23 curators¬¥view	JJJJ=2006			Sparte=N
 C++	Sicht=software				Quelle=PF	
 CAAD			JJJJ=1994			
 CAAD  computer aided architectural design						
 cable television						Sparte=N
-CAD	Sicht=software	GD_View=05 tool view / instruments	JJJJ=(1993,2003)	OG_Kontext=Erg‰nzung		Sparte=DA
+CAD	Sicht=software	GD_View=05 tool view / instruments	JJJJ=(1993,2003)	OG_Kontext=Erg√§nzung		Sparte=DA
 CAD    computer aided design	Sicht=representation	GD_View=05 tool view / instruments				Sparte=DA
 calculator	Sicht=hardware	GD_View=05 tool view / instruments				
-CAM	Sicht=world		JJJJ=(2003)	OG_Kontext=Erg‰nzung		
+CAM	Sicht=world		JJJJ=(2003)	OG_Kontext=Erg√§nzung		
 CAM    computer aided manufacturing	Sicht=world					
 cam art	Sicht=art					Sparte=V
 Camera	Sicht=interface	GD_View=05 interface view		OG_Kontext=Technology		Sparte=V
@@ -812,13 +812,13 @@ CD, DAT, DCC, Minidisc	Sicht=storage	GD_View=20 view of storage media	JJJJ=1985-
 CD-ROM	Sicht=storage	GD_View=20 view of storage media			Quelle=SW	
 CDTV						
 Ceiling panorama	Sicht=interface	GD_View=18 view of projection	JJJJ=(1993)	OG_Kontext=Aesthetics		
-cellular automata	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg‰nzung		
+cellular automata	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg√§nzung		
 cellular phone	Sicht=comtech		JJJJ=2007			
 Censorship	Sicht=culture	GD_View=12 view of concern	JJJJ=(1982)	OG_Kontext=InfoMedia		
 Centerdisc	Sicht=storage	GD_View=20 view of storage media	JJJJ=(n)			
 CE-Rechner	Sicht=hardware		JJJJ=(1986)			
 CFN Cleveland Free-Net		GD_View=21 financing view / costs view				Sparte=N
-CGI	Sicht=representation		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+CGI	Sicht=representation		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 CGI  computer-generated imagery	Sicht=representation					
 CGI/Perl	Sicht=representation					
 Channel	Sicht=media		JJJJ=2006			
@@ -827,7 +827,7 @@ Chaostheorie	Sicht=theory	GD_View=02 chaos view	JJJJ=2005,2007
 Charakter Animation			JJJJ=2004,2007			Sparte=A
 Chat / chatting			JJJJ=2004			Sparte=N
 chat room			JJJJ=2004			Sparte=N
-Chat-Kan‰le						Sparte=N
+Chat-Kan√§le						Sparte=N
 chatterbox						
 Chat-Umgebung						Sparte=N
 Chemie	Sicht=science					
@@ -837,9 +837,9 @@ chip aesthetics	Sicht=art
 chip card	Sicht=storage	GD_View=20 view of storage media				
 chiptune						
 Choreographie	Sicht=art		JJJJ=1995,2005		Quelle=SN	
-Choreographiesystem	Sicht=art			OG_Kontext=Erg‰nzung		
+Choreographiesystem	Sicht=art			OG_Kontext=Erg√§nzung		
 chronophotography						
-CIM	Sicht=software		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+CIM	Sicht=software		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 CIM  computer integrated manufacturing	Sicht=software					
 Cinema	Sicht=media	GD_View=27 filmic view		OG_Kontext=InfoMedia	Quelle=SW	Sparte=F
 Cinema 4d	Sicht=media	GD_View=27 filmic view				Sparte=F
@@ -873,7 +873,7 @@ code as material	Sicht=art	GD_View=24 code view	JJJJ=(2003)
 code collections	Sicht=art	GD_View=24 code view	JJJJ=(2003)			
 code poetry	Sicht=art	GD_View=24 code view	JJJJ=(2003)			
 CoDeDOC		GD_View=24 code view				
-CODeDOC II	Sicht=representation	GD_View=24 code view	JJJJ=(1996)	OG_Kontext=Erg‰nzung		
+CODeDOC II	Sicht=representation	GD_View=24 code view	JJJJ=(1996)	OG_Kontext=Erg√§nzung		
 Code-Katzen		GD_View=24 code view	JJJJ=(2003)			
 Code-Kritik	Sicht=theory	GD_View=24 code view				
 Code-Kunst	Sicht=art	GD_View=24 code view	JJJJ=(2001)			Sparte=C
@@ -903,7 +903,7 @@ collective
 Collective Data Space						
 collective dynamics		GD_View=26 movement view / dynamic				
 collective net performance		GD_View=26 performance view	JJJJ=2006			Sparte=PN
-collective virtuelle R‰ume			JJJJ=(2004)			
+collective virtuelle R√§ume			JJJJ=(2004)			
 collective weblogs						Sparte=N
 colometrische Korrektheit						
 colonialism						
@@ -939,7 +939,7 @@ community technology centers
 community work	Sicht=xxx		JJJJ=(2003)	OG_Kontext=SocieHistory		
 community-Netzwerke			JJJJ=(05)			
 Communityportal	Sicht=software	GD_View=10 internet view	JJJJ=2005			Sparte=N
-Community-Wissensbest‰nde						
+Community-Wissensbest√§nde						
 comparative literature		GD_View=16 analytical view				Sparte=L
 Compass orientation						
 compiler	Sicht=informatics	GD_View=24 view of informatics				
@@ -953,14 +953,14 @@ Computer	Sicht=xxx	GD_View=03 view of PC/computer/video technology		OG_Kontext=T
 computer aided art	Sicht=art		JJJJ=(n)			
 Computer als Behinderung		GD_View=30 view of handicaps	JJJJ=(n)			
 Computer als Material			JJJJ=(1984)			
-Computer als Musikinstrument	Sicht=tool		JJJJ=(1990)	OG_Kontext=Erg‰nzung		Sparte=M
+Computer als Musikinstrument	Sicht=tool		JJJJ=(1990)	OG_Kontext=Erg√§nzung		Sparte=M
 Computer als Theater		GD_View=31 theater view	JJJJ=2005,2007			Sparte=P
 Computer Animation	Sicht=xxx	GD_View=27 view of animation		OG_Kontext=Genre		Sparte=A
 computer animation / visual effects   (PRIX  Kategorie)		GD_View=27 view of animation				Sparte=A
 Computer Animation(Kanonisierte Richtung)		GD_View=27 view of animation	JJJJ=(1982)			Sparte=A
 computer art	Sicht=art			OG_Kontext=Genre		
 computer assisted design						
-computer based training (CBT)	Sicht=xxx			OG_Kontext=Erg‰nzung		Sparte=I
+computer based training (CBT)	Sicht=xxx			OG_Kontext=Erg√§nzung		Sparte=I
 computer calculator			JJJJ=(1994)			
 Computer City						
 computer cluster	Sicht=xxx		JJJJ=(1994,95)	OG_Kontext=Technology		
@@ -980,8 +980,8 @@ Computer Mouse	Sicht=interface	GD_View=05 interface view		OG_Kontext=Technology
 Computer performance	Sicht=art			OG_Kontext=Genre		Sparte=PC
 computer science	Sicht=science	GD_View=24 view of informatics				
 Computer Sculpture	Sicht=art		JJJJ=(n)			
-computer supported community work				OG_Kontext=Erg‰nzung		
-computer virus	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg‰nzung		Sparte=N
+computer supported community work				OG_Kontext=Erg√§nzung		
+computer virus	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg√§nzung		Sparte=N
 computer vision	Sicht=science		JJJJ=(n)			
 computeraesthetics						
 computer-aided design	Sicht=art				Quelle=PF	
@@ -1038,7 +1038,7 @@ Computerviren			JJJJ=(n)
 Computervisualistik			JJJJ=(1999)			Sparte=DA
 Computerwesen		GD_View=24 view of informatics				
 Computerzeitalter						
-computing	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg‰nzung		
+computing	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg√§nzung		
 comutational design	Sicht=informatics					
 Concept		GD_View=02 conceptual view			Quelle=SN	
 Concept Art	Sicht=art	GD_View=02 conceptual view		OG_Kontext=Genre		
@@ -1058,12 +1058,12 @@ content analysis		GD_View=15 content view
 content based		GD_View=15 content view	JJJJ=(01)			
 content developer		GD_View=15 content view	JJJJ=(03)			
 Content Engine		GD_View=15 content view	JJJJ=(2002,03)			
-Content Management	Sicht=software	GD_View=15 content view	JJJJ=(03,04,05)	OG_Kontext=Erg‰nzung		
+Content Management	Sicht=software	GD_View=15 content view	JJJJ=(03,04,05)	OG_Kontext=Erg√§nzung		
 content management system	Sicht=software	GD_View=15 content view	JJJJ=(01)			
 Content-Designer		GD_View=15 content view	JJJJ=(01)			
 Content-Industrie		GD_View=15 content view	JJJJ=(03)			
 content-providing platform		GD_View=15 content view	JJJJ=(04)			
-Content-‹berwachung		GD_View=15 content view	JJJJ=(00)			
+Content-√úberwachung		GD_View=15 content view	JJJJ=(00)			
 Content-Unternehmen		GD_View=15 content view				
 context		GD_View=01 contextual view			Quelle=PF	
 Context Art	Sicht=art	GD_View=01 contextual view		OG_Kontext=Genre		Sparte=B
@@ -1079,7 +1079,7 @@ CoPraesenz
 copy left			JJJJ=2007			
 copy right						
 copygraphy			JJJJ=2004			Sparte=D
-Copyleft-Enzyklop‰die						
+Copyleft-Enzyklop√§die						
 corporate design		GD_View=13 identity view				
 corporeal space 						
 corporeality		GD_View=08 body view			Quelle=SW	
@@ -1111,14 +1111,14 @@ cultural studies	Sicht=culture	GD_View=01 culture-theoretical view
 Cultural Theory	Sicht=culture	GD_View=01 culture-theoretical view	JJJJ=2006	OG_Kontext=SocieHistory	Quelle=SW	
 culture heritage	Sicht=culture					
 culture jamming	Sicht=culture					
-curating	Sicht=art	GD_View=23 curators¥view	JJJJ=(2001)			
+curating	Sicht=art	GD_View=23 curators¬¥view	JJJJ=(2001)			
 curlybot		GD_View=32 gaming view				Sparte=G
 CUSeeMe	Sicht=interface	GD_View=05 interface view			Quelle=SW	Sparte=N
 Customization			JJJJ=2005		Quelle=PF	
 Cut-Up					Quelle=SN	Sparte=L
 cyber	Sicht=xxx			OG_Kontext=Technology		
 Cyber City	Sicht=xxx	GD_View=21 view of cities and regions		OG_Kontext=A-Life-Tech		
-Cyber city flight ñ  Berlin virtuell  (ART+COM)		GD_View=21 view of cities and regions	JJJJ=(n)			
+Cyber city flight ¬ñ  Berlin virtuell  (ART+COM)		GD_View=21 view of cities and regions	JJJJ=(n)			
 cyber pop			JJJJ=(n)			
 cyber society						
 cyber...			JJJJ=(n)			
@@ -1185,7 +1185,7 @@ cyberspace signalizes adventure, imagination, new territory			JJJJ=(n)
 Cyberspace-Theater		GD_View=31 theater view				Sparte=P
 cyberspatial codes	Sicht=representation		JJJJ=(1990)			
 cybersquatting						
-cyberstalking  (Datenaussp‰hung)						
+cyberstalking  (Datenaussp√§hung)						
 cyberstalking (spying out data)	Sicht=xxx			OG_Kontext=SocieHistory		
 Cyberstress						
 cybersynthesis						
@@ -1261,7 +1261,7 @@ DDC			JJJJ=(1998)
 dead, controllable mass medium						
 deadlock	Sicht=informatics	GD_View=24 view of informatics	JJJJ=2004,2007			
 Death	Sicht=body	GD_View=08 body view		OG_Kontext=Abstracta		
-Decision-Support-System	Sicht=xxx			OG_Kontext=Erg‰nzung		
+Decision-Support-System	Sicht=xxx			OG_Kontext=Erg√§nzung		
 Deckenpanorama	Sicht=archeology		JJJJ=2004			Sparte=DA
 Deconstructed Pop						Sparte=M
 deconstructing code	Sicht=representation	GD_View=19 presentation view		OG_Kontext=Genre		
@@ -1274,16 +1274,16 @@ deep tagging	Sicht=representation				Quelle=GS	Sparte=N
 definition television	Sicht=media					Sparte=V
 Deformation					Quelle=SN,PF	Sparte=DA
 Dekonstruktion	Sicht=theory				Quelle=SN	
-Dekonstruktion ‰sthetischer Codes	Sicht=theory					
+Dekonstruktion √§sthetischer Codes	Sicht=theory					
 Dekonstruktion digitaler Codes	Sicht=theory					
 Dekonstruktion gesellschaftlicher Codes	Sicht=theory					
 delay			JJJJ=2005			
 Democracy	Sicht=culture	GD_View=11 political view		OG_Kontext=SocieHistory	Quelle=SW	
 denial of service			JJJJ=(1986,90,94)			
 Denkmaschinen						
-Denkr‰ume						
+Denkr√§ume						
 dependency on super computer or computer cluster			JJJJ=(1984)			
-Der k¸nstliche Wille	Sicht=art		JJJJ=(1991)	OG_Kontext=Technology		
+Der k√ºnstliche Wille	Sicht=art		JJJJ=(1991)	OG_Kontext=Technology		
 Der universelle Roboter	Sicht=xxx			OG_Kontext=A-Life-Tech		
 Design					Quelle=PF	
 Design By Numbers (DBN)			JJJJ=(n)		Quelle=PF	
@@ -1319,7 +1319,7 @@ Dialogue					Quelle=PF	Sparte=I
 Diapositive			JJJJ=(1990)			Sparte=B
 Dichtungsprogramm			JJJJ=(1997)			Sparte=L
 Die Aesthetik des Internet - Kontext als Medium			JJJJ=(1992)			Sparte=N
-Die ƒsthetik des Programmierens						
+Die √Ñsthetik des Programmierens						
 Die entfremdete Hand	Sicht=xxx			OG_Kontext=Body Human		
 Die Kunst der Spiele		GD_View=32 gaming view				Sparte=G
 Die virtuelle Immersion mit ihrer Aura der Stille						
@@ -1343,7 +1343,7 @@ digital cinema			JJJJ=(1996,2004)			Sparte=VA
 digital city						
 digital code	Sicht=representation	GD_View=19 presentation view	JJJJ=2004			
 digital commons			JJJJ=2004			
-digital communities	Sicht=culture			OG_Kontext=Erg‰nzung		
+digital communities	Sicht=culture			OG_Kontext=Erg√§nzung		
 digital communities bridging the geographical Digital divide						
 Digital community	Sicht=xxx	GD_View=29 societal view		OG_Kontext=Nature&Life		
 digital compass			JJJJ=(03,07)			
@@ -1352,7 +1352,7 @@ digital copy art	Sicht=art		JJJJ=(2001)			Sparte=D
 digital culture	Sicht=culture		JJJJ=(n)		Quelle=SW	
 digital democracy	Sicht=culture			OG_Kontext=SocieHistory		
 digital design		GD_View=21 design view	JJJJ=2004,2005			
-digital divide	Sicht=xxx			OG_Kontext=Erg‰nzung		
+digital divide	Sicht=xxx			OG_Kontext=Erg√§nzung		
 digital documentation						
 digital editing						
 digital encyclopedia	Sicht=media		JJJJ=(n)		Quelle=PF	
@@ -1381,7 +1381,7 @@ digital painting						Sparte=D
 digital photography						Sparte=D
 digital poetry			JJJJ=2005			Sparte=L
 digital radio			JJJJ=(2003)			Sparte=M
-digital rights management	Sicht=xxx			OG_Kontext=Erg‰nzung		
+digital rights management	Sicht=xxx			OG_Kontext=Erg√§nzung		
 digital signature	Sicht=xxx			OG_Kontext=Technology		
 digital skin			JJJJ=2004			Sparte=DA
 digital storytelling						Sparte=L
@@ -1396,7 +1396,7 @@ digitale Archaeologie	Sicht=archaeology
 digitale Archive	Sicht=xxx		JJJJ=(2001)	OG_Kontext=InfoMedia		
 digitale Archivierung	Sicht=xxx		JJJJ=2004	OG_Kontext=InfoMedia		
 digitale Avantgarde			JJJJ=(2001)			
-digitale Bilder	Sicht=xxx		JJJJ=(1988)	OG_Kontext=Erg‰nzung		
+digitale Bilder	Sicht=xxx		JJJJ=(1988)	OG_Kontext=Erg√§nzung		
 digitale Bildwelten			JJJJ=(n)			
 digitale Codierung			JJJJ=(1989,97,99,2003)			
 digitale Computer						
@@ -1445,18 +1445,18 @@ digitales Bewusstsein			JJJJ=(1999)
 digitales Denken			JJJJ=(1994)			
 digitales Design			JJJJ=(1995)			
 digitales Environment			JJJJ=1997			
-digitales Geld	Sicht=xxx		JJJJ=(2003)	OG_Kontext=Erg‰nzung		
+digitales Geld	Sicht=xxx		JJJJ=(2003)	OG_Kontext=Erg√§nzung		
 Digitales Identitaetsprofil			JJJJ=2006			
 digitales Kulturerbe			JJJJ=(1996)			
 digitales Mediencenter			JJJJ=2001			
-digitales Mediendesign	Sicht=xxx		JJJJ=(1989)	OG_Kontext=Erg‰nzung		
+digitales Mediendesign	Sicht=xxx		JJJJ=(1989)	OG_Kontext=Erg√§nzung		
 digitales Museum	Sicht=culture		JJJJ=(n)			
 digitales Oesterreich						
 digitales Stadtmodell						
 digitales Video			JJJJ=(1995)			Sparte=V
 digitales Wachstum			JJJJ=(n)			
 digitales Wasserzeichen			JJJJ=1996/2003			
-digitales Zeitalter	Sicht=xxx			OG_Kontext=Erg‰nzung		Sparte=D
+digitales Zeitalter	Sicht=xxx			OG_Kontext=Erg√§nzung		Sparte=D
 Digitalfotografie			JJJJ=(1989,95,98,02)			Sparte=D
 digitalisieren						
 Digitalisiertablett			JJJJ=(1982,84,86,89,...)			
@@ -1480,7 +1480,7 @@ Disco-Pop						Sparte=M
 discourse						
 discrete mathematics						
 discrimination						
-Disinformation	Sicht=xxx	GD_View=13 view of destruction	JJJJ=2006	OG_Kontext=Erg‰nzung	Quelle=SW	
+Disinformation	Sicht=xxx	GD_View=13 view of destruction	JJJJ=2006	OG_Kontext=Erg√§nzung	Quelle=SW	
 Diskette						
 Diskurs	Sicht=theory	GD_View=16 discourse view	JJJJ=(n)	OG_Kontext=Theories		
 diskursive Medien	Sicht=theory					
@@ -1595,7 +1595,7 @@ Echtzeitloesung
 Echtzeit-Montage			JJJJ=(1993)			
 Echtzeitprozess	Sicht=xxx		JJJJ=(1984)	OG_Kontext=Aesthetics		
 Echtzeitsynthese			JJJJ=2004			
-Echtzeit-‹bertragung	Sicht=comtech		JJJJ=(n)			Sparte=A
+Echtzeit-√úbertragung	Sicht=comtech		JJJJ=(n)			Sparte=A
 Echtzeitvideos			JJJJ=2004			Sparte=VN
 ecological			JJJJ=2007			
 ecological art	Sicht=art				Quelle=SW	
@@ -1620,8 +1620,8 @@ Ein multimediales Stadtzentrum			JJJJ=2002
 Einbahn-Navigation			JJJJ=(1992)			
 einbetten		GD_View=01 atmospheres view				
 Eine auf den Menschen ausgerichtete Aufmerksamkeit und Interaktionserfahrung (Mixed Reality Architektur)						Sparte=I
-Eine kleine Genealogie des k¸nstlichen Lebens	Sicht=xxx		JJJJ=(1988,89,95,96,97,98) 	OG_Kontext=A-Life-Tech		
-eintauchen	Sicht=xxx	GD_View=01 atmospheres view		OG_Kontext=Erg‰nzung		
+Eine kleine Genealogie des k√ºnstlichen Lebens	Sicht=xxx		JJJJ=(1988,89,95,96,97,98) 	OG_Kontext=A-Life-Tech		
+eintauchen	Sicht=xxx	GD_View=01 atmospheres view		OG_Kontext=Erg√§nzung		
 Eisenman Transformationen	Sicht=art	GD_View=15 diagrammatic view	JJJJ=(2003)			Sparte=DA
 Ekman_s Facial Action Code						Sparte=P
 Ekstase	Sicht=body				Quelle=SN	
@@ -1630,7 +1630,7 @@ elastischer Schirm	Sicht=interface	GD_View=05 interface view
 e-learning						Sparte=IN
 electric field sensor	Sicht=interface	GD_View=14 view of sensor technology				
 electric media	Sicht=media		JJJJ=2006			
-Electricity	Sicht=physics	GD_View=13 energetic view	JJJJ=1996	OG_Kontext=Erg‰nzung	Quelle=SN	
+Electricity	Sicht=physics	GD_View=13 energetic view	JJJJ=1996	OG_Kontext=Erg√§nzung	Quelle=SN	
 electro magnetic poetry						Sparte=L
 Electro optics	Sicht=physics		JJJJ=2005	OG_Kontext=InfoMedia		
 electroacoustic music			JJJJ=2007			Sparte=M
@@ -1642,7 +1642,7 @@ electronic	Sicht=informatics	GD_View=24 view of informatics	JJJJ=(1952)	OG_Konte
 electronic abstraction						
 electronic aided art	Sicht=art			OG_Kontext=Genre		
 electronic aids: loudspeakers						Sparte=M
-electronic art	Sicht=art		JJJJ= (1986,1994)	OG_Kontext=Erg‰nzung		
+electronic art	Sicht=art		JJJJ= (1986,1994)	OG_Kontext=Erg√§nzung		
 electronic cafe	Sicht=culture		JJJJ=1999		Quelle=SW	Sparte=N
 Electronic Classroom						Sparte=IN
 electronic community	Sicht=culture					Sparte=N
@@ -1665,7 +1665,7 @@ electronic shopping
 electronic space	Sicht=xxx		JJJJ=(1994)	OG_Kontext=Abstracta		
 electronic surfaces			JJJJ=2005,2007			
 electronic toys	Sicht=hardware	GD_View=32 gaming view				Sparte=G
-electronic viruses	Sicht=software		JJJJ=(2003)	OG_Kontext=Erg‰nzung		
+electronic viruses	Sicht=software		JJJJ=(2003)	OG_Kontext=Erg√§nzung		
 electronic visualization	Sicht=representation	GD_View=15 diagrammatic view				Sparte=DA
 electronics - popularization of art	Sicht=culture			OG_Kontext=SocieHistory		
 electrostatic tracking			JJJJ=2001			
@@ -1687,7 +1687,7 @@ elektronische Aufzeichnungsmedien			JJJJ=(n)
 elektronische Ausstellungen			JJJJ=(1989)			
 elektronische Bibliothek		GD_View=20 archive view	JJJJ=(1979,86,95)			
 elektronische Bilder						
-elektronische Blasinstrumente	Sicht=tool			OG_Kontext=Erg‰nzung		Sparte=M
+elektronische Blasinstrumente	Sicht=tool			OG_Kontext=Erg√§nzung		Sparte=M
 elektronische Brunnen			JJJJ=(n)			
 elektronische Buehnenbilder	Sicht=art					Sparte=DA
 Elektronische Datenverarbeitung (EDV)	Sicht=informatics	GD_View=24 view of informatics	JJJJ=1994			
@@ -1697,7 +1697,7 @@ elektronische Geldboerse			JJJJ=1989
 elektronische Gemeinschaft	Sicht=culture		JJJJ=(n)			
 elektronische Grundversorgung	Sicht=culture		JJJJ=1996			Sparte=N
 elektronische Herrenrasse	Sicht=culture		JJJJ=(n)			
-elektronische Hilfen	Sicht=tool	GD_View=30 view of handicaps	JJJJ=1979	OG_Kontext=Erg‰nzung		
+elektronische Hilfen	Sicht=tool	GD_View=30 view of handicaps	JJJJ=1979	OG_Kontext=Erg√§nzung		
 elektronische Hilfsmittel	Sicht=tool	GD_View=30 view of handicaps	JJJJ=(1980)			
 elektronische Klangfarben	Sicht=art		JJJJ=(1988)			Sparte=M
 elektronische Kolonialismus			JJJJ=(n)			
@@ -1705,7 +1705,7 @@ elektronische Kommunikationshilfen			JJJJ=(n)
 elektronische Konzertperformance	Sicht=art	GD_View=26 performance view	JJJJ=(2001)			Sparte=PM
 elektronische Kostueme	Sicht=art					Sparte=P
 Elektronische Kunst	Sicht=art		JJJJ=(n)	OG_Kontext=Genre		
-elektronische Kuratoren		GD_View=23 curators¥view	JJJJ=(1984,80,86,87,89,90,94,95,97,2000,02)			
+elektronische Kuratoren		GD_View=23 curators¬¥view	JJJJ=(1984,80,86,87,89,90,94,95,97,2000,02)			
 elektronische Medien			JJJJ=(1986,90)			
 elektronische Medienkunst	Sicht=art		JJJJ=(1984)			
 elektronische Medienoper	Sicht=art		JJJJ=(n)			Sparte=P
@@ -1714,7 +1714,7 @@ elektronische Musik			JJJJ=(n)			Sparte=M
 elektronische Musikperformance		GD_View=26 performance view				Sparte=PM
 elektronische Musiktransformationen	Sicht=representation		JJJJ=(1995)		Quelle=SN	Sparte=M
 elektronische Nachbarschaft			JJJJ=(n)			
-elektronische Nasen	Sicht=xxx		JJJJ=(1993,95,97,98,99)	OG_Kontext=Erg‰nzung		
+elektronische Nasen	Sicht=xxx		JJJJ=(1993,95,97,98,99)	OG_Kontext=Erg√§nzung		
 elektronische Netzwerke			JJJJ=(1979,97,2003)			Sparte=N
 elektronische Objekte						
 Elektronische Performance		GD_View=26 performance view	JJJJ=(n)			Sparte=P
@@ -1727,7 +1727,7 @@ elektronische Tanzprojekte			JJJJ=(1980,84,86,87,88,90)			Sparte=P
 elektronische Technologie			JJJJ=(1994)			
 elektronische Tools	Sicht=tool					
 elektronische Transformation	Sicht=representation				Quelle=SN	
-Elektronische ‹bertragungsmedien			JJJJ=(1989)			Sparte=N
+Elektronische √úbertragungsmedien			JJJJ=(1989)			Sparte=N
 elektronische Unterhaltung		GD_View=22 entertainment view	JJJJ=(1993)			
 elektronische Viren			JJJJ=(n) 2006			
 elektronischer Beichtstuhl	Sicht=art	GD_View=10 psychoanalytical view	JJJJ=(n)			
@@ -1745,7 +1745,7 @@ elektronisches Feld			JJJJ=(n)
 elektronisches Happening			JJJJ=(n)			Sparte=P
 elektronisches Mapping	Sicht=representation		JJJJ=(1979)			Sparte=DA
 elektronisches Orchester			JJJJ=2004			Sparte=M
-e-mail	Sicht=comtech			OG_Kontext=Erg‰nzung	Quelle=SW	Sparte=N
+e-mail	Sicht=comtech			OG_Kontext=Erg√§nzung	Quelle=SW	Sparte=N
 e-mail art	Sicht=art		JJJJ=1999			Sparte=N
 e-mail signature	Sicht=informatics					Sparte=N
 Emancipation	Sicht=culture			OG_Kontext=SocieHistory		
@@ -1775,16 +1775,16 @@ Encryption	Sicht=representation	GD_View=19 presentation view
 encyclopedia	Sicht=media					
 Endlosschleife	Sicht=informatics	GD_View=24 view of informatics	JJJJ=1992			
 Endo/Nano	Sicht=science		JJJJ=(1992,99)			
-Endophysik	Sicht=science		JJJJ=(2002)	OG_Kontext=Erg‰nzung		
+Endophysik	Sicht=science		JJJJ=(2002)	OG_Kontext=Erg√§nzung		
 Energiepotenziale	Sicht=physics		JJJJ=(1980)			
-Energieuebermittlung	Sicht=science		JJJJ=1992	OG_Kontext=Erg‰nzung		
+Energieuebermittlung	Sicht=science		JJJJ=1992	OG_Kontext=Erg√§nzung		
 enhanced gestures / obsolete desires	Sicht=art					
 enhanced service		GD_View=03 service view / project view				
 enriching taxonomies with tags						
 Entfremdung	Sicht=xxx			OG_Kontext=Body Human		
 Entropy	Sicht=theory					
 Entwickler von Computerspielen als Meister der Illusion		GD_View=32 gaming view				Sparte=G
-Entwicklung komplexer Kommunikationsr‰ume:  Mixed-Reality-Architektur  (MF)			JJJJ=2007			
+Entwicklung komplexer Kommunikationsr√§ume:  Mixed-Reality-Architektur  (MF)			JJJJ=2007			
 Entwicklungsumgebung	Sicht=software					
 Entwurfsunterstuetzung						
 Environment	Sicht=world	GD_View=17 view of nature		OG_Kontext=Nature&Life	Quelle=SN,PF	
@@ -1870,7 +1870,7 @@ facial animation			JJJJ=2004			Sparte=A
 Facial Expression	Sicht=body	GD_View=09 emotional view	JJJJ=(1997)	OG_Kontext=Body Human	Quelle=SW	Sparte=P
 facial expression as a medium for interactive art			JJJJ=2002			Sparte=PI
 facial space			JJJJ=2002			
-F‰hnchen-Pixel	Sicht=art					Sparte=P
+F√§hnchen-Pixel	Sicht=art					Sparte=P
 fake identity construction			JJJJ=2006			
 Faltung						
 Farbenlichtspiele					Quelle=SN	Sparte=B
@@ -1888,22 +1888,22 @@ fat client	Sicht=informatics	GD_View=24 view of informatics
 Fax	Sicht=comtech	GD_View=07 view of communication			Quelle=SN	Sparte=N
 fax & telephon art	Sicht=art	GD_View=07 view of communication	JJJJ=2004			Sparte=N
 Fax- u. Telefonkunst	Sicht=art	GD_View=07 view of communication	JJJJ=2005	OG_Kontext=Genre		Sparte=N
-Feedback	Sicht=informatics	GD_View=25 cybernetic view	JJJJ=1999	OG_Kontext=Erg‰nzung	Quelle=SN	Sparte=C
+Feedback	Sicht=informatics	GD_View=25 cybernetic view	JJJJ=1999	OG_Kontext=Erg√§nzung	Quelle=SN	Sparte=C
 Feedback Interaktionstypen		GD_View=25 cybernetic view	JJJJ=1997			Sparte=I
-Feedback ¸ber IRC-Channel			JJJJ=(n)			Sparte=N
+Feedback √ºber IRC-Channel			JJJJ=(n)			Sparte=N
 Feedback-Kunst	Sicht=art					Sparte=I
 Feedbackschleife		GD_View=25 cybernetic view				
 feeling of touch and control of action			JJJJ=(2002)			
 Fehlerkorrektursystem						
-Feld	Sicht=xxx	GD_View=24 view of the field	JJJJ=(1990)	OG_Kontext=Erg‰nzung		
+Feld	Sicht=xxx	GD_View=24 view of the field	JJJJ=(1990)	OG_Kontext=Erg√§nzung		
 Feldbegriffe		GD_View=24 view of the field				
 Feldbuch	Sicht=hardware		JJJJ=(n)	OG_Kontext=Technology		
 Feldcomputer	Sicht=hardware		JJJJ=(n)			
 Felderscheinung	Sicht=physics	GD_View=24 view of the field	JJJJ=(1999)			
 Feldmodell von Bewegung	Sicht=representation	GD_View=24 view of the field				
-Feldmodelle	Sicht=representation	GD_View=24 view of the field	JJJJ=(n)	OG_Kontext=Erg‰nzung		
+Feldmodelle	Sicht=representation	GD_View=24 view of the field	JJJJ=(n)	OG_Kontext=Erg√§nzung		
 feldorientiert	Sicht=representation	GD_View=24 view of the field				
-Feldstoerung	Sicht=physics	GD_View=24 view of the field	JJJJ=(1995)	OG_Kontext=Erg‰nzung		
+Feldstoerung	Sicht=physics	GD_View=24 view of the field	JJJJ=(1995)	OG_Kontext=Erg√§nzung		
 Feldstoerungen	Sicht=physics	GD_View=24 view of the field	JJJJ=(1999)			
 Feldtheorie		GD_View=24 view of the field				
 Feminism	Sicht=culture	GD_View=11 feminist view		OG_Kontext=SocieHistory	Quelle=SW	
@@ -1914,7 +1914,7 @@ ferngelenkt			JJJJ=(1989)			Sparte=N
 ferngelenkter Tanz	Sicht=art		JJJJ=(1996)			Sparte=P
 ferngesteuert			JJJJ=(1998)			
 Fernhandlung			JJJJ=(n)			
-fernhoeren	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg‰nzung		Sparte=M
+fernhoeren	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg√§nzung		Sparte=M
 Fernkopierer			JJJJ=(1998)			Sparte=D
 Fernleihe			JJJJ=(n)			Sparte=N
 fernliegende Prozesse			JJJJ=(1995)			
@@ -1933,7 +1933,7 @@ Fernsehstation			JJJJ=(1980)
 fernsprechen			JJJJ=(1989,90,91,94,95,96,97,98,2001,2005,2007)			
 Fernsteuerung	Sicht=interface		JJJJ=(1998)			
 Ferntausch						
-Festival	Sicht=culture			OG_Kontext=Erg‰nzung		
+Festival	Sicht=culture			OG_Kontext=Erg√§nzung		
 Festival fuer Kunst, Technologie und Gesellschaft (fuer Linz also eine wichtige Sicht)	Sicht=culture					
 Festplatte / Harddisk	Sicht=storage	GD_View=20 view of storage media				
 Fetische	Sicht=culture				Quelle=SN	
@@ -1951,7 +1951,7 @@ film installation	Sicht=art		JJJJ=(1998)			Sparte=FV
 filmische Repraesentation	Sicht=representation					Sparte=FV
 Filmkunst	Sicht=art	GD_View=27 filmic view				Sparte=F
 Filmmusik	Sicht=art				Quelle=SN	Sparte=M
-Filmreihe ÑK¸nstliches Lebenì				OG_Kontext=A-Life-Tech		Sparte=F
+Filmreihe ¬ÑK√ºnstliches Leben¬ì				OG_Kontext=A-Life-Tech		Sparte=F
 filter	Sicht=informatics	GD_View=31 transformation view	JJJJ=2001,2007		Quelle=SN,PF	
 filtering	Sicht=informatics	GD_View=24 view of informatics	JJJJ=1989,1990,1995		Quelle=PF	Sparte=N
 Filterung	Sicht=informatics	GD_View=24 view of informatics	JJJJ=1995			
@@ -1984,13 +1984,13 @@ Flippermaschinen		GD_View=32 gaming view				Sparte=G
 Flipperspiel		GD_View=32 gaming view				Sparte=G
 Flow					Quelle=PF	
 flow geometry					Quelle=PF	
-Fl¸chtigkeit			JJJJ=(1990)			
+Fl√ºchtigkeit			JJJJ=(1990)			
 Flugsimulation	Sicht=software		JJJJ=(1998)	OG_Kontext=Abstracta		Sparte=A
 Flugsimulator	Sicht=software					Sparte=GA
 Fluid Sound			JJJJ=2006			Sparte=M
 Fluidales Design	Sicht=art		JJJJ=(2001)			
 fluides Environment	Sicht=art		JJJJ=2006,2007			
-Fluidit‰t			JJJJ=2003			
+Fluidit√§t			JJJJ=2003			
 Flussdiagramme	Sicht=representation					Sparte=D
 Fluxus	Sicht=art			OG_Kontext=Genre	Quelle=SN	Sparte=PB
 flying	Sicht=xxx			OG_Kontext=Abstracta		
@@ -2003,7 +2003,7 @@ footage from CCTV surveillance cameras, Traffic Cams, earth observation satellit
 Footpad	Sicht=interface	GD_View=05 interface view		OG_Kontext=Technology		Sparte=I
 For the average African, globalization is just a synonym for neocolonialism	Sicht=culture					
 force feedback	Sicht=interface	GD_View=14 view of sensor technology	JJJJ=(1990,99,2000,01,03)		Quelle=SW	Sparte=I
-Force-Feedback	Sicht=interface	GD_View=14 view of sensor technology	JJJJ=(1999)	OG_Kontext=Erg‰nzung	Quelle=SW	Sparte=I
+Force-Feedback	Sicht=interface	GD_View=14 view of sensor technology	JJJJ=(1999)	OG_Kontext=Erg√§nzung	Quelle=SW	Sparte=I
 Force-Feedback-Geraet	Sicht=interface	GD_View=05 interface view	JJJJ=(1999)			Sparte=I
 Force-Feedback-Joystick	Sicht=interface	GD_View=05 interface view	JJJJ=(2000)			Sparte=I
 Force-Feedback-Maus	Sicht=interface	GD_View=05 interface view	JJJJ=(2003)			Sparte=I
@@ -2017,9 +2017,9 @@ formal language	Sicht=informatics	GD_View=25 formal view
 formal languages	Sicht=informatics	GD_View=25 formal view				
 Formatierung	Sicht=representation					
 Formel	Sicht=informatics					
-Formfindung	Sicht=art	GD_View=06 view of designing gestures		OG_Kontext=Erg‰nzung		
+Formfindung	Sicht=art	GD_View=06 view of designing gestures		OG_Kontext=Erg√§nzung		
 Form-Z	Sicht=software					
-Fortschrittsgl‰ubigkeit			JJJJ=2007			
+Fortschrittsgl√§ubigkeit			JJJJ=2007			
 Foto	Sicht=media					Sparte=D
 Fotoblogs			JJJJ=2004			Sparte=DN
 Fotogrammetrie	Sicht=science		JJJJ=2006			
@@ -2034,17 +2034,17 @@ fractals	Sicht=informatics	GD_View=24 view of mathematics		OG_Kontext=Art&Scienc
 Fraktalgenerator	Sicht=software	GD_View=24 view of mathematics				Sparte=D
 Frauennetzwerke	Sicht=culture		JJJJ=2005			
 free access	Sicht=culture					
-free access to wireless networks	Sicht=culture			OG_Kontext=Erg‰nzung		Sparte=N
+free access to wireless networks	Sicht=culture			OG_Kontext=Erg√§nzung		Sparte=N
 free form deformation		GD_View=31 transformation view				
 free software	Sicht=software		JJJJ=2005	OG_Kontext=Technology		
 Free Software Foundation	Sicht=culture		JJJJ=2000			
 free software project			JJJJ=2000			
 Free Speech Camp - FRO			JJJJ=(2004)			
-FreeNet ñ Initiativen			JJJJ=(1998-2003)			Sparte=N
+FreeNet ¬ñ Initiativen			JJJJ=(1998-2003)			Sparte=N
 freestyle computing	Sicht=informatics	GD_View=04 view of innovation				
 freeware	Sicht=culture					
 frei wandernde Kunstwerke	Sicht=art		JJJJ=2004			Sparte=P
-freie drahtlose B¸rgernetze			JJJJ=(2003)			Sparte=N
+freie drahtlose B√ºrgernetze			JJJJ=(2003)			Sparte=N
 Freie Software	Sicht=software					
 Freie Szene	Sicht=culture					
 freies Radio	Sicht=media		JJJJ=(2004)			
@@ -2052,7 +2052,7 @@ Freie-Software-Bewegung
 Frequenzmodulation						Sparte=M
 friend of friend files						Sparte=N
 Friendster						Sparte=N
-FRO	Sicht=xxx			OG_Kontext=Erg‰nzung		
+FRO	Sicht=xxx			OG_Kontext=Erg√§nzung		
 From Illusion to Immersion			JJJJ=2001			
 from the graphical to the touchable user interface						
 FTP	Sicht=software	GD_View=07 transport view				Sparte=N
@@ -2074,8 +2074,8 @@ Future	Sicht=world	GD_View=21 view of the future		OG_Kontext=Abstracta	Quelle=SW
 future cinema	Sicht=art	GD_View=21 view of the future				Sparte=FVA
 future lab			JJJJ=1996			
 future learning			JJJJ=2001			
-Future Office Project (AEC)	Sicht=xxx			OG_Kontext=Erg‰nzung		
-futurism	Sicht=art			OG_Kontext=Erg‰nzung	Quelle=SN	
+Future Office Project (AEC)	Sicht=xxx			OG_Kontext=Erg√§nzung		
+futurism	Sicht=art			OG_Kontext=Erg√§nzung	Quelle=SN	
 fuzzy	Sicht=informatics		JJJJ=(1993)			
 Fuzzy-Logik	Sicht=informatics			OG_Kontext=Art&Science		
 fuzzyness	Sicht=informatics					
@@ -2090,7 +2090,7 @@ game labor		GD_View=32 gaming view				Sparte=G
 game level		GD_View=32 gaming view				Sparte=G
 Gameanimation		GD_View=32 gaming view				Sparte=GA
 Gameboy	Sicht=hardware	GD_View=32 gaming view				Sparte=G
-Gameboyzz Orchestra		GD_View=32 gaming view	JJJJ=2007	OG_Kontext=Erg‰nzung		Sparte=GM
+Gameboyzz Orchestra		GD_View=32 gaming view	JJJJ=2007	OG_Kontext=Erg√§nzung		Sparte=GM
 gamepad	Sicht=interface	GD_View=05 interface view	JJJJ=2003			Sparte=GI
 games / deconstruction and modifikation		GD_View=32 gaming view				Sparte=G
 games and traditional culture in Japan		GD_View=32 gaming view	JJJJ=2001			Sparte=G
@@ -2109,13 +2109,13 @@ Gefuege	Sicht=theory	GD_View=19 material view
 Gegenkultur	Sicht=culture				Quelle=SN	
 Gegenoeffentlichkeit	Sicht=culture	GD_View=07 media-critical view	JJJJ=(n)			
 Gehirn/Computer-Schnittstelle	Sicht=interface	GD_View=05 interface view				Sparte=I
-Gel‰ndespiel		GD_View=32 gaming view				Sparte=G
+Gel√§ndespiel		GD_View=32 gaming view				Sparte=G
 Gender	Sicht=culture	GD_View=11 feminist view		OG_Kontext=SocieHistory	Quelle=SN,SW,PF	
 gender bender	Sicht=culture	GD_View=11 feminist view				Sparte=P
 Gender Identity	Sicht=culture	GD_View=11 feminist view		OG_Kontext=Abstracta		Sparte=P
 Gender Identity - LGBT - lesbian, gay, bisexuell, transgendered	Sicht=culture	GD_View=11 feminist view				Sparte=P
 gender issues (in MOOs & MUDs)	Sicht=culture	GD_View=11 feminist view				Sparte=N
-gendered "Digital Divide"	Sicht=culture	GD_View=11 feminist view		OG_Kontext=Erg‰nzung		
+gendered "Digital Divide"	Sicht=culture	GD_View=11 feminist view		OG_Kontext=Erg√§nzung		
 gender-hacking	Sicht=culture	GD_View=11 feminist view				
 generation						
 generative approaches						
@@ -2125,7 +2125,7 @@ generative composition						Sparte=M
 generative Kunst	Sicht=art		JJJJ=2004			Sparte=C
 generative stage						Sparte=DA
 Generative Tools	Sicht=tool					
-Generativitaet	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg‰nzung		
+Generativitaet	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg√§nzung		
 generativity	Sicht=informatics	GD_View=24 view of informatics				
 Generierung					Quelle=SN	
 Genetic	Sicht=xxx	GD_View=17 view of genetic	JJJJ=1993	OG_Kontext=Nature&Life		
@@ -2138,7 +2138,7 @@ genetic modelling	Sicht=representation	GD_View=17 view of genetic
 genetics		GD_View=17 view of genetic	JJJJ=(1992,93,99) (1991,92,93,94,95,97,98,99)			
 genetische Algorithmen		GD_View=17 view of genetic				
 Genetische Kunst  (Kanonisierte Richtung)	Sicht=art	GD_View=17 view of genetic	JJJJ=1993			
-Genetische Kunst ñ K¸nstliches Leben	Sicht=art	GD_View=17 view of genetic				
+Genetische Kunst ¬ñ K√ºnstliches Leben	Sicht=art	GD_View=17 view of genetic				
 genetische Programme		GD_View=17 view of genetic	JJJJ=(1999)			
 genetischer Code	Sicht=representation	GD_View=17 view of genetic				
 Genre	Sicht=media	GD_View=17 view of the art studies		OG_Kontext=Genre		
@@ -2158,8 +2158,8 @@ geophilosophical	Sicht=theory
 geospatial	Sicht=representation					
 geospatial augmented reality	Sicht=informatics					
 geotagging	Sicht=representation				Quelle=GS	Sparte=N
-Ger‰usch	Sicht=world				Quelle=SN	Sparte=M
-Gesamtdatenwerk	Sicht=art			OG_Kontext=Erg‰nzung	Quelle=SN	
+Ger√§usch	Sicht=world				Quelle=SN	Sparte=M
+Gesamtdatenwerk	Sicht=art			OG_Kontext=Erg√§nzung	Quelle=SN	
 geschlossener Regelkreis	Sicht=informatics					Sparte=I
 Geschwindigkeit	Sicht=informatics		JJJJ=2004		Quelle=SN	
 Gestik der Komposition			JJJJ=(n)			Sparte=M
@@ -2206,7 +2206,7 @@ Google, Altavista, Yahoo, Cartoo	Sicht=software		JJJJ=2004			Sparte=N
 Google-API	Sicht=software		JJJJ=2005			Sparte=N
 Google-Gesellschaft	Sicht=culture					Sparte=N
 gopher	Sicht=software		JJJJ=2005			Sparte=N
-GPS	Sicht=comtech			OG_Kontext=Erg‰nzung	Quelle=SW	
+GPS	Sicht=comtech			OG_Kontext=Erg√§nzung	Quelle=SW	
 GPS VR.GPS	Sicht=comtech	GD_View=25 geographical view	JJJJ=2005			
 GPS-Fahrtenschreiber	Sicht=tool					Sparte=D
 GPS-Spur	Sicht=representation		JJJJ=2004			Sparte=D
@@ -2235,7 +2235,7 @@ Graphical Design	Sicht=art	GD_View=15 view of graphical design	JJJJ=(2003)	OG_Ko
 graphische Programmierung	Sicht=informatics					
 Groesse, Ausdehnung, Wichtigkeit	Sicht=representation	GD_View=24 view of magnitude				
 grosse Gesten	Sicht=body					
-Groﬂrechner	Sicht=hardware					
+Gro√ürechner	Sicht=hardware					
 Group	Sicht=culture			OG_Kontext=SocieHistory	Quelle=PF	
 Group identity	Sicht=software				Quelle=PF	
 groupware	Sicht=software					Sparte=N
@@ -2268,7 +2268,7 @@ Handlungssteuerung						Sparte=I
 Handy	Sicht=comtech					
 Handykunst	Sicht=art					Sparte=N
 Handyspiele	Sicht=software	GD_View=32 gaming view	JJJJ=2004			Sparte=G
-Handytˆne	Sicht=comtech					
+Handyt√∂ne	Sicht=comtech					
 Happening	Sicht=art	GD_View=26 performance view		OG_Kontext=Genre	Quelle=SN	Sparte=P
 Happy Doomsday!  - culture of war	Sicht=culture					
 haptic interface	Sicht=interface	GD_View=05 interface view				
@@ -2277,7 +2277,7 @@ Hardware	Sicht=hardware	GD_View=03 view of PC/computer/video technology
 Hardware Transformation	Sicht=hardware	GD_View=31 transformation view	JJJJ=2003	OG_Kontext=A-Life-Tech		
 hardware transformation_	Sicht=hardware	GD_View=31 transformation view	JJJJ=(1992)			
 Hardware-Archaeologie	Sicht=archaeology			OG_Kontext=InfoMedia		
-Hardware-Arch‰ologie	Sicht=archaeology			OG_Kontext=InfoMedia		
+Hardware-Arch√§ologie	Sicht=archaeology			OG_Kontext=InfoMedia		
 Harmonices Mundi	Sicht=science				Quelle=SN	Sparte=M
 Harmonie	Sicht=art				Quelle=SN	
 harmonische Algorhythmisierung	Sicht=art					
@@ -2309,7 +2309,7 @@ hobby religion in films like "final phantasie"	Sicht=culture					Sparte=F
 Hochgeschwindigkeitsfotografie	Sicht=media					Sparte=F
 Hochgeschwindigkeitsnetze	Sicht=comtech					Sparte=N
 Hochgeschwindigkeitsvideo			JJJJ=2005			Sparte=V
-Hochspannungsdr‰hte als Klangkˆrper	Sicht=interface		JJJJ=(1993)			Sparte=M
+Hochspannungsdr√§hte als Klangk√∂rper	Sicht=interface		JJJJ=(1993)			Sparte=M
 Hochtechnologie						
 Hochtechnologiekunst	Sicht=art		JJJJ=(2002)			
 Hoerstation						Sparte=M
@@ -2317,17 +2317,17 @@ Hologramm-Collagen	Sicht=art					Sparte=B
 Holographie Kunst	Sicht=art	GD_View=11 light view	JJJJ=(1990)	OG_Kontext=Genre		Sparte=B
 holographisches Stereogramm	Sicht=art	GD_View=11 light view				
 Holography	Sicht=archeology	GD_View=11 light view		OG_Kontext=InfoMedia		
-home automation	Sicht=software			OG_Kontext=Erg‰nzung		Sparte=C
+home automation	Sicht=software			OG_Kontext=Erg√§nzung		Sparte=C
 home computer	Sicht=hardware			OG_Kontext=Technology		
 home digital TV	Sicht=media		JJJJ=(1983)			Sparte=V
 Homecomputer	Sicht=hardware		JJJJ=2005			
 homepage	Sicht=culture					Sparte=N
 home-production	Sicht=culture		JJJJ=1995			
 Homo Cyber Sapiens	Sicht=culture					
-Hˆrfilm	Sicht=art			OG_Kontext=Genre	Quelle=SN	Sparte=M
+H√∂rfilm	Sicht=art			OG_Kontext=Genre	Quelle=SN	Sparte=M
 Horhizome	Sicht=theory					Sparte=N
-Hˆrpartitur	Sicht=art	GD_View=26 view of the score			Quelle=SN	Sparte=M
-Hˆrspiel	Sicht=art			OG_Kontext=Genre	Quelle=SN	Sparte=M
+H√∂rpartitur	Sicht=art	GD_View=26 view of the score			Quelle=SN	Sparte=M
+H√∂rspiel	Sicht=art			OG_Kontext=Genre	Quelle=SN	Sparte=M
 Host	Sicht=hardware		JJJJ=(1996)			
 Hot Wired Online Publishing						Sparte=N
 Hotwired			JJJJ=2004			Sparte=N
@@ -2347,7 +2347,7 @@ human robot	Sicht=interface		JJJJ=(1994)
 human-machine interface	Sicht=interface	GD_View=05 interface view				
 humanoid robots		GD_View=03 machine view - robots			Quelle=SW	Sparte=P
 HW - Rechnertechnik	Sicht=hardware					
-HW - Speichertechnik / Aufzeichnungstechnik	Sicht=storage			OG_Kontext=Erg‰nzung		
+HW - Speichertechnik / Aufzeichnungstechnik	Sicht=storage			OG_Kontext=Erg√§nzung		
 HW / Schnittstellen - Sensortechnik	Sicht=interface	GD_View=14 view of sensor technology				
 HW / Schnittstellen - Steuerungstechnik	Sicht=interface	GD_View=05 interface view				
 Hybrid	Sicht=theory	GD_View=02 view of hybridity	JJJJ=(1962)	OG_Kontext=Nature&Life		Sparte=H
@@ -2365,7 +2365,7 @@ hybrides Biorobotic-System	Sicht=body	GD_View=03 machine view - robots	JJJJ=2007
 Hybriditaet	Sicht=theory	GD_View=02 view of hybridity	JJJJ=(n)			Sparte=H
 Hybriditaet von Medien	Sicht=media		JJJJ=1996			Sparte=H
 Hybridkultur	Sicht=culture		JJJJ=1997			Sparte=H
-Hybridr‰ume			JJJJ=(n)			Sparte=H
+Hybridr√§ume			JJJJ=(n)			Sparte=H
 Hybridrechner	Sicht=hardware		JJJJ=1979,2002	OG_Kontext=Technology		Sparte=H
 Hybridsystem				OG_Kontext=Technology		Sparte=H
 hyper	Sicht=informatics		JJJJ=(n)	OG_Kontext=Technology		
@@ -2380,7 +2380,7 @@ Hypercompetition	Sicht=culture
 Hypercortex	Sicht=body					
 Hyperdata	Sicht=theory					
 Hyperdatabase					Quelle=PF	
-Hyperfiction	Sicht=art			OG_Kontext=Erg‰nzung	Quelle=SW	Sparte=L
+Hyperfiction	Sicht=art			OG_Kontext=Erg√§nzung	Quelle=SW	Sparte=L
 Hyper-hiker	Sicht=culture		JJJJ=(1994)			
 hyperintelligent			JJJJ=(1995,96,97,98,99,2000,01,03)			
 Hyperlink	Sicht=representation		JJJJ=(1990)		Quelle=PF	Sparte=I
@@ -2388,7 +2388,7 @@ Hypermaten			JJJJ=(1989,90,91,93,95)
 hypermedia	Sicht=media			OG_Kontext=Technology	Quelle=SW	Sparte=I
 hypermedia application	Sicht=software					Sparte=I
 hypermedia format	Sicht=informatics		JJJJ=(1989)			Sparte=I
-Hypermedia Mall	Sicht=culture		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+Hypermedia Mall	Sicht=culture		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 hypermediabasiert	Sicht=media		JJJJ=(n)			
 Hypermediabasiertes Knowledge Engineering	Sicht=informatics		JJJJ=(1994)			
 hypermediales Lexikon	Sicht=software					
@@ -2401,7 +2401,7 @@ HyperTalk	Sicht=software		JJJJ=(1995,2002)	OG_Kontext=Technology		Sparte=I
 Hypertext	Sicht=informatics			OG_Kontext=Technology	Quelle=SW	Sparte=I
 hypertext theater	Sicht=art	GD_View=31 theater view	JJJJ=(2002)			Sparte=P
 Hypertext-Bewusstsein			JJJJ=(1996)			
-Hypertextfiction	Sicht=art		JJJJ=(1986)	OG_Kontext=Erg‰nzung		Sparte=L
+Hypertextfiction	Sicht=art		JJJJ=(1986)	OG_Kontext=Erg√§nzung		Sparte=L
 Hypertext-Programm	Sicht=software		JJJJ=(1990,95)	OG_Kontext=Technology		
 Hypertextsysteme	Sicht=software					Sparte=I
 Hypervideo	Sicht=art					Sparte=V
@@ -2431,7 +2431,7 @@ IMAX movies	Sicht=media				Quelle=PF	Sparte=FV
 immaterial	Sicht=theory		JJJJ=(2003)	OG_Kontext=Genre		
 immaterial interfaces	Sicht=interface	GD_View=05 interface view	JJJJ=(1986,89)			
 Immaterialisierung	Sicht=theory					
-Immaterialitaet	Sicht=theory		JJJJ=1995	OG_Kontext=Erg‰nzung		
+Immaterialitaet	Sicht=theory		JJJJ=1995	OG_Kontext=Erg√§nzung		
 Immateriaux Lyotard	Sicht=theory		JJJJ=(n)			
 immaterielle Phase	Sicht=culture		JJJJ=2007			
 Immersion	Sicht=body	GD_View=02 Immersion			Quelle=PF	
@@ -2466,7 +2466,7 @@ Improvisation, Sport & Evolution						Sparte=P
 Impuls	Sicht=comtech				Quelle=SN	
 Impulsgeber	Sicht=comtech					
 in situ	Sicht=art					
-In Sommerer¥s installations death is employed as a necessary tabula rasa	Sicht=art					
+In Sommerer¬¥s installations death is employed as a necessary tabula rasa	Sicht=art					
 independent media	Sicht=media					
 Index	Sicht=representation			OG_Kontext=InfoMedia		
 indexes supervised by specialists	Sicht=representation					
@@ -2503,7 +2503,7 @@ information retrieval	Sicht=informatics
 information science	Sicht=science	GD_View=24 view of informatics	JJJJ=2005			
 information society	Sicht=culture	GD_View=29 socio-logical view			Quelle=SN,SW	
 information space	Sicht=software	GD_View=24 view of informatics			Quelle=PF	Sparte=DA
-information spaces	Sicht=representation	GD_View=24 view of informatics		OG_Kontext=Erg‰nzung		Sparte=DA
+information spaces	Sicht=representation	GD_View=24 view of informatics		OG_Kontext=Erg√§nzung		Sparte=DA
 Information Superhighway	Sicht=comtech			OG_Kontext=Technology		Sparte=N
 Information System	Sicht=software	GD_View=15 content view		OG_Kontext=InfoMedia		
 information technology	Sicht=informatics	GD_View=24 view of informatics				
@@ -2521,12 +2521,12 @@ Informationseinheiten			JJJJ=1998
 Informationsgesellschaft	Sicht=culture		JJJJ=(n)		Quelle=SN	
 Informationsgestalter	Sicht=representation		JJJJ=(1989)	OG_Kontext=InfoMedia		
 Informationsgestaltung	Sicht=representation					
-Informationsinszenierung	Sicht=art		JJJJ=(1998)	OG_Kontext=Erg‰nzung		
+Informationsinszenierung	Sicht=art		JJJJ=(1998)	OG_Kontext=Erg√§nzung		
 Informationskrieg	Sicht=culture					
 Informationskunst	Sicht=art		JJJJ=1999			
 Informationsmapping	Sicht=representation	GD_View=15 diagrammatic view	JJJJ=1999			Sparte=DA
 Informationsmoderne	Sicht=culture		JJJJ=(2000)			
-Informationsmoebel	Sicht=interface		JJJJ=(2000)	OG_Kontext=Erg‰nzung		
+Informationsmoebel	Sicht=interface		JJJJ=(2000)	OG_Kontext=Erg√§nzung		
 Informationsoberflaechen	Sicht=interface		JJJJ=(1990)			Sparte=D
 Informationsraeume	Sicht=interface		JJJJ=(1995)			Sparte=D
 Informationsservice	Sicht=culture		JJJJ=(1998)			
@@ -2536,19 +2536,19 @@ Informationssysteme	Sicht=software		JJJJ=(1998)
 Informationstechnik	Sicht=informatics		JJJJ=(1996)	OG_Kontext=InfoMedia		
 Informationstechnologie	Sicht=informatics		JJJJ=(1979,80,86,92,94,95,96,98,99,2003)			
 Informationstheorie	Sicht=theory		JJJJ=2006	OG_Kontext=Theories		
-Informationstr‰ger	Sicht=storage		JJJJ=(1998)			
+Informationstr√§ger	Sicht=storage		JJJJ=(1998)			
 Informationsueberlegenheit	Sicht=culture					
 Informationsverarbeitung	Sicht=informatics	GD_View=24 view of informatics	JJJJ=(2001)			
 Informationsvisualisierung	Sicht=representation	GD_View=15 diagrammatic view	JJJJ=(1995)			Sparte=DA
 Informationswege	Sicht=xxx		JJJJ=(1998)	OG_Kontext=InfoMedia		
-Informationszeitalter	Sicht=culture		JJJJ=(1997)	OG_Kontext=Erg‰nzung		
+Informationszeitalter	Sicht=culture		JJJJ=(1997)	OG_Kontext=Erg√§nzung		
 informatische Kunst	Sicht=art		JJJJ=(1994)			
 informierte Energie		GD_View=13 energetic view				
 Infotainment						
 Infowar	Sicht=xxx		JJJJ=2004	OG_Kontext=SocieHistory	Quelle=SW	
 Infrared Data Association			JJJJ=2005			
 infrarot tracking	Sicht=informatics		JJJJ=(1995)			
-Infrarotsensor	Sicht=interface	GD_View=14 view of sensor technology	JJJJ=(1997)	OG_Kontext=Erg‰nzung		
+Infrarotsensor	Sicht=interface	GD_View=14 view of sensor technology	JJJJ=(1997)	OG_Kontext=Erg√§nzung		
 Infrarotsichtsystem	Sicht=interface		JJJJ=(2000)			
 Inkubationssysteme						
 input device	Sicht=interface	GD_View=05 interface view	JJJJ=(1999,2001)		Quelle=SN	Sparte=I
@@ -2633,7 +2633,7 @@ interaktive Performance	Sicht=art	GD_View=26 performance view	JJJJ=(1993)			Spar
 interaktive plant growing	Sicht=art		JJJJ=(2001)			Sparte=I
 interaktive robotische Installation			JJJJ=(1989,93)			Sparte=I
 Interaktive Romane	Sicht=art					Sparte=LI
-Interaktive Schaltsysteme 	Sicht=xxx	GD_View=32 view of interactivity	JJJJ=(n)	OG_Kontext=Erg‰nzung		Sparte=I
+Interaktive Schaltsysteme 	Sicht=xxx	GD_View=32 view of interactivity	JJJJ=(n)	OG_Kontext=Erg√§nzung		Sparte=I
 interaktive Spiele		GD_View=32 gaming view	JJJJ=(n)			Sparte=GI
 interaktive Systeme		GD_View=32 view of interactivity	JJJJ=(2002)			Sparte=I
 interaktive Tanzperformance	Sicht=art	GD_View=26 performance view	JJJJ=(1989)			Sparte=PI
@@ -2726,7 +2726,7 @@ internet relay chat	Sicht=software	GD_View=10 internet view				Sparte=N
 Internet service provider (ISP)	Sicht=comtech	GD_View=10 internet view				Sparte=N
 Internet visualization	Sicht=representation				Quelle=PF	Sparte=DN
 Internet2	Sicht=comtech	GD_View=10 internet view	JJJJ=2002			Sparte=N
-Internet-Cafe	Sicht=xxx	GD_View=10 internet view		OG_Kontext=Erg‰nzung		Sparte=N
+Internet-Cafe	Sicht=xxx	GD_View=10 internet view		OG_Kontext=Erg√§nzung		Sparte=N
 Internetdienste	Sicht=comtech	GD_View=10 internet view	JJJJ=(2001)			Sparte=N
 Internet-driven		GD_View=10 internet view				Sparte=N
 Internet-Filme		GD_View=10 internet view	JJJJ=(n)			Sparte=VN
@@ -2734,7 +2734,7 @@ Internet-Inhalte		GD_View=10 internet view	JJJJ=(2002)			Sparte=N
 Internet-Metrik		GD_View=10 internet view	JJJJ=(1999)			Sparte=N
 Internet-Muellentsorgung		GD_View=10 internet view				Sparte=N
 Internettelefonie	Sicht=comtech	GD_View=10 internet view		OG_Kontext=Technology		Sparte=N
-Internet-Telefonie	Sicht=comtech	GD_View=10 internet view	JJJJ=(n)	OG_Kontext=Erg‰nzung		Sparte=N
+Internet-Telefonie	Sicht=comtech	GD_View=10 internet view	JJJJ=(n)	OG_Kontext=Erg√§nzung		Sparte=N
 Interpassivitaet			JJJJ=(n)			
 intersections of art	Sicht=media					
 Interspace	Sicht=theory					
@@ -2753,7 +2753,7 @@ IP-Adresse	Sicht=comtech		JJJJ=(n)			Sparte=N
 IP-Netzwerke	Sicht=comtech		JJJJ=2007			Sparte=N
 iPod	Sicht=storage	GD_View=20 view of storage media			Quelle=PF	Sparte=M
 IP-TV	Sicht=media					Sparte=N
-IRC	Sicht=comtech		JJJJ=2004	OG_Kontext=Erg‰nzung		Sparte=N
+IRC	Sicht=comtech		JJJJ=2004	OG_Kontext=Erg√§nzung		Sparte=N
 IRDA-Technik						
 Ironic	Sicht=art		JJJJ=1995			
 is the "digital city" a medium or a forum?			JJJJ=1995			Sparte=N
@@ -2786,13 +2786,13 @@ Kampfmaschinen			JJJJ=1998
 Kampfsysteme	Sicht=xxx		JJJJ=2006	OG_Kontext=SocieHistory		
 Kartierung		GD_View=25 geographical view	JJJJ=2006			Sparte=D
 Kartierung der realen und virtuellen Welt			JJJJ=2006			Sparte=D
-Kartografie von Informationsr‰umen			JJJJ=(1971)			Sparte=D
+Kartografie von Informationsr√§umen			JJJJ=(1971)			Sparte=D
 Kassettenvideosystem	Sicht=storage		JJJJ=(1952)			Sparte=V
 Kathodenstrahloszillographen	Sicht=interface	GD_View=05 interface view	JJJJ=(1989)	OG_Kontext=Technology		
 Kathodenstrahlroehren	Sicht=physics					
 Kepler	Sicht=science			OG_Kontext=Nature&Life		
-Kepler¥s Dream	Sicht=art					
-Kepler¥s last dream	Sicht=art		JJJJ=2006			
+Kepler¬¥s Dream	Sicht=art					
+Kepler¬¥s last dream	Sicht=art		JJJJ=2006			
 Keyboard	Sicht=interface	GD_View=05 interface view		OG_Kontext=Technology	Quelle=SN	
 keyboard for the blind	Sicht=interface	GD_View=05 interface view	JJJJ=1987			
 keyboards strapped to the hands	Sicht=interface	GD_View=05 interface view				Sparte=PI
@@ -2811,11 +2811,11 @@ kinetische Projektoren			JJJJ=2004			Sparte=D
 kinetischer Speicher						
 Kinomalerei	Sicht=art	GD_View=18 view of the picture	JJJJ=(n)		Quelle=SN	
 KI-Systeme			JJJJ=(84,88,87,90,95,96)			
-Kitsch	Sicht=art			OG_Kontext=Erg‰nzung		
+Kitsch	Sicht=art			OG_Kontext=Erg√§nzung		
 Klang	Sicht=body		JJJJ=1993			Sparte=M
 Klanganimation als Echtzeitprozess	Sicht=art			OG_Kontext=Genre		Sparte=MA
 Klangarchitektur						Sparte=M
-Klangatmosph‰ren	Sicht=body	GD_View=01 atmospheres view	JJJJ=2004			Sparte=M
+Klangatmosph√§ren	Sicht=body	GD_View=01 atmospheres view	JJJJ=2004			Sparte=M
 Klangdiffusion			JJJJ=1979			Sparte=M
 Klangenvironment			JJJJ=2005			Sparte=M
 Klangfahrt			JJJJ=2007			Sparte=M
@@ -2837,22 +2837,22 @@ Klangtherapie	Sicht=body		JJJJ=2004			Sparte=M
 Klangursprung						Sparte=M
 Klangwolke	Sicht=art	GD_View=01 atmospheres view	JJJJ=(1993)		Quelle=SN	Sparte=M
 klassische Aesthetik			JJJJ=(n)			
-klassische Medien	Sicht=media		JJJJ=2004	OG_Kontext=Erg‰nzung		
+klassische Medien	Sicht=media		JJJJ=2004	OG_Kontext=Erg√§nzung		
 Kleidungssimulationsprogramm		GD_View=09 view of clothing				Sparte=DA
 Klimamodelle	Sicht=theory	GD_View=27 simulation view				Sparte=DA
 Klimaprognose	Sicht=theory	GD_View=27 simulation view				
-KM	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+KM	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 KM-Technologie			JJJJ=2007			
 knitting machine	Sicht=hardware	GD_View=03 machine view - robots				
 knowbot	Sicht=informatics			OG_Kontext=A-Life-Tech		Sparte=C
 Knowbotic Research	Sicht=art		JJJJ=(n)			
 knowbots	Sicht=informatics					
 Knowledge	Sicht=culture				Quelle=PF	
-knowledge architecture	Sicht=informatics			OG_Kontext=Erg‰nzung		
+knowledge architecture	Sicht=informatics			OG_Kontext=Erg√§nzung		
 knowledge database for multimedia developers						
 knowledge discovery	Sicht=tool					
 Knowledge Discovery Tools	Sicht=tool				Quelle=PF	
-knowledge management	Sicht=culture	GD_View=16 view of knowledge management		OG_Kontext=Erg‰nzung		
+knowledge management	Sicht=culture	GD_View=16 view of knowledge management		OG_Kontext=Erg√§nzung		
 knowledge navigation	Sicht=informatics		JJJJ=(1996)			
 Knowledge Net						Sparte=N
 knowledge representation	Sicht=representation	GD_View=19 presentation view	JJJJ=2005	OG_Kontext=InfoMedia		
@@ -2877,11 +2877,11 @@ Kommunikationsmedium	Sicht=comtech	GD_View=07 view of communication
 Kommunikationsprojekt	Sicht=art		JJJJ=(n)			
 kommunikative Interaktion		GD_View=32 view of interactivity				Sparte=I
 Kompaktheit	Sicht=hardware					
-komplexe Maschinen				OG_Kontext=Erg‰nzung		
+komplexe Maschinen				OG_Kontext=Erg√§nzung		
 komplexe Prozesse						
 Komplexe Systeme						
 Komposition					Quelle=SN	Sparte=M
-Konferenzsystem	Sicht=xxx			OG_Kontext=Erg‰nzung		Sparte=N
+Konferenzsystem	Sicht=xxx			OG_Kontext=Erg√§nzung		Sparte=N
 Konkrete Kunst	Sicht=art					
 Konservierung	Sicht=culture					
 Konsumkultur	Sicht=culture		JJJJ=(1987) 2006		Quelle=SN	
@@ -2898,7 +2898,7 @@ Konzeptkunst	Sicht=art				Quelle=SN	Sparte=B
 konzeptuelle Gesten			JJJJ=(n)			
 konzeptuelle systemische Kunst	Sicht=art					
 Konzeptuell-systemische Kunst						
-Konzertmaschinen	Sicht=art			OG_Kontext=Erg‰nzung		Sparte=M
+Konzertmaschinen	Sicht=art			OG_Kontext=Erg√§nzung		Sparte=M
 kooperative Arbeitsumgebung	Sicht=comtech					Sparte=PI
 Kopplung	Sicht=interface	GD_View=05 interface view			Quelle=SN	
 Kosmologie	Sicht=culture	GD_View=31 mythic view	JJJJ=(1990,94,97)	OG_Kontext=Nature&Life	Quelle=SN	
@@ -2906,8 +2906,8 @@ Kraft-Feedback						Sparte=PI
 Kreisfoermiges Panoramakino der Science Center	Sicht=archeology					Sparte=VD
 Krise der Linearitaet						
 Kritik der digitalen Form			JJJJ=(2003)			
-K¸nstlerInnen-Datenbank	Sicht=software					
-K¸nstlermusiker			JJJJ=1980		Quelle=SN	Sparte=M
+K√ºnstlerInnen-Datenbank	Sicht=software					
+K√ºnstlermusiker			JJJJ=1980		Quelle=SN	Sparte=M
 kuenstliche Boesewichte			JJJJ=(1984)			
 kuenstliche Gespenster	Sicht=art					
 Kuenstliche Intelligenz	Sicht=informatics		JJJJ=1986	OG_Kontext=A-Life-Tech		
@@ -2923,7 +2923,7 @@ Kuenstliche Spiele		GD_View=32 gaming view	JJJJ=1994			Sparte=G
 kuenstliche Umgebung			JJJJ=(1996)(1994,96,98)			
 kuenstliche Welten			JJJJ=(1989,91)			
 kuenstliche Wirklichkeit			JJJJ=(n)			
-K¸nstliche Wolken	Sicht=art					
+K√ºnstliche Wolken	Sicht=art					
 kuenstliche/elektronische Nasen		GD_View=19 olfactory "view" (smell)	JJJJ=(1984)			
 Kuenstlicher Wille			JJJJ=(1994)			
 kuenstliches Ambiente			JJJJ=(1993,95)			
@@ -2942,9 +2942,9 @@ Kunst-Kopf-Stereophonie						Sparte=M
 Kunstmarkt	Sicht=culture	GD_View=21 economic view	JJJJ=(1998 ...)			
 Kunstradio-Netzwerke						Sparte=N
 Kunsttheorie	Sicht=theory				Quelle=SN	
-Kunstuniversit‰t Linz	Sicht=culture		JJJJ=(1979,1984)	OG_Kontext=Erg‰nzung		
+Kunstuniversit√§t Linz	Sicht=culture		JJJJ=(1979,1984)	OG_Kontext=Erg√§nzung		
 Kuppelprojektion		GD_View=18 view of projection				Sparte=D
-Kurzwellen-Empf‰nger						
+Kurzwellen-Empf√§nger						
 KybernEthik			JJJJ=(1990)			
 Kybernetik		GD_View=25 cybernetic view	JJJJ=(1979)			
 Kybernetiker		GD_View=25 cybernetic view				
@@ -3003,7 +3003,7 @@ Laterna Magica - Electronic Street Art	Sicht=art					Sparte=PB
 Laufband als Interface	Sicht=interface	GD_View=05 interface view	JJJJ=2007			Sparte=PI
 Law	Sicht=culture	GD_View=11 legal view		OG_Kontext=SocieHistory		
 layer	Sicht=informatics				Quelle=SN	
-LBI	Sicht=science			OG_Kontext=Erg‰nzung		
+LBI	Sicht=science			OG_Kontext=Erg√§nzung		
 learning	Sicht=culture				Quelle=PF	
 learning software	Sicht=software					
 learning tools	Sicht=tool					
@@ -3021,7 +3021,7 @@ levels of interactivity	Sicht=theory	GD_View=32 view of interactivity			Quelle=D
 library science	Sicht=science					
 Licht			JJJJ=2007		Quelle=SN	
 Lichteffekte	Sicht=art		JJJJ=2006		Quelle=SN	Sparte=B
-Lichtgesten	Sicht=art	GD_View=12 light view	JJJJ=2004	OG_Kontext=Erg‰nzung		Sparte=PB
+Lichtgesten	Sicht=art	GD_View=12 light view	JJJJ=2004	OG_Kontext=Erg√§nzung		Sparte=PB
 Lichtinstallation	Sicht=art	GD_View=12 light view			Quelle=SN	Sparte=B
 Lichtkinetik				OG_Kontext=Genre	Quelle=SN	Sparte=B
 Lichtkunst	Sicht=art	GD_View=12 light view	JJJJ=(1980)	OG_Kontext=Genre	Quelle=SN	Sparte=B
@@ -3045,14 +3045,14 @@ lightpen	Sicht=interface	GD_View=05 interface view		OG_Kontext=Technology		Spart
 lightsensor	Sicht=interface	GD_View=14 view of sensor technology		OG_Kontext=Technology		
 lightstick	Sicht=interface	GD_View=05 interface view				Sparte=I
 line	Sicht=comtech	GD_View=07 transport view				
-Linearit‰t	Sicht=theory				Quelle=SN	
+Linearit√§t	Sicht=theory				Quelle=SN	
 Lingua Franca (language of intercourse)	Sicht=culture					
 Linie	Sicht=comtech					
 Link	Sicht=informatics					
 link_	Sicht=xxx			OG_Kontext=Technology		
 linkhubs	Sicht=informatics					
 Linux	Sicht=software			OG_Kontext=Technology	Quelle=SW	
-liquid architecture	Sicht=theory			OG_Kontext=Erg‰nzung		
+liquid architecture	Sicht=theory			OG_Kontext=Erg√§nzung		
 liquid space	Sicht=theory					
 Lisa	Sicht=software					
 listening perspective						
@@ -3075,7 +3075,7 @@ local networks						Sparte=N
 locatian based augmented reality						Sparte=DA
 location						
 location based			JJJJ=2004			
-locational	Sicht=xxx		JJJJ=2007	OG_Kontext=Erg‰nzung		
+locational	Sicht=xxx		JJJJ=2007	OG_Kontext=Erg√§nzung		
 location-based	Sicht=informatics					
 location-based services	Sicht=informatics					
 location-based-learning						
@@ -3154,13 +3154,13 @@ Maschinenausstellung			JJJJ=(1992)
 maschinenbasiert			JJJJ=(1996) 2004			
 Maschinen-Bastler			JJJJ=(1979,80,82,87,87,88,92,94,95,98,2001)			
 Maschinenbau						
-Maschinenger‰usche		GD_View=03 machine view - robots	JJJJ=(n)			Sparte=M
+Maschinenger√§usche		GD_View=03 machine view - robots	JJJJ=(n)			Sparte=M
 Maschinen-Installationen	Sicht=art	GD_View=03 machine view - robots				
 Maschinenkampf	Sicht=art	GD_View=26 performance view	JJJJ=1987,1997			
 Maschinenkunst	Sicht=art	GD_View=03 machine view - robots	JJJJ=2001	OG_Kontext=Genre		Sparte=C
 Maschinen-Menschen	Sicht=body		JJJJ=(1995,99)			Sparte=P
 Maschinenstuermer	Sicht=culture		JJJJ=2007			
-Maschinentanz	Sicht=art	GD_View=26 dance view		OG_Kontext=Erg‰nzung		Sparte=PC
+Maschinentanz	Sicht=art	GD_View=26 dance view		OG_Kontext=Erg√§nzung		Sparte=PC
 Maschinenwahrnehmung	Sicht=informatics		JJJJ=1988,2000			
 Maschinerie	Sicht=hardware	GD_View=03 machine view - robots	JJJJ=2005	OG_Kontext=Genre		
 Maschinisierung	Sicht=hardware	GD_View=03 machine view - robots		OG_Kontext=Genre		
@@ -3194,7 +3194,7 @@ mechanical tracking			JJJJ=2007
 mechanische Pixel						
 Mechanisierung			JJJJ=2007			
 Mechatronic	Sicht=hardware/science					
-Media	Sicht=media	GD_View=07 view of media		OG_Kontext=Erg‰nzung	Quelle=PF	
+Media	Sicht=media	GD_View=07 view of media		OG_Kontext=Erg√§nzung	Quelle=PF	
 media activism	Sicht=culture					
 media anthropology						
 Media archaeology	Sicht=archaeology	GD_View=20 history of technology view		OG_Kontext=InfoMedia		
@@ -3220,7 +3220,7 @@ mediale Inszenierung			JJJJ=(2001)
 mediale Repraesentation	Sicht=representation		JJJJ=(2003)			
 mediale Vermittlung		GD_View=07 transport view				
 medially constructed reality	Sicht=media				Quelle=PF	
-Mediamatic	Sicht=art		JJJJ=(1995)	OG_Kontext=Erg‰nzung		
+Mediamatic	Sicht=art		JJJJ=(1995)	OG_Kontext=Erg√§nzung		
 MediaMOO	Sicht=software					Sparte=N
 MediaMOO for media researcher	Sicht=software		JJJJ=(1995)			Sparte=N
 Media-Netze						Sparte=N
@@ -3235,7 +3235,7 @@ MediaWiki-Software	Sicht=tool		JJJJ=1989			Sparte=N
 medical devices as sound transmitters: breathing ... 						Sparte=M
 medical imaging	Sicht=tool					Sparte=DA
 Medicine	Sicht=body	GD_View=08 view of medicine		OG_Kontext=Body Human	Quelle=SW	
-Medien	Sicht=media	GD_View=07 view of media	JJJJ=(n)	OG_Kontext=Erg‰nzung		
+Medien	Sicht=media	GD_View=07 view of media	JJJJ=(n)	OG_Kontext=Erg√§nzung		
 Medien Interferenzen	Sicht=media		JJJJ=(1991)			
 Medienaether	Sicht=media		JJJJ=(n)			
 Medienagenturen	Sicht=media		JJJJ=(n)			
@@ -3243,20 +3243,20 @@ Medienaktionen	Sicht=media		JJJJ=(1996)
 MedienaktivistInnen	Sicht=culture		JJJJ=(n)			
 Medienalltag	Sicht=culture		JJJJ=(1988,98)			
 Medienanalyse	Sicht=media					
-Medienarch‰ologie	Sicht=archeology		JJJJ=(2003)		Quelle=SN	
+Medienarch√§ologie	Sicht=archeology		JJJJ=(2003)		Quelle=SN	
 Medienarchitektur	Sicht=media		JJJJ=(1995)			
 Medienarchiv	Sicht=media		JJJJ=(n)			
 Medienbildhauer	Sicht=art		JJJJ=(1996)			
 Mediencenter	Sicht=media		JJJJ=(n)			
 Mediendatenbank	Sicht=tool		JJJJ=(2001)	OG_Kontext=InfoMedia		
-Mediendesign	Sicht=media	GD_View=21 design view	JJJJ=(n)	OG_Kontext=Erg‰nzung		
+Mediendesign	Sicht=media	GD_View=21 design view	JJJJ=(n)	OG_Kontext=Erg√§nzung		
 Mediendesign-Gruppe	Sicht=media		JJJJ=(< 2000 >) (1991,95)			
 Mediendiskurs	Sicht=theory		JJJJ=(1986, 88, 91)	OG_Kontext=Theories		
 Medienereignis	Sicht=media					
-Medienevent	Sicht=media		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+Medienevent	Sicht=media		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 Medienevolution						
 Medienexperimente	Sicht=media				Quelle=SN	
-Medienformen	Sicht=media		JJJJ=(1995)	OG_Kontext=Erg‰nzung		
+Medienformen	Sicht=media		JJJJ=(1995)	OG_Kontext=Erg√§nzung		
 Medienforscher	Sicht=science		JJJJ=(2001)			
 Mediengeschichte	Sicht=science		JJJJ=(2002)			
 Mediengestaltung	Sicht=media					
@@ -3268,7 +3268,7 @@ Medieninstitutionen	Sicht=media		JJJJ=(1994,2003)
 Medienkommunikation	Sicht=comtech	GD_View=07 view of communication	JJJJ=(1998,2001)			
 Medienkritik	Sicht=media	GD_View=07 media-critical view	JJJJ=(1984,86,91,98)			
 Medienkritiker	Sicht=media	GD_View=07 media-critical view	JJJJ=1995			
-medienkritisch	Sicht=media	GD_View=07 media-critical view	JJJJ=(1987,1996) (1982,84,86,88,89,91,92,95,96,97,98,2001,03)	OG_Kontext=Erg‰nzung		
+medienkritisch	Sicht=media	GD_View=07 media-critical view	JJJJ=(1987,1996) (1982,84,86,88,89,91,92,95,96,97,98,2001,03)	OG_Kontext=Erg√§nzung		
 Medienkuenstler	Sicht=media		JJJJ=(1996)			
 Medienkultur	Sicht=culture		JJJJ= (2001)			
 Medienkunst	Sicht=art		JJJJ=(1997)		Quelle=SN	
@@ -3276,7 +3276,7 @@ Medienkunstmuseum	Sicht=culture		JJJJ=(2003)
 Medien-Kunst-Theorie	Sicht=theory		JJJJ=(1994)			
 Medienlandschaft	Sicht=media		JJJJ=(1998)			
 Medienmaschinen	Sicht=media		JJJJ=(1984,86,89)			
-Medienoper	Sicht=art	GD_View=32 theater view / opera view	JJJJ=(1989,92,94)	OG_Kontext=Erg‰nzung		Sparte=P
+Medienoper	Sicht=art	GD_View=32 theater view / opera view	JJJJ=(1989,92,94)	OG_Kontext=Erg√§nzung		Sparte=P
 Medienperformance	Sicht=art	GD_View=26 performance view	JJJJ=(2002,2003)			Sparte=P
 Medienphilosophie	Sicht=theory		JJJJ=(2003)			
 Medienprofessuren	Sicht=theory		JJJJ=(1987,92,94,95,96,01,02,03)			
@@ -3339,14 +3339,14 @@ mikroskopische Automaten	Sicht=hardware		JJJJ=(1992)
 mikroskopische Roboter	Sicht=hardware		JJJJ=(n)			
 Mikrotechnik	Sicht=hardware		JJJJ=2004			
 Mikrotheater		GD_View=31 theater view				Sparte=P
-Mikrotonalit‰t			JJJJ=(1996)			Sparte=M
+Mikrotonalit√§t			JJJJ=(1996)			Sparte=M
 Mikrovideokamera	Sicht=interface		JJJJ=(2002)			Sparte=V
 Militaerautomat			JJJJ=(1998)			
 militaerische Simulation			JJJJ=(1995)			Sparte=A
 Militaerisch-informationeller Komplex	Sicht=science					
 militarization of science and ist culture of death			JJJJ=2003			
 mimetic/gestural codes			JJJJ=(1995)			Sparte=P
-mimetische Repraesentation	Sicht=representation			OG_Kontext=Erg‰nzung		Sparte=D
+mimetische Repraesentation	Sicht=representation			OG_Kontext=Erg√§nzung		Sparte=D
 mind-body dualism	Sicht=body	GD_View=08 body view	JJJJ=2004			
 Mindmapping	Sicht=representation	GD_View=19 presentation view	JJJJ=(2000)	OG_Kontext=Genre		Sparte=D
 Mindmapping mit Netzen	Sicht=representation	GD_View=19 presentation view				Sparte=D
@@ -3368,7 +3368,7 @@ Mixed Reality GIS-Applikationen	Sicht=representation
 Mixed Reality Integration	Sicht=informatics					
 Mixed Reality Lab						
 mixed reality technology - pop-up book						
-Mixed Reality: Das Interface als Ein-/Ausgabeinstrument ist kein multimediales, sondern ein Handlungsinstrument zur syn‰sth. Transformation der Wahrnehmung des Medienraumes.	Sicht=interface	GD_View=05 interface view	JJJJ=(1988)			
+Mixed Reality: Das Interface als Ein-/Ausgabeinstrument ist kein multimediales, sondern ein Handlungsinstrument zur syn√§sth. Transformation der Wahrnehmung des Medienraumes.	Sicht=interface	GD_View=05 interface view	JJJJ=(1988)			
 Mixed-Media-Auffuehrung			JJJJ=2003			
 Mixed-Reality-Applikationen						
 Mixed-Reality-Konzept im Gegensatz zu immersiven Bildstrategien (handlungsorientiert)						
@@ -3425,7 +3425,7 @@ Molekularbiologie
 monitoring			JJJJ=2004		Quelle=SW	
 Monster	Sicht=culture					
 Montage	Sicht=theory	GD_View=27 simulation view	JJJJ=2007			
-MOO	Sicht=software		JJJJ=2001	OG_Kontext=Erg‰nzung	Quelle=SW	Sparte=N
+MOO	Sicht=software		JJJJ=2001	OG_Kontext=Erg√§nzung	Quelle=SW	Sparte=N
 Mood-Management	Sicht=body	GD_View=10 view of the mood	JJJJ=2006,2007			
 morphen	Sicht=informatics	GD_View=32 view of metamorphosis	JJJJ=(1998)	OG_Kontext=Technology		Sparte=A
 Morphing Software	Sicht=software	GD_View=31 view of metamorphosis				Sparte=A
@@ -3434,7 +3434,7 @@ motion			JJJJ=2006,2007		Quelle=SW
 Motion Capture	Sicht=informatics			OG_Kontext=Technology	Quelle=SN	Sparte=P
 motion picture	Sicht=media		JJJJ=(1993)			Sparte=VA
 motion system			JJJJ=2003			
-motion tracking				OG_Kontext=Erg‰nzung		
+motion tracking				OG_Kontext=Erg√§nzung		
 Motion-Capture-Animation	Sicht=body		JJJJ=2003,2006			Sparte=VA
 motion-tracking	Sicht=interface	GD_View=14 view of sensor technology				Sparte=P
 Motor of transformation: from modernism to postmodernism						
@@ -3446,7 +3446,7 @@ MP3	Sicht=storage	GD_View=20 view of storage media	JJJJ=(01)			Sparte=MN
 MP3-Portal	Sicht=software	GD_View=10 internet view				Sparte=MN
 MR: Das Interface als Ein/Ausgabeinstrument ist kein multimediales, sondern ein Handlungsinstrument zur synaesthetischen Transformation der Wahrnehmung des Medienraumes	Sicht=interface	GD_View=05 interface view	JJJJ=(n)			Sparte=M
 MRI magnetic resonance imaging					Quelle=SW	Sparte=DA
-MRT	Sicht=interface		JJJJ=(1997)	OG_Kontext=Erg‰nzung		Sparte=DA
+MRT	Sicht=interface		JJJJ=(1997)	OG_Kontext=Erg√§nzung		Sparte=DA
 MRT Magnet Resonanz Tomographie	Sicht=interface		JJJJ=2007			Sparte=DA
 MUD	Sicht=software			OG_Kontext=Aesthetics	Quelle=SW	Sparte=N
 MUD / MOO	Sicht=software					Sparte=N
@@ -3557,17 +3557,17 @@ Musikclip			JJJJ=2007		Quelle=SN	Sparte=VM
 Musikcompiler	Sicht=software		JJJJ=(1980,88,89,90,92)			Sparte=M
 Musikcomputer	Sicht=hardware		JJJJ=(1995)	OG_Kontext=Art&Science		Sparte=M
 Musikdatenbank	Sicht=software			OG_Kontext=InfoMedia		Sparte=M
-Musikerk¸nstler		GD_View=25 view of music	JJJJ=(1980)		Quelle=SN	Sparte=M
+Musikerk√ºnstler		GD_View=25 view of music	JJJJ=(1980)		Quelle=SN	Sparte=M
 musikgesteuert						Sparte=M
 Musikgrafik	Sicht=art	GD_View=26 view of the score	JJJJ=2006,2007		Quelle=SN	Sparte=M
 Musikinstrument	Sicht=hardware					Sparte=M
 Musikperformance	Sicht=art	GD_View=26 performance view	JJJJ=(1984)			Sparte=PM
 Musikprogramme	Sicht=software					Sparte=M
-Musikrichtung	Sicht=xxx	GD_View=25 view of music		OG_Kontext=Erg‰nzung		Sparte=M
+Musikrichtung	Sicht=xxx	GD_View=25 view of music		OG_Kontext=Erg√§nzung		Sparte=M
 Musik-Sharing	Sicht=culture		JJJJ=2005			Sparte=M
 Musikvideo	Sicht=art		JJJJ=(1982, 2001) 2006	OG_Kontext=Genre	Quelle=SN	Sparte=VM
 Musikvisualisierung	Sicht=art	GD_View=25 view of music	JJJJ=2004		Quelle=SN	Sparte=MA
-Musique ConcrËte	Sicht=art	GD_View=25 view of music	JJJJ=2005		Quelle=SN	Sparte=M
+Musique Concr√®te	Sicht=art	GD_View=25 view of music	JJJJ=2005		Quelle=SN	Sparte=M
 Muskelsimulation und Fleischsimulation	Sicht=art					Sparte=A
 Mustererkennung	Sicht=informatics					Sparte=D
 Mutation	Sicht=theory			OG_Kontext=Nature&Life		
@@ -3621,7 +3621,7 @@ Net Art	Sicht=art	GD_View=10 view of networks	JJJJ=(1992)	OG_Kontext=Genre		Spar
 net art generator	Sicht=art					Sparte=N
 Net as Object						Sparte=N
 net broadcasting			JJJJ=(1995)			Sparte=N
-net criticism	Sicht=xxx	GD_View=04 view of criticism / valuation	JJJJ=(2001)	OG_Kontext=Erg‰nzung		Sparte=N
+net criticism	Sicht=xxx	GD_View=04 view of criticism / valuation	JJJJ=(2001)	OG_Kontext=Erg√§nzung		Sparte=N
 net excellence	Sicht=xxx		JJJJ=2007	OG_Kontext=Genre		Sparte=N
 net identity						Sparte=N
 net performance		GD_View=26 performance view				Sparte=PN
@@ -3637,7 +3637,7 @@ netbase			JJJJ=2007			Sparte=N
 Net-Based Art	Sicht=art					Sparte=N
 netculture			JJJJ=(2001)			Sparte=N
 net-games		GD_View=32 gaming view	JJJJ=(1996)			Sparte=GN
-Netiquette	Sicht=xxx			OG_Kontext=Erg‰nzung		Sparte=N
+Netiquette	Sicht=xxx			OG_Kontext=Erg√§nzung		Sparte=N
 Netizen			JJJJ=2002			Sparte=N
 Net-Meeting		GD_View=07 view of communication				Sparte=N
 Netwar		GD_View=23 battle view				Sparte=N
@@ -3680,11 +3680,11 @@ Netzdiskussion	Sicht=theory	GD_View=theory	JJJJ=(2000)			Sparte=N
 Netzforschung			JJJJ=(n)			Sparte=N
 Netzgewalt						Sparte=N
 Netzhaut-Display	Sicht=interface	GD_View=05 interface view	JJJJ=(1995)			
-Netzine	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+Netzine	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 Netzkanten	Sicht=representation		JJJJ=(2000,01)			Sparte=D
 Netzkategorie			JJJJ=(1994)			Sparte=N
-Netzknoten	Sicht=representation		JJJJ=(1994)	OG_Kontext=Erg‰nzung		Sparte=D
-Netzkultur	Sicht=art		JJJJ=(1989 ... 2001,04)	OG_Kontext=Erg‰nzung		Sparte=N
+Netzknoten	Sicht=representation		JJJJ=(1994)	OG_Kontext=Erg√§nzung		Sparte=D
+Netzkultur	Sicht=art		JJJJ=(1989 ... 2001,04)	OG_Kontext=Erg√§nzung		Sparte=N
 Netzkunst	Sicht=art			OG_Kontext=Genre	Quelle=SN	Sparte=N
 Netzkunst als Konzeptkunst	Sicht=art		JJJJ=2006			Sparte=N
 Netzmedien	Sicht=culture		JJJJ=(n)			Sparte=N
@@ -3701,7 +3701,7 @@ Netzzerstoerer			JJJJ=(n)
 neue Aesthetiktheorie			JJJJ=1982			
 neue Medien		GD_View=07 view of media	JJJJ=(2001)			
 Neue Technologien	Sicht=xxx		JJJJ=2006	OG_Kontext=Technology	Quelle=SN	
-neural nets	Sicht=xxx	GD_View=16 AI view	JJJJ=(1993,94,95)	OG_Kontext=Erg‰nzung		
+neural nets	Sicht=xxx	GD_View=16 AI view	JJJJ=(1993,94,95)	OG_Kontext=Erg√§nzung		
 Neurale Netze						
 neurobiology	Sicht=science		JJJJ=(n)			
 neuro-digitale Rueckkopplung						
@@ -3711,7 +3711,7 @@ New Age Cyberculture
 new communication methods		GD_View=04 methods view				
 new form of paranoia			JJJJ=1990			
 new maps of hyperspace issues of the psyche						
-new media	Sicht=media			OG_Kontext=Erg‰nzung		
+new media	Sicht=media			OG_Kontext=Erg√§nzung		
 new narrative structures in computer games		GD_View=32 gaming view				Sparte=G
 new platforms						
 new representational methods	Sicht=representation	GD_View=19 view of representation				
@@ -3736,7 +3736,7 @@ nonlinear storytelling	Sicht=art					Sparte=L
 nonlinear systems	Sicht=art					
 nonlinear tools	Sicht=tool					
 nonlineare Narration						
-Non-Linearit‰t					Quelle=SN	
+Non-Linearit√§t					Quelle=SN	
 non-linearity						
 nostalgia						
 Notation	Sicht=representation				Quelle=SN,PF	Sparte=PM
@@ -3744,7 +3744,7 @@ Notebook	Sicht=hardware		JJJJ=(< 1960)	OG_Kontext=Technology
 numerische Aesthetik						
 Nutzung der Zeichenketten als genetischen Code	Sicht=representation		JJJJ=2006			
 Nutzungsgesten						Sparte=PI
-Nybble	Sicht=xxx			OG_Kontext=Erg‰nzung		
+Nybble	Sicht=xxx			OG_Kontext=Erg√§nzung		
 Nybble-Engine						
 Object		GD_View=18 object view				
 object class	Sicht=representation	GD_View=18 object view	JJJJ=1992,1999			
@@ -3765,7 +3765,7 @@ Omnipresence					Quelle=SN
 on demand	Sicht=media					
 on demand TV	Sicht=media		JJJJ=1995			Sparte=VN
 on virtual sex and the loss of desire						
-one of art¥s tasks is to expose and deconstruct the rhetorics of interfaces	Sicht=theory		JJJJ=2007			
+one of art¬¥s tasks is to expose and deconstruct the rhetorics of interfaces	Sicht=theory		JJJJ=2007			
 Onfield			JJJJ=2007			
 Onfield Collaborative Mapping	Sicht=representation		JJJJ=(1998)			
 online	Sicht=comtech		JJJJ=(1999)	OG_Kontext=Technology		Sparte=N
@@ -3777,11 +3777,11 @@ online gallery	Sicht=art		JJJJ=(1998)			Sparte=N
 online musizieren			JJJJ=(03)			Sparte=M
 online portal	Sicht=software	GD_View=10 internet view				Sparte=N
 online presence			JJJJ=1996,2004			Sparte=N
-Online Publishing	Sicht=media		JJJJ=(1994)	OG_Kontext=Erg‰nzung		Sparte=N
+Online Publishing	Sicht=media		JJJJ=(1994)	OG_Kontext=Erg√§nzung		Sparte=N
 online signature						Sparte=N
 On-line Software Art	Sicht=art					Sparte=N
 On-line/On-site/On-air-Soundinstallation			JJJJ=2001/2002/2003			Sparte=M
-Online-Ausstellung	Sicht=xxx			OG_Kontext=Erg‰nzung		Sparte=N
+Online-Ausstellung	Sicht=xxx			OG_Kontext=Erg√§nzung		Sparte=N
 Online-Ausstellungen	Sicht=xxx	GD_View=19 view of exhibition	JJJJ=(2001)	OG_Kontext=Other		Sparte=N
 Online-Demonstrationen			JJJJ=2004,2007			Sparte=N
 Onlinegame		GD_View=32 gaming view	JJJJ=(2001)			Sparte=GN
@@ -3797,7 +3797,7 @@ Online-Medienportal	Sicht=software	GD_View=10 internet view	JJJJ=(1999)			Sparte
 Online-Musikzusammenarbeit		GD_View=32 view of interactivity	JJJJ=2001			Sparte=MI
 online-performances		GD_View=26 performance view				Sparte=PN
 Onlinepraesentation			JJJJ=2007			Sparte=N
-Online-Pr‰senz			JJJJ=(2002)			Sparte=N
+Online-Pr√§senz			JJJJ=(2002)			Sparte=N
 Online-Projekte			JJJJ=1996/1998			Sparte=N
 Onlinesein			JJJJ=(2001)			Sparte=N
 Online-Shopping			JJJJ=(1989)			Sparte=N
@@ -3815,7 +3815,7 @@ open hardware	Sicht=hardware	GD_View=02 view of openness
 open source	Sicht=culture	GD_View=02 view of openness	JJJJ=2007			
 open source platform	Sicht=software	GD_View=02 view of openness				
 open source software	Sicht=software	GD_View=02 view of openness	JJJJ=2004			
-Open-Content-Enzyklop‰die		GD_View=02 view of openness	JJJJ=2005			
+Open-Content-Enzyklop√§die		GD_View=02 view of openness	JJJJ=2005			
 OpenGL			JJJJ=2001		Quelle=PF	
 Open-Law		GD_View=02 view of openness				
 Open-Source-Kit		GD_View=02 view of openness	JJJJ=2003			
@@ -3827,11 +3827,11 @@ optical disc	Sicht=storage	GD_View=20 view of storage media
 optical machine		GD_View=03 machine view - robots	JJJJ=2005		Quelle=SN	
 optical sound						Sparte=M
 optical storage	Sicht=storage	GD_View=20 view of storage media				
-optical tracking	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+optical tracking	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 optische Medien	Sicht=media		JJJJ=(n)			
 optisches tracking			JJJJ=2004			
 orbitale Fragestellungen	Sicht=theory			OG_Kontext=Nature&Life		
-ORF	Sicht=xxx			OG_Kontext=Erg‰nzung		
+ORF	Sicht=xxx			OG_Kontext=Erg√§nzung		
 ORF - media database						
 organic art	Sicht=art				Quelle=SW	
 Organisation	Sicht=world	GD_View=23 view of organizing institution		OG_Kontext=Other		
@@ -3867,7 +3867,7 @@ P2P	Sicht=comtech					Sparte=N
 packet sniffing	Sicht=comtech					Sparte=N
 Pain	Sicht=body	GD_View=08 body view	JJJJ=2005	OG_Kontext=Body Human		
 paint program	Sicht=tool	GD_View=18 view of the picture	JJJJ=2005		Quelle=PF	Sparte=BD
-Painting	Sicht=art	GD_View=18 view of the picture	JJJJ=2006	OG_Kontext=Erg‰nzung	Quelle=SW	Sparte=BD
+Painting	Sicht=art	GD_View=18 view of the picture	JJJJ=2006	OG_Kontext=Erg√§nzung	Quelle=SW	Sparte=BD
 Palpable Computing						
 Panopticon	Sicht=archeology	GD_View=12 visual view	JJJJ=1996	OG_Kontext=Aesthetics		
 Panoptische Modelle	Sicht=archeology	GD_View=19 presentation view	JJJJ=2007			
@@ -3891,12 +3891,12 @@ Partitur	Sicht=art	GD_View=26 view of the score				Sparte=M
 Partitur als Bild	Sicht=art	GD_View=26 view of the score			Quelle=SN	Sparte=M
 Partizipation	Sicht=culture				Quelle=SN	
 partizipative Kunst	Sicht=art			OG_Kontext=Genre	Quelle=SN	
-partizipative Projekte	Sicht=culture	GD_View=03 service view / project view	JJJJ=(n)	OG_Kontext=Erg‰nzung		
+partizipative Projekte	Sicht=culture	GD_View=03 service view / project view	JJJJ=(n)	OG_Kontext=Erg√§nzung		
 partizipative WWW-Arbeiten						Sparte=N
 partizipatorische Kunst	Sicht=art					
 pattern analysing			JJJJ=(1992)			
 pattern generator						
-pattern recognition	Sicht=informatics			OG_Kontext=Erg‰nzung	Quelle=PF	
+pattern recognition	Sicht=informatics			OG_Kontext=Erg√§nzung	Quelle=PF	
 Paul Sermon explored the intimacy of virtual tactile experiences	Sicht=art					
 PC	Sicht=hardware		JJJJ=2005			
 PDA	Sicht=hardware			OG_Kontext=Technology		
@@ -3915,7 +3915,7 @@ performance platform	Sicht=software	GD_View=26 performance view	JJJJ=(1988)			Sp
 Performance Software	Sicht=software	GD_View=26 performance view				Sparte=P
 Performance Theater	Sicht=art	GD_View=31 theater view				Sparte=P
 performance tools	Sicht=tool					Sparte=P
-Performances auf Avatare ¸bertragen			JJJJ=(2000)			Sparte=P
+Performances auf Avatare √ºbertragen			JJJJ=(2000)			Sparte=P
 Performance-System						Sparte=P
 performative concepts of space		GD_View=28 performativity as view	JJJJ=2005			Sparte=P
 Performative Installation	Sicht=art	GD_View=28 performativity as view	JJJJ=(n)	OG_Kontext=Genre		Sparte=P
@@ -3951,7 +3951,7 @@ philosopical concepts	Sicht=theory		JJJJ=2004
 photo						Sparte=D
 Photo art	Sicht=art	GD_View=18 view of the picture	JJJJ=2006	OG_Kontext=Genre		Sparte=D
 photo machine		GD_View=03 machine view - robots	JJJJ=2004			Sparte=D
-Photogramm	Sicht=xxx	GD_View=18 view of the picture		OG_Kontext=Erg‰nzung		Sparte=BD
+Photogramm	Sicht=xxx	GD_View=18 view of the picture		OG_Kontext=Erg√§nzung		Sparte=BD
 Photography	Sicht=media	GD_View=18 view of the picture		OG_Kontext=Technology	Quelle=SW,PF	Sparte=BD
 Photokunst	Sicht=art	GD_View=18 view of the picture				Sparte=BD
 photometrisch konsistente Lichtsimulation	Sicht=representation					
@@ -3964,7 +3964,7 @@ physical appearance
 physical computing						
 physical representation	Sicht=body	GD_View=19 view of representation	JJJJ=1987			
 physical violence within the human body						
-physics	Sicht=science			OG_Kontext=Erg‰nzung	Quelle=PF	
+physics	Sicht=science			OG_Kontext=Erg√§nzung	Quelle=PF	
 physiology	Sicht=science					
 physiology of vision	Sicht=science		JJJJ=(1999,2001)			
 physisches Interface	Sicht=interface	GD_View=05 interface view				
@@ -3979,12 +3979,12 @@ Pixelspaces
 plagiarism			JJJJ=2005			
 plant growing						
 plants as interface (touching the leaves)	Sicht=interface	GD_View=05 interface view				
-Planungstool f¸r Stadtplanung	Sicht=tool					
+Planungstool f√ºr Stadtplanung	Sicht=tool					
 plastic						
 playability					Quelle=PF	Sparte=P
 Player	Sicht=Hardware				Quelle=SN	
 playing with identity	Sicht=culture	GD_View=11 feminist view				
-playing with people¥s desires			JJJJ=2004			
+playing with people¬¥s desires			JJJJ=2004			
 Playstation	Sicht=Hardware	GD_View=32 gaming view				Sparte=G
 Plotter	Sicht=Hardware					
 plug-in	Sicht=interface	GD_View=05 interface view	JJJJ=2004			
@@ -4034,7 +4034,7 @@ Position of women	Sicht=culture	GD_View=11 feminist view		OG_Kontext=SocieHistor
 positional						
 positional devices	Sicht=interface	GD_View=05 interface view	JJJJ=(2000)			
 Positionssystem						
-Positiontracker	Sicht=interface	GD_View=14 view of sensor technology		OG_Kontext=Erg‰nzung		
+Positiontracker	Sicht=interface	GD_View=14 view of sensor technology		OG_Kontext=Erg√§nzung		
 Postcolonialism	Sicht=theory			OG_Kontext=SocieHistory		
 posthuman	Sicht=body				Quelle=SW	
 Postkunst	Sicht=art					Sparte=B
@@ -4052,17 +4052,17 @@ powerbook	Sicht=hardware			OG_Kontext=Technology
 powerful software	Sicht=software		JJJJ=(2001)			
 Powersphere		GD_View=23 power-theoretical view	JJJJ=1993			
 praise for the parasites - computer viruses						
-Pr‰senz	Sicht=comtech					Sparte=N
+Pr√§senz	Sicht=comtech					Sparte=N
 presence	Sicht=theory				Quelle=PF	
 preservation			JJJJ=2004			
-print media	Sicht=media			OG_Kontext=Erg‰nzung		
+print media	Sicht=media			OG_Kontext=Erg√§nzung		
 Printer	Sicht=hardware		JJJJ=(1986,88,91,93,95,98,2000,01,02,03)		Quelle=SN	
 Printmedien			JJJJ=2007			
 Privacy	Sicht=culture		JJJJ=2007	OG_Kontext=SocieHistory	Quelle=SW	
 private security						
-PRIX	Sicht=art			OG_Kontext=Erg‰nzung		
+PRIX	Sicht=art			OG_Kontext=Erg√§nzung		
 prix ars electronica	Sicht=art					
-Problemlˆsung						
+Probleml√∂sung						
 Process		GD_View=27 process view			Quelle=SN	
 process art	Sicht=art	GD_View=27 process view				
 process based action		GD_View=27 process view				
@@ -4082,7 +4082,7 @@ ProgrammiererIn		GD_View=24 view of informatics	JJJJ=(2003)
 Programmiersprachen als Kunstfrage		GD_View=24 view of informatics				
 Programmiertechnik	Sicht=informatics	GD_View=24 view of informatics				
 Programmierung		GD_View=24 view of informatics	JJJJ=2006		Quelle=SN	
-programming	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg‰nzung	Quelle=SN	
+programming	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg√§nzung	Quelle=SN	
 programming languages	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=SocieHistory	Quelle=PF	
 programming languages as art question						
 Programmsystem	Sicht=software	GD_View=24 view of informatics	JJJJ=(1992)	OG_Kontext=Technology		
@@ -4095,9 +4095,9 @@ Projekte zu Kepler
 Projektvisualisierung			JJJJ=(1996)			Sparte=D
 Propriozeptives System						
 prosthetics			JJJJ=2006			
-Prothetik	Sicht=interface	GD_View=07 body extensions	JJJJ=(2000)	OG_Kontext=Erg‰nzung		
+Prothetik	Sicht=interface	GD_View=07 body extensions	JJJJ=(2000)	OG_Kontext=Erg√§nzung		
 prothetische Hilfen	Sicht=interface	GD_View=07 body extensions				
-Protokoll	Sicht=xxx			OG_Kontext=Erg‰nzung		
+Protokoll	Sicht=xxx			OG_Kontext=Erg√§nzung		
 prototyping	Sicht=informatics	GD_View=24 view of informatics			Quelle=PF	
 prozedurale Keyframe-Animation						Sparte=A
 Prozess						
@@ -4158,7 +4158,7 @@ radar			JJJJ=1991
 Radical Disruption of a Gyroscopic Device with Heterodyne Mutation			JJJJ=(2002)			
 radical software group						
 radikal dezentralisiert	Sicht=xxx		JJJJ=2004	OG_Kontext=InfoMedia		
-Radio	Sicht=media	GD_View=28 radio view		OG_Kontext=Erg‰nzung	Quelle=SW	
+Radio	Sicht=media	GD_View=28 radio view		OG_Kontext=Erg√§nzung	Quelle=SW	
 radio art	Sicht=art	GD_View=28 radio view				
 Radio Free Utopia		GD_View=28 radio view				
 Radio Frequency Identification		GD_View=28 radio view	JJJJ=2004			
@@ -4173,7 +4173,7 @@ Radio-Netzwerk-Projekte						Sparte=N
 Radiositysimulation	Sicht=representation					Sparte=A
 Radio-Technik			JJJJ=(n)			
 Raketenleitrechnersysteme						
-random	Sicht=xxx			OG_Kontext=Erg‰nzung	Quelle=PF	
+random	Sicht=xxx			OG_Kontext=Erg√§nzung	Quelle=PF	
 random access			JJJJ=1989			
 random access to laser videodisc						
 Rap						Sparte=M
@@ -4189,7 +4189,7 @@ RDF	Sicht=representation					Sparte=N
 reactive environments	Sicht=interface	GD_View=05 interface view				Sparte=PI
 reactive wall mirror						
 Readability	Sicht=representation		JJJJ=1995		Quelle=PF	
-Ready-Made-Medium als Pr‰sentationsform/TV						
+Ready-Made-Medium als Pr√§sentationsform/TV						
 Real time					Quelle=SN,PF	
 Real time / Echtzeit	Sicht=xxx	GD_View=26 temporal view	JJJJ=2004	OG_Kontext=Aesthetics	Quelle=SN	
 real time filtering	Sicht=informatics					
@@ -4206,7 +4206,7 @@ Rechnerkollektive
 Rechnerverbund	Sicht=xxx			OG_Kontext=Technology		
 Recognition						
 Recorderentwicklung	Sicht=xxx			OG_Kontext=Technology		
-recording	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+recording	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 Recording Technology						
 recoverability	Sicht=informatics	GD_View=24 view of informatics	JJJJ=2006		Quelle=PF	
 Recycling			JJJJ=2006			
@@ -4227,13 +4227,13 @@ relationship	Sicht=representation				Quelle=GS,PF
 relative orientation			JJJJ=2007			
 Religion	Sicht=culture	GD_View=29 theological view	JJJJ=2002	OG_Kontext=SocieHistory	Quelle=SW	
 re-mapping						Sparte=D
-Remediatisierung	Sicht=xxx		JJJJ=2007	OG_Kontext=Erg‰nzung		
+Remediatisierung	Sicht=xxx		JJJJ=2007	OG_Kontext=Erg√§nzung		
 remix					Quelle=SN	Sparte=M
 remote electronic control battle systems (REC)						
 remote medicine					Quelle=SW	
 remote observation			JJJJ=2006		Quelle=SW	
 rendering	Sicht=representation	GD_View=11 light view			Quelle=PF	Sparte=DA
-Repraesentation	Sicht=representation	GD_View=19 view of representation	JJJJ=2004	OG_Kontext=Erg‰nzung	Quelle=SN	
+Repraesentation	Sicht=representation	GD_View=19 view of representation	JJJJ=2004	OG_Kontext=Erg√§nzung	Quelle=SN	
 Representation of knowledge	Sicht=representation	GD_View=19 view of representation		OG_Kontext=InfoMedia		
 Representativeness	Sicht=xxx		JJJJ=(1995)	OG_Kontext=Abstracta		
 Reproduktionsmedien						
@@ -4246,7 +4246,7 @@ Responsiveness					Quelle=PF	Sparte=PI
 Retina-Scanner	Sicht=interface	GD_View=14 view of sensor technology		OG_Kontext=Technology		
 retrieve						
 Retro-Aesthetik	Sicht=xxx			OG_Kontext=Theories		
-Retro-Ans‰tze						
+Retro-Ans√§tze						
 revealing the viewer to himself as a voyeur			JJJJ=2007			
 reverse			JJJJ=2005			
 reverse engineering			JJJJ=2007			
@@ -4259,8 +4259,8 @@ Rhizome - archive of critical writing on media art
 Rhythm			JJJJ=2007		Quelle=SN	
 Rhythmus			JJJJ=1995		Quelle=SN	
 Rhythmusdiagramm	Sicht=representation					Sparte=D
-riechen	Sicht=xxx		JJJJ=1995	OG_Kontext=Erg‰nzung		
-Ringo Musikdatenbank (ƒhnlichkeitsprofile)						Sparte=M
+riechen	Sicht=xxx		JJJJ=1995	OG_Kontext=Erg√§nzung		
+Ringo Musikdatenbank (√Ñhnlichkeitsprofile)						Sparte=M
 RISC	Sicht=xxx		JJJJ=(1996)	OG_Kontext=Technology		
 RISC  reduced instruction set computing	Sicht=informatics	GD_View=24 view of informatics	JJJJ=2005			
 RIXC			JJJJ=(2000)			
@@ -4270,7 +4270,7 @@ Robo-Oekologien
 Robot	Sicht=xxx	GD_View=03 machine view - robots		OG_Kontext=A-Life-Tech		
 roboter performance   (Performance Richtung)		GD_View=26 performance view	JJJJ=1990/1991/1992/1996/2001	OG_Kontext=Genre		Sparte=P
 Roboterarme	Sicht=xxx	GD_View=03 machine view - robots	JJJJ=2001	OG_Kontext=A-Life-Tech		
-Robotergesten	Sicht=xxx	GD_View=03 machine view - robots	JJJJ=(1996)	OG_Kontext=Erg‰nzung		Sparte=P
+Robotergesten	Sicht=xxx	GD_View=03 machine view - robots	JJJJ=(1996)	OG_Kontext=Erg√§nzung		Sparte=P
 Roboterinstallationen	Sicht=art	GD_View=03 machine view - robots	JJJJ=(1986,1989)			
 Roboter-Interaktion		GD_View=03 machine view - robots	JJJJ=(1993)			Sparte=CI
 Roboterkoerper		GD_View=03 machine view - robots	JJJJ=2005			
@@ -4292,7 +4292,7 @@ robotische Installation		GD_View=03 machine view - robots	JJJJ=1998
 robotische Kriegsfuehrung	Sicht=culture		JJJJ=(2000)	OG_Kontext=A-Life-Tech		
 robotische skulpturale Systeme		GD_View=03 machine view - robots	JJJJ=(1999)			
 robots+avatars			JJJJ=1998			
-Robot-Soldier	Sicht=hardware			OG_Kontext=Erg‰nzung		
+Robot-Soldier	Sicht=hardware			OG_Kontext=Erg√§nzung		
 role view		GD_View=03 machine view - robots				
 Room of Plants	Sicht=xxx	GD_View=17 view of plants	JJJJ=2001	OG_Kontext=Nature&Life		
 rotating loudspeaker arm			JJJJ=1980			
@@ -4304,10 +4304,10 @@ routing
 RSS						Sparte=N
 RSS-Feeds (Inhalte abonnieren)			JJJJ=2005			Sparte=N
 Rucksackkunst	Sicht=art					
-R¸ckkoppelungsschleife						
+R√ºckkoppelungsschleife						
 Rueckkopplung					Quelle=SN	
 rule based						
-rules of communication	Sicht=xxx			OG_Kontext=Erg‰nzung		Sparte=N
+rules of communication	Sicht=xxx			OG_Kontext=Erg√§nzung		Sparte=N
 Rundfunk, Radio			JJJJ=2004			
 Rundum-Video						Sparte=V
 Sammelkapitel fuer "aeltere" Medien (in ihren elektronischen Auspraegungen)	Sicht=media		JJJJ=(1999)			
@@ -4321,9 +4321,9 @@ Scanner	Sicht=xxx			OG_Kontext=Technology
 scanning			JJJJ=2004			
 Schachbrett	Sicht=xxx		JJJJ=(1988)	OG_Kontext=Technology		
 Schachbrett-Interface	Sicht=interface	GD_View=05 interface view	JJJJ=(1980)			Sparte=I
-Schachprogramme	Sicht=xxx		JJJJ=(1979)	OG_Kontext=Erg‰nzung		Sparte=G
+Schachprogramme	Sicht=xxx		JJJJ=(1979)	OG_Kontext=Erg√§nzung		Sparte=G
 Schaltsysteme			JJJJ=2007			
-Schatten	Sicht=body			OG_Kontext=Erg‰nzung	Quelle=SN	
+Schatten	Sicht=body			OG_Kontext=Erg√§nzung	Quelle=SN	
 Schattentheater		GD_View=31 theater view	JJJJ=1988			Sparte=P
 Schaumaschinerie						
 Schauspiel		GD_View=31 theater view				Sparte=P
@@ -4336,7 +4336,7 @@ Schnittstellendesign	Sicht=informatics		JJJJ=(1992)
 Schnittstellenproblem	Sicht=informatics					
 Schoenbildschauer						
 Schoenheit						
-Schˆnbildschauer			JJJJ=1979			
+Sch√∂nbildschauer			JJJJ=1979			
 Schreibmaschinengrafik		GD_View=15 typographical view				
 Schriftgenerator		GD_View=15 typographical view	JJJJ=(1997)			
 Schrittmachersysteme			JJJJ=(1980)			
@@ -4367,8 +4367,8 @@ Sehmaschinen	Sicht=interface	GD_View=05 interface view
 Sehrohr	Sicht=interface	GD_View=05 interface view	JJJJ=(n)			
 Sehsensor	Sicht=interface	GD_View=14 view of sensor technology				
 Selbst						
-Selbsterm‰chtigung	Sicht=culture		JJJJ=1993		Quelle=SN	
-Selbstorganisation	Sicht=xxx		JJJJ=2007	OG_Kontext=Erg‰nzung		
+Selbsterm√§chtigung	Sicht=culture		JJJJ=1993		Quelle=SN	
+Selbstorganisation	Sicht=xxx		JJJJ=2007	OG_Kontext=Erg√§nzung		
 Selbstportrait			JJJJ=(1989,93,98,2002)			
 Selbststeuerung			JJJJ=2007			
 Selbstwahrnehmung			JJJJ=1993,1995			
@@ -4471,11 +4471,11 @@ Simulator		GD_View=27 simulation view
 Simulator sickness		GD_View=27 simulation view				
 Simulierte Natur		GD_View=27 simulation view				
 simuliertes Photogramm		GD_View=27 simulation view	JJJJ=( ... 1995)			Sparte=DA
-Simuliertes Wachstum	Sicht=xxx	GD_View=27 simulation view	JJJJ=(n)	OG_Kontext=Erg‰nzung		
+Simuliertes Wachstum	Sicht=xxx	GD_View=27 simulation view	JJJJ=(n)	OG_Kontext=Erg√§nzung		
 simultan			JJJJ=(n)			
 simultane Schichten						
 Simultaneitaet		GD_View=26 temporal view				
-Simultaneitaet ñ Echtzeit		GD_View=26 temporal view				
+Simultaneitaet ¬ñ Echtzeit		GD_View=26 temporal view				
 simultaneity	Sicht=xxx	GD_View=26 temporal view	JJJJ=(1998)	OG_Kontext=Aesthetics		
 Simultaneous Perspektive						
 sinnliche Grossinstallationen (siehe Ausstellungsselektion OK Linz)	Sicht=art					
@@ -4501,7 +4501,7 @@ smart card			JJJJ=(n)
 smart houses					Quelle=SW	
 smart toys		GD_View=32 gaming view	JJJJ=(n)			Sparte=G
 smartCam						Sparte=N
-smartcard access	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+smartcard access	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 smarte Waffensysteme			JJJJ=(1999,2001)			
 smartMoney					Quelle=SW	
 Smell	Sicht=body	GD_View=19 olfactory "view" (smell)		OG_Kontext=Body Human	Quelle=SW	
@@ -4517,7 +4517,7 @@ social networking			JJJJ=2004
 social networks	Sicht=xxx			OG_Kontext=SocieHistory		
 social science concepts						
 social shaping of technology			JJJJ=2004			
-social software	Sicht=software			OG_Kontext=Erg‰nzung		
+social software	Sicht=software			OG_Kontext=Erg√§nzung		
 social space			JJJJ=(2005)			
 social tagging	Sicht=representation		JJJJ=(1997)		Quelle=GS	Sparte=N
 social web						Sparte=N
@@ -4547,7 +4547,7 @@ software resistance	Sicht=culture		JJJJ=(n)	OG_Kontext=Technology
 software scene	Sicht=culture					
 software sceneculture	Sicht=culture		JJJJ=(2003)	OG_Kontext=Technology		
 Softwarecode	Sicht=representation					
-softwaregeneriert	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg‰nzung		
+softwaregeneriert	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg√§nzung		
 Softwareklassen - Anwendungstypen	Sicht=software		JJJJ=(2001)			
 Softwarekonzept	Sicht=informatics	GD_View=24 view of informatics	JJJJ=(2003)			
 Softwarekunst	Sicht=art		JJJJ=(2003)			
@@ -4562,7 +4562,7 @@ sonic sculpture	Sicht=art					Sparte=M
 sonic spatial objects						Sparte=M
 Sonifikation	Sicht=art			OG_Kontext=Genre	Quelle=SN	Sparte=M
 Sonogramm					Quelle=SN	Sparte=M
-sonology	Sicht=science			OG_Kontext=Erg‰nzung		Sparte=M
+sonology	Sicht=science			OG_Kontext=Erg√§nzung		Sparte=M
 Sound	Sicht=xxx		JJJJ=2007	OG_Kontext=Aesthetics	Quelle=SN,SW	Sparte=M
 Sound / Klang	Sicht=body					Sparte=M
 sound design					Quelle=SN	Sparte=M
@@ -4639,7 +4639,7 @@ Spielerische Interaktion		GD_View=32 gaming view				Sparte=GI
 Spielzeug		GD_View=32 gaming view				Sparte=G
 Spionkamera	Sicht=xxx			OG_Kontext=Technology		
 spiritual software	Sicht=software					
-Spiritualit‰t			JJJJ=2007		Quelle=SN	
+Spiritualit√§t			JJJJ=2007		Quelle=SN	
 Sport	Sicht=Body	GD_View=22 athletic aspects		OG_Kontext=Other		Sparte=P
 Sprachanalyse						
 Sprachausgabe						
@@ -4662,7 +4662,7 @@ Station	Sicht=hardware			OG_Kontext=Technology
 statistical functions	Sicht=tool	GD_View=05 tool view / instruments			Quelle=PF	
 statistical relationship	Sicht=representation				Quelle=GS	
 Step Sensor	Sicht=interface	GD_View=14 view of sensor technology		OG_Kontext=Technology		
-Stereo	Sicht=xxx		JJJJ=(1999)	OG_Kontext=Erg‰nzung		
+Stereo	Sicht=xxx		JJJJ=(1999)	OG_Kontext=Erg√§nzung		
 stereographische Echtzeitanwendung						
 Stereographische Projektion			JJJJ=(1999)			
 Stereographische Videoproduktion						Sparte=V
@@ -4680,7 +4680,7 @@ stereoscopy			JJJJ=(1988)
 Stereoskopfilm			JJJJ=(1990,1995)			
 Stereoskopie						
 Stereoskopische Visualisierung			JJJJ=(2003)			
-stereoskopisches Sehen	Sicht=xxx		JJJJ=1979	OG_Kontext=Erg‰nzung		
+stereoskopisches Sehen	Sicht=xxx		JJJJ=1979	OG_Kontext=Erg√§nzung		
 Stereotaktisches Computergeraet			JJJJ=(1996)			
 steuerbare Maschinen			JJJJ=2007			
 Steuerung		GD_View=25 cybernetic view	JJJJ=(n)		Quelle=SN	
@@ -4688,7 +4688,7 @@ Steuerungsgeraete			JJJJ=(1982,94)
 Steuerungstechnik	Sicht=xxx			OG_Kontext=Technology		
 Stiftplotter	Sicht=interface					
 Stimme	Sicht=body	GD_View=31 voice view		OG_Kontext=Abstracta		Sparte=M
-Stimmung, Laune		GD_View=10 view of the mood	JJJJ=(2001)	OG_Kontext=Erg‰nzung		
+Stimmung, Laune		GD_View=10 view of the mood	JJJJ=(2001)	OG_Kontext=Erg√§nzung		
 Stimmungsmanagement		GD_View=10 view of the mood				
 storage	Sicht=storage	GD_View=20 view of storage media		OG_Kontext=Technology		
 storage device	Sicht=storage	GD_View=20 view of storage media	JJJJ=2007			
@@ -4714,7 +4714,7 @@ Sublime				OG_Kontext=Aesthetics
 Sublime aesthetische Umsetzung						
 Subversion		GD_View=07 subversion view		OG_Kontext=InfoMedia	Quelle=SN	
 Suchmaschinen						Sparte=N
-Suchmaschinen die Ñbezahlteì Inhalte in den Trefferlisten hoch reihen	Sicht=xxx		JJJJ=(1995)	OG_Kontext=InfoMedia		
+Suchmaschinen die ¬Ñbezahlte¬ì Inhalte in den Trefferlisten hoch reihen	Sicht=xxx		JJJJ=(1995)	OG_Kontext=InfoMedia		
 SUN - Java: standard for the Internet						
 SUN veroeffentlicht Java u. JavaScript	Sicht=xxx			OG_Kontext=Technology		
 Supercomputing	Sicht=hardware	GD_View=03 view of PC/computer/video technology		OG_Kontext=InfoMedia	Quelle=PF	
@@ -4740,8 +4740,8 @@ synaesthetische Interaktion		GD_View=03 synaesthetic view	JJJJ=(1988)			Sparte=M
 synaesthetische Interaktionen		GD_View=03 synaesthetic view	JJJJ=(n)			Sparte=MI
 synaesthetische Transformation		GD_View=03 synaesthetic view	JJJJ=(1988)			Sparte=M
 synaesthetische Welle		GD_View=03 synaesthetic view				Sparte=M
-Syn‰sthesie		GD_View=03 synaesthetic view	JJJJ=(2003)		Quelle=SN	Sparte=M
-Syn‰sthesie ist eines der Leitmotive der Medienkunst		GD_View=03 synaesthetic view				Sparte=M
+Syn√§sthesie		GD_View=03 synaesthetic view	JJJJ=(2003)		Quelle=SN	Sparte=M
+Syn√§sthesie ist eines der Leitmotive der Medienkunst		GD_View=03 synaesthetic view				Sparte=M
 Synchronisation					Quelle=SN	
 synchronisierte Animation	Sicht=xxx			OG_Kontext=Genre		Sparte=A
 Synchronisierte Animation (Fenster-Schiebe-Experimente)						Sparte=A
@@ -4751,7 +4751,7 @@ synergetische Interaktion						Sparte=I
 Synesthesia	Sicht=xxx	GD_View=03 synaesthetic view		OG_Kontext=Aesthetics		Sparte=M
 Syntax					Quelle=PF	
 Synthese					Quelle=SN	
-Synthesebilder	Sicht=xxx			OG_Kontext=Erg‰nzung		Sparte=DA
+Synthesebilder	Sicht=xxx			OG_Kontext=Erg√§nzung		Sparte=DA
 Synthesis	Sicht=xxx			OG_Kontext=Aesthetics	Quelle=PF	
 synthesis images / variability, combinatorics, aleatorics						
 synthesizer	Sicht=hardware			OG_Kontext=Technology		Sparte=M
@@ -4787,7 +4787,7 @@ Systemtheorie		GD_View=25 systemic view
 Szenengraphsystem						
 szenisch	Sicht=xxx		JJJJ=(1989)	OG_Kontext=Genre		
 szenische Interaktion						Sparte=I
-Table	Sicht=world		JJJJ=1994	OG_Kontext=Erg‰nzung		
+Table	Sicht=world		JJJJ=1994	OG_Kontext=Erg√§nzung		
 table and bench as interface	Sicht=interface	GD_View=05 interface view				Sparte=I
 Tablet PC	Sicht=hardware		JJJJ=(1994)			
 Tactical mapping system						
@@ -4822,12 +4822,12 @@ TCP/IP	Sicht=comtech			OG_Kontext=Technology		Sparte=N
 technical drawing apparatures		GD_View=03 machine view - robots				
 Technical Interfaces	Sicht=interface	GD_View=05 interface view	JJJJ=(n)	OG_Kontext=Technology		
 technische Interaktivitaet		GD_View=32 view of interactivity				Sparte=I
-technische Medialitaet	Sicht=xxx		JJJJ=(1980,86,88,89,98)	OG_Kontext=Erg‰nzung		
+technische Medialitaet	Sicht=xxx		JJJJ=(1980,86,88,89,98)	OG_Kontext=Erg√§nzung		
 technische Medien						
-Techno	Sicht=xxx			OG_Kontext=Erg‰nzung		Sparte=M
+Techno	Sicht=xxx			OG_Kontext=Erg√§nzung		Sparte=M
 Techno...			JJJJ=(1991)			
 Techno-Aesthetik						
-technoculture	Sicht=culture		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+technoculture	Sicht=culture		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 Technoculture-Diskurs	Sicht=theory	GD_View=01 culture-theoretical view	JJJJ=(1998)			
 technodemocracy			JJJJ=(1998)			
 Technodemokratie			JJJJ=(1995,1996)			
@@ -4835,8 +4835,8 @@ Technodiskurs	Sicht=theory
 technoetic aesthetics			JJJJ=(1998)			
 Techno-Heidentum			JJJJ=(n)			
 Technoinstrumente			JJJJ=n			Sparte=M
-Techno-Kolonialismus	Sicht=culture		JJJJ=(1986,93,94,95,97,98,2000,02)	OG_Kontext=Erg‰nzung		
-Technokultur	Sicht=culture		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+Techno-Kolonialismus	Sicht=culture		JJJJ=(1986,93,94,95,97,98,2000,02)	OG_Kontext=Erg√§nzung		
+Technokultur	Sicht=culture		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 Techno-Kunst						
 technological art	Sicht=art			OG_Kontext=Genre		
 technological magic	Sicht=xxx			OG_Kontext=SocieHistory		
@@ -4848,7 +4848,7 @@ Technologiefetischismus			JJJJ=(1990)
 Technologieimperium						
 Technologiekunst			JJJJ=(n)			
 Technologiestadt			JJJJ=(n)			
-Technologische Bilder	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg‰nzung		
+Technologische Bilder	Sicht=xxx		JJJJ=(n)	OG_Kontext=Erg√§nzung		
 Technologische Kultur			JJJJ=1989			
 Technologische Magie						
 Technology	Sicht=xxx			OG_Kontext=Technology	Quelle=SW	
@@ -4862,7 +4862,7 @@ Techno-religioese Ekstasen			JJJJ=(1997)
 Technoscience						
 technoscience art	Sicht=art			OG_Kontext=Art&Science		
 technoscience art / techno-scientific art	Sicht=art		JJJJ=(1994)			
-Techno-SÈance			JJJJ=(1997)			
+Techno-S√©ance			JJJJ=(1997)			
 Technosphere			JJJJ=(1987,88)			
 Techno-Transformation						
 techno-utopianism			JJJJ=(1998)			
@@ -4879,7 +4879,7 @@ Telearbeit
 telebanking	Sicht=xxx		JJJJ=(2004)	OG_Kontext=Technology		
 telecenter	Sicht=xxx		JJJJ=(1995,97)	OG_Kontext=Technology		
 Telechirurgie						Sparte=N
-Telechoreographie	Sicht=xxx		JJJJ=(1982)	OG_Kontext=Erg‰nzung		Sparte=PN
+Telechoreographie	Sicht=xxx		JJJJ=(1982)	OG_Kontext=Erg√§nzung		Sparte=PN
 telecommunication	Sicht=xxx		JJJJ=1989	OG_Kontext=Technology	Quelle=SW	
 telecomputing	Sicht=informatics					Sparte=N
 teleconferencing						Sparte=N
@@ -4901,7 +4901,7 @@ Tele-Immersion			JJJJ=(1994)
 Teleinformatik			JJJJ=(n)			Sparte=N
 Tele-Interaktion		GD_View=32 view of interactivity	JJJJ=(1994)			Sparte=IN
 Teleintimitaet						
-Teleintimit‰t	Sicht=xxx		JJJJ=1994	OG_Kontext=Body Human		
+Teleintimit√§t	Sicht=xxx		JJJJ=1994	OG_Kontext=Body Human		
 Telekiosking			JJJJ=(2003)			
 Teleklettergarten						
 Telekommunikation	Sicht=xxx	GD_View=07 view of telecommunications	JJJJ=(1989,95,99)	OG_Kontext=Technology	Quelle=SN	
@@ -4919,12 +4919,12 @@ telematic networking						Sparte=N
 telematic performance		GD_View=26 performance view				Sparte=PN
 telematic vision						Sparte=N
 Telematics			JJJJ=(1992)			Sparte=N
-Telematik	Sicht=xxx	GD_View=07 view of telecommunications		OG_Kontext=Erg‰nzung		
+Telematik	Sicht=xxx	GD_View=07 view of telecommunications		OG_Kontext=Erg√§nzung		
 Telematik: Verbindung von Comptern und telekommunikativen Systemen		GD_View=07 view of telecommunications				
 telematische Arbeitsumgebung			JJJJ=(1994)			
 telematische Architektur			JJJJ=(n)			
 telematische Interaktion			JJJJ=(1989)			Sparte=IN
-telematische Medien			JJJJ=(n)	OG_Kontext=Erg‰nzung		
+telematische Medien			JJJJ=(n)	OG_Kontext=Erg√§nzung		
 Telematische Performance		GD_View=26 performance view	JJJJ=(1989)			Sparte=PN
 telematische Simulation						Sparte=AN
 telematische Skulptur	Sicht=art					
@@ -4940,7 +4940,7 @@ Telepistemology		GD_View=16 epistemological view	JJJJ=(1997,98,2000,01,02)
 Telepolis						
 Telepraesenz		GD_View=02 view of absense	JJJJ=(1995,98)			Sparte=N
 Telepraesenz-Installation	Sicht=art	GD_View=02 view of absense				
-Telepr‰senz		GD_View=02 view of absense	JJJJ=(1995) (1990,92,93,94,95,96,97,99,2001,03)			
+Telepr√§senz		GD_View=02 view of absense	JJJJ=(1995) (1990,92,93,94,95,96,97,99,2001,03)			
 Telepresence	Sicht=xxx	GD_View=02 view of absense		OG_Kontext=Genre	Quelle=SW,PF	
 telepresent collaboration		GD_View=02 view of absense				
 tele-rendering			JJJJ=(1997)			
@@ -5023,17 +5023,17 @@ Time					Quelle=PF
 time base media						
 timed tagging	Sicht=representation		JJJJ=(1997,99,2000,01,03)		Quelle=GS	Sparte=N
 timeline	Sicht=representation				Quelle=PF	
-Timeline +-25	Sicht=xxx			OG_Kontext=Erg‰nzung		
-timesharing	Sicht=xxx			OG_Kontext=Erg‰nzung		
-timing	Sicht=xxx		JJJJ=(1999)	OG_Kontext=Erg‰nzung		
+Timeline +-25	Sicht=xxx			OG_Kontext=Erg√§nzung		
+timesharing	Sicht=xxx			OG_Kontext=Erg√§nzung		
+timing	Sicht=xxx		JJJJ=(1999)	OG_Kontext=Erg√§nzung		
 TNC Network	Sicht=art			OG_Kontext=Technology		
 to call the computer a "semiotic machine"			JJJJ=(1999)			
 Tomographie						Sparte=DA
 tomography					Quelle=SW	Sparte=DA
-Tonbandger‰t	Sicht=storage	GD_View=20 view of storage media				Sparte=M
+Tonbandger√§t	Sicht=storage	GD_View=20 view of storage media				Sparte=M
 Tonbandkomposition						Sparte=M
-Tˆne-Farben Analogiemodelle					Quelle=SN	Sparte=M
-Tˆne-Farben Korrespondenzmodelle					Quelle=SN	Sparte=M
+T√∂ne-Farben Analogiemodelle					Quelle=SN	Sparte=M
+T√∂ne-Farben Korrespondenzmodelle					Quelle=SN	Sparte=M
 Tonfilm	Sicht=media				Quelle=SN	Sparte=FVA
 Tonmontage	Sicht=art				Quelle=SN	Sparte=M
 Tool	Sicht=tool	GD_View=05 tool view / instruments		OG_Kontext=A-Life-Tech	Quelle=SN	
@@ -5053,7 +5053,7 @@ toys		GD_View=32 gaming view				Sparte=G
 toys with animal-like features		GD_View=32 gaming view				Sparte=G
 traceroutes						
 track			JJJJ=1992,1999			
-tracking	Sicht=xxx			OG_Kontext=Erg‰nzung		
+tracking	Sicht=xxx			OG_Kontext=Erg√§nzung		
 tracking device			JJJJ=2003			
 tracking system			JJJJ=1999		Quelle=PF	
 tracking the net			JJJJ=2006			
@@ -5068,9 +5068,9 @@ traditional culture
 Traditionen digitaler Aesthetik			JJJJ=(1984)			
 tragbare Ausruestung	Sicht=hardware	GD_View=08 view of portability	JJJJ=(n)			
 tragbare Computer	Sicht=hardware	GD_View=08 view of portability				
-tragbare Hˆrr‰ume			JJJJ=(1982)		Quelle=SN	Sparte=M
+tragbare H√∂rr√§ume			JJJJ=(1982)		Quelle=SN	Sparte=M
 tragbare Systeme	Sicht=hardware	GD_View=08 view of portability		OG_Kontext=Technology		
-Tragbarkeit	Sicht=hardware	GD_View=08 view of portability		OG_Kontext=Erg‰nzung		
+Tragbarkeit	Sicht=hardware	GD_View=08 view of portability		OG_Kontext=Erg√§nzung		
 Trans...						
 transArchitecture						
 transcending space	Sicht=xxx		JJJJ=(2003)	OG_Kontext=Abstracta		
@@ -5082,7 +5082,7 @@ transgender transformation			JJJJ=1999
 Transgene Kunst	Sicht=art					
 Transgenetische Kunst	Sicht=art	GD_View=17 view of genetic				
 Transgenic Art	Sicht=art	GD_View=17 view of genetic		OG_Kontext=Genre		
-translation	Sicht=representation		JJJJ= (1998,2002,03)	OG_Kontext=Erg‰nzung	Quelle=SN,PF	
+translation	Sicht=representation		JJJJ= (1998,2002,03)	OG_Kontext=Erg√§nzung	Quelle=SN,PF	
 transmediale			JJJJ=2007			
 transport	Sicht=xxx		JJJJ=(n)	OG_Kontext=Technology		
 Transportnetzwerke						Sparte=N
@@ -5093,8 +5093,8 @@ trilinear filtering
 Trojan						
 Truggebilde, Blendwerk, Wahnvorstellung						
 trust			JJJJ=(2003)			
-trusted computing	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg‰nzung		
-TV	Sicht=xxx	GD_View=29 TV view		OG_Kontext=Erg‰nzung		
+trusted computing	Sicht=informatics	GD_View=24 view of informatics		OG_Kontext=Erg√§nzung		
+TV	Sicht=xxx	GD_View=29 TV view		OG_Kontext=Erg√§nzung		
 TV art	Sicht=art	GD_View=29 TV view		OG_Kontext=Genre		
 TV-Kunst		GD_View=29 TV view				
 twofold mapping (mixed reality) schafft eine komplexe theatrale Realitaet	Sicht=representation					
@@ -5112,9 +5112,9 @@ ubiquitous game		GD_View=32 gaming view	JJJJ=(1997)			Sparte=G
 Ubiquitous Media & Reaktive Environment						
 ubiquitous telepresence					Quelle=SW	Sparte=N
 ubiquity					Quelle=PF	
-‹berlagerung						
-‹bertragung					Quelle=SN	
-‹bertragungsmedien	Sicht=xxx			OG_Kontext=Technology		
+√úberlagerung						
+√úbertragung					Quelle=SN	
+√úbertragungsmedien	Sicht=xxx			OG_Kontext=Technology		
 Uebertragungstechnik						Sparte=N
 Ueberwachung, Beaufsichtigung			JJJJ=(1992)			
 Ultraschall-Interface	Sicht=interface	GD_View=05 interface view				
@@ -5125,7 +5125,7 @@ Umweltkunst	Sicht=art					Sparte=B
 Umweltmonitoring			JJJJ=(n)			
 Umweltsteuerung						
 Underground						
-Unendliche Kunst	Sicht=xxx		JJJJ=( < 1997)	OG_Kontext=Erg‰nzung		
+Unendliche Kunst	Sicht=xxx		JJJJ=( < 1997)	OG_Kontext=Erg√§nzung		
 Unendlichkeit			JJJJ=2003			
 Unified Modeling Language (UML)	Sicht=representation	GD_View=19 presentation view			Quelle=PF	
 uniform resource locator			JJJJ=(1982)			
@@ -5149,7 +5149,7 @@ URL						Sparte=N
 usability					Quelle=PF	
 USB						
 useful activist software	Sicht=software			OG_Kontext=Technology		
-Usenet	Sicht=comtech			OG_Kontext=Erg‰nzung		Sparte=N
+Usenet	Sicht=comtech			OG_Kontext=Erg√§nzung		Sparte=N
 user			JJJJ=2001			
 user gestures						
 user interface	Sicht=interface	GD_View=05 interface view	JJJJ=(2001)			
@@ -5177,17 +5177,17 @@ Verhalten	Sicht=culture				Quelle=PF
 Verkehrssimulation						Sparte=A
 Verkehrssysteme						
 Vermessungstechnik			JJJJ=1994			
-vernetzen	Sicht=xxx		JJJJ=(1995,97)	OG_Kontext=Erg‰nzung		
+vernetzen	Sicht=xxx		JJJJ=(1995,97)	OG_Kontext=Erg√§nzung		
 vernetzte Buehne	Sicht=interface	GD_View=05 interface view	JJJJ=(1997)(1999)	OG_Kontext=Genre		
 vernetzte CAVEs						Sparte=AN
-Vernetzte Strukturen f¸r neue Formen kollaborativen Arbeitens (Mixed Realities)						
+Vernetzte Strukturen f√ºr neue Formen kollaborativen Arbeitens (Mixed Realities)						
 vernetzte Wissensraeume			JJJJ=(2001)			
 vernetzter Showroom			JJJJ=(1995)			
 Vernetzung						
-Verˆffentlichung von Audiodaten						
+Ver√∂ffentlichung von Audiodaten						
 Verortung						
 Verschraenkung zweier Realitaeten						
-Verst‰rker			JJJJ=(2002)			Sparte=M
+Verst√§rker			JJJJ=(2002)			Sparte=M
 verteilte Systeme	Sicht=informatics					
 verteiltes Rechnen	Sicht=informatics	GD_View=24 view of informatics				
 Verteilung						
@@ -5290,14 +5290,14 @@ virtueller Blindenstock	Sicht=tool
 Virtueller Denkraum	Sicht=representation		JJJJ=(n)			Sparte=DA
 virtueller Popstar	Sicht=art		JJJJ=(1995)			Sparte=P
 virtueller Sex	Sicht=body	GD_View=08 view of sexuality		OG_Kontext=A-Life-Tech		Sparte=PI
-virtuelles B¸ro	Sicht=software					Sparte=N
+virtuelles B√ºro	Sicht=software					Sparte=N
 virtuelles Museum	Sicht=culture					Sparte=NA
 Virus	Sicht=informatics	GD_View=13 view of destruction		OG_Kontext=A-Life-Tech	Quelle=SW	
 virus - security	Sicht=informatics	GD_View=24 view of informatics	JJJJ=1999			
 virus vending machine	Sicht=art					
 visible human project	Sicht=body	GD_View=08 body view				Sparte=DA
 Vision	Sicht=informatics	GD_View=16 perception view			Quelle=SW	
-vision system	Sicht=software	GD_View=16 perception view		OG_Kontext=Erg‰nzung		
+vision system	Sicht=software	GD_View=16 perception view		OG_Kontext=Erg√§nzung		
 visual						Sparte=DA
 visual abstraction		GD_View=15 diagrammatic view			Quelle=PF	Sparte=DA
 visual aesthetics						Sparte=DA
@@ -5309,7 +5309,7 @@ visual effectes   (Siehe: PRIX-Kategorie)	Sicht=art	GD_View=27 view of animation
 visual effectes - Stagnation in der Perfektion	Sicht=art	GD_View=27 view of animation				Sparte=A
 visual mathematics	Sicht=informatics	GD_View=24 view of informatics			Quelle=PF	Sparte=DA
 visual music	Sicht=art				Quelle=SN	Sparte=MA
-visual perception	Sicht=body	GD_View=16 perception view		OG_Kontext=Erg‰nzung		
+visual perception	Sicht=body	GD_View=16 perception view		OG_Kontext=Erg√§nzung		
 visual programming	Sicht=informatics	GD_View=24 view of informatics			Quelle=PF	Sparte=DA
 visual studies	Sicht=theory		JJJJ=(1970)			
 visual system		GD_View=16 perception view				
@@ -5317,7 +5317,7 @@ Visual Thesaurus	Sicht=software	GD_View=15 diagrammatic view	JJJJ=(2003)		Quelle
 visualisierte Sprache und Gesang			JJJJ=(1986)			Sparte=MDA
 Visualisierung		GD_View=15 diagrammatic view	JJJJ=(n)		Quelle=SN	Sparte=DA
 Visualisierungssysteme	Sicht=software			OG_Kontext=InfoMedia		
-Visualitaet	Sicht=xxx	GD_View=12 visual view	JJJJ=(2003)	OG_Kontext=Erg‰nzung		
+Visualitaet	Sicht=xxx	GD_View=12 visual view	JJJJ=(2003)	OG_Kontext=Erg√§nzung		
 Visualization	Sicht=representation					Sparte=DA
 Visualization of Information	Sicht=representation		JJJJ=2003	OG_Kontext=InfoMedia		Sparte=DA
 Visually Deconstructing Code	Sicht=representation					
@@ -5338,7 +5338,7 @@ VJs der Cblubszene	Sicht=art					Sparte=VMA
 Vlogs			JJJJ=1996			Sparte=VN
 VNS-Matrix (cyber-feministische Gruppe)	Sicht=art					
 vocabularies	Sicht=representation		JJJJ=1979		Quelle=GS	Sparte=L
-Vocoder				OG_Kontext=Erg‰nzung		Sparte=M
+Vocoder				OG_Kontext=Erg√§nzung		Sparte=M
 Voice		GD_View=31 voice view				Sparte=M
 Voice analysis	Sicht=software	GD_View=31 voice view		OG_Kontext=Technology		Sparte=M
 voice mail	Sicht=comtech					Sparte=MN
@@ -5356,7 +5356,7 @@ Vorbilder der Natur			JJJJ=2007
 Voronoi diagrams	Sicht=representation	GD_View=15 diagrammatic view	JJJJ=1998		Quelle=SW	Sparte=D
 Voronoj-Diagramm	Sicht=representation	GD_View=15 diagrammatic view	JJJJ=2007			Sparte=D
 Voyeurism	Sicht=xxx	GD_View=10 observer view	JJJJ=(1995,98,99,2003)	OG_Kontext=Aesthetics		
-VR				OG_Kontext=Erg‰nzung		
+VR				OG_Kontext=Erg√§nzung		
 VR art	Sicht=art		JJJJ=(1995)			Sparte=A
 VR fuer die Visualisierung			JJJJ=1995			Sparte=A
 VR fuer die Visualisierung grosser medizinischer Datenbanken			JJJJ=1997			Sparte=DA
@@ -5397,16 +5397,16 @@ Ware...
 WarGames		GD_View=23 battle view	JJJJ=(1989)	OG_Kontext=SocieHistory		Sparte=G
 Wasserdisplay	Sicht=interface	GD_View=05 interface view	JJJJ=(1992)	OG_Kontext=Technology		
 Wassermaschinen	Sicht=art		JJJJ=(2001)			
-Wasserstrahl 	Sicht=physics			OG_Kontext=Erg‰nzung		
+Wasserstrahl 	Sicht=physics			OG_Kontext=Erg√§nzung		
 Watchblogs						Sparte=N
 Waterwall	Sicht=interface	GD_View=05 interface view		OG_Kontext=Technology		
-WBT	Sicht=software			OG_Kontext=Erg‰nzung		Sparte=IN
-wearable	Sicht=body		JJJJ=(2002)	OG_Kontext=Erg‰nzung	Quelle=SW	
+WBT	Sicht=software			OG_Kontext=Erg√§nzung		Sparte=IN
+wearable	Sicht=body		JJJJ=(2002)	OG_Kontext=Erg√§nzung	Quelle=SW	
 Wearable AR System	Sicht=hardware		JJJJ=(1997,98,2001,03)			
 wearable computer	Sicht=hardware		JJJJ=(1997,2001)		Quelle=PF	
 wearable computing	Sicht=informatics			OG_Kontext=Technology		
-wearable devices	Sicht=hardware		JJJJ=(2001)	OG_Kontext=Erg‰nzung		
-wearable interface	Sicht=interface	GD_View=05 interface view	JJJJ=(1998 Ö)	OG_Kontext=Technology		Sparte=I
+wearable devices	Sicht=hardware		JJJJ=(2001)	OG_Kontext=Erg√§nzung		
+wearable interface	Sicht=interface	GD_View=05 interface view	JJJJ=(1998 ¬Ö)	OG_Kontext=Technology		Sparte=I
 Wearable System	Sicht=hardware			OG_Kontext=Technology		
 wearable technologies	Sicht=hardware		JJJJ=2007			
 wearables			JJJJ=(1997)	OG_Kontext=Technology		
@@ -5419,7 +5419,7 @@ weather data from all over the world
 web	Sicht=comtech	GD_View=10 view of networks	JJJJ=1995	OG_Kontext=Genre		Sparte=N
 web access to information about the history of censorship						Sparte=N
 web art	Sicht=art				Quelle=SW	Sparte=N
-web based training (WBT)			JJJJ=(97,98,99,2000,01,02,03)	OG_Kontext=Erg‰nzung		Sparte=IN
+web based training (WBT)			JJJJ=(97,98,99,2000,01,02,03)	OG_Kontext=Erg√§nzung		Sparte=IN
 web browser						Sparte=N
 web camera	Sicht=interface		JJJJ=(1998,2000,01,02,03)		Quelle=SW	Sparte=VN
 web design						Sparte=DN
@@ -5445,7 +5445,7 @@ Web-Kamera	Sicht=interface					Sparte=N
 weblog	Sicht=culture					Sparte=N
 Weblog-Journalisten	Sicht=culture		JJJJ=(2002,04)			Sparte=N
 Weblogs	Sicht=culture		JJJJ=2003			Sparte=N
-Web-Magazine	Sicht=culture		JJJJ=(n)	OG_Kontext=Erg‰nzung		Sparte=N
+Web-Magazine	Sicht=culture		JJJJ=(n)	OG_Kontext=Erg√§nzung		Sparte=N
 webmall						Sparte=N
 webmaster			JJJJ=(1995,96,98,99)	OG_Kontext=InfoMedia		Sparte=N
 webness			JJJJ=(04,05,06)	OG_Kontext=Genre		Sparte=N
@@ -5456,13 +5456,13 @@ WEB-Shredder 			JJJJ=(1999)			Sparte=N
 Website				OG_Kontext=InfoMedia	Quelle=SW	Sparte=N
 Websoap						Sparte=PN
 Web-Stream			JJJJ=(n)			Sparte=N
-Webucation			JJJJ=(1995)	OG_Kontext=Erg‰nzung		Sparte=N
+Webucation			JJJJ=(1995)	OG_Kontext=Erg√§nzung		Sparte=N
 Web-Zugang			JJJJ=(1996)			Sparte=N
 weekness of the memesis statement - biological analogies						
-weiﬂes Rauschen						Sparte=M
+wei√ües Rauschen						Sparte=M
 Welche Funktionen und Bedeutungen haben Koerper und Sinne im realen Raum gegenueber dem virtuellen Raum? (mixed reality)						
 Welt der Blinden	Sicht=interface			OG_Kontext=Technology		
-Welterkl‰rungsmodelle		GD_View=11 view of worldviews				
+Welterkl√§rungsmodelle		GD_View=11 view of worldviews				
 Wenn Gebrauchsgegenstaende/Waren zu kommunizieren beginnen						
 Werbeclip	Sicht=culture				Quelle=SN	Sparte=V
 Werkbegriff	Sicht=art					
@@ -5506,7 +5506,7 @@ Wissensmanager		GD_View=16 view of knowledge management				Sparte=P
 Wissensmodelle	Sicht=representation	GD_View=19 view of representation	JJJJ=(n)			
 Wissensordnung	Sicht=representation	GD_View=19 view of representation	JJJJ=(2001)			Sparte=D
 Wissensraeume	Sicht=representation	GD_View=19 view of representation				Sparte=A
-Wissensr‰ume	Sicht=representation	GD_View=19 view of representation	JJJJ=(1995)	OG_Kontext=InfoMedia		Sparte=A
+Wissensr√§ume	Sicht=representation	GD_View=19 view of representation	JJJJ=(1995)	OG_Kontext=InfoMedia		Sparte=A
 Wissensrepraesentation	Sicht=representation	GD_View=19 view of representation	JJJJ=(1986,90)			
 Wissensspeicherung	Sicht=representation	GD_View=19 view of representation	JJJJ=(1999)			
 Wissenstechnologien	Sicht=representation	GD_View=19 view of representation	JJJJ=(1996,2001)			
@@ -5514,7 +5514,7 @@ Wissensvermittlung	Sicht=culture		JJJJ=(n)
 Wissensverteilung						
 WLAN	Sicht=comtech			OG_Kontext=Technology		Sparte=N
 women, art & technology	Sicht=culture					
-women¥s networks	Sicht=culture					
+women¬¥s networks	Sicht=culture					
 Wording						Sparte=L
 workgroup computing	Sicht=informatics	GD_View=24 view of informatics				Sparte=IN
 Working Class	Sicht=culture	GD_View=05 view of the working world	JJJJ=(1987,90,96,97)	OG_Kontext=SocieHistory		
@@ -5522,7 +5522,7 @@ workstation	Sicht=hardware			OG_Kontext=Technology
 World Wide Web	Sicht=comtech				Quelle=SW	Sparte=N
 worm			JJJJ=2004			
 Wortdiagramm	Sicht=representation					Sparte=D
-Wˆrterbuch	Sicht=representation					Sparte=L
+W√∂rterbuch	Sicht=representation					Sparte=L
 WWW	Sicht=comtech		JJJJ=(1990)	OG_Kontext=InfoMedia		Sparte=N
 WWW  world wide web	Sicht=comtech					Sparte=N
 WWW site	Sicht=comtech		JJJJ=(n)			Sparte=N
@@ -5543,11 +5543,11 @@ Zeichenautomaten	Sicht=tool					Sparte=DA
 Zeit						
 Zeitliche Struktur von Animationsarbeiten	Sicht=representation					Sparte=A
 Zensur	Sicht=culture					
-Zerstˆrung		GD_View=13 view of destruction	JJJJ=(1993)			
+Zerst√∂rung		GD_View=13 view of destruction	JJJJ=(1993)			
 Zoosystemic	Sicht=science					Sparte=A
 Zoosystemicist	Sicht=science					
 Zufall			JJJJ=1986,92,2000)		Quelle=SN	
 Zufallsgenerator			JJJJ=(1993)			
 Zwangsleitsystem						
-Zweckentfremdung von Bild- u. Tontr‰gern			JJJJ=(n)			Sparte=M
+Zweckentfremdung von Bild- u. Tontr√§gern			JJJJ=(n)			Sparte=M
 Zweiweginteraktion		GD_View=32 view of interactivity				Sparte=I

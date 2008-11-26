@@ -45,19 +45,8 @@ public class Cam {
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadIdentity();
 	}
-	void projection (GLAutoDrawable space,float FOV, float xwinkel, float ywinkel, float dist, Vector3D lookAt, float h_) {
-		final GL gl = gLDrawable.getGL();
-		final GLU glu = new GLU();
-		gl.glMatrixMode(GL.GL_PROJECTION);
-		gl.glLoadIdentity();
-		h = h_;
-		glu.gluPerspective(FOV, h, znear, zfar);
-		gl.glMatrixMode(GL.GL_MODELVIEW);
-		gl.glLoadIdentity();
-	}
 	
-	void posIncrement(GLAutoDrawable space, float yrot, float xrot, float dist_, Vector3D focus_) {
-		final GL gl = gLDrawable.getGL();
+	void posIncrement(GL gl, float yrot, float xrot, float dist_, Vector3D focus_) {
 		xRot+=xrot;
 		yRot+=yrot;
 		

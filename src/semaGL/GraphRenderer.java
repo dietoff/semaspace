@@ -116,7 +116,7 @@ public class GraphRenderer {
 		}
 		else {
 			if ((n.pickColor[3]==0&&(n.alpha<0.2f)||font==3)) return;
-			if (distToCam>2000) return; 
+			if (distToCam>app.maxLabelRenderDistance) return; 
 			att = n.genTextSelAttributes();
 		}
 		n.textColor[3]=n.alpha;
@@ -160,8 +160,8 @@ public class GraphRenderer {
 
 		Node a = e.getA();
 		Node b = e.getB();
-		float af = a.getSize(); //length of "arrowheads"
-		float bf = b.getSize();
+		float af = a.size(); //length of "arrowheads"
+		float bf = b.size();
 
 		Vector3D D = b.pos.copy();
 		D.sub(a.pos); //direction of the edge
@@ -213,8 +213,8 @@ public class GraphRenderer {
 				bCol[3]=1f;
 				aCol[3]=1f;
 			} else {
-				aCol[3] = e.getA().alpha*0.7f;
-				bCol[3] = e.getB().alpha*0.7f;
+				aCol[3] = e.getA().alpha*0.5f;
+				bCol[3] = e.getB().alpha*0.5f;
 			}
 
 			if (app.inheritEdgeColorFromNodes) {
@@ -257,7 +257,7 @@ public class GraphRenderer {
 		midP.mult(0.5f);
 		midP.add(a.pos);
 		float distToCam = app.cam.distToCam(midP);
-		if (distToCam>2000) return; 
+		if (distToCam>app.maxLabelRenderDistance) return; 
 
 		String rText = e.genTextSelAttributes();
 		gl.glPushMatrix();
@@ -267,7 +267,7 @@ public class GraphRenderer {
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
 		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
-		FuncGL.renderText(app, rText, textcolor,0, font, e.getId(), distToCam, false); //render text in dark grey, with alpha of edge
+		FuncGL.renderText(app, rText, textcolor,app.getLabelsize(), font, e.getId(), distToCam, false); //render text in dark grey, with alpha of edge
 		gl.glPopMatrix();
 	}
 	synchronized void renderFan(GL gl, HashSet<Node> nodes, Node center) {

@@ -10,7 +10,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.Event;
 
+import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLDrawable;
 import javax.media.opengl.GLDrawableFactory;
 import javax.media.opengl.GLException;
 import javax.media.opengl.GLPbuffer;
@@ -45,6 +48,8 @@ import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import com.sun.opengl.util.Screenshot;
+
 import data.*;
 
 import semaGL.*;
@@ -52,6 +57,7 @@ import sun.security.krb5.internal.UDPClient;
 import UI.SimButton;
 import java.awt.BorderLayout;
 import java.io.File;
+import java.io.IOException;
 
 
 /**
@@ -85,9 +91,10 @@ public class SwingSema {
 		SwingUtilities.invokeLater(new Runnable() {
 			private SwingSema application;
 			private SemaSpace space;
+			private GLDisplayPanel semaGLDisplay;
 
 			public void run() {
-				GLDisplayPanel semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
+				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
 
 				space = new SemaSpace();
 				semaGLDisplay.addGLEventListener(space);
@@ -98,12 +105,6 @@ public class SwingSema {
 				semaGLDisplay.start();
 			}
 		});
-	}
-
-	public void screenshot (int h, int w, String filename) {
-		GLAutoDrawable gld = app.glD;
-		if (!GLDrawableFactory.getFactory().canCreateGLPbuffer()) return;
-
 	}
 
 	SemaSpace app = null;  //  @jve:decl-index=0:
@@ -180,6 +181,7 @@ public class SwingSema {
 	private JLabel depthLabel;
 	private JSlider depth;
 	private SimButton searchButton;
+	private JCheckBox jFileFormat;
 	private JLabel jLabel17;
 	private JSlider jSlider4;
 	private JSlider jSlider3;
@@ -509,7 +511,7 @@ public class SwingSema {
 		valenzSlider.setValue((int)(app.getVal()*100));
 		groupRadius.setValue((int)(app.getClusterRad()*10));
 		pushSlider.setValue((int)(app.getRepell()));
-		stretchSlider.setValue((int)(app.getPermInflate()*100));
+		stretchSlider.setValue((int)(app.getPermInflate()));
 		strengthSlider.setValue((int)(app.getStrength()*100));
 		distanceSlider.setValue((int)app.getDistance());
 		picSizeSlider.setValue(app.getPicSize());
@@ -517,8 +519,6 @@ public class SwingSema {
 		jSlider3.setValue((int)app.getLabelsize()*10);
 		jSlider4.setValue((int)app.getLabelVar()*10);
 	}
-
-
 
 	private JScrollPane getNodeAttPane() {
 		if(nodeAttPane == null) {
@@ -1461,22 +1461,20 @@ public class SwingSema {
 			openMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,Event.CTRL_MASK,true));
 			openMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					loadNetwork();
+					loadNetwork(true);
 				}
 			});
 		}
 		return openMenuItem;
 	}
 
-	private void loadNetwork() {
+	private void loadNetwork(boolean tab) {
 		boolean t = app.isRender();
 		app.setRender(false);
 		int returnVal = openFile.showOpenDialog(openFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File filename =openFile.getSelectedFile();
-			app.edgeListLoad(filename);
-			//			app.setFilename(filename);
-			//			app.netLoad();
+			app.loadNetwork(filename, tab);
 			setCounter();
 			app.setRender(t);
 		}
@@ -1502,7 +1500,7 @@ public class SwingSema {
 		int returnVal = openFile.showOpenDialog(openFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			String filename = openFile.getSelectedFile().getAbsoluteFile().toString();
-			app.nodeListLoad(openFile.getSelectedFile());
+			app.nodeListLoad(openFile.getSelectedFile(), app.isTabular());
 			setCounter();
 			app.setRender(t);
 		}
@@ -1514,7 +1512,7 @@ public class SwingSema {
 			saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,Event.CTRL_MASK,true));
 			saveMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					saveNetwork();
+					saveNetwork(true);
 				}
 			});
 		}
@@ -1612,6 +1610,7 @@ public class SwingSema {
 		renderTextures.setSelected(app.textures);
 		directedGraph.setSelected(app.directed);
 		drawclusters.setSelected(app.drawClusters);
+		jFileFormat.setSelected(app.isTabular());
 	}
 	private JSlider getJSlider1() {
 		if(jSlider1 == null) {
@@ -2025,6 +2024,7 @@ public class SwingSema {
 			file.add(getSimButton15());
 			file.add(getSimButton15x());
 			file.add(getSimButton16());
+			file.add(getJFileFormat());
 		}
 		return file;
 	}
@@ -2036,7 +2036,7 @@ public class SwingSema {
 			loadNet.setBounds(2, 18, 67, 15);
 			loadNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					loadNetwork();
+					loadNetwork(app.isTabular());
 				}
 			});
 		}
@@ -2082,13 +2082,18 @@ public class SwingSema {
 		return imgDir;
 	}
 
-	private void saveNetwork() {
+	private void saveNetwork(boolean tab) {
 		boolean t = app.isRender();
 		app.setRender(false);
 		int returnVal = saveFile.showSaveDialog(saveFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			if (!tab){
 			app.ns.view.saveNet(saveFile.getSelectedFile().toString());
 			app.ns.view.saveNodeData(saveFile.getSelectedFile().toString()+".n"); 
+			} else {
+			app.ns.view.saveNet2(saveFile.getSelectedFile().toString());
+			app.ns.view.saveNodeData2(saveFile.getSelectedFile().toString()+".n"); 
+			}
 		}
 		app.setRender(t);
 	}
@@ -2100,7 +2105,7 @@ public class SwingSema {
 			saveNet.setBounds(144, 128, 67, 15);
 			saveNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					saveNetwork();
+					saveNetwork(app.isTabular());
 				}
 			});
 		}
@@ -2297,7 +2302,7 @@ public class SwingSema {
 			directedGraph.setMargin(new java.awt.Insets(0,0,0,0));
 			directedGraph.setContentAreaFilled(false);
 			directedGraph.setFont(new java.awt.Font("Dialog",0,10));
-			directedGraph.setBounds(1, 37, 92, 17);
+			directedGraph.setBounds(119, 36, 92, 17);
 			directedGraph.setSelected(app.directed);
 			directedGraph.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -2498,5 +2503,21 @@ public class SwingSema {
 			jLabel17.setBounds(144, 150, 60, 15);
 		}
 		return jLabel17;
+	}
+
+	private JCheckBox getJFileFormat() {
+		if(jFileFormat == null) {
+			jFileFormat = new JCheckBox();
+			jFileFormat.setText("table file format");
+			jFileFormat.setFont(new java.awt.Font("Dialog",0,10));
+			jFileFormat.setSelected(app.isTabular());
+			jFileFormat.setBounds(-1, 33, 126, 23);
+			jFileFormat.addActionListener(new ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					app.setTabular(jFileFormat.isSelected());
+				}
+			});
+		}
+		return jFileFormat;
 	}
 }	

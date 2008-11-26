@@ -14,7 +14,7 @@
 01 atmospheres view	elektronische Atmosphaeren	R_Sicht=GD-View	R_GD_View=01 atmospheres view	R_JJJJ=(1989)		
 01 atmospheres view	ephemere u bewegte Phaenomene (Rauch, Feuer, Regen)	R_Sicht=GD-View	R_GD_View=01 atmospheres view			
 01 atmospheres view	Immersive Architecture	R_Sicht=GD-View	R_GD_View=01 atmospheres view			
-01 atmospheres view	Klangatmosphären	R_Sicht=GD-View	R_GD_View=01 atmospheres view		R_Sparte=M	
+01 atmospheres view	KlangatmosphÃ¤ren	R_Sicht=GD-View	R_GD_View=01 atmospheres view		R_Sparte=M	
 01 atmospheres view	Klangwolke	R_Sicht=GD-View	R_GD_View=01 atmospheres view		R_Sparte=M	
 01 atmospheres view	sky art	R_Sicht=GD-View	R_GD_View=01 atmospheres view			
 01 contextual view	01 atmospheres view	R_Sicht=GD/GD-View	R_GD_View=01 contextual view			
@@ -131,7 +131,7 @@
 03 synaesthetic view	audiovisual project	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	
 03 synaesthetic view	multimedia art	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	
 03 synaesthetic view	synaesthetische Interaktion	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	
-03 synaesthetic view	Synästhesie	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	R_Quelle=SN
+03 synaesthetic view	SynÃ¤sthesie	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	R_Quelle=SN
 03 synaesthetic view	Synesthesia	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	
 03 view of multifunctionality	03 view of PC/computer/video technology	R_Sicht=GD/GD-View	R_GD_View=03 view of multifunctionality			
 03 view of multifunctionality	Computer	R_Sicht=GD-View	R_GD_View=03 view of multifunctionality			
@@ -176,7 +176,7 @@
 04 view of innovation	Medienevolution	R_Sicht=GD-View	R_GD_View=04 view of innovation	R_JJJJ=(n)		
 04 view of innovation	new platforms	R_Sicht=GD-View	R_GD_View=04 view of innovation			
 04 view of intention	04 view of ideas	R_Sicht=GD/GD-View	R_GD_View=04 view of intention			
-04 view of intention	Anti-Intentionalität	R_Sicht=GD-View	R_GD_View=04 view of intention			
+04 view of intention	Anti-IntentionalitÃ¤t	R_Sicht=GD-View	R_GD_View=04 view of intention			
 04 view of intention	Imagination	R_Sicht=GD-View	R_GD_View=04 view of intention			
 05 functional view	05 tool view / instruments	R_Sicht=GD/GD-View	R_GD_View=05 functional view			
 05 functional view	Functionality	R_Sicht=GD-View	R_GD_View=05 functional view		R_Sparte=	R_Quelle=PF
@@ -408,7 +408,7 @@
 10 psychological view	10 psychoanalytical view	R_Sicht=GD/GD-View	R_GD_View=10 psychological view			
 10 psychological view	10 view of the mood	R_Sicht=GD/GD-View	R_GD_View=10 psychological view			
 10 psychological view	Psychology	R_Sicht=GD-View	R_GD_View=10 psychological view			
-10 psychological view	Spiritualität	R_Sicht=GD-View	R_GD_View=10 psychological view		R_Sparte=	R_Quelle=SN
+10 psychological view	SpiritualitÃ¤t	R_Sicht=GD-View	R_GD_View=10 psychological view		R_Sparte=	R_Quelle=SN
 10 psychological view	Telenoia	R_Sicht=GD-View	R_GD_View=10 psychological view			
 10 psychophysical view	08 body view	R_Sicht=GD/GD-View	R_GD_View=10 psychophysical view			
 10 psychophysical view	Phenomena art	R_Sicht=GD-View	R_GD_View=10 psychophysical view			
@@ -480,7 +480,7 @@
 11 political view	Postcolonialism	R_Sicht=GD-View	R_GD_View=11 political view			
 11 view of worldviews	11 intercultural view	R_Sicht=GD/GD-View	R_GD_View=11 view of worldviews			
 11 view of worldviews	Interculturalism	R_Sicht=GD-View	R_GD_View=11 view of worldviews			
-11 view of worldviews	Welterklärungsmodelle	R_Sicht=GD-View	R_GD_View=11 view of worldviews		R_Sparte=	R_Quelle=SN
+11 view of worldviews	WelterklÃ¤rungsmodelle	R_Sicht=GD-View	R_GD_View=11 view of worldviews		R_Sparte=	R_Quelle=SN
 12 aesthetic view	03 synaesthetic view	R_Sicht=GD/GD-View	R_GD_View=12 aesthetic view		R_Sparte=M	
 12 aesthetic view	12 color view	R_Sicht=GD/GD-View	R_GD_View=12 aesthetic view			
 12 aesthetic view	12 ethical view	R_Sicht=GD/GD-View	R_GD_View=12 aesthetic view			
@@ -501,8 +501,8 @@
 12 color view	Farbgesten	R_Sicht=GD-View	R_GD_View=12 color view			
 12 color view	Farbtiefe	R_Sicht=GD-View	R_GD_View=12 color view			
 12 color view	multikoloriert	R_Sicht=GD-View	R_GD_View=12 color view	R_JJJJ=(1990)		
-12 color view	Töne-Farben Analogiemodelle	R_Sicht=GD-View	R_GD_View=12 color view		R_Sparte=	R_Quelle=SN
-12 color view	Töne-Farben Korrespondenzmodelle	R_Sicht=GD-View	R_GD_View=12 color view		R_Sparte=	R_Quelle=SN
+12 color view	TÃ¶ne-Farben Analogiemodelle	R_Sicht=GD-View	R_GD_View=12 color view		R_Sparte=	R_Quelle=SN
+12 color view	TÃ¶ne-Farben Korrespondenzmodelle	R_Sicht=GD-View	R_GD_View=12 color view		R_Sparte=	R_Quelle=SN
 12 ethical view	11 intercultural view	R_Sicht=GD/GD-View	R_GD_View=12 ethical view			
 12 ethical view	12 aesthetic view	R_Sicht=GD/GD-View	R_GD_View=12 ethical view			
 12 ethical view	12 memorial view	R_Sicht=GD/GD-View	R_GD_View=12 ethical view			
@@ -576,7 +576,7 @@
 13 identity view	Non Western	R_Sicht=GD-View	R_GD_View=13 identity view			
 13 identity view	Subject	R_Sicht=GD-View	R_GD_View=13 identity view			
 13 intensity view	13 energetic view	R_Sicht=GD/GD-View	R_GD_View=13 intensity view			
-13 intensity view	Intensität	R_Sicht=GD-View	R_GD_View=13 intensity view		R_Sparte=	R_Quelle=SN
+13 intensity view	IntensitÃ¤t	R_Sicht=GD-View	R_GD_View=13 intensity view		R_Sparte=	R_Quelle=SN
 13 intensity view	Shock	R_Sicht=GD-View	R_GD_View=13 intensity view			
 13 intensity view	Violence	R_Sicht=GD-View	R_GD_View=13 intensity view			
 13 view of destruction	13 energetic view	R_Sicht=GD/GD-View	R_GD_View=13 view of destruction			
@@ -587,12 +587,12 @@
 13 view of destruction	Violence	R_Sicht=GD-View	R_GD_View=13 view of destruction			
 13 view of destruction	Virus	R_Sicht=GD-View	R_GD_View=13 view of destruction			
 13 view of destruction	War	R_Sicht=GD-View	R_GD_View=13 view of destruction			
-13 view of destruction	Zerstörung	R_Sicht=GD-View	R_GD_View=13 view of destruction			
+13 view of destruction	ZerstÃ¶rung	R_Sicht=GD-View	R_GD_View=13 view of destruction			
 13 view of dramatization	13 energetic view	R_Sicht=GD/GD-View	R_GD_View=13 view of dramatization			
 13 view of dramatization	32 carnival view	R_Sicht=GD/GD-View	R_GD_View=13 view of dramatization		R_Sparte=P	
 13 view of dramatization	Art & Drama (Science)	R_Sicht=GD-View	R_GD_View=13 view of dramatization			
 13 view of dramatization	Color Drama	R_Sicht=GD-View	R_GD_View=13 view of dramatization		R_Sparte=	R_Quelle=SN
-13 view of dramatization	Hörspiel	R_Sicht=GD-View	R_GD_View=13 view of dramatization			
+13 view of dramatization	HÃ¶rspiel	R_Sicht=GD-View	R_GD_View=13 view of dramatization			
 13 view of hybridity	02 view of hybridity	R_Sicht=GD/GD-View	R_GD_View=13 view of hybridity		R_Sparte=H	
 13 view of hybridity	13 identity view	R_Sicht=GD/GD-View	R_GD_View=13 view of hybridity		R_Sparte=H	
 13 view of hybridity	Hybrid	R_Sicht=GD-View	R_GD_View=13 view of hybridity		R_Sparte=H	
@@ -853,7 +853,7 @@
 18 view of projection	04 view of ideas	R_Sicht=GD/GD-View	R_GD_View=18 view of projection			
 18 view of projection	18 view of framing	R_Sicht=GD/GD-View	R_GD_View=18 view of projection			
 18 view of projection	18 view of the picture	R_Sicht=GD/GD-View	R_GD_View=18 view of projection			
-18 view of projection	Bühnenbildprojektion	R_Sicht=GD-View	R_GD_View=18 view of projection	R_JJJJ=(2001)		
+18 view of projection	BÃ¼hnenbildprojektion	R_Sicht=GD-View	R_GD_View=18 view of projection	R_JJJJ=(2001)		
 18 view of projection	Ceiling panorama	R_Sicht=GD-View	R_GD_View=18 view of projection			
 18 view of projection	Display	R_Sicht=GD-View	R_GD_View=18 view of projection			
 18 view of projection	Kuppelprojektion	R_Sicht=GD-View	R_GD_View=18 view of projection	R_JJJJ=(1979,1984)		
@@ -1061,20 +1061,20 @@
 23 battle view	Netwar	R_Sicht=GD-View	R_GD_View=23 battle view			
 23 battle view	War	R_Sicht=GD-View	R_GD_View=23 battle view			
 23 battle view	WarGames	R_Sicht=GD-View	R_GD_View=32 gaming view		R_Sparte=G	
-23 curators´view	23 manager´s view	R_Sicht=GD/GD-View	R_GD_View=23 curators´view			
-23 curators´view	23 view of exhibition organizers	R_Sicht=GD/GD-View	R_GD_View=23 curators´view			
-23 curators´view	C@C  computer aided curating	R_Sicht=GD-View	R_GD_View=23 curators´view	R_JJJJ=(1995)		
-23 curators´view	curating	R_Sicht=GD-View	R_GD_View=23 curators´view			
-23 curators´view	elektronische Kuratoren	R_Sicht=GD-View	R_GD_View=23 curators´view	R_JJJJ=(n)		
-23 curators´view	Organisation	R_Sicht=GD-View	R_GD_View=23 curators´view			
-23 manager´s view	23 curators´view	R_Sicht=GD/GD-View	R_GD_View=23 manager´s view			
-23 manager´s view	23 power-theoretical view	R_Sicht=GD/GD-View	R_GD_View=23 manager´s view			
-23 manager´s view	arts management	R_Sicht=GD-View	R_GD_View=23 manager´s view			
-23 manager´s view	Organisation	R_Sicht=GD-View	R_GD_View=23 manager´s view			
+23 curatorsÂ´view	23 managerÂ´s view	R_Sicht=GD/GD-View	R_GD_View=23 curatorsÂ´view			
+23 curatorsÂ´view	23 view of exhibition organizers	R_Sicht=GD/GD-View	R_GD_View=23 curatorsÂ´view			
+23 curatorsÂ´view	C@C  computer aided curating	R_Sicht=GD-View	R_GD_View=23 curatorsÂ´view	R_JJJJ=(1995)		
+23 curatorsÂ´view	curating	R_Sicht=GD-View	R_GD_View=23 curatorsÂ´view			
+23 curatorsÂ´view	elektronische Kuratoren	R_Sicht=GD-View	R_GD_View=23 curatorsÂ´view	R_JJJJ=(n)		
+23 curatorsÂ´view	Organisation	R_Sicht=GD-View	R_GD_View=23 curatorsÂ´view			
+23 managerÂ´s view	23 curatorsÂ´view	R_Sicht=GD/GD-View	R_GD_View=23 managerÂ´s view			
+23 managerÂ´s view	23 power-theoretical view	R_Sicht=GD/GD-View	R_GD_View=23 managerÂ´s view			
+23 managerÂ´s view	arts management	R_Sicht=GD-View	R_GD_View=23 managerÂ´s view			
+23 managerÂ´s view	Organisation	R_Sicht=GD-View	R_GD_View=23 managerÂ´s view			
 23 power-theoretical view	11 feminist view	R_Sicht=GD/GD-View	R_GD_View=23 power-theoretical view			
 23 power-theoretical view	21 economic view	R_Sicht=GD/GD-View	R_GD_View=23 power-theoretical view			
 23 power-theoretical view	23 battle view	R_Sicht=GD/GD-View	R_GD_View=23 power-theoretical view			
-23 power-theoretical view	23 manager´s view	R_Sicht=GD/GD-View	R_GD_View=23 power-theoretical view			
+23 power-theoretical view	23 managerÂ´s view	R_Sicht=GD/GD-View	R_GD_View=23 power-theoretical view			
 23 power-theoretical view	CTRL Space	R_Sicht=GD-View	R_GD_View=23 power-theoretical view			
 23 power-theoretical view	digerati	R_Sicht=GD-View	R_GD_View=23 power-theoretical view			
 23 power-theoretical view	every medium is always already rooted in power	R_Sicht=GD-View	R_GD_View=23 power-theoretical view			
@@ -1083,7 +1083,7 @@
 23 power-theoretical view	Powersphere	R_Sicht=GD-View	R_GD_View=23 power-theoretical view	R_JJJJ=(2001)		
 23 power-theoretical view	Violence	R_Sicht=GD-View	R_GD_View=23 power-theoretical view			
 23 view of exhibition organizers	19 view of exhibition	R_Sicht=GD/GD-View	R_GD_View=23 view of exhibition organizers			
-23 view of exhibition organizers	23 curators´view	R_Sicht=GD/GD-View	R_GD_View=23 view of exhibition organizers			
+23 view of exhibition organizers	23 curatorsÂ´view	R_Sicht=GD/GD-View	R_GD_View=23 view of exhibition organizers			
 23 view of exhibition organizers	23 view of organizing institution	R_Sicht=GD/GD-View	R_GD_View=23 view of exhibition organizers			
 23 view of exhibition organizers	Organisation	R_Sicht=GD-View	R_GD_View=23 view of exhibition organizers			
 23 view of organizing institution	23 view of exhibition organizers	R_Sicht=GD/GD-View	R_GD_View=23 view of organizing institution			
@@ -1414,7 +1414,7 @@
 30 view of handicaps	elektronische Hilfen	R_Sicht=GD-View	R_GD_View=30 view of handicaps	R_JJJJ=(n)		
 30 view of handicaps	Elektronischer Blindenstock	R_Sicht=GD-View	R_GD_View=30 view of handicaps	R_JJJJ=(n)		
 30 view of handicaps	Eye	R_Sicht=GD-View	R_GD_View=30 view of handicaps			
-30 view of handicaps	Gehörlosigkeit	R_Sicht=GD-View	R_GD_View=30 view of handicaps		R_Sparte=	R_Quelle=SN
+30 view of handicaps	GehÃ¶rlosigkeit	R_Sicht=GD-View	R_GD_View=30 view of handicaps		R_Sparte=	R_Quelle=SN
 30 view of handicaps	Human	R_Sicht=GD-View	R_GD_View=30 view of handicaps			
 30 view of handicaps	Senses	R_Sicht=GD-View	R_GD_View=30 view of handicaps			
 30 view of handicaps	Touch the Sound	R_Sicht=GD-View	R_GD_View=30 view of handicaps		R_Sparte=	R_Quelle=SN
@@ -1692,7 +1692,7 @@ Aesthetics	neue Aesthetiktheorie	R_Sicht=art	R_GD_View=12 aesthetic view	R_JJJJ=
 Aesthetics	numerische Aesthetik	R_Sicht=art	R_GD_View=12 aesthetic view	R_JJJJ=(< 1960)		
 Aesthetics	rationale Aesthetik	R_Sicht=art	R_GD_View=12 aesthetic view	R_JJJJ=(1955,1979)		
 Aesthetics	relationale Aesthetik	R_Sicht=art	R_GD_View=12 aesthetic view	R_JJJJ=2003		
-Aesthetics	Retro-Ästhetik	R_Sicht=art	R_GD_View=12 aesthetic view	R_JJJJ=2006		
+Aesthetics	Retro-Ã„sthetik	R_Sicht=art	R_GD_View=12 aesthetic view	R_JJJJ=2006		
 Aesthetics	semantische Aesthetik	R_Sicht=art	R_GD_View=12 aesthetic view	R_JJJJ=( < 1960)		
 Aesthetics	semiotische Aesthetik	R_Sicht=art	R_GD_View=12 aesthetic view			
 Aesthetics	Techno-Aesthetik	R_Sicht=art	R_GD_View=12 aesthetic view	R_JJJJ=(1991)		
@@ -1749,9 +1749,9 @@ agent behaviour	role view
 Agression	09 emotional view	R_Sicht=body	R_GD_View=09 emotional view			
 Agression	13 energetic view	R_Sicht=body	R_GD_View=13 energetic view			
 Agression	13 view of destruction	R_Sicht=body	R_GD_View=13 view of destruction			
-Agression	Agression, Fleisch, Lust, Verrücktheit, Blutrausch und Phantasie  (Linda Dement)	R_Sicht=body	R_GD_View=13 energetic view	R_JJJJ=1994		
-Agression, Fleisch, Lust, Verrücktheit, Blutrausch und Phantasie	Agression	R_Sicht=body	R_GD_View=13 energetic view	R_JJJJ=1994		
-Agression, Fleisch, Lust, Verrücktheit, Blutrausch und Phantasie	inebriation (intoxication)	R_Sicht=body	R_GD_View=13 energetic view	R_JJJJ=1994		
+Agression	Agression, Fleisch, Lust, VerrÃ¼cktheit, Blutrausch und Phantasie  (Linda Dement)	R_Sicht=body	R_GD_View=13 energetic view	R_JJJJ=1994		
+Agression, Fleisch, Lust, VerrÃ¼cktheit, Blutrausch und Phantasie	Agression	R_Sicht=body	R_GD_View=13 energetic view	R_JJJJ=1994		
+Agression, Fleisch, Lust, VerrÃ¼cktheit, Blutrausch und Phantasie	inebriation (intoxication)	R_Sicht=body	R_GD_View=13 energetic view	R_JJJJ=1994		
 AI	AI lite	R_Sicht=informatics	R_GD_View=16 AI view			
 AI	artificial intelligence	R_Sicht=informatics	R_GD_View=16 AI view			
 AI	Automation des Denkens	R_Sicht=informatics	R_GD_View=16 AI view	R_JJJJ=(n)		
@@ -1864,7 +1864,7 @@ Amiga	Atari	R_Sicht=hardware
 Amiga	graphic modul	R_Sicht=hardware				
 amorph	amorphous				R_Sparte=	R_Quelle=SN
 amorphe Formen	amorph				R_Sparte=	R_Quelle=SN
-amorphe Formen	Fluidität					
+amorphe Formen	FluiditÃ¤t					
 amorphe Formen	Partikelprogramm					
 amorphous	amorphous robotics works				R_Sparte=	R_Quelle=SW
 amplified body	07 body extensions	R_Sicht=body	R_GD_View=07 body extensions		R_Sparte=	R_Quelle=SW
@@ -1948,9 +1948,9 @@ Annotation	Distributed Annotation System
 Annotation	HTML-A					
 Annotation	semantic web					
 Annotation	Textanalyse					
-Anonymität	anonymization				R_Sparte=	R_Quelle=PF
-Anonymität	cyberlaw					
-anonymization	Anonymität				R_Sparte=	R_Quelle=PF
+AnonymitÃ¤t	anonymization				R_Sparte=	R_Quelle=PF
+AnonymitÃ¤t	cyberlaw					
+anonymization	AnonymitÃ¤t				R_Sparte=	R_Quelle=PF
 Anreicherung (der realen Welt)	Augmented Reality	R_Sicht=representation	R_GD_View=19 presentation view			
 Anreicherung (der realen Welt)	Medienwelten	R_Sicht=representation	R_GD_View=19 presentation view	R_JJJJ=(1998,2001)		
 Anreicherung des taeglichen Lebens mit digitalen Informationen	Information					
@@ -1975,7 +1975,7 @@ Anwendung	Anwendungssystem	R_Sicht=software
 Anwendung	application	R_Sicht=software				
 Anwendung	Echtzeitanwendung  	R_Sicht=software				
 Anwendung	Multimedia Anwendung	R_Sicht=software				
-Anwendung	Problemlösung	R_Sicht=software				
+Anwendung	ProblemlÃ¶sung	R_Sicht=software				
 Anwendung	Softwareklassen - Anwendungstypen	R_Sicht=software				
 Anwendungsprogramme	Anwendung	R_Sicht=software				
 Anwendungsprogramme	application software	R_Sicht=software				
@@ -2011,7 +2011,7 @@ application	application software	R_Sicht=software
 application	field application	R_Sicht=software				
 application	hypermedia application	R_Sicht=software				
 application	mobile application	R_Sicht=software				
-application	Problemlösung	R_Sicht=software				
+application	ProblemlÃ¶sung	R_Sicht=software				
 application software	Anwendungsprogramme	R_Sicht=software				
 application software	application	R_Sicht=software				
 applied webart	web art	R_Sicht=art			R_Sparte=N	
@@ -2029,7 +2029,7 @@ ArcheoGuide-System	Edutainment	R_Sicht=software			R_Sparte=I
 ArcheoGuide-System	mobiles Informationssystem	R_Sicht=software			R_Sparte=I	
 ArcheoGuide-System	on-site tracking	R_Sicht=software			R_Sparte=I	
 ArcheoGuide-System	Rekonstruktionen einblenden	R_Sicht=software			R_Sparte=I	
-ArchiMedia	Kunstuniversität Linz			R_JJJJ=(1994)		
+ArchiMedia	KunstuniversitÃ¤t Linz			R_JJJJ=(1994)		
 Architecture	25 architectonic view		R_GD_View=25 architectonic view			
 Architecture	Architektur		R_GD_View=25 architectonic view			
 Architecture	Art & Architecture		R_GD_View=25 architectonic view			
@@ -2089,14 +2089,14 @@ ARPANET	Usenet		R_GD_View=10 view of networks	R_JJJJ=(1969)	R_Sparte=N
 ARPANET	Usenet	R_Sicht=comtech		R_JJJJ=1969,1990	R_Sparte=N	
 ARS	AEC	R_Sicht=culture				
 ARS	ars electronica	R_Sicht=culture		R_JJJJ=(1979)	R_Sparte=	R_Quelle=SW
-ARS	ARS Gründer	R_Sicht=culture				
+ARS	ARS GrÃ¼nder	R_Sicht=culture				
 ARS	prix ars electronica	R_Sicht=culture				
 ars acustica	Radiokunst	R_Sicht=art			R_Sparte=M	
 Ars Astronautica	satellite art	R_Sicht=art			R_Sparte=	R_Quelle=SW
 ars combinatoria	Art & Combinatorics	R_Sicht=art				
 Ars Digitalis	digital art	R_Sicht=art			R_Sparte=	R_Quelle=SW
 ars electronica	ARS	R_Sicht=art		R_JJJJ=(1979)	R_Sparte=	R_Quelle=SW
-ARS Gründer	ARS	R_Sicht=culture				
+ARS GrÃ¼nder	ARS	R_Sicht=culture				
 ars intermedia	Ateliercomputer	R_Sicht=art		R_JJJJ=(1979)		
 ars intermedia	Intermedia	R_Sicht=art		R_JJJJ=1979		
 ars intermedia	Intermedia Kunst	R_Sicht=art		R_JJJJ=1979		
@@ -2104,7 +2104,7 @@ ars intermedia	Intermediality	R_Sicht=art		R_JJJJ=1979
 ars memoria	Memory theater					
 ars technologica	apparative Kunst			R_JJJJ=(n)		
 ars technologica	Technology			R_JJJJ=(n)		
-ARS Vorläufer	First International Computer Art Festival - The Kitchen NY	R_Sicht=culture				
+ARS VorlÃ¤ufer	First International Computer Art Festival - The Kitchen NY	R_Sicht=culture				
 ARSBOX virtual prototyping	prototyping					
 AR-surgery	08 view of medicine	R_Sicht=interface	R_GD_View=08 view of medicine			
 AR-surgery	AR	R_Sicht=interface	R_GD_View=08 view of medicine			
@@ -2346,7 +2346,7 @@ artful games	game art	R_Sicht=art	R_GD_View=32 gaming view		R_Sparte=GI
 artificial	artificial intelligence (AI)	R_Sicht=representation	R_GD_View=16 AI view	R_JJJJ=(1990)		
 artificial	Artificial Life	R_Sicht=representation	R_GD_View=17 artifical life view			
 artificial	artificial reality	R_Sicht=representation	R_GD_View=19 presentation view	R_JJJJ=(1986,89,90,2000)		
-artificial	Genetische Kunst – Künstliches Leben	R_Sicht=representation	R_GD_View=17 artifical life view	R_JJJJ=(1993)		
+artificial	Genetische Kunst Â– KÃ¼nstliches Leben	R_Sicht=representation	R_GD_View=17 artifical life view	R_JJJJ=(1993)		
 artificial	kuenstliche Boesewichte	R_Sicht=representation		R_JJJJ=(2003)		
 artificial	kuenstliche Gespenster	R_Sicht=representation		R_JJJJ=(1984)		
 artificial	Kuenstliche Intelligenz (KI)	R_Sicht=representation	R_GD_View=16 AI view	R_JJJJ=(1986)		
@@ -2360,7 +2360,7 @@ artificial	Kuenstliche Spiele	R_Sicht=representation	R_GD_View=32 gaming view	R_
 artificial	kuenstliche Umgebung	R_Sicht=representation		R_JJJJ=(1994)		
 artificial	kuenstliche Welten	R_Sicht=representation		R_JJJJ=(1994,96,98)		
 artificial	kuenstliche Wirklichkeit	R_Sicht=representation	R_GD_View=19 presentation view	R_JJJJ=(1989,91)		
-artificial	Künstliche Wolken	R_Sicht=representation		R_JJJJ=(1980)		
+artificial	KÃ¼nstliche Wolken	R_Sicht=representation		R_JJJJ=(1980)		
 artificial	Kuenstlicher Wille	R_Sicht=representation		R_JJJJ=(1984)		
 artificial	kuenstliches Leben	R_Sicht=representation	R_GD_View=17 artifical life view	R_JJJJ=(1993,95)		
 artificial	Kuenstlichkeit	R_Sicht=representation				
@@ -2402,7 +2402,7 @@ Artificial Life	cyberbotany	R_Sicht=informatics	R_GD_View=17 artifical life view
 Artificial Life	evolution	R_Sicht=informatics	R_GD_View=17 artifical life view			
 Artificial Life	genetic algorithms	R_Sicht=informatics	R_GD_View=17 artifical life view			
 Artificial Life	genetic art - artificial life	R_Sicht=informatics	R_GD_View=17 artifical life view	R_JJJJ=(1993)		
-Artificial Life	Genetische Kunst – Künstliches Leben	R_Sicht=informatics	R_GD_View=17 artifical life view	R_JJJJ=(1993)		
+Artificial Life	Genetische Kunst Â– KÃ¼nstliches Leben	R_Sicht=informatics	R_GD_View=17 artifical life view	R_JJJJ=(1993)		
 Artificial Life	Immaterialitaet	R_Sicht=informatics	R_GD_View=17 artifical life view			
 Artificial Life	Koerperlosigkeit	R_Sicht=informatics	R_GD_View=17 artifical life view			
 Artificial Life	kuenstliche Kreaturen	R_Sicht=informatics	R_GD_View=17 artifical life view	R_JJJJ=(1993)		
@@ -2452,15 +2452,15 @@ artistic re-packaging	deconstruction and modification	R_Sicht=art	R_GD_View=04 v
 artistic re-packaging	experimenting	R_Sicht=art	R_GD_View=04 view of innovation			
 artistic re-packaging	Kombinatorik	R_Sicht=art	R_GD_View=04 view of innovation			
 artistic software	05 tool view / instruments	R_Sicht=software	R_GD_View=05 tool view / instruments			
-arts management	23 manager´s view	R_Sicht=culture	R_GD_View=23 manager´s view			
-arts management	Management	R_Sicht=culture	R_GD_View=23 manager´s view	R_JJJJ=(2001)		
+arts management	23 managerÂ´s view	R_Sicht=culture	R_GD_View=23 managerÂ´s view			
+arts management	Management	R_Sicht=culture	R_GD_View=23 managerÂ´s view	R_JJJJ=(2001)		
 ASCII	ascii art	R_Sicht=informatics	R_GD_View=24 view of informatics		R_Sparte=C	
 ASCII	Protokoll	R_Sicht=informatics	R_GD_View=24 view of informatics		R_Sparte=C	
 ascii art	ASCII	R_Sicht=art			R_Sparte=D	
 astronomy	bildgebende Medien	R_Sicht=science				
 astrophysics	bildgebende Medien	R_Sicht=science				
 astrophysics	physics	R_Sicht=science				
-asynchronous communication	Asynchronität	R_Sicht=comtech			R_Sparte=	R_Quelle=SN
+asynchronous communication	AsynchronitÃ¤t	R_Sicht=comtech			R_Sparte=	R_Quelle=SN
 asynchronous communication	Internet	R_Sicht=comtech				
 asynchronous communication	synchronous/asynchronous communication	R_Sicht=comtech				
 Atari	Amiga	R_Sicht=hardware				
@@ -2751,14 +2751,14 @@ Beziehungsgefuege	netzartige Gefuege
 Bi-Gender Show	Gender			R_JJJJ=2000	R_Sparte=P	
 Bike	bike as interface	R_Sicht=world		R_JJJJ=1989		
 bike as interface	Bike	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=1989	R_Sparte=I	
-Bildauslöschung	light				R_Sparte=D	
-Bildauslöschung	The Polaroid Effect				R_Sparte=D	
+BildauslÃ¶schung	light				R_Sparte=D	
+BildauslÃ¶schung	The Polaroid Effect				R_Sparte=D	
 Bildbearbeitung	Painting					
 Bildbegriff	Bildwissenschaft				R_Sparte=D	
 Bilddatenbank	Database	R_Sicht=software		R_JJJJ=(1994,2001)		
 Bilddatenbank	MIT-Bilddatenbank	R_Sicht=software				
 Bilddialog	Dialog					
-Bildfluß	information flow					
+BildfluÃŸ	information flow					
 bildgebende Medien	15 diagrammatic view	R_Sicht=media	R_GD_View=15 diagrammatic view		R_Sparte=DA	
 bildgebende Medien	astronomy	R_Sicht=media	R_GD_View=15 diagrammatic view		R_Sparte=DA	
 bildgebende Medien	astrophysics	R_Sicht=media	R_GD_View=15 diagrammatic view		R_Sparte=DA	
@@ -2890,7 +2890,7 @@ Biotelematik	Bio art	R_Sicht=comtech		R_JJJJ=(2001)	R_Sparte=N
 Biotelematik	Bio-telematics	R_Sicht=comtech			R_Sparte=N	
 Bitmap-Tracker	Positiontracker					
 Black Metal	music style	R_Sicht=art			R_Sparte=M	
-blade server	Großrechner	R_Sicht=hardware				
+blade server	GroÃŸrechner	R_Sicht=hardware				
 blade server	Server	R_Sicht=hardware				
 Blasendisplay	Dampfdisplay	R_Sicht=interface		R_JJJJ=2007		
 Blend Shape	animation software	R_Sicht=software			R_Sparte=A	
@@ -2913,8 +2913,8 @@ blogging	publish	R_Sicht=culture			R_Sparte=N
 blogging	social software	R_Sicht=culture			R_Sparte=N	
 Blogging Live journal	blogging				R_Sparte=N	
 Blogging Live journal	Weblog-Journalisten				R_Sparte=N	
-Blogosphäre	weblog	R_Sicht=culture			R_Sparte=N	
-blogosphere	Blogosphäre	R_Sicht=culture			R_Sparte=N	
+BlogosphÃ¤re	weblog	R_Sicht=culture			R_Sparte=N	
+blogosphere	BlogosphÃ¤re	R_Sicht=culture			R_Sparte=N	
 blue box	Collage / Montage				R_Sparte=V	
 blue box	Video				R_Sparte=V	
 bluetooth	wireless communication	R_Sicht=comtech				
@@ -3048,9 +3048,9 @@ BTX	BBS	R_Sicht=comtech			R_Sparte=N
 BTX	Minitel	R_Sicht=comtech			R_Sparte=N	
 Buchstabenmystik	Mysterien der Information					
 Buchstabenmystik	Zahlenmystik					
-Bühnenbildprojektion	18 view of projection		R_GD_View=18 view of projection	R_JJJJ=(2001)		
-Bühnenbildprojektion	Bühnenwerk		R_GD_View=18 view of projection			
-Bühnenwerk	Bühnenbildprojektion				R_Sparte=PA	
+BÃ¼hnenbildprojektion	18 view of projection		R_GD_View=18 view of projection	R_JJJJ=(2001)		
+BÃ¼hnenbildprojektion	BÃ¼hnenwerk		R_GD_View=18 view of projection			
+BÃ¼hnenwerk	BÃ¼hnenbildprojektion				R_Sparte=PA	
 Bueromaschinen	Future Office Project (AEC)			R_JJJJ=(1999)		
 bugs	Chaos	R_Sicht=informatics	R_GD_View=24 view of informatics			
 bugs	Endlosschleife	R_Sicht=informatics	R_GD_View=24 view of informatics			
@@ -3059,7 +3059,7 @@ building/space organization: mnemotechniques - memory theater	Memory theater
 Bulletin Board Systems	BBS	R_Sicht=software			R_Sparte=N	
 Bulletin Board Systems	message board	R_Sicht=software			R_Sparte=N	
 BUS	system architecture					
-C@C  computer aided curating	23 curators´view		R_GD_View=23 curators´view	R_JJJJ=(1995)	R_Sparte=N	
+C@C  computer aided curating	23 curatorsÂ´view		R_GD_View=23 curatorsÂ´view	R_JJJJ=(1995)	R_Sparte=N	
 C++	Java	R_Sicht=software				
 C++	programming languages	R_Sicht=software				
 CAAD	CAD					
@@ -3195,10 +3195,10 @@ chart	bar chart	R_Sicht=representation	R_GD_View=15 diagrammatic view		R_Sparte=
 Chat / chatting	chat room				R_Sparte=N	
 Chat / chatting	IRC				R_Sparte=N	
 chat room	Chat / chatting				R_Sparte=N	
-chat room	Chat-Kanäle				R_Sparte=N	
+chat room	Chat-KanÃ¤le				R_Sparte=N	
 chat room	Chat-Umgebung				R_Sparte=N	
 chat room	virtual chat room				R_Sparte=N	
-Chat-Kanäle	chat room				R_Sparte=N	
+Chat-KanÃ¤le	chat room				R_Sparte=N	
 chatterbox	16 AI view		R_GD_View=16 AI view			
 chatterbox	Dialogue					
 Chat-Umgebung	chat room				R_Sparte=N	
@@ -3301,7 +3301,7 @@ Code	Aesthetik des Softwarecodes	R_Sicht=representation	R_GD_View=24 code view	R
 Code	Aesthetik digitaler Grammatiken	R_Sicht=representation	R_GD_View=24 code view	R_JJJJ=(2003)		
 Code	Aesthetische Codes	R_Sicht=representation	R_GD_View=24 code view			
 Code	Bar codes	R_Sicht=representation	R_GD_View=24 code view			
-Code	binärer Code	R_Sicht=representation	R_GD_View=24 code view		R_Sparte=	R_Quelle=SN
+Code	binÃ¤rer Code	R_Sicht=representation	R_GD_View=24 code view		R_Sparte=	R_Quelle=SN
 Code	CODE = Law	R_Sicht=representation	R_GD_View=24 code view			
 Code	code art	R_Sicht=representation	R_GD_View=24 code view			
 Code	code art	R_Sicht=representation	R_GD_View=24 code view	R_JJJJ=(2003)		
@@ -3440,7 +3440,7 @@ collective dynamics	collective		R_GD_View=26 movement view / dynamic
 collective net performance	collective		R_GD_View=26 performance view		R_Sparte=PN	
 collective net performance	net performance		R_GD_View=26 performance view		R_Sparte=PN	
 collective net performance	Performance		R_GD_View=26 performance view		R_Sparte=PN	
-collective virtuelle Räume	virtuelle Raeume					
+collective virtuelle RÃ¤ume	virtuelle Raeume					
 collective weblogs	BBS			R_JJJJ=(2004)	R_Sparte=N	
 collective weblogs	collective			R_JJJJ=(2004)	R_Sparte=N	
 collective weblogs	Kollektive Weblogs			R_JJJJ=(2004)	R_Sparte=N	
@@ -3561,7 +3561,7 @@ community-Netzwerke	Communityportal	R_Sicht=software	R_GD_View=10 internet view	
 Communityportal	community-Netzwerke	R_Sicht=software	R_GD_View=10 internet view	R_JJJJ=(05)	R_Sparte=N	
 Communityportal	Distance-Learning Community	R_Sicht=software	R_GD_View=10 internet view	R_JJJJ=(05)	R_Sparte=N	
 Communityportal	online portal	R_Sicht=software	R_GD_View=10 internet view	R_JJJJ=(05)	R_Sparte=N	
-Community-Wissensbestände	knowledge-community					
+Community-WissensbestÃ¤nde	knowledge-community					
 comparative literature	16 analytical view		R_GD_View=16 analytical view		R_Sparte=L	
 Compass orientation	digital compass					
 Compass orientation	orientation					
@@ -3850,7 +3850,7 @@ content	Content Engine		R_GD_View=15 content view	R_JJJJ=(03)
 content	Content-Designer		R_GD_View=15 content view	R_JJJJ=(01)		
 content	Content-Industrie		R_GD_View=15 content view	R_JJJJ=(01)		
 content	content-providing platform		R_GD_View=15 content view	R_JJJJ=(03)		
-content	Content-Überwachung		R_GD_View=15 content view	R_JJJJ=(04)		
+content	Content-Ãœberwachung		R_GD_View=15 content view	R_JJJJ=(04)		
 content	Content-Unternehmen		R_GD_View=15 content view	R_JJJJ=(00)		
 content	digital content		R_GD_View=15 content view	R_JJJJ=(03,07)		
 content	Flash-Content		R_GD_View=15 content view	R_JJJJ=(02)		
@@ -3874,8 +3874,8 @@ Content-Industrie	content		R_GD_View=15 content view	R_JJJJ=(01)
 Content-Industrie	Content-Unternehmen		R_GD_View=15 content view	R_JJJJ=(01)		
 content-providing platform	content		R_GD_View=15 content view	R_JJJJ=(03)		
 content-providing platform	WWW		R_GD_View=15 content view	R_JJJJ=(03)		
-Content-Überwachung	Censorship		R_GD_View=15 content view	R_JJJJ=(04)		
-Content-Überwachung	content		R_GD_View=15 content view	R_JJJJ=(04)		
+Content-Ãœberwachung	Censorship		R_GD_View=15 content view	R_JJJJ=(04)		
+Content-Ãœberwachung	content		R_GD_View=15 content view	R_JJJJ=(04)		
 Content-Unternehmen	content		R_GD_View=15 content view	R_JJJJ=(00)		
 Content-Unternehmen	Content-Industrie		R_GD_View=15 content view	R_JJJJ=(01)		
 context	01 contextual view		R_GD_View=01 contextual view			
@@ -3934,7 +3934,7 @@ conversation map	mapping	R_Sicht=representation
 cooperating memes: on the way to the global brain?	global brain			R_JJJJ=(1996)		
 cooperating memes: on the way to the global brain?	Meme			R_JJJJ=(1996)		
 CoPraesenz	AR			R_JJJJ=(1997)		
-copy left	Copyleft-Enzyklopädie			R_JJJJ=2004		
+copy left	Copyleft-EnzyklopÃ¤die			R_JJJJ=2004		
 copy left	free software					
 copy left	intellectual property					
 copy right	intellectual property					
@@ -3942,8 +3942,8 @@ copy right	law
 copy right	Urheber- und Datenschutzrecht					
 copygraphy	digital copy art				R_Sparte=D	
 copygraphy	xerography				R_Sparte=D	
-Copyleft-Enzyklopädie	copy left			R_JJJJ=2004		
-Copyleft-Enzyklopädie	Wikipedia			R_JJJJ=2004		
+Copyleft-EnzyklopÃ¤die	copy left			R_JJJJ=2004		
+Copyleft-EnzyklopÃ¤die	Wikipedia			R_JJJJ=2004		
 corporate design	13 identity view		R_GD_View=13 identity view			
 corporeal space 	fleshly space					
 corporeal space 	meatspace					
@@ -4000,7 +4000,7 @@ Cultural Theory	re-engineering of cultural systems	R_Sicht=culture	R_GD_View=01 
 culture heritage	digitales Kulturerbe	R_Sicht=culture		R_JJJJ=2006		
 culture jamming	Adbusters	R_Sicht=culture				
 culture jamming	Collage / Montage	R_Sicht=culture				
-curating	23 curators´view	R_Sicht=art	R_GD_View=23 curators´view			
+curating	23 curatorsÂ´view	R_Sicht=art	R_GD_View=23 curatorsÂ´view			
 curlybot	Bots and Agents		R_GD_View=32 gaming view	R_JJJJ=(2001)	R_Sparte=G	
 CUSeeMe	communications protocols	R_Sicht=interface	R_GD_View=05 interface view		R_Sparte=N	
 CUSeeMe	video conferencing	R_Sicht=interface	R_GD_View=05 interface view		R_Sparte=N	
@@ -4038,7 +4038,7 @@ Cyber City	21 view of cities and regions		R_GD_View=21 view of cities and region
 Cyber City	advanced information city		R_GD_View=21 view of cities and regions	R_JJJJ=(1986)		
 Cyber City	Computer City		R_GD_View=21 view of cities and regions	R_JJJJ=(1994)		
 Cyber City	Computer-Stadt		R_GD_View=21 view of cities and regions	R_JJJJ=(1994)		
-Cyber City	Cyber city flight –  Berlin virtuell  (ART+COM)		R_GD_View=21 view of cities and regions	R_JJJJ=(1994)		
+Cyber City	Cyber city flight Â–  Berlin virtuell  (ART+COM)		R_GD_View=21 view of cities and regions	R_JJJJ=(1994)		
 Cyber City	digital city		R_GD_View=21 view of cities and regions	R_JJJJ=(1996,2004)		
 Cyber City	digital village		R_GD_View=21 view of cities and regions	R_JJJJ=(n)		
 Cyber City	Digitale Stadt		R_GD_View=21 view of cities and regions	R_JJJJ=(n)		
@@ -4051,7 +4051,7 @@ Cyber City	Netzstadt		R_GD_View=21 view of cities and regions	R_JJJJ=(1995)
 Cyber City	Technologiestadt		R_GD_View=21 view of cities and regions	R_JJJJ=(n)		
 Cyber City	the digital city is a form of public space		R_GD_View=21 view of cities and regions	R_JJJJ=(1995)		
 Cyber City	virtuelle Stadt		R_GD_View=21 view of cities and regions	R_JJJJ=(2000)		
-Cyber city flight –  Berlin virtuell  (ART+COM)	Cyber City		R_GD_View=21 view of cities and regions	R_JJJJ=1994		
+Cyber city flight Â–  Berlin virtuell  (ART+COM)	Cyber City		R_GD_View=21 view of cities and regions	R_JJJJ=1994		
 cyber pop	cyber pop  (Station Rose)			R_JJJJ=(n)		
 cyber pop	Pop Culture			R_JJJJ=(n)		
 cyber society	cyber			R_JJJJ=(n)		
@@ -4102,7 +4102,7 @@ cybergloves	Data Glove			R_JJJJ=(2001)
 Cyber-Kapitalismus	Economy			R_JJJJ=(1996)		
 Cyberklasmus	cyber			R_JJJJ=(1996)		
 Cyberkunst	digital art	R_Sicht=art		R_JJJJ=(2002)		
-cyberlaw	Anonymität	R_Sicht=culture		R_JJJJ=2005		
+cyberlaw	AnonymitÃ¤t	R_Sicht=culture		R_JJJJ=2005		
 cyberlaw	Cyberrechte	R_Sicht=culture		R_JJJJ=(n)		
 cyberlaw	Law	R_Sicht=culture		R_JJJJ=(n)		
 cyberlibertarianism	02 view of openness	R_Sicht=culture	R_GD_View=02 view of openness			
@@ -4219,9 +4219,9 @@ cyberspace signalizes adventure, imagination, new territory	Imagination			R_JJJJ
 Cyberspace-Theater	Art & Theatre (Science)		R_GD_View=31 theater view	R_JJJJ=(n)	R_Sparte=P	
 cyberspatial codes	spatial	R_Sicht=representation				
 cybersquatting	cyber			R_JJJJ=(1990)		
-cyberstalking  (Datenausspähung)	cyberstalking (spying out data)					
-cyberstalking  (Datenausspähung)	Position of women					
-cyberstalking (spying out data)	cyberstalking  (Datenausspähung)					
+cyberstalking  (DatenausspÃ¤hung)	cyberstalking (spying out data)					
+cyberstalking  (DatenausspÃ¤hung)	Position of women					
+cyberstalking (spying out data)	cyberstalking  (DatenausspÃ¤hung)					
 cyberstalking (spying out data)	Subversion					
 Cyberstress	26 speed view		R_GD_View=26 speed view			
 cybersynthesis	farming on-line					
@@ -4337,7 +4337,7 @@ Database	datenbasiert	R_Sicht=representation	R_GD_View=20 view of storage media	
 Database	DBMS	R_Sicht=software	R_GD_View=20 view of storage media			
 Database	Designdatenbank	R_Sicht=software	R_GD_View=20 view of storage media	R_JJJJ=(n)		
 Database	encyclopedia	R_Sicht=software	R_GD_View=20 view of storage media			
-Database	Firefly Musikdatenbank // Ringo Musikdatenbank (Ähnlichkeitsprofile)	R_Sicht=software	R_GD_View=20 view of storage media		R_Sparte=M	
+Database	Firefly Musikdatenbank // Ringo Musikdatenbank (Ã„hnlichkeitsprofile)	R_Sicht=software	R_GD_View=20 view of storage media		R_Sparte=M	
 Database	Hyperdatabase	R_Sicht=software	R_GD_View=20 view of storage media		R_Sparte=	R_Quelle=PF
 Database	Information	R_Sicht=software	R_GD_View=20 view of storage media			
 Database	join	R_Sicht=software	R_GD_View=20 view of storage media			
@@ -4368,7 +4368,7 @@ Database art	Datenbank	R_Sicht=art	R_GD_View=15 content view
 Database art	Datenbank-basierte Narration	R_Sicht=art	R_GD_View=15 content view	R_JJJJ=2001		
 Database art	Datenbanken mit Modellen der Konfliktvermeidung	R_Sicht=art	R_GD_View=15 content view	R_JJJJ=1999		
 Database art	electronic visualization	R_Sicht=art	R_GD_View=15 content view	R_JJJJ=(2003)		
-Database art	Firefly Musikdatenbank // Ringo Musikdatenbank (Ähnlichkeitsprofile)	R_Sicht=art	R_GD_View=15 content view	R_JJJJ=1995	R_Sparte=M	
+Database art	Firefly Musikdatenbank // Ringo Musikdatenbank (Ã„hnlichkeitsprofile)	R_Sicht=art	R_GD_View=15 content view	R_JJJJ=1995	R_Sparte=M	
 Database art	MAK-Designdatenbank	R_Sicht=art	R_GD_View=15 content view			
 Database art	making art of databases	R_Sicht=art	R_GD_View=15 content view			
 Database art	MIT-Bilddatenbank	R_Sicht=art	R_GD_View=15 content view			
@@ -4408,7 +4408,7 @@ Datenbank	Archive	R_Sicht=software
 Datenbank	Databank	R_Sicht=software				
 Datenbank	Database	R_Sicht=software				
 Datenbank	Database art	R_Sicht=software				
-Datenbank	KünstlerInnen-Datenbank	R_Sicht=software				
+Datenbank	KÃ¼nstlerInnen-Datenbank	R_Sicht=software				
 datenbankbasiert	Database			R_JJJJ=(2001)		
 Datenbank-basierte Narration	Database art			R_JJJJ=(2001)	R_Sparte=L	
 Datenbank-basierte Narration	Narrative			R_JJJJ=(2001)	R_Sparte=L	
@@ -4453,7 +4453,7 @@ dead, controllable mass medium	Medium			R_JJJJ=(1998)
 deadlock	Death	R_Sicht=informatics	R_GD_View=24 view of informatics			
 Death	08 body view	R_Sicht=body	R_GD_View=08 body view			
 Death	deadlock	R_Sicht=body	R_GD_View=08 body view			
-Death	In Sommerer´s installations death is employed as a necessary tabula rasa	R_Sicht=body	R_GD_View=08 body view			
+Death	In SommererÂ´s installations death is employed as a necessary tabula rasa	R_Sicht=body	R_GD_View=08 body view			
 Death	kybernetische Sterbehilfe	R_Sicht=body	R_GD_View=08 body view	R_JJJJ=(1998)		
 Death	militarization of science and ist culture of death	R_Sicht=body	R_GD_View=08 body view			
 Death	The desire for Immortality - Cloning, Cryonics and Cosmetics (Symposium/1993)	R_Sicht=body	R_GD_View=08 body view	R_JJJJ=1993		
@@ -4469,11 +4469,11 @@ Deconstruction	deconstructing code	R_Sicht=theory	R_GD_View=15 view of meaning	R
 Deconstruction	deconstruction and modification	R_Sicht=theory	R_GD_View=15 view of meaning			
 Deconstruction	deconstruction of language	R_Sicht=theory	R_GD_View=15 view of meaning			
 Deconstruction	Dekonstruktion	R_Sicht=theory	R_GD_View=15 view of meaning			
-Deconstruction	Dekonstruktion ästhetischer Codes	R_Sicht=theory	R_GD_View=15 view of meaning			
+Deconstruction	Dekonstruktion Ã¤sthetischer Codes	R_Sicht=theory	R_GD_View=15 view of meaning			
 Deconstruction	Dekonstruktion digitaler Codes	R_Sicht=theory	R_GD_View=15 view of meaning			
 Deconstruction	Dekonstruktion gesellschaftlicher Codes	R_Sicht=theory	R_GD_View=15 view of meaning			
 Deconstruction	games / deconstruction and modifikation	R_Sicht=theory	R_GD_View=15 view of meaning	R_JJJJ=(2003)	R_Sparte=G	
-Deconstruction	one of art´s tasks is to expose and deconstruct the rhetorics of interfaces (D. Rokeby)	R_Sicht=theory	R_GD_View=15 view of meaning			
+Deconstruction	one of artÂ´s tasks is to expose and deconstruct the rhetorics of interfaces (D. Rokeby)	R_Sicht=theory	R_GD_View=15 view of meaning			
 Deconstruction	the work concept is deconstructed with the help of media	R_Sicht=theory	R_GD_View=15 view of meaning			
 Deconstruction	Visually Deconstructing Code	R_Sicht=theory	R_GD_View=15 view of meaning	R_JJJJ=(2003)		
 deconstruction and modification	artistic re-packaging	R_Sicht=theory				
@@ -4491,7 +4491,7 @@ Deformation	free form deformation				R_Sparte=DA	R_Quelle=SN
 Deformation	Verzerrung				R_Sparte=DA	R_Quelle=SN
 Dekonstruktion	Deconstruction	R_Sicht=theory				
 Dekonstruktion	qualitative Analyse	R_Sicht=theory				
-Dekonstruktion ästhetischer Codes	Deconstruction	R_Sicht=theory				
+Dekonstruktion Ã¤sthetischer Codes	Deconstruction	R_Sicht=theory				
 Dekonstruktion digitaler Codes	Deconstruction	R_Sicht=theory				
 Dekonstruktion gesellschaftlicher Codes	Deconstruction	R_Sicht=theory				
 delay	Time					
@@ -4509,13 +4509,13 @@ democratize the process of classification	bottom-up classification		R_GD_View=11
 democratize the process of classification	folksonomies		R_GD_View=11 political view		R_Sparte=	R_Quelle=GS
 denial of service	resistance					
 Denkmaschinen	Maschinisierung			R_JJJJ=(1986,90,94)		
-Denkräume	mental mapping	R_Sicht=representation				
-Denkräume	Virtueller Denkraum	R_Sicht=representation				
+DenkrÃ¤ume	mental mapping	R_Sicht=representation				
+DenkrÃ¤ume	Virtueller Denkraum	R_Sicht=representation				
 dependency on super computer or computer cluster	computer cluster					
 dependency on super computer or computer cluster	Rechner_calc					
 dependency on super computer or computer cluster	Supercomputing					
 dependency on super computer or computer cluster	Superrechner					
-Der künstliche Wille	Kuenstlicher Wille	R_Sicht=art		R_JJJJ=(1984)		
+Der kÃ¼nstliche Wille	Kuenstlicher Wille	R_Sicht=art		R_JJJJ=(1984)		
 Der universelle Roboter	Industrieroboter			R_JJJJ=(1982,89)		
 Der universelle Roboter	Robot			R_JJJJ=(1991)		
 Design	Design By Numbers (DBN)				R_Sparte=	R_Quelle=PF
@@ -4539,7 +4539,7 @@ Desire	advertsising is affirmative and experiments with desires	R_Sicht=culture	
 Desire	enhanced gestures / obsolete desires	R_Sicht=culture	R_GD_View=10 psychoanalytical view	R_JJJJ=(1992)		
 Desire	natural human desire	R_Sicht=culture	R_GD_View=10 psychoanalytical view			
 Desire	on virtual sex and the loss of desire	R_Sicht=culture	R_GD_View=10 psychoanalytical view	R_JJJJ=(1995)		
-Desire	playing with people´s desires	R_Sicht=culture	R_GD_View=10 psychoanalytical view			
+Desire	playing with peopleÂ´s desires	R_Sicht=culture	R_GD_View=10 psychoanalytical view			
 Desire	The desire for Immortality - Cloning, Cryonics and Cosmetics	R_Sicht=culture	R_GD_View=10 psychoanalytical view	R_JJJJ=(1993)		
 desk top publishing	electronic publishing					
 Deskmodding	Desktop Styling					
@@ -4610,8 +4610,8 @@ Dialogue	Dialog				R_Sparte=I
 Diapositive	Bildmedien				R_Sparte=B	
 Dichtungsprogramm	Programm			R_JJJJ=(1990)	R_Sparte=L	
 Die Aesthetik des Internet - Kontext als Medium	Medium			R_JJJJ=(1997)	R_Sparte=N	
-Die Ästhetik des Programmierens	Poesie des Programmierens			R_JJJJ=(1992)		
-Die Ästhetik des Programmierens	programming			R_JJJJ=(1992)		
+Die Ã„sthetik des Programmierens	Poesie des Programmierens			R_JJJJ=(1992)		
+Die Ã„sthetik des Programmierens	programming			R_JJJJ=(1992)		
 Die entfremdete Hand	Entfremdung			R_JJJJ=1994		
 Die entfremdete Hand	Hand			R_JJJJ=1994		
 Die entfremdete Hand	the hand als "disturbance factor"			R_JJJJ=1994		
@@ -4659,7 +4659,7 @@ digital	digitale Bilder	R_Sicht=informatics	R_GD_View=24 code view	R_JJJJ=(2001)
 digital	digitale Bildwelten	R_Sicht=informatics	R_GD_View=24 code view	R_JJJJ=(1988)		
 digital	digitale Codierung	R_Sicht=informatics	R_GD_View=24 code view	R_JJJJ=(n)		
 digital	digitale Computer	R_Sicht=informatics	R_GD_View=24 code view	R_JJJJ=(1989,97,99,2003)		
-digital	Digitale Effekte (im Film), die selbst in künstlerischer Weise präsentiert werden	R_Sicht=informatics	R_GD_View=24 code view	R_JJJJ=(2002)		
+digital	Digitale Effekte (im Film), die selbst in kÃ¼nstlerischer Weise prÃ¤sentiert werden	R_Sicht=informatics	R_GD_View=24 code view	R_JJJJ=(2002)		
 digital	digitale Fotografie	R_Sicht=informatics	R_GD_View=24 code view	R_JJJJ=(n)		
 digital	digitale Grammatik	R_Sicht=informatics	R_GD_View=24 code view	R_JJJJ=(2003)		
 digital	digitale Identitaet	R_Sicht=informatics	R_GD_View=24 code view	R_JJJJ=(2001)		
@@ -4911,7 +4911,7 @@ digitale Effekte	Visual effect
 Digitale Effekte (im Film), die selbst in kuenstl. Weise praesentiert werden	digitale Video-Effekte			R_JJJJ=(2002)	R_Sparte=FVA	
 Digitale Effekte (im Film), die selbst in kuenstl. Weise praesentiert werden	Film art			R_JJJJ=(2002)	R_Sparte=FVA	
 Digitale Effekte (im Film), die selbst in kuenstl. Weise praesentiert werden	Visual effect			R_JJJJ=(2002)	R_Sparte=FVA	
-Digitale Effekte (im Film), die selbst in künstlerischer Weise präsentiert werden	digital			R_JJJJ=(2002)	R_Sparte=FVA	
+Digitale Effekte (im Film), die selbst in kÃ¼nstlerischer Weise prÃ¤sentiert werden	digital			R_JJJJ=(2002)	R_Sparte=FVA	
 digitale Form	Form art	R_Sicht=representation	R_GD_View=19 presentation view			
 digitale Form	glatt /vs/ gekerbt	R_Sicht=representation	R_GD_View=19 presentation view			
 digitale Form	Kritik der digitalen Form	R_Sicht=representation	R_GD_View=19 presentation view			
@@ -5062,7 +5062,7 @@ Diode	Leuchtdiode
 Director	Software	R_Sicht=software				
 disappearance	erscheinen					
 Disappearing Computer	Immaterialitaet			R_JJJJ=2000		
-Discman	tragbare Hörräume				R_Sparte=M	R_Quelle=SN
+Discman	tragbare HÃ¶rrÃ¤ume				R_Sparte=M	R_Quelle=SN
 Disco	Disco-Pop			R_JJJJ=2004	R_Sparte=M	
 Disco	music style			R_JJJJ=2007	R_Sparte=M	
 Discoder	Vocoder			R_JJJJ=(2000)		
@@ -5243,8 +5243,8 @@ drawing tool	Zeichenautomaten	R_Sicht=tool		R_JJJJ=1979
 drawing tool with expressive parameters	Drawing	R_Sicht=tool		R_JJJJ=1999		
 drawing tool with expressive parameters	drawing tool	R_Sicht=tool		R_JJJJ=1999		
 Dream	31 view of metamorphosis		R_GD_View=31 view of metamorphosis			
-Dream	Kepler´s Dream					
-Dream	Kepler´s last dream					
+Dream	KeplerÂ´s Dream					
+Dream	KeplerÂ´s last dream					
 Dream	Maelstromsuedpol - Journey & dream					
 Dream	Shadow Dream			R_JJJJ=1986		
 Dream	Telematic Dreaming - virtual contacts and touching					
@@ -5326,7 +5326,7 @@ E-Business-Center	e-Business		R_GD_View=21 economic view	R_JJJJ=2004
 eCard solution	smartcard access					
 Echtzeit	26 temporal view	R_Sicht=informatics	R_GD_View=26 temporal view		R_Sparte=C	
 Echtzeit	Echtzeit Rendering	R_Sicht=informatics	R_GD_View=26 temporal view		R_Sparte=C	
-Echtzeit	Echtzeit-Übertragung	R_Sicht=comtech	R_GD_View=26 temporal view	R_JJJJ=2004	R_Sparte=C	
+Echtzeit	Echtzeit-Ãœbertragung	R_Sicht=comtech	R_GD_View=26 temporal view	R_JJJJ=2004	R_Sparte=C	
 Echtzeit	kybernetisch	R_Sicht=informatics	R_GD_View=26 temporal view		R_Sparte=C	
 Echtzeit	Real time	R_Sicht=informatics	R_GD_View=26 temporal view		R_Sparte=C	
 Echtzeit	Real time / Echtzeit	R_Sicht=informatics	R_GD_View=26 temporal view		R_Sparte=C	
@@ -5356,7 +5356,7 @@ Echtzeit-Montage	Collage / Montage
 Echtzeitprozess	Echtzeitbewegungssteuerung			R_JJJJ=1995		
 Echtzeitprozess	Real time / Echtzeit			R_JJJJ=(1993)		
 Echtzeitsynthese	Real time / Echtzeit			R_JJJJ=(1984)		
-Echtzeit-Übertragung	Echtzeit	R_Sicht=comtech			R_Sparte=A	
+Echtzeit-Ãœbertragung	Echtzeit	R_Sicht=comtech			R_Sparte=A	
 Echtzeitvideos	Real time / Echtzeit			R_JJJJ=(n)	R_Sparte=VN	
 Echtzeitvideos	Video art			R_JJJJ=(n)	R_Sparte=VN	
 ecological	ecological art	R_Sicht=world				
@@ -5428,7 +5428,7 @@ Ein multimediales Stadtzentrum	multimedia art			R_JJJJ=1994
 Einbahn-Navigation	Navigation			R_JJJJ=2002		
 einbetten	eintauchen		R_GD_View=01 atmospheres view	R_JJJJ=(1992)		
 Eine auf den Menschen ausgerichtete Aufmerksamkeit und Interaktionserfahrung (Mixed Reality Architektur)	Mixed Reality				R_Sparte=I	
-Eine kleine Genealogie des künstlichen Lebens	kuenstliches Leben			R_JJJJ=(1993,95)		
+Eine kleine Genealogie des kÃ¼nstlichen Lebens	kuenstliches Leben			R_JJJJ=(1993,95)		
 eintauchen	01 atmospheres view		R_GD_View=01 atmospheres view			
 eintauchen	einbetten		R_GD_View=01 atmospheres view			
 eintauchen	Immersion		R_GD_View=01 atmospheres view			
@@ -5610,7 +5610,7 @@ elektronische Kommunikationshilfen	elektronische Hilfen			R_JJJJ=(n)
 elektronische Konzertperformance	sound performance	R_Sicht=art	R_GD_View=26 performance view	R_JJJJ=(n)	R_Sparte=PM	
 elektronische Kostueme	wearable	R_Sicht=art		R_JJJJ=(2001)	R_Sparte=P	
 Elektronische Kunst	electronic art	R_Sicht=art				
-elektronische Kuratoren	23 curators´view		R_GD_View=23 curators´view	R_JJJJ=(n)		
+elektronische Kuratoren	23 curatorsÂ´view		R_GD_View=23 curatorsÂ´view	R_JJJJ=(n)		
 elektronische Medien	electronic			R_JJJJ=(1984,80,86,87,89,90,94,95,97,2000,02)		
 elektronische Medienkunst	digital media art	R_Sicht=art		R_JJJJ=(1986,90)		
 elektronische Medienoper	Medienoper	R_Sicht=art		R_JJJJ=(1984)	R_Sparte=P	
@@ -5643,8 +5643,8 @@ elektronische Technologie	Elektronik			R_JJJJ=(1980,84,86,87,88,90)
 elektronische Tools	electronic	R_Sicht=tool		R_JJJJ=(1994)		
 elektronische Transformation	elektronische Musiktransformationen	R_Sicht=representation			R_Sparte=	R_Quelle=SN
 elektronische Transformation	transformation	R_Sicht=representation			R_Sparte=	R_Quelle=SN
-Elektronische Übertragungsmedien	transport				R_Sparte=N	
-Elektronische Übertragungsmedien	Übertragungsmedien				R_Sparte=N	
+Elektronische Ãœbertragungsmedien	transport				R_Sparte=N	
+Elektronische Ãœbertragungsmedien	Ãœbertragungsmedien				R_Sparte=N	
 elektronische Unterhaltung	22 entertainment view		R_GD_View=22 entertainment view	R_JJJJ=(1989)		
 elektronische Viren	computer virus			R_JJJJ=(1993)		
 elektronische Viren	electronic viruses			R_JJJJ=(1993)		
@@ -5723,7 +5723,7 @@ emotionale Interaktion	Interactive Art	R_Sicht=body	R_GD_View=09 emotional view	
 Emotionales Programm	Emotion		R_GD_View=09 emotional view	R_JJJJ=1997		
 employee tracking	Surveillance					
 empowerbooked	Hyper-hiker					
-Empowerment	Ermächtigung				R_Sparte=	R_Quelle=PF
+Empowerment	ErmÃ¤chtigung				R_Sparte=	R_Quelle=PF
 Empowerment	social empowerment				R_Sparte=	R_Quelle=PF
 Empowerment	social issues				R_Sparte=	R_Quelle=PF
 emulation	Simulation	R_Sicht=informatics	R_GD_View=24 view of informatics			
@@ -5734,7 +5734,7 @@ Encryption	Clipper chip	R_Sicht=representation	R_GD_View=19 presentation view
 Encryption	cryptography	R_Sicht=representation	R_GD_View=19 presentation view			
 encyclopedia	Database	R_Sicht=media				
 encyclopedia	digital encyclopedia	R_Sicht=media			R_Sparte=	R_Quelle=PF
-encyclopedia	Open-Content-Enzyklopädie	R_Sicht=media		R_JJJJ=2004		
+encyclopedia	Open-Content-EnzyklopÃ¤die	R_Sicht=media		R_JJJJ=2004		
 encyclopedia	WIKI	R_Sicht=media				
 Endlosschleife	bugs	R_Sicht=informatics	R_GD_View=24 view of informatics			
 Endlosschleife	Schleife	R_Sicht=informatics	R_GD_View=24 view of informatics			
@@ -5752,10 +5752,10 @@ enhanced service	03 service view / project view		R_GD_View=03 service view / pro
 enhanced service	value-added network		R_GD_View=03 service view / project view			
 enriching taxonomies with tags	tags	R_Sicht=theory			R_Sparte=	R_Quelle=GS
 Entfremdung	Die entfremdete Hand			R_JJJJ=1994		
-Entfremdung	Zweckentfremdung von Bild- u. Tonträgern				R_Sparte=M	R_Quelle=SN
+Entfremdung	Zweckentfremdung von Bild- u. TontrÃ¤gern				R_Sparte=M	R_Quelle=SN
 Entropy	Chaos	R_Sicht=theory				
 Entwickler von Computerspielen als Meister der Illusion	Illusion		R_GD_View=32 gaming view		R_Sparte=G	
-Entwicklung komplexer Kommunikationsräume:  Mixed-Reality-Architektur  (MF)	Mixed Reality					
+Entwicklung komplexer KommunikationsrÃ¤ume:  Mixed-Reality-Architektur  (MF)	Mixed Reality					
 Entwicklungsumgebung	case tool	R_Sicht=tool				
 Entwicklungsumgebung	programming	R_Sicht=software				
 Entwurfsunterstuetzung	CAD					
@@ -5988,7 +5988,7 @@ facial expression as a medium for interactive art	Facial Expression			R_JJJJ=(19
 facial space	CAVE			R_JJJJ=2002		
 facial space	Facial Expression			R_JJJJ=2002		
 facial space	psychological space			R_JJJJ=2002		
-Fähnchen-Pixel	Pixel	R_Sicht=art			R_Sparte=P	
+FÃ¤hnchen-Pixel	Pixel	R_Sicht=art			R_Sparte=P	
 fake identity construction	Identity					
 Faltung	Gefuege					
 Farbenlichtspiele	Reflektorische Farbenlichtspiele				R_Sparte=B	R_Quelle=SN
@@ -6033,7 +6033,7 @@ Feedback	Closed-Circuit	R_Sicht=informatics	R_GD_View=25 cybernetic view		R_Spar
 Feedback	Force-Feedback	R_Sicht=informatics	R_GD_View=25 cybernetic view		R_Sparte=C	
 Feedback	kybernetisch	R_Sicht=informatics	R_GD_View=25 cybernetic view		R_Sparte=C	
 Feedback	responsive environment	R_Sicht=informatics	R_GD_View=25 cybernetic view		R_Sparte=C	
-Feedback	Rückkoppelungsschleife	R_Sicht=informatics	R_GD_View=25 cybernetic view		R_Sparte=C	
+Feedback	RÃ¼ckkoppelungsschleife	R_Sicht=informatics	R_GD_View=25 cybernetic view		R_Sparte=C	
 Feedback	Rueckkopplung	R_Sicht=informatics	R_GD_View=25 cybernetic view	R_JJJJ=1960	R_Sparte=C	
 Feedback	Steuerung	R_Sicht=informatics	R_GD_View=25 cybernetic view		R_Sparte=C	
 Feedback	Video Feedback	R_Sicht=informatics	R_GD_View=25 cybernetic view	R_JJJJ=1960	R_Sparte=V	
@@ -6041,7 +6041,7 @@ Feedback	visuelles Feedback	R_Sicht=informatics	R_GD_View=25 cybernetic view		R_
 Feedback Interaktionstypen	Closed-Circuit		R_GD_View=25 cybernetic view	R_JJJJ=1999	R_Sparte=I	
 Feedback Interaktionstypen	Interactive Art		R_GD_View=25 cybernetic view	R_JJJJ=1999	R_Sparte=I	
 Feedback Interaktionstypen	Interaktionstypen		R_GD_View=25 cybernetic view	R_JJJJ=1999	R_Sparte=I	
-Feedback über IRC-Channel	IRC			R_JJJJ=1997	R_Sparte=N	
+Feedback Ã¼ber IRC-Channel	IRC			R_JJJJ=1997	R_Sparte=N	
 Feedback-Kunst	Closed-Circuit	R_Sicht=art		R_JJJJ=(n)	R_Sparte=I	
 Feedbackschleife	Closed-Circuit		R_GD_View=25 cybernetic view			
 feeling of touch and control of action	Touch			R_JJJJ=1997		
@@ -6186,8 +6186,8 @@ film installation	Film	R_Sicht=art			R_Sparte=FV
 film installation	video installation	R_Sicht=art			R_Sparte=FV	
 filmische Repraesentation	Film art	R_Sicht=representation		R_JJJJ=(1998)	R_Sparte=FV	
 Filmkunst	Film art	R_Sicht=art	R_GD_View=27 filmic view		R_Sparte=F	
-Filmmusik	Hörfilm	R_Sicht=art			R_Sparte=FMA	R_Quelle=SN
-Filmreihe „Künstliches Leben“	kuenstliches Leben			R_JJJJ=(1993,95)	R_Sparte=F	
+Filmmusik	HÃ¶rfilm	R_Sicht=art			R_Sparte=FMA	R_Quelle=SN
+Filmreihe Â„KÃ¼nstliches LebenÂ“	kuenstliches Leben			R_JJJJ=(1993,95)	R_Sparte=F	
 filter	31 transformation view	R_Sicht=informatics	R_GD_View=31 transformation view			
 filter	bandpass  filter		R_GD_View=31 transformation view	R_JJJJ=1992		
 filter	digital filtering		R_GD_View=31 transformation view	R_JJJJ=1989		
@@ -6202,10 +6202,10 @@ Filterung	Klangfilterung				R_Sparte=M
 Firefly Musikdatenbank	Database			R_JJJJ=1995	R_Sparte=M	
 Firefly Musikdatenbank	Database art			R_JJJJ=1995	R_Sparte=M	
 Firefly Musikdatenbank	Musikdatenbank			R_JJJJ=1995	R_Sparte=M	
-Firefly Musikdatenbank	Ringo Musikdatenbank (Ähnlichkeitsprofile)		R_GD_View=01 contextual view		R_Sparte=M	
+Firefly Musikdatenbank	Ringo Musikdatenbank (Ã„hnlichkeitsprofile)		R_GD_View=01 contextual view		R_Sparte=M	
 Firefly Musikdatenbank	Vicinity			R_JJJJ=1995	R_Sparte=M	
 Firewall	security	R_Sicht=comtech			R_Sparte=N	
-First International Computer Art Festival - The Kitchen NY	ARS Vorläufer			R_JJJJ=1973		
+First International Computer Art Festival - The Kitchen NY	ARS VorlÃ¤ufer			R_JJJJ=1973		
 First International Computer Art Festival - The Kitchen NY	computer art			R_JJJJ=1973		
 First International Computer Art Festival - The Kitchen NY	Festival			R_JJJJ=1973		
 first java applets	Java			R_JJJJ=(1996)		
@@ -6263,19 +6263,19 @@ Flow	flow geometry				R_Sparte=	R_Quelle=PF
 flow geometry	Flow				R_Sparte=	R_Quelle=PF
 flow geometry	geometry				R_Sparte=	R_Quelle=PF
 flow geometry	graphematic				R_Sparte=	R_Quelle=PF
-Flüchtigkeit	Virtualitaet					
+FlÃ¼chtigkeit	Virtualitaet					
 Flugsimulation	Flugsimulator	R_Sicht=software		R_JJJJ=(1998)	R_Sparte=GA	
 Flugsimulation	space simulator	R_Sicht=software			R_Sparte=A	
 Flugsimulator	Flugsimulation	R_Sicht=software		R_JJJJ=(1998)	R_Sparte=GA	
 Fluid Sound	Sound			R_JJJJ=1998	R_Sparte=M	
 Fluidales Design	Aesthetics	R_Sicht=art				
-Fluidales Design	Fluidität	R_Sicht=art				
+Fluidales Design	FluiditÃ¤t	R_Sicht=art				
 Fluidales Design	liquid architecture	R_Sicht=art				
 Fluidales Design	Softdesign	R_Sicht=art				
 fluides Environment	liquid architecture	R_Sicht=art		R_JJJJ=(2001)		
-Fluidität	amorphe Formen					
-Fluidität	fluid				R_Sparte=	R_Quelle=SN
-Fluidität	Fluidales Design					
+FluiditÃ¤t	amorphe Formen					
+FluiditÃ¤t	fluid				R_Sparte=	R_Quelle=SN
+FluiditÃ¤t	Fluidales Design					
 Flussdiagramme	Diagramm	R_Sicht=representation			R_Sparte=D	
 Fluxus	Genre - Diverse	R_Sicht=art			R_Sparte=PB	R_Quelle=SN
 Fluxus	Intermedia	R_Sicht=media			R_Sparte=PB	R_Quelle=SN
@@ -6355,7 +6355,7 @@ Formfindung	Medienformen	R_Sicht=art	R_GD_View=06 view of designing gestures	R_J
 Form-Z	Formfindung	R_Sicht=software				
 Form-Z	Modellierungsprogramm	R_Sicht=software				
 Form-Z	powerful software	R_Sicht=software				
-Fortschrittsgläubigkeit	Technologiebegeisterung				R_Sparte=	R_Quelle=SN
+FortschrittsglÃ¤ubigkeit	Technologiebegeisterung				R_Sparte=	R_Quelle=SN
 Foto	Fotomosaik	R_Sicht=media		R_JJJJ=2007	R_Sparte=D	
 Foto	photo	R_Sicht=media			R_Sparte=D	
 Foto	Photo art	R_Sicht=media			R_Sparte=D	
@@ -6385,10 +6385,10 @@ fractals	Mandelbrot-set (first time in 1979)	R_Sicht=informatics	R_GD_View=24 vi
 Fraktalgenerator	fractals	R_Sicht=software	R_GD_View=24 view of mathematics		R_Sparte=D	
 Frauennetzwerke	Position of women	R_Sicht=culture		R_JJJJ=2001		
 Frauennetzwerke	social networks	R_Sicht=culture		R_JJJJ=2001		
-Frauennetzwerke	women´s networks	R_Sicht=culture		R_JJJJ=(2001)		
+Frauennetzwerke	womenÂ´s networks	R_Sicht=culture		R_JJJJ=(2001)		
 free access	access	R_Sicht=culture				
 free access to wireless networks	Access	R_Sicht=culture			R_Sparte=N	
-free access to wireless networks	FreeNet – Initiativen	R_Sicht=culture		R_JJJJ=(2004)	R_Sparte=N	
+free access to wireless networks	FreeNet Â– Initiativen	R_Sicht=culture		R_JJJJ=(2004)	R_Sparte=N	
 free form deformation	31 transformation view		R_GD_View=31 transformation view			
 free form deformation	Deformation		R_GD_View=31 transformation view		R_Sparte=	R_Quelle=SN
 free software	copy left	R_Sicht=software				
@@ -6401,11 +6401,11 @@ free software	open source software	R_Sicht=software
 Free Software Foundation	free software	R_Sicht=culture		R_JJJJ=2005		
 free software project	free software			R_JJJJ=2000		
 Free Speech Camp - FRO	speech			R_JJJJ=2000		
-FreeNet – Initiativen	free access to wireless networks			R_JJJJ=(2004)	R_Sparte=N	
+FreeNet Â– Initiativen	free access to wireless networks			R_JJJJ=(2004)	R_Sparte=N	
 freestyle computing	04 view of innovation	R_Sicht=informatics	R_GD_View=04 view of innovation	R_JJJJ=(1998-2003)		
 freeware	free software	R_Sicht=culture				
 frei wandernde Kunstwerke	mobile intelligente Objekte	R_Sicht=art			R_Sparte=P	
-freie drahtlose Bürgernetze	Freenetworks			R_JJJJ=2004	R_Sparte=N	
+freie drahtlose BÃ¼rgernetze	Freenetworks			R_JJJJ=2004	R_Sparte=N	
 Freie Software	free software	R_Sicht=software		R_JJJJ=(2003)		
 Freie Szene	Subkultur	R_Sicht=culture				
 freies Radio	free radio	R_Sicht=media			R_Sparte=	R_Quelle=SW
@@ -6495,7 +6495,7 @@ Game	game design	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=GI
 Game	game engine	R_Sicht=software	R_GD_View=32 gaming view	R_JJJJ=2003	R_Sparte=GI	
 Game	game interface	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=GI	
 Game	gaming	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=GI	
-Game	Geländespiel	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=GI	
+Game	GelÃ¤ndespiel	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=GI	
 Game	interaktive Spiele	R_Sicht=software	R_GD_View=32 gaming view	R_JJJJ=(n)	R_Sparte=GI	
 Game	Kuenstliche Spiele	R_Sicht=software	R_GD_View=32 gaming view	R_JJJJ=1994	R_Sparte=GI	
 Game	mobile gaming	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=GI	
@@ -6566,7 +6566,7 @@ Gant-Diagramm	Diagramm	R_Sicht=representation			R_Sparte=D
 garden	interactive garden	R_Sicht=world			R_Sparte=I	
 gated communities	Access	R_Sicht=culture			R_Sparte=N	
 gated communities	Community	R_Sicht=culture			R_Sparte=N	
-Gebaeude als Display	Gebäude als Display	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=(1998,2000)		
+Gebaeude als Display	GebÃ¤ude als Display	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=(1998,2000)		
 Gebaeude als Display	House Wall	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=(1998,2000)		
 gebaute Musik	Zahlenharmonie Musik - Architektur				R_Sparte=	R_Quelle=SN
 Gedaechtnis	Gedaechtnismedien	R_Sicht=body		R_JJJJ=(n)		
@@ -6584,7 +6584,7 @@ Gegenoeffentlichkeit	07 media-critical view	R_Sicht=culture	R_GD_View=07 media-c
 Gegenoeffentlichkeit	Watchblogs	R_Sicht=culture	R_GD_View=07 media-critical view			
 Gehirn/Computer-Schnittstelle	Brainwave Sensor	R_Sicht=interface	R_GD_View=14 view of sensor technology	R_JJJJ=(n)	R_Sparte=I	
 Gehirn/Computer-Schnittstelle	Schnittstelle	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=(n)	R_Sparte=I	
-Geländespiel	Game		R_GD_View=32 gaming view		R_Sparte=G	
+GelÃ¤ndespiel	Game		R_GD_View=32 gaming view		R_Sparte=G	
 Gender	11 feminist view	R_Sicht=culture	R_GD_View=11 feminist view			
 Gender	13 identity view	R_Sicht=culture	R_GD_View=11 feminist view			
 Gender	anthropology of gender	R_Sicht=culture	R_GD_View=11 feminist view			
@@ -6661,7 +6661,7 @@ Genetic art	Genetic Images	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=1991
 Genetic art	Genetic Manipulator	R_Sicht=art	R_GD_View=17 view of genetic			
 Genetic art	genetische Algorithmen	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=(1992,93,99) (1991,92,93,94,95,97,98,99)		
 Genetic art	Genetische Kunst  (Kanonisierte Richtung)	R_Sicht=art	R_GD_View=17 view of genetic			
-Genetic art	Genetische Kunst – Künstliches Leben	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=1993		
+Genetic art	Genetische Kunst Â– KÃ¼nstliches Leben	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=1993		
 Genetic art	genetische Programme	R_Sicht=art	R_GD_View=17 view of genetic			
 Genetic art	genetischer Code	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=(1999)		
 Genetic art	Gentechnische Eingriffe	R_Sicht=art	R_GD_View=17 view of genetic			
@@ -6679,9 +6679,9 @@ genetische Algorithmen	Art & Algorithm		R_GD_View=17 view of genetic	R_JJJJ=1992
 genetische Algorithmen	genetic algorithms		R_GD_View=17 view of genetic	R_JJJJ=1992		
 genetische Algorithmen	Genetic art		R_GD_View=17 view of genetic	R_JJJJ=1992		
 Genetische Kunst  (Kanonisierte Richtung)	Genetic art	R_Sicht=art	R_GD_View=17 view of genetic			
-Genetische Kunst – Künstliches Leben	artificial	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=1993		
-Genetische Kunst – Künstliches Leben	Artificial Life	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=1993		
-Genetische Kunst – Künstliches Leben	Genetic art	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=1993		
+Genetische Kunst Â– KÃ¼nstliches Leben	artificial	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=1993		
+Genetische Kunst Â– KÃ¼nstliches Leben	Artificial Life	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=1993		
+Genetische Kunst Â– KÃ¼nstliches Leben	Genetic art	R_Sicht=art	R_GD_View=17 view of genetic	R_JJJJ=1993		
 genetische Programme	Genetic art		R_GD_View=17 view of genetic			
 genetischer Code	Genetic	R_Sicht=representation	R_GD_View=17 view of genetic	R_JJJJ=(1999)		
 genetischer Code	Genetic art	R_Sicht=representation	R_GD_View=17 view of genetic	R_JJJJ=(1999)		
@@ -6747,7 +6747,7 @@ geospatial augmented reality	mobile geospatial augmented reality	R_Sicht=informa
 geotagging	geographical data	R_Sicht=representation			R_Sparte=N	R_Quelle=GS
 geotagging	semantic landscape	R_Sicht=representation			R_Sparte=N	R_Quelle=GS
 geotagging	tagging	R_Sicht=representation			R_Sparte=N	R_Quelle=GS
-Geräusch	Sound	R_Sicht=world			R_Sparte=M	
+GerÃ¤usch	Sound	R_Sicht=world			R_Sparte=M	
 Gesamtdatenwerk	connectivity	R_Sicht=art				
 Gesamtdatenwerk	Medienwerk	R_Sicht=art		R_JJJJ=(n)		
 Gesamtdatenwerk	transformation	R_Sicht=art				
@@ -6978,9 +6978,9 @@ graphische Programmierung	visual programming	R_Sicht=informatics	R_GD_View=24 vi
 Groesse, Ausdehnung, Wichtigkeit	24 view of magnitude	R_Sicht=representation	R_GD_View=24 view of magnitude			
 grosse Gesten	Ausdrucksgesten	R_Sicht=body				
 grosse Gesten	Klangwolke	R_Sicht=body			R_Sparte=M	
-Großrechner	blade server	R_Sicht=hardware				
-Großrechner	Host	R_Sicht=hardware				
-Großrechner	Rezentralisierung	R_Sicht=hardware				
+GroÃŸrechner	blade server	R_Sicht=hardware				
+GroÃŸrechner	Host	R_Sicht=hardware				
+GroÃŸrechner	Rezentralisierung	R_Sicht=hardware				
 Group	30 behavior view	R_Sicht=culture	R_GD_View=30 behavior view			
 Group	Community	R_Sicht=culture				
 Group	Group identity	R_Sicht=culture		R_JJJJ=(2002)	R_Sparte=	R_Quelle=PF
@@ -7070,14 +7070,14 @@ Handlungssteuerung	control			R_JJJJ=1997	R_Sparte=I
 Handy	cellphone	R_Sicht=comtech			R_Sparte=	R_Quelle=SN
 Handy	Handykunst	R_Sicht=comtech				
 Handy	Handyspiele	R_Sicht=comtech	R_GD_View=32 gaming view		R_Sparte=G	
-Handy	Handytöne	R_Sicht=comtech				
+Handy	HandytÃ¶ne	R_Sicht=comtech				
 Handy	mobile phones	R_Sicht=comtech				
 Handykunst	Fax- u. Telefonkunst	R_Sicht=art			R_Sparte=N	
 Handykunst	Handy	R_Sicht=art			R_Sparte=N	
 Handykunst	mobile phone art	R_Sicht=art			R_Sparte=N	
 Handyspiele	Handy	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=G	
 Handyspiele	mobile gaming	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=G	
-Handytöne	Handy	R_Sicht=comtech				
+HandytÃ¶ne	Handy	R_Sicht=comtech				
 Happening	28 performance view	R_Sicht=art	R_GD_View=26 performance view		R_Sparte=P	
 Happening	elektronik Happening	R_Sicht=art	R_GD_View=26 performance view	R_JJJJ=(1984)	R_Sparte=P	
 Happening	elektronisches Happening	R_Sicht=art	R_GD_View=26 performance view	R_JJJJ=(n)	R_Sparte=P	
@@ -7091,7 +7091,7 @@ Hardware	19 view of gravity	R_Sicht=hardware	R_GD_View=03 view of PC/computer/vi
 Hardware	20 view of storage media	R_Sicht=hardware	R_GD_View=03 view of PC/computer/video technology			
 Hardware	Computer	R_Sicht=hardware	R_GD_View=03 view of PC/computer/video technology			
 Hardware	electronic	R_Sicht=hardware	R_GD_View=03 view of PC/computer/video technology			
-Hardware	Hardware-Archäologie	R_Sicht=hardware	R_GD_View=03 view of PC/computer/video technology			
+Hardware	Hardware-ArchÃ¤ologie	R_Sicht=hardware	R_GD_View=03 view of PC/computer/video technology			
 Hardware	Rechner	R_Sicht=hardware	R_GD_View=03 view of PC/computer/video technology			
 Hardware	Station	R_Sicht=hardware	R_GD_View=03 view of PC/computer/video technology			
 Hardware	Ware...	R_Sicht=hardware	R_GD_View=03 view of PC/computer/video technology			
@@ -7100,10 +7100,10 @@ Hardware Transformation	hardware transformation_	R_Sicht=hardware	R_GD_View=31 t
 Hardware Transformation	Techno-Transformation	R_Sicht=hardware	R_GD_View=31 transformation view	R_JJJJ=(1987,88)		
 Hardware Transformation	Transformationssysteme	R_Sicht=hardware	R_GD_View=31 transformation view	R_JJJJ=(1980)		
 hardware transformation_	Hardware Transformation	R_Sicht=hardware	R_GD_View=31 transformation view	R_JJJJ=2003		
-Hardware-Archaeologie	Hardware-Archäologie	R_Sicht=archaeology		R_JJJJ=(1992)		
+Hardware-Archaeologie	Hardware-ArchÃ¤ologie	R_Sicht=archaeology		R_JJJJ=(1992)		
 Hardware-Archaeologie	Media archaeology	R_Sicht=archaeology		R_JJJJ=(1992)		
-Hardware-Archäologie	Hardware	R_Sicht=archaeology				
-Hardware-Archäologie	Hardware-Archaeologie	R_Sicht=archaeology		R_JJJJ=(1992)		
+Hardware-ArchÃ¤ologie	Hardware	R_Sicht=archaeology				
+Hardware-ArchÃ¤ologie	Hardware-Archaeologie	R_Sicht=archaeology		R_JJJJ=(1992)		
 Harmonices Mundi	Kepler	R_Sicht=science			R_Sparte=M	R_Quelle=SN
 Harmonie	Architektur und Harmonie	R_Sicht=art			R_Sparte=M	R_Quelle=SN
 Harmonie	harmonische Algorhythmisierung	R_Sicht=art			R_Sparte=M	R_Quelle=SN
@@ -7119,7 +7119,7 @@ HDTV	digital HDTV	R_Sicht=media		R_JJJJ=(n)
 HDTV	high definition television HDTV	R_Sicht=media				
 head tracking	Body Tracking	R_Sicht=informatics				
 head tracking	Positiontracker	R_Sicht=informatics				
-Headset	tragbare Hörräume	R_Sicht=interface			R_Sparte=M	R_Quelle=SN
+Headset	tragbare HÃ¶rrÃ¤ume	R_Sicht=interface			R_Sparte=M	R_Quelle=SN
 Hearing	25 acoustiv "view"	R_Sicht=body	R_GD_View=25 acoustiv "view"		R_Sparte=M	
 Hearing	Colour Hearing	R_Sicht=body	R_GD_View=25 acoustiv "view"		R_Sparte=M	
 Hearing	fernhoeren	R_Sicht=body	R_GD_View=25 acoustiv "view"	R_JJJJ=(n)	R_Sparte=M	
@@ -7170,11 +7170,11 @@ Hochgeschwindigkeitsnetze	26 speed view	R_Sicht=comtech	R_GD_View=26 speed view	
 Hochgeschwindigkeitsnetze	high bandwidth	R_Sicht=comtech			R_Sparte=N	
 Hochgeschwindigkeitsnetze	information highway	R_Sicht=comtech			R_Sparte=N	
 Hochgeschwindigkeitsvideo	Video				R_Sparte=V	
-Hochspannungsdrähte als Klangkörper	Klangkoerper	R_Sicht=interface			R_Sparte=M	
+HochspannungsdrÃ¤hte als KlangkÃ¶rper	Klangkoerper	R_Sicht=interface			R_Sparte=M	
 Hochtechnologie	Neue Technologien			R_JJJJ=(1993)		
 Hochtechnologiekunst	high technology art	R_Sicht=art			R_Sparte=C	
 Hoerstation	fernhoeren			R_JJJJ=(2002)	R_Sparte=M	
-Hoerstation	tragbare Hörräume				R_Sparte=M	R_Quelle=SN
+Hoerstation	tragbare HÃ¶rrÃ¤ume				R_Sparte=M	R_Quelle=SN
 Hologramm-Collagen	Collage / Montage	R_Sicht=art			R_Sparte=B	
 Hologramm-Collagen	Holographie Kunst	R_Sicht=art			R_Sparte=B	
 Hologramm-Collagen	Holography	R_Sicht=art			R_Sparte=B	
@@ -7203,15 +7203,15 @@ homepage	WWW	R_Sicht=culture			R_Sparte=N
 home-production	home computer	R_Sicht=culture				
 home-production	Production	R_Sicht=culture				
 Homo Cyber Sapiens	cyber	R_Sicht=culture		R_JJJJ=1995		
-Hörfilm	Filmmusik	R_Sicht=art			R_Sparte=FMA	R_Quelle=SN
-Hörfilm	Hörspiel	R_Sicht=art			R_Sparte=M	R_Quelle=SN
+HÃ¶rfilm	Filmmusik	R_Sicht=art			R_Sparte=FMA	R_Quelle=SN
+HÃ¶rfilm	HÃ¶rspiel	R_Sicht=art			R_Sparte=M	R_Quelle=SN
 Horhizome	event horizon of the Net	R_Sicht=theory			R_Sparte=N	
 Horhizome	Rhizom	R_Sicht=theory			R_Sparte=N	
-Hörpartitur	Partitur	R_Sicht=art	R_GD_View=26 view of the score		R_Sparte=M	R_Quelle=SN
-Hörspiel	13 view of dramatization	R_Sicht=art			R_Sparte=M	
-Hörspiel	Hörfilm	R_Sicht=art			R_Sparte=M	R_Quelle=SN
-Hörspiel	radio art	R_Sicht=art			R_Sparte=M	
-Host	Großrechner	R_Sicht=hardware				
+HÃ¶rpartitur	Partitur	R_Sicht=art	R_GD_View=26 view of the score		R_Sparte=M	R_Quelle=SN
+HÃ¶rspiel	13 view of dramatization	R_Sicht=art			R_Sparte=M	
+HÃ¶rspiel	HÃ¶rfilm	R_Sicht=art			R_Sparte=M	R_Quelle=SN
+HÃ¶rspiel	radio art	R_Sicht=art			R_Sparte=M	
+Host	GroÃŸrechner	R_Sicht=hardware				
 Host	Server	R_Sicht=hardware				
 Host	Supercomputing	R_Sicht=hardware				
 Hot Wired Online Publishing	wire			R_JJJJ=(1996)	R_Sparte=N	
@@ -7280,7 +7280,7 @@ Hybrid	hybride Realitaeten	R_Sicht=theory	R_GD_View=02 view of hybridity		R_Spar
 Hybrid	Hybriditaet	R_Sicht=theory	R_GD_View=02 view of hybridity		R_Sparte=H	
 Hybrid	Hybriditaet von Medien	R_Sicht=theory	R_GD_View=02 view of hybridity	R_JJJJ=(n)	R_Sparte=H	
 Hybrid	Hybridkultur	R_Sicht=theory	R_GD_View=02 view of hybridity	R_JJJJ=(1996)	R_Sparte=H	
-Hybrid	Hybridräume	R_Sicht=theory	R_GD_View=02 view of hybridity	R_JJJJ=1997	R_Sparte=H	
+Hybrid	HybridrÃ¤ume	R_Sicht=theory	R_GD_View=02 view of hybridity	R_JJJJ=1997	R_Sparte=H	
 Hybrid	Hybridrechner	R_Sicht=theory	R_GD_View=02 view of hybridity	R_JJJJ=(n)	R_Sparte=H	
 Hybrid	Hybridsystem	R_Sicht=theory	R_GD_View=02 view of hybridity	R_JJJJ=(1979,2002)	R_Sparte=H	
 Hybrid	Mutation	R_Sicht=theory	R_GD_View=02 view of hybridity		R_Sparte=H	
@@ -7315,7 +7315,7 @@ Hybriditaet	Kuenstlichkeit	R_Sicht=theory	R_GD_View=02 view of hybridity		R_Spar
 Hybriditaet	methodisch hybride Bildwelt	R_Sicht=theory	R_GD_View=02 view of hybridity	R_JJJJ=2004	R_Sparte=H	
 Hybriditaet von Medien	Hybrid	R_Sicht=media		R_JJJJ=(n)	R_Sparte=H	
 Hybridkultur	Hybrid	R_Sicht=culture		R_JJJJ=1996	R_Sparte=H	
-Hybridräume	Hybrid			R_JJJJ=1997	R_Sparte=H	
+HybridrÃ¤ume	Hybrid			R_JJJJ=1997	R_Sparte=H	
 Hybridrechner	analog/digital-Hybriden	R_Sicht=hardware		R_JJJJ=(1992) (1977)	R_Sparte=H	
 Hybridrechner	Hybrid	R_Sicht=hardware		R_JJJJ=(n)	R_Sparte=H	
 Hybridrechner	Rechner_calc	R_Sicht=hardware		R_JJJJ=(n)	R_Sparte=H	
@@ -7438,7 +7438,7 @@ Identity	digitale Identitaet	R_Sicht=culture	R_GD_View=13 identity view	R_JJJJ=(
 Identity	fake identity construction	R_Sicht=culture	R_GD_View=13 identity view			
 Identity	Gender Identity	R_Sicht=culture	R_GD_View=13 identity view		R_Sparte=P	
 Identity	Group identity	R_Sicht=culture	R_GD_View=13 identity view		R_Sparte=	R_Quelle=PF
-Identity	Identität	R_Sicht=culture	R_GD_View=13 identity view		R_Sparte=	R_Quelle=SN
+Identity	IdentitÃ¤t	R_Sicht=culture	R_GD_View=13 identity view		R_Sparte=	R_Quelle=SN
 Identity	Memory	R_Sicht=culture	R_GD_View=13 identity view			
 Identity	net identity	R_Sicht=culture	R_GD_View=13 identity view		R_Sparte=N	
 Identity	nostalgia	R_Sicht=culture	R_GD_View=13 identity view			
@@ -7603,8 +7603,8 @@ Impuls	Impulsgeber	R_Sicht=comtech
 Impulsgeber	Impuls	R_Sicht=comtech				
 Impulsgeber	Sensortechnik	R_Sicht=comtech				
 in situ	situ...	R_Sicht=art				
-In Sommerer´s installations death is employed as a necessary tabula rasa	Death	R_Sicht=art		R_JJJJ=1998		
-In Sommerer´s installations death is employed as a necessary tabula rasa	Sommerer	R_Sicht=art		R_JJJJ=1998		
+In SommererÂ´s installations death is employed as a necessary tabula rasa	Death	R_Sicht=art		R_JJJJ=1998		
+In SommererÂ´s installations death is employed as a necessary tabula rasa	Sommerer	R_Sicht=art		R_JJJJ=1998		
 independent media	Tactical Media	R_Sicht=media				
 Index	16 view of knowledge management	R_Sicht=representation	R_GD_View=16 view of knowledge management			
 Index	Bookmarking	R_Sicht=representation				
@@ -7626,11 +7626,11 @@ Industrial Culture	Maschinenkunst	R_Sicht=culture
 Industrial Design	21 design view	R_Sicht=tool	R_GD_View=21 design view			
 Industrial Design	Scionic	R_Sicht=tool	R_GD_View=21 design view			
 Industrial Sounds	Industrial Culture	R_Sicht=culture			R_Sparte=M	R_Quelle=SN
-Industrial Sounds	Maschinengeräusche	R_Sicht=culture			R_Sparte=M	R_Quelle=SN
+Industrial Sounds	MaschinengerÃ¤usche	R_Sicht=culture			R_Sparte=M	R_Quelle=SN
 Industrieroboter	Der universelle Roboter	R_Sicht=tool		R_JJJJ=(1982,89)		
 Industrieroboter	Robot	R_Sicht=tool		R_JJJJ=(1982,89)		
 inebriation (intoxication)	26 speed view	R_Sicht=body	R_GD_View=26 speed view			
-inebriation (intoxication)	Agression, Fleisch, Lust, Verrücktheit, Blutrausch und Phantasie	R_Sicht=body		R_JJJJ=1994		
+inebriation (intoxication)	Agression, Fleisch, Lust, VerrÃ¼cktheit, Blutrausch und Phantasie	R_Sicht=body		R_JJJJ=1994		
 inebriation (intoxication)	berauschen, betrunken machen	R_Sicht=body				
 inebriation (intoxication)	Lust am Orientierungsverlust	R_Sicht=body				
 inebriation (intoxication)	Lust an der Geschwindigkeit	R_Sicht=body				
@@ -7712,7 +7712,7 @@ information arts	informatische Kunst	R_Sicht=art	R_GD_View=15 content view	R_JJJ
 information bar	09 supply view	R_Sicht=tool				
 information design	information science				R_Sparte=DA	
 information design	knowledge architecture				R_Sparte=DA	
-information flow	Bildfluß	R_Sicht=culture			R_Sparte=A	
+information flow	BildfluÃŸ	R_Sicht=culture			R_Sparte=A	
 information flow	Communication	R_Sicht=culture			R_Sparte=N	
 information flow	flow of information	R_Sicht=culture			R_Sparte=N	R_Quelle=PF
 information handling	Information			R_JJJJ=1979		
@@ -7785,7 +7785,7 @@ Informationsdiagramme	Informationsdesign	R_Sicht=representation	R_GD_View=15 dia
 Informationseinheiten	Information			R_JJJJ=(1996)		
 Informationsgesellschaft	Information	R_Sicht=culture		R_JJJJ=1998		
 Informationsgesellschaft	information society	R_Sicht=culture			R_Sparte=	R_Quelle=SN
-Informationsgesellschaft	ubiquitäre Informationsgesellschaft	R_Sicht=culture		R_JJJJ=2004		
+Informationsgesellschaft	ubiquitÃ¤re Informationsgesellschaft	R_Sicht=culture		R_JJJJ=2004		
 Informationsgestalter	Information	R_Sicht=representation		R_JJJJ=(n)		
 Informationsgestalter	Informationsdesign	R_Sicht=representation		R_JJJJ=(1996)		
 Informationsgestalter	Informationsgestaltung	R_Sicht=representation				
@@ -7822,7 +7822,7 @@ Informationstheorie	Information	R_Sicht=theory
 Informationstheorie	Information	R_Sicht=theory		R_JJJJ=1979		
 Informationstheorie	information theory	R_Sicht=theory				
 Informationstheorie	kybernetische Aesthetic	R_Sicht=theory				
-Informationsträger	Repraesentation	R_Sicht=storage				
+InformationstrÃ¤ger	Repraesentation	R_Sicht=storage				
 Informationsueberlegenheit	Information	R_Sicht=culture		R_JJJJ=(1998)		
 Informationsverarbeitung	Datenverarbeitung	R_Sicht=informatics	R_GD_View=24 view of informatics			
 Informationsverarbeitung	Information	R_Sicht=informatics	R_GD_View=24 view of informatics	R_JJJJ=(1980)		
@@ -8450,14 +8450,14 @@ IP	TCP/IP	R_Sicht=comtech			R_Sparte=N
 IP-Adresse	TCP/IP	R_Sicht=comtech			R_Sparte=N	
 IP-Netzwerke	TCP/IP	R_Sicht=comtech		R_JJJJ=(n)	R_Sparte=N	
 iPod	MP3	R_Sicht=storage	R_GD_View=20 view of storage media	R_JJJJ=2006,2007	R_Sparte=M	
-iPod	tragbare Hörräume				R_Sparte=M	R_Quelle=SN
+iPod	tragbare HÃ¶rrÃ¤ume				R_Sparte=M	R_Quelle=SN
 IP-TV	digital TV	R_Sicht=media			R_Sparte=N	
 IP-TV	on demand TV	R_Sicht=media			R_Sparte=N	
 IP-TV	TCP/IP	R_Sicht=media			R_Sparte=N	
 IRC	Chat / chatting	R_Sicht=comtech			R_Sparte=N	
 IRC	communications protocols	R_Sicht=comtech			R_Sparte=N	
 IRC	computer-mediated communications	R_Sicht=comtech			R_Sparte=N	
-IRC	Feedback über IRC-Channel	R_Sicht=comtech		R_JJJJ=1997	R_Sparte=N	
+IRC	Feedback Ã¼ber IRC-Channel	R_Sicht=comtech		R_JJJJ=1997	R_Sparte=N	
 IRC	flaming	R_Sicht=comtech			R_Sparte=N	
 IRC	internet relay chat	R_Sicht=comtech			R_Sparte=N	
 IRC	Vchat	R_Sicht=comtech			R_Sparte=N	
@@ -8511,7 +8511,7 @@ Junggesellenmaschine	Maschinisierung			R_JJJJ=(1990,99,2000)
 Jungle	music style				R_Sparte=M	
 Junk Mail	e-mail	R_Sicht=culture			R_Sparte=N	
 Kaleidoskop	interaktives Kaleidoskop	R_Sicht=media		R_JJJJ=(1998)	R_Sparte=I	
-Kaleidoskop	Schönbildschauer	R_Sicht=media				
+Kaleidoskop	SchÃ¶nbildschauer	R_Sicht=media				
 Kalter Minimalismus	Aesthetics	R_Sicht=art				
 Kalter Minimalismus	Immaterialitaet	R_Sicht=art				
 Kalter Minimalismus	Minimalismen	R_Sicht=art				
@@ -8521,7 +8521,7 @@ Kampfsysteme	Kampfmaschinen			R_JJJJ=1998
 Kampfsysteme	War			R_JJJJ=(1998)		
 Kartierung	25 geographical view		R_GD_View=25 geographical view		R_Sparte=D	
 Kartierung	Kartierung der realen und virtuellen Welt		R_GD_View=25 geographical view	R_JJJJ=2006	R_Sparte=D	
-Kartierung	Kartografie von Informationsräumen		R_GD_View=25 geographical view	R_JJJJ=2006	R_Sparte=D	
+Kartierung	Kartografie von InformationsrÃ¤umen		R_GD_View=25 geographical view	R_JJJJ=2006	R_Sparte=D	
 Kartierung der realen und virtuellen Welt	Kartierung			R_JJJJ=2006	R_Sparte=D	
 Kartierung der realen und virtuellen Welt	mapping text			R_JJJJ=2004	R_Sparte=D	
 Kartierung der realen und virtuellen Welt	mobile mapping			R_JJJJ=2006	R_Sparte=D	
@@ -8534,10 +8534,10 @@ Kathodenstrahlroehren	Strahl	R_Sicht=physics		R_JJJJ=(1989)
 Kepler	Harmonices Mundi	R_Sicht=science			R_Sparte=	R_Quelle=SN
 Kepler	Projekte zu Kepler	R_Sicht=science				
 Kepler	Universelle Harmonie	R_Sicht=science			R_Sparte=	R_Quelle=SN
-Kepler´s Dream	Dream	R_Sicht=art		R_JJJJ=1990		
-Kepler´s Dream	Kepler´s last dream	R_Sicht=art		R_JJJJ=1990		
-Kepler´s last dream	Dream	R_Sicht=art		R_JJJJ=1990		
-Kepler´s last dream	Kepler´s Dream	R_Sicht=art		R_JJJJ=1990		
+KeplerÂ´s Dream	Dream	R_Sicht=art		R_JJJJ=1990		
+KeplerÂ´s Dream	KeplerÂ´s last dream	R_Sicht=art		R_JJJJ=1990		
+KeplerÂ´s last dream	Dream	R_Sicht=art		R_JJJJ=1990		
+KeplerÂ´s last dream	KeplerÂ´s Dream	R_Sicht=art		R_JJJJ=1990		
 Keyboard	keyboard for the blind	R_Sicht=interface	R_GD_View=05 interface view			
 Keyboard	keyboards strapped to the hands	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=1987		
 keyboard for the blind	Keyboard	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=1994		
@@ -8595,7 +8595,7 @@ Klang	Klangobjekt	R_Sicht=body			R_Sparte=M
 Klang	Klangraum	R_Sicht=body			R_Sparte=M	
 Klang	Klangtherapie	R_Sicht=body			R_Sparte=M	
 Klang	Klangursprung	R_Sicht=body			R_Sparte=M	
-Klang	Mikrotonalität	R_Sicht=body			R_Sparte=M	
+Klang	MikrotonalitÃ¤t	R_Sicht=body			R_Sparte=M	
 Klang	Modulation	R_Sicht=body			R_Sparte=M	
 Klang	Raumklang	R_Sicht=body			R_Sparte=M	
 Klang	Sound / Klang	R_Sicht=body			R_Sparte=M	
@@ -8605,7 +8605,7 @@ Klanganimation als Echtzeitprozess	Echtzeitanimation	R_Sicht=art			R_Sparte=MA
 Klanganimation als Echtzeitprozess	Prozesskunst	R_Sicht=art		R_JJJJ=1993	R_Sparte=MA	
 Klangarchitektur	Architektur als Musik				R_Sparte=M	R_Quelle=SN
 Klangarchitektur	Architektur und Harmonie				R_Sparte=M	R_Quelle=SN
-Klangatmosphären	01 atmospheres view	R_Sicht=body	R_GD_View=01 atmospheres view		R_Sparte=M	
+KlangatmosphÃ¤ren	01 atmospheres view	R_Sicht=body	R_GD_View=01 atmospheres view		R_Sparte=M	
 Klangdiffusion	Klang				R_Sparte=M	
 Klangenvironment	Sound			R_JJJJ=1979	R_Sparte=M	
 Klangfahrt	Sound / Klang				R_Sparte=M	
@@ -8616,7 +8616,7 @@ Klangfilterung	Filterung				R_Sparte=M
 Klanggenerator	generative audio	R_Sicht=hardware			R_Sparte=M	
 Klanggenerator	Sound			R_JJJJ=(1984)	R_Sparte=M	
 Klanginstallation	Musikinstrument	R_Sicht=art			R_Sparte=M	
-Klangkoerper	Hochspannungsdrähte als Klangkörper	R_Sicht=interface		R_JJJJ=2005	R_Sparte=M	
+Klangkoerper	HochspannungsdrÃ¤hte als KlangkÃ¶rper	R_Sicht=interface		R_JJJJ=2005	R_Sparte=M	
 Klangkoerper	Klang	R_Sicht=interface			R_Sparte=M	
 Klangkoerper	Klangobjekt	R_Sicht=interface			R_Sparte=M	
 Klangkoerper	Resonanz	R_Sicht=interface			R_Sparte=M	
@@ -8694,7 +8694,7 @@ knowledge spaces	Wissensraeume	R_Sicht=informatics		R_JJJJ=(2001)
 knowledge war	War			R_JJJJ=1998		
 knowledge war	Wissenskrieg			R_JJJJ=1998		
 knowledge war	Wissenskrieg	R_Sicht=culture	R_GD_View=23 battle view			
-knowledge-community	Community-Wissensbestände	R_Sicht=culture		R_JJJJ=2005		
+knowledge-community	Community-WissensbestÃ¤nde	R_Sicht=culture		R_JJJJ=2005		
 knowledge-community	Wissensgesellschaft	R_Sicht=culture				
 Koerper	Koerpererweiterung	R_Sicht=body	R_GD_View=08 body view			
 Koerper	Leiblichkeit	R_Sicht=body	R_GD_View=08 body view			
@@ -8787,8 +8787,8 @@ Krise der Linearitaet	Non Lineare System
 Krise der Linearitaet	Non Lineare System 2					
 Kritik der digitalen Form	12 aesthetic view		R_GD_View=12 aesthetic view			
 Kritik der digitalen Form	digitale Form					
-KünstlerInnen-Datenbank	Datenbank	R_Sicht=software				
-Künstlermusiker	Musikerkünstler				R_Sparte=M	R_Quelle=SN
+KÃ¼nstlerInnen-Datenbank	Datenbank	R_Sicht=software				
+KÃ¼nstlermusiker	MusikerkÃ¼nstler				R_Sparte=M	R_Quelle=SN
 kuenstliche Boesewichte	artificial			R_JJJJ=(2003)		
 kuenstliche Gespenster	artificial	R_Sicht=art		R_JJJJ=(1984)		
 Kuenstliche Intelligenz	artificial intelligence	R_Sicht=informatics				
@@ -8821,18 +8821,18 @@ kuenstliche Umgebung	artificial			R_JJJJ=1994
 kuenstliche Welten	artificial			R_JJJJ=(1996)(1994,96,98)		
 kuenstliche Wirklichkeit	artificial			R_JJJJ=(1989,91)		
 kuenstliche Wirklichkeit	kuenstliche Realitaet			R_JJJJ=(1989,91)		
-Künstliche Wolken	artificial	R_Sicht=art		R_JJJJ=1980		
-Künstliche Wolken	sky art	R_Sicht=art		R_JJJJ=1980		
+KÃ¼nstliche Wolken	artificial	R_Sicht=art		R_JJJJ=1980		
+KÃ¼nstliche Wolken	sky art	R_Sicht=art		R_JJJJ=1980		
 kuenstliche/elektronische Nasen	19 olfactory "view" (smell)		R_GD_View=19 olfactory "view" (smell)	R_JJJJ=(n)		
 kuenstliche/elektronische Nasen	elektronische Nasen		R_GD_View=19 olfactory "view" (smell)	R_JJJJ=(n)		
 Kuenstlicher Wille	artificial			R_JJJJ=(1984)		
-Kuenstlicher Wille	Der künstliche Wille			R_JJJJ=(1984)		
+Kuenstlicher Wille	Der kÃ¼nstliche Wille			R_JJJJ=(1984)		
 kuenstliches Ambiente	Ambient Computing			R_JJJJ=(1994)		
 kuenstliches Ambiente	Intelligent ambiente			R_JJJJ=(1994)		
 kuenstliches Leben	artificial			R_JJJJ=(1993,95)	R_Sparte=P	
 kuenstliches Leben	Artificial Life			R_JJJJ=(1993,95)	R_Sparte=P	
-kuenstliches Leben	Eine kleine Genealogie des künstlichen Lebens			R_JJJJ=(1993,95)	R_Sparte=P	
-kuenstliches Leben	Filmreihe „Künstliches Leben“			R_JJJJ=(1993,95)	R_Sparte=P	
+kuenstliches Leben	Eine kleine Genealogie des kÃ¼nstlichen Lebens			R_JJJJ=(1993,95)	R_Sparte=P	
+kuenstliches Leben	Filmreihe Â„KÃ¼nstliches LebenÂ“			R_JJJJ=(1993,95)	R_Sparte=P	
 Kuenstlichkeit	13 view of hybridity	R_Sicht=theory	R_GD_View=13 view of hybridity			
 Kuenstlichkeit	artificial	R_Sicht=theory				
 Kuenstlichkeit	Artificial Life	R_Sicht=theory				
@@ -8860,10 +8860,10 @@ Kunst-Kopf-Stereophonie	Stereophonie				R_Sparte=M
 Kunstmarkt	21 economic view	R_Sicht=culture	R_GD_View=21 economic view	R_JJJJ=2004		
 Kunstradio-Netzwerke	Radio-Kunst			R_JJJJ=(1998 ...)	R_Sparte=N	
 Kunsttheorie	art theory	R_Sicht=theory			R_Sparte=	R_Quelle=SN
-Kunstuniversität Linz	ArchiMedia	R_Sicht=culture		R_JJJJ=(1994)		
-Kunstuniversität Linz	Schwerpunkt Kunst-UNI Linz	R_Sicht=culture				
+KunstuniversitÃ¤t Linz	ArchiMedia	R_Sicht=culture		R_JJJJ=(1994)		
+KunstuniversitÃ¤t Linz	Schwerpunkt Kunst-UNI Linz	R_Sicht=culture				
 Kuppelprojektion	18 view of projection		R_GD_View=18 view of projection	R_JJJJ=(1979,1984)	R_Sparte=D	
-Kurzwellen-Empfänger	Radio					
+Kurzwellen-EmpfÃ¤nger	Radio					
 KybernEthik	12 ethical view	R_Sicht=culture				
 KybernEthik	Hactivism	R_Sicht=culture				
 Kybernetik	cybernetic		R_GD_View=25 cybernetic view	R_JJJJ=1990		
@@ -9123,7 +9123,7 @@ life sharing	Subject	R_Sicht=body
 light	11 light view		R_GD_View=11 light view			
 light	12 light view		R_GD_View=11 light view			
 light	Aesthetics		R_GD_View=11 light view			
-light	Bildauslöschung		R_GD_View=11 light view	R_JJJJ=2006		
+light	BildauslÃ¶schung		R_GD_View=11 light view	R_JJJJ=2006		
 light	flashes		R_GD_View=11 light view			
 light	Laser		R_GD_View=11 light view			
 light	Leuchtdiode		R_GD_View=11 light view			
@@ -9166,8 +9166,8 @@ line	Linie	R_Sicht=comtech	R_GD_View=07 transport view
 line	offline	R_Sicht=comtech	R_GD_View=07 transport view			
 line	online	R_Sicht=comtech	R_GD_View=07 transport view			
 line	wire	R_Sicht=comtech	R_GD_View=07 transport view			
-Linearität	Krise der Linearitaet	R_Sicht=theory				
-Linearität	linearity	R_Sicht=theory				
+LinearitÃ¤t	Krise der Linearitaet	R_Sicht=theory				
+LinearitÃ¤t	linearity	R_Sicht=theory				
 Lingua Franca (language of intercourse)	Language	R_Sicht=culture		R_JJJJ=2003		
 Linie	line	R_Sicht=comtech				
 Link	15 content view	R_Sicht=informatics	R_GD_View=15 content view			
@@ -9296,7 +9296,7 @@ machine sculptures	Performative Installation	R_Sicht=art	R_GD_View=03 machine vi
 machine sculptures	Robot	R_Sicht=art	R_GD_View=03 machine view - robots			
 machine sculptures (Kanonisierte Richtung)	machine sculptures	R_Sicht=art	R_GD_View=03 machine view - robots			
 machine sculptures (Kanonisierte Richtung)	Maschinenkunst	R_Sicht=art	R_GD_View=03 machine view - robots			
-machine sound	Maschinengeräusche	R_Sicht=art			R_Sparte=M	
+machine sound	MaschinengerÃ¤usche	R_Sicht=art			R_Sparte=M	
 machine sound	Soundinstallation	R_Sicht=art			R_Sparte=M	
 machine tags	tags	R_Sicht=representation			R_Sparte=	R_Quelle=GS
 Macintosh	Apple presents the Macintosh	R_Sicht=hardware		R_JJJJ=(1984)		
@@ -9304,7 +9304,7 @@ Macintosh	iMAC	R_Sicht=hardware		R_JJJJ=(1984)	R_Sparte=	R_Quelle=PF
 Macintosh	MAC	R_Sicht=hardware		R_JJJJ=(1984)	R_Sparte=	R_Quelle=PF
 Maelstromsuedpol - Journey & dream	Dream	R_Sicht=art		R_JJJJ=1988		
 Magic	31 magical view		R_GD_View=31 magical view			
-Magic	Charles Proteus Steinmetz und der Zauber der Elektrizität		R_GD_View=31 magical view	R_JJJJ=1992		
+Magic	Charles Proteus Steinmetz und der Zauber der ElektrizitÃ¤t		R_GD_View=31 magical view	R_JJJJ=1992		
 Magic	every art form has ist origins in magic		R_GD_View=31 magical view			
 Magic	interlocking two realities - Magic Book		R_GD_View=31 magical view			
 Magic	Laterna Magica - Electronic Street Art		R_GD_View=31 magical view			
@@ -9413,7 +9413,7 @@ mapping in the age of digital media	ars: MAPPING in the age of digital media	R_S
 mapping in the age of digital media	mapping art	R_Sicht=representation	R_GD_View=15 diagrammatic view	R_JJJJ=2004	R_Sparte=D	
 mapping music	mapping	R_Sicht=representation	R_GD_View=15 diagrammatic view		R_Sparte=M	
 Mapping Research	Mappingdiskurs	R_Sicht=representation	R_GD_View=15 diagrammatic view	R_JJJJ=2004	R_Sparte=D	
-mapping text	Kartografie von Informationsräumen	R_Sicht=representation	R_GD_View=15 diagrammatic view	R_JJJJ=2004	R_Sparte=LD	
+mapping text	Kartografie von InformationsrÃ¤umen	R_Sicht=representation	R_GD_View=15 diagrammatic view	R_JJJJ=2004	R_Sparte=LD	
 mapping text	Wissenslandschaften	R_Sicht=representation	R_GD_View=15 diagrammatic view		R_Sparte=LD	
 mapping text	Wortdiagramm	R_Sicht=representation	R_GD_View=15 diagrammatic view		R_Sparte=LD	
 mapping time	mapping art	R_Sicht=representation	R_GD_View=15 diagrammatic view	R_JJJJ=(2003)	R_Sparte=D	
@@ -9441,10 +9441,10 @@ maschinenbasiert	Maschinisierung			R_JJJJ=(1992)
 Maschinen-Bastler	DIY			R_JJJJ=(1996)		
 Maschinen-Bastler	Maschinisierung			R_JJJJ=(1996)		
 Maschinenbau	Maschinisierung			R_JJJJ=(1979,80,82,87,87,88,92,94,95,98,2001)		
-Maschinengeräusche	Industrial Sounds	R_Sicht=culture	R_GD_View=03 machine view - robots	R_JJJJ=1980	R_Sparte=M	R_Quelle=SN
-Maschinengeräusche	machine sound	R_Sicht=art	R_GD_View=03 machine view - robots	R_JJJJ=1980	R_Sparte=M	
-Maschinengeräusche	Sound		R_GD_View=03 machine view - robots	R_JJJJ=1980	R_Sparte=M	
-Maschinengeräusche	Sounds vom Eigenleben der Apparate		R_GD_View=03 machine view - robots	R_JJJJ=1980	R_Sparte=M	R_Quelle=SN
+MaschinengerÃ¤usche	Industrial Sounds	R_Sicht=culture	R_GD_View=03 machine view - robots	R_JJJJ=1980	R_Sparte=M	R_Quelle=SN
+MaschinengerÃ¤usche	machine sound	R_Sicht=art	R_GD_View=03 machine view - robots	R_JJJJ=1980	R_Sparte=M	
+MaschinengerÃ¤usche	Sound		R_GD_View=03 machine view - robots	R_JJJJ=1980	R_Sparte=M	
+MaschinengerÃ¤usche	Sounds vom Eigenleben der Apparate		R_GD_View=03 machine view - robots	R_JJJJ=1980	R_Sparte=M	R_Quelle=SN
 Maschinen-Installationen	installation art	R_Sicht=art	R_GD_View=03 machine view - robots	R_JJJJ=(n)		
 Maschinenkampf	extreme performance	R_Sicht=art	R_GD_View=26 performance view		R_Sparte=PI	
 Maschinenkampf	Kampfmaschinen	R_Sicht=art	R_GD_View=26 performance view		R_Sparte=PI	
@@ -9649,7 +9649,7 @@ Medienaktionen	Commuinty	R_Sicht=media		R_JJJJ=(n)
 MedienaktivistInnen	useful activist software	R_Sicht=culture		R_JJJJ=(1996)		
 Medienalltag	09 everyday view	R_Sicht=culture		R_JJJJ=(n)		
 Medienanalyse	Media theory	R_Sicht=media		R_JJJJ=(1988,98)		
-Medienarchäologie	Medienevolution	R_Sicht=archeology				
+MedienarchÃ¤ologie	Medienevolution	R_Sicht=archeology				
 Medienarchitektur	Immersive Architecture	R_Sicht=media		R_JJJJ=(2003)		
 Medienarchiv	Archive	R_Sicht=media		R_JJJJ=(1995)		
 Medienarchiv	media archive	R_Sicht=media		R_JJJJ=(1995)		
@@ -9674,7 +9674,7 @@ Medienevent	Event	R_Sicht=media			R_Sparte=	R_Quelle=SN
 Medienevent	Medienereignis	R_Sicht=media		R_JJJJ=(1995,2002) (1986, 88, 91)		
 Medienevolution	04 view of innovation			R_JJJJ=(n)		
 Medienevolution	Evolution			R_JJJJ=(n)		
-Medienevolution	Medienarchäologie				R_Sparte=	R_Quelle=SN
+Medienevolution	MedienarchÃ¤ologie				R_Sparte=	R_Quelle=SN
 Medienexperimente	experimental cinema	R_Sicht=art			R_Sparte=FVA	R_Quelle=SN
 Medienexperimente	Experimentalfilm	R_Sicht=art			R_Sparte=FVA	R_Quelle=SN
 Medienexperimente	Medienumbruch	R_Sicht=media			R_Sparte=	R_Quelle=SN
@@ -9747,7 +9747,7 @@ Medium	many-to-many medium - radically decentralized	R_Sicht=media	R_GD_View=07 
 Medium	mass medium	R_Sicht=media	R_GD_View=07 view of media			
 Medium	medium of interaction	R_Sicht=media	R_GD_View=07 view of media	R_JJJJ=(2000)	R_Sparte=I	
 Medium	obstinacy of the medium	R_Sicht=media	R_GD_View=07 view of media	R_JJJJ=2003		
-Medium	Ready-Made-Medium als Präsentationsform/TV	R_Sicht=media	R_GD_View=07 view of media	R_JJJJ=1995		
+Medium	Ready-Made-Medium als PrÃ¤sentationsform/TV	R_Sicht=media	R_GD_View=07 view of media	R_JJJJ=1995		
 Medium	semiotic triple (sign, medium, power)	R_Sicht=media	R_GD_View=07 view of media			
 Medium	the convergence of all ather media into a single digital medium	R_Sicht=media	R_GD_View=07 view of media	R_JJJJ=(1994)		
 Medium	the medium as building material	R_Sicht=media	R_GD_View=07 view of media	R_JJJJ=(1994)		
@@ -9795,7 +9795,7 @@ memory units	Meme	R_Sicht=storage	R_GD_View=20 view of storage media
 memory units	Memory	R_Sicht=storage	R_GD_View=20 view of storage media			
 Mensch-Maschine System	Programmsystem	R_Sicht=interface		R_JJJJ=(1992)		
 mental concepts	mental mapping	R_Sicht=science			R_Sparte=	R_Quelle=PF
-mental mapping	Denkräume	R_Sicht=representation				
+mental mapping	DenkrÃ¤ume	R_Sicht=representation				
 mental mapping	mapping	R_Sicht=science			R_Sparte=D	
 mental mapping	mental concepts	R_Sicht=science			R_Sparte=	R_Quelle=PF
 mental mapping	Mindmapping	R_Sicht=representation			R_Sparte=D	
@@ -9853,7 +9853,7 @@ mikroskopische Automaten	Automation	R_Sicht=hardware		R_JJJJ=(n)
 mikroskopische Roboter	Robot	R_Sicht=hardware		R_JJJJ=(1992)		
 Mikrotechnik	micro	R_Sicht=hardware		R_JJJJ=(n)		
 Mikrotheater	Theater		R_GD_View=31 theater view		R_Sparte=P	
-Mikrotonalität	Klang				R_Sparte=M	
+MikrotonalitÃ¤t	Klang				R_Sparte=M	
 Mikrovideokamera	Camera	R_Sicht=interface		R_JJJJ=1996	R_Sparte=V	
 Mikrovideokamera	Camera recording	R_Sicht=interface		R_JJJJ=1996	R_Sparte=V	
 Mikrovideokamera	Spionkamera	R_Sicht=interface		R_JJJJ=1996	R_Sparte=V	
@@ -9911,7 +9911,7 @@ Mixed Reality	05 interface view	R_Sicht=informatics	R_GD_View=05 interface view
 Mixed Reality	Auf der theatralischen Ebene konstituirt die Mixed-Reality-Performance ein kontinuierliches Spannungsgefuehl zwischen Aktualitaet und Virtualitaet der vernetzten Buehne	R_Sicht=informatics				
 Mixed Reality	Datenraum / Mixed Reality: Ueberlagerung des Datenraum mit der Live-Buehne	R_Sicht=informatics				
 Mixed Reality	Eine auf den Menschen ausgerichtete Aufmerksamkeit und Interaktionserfahrung (Mixed Reality Architektur)	R_Sicht=informatics			R_Sparte=I	
-Mixed Reality	Entwicklung komplexer Kommunikationsräume:  Mixed-Reality-Architektur	R_Sicht=informatics				
+Mixed Reality	Entwicklung komplexer KommunikationsrÃ¤ume:  Mixed-Reality-Architektur	R_Sicht=informatics				
 Mixed Reality	Medial vermittelter Raum (Mixed-Reality-Architektur)	R_Sicht=informatics				
 Mixed Reality	Medienraum	R_Sicht=informatics	R_GD_View=(1987,92,94,95,96,01,02,03)			
 Mixed Reality	mixed media (analog digital)	R_Sicht=informatics				
@@ -9933,7 +9933,7 @@ Mixed Reality	Popup-Buch / Mixed Reality Technologie	R_Sicht=informatics
 Mixed Reality	reality	R_Sicht=informatics				
 Mixed Reality	rein optische, immersive Bildstrategien /vs/ mixed reality	R_Sicht=informatics				
 Mixed Reality	twofold mapping (mixed reality) schafft eine komplexe theatrale Realitaet	R_Sicht=informatics				
-Mixed Reality	Vernetzte Strukturen für neue Formen kollaborativen Arbeitens (Mixed Realities) (MF)	R_Sicht=informatics				
+Mixed Reality	Vernetzte Strukturen fÃ¼r neue Formen kollaborativen Arbeitens (Mixed Realities) (MF)	R_Sicht=informatics				
 Mixed Reality	Virtual Reality	R_Sicht=informatics				
 Mixed Reality	Welche Funktionen und Bedeutungen haben Koerper und Sinne im realen Raum gegenueber dem virtuellen Raum? (mixed reality)	R_Sicht=informatics				
 Mixed Reality (digital/analog)	Augmented Reality	R_Sicht=informatics				
@@ -9949,10 +9949,10 @@ Mixed Reality Integration	Mixed Reality	R_Sicht=informatics
 Mixed Reality Integration	Verortung	R_Sicht=informatics				
 Mixed Reality Lab	Mixed Reality			R_JJJJ=2003		
 mixed reality technology - pop-up book	Book			R_JJJJ=2003		
-Mixed Reality: Das Interface als Ein-/Ausgabeinstrument ist kein multimediales, sondern ein Handlungsinstrument zur synästh. Transformation der Wahrnehmung des Medienraumes.	Synesthesia	R_Sicht=interface	R_GD_View=05 interface view			
+Mixed Reality: Das Interface als Ein-/Ausgabeinstrument ist kein multimediales, sondern ein Handlungsinstrument zur synÃ¤sth. Transformation der Wahrnehmung des Medienraumes.	Synesthesia	R_Sicht=interface	R_GD_View=05 interface view			
 Mixed-Media-Auffuehrung	Mixed Reality			R_JJJJ=(1988)		
 Mixed-Reality-Applikationen	Mixed Reality			R_JJJJ=2003		
-Mixed-Reality-Applikationen	Performances auf Avatare übertragen	R_Sicht=informatics		R_JJJJ=2003	R_Sparte=P	
+Mixed-Reality-Applikationen	Performances auf Avatare Ã¼bertragen	R_Sicht=informatics		R_JJJJ=2003	R_Sparte=P	
 Mixed-Reality-Konzept im Gegensatz zu immersiven Bildstrategien (handlungsorientiert)	Mixed Reality					
 Mixed-Reality-Performance	Mixed Reality		R_GD_View=26 performance view		R_Sparte=P	
 MMS	SMS					
@@ -9981,7 +9981,7 @@ mobile feelings telephones	Mobile Feelings	R_Sicht=art		R_JJJJ=2003	R_Sparte=PI
 mobile gaming	Game	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=G	
 mobile gaming	Handyspiele	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=G	
 mobile gaming	mobility	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=G	
-mobile gaming	Spiel für Mobiltelefone	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=G	
+mobile gaming	Spiel fÃ¼r Mobiltelefone	R_Sicht=software	R_GD_View=32 gaming view		R_Sparte=G	
 mobile geospatial augmented reality	geospatial augmented reality	R_Sicht=informatics	R_GD_View=24 view of informatics		R_Sparte=A	
 mobile geospatial augmented reality	outdoor augmented reality visualisation	R_Sicht=informatics	R_GD_View=24 view of informatics		R_Sparte=A	
 mobile GIS	GIS	R_Sicht=informatics			R_Sparte=D	
@@ -9997,7 +9997,7 @@ mobile mapping	GPS VR.GPS	R_Sicht=representation			R_Sparte=D
 mobile mapping	Kartierung der realen und virtuellen Welt	R_Sicht=representation			R_Sparte=D	
 mobile mapping	mapping	R_Sicht=representation			R_Sparte=D	
 mobile office	mobility	R_Sicht=software				
-mobile office	virtuelles Büro	R_Sicht=software				
+mobile office	virtuelles BÃ¼ro	R_Sicht=software				
 Mobile phone	07 view of telecommunications	R_Sicht=comtech	R_GD_View=07 view of telecommunications			
 Mobile phone	Fax- u. Telefonkunst	R_Sicht=comtech	R_GD_View=07 view of telecommunications			
 Mobile phone	mobile communication	R_Sicht=comtech	R_GD_View=07 view of telecommunications			
@@ -10417,7 +10417,7 @@ music style	Heavy-Metal	R_Sicht=art		R_JJJJ=2004	R_Sparte=M
 music style	House	R_Sicht=art		R_JJJJ=2004	R_Sparte=M	
 music style	Jungle	R_Sicht=art		R_JJJJ=2005	R_Sparte=M	
 music style	Musikrichtung	R_Sicht=art			R_Sparte=M	
-music style	Musique Concrète	R_Sicht=art		R_JJJJ=2004	R_Sparte=M	
+music style	Musique ConcrÃ¨te	R_Sicht=art		R_JJJJ=2004	R_Sparte=M	
 music style	New-Age-Musik	R_Sicht=art		R_JJJJ=2004	R_Sparte=M	
 music style	noise	R_Sicht=art		R_JJJJ=2005	R_Sparte=M	
 music style	Punk	R_Sicht=art			R_Sparte=M	R_Quelle=SN
@@ -10465,8 +10465,8 @@ Musikcomputer	Art & Music (Science)	R_Sicht=hardware		R_JJJJ=1980	R_Sparte=M
 Musikcomputer	Computer als Musikinstrument	R_Sicht=hardware		R_JJJJ=(1984)	R_Sparte=M	
 Musikcomputer	Musikinstrument	R_Sicht=hardware			R_Sparte=M	
 Musikdatenbank	Database	R_Sicht=software		R_JJJJ=1995	R_Sparte=M	
-Musikdatenbank	Firefly Musikdatenbank // Ringo Musikdatenbank (Ähnlichkeitsprofile)	R_Sicht=software		R_JJJJ=1995	R_Sparte=M	
-Musikerkünstler	Künstlermusiker		R_GD_View=25 view of music		R_Sparte=M	R_Quelle=SN
+Musikdatenbank	Firefly Musikdatenbank // Ringo Musikdatenbank (Ã„hnlichkeitsprofile)	R_Sicht=software		R_JJJJ=1995	R_Sparte=M	
+MusikerkÃ¼nstler	KÃ¼nstlermusiker		R_GD_View=25 view of music		R_Sparte=M	R_Quelle=SN
 musikgesteuert	control			R_JJJJ=(1980)	R_Sparte=M	
 Musikgrafik	Partitur als Bild	R_Sicht=art	R_GD_View=26 view of the score		R_Sparte=M	R_Quelle=SN
 Musikinstrument	Computer als Musikinstrument	R_Sicht=hardware			R_Sparte=M	
@@ -10475,19 +10475,19 @@ Musikinstrument	Klanginstallation	R_Sicht=hardware			R_Sparte=M
 Musikinstrument	musical instruments	R_Sicht=hardware			R_Sparte=M	
 Musikinstrument	Musik	R_Sicht=hardware			R_Sparte=M	
 Musikinstrument	Musikcomputer	R_Sicht=hardware			R_Sparte=M	
-Musikinstrument	Tonbandgerät	R_Sicht=hardware			R_Sparte=M	
+Musikinstrument	TonbandgerÃ¤t	R_Sicht=hardware			R_Sparte=M	
 Musikperformance	elektronische Musikperformance	R_Sicht=art	R_GD_View=26 performance view	R_JJJJ=(n)	R_Sparte=PM	
 Musikprogramme	Art & Music (Science)	R_Sicht=software		R_JJJJ=(1984)	R_Sparte=M	
 Musikrichtung	music style		R_GD_View=25 view of music		R_Sparte=M	
 Musikrichtung	Techno		R_GD_View=25 view of music		R_Sparte=M	
 Musik-Sharing	sharing	R_Sicht=culture			R_Sparte=M	
 Musikvideo	Musikclip	R_Sicht=art			R_Sparte=VM	R_Quelle=SN
-Musikvideo	Vergeleiche Gründungsidee Ars Electronica	R_Sicht=art			R_Sparte=VM	
+Musikvideo	Vergeleiche GrÃ¼ndungsidee Ars Electronica	R_Sicht=art			R_Sparte=VM	
 Musikvideo	Video	R_Sicht=art			R_Sparte=VM	
 Musikvisualisierung	25 view of music	R_Sicht=art	R_GD_View=25 view of music	R_JJJJ=(1982, 2001)	R_Sparte=MA	
 Musikvisualisierung	Art & Music (Science)	R_Sicht=art	R_GD_View=25 view of music	R_JJJJ=(1982, 2001)	R_Sparte=MA	
 Musikvisualisierung	VJ	R_Sicht=art	R_GD_View=25 view of music	R_JJJJ=(1982, 2001)	R_Sparte=MA	R_Quelle=SN
-Musique Concrète	music style	R_Sicht=art	R_GD_View=25 view of music		R_Sparte=M	
+Musique ConcrÃ¨te	music style	R_Sicht=art	R_GD_View=25 view of music		R_Sparte=M	
 Muskelsimulation und Fleischsimulation	Leiblichkeit	R_Sicht=art		R_JJJJ=2005	R_Sparte=A	
 Muskelsimulation und Fleischsimulation	Simulation	R_Sicht=art		R_JJJJ=2005	R_Sparte=A	
 Mustererkennung	artificial neural networks	R_Sicht=informatics			R_Sparte=D	
@@ -10908,7 +10908,7 @@ Nintendo	SGI and Nintendo develop Graphic-Engine				R_Sparte=	R_Quelle=PF
 noise	Chaos				R_Sparte=M	
 noise	music style	R_Sicht=art		R_JJJJ=2005	R_Sparte=M	
 noise	Rauschen				R_Sparte=M	R_Quelle=SN
-noise	weißes Rauschen				R_Sparte=M	
+noise	weiÃŸes Rauschen				R_Sparte=M	
 Non Lineare System	25 formal view	R_Sicht=theory	R_GD_View=25 formal view			
 Non Lineare System	25 systemic view	R_Sicht=theory	R_GD_View=25 systemic view			
 Non Lineare System	Complexity	R_Sicht=theory	R_GD_View=25 systemic view			
@@ -10916,7 +10916,7 @@ Non Lineare System	Interaktion nichtlinearer Gruppendynamiken	R_Sicht=theory	R_G
 Non Lineare System	Krise der Linearitaet	R_Sicht=theory	R_GD_View=25 systemic view			
 Non Lineare System	Non Lineare System 2	R_Sicht=theory	R_GD_View=25 systemic view			
 Non Lineare System	non-linear narrative	R_Sicht=theory	R_GD_View=25 systemic view			
-Non Lineare System	Non-Linearität	R_Sicht=theory	R_GD_View=25 systemic view			
+Non Lineare System	Non-LinearitÃ¤t	R_Sicht=theory	R_GD_View=25 systemic view			
 Non Lineare System 2	25 systemic view	R_Sicht=theory	R_GD_View=25 systemic view			
 Non Lineare System 2	Dynamic System 2	R_Sicht=theory	R_GD_View=25 systemic view			
 Non Lineare System 2	Krise der Linearitaet	R_Sicht=theory	R_GD_View=25 systemic view			
@@ -10940,8 +10940,8 @@ nonlinear systems	Non Lineare System	R_Sicht=theory	R_GD_View=25 systemic view		
 nonlinear tools	Non Lineare System 2	R_Sicht=tool				
 nonlineare Narration	Narration	R_Sicht=art				
 nonlineare Narration	nonlinear storytelling	R_Sicht=art				
-Non-Linearität	Non Lineare System					
-Non-Linearität	non-linearity				R_Sparte=	R_Quelle=SN
+Non-LinearitÃ¤t	Non Lineare System					
+Non-LinearitÃ¤t	non-linearity				R_Sparte=	R_Quelle=SN
 non-linearity	nonlinear equations				R_Sparte=	R_Quelle=PF
 nostalgia	Identity	R_Sicht=culture				
 Notation	Code	R_Sicht=representation			R_Sparte=PM	
@@ -11003,7 +11003,7 @@ on demand TV	Video Blog	R_Sicht=media			R_Sparte=VN
 on virtual sex and the loss of desire	Cybersex			R_JJJJ=1995		
 on virtual sex and the loss of desire	Desire			R_JJJJ=1995		
 on virtual sex and the loss of desire	virtueller Sex			R_JJJJ=1995		
-one of art´s tasks is to expose and deconstruct the rhetorics of interfaces	Deconstruction	R_Sicht=theory				
+one of artÂ´s tasks is to expose and deconstruct the rhetorics of interfaces	Deconstruction	R_Sicht=theory				
 Onfield	field application			R_JJJJ=2007		
 Onfield	Onfield Collaborative Mapping			R_JJJJ=2007		
 Onfield Collaborative Mapping	Collaborative Mapping	R_Sicht=representation		R_JJJJ=2007		
@@ -11043,7 +11043,7 @@ Online Publishing	electronic publishing	R_Sicht=media		R_JJJJ=1996	R_Sparte=N
 Online Publishing	Netzine	R_Sicht=media		R_JJJJ=1996	R_Sparte=N	
 Online Publishing	online	R_Sicht=media		R_JJJJ=1996	R_Sparte=N	
 Online Publishing	Online-Journale	R_Sicht=media		R_JJJJ=1996	R_Sparte=N	
-Online Publishing	Online-Präsenz	R_Sicht=media		R_JJJJ=1996	R_Sparte=N	
+Online Publishing	Online-PrÃ¤senz	R_Sicht=media		R_JJJJ=1996	R_Sparte=N	
 Online Publishing	publish	R_Sicht=media		R_JJJJ=1996	R_Sparte=N	
 Online Publishing	web	R_Sicht=media		R_JJJJ=1996	R_Sparte=N	
 Online Publishing	Webdesign	R_Sicht=media		R_JJJJ=1996	R_Sparte=N	
@@ -11081,9 +11081,9 @@ Online-Musikzusammenarbeit	Art & Music (Science)		R_GD_View=32 view of interacti
 online-performances	Computer performance		R_GD_View=26 performance view	R_JJJJ=2001	R_Sparte=PN	
 Onlinepraesentation	19 presentation view				R_Sparte=N	
 Onlinepraesentation	online presence				R_Sparte=N	
-Online-Präsenz	Online Publishing			R_JJJJ=2007	R_Sparte=N	
-Online-Präsenz	Präsenz			R_JJJJ=2007	R_Sparte=N	
-Online-Präsenz	Webportal	R_Sicht=software	R_GD_View=10 internet view	R_JJJJ=(04,05,06)	R_Sparte=N	
+Online-PrÃ¤senz	Online Publishing			R_JJJJ=2007	R_Sparte=N	
+Online-PrÃ¤senz	PrÃ¤senz			R_JJJJ=2007	R_Sparte=N	
+Online-PrÃ¤senz	Webportal	R_Sicht=software	R_GD_View=10 internet view	R_JJJJ=(04,05,06)	R_Sparte=N	
 Online-Projekte	online			R_JJJJ=(2002)	R_Sparte=N	
 Onlinesein	online			R_JJJJ=1996/1998	R_Sparte=N	
 Onlinesein	on-line   on-site   on-air			R_JJJJ=(1999)	R_Sparte=N	
@@ -11105,7 +11105,7 @@ open access	commons	R_Sicht=culture	R_GD_View=02 view of openness		R_Sparte=N
 open content	intellectual property	R_Sicht=culture	R_GD_View=02 view of openness		R_Sparte=N	
 open content	open content licences	R_Sicht=culture	R_GD_View=02 view of openness	R_JJJJ=(2004)	R_Sparte=N	
 open content	open content Lizenz	R_Sicht=culture	R_GD_View=02 view of openness	R_JJJJ=(2004)	R_Sparte=N	
-open content	Open-Content-Enzyklopädie	R_Sicht=culture	R_GD_View=02 view of openness	R_JJJJ=2004	R_Sparte=N	
+open content	Open-Content-EnzyklopÃ¤die	R_Sicht=culture	R_GD_View=02 view of openness	R_JJJJ=2004	R_Sparte=N	
 open content licences	open content	R_Sicht=culture	R_GD_View=02 view of openness		R_Sparte=N	
 open content licences	open content Lizenz	R_Sicht=culture	R_GD_View=02 view of openness		R_Sparte=N	
 open content Lizenz	creative commons licences	R_Sicht=culture	R_GD_View=02 view of openness		R_Sparte=N	
@@ -11122,9 +11122,9 @@ open source software	free software	R_Sicht=software	R_GD_View=02 view of opennes
 open source software	open source	R_Sicht=software	R_GD_View=02 view of openness			
 open source software	open source platform	R_Sicht=software	R_GD_View=02 view of openness			
 open source software	Open-Source-Kit	R_Sicht=software	R_GD_View=02 view of openness			
-Open-Content-Enzyklopädie	encyclopedia	R_Sicht=software	R_GD_View=02 view of openness	R_JJJJ=2004		
-Open-Content-Enzyklopädie	open content	R_Sicht=software	R_GD_View=02 view of openness	R_JJJJ=2004		
-Open-Content-Enzyklopädie	Wikipedia	R_Sicht=software	R_GD_View=02 view of openness	R_JJJJ=2004		
+Open-Content-EnzyklopÃ¤die	encyclopedia	R_Sicht=software	R_GD_View=02 view of openness	R_JJJJ=2004		
+Open-Content-EnzyklopÃ¤die	open content	R_Sicht=software	R_GD_View=02 view of openness	R_JJJJ=2004		
+Open-Content-EnzyklopÃ¤die	Wikipedia	R_Sicht=software	R_GD_View=02 view of openness	R_JJJJ=2004		
 OpenGL	3D			R_JJJJ=2005		
 OpenGL	computer graphics		R_GD_View=18 view of the picture		R_Sparte=D	R_Quelle=PF
 Open-Law	Law		R_GD_View=02 view of openness	R_JJJJ=2001		
@@ -11162,8 +11162,8 @@ ORF	ORF - media database
 ORF - media database	Mediendatenbank					
 ORF - media database	ORF					
 organic art	organic	R_Sicht=art			R_Sparte=	R_Quelle=SW
-Organisation	23 curators´view	R_Sicht=world	R_GD_View=23 curators´view			
-Organisation	23 manager´s view	R_Sicht=world	R_GD_View=23 manager´s view			
+Organisation	23 curatorsÂ´view	R_Sicht=world	R_GD_View=23 curatorsÂ´view			
+Organisation	23 managerÂ´s view	R_Sicht=world	R_GD_View=23 managerÂ´s view			
 Organisation	23 view of exhibition organizers	R_Sicht=world	R_GD_View=23 view of exhibition organizers			
 Organisation	23 view of organizing institution	R_Sicht=world	R_GD_View=23 view of organizing institution			
 Organisation	Festival	R_Sicht=world	R_GD_View=23 view of organizing institution			
@@ -11312,7 +11312,7 @@ participative and explorative learning facilities	Education			R_JJJJ=2001
 participative and explorative learning facilities	explorative learning			R_JJJJ=2001		
 Partikelprogramm	amorphe Formen	R_Sicht=software				
 Partitur	26 view of the score	R_Sicht=art	R_GD_View=26 view of the score		R_Sparte=M	
-Partitur	Hörpartitur	R_Sicht=art	R_GD_View=26 view of the score		R_Sparte=M	R_Quelle=SN
+Partitur	HÃ¶rpartitur	R_Sicht=art	R_GD_View=26 view of the score		R_Sparte=M	R_Quelle=SN
 Partitur	Notation	R_Sicht=art	R_GD_View=26 view of the score		R_Sparte=M	
 Partitur	Partitur als Bild	R_Sicht=art	R_GD_View=26 view of the score		R_Sparte=M	R_Quelle=SN
 Partitur als Bild	diagrammatic	R_Sicht=art	R_GD_View=26 view of the score		R_Sparte=M	R_Quelle=SN
@@ -11324,7 +11324,7 @@ Partizipation	Partizipation TV	R_Sicht=art			R_Sparte=	R_Quelle=SN
 Partizipation	partizipative Kunst	R_Sicht=art		R_JJJJ=2006		
 Partizipation	partizipative Projekte	R_Sicht=culture				
 Partizipation	partizipatorische Kunst	R_Sicht=art		R_JJJJ=2006		
-Partizipation	Selbstermächtigung	R_Sicht=culture			R_Sparte=	R_Quelle=SN
+Partizipation	SelbstermÃ¤chtigung	R_Sicht=culture			R_Sparte=	R_Quelle=SN
 partizipative Kunst	Partizipation	R_Sicht=art				
 partizipative Projekte	03 service view / project view	R_Sicht=culture	R_GD_View=03 service view / project view			
 partizipative Projekte	Partizipation	R_Sicht=culture	R_GD_View=03 service view / project view			
@@ -11405,7 +11405,7 @@ Performance Software	Computer performance	R_Sicht=software	R_GD_View=26 performa
 Performance Theater	32 view of staging	R_Sicht=art	R_GD_View=31 theater view		R_Sparte=P	
 Performance Theater	Multi media performance	R_Sicht=art	R_GD_View=31 theater view		R_Sparte=P	
 performance tools	05 tool view / instruments	R_Sicht=tool			R_Sparte=P	
-Performances auf Avatare übertragen	Mixed-Reality-Applikationen	R_Sicht=informatics		R_JJJJ=2003	R_Sparte=P	
+Performances auf Avatare Ã¼bertragen	Mixed-Reality-Applikationen	R_Sicht=informatics		R_JJJJ=2003	R_Sparte=P	
 Performance-System	Computer performance			R_JJJJ=(2000)	R_Sparte=P	
 performative concepts of space	action spaces	R_Sicht=theory	R_GD_View=25 spatial view		R_Sparte=P	R_Quelle=PF
 performative concepts of space	space		R_GD_View=28 performativity as view		R_Sparte=P	
@@ -11558,7 +11558,7 @@ piracy	Piraten Radio	R_Sicht=culture
 piracy	Tactical Media	R_Sicht=culture				
 pirate radio	cellular pirate radio	R_Sicht=culture			R_Sparte=	R_Quelle=SW
 pirate radio	Piraten Radio	R_Sicht=culture				
-Pixel	Fähnchen-Pixel	R_Sicht=art		R_JJJJ=2006	R_Sparte=P	
+Pixel	FÃ¤hnchen-Pixel	R_Sicht=art		R_JJJJ=2006	R_Sparte=P	
 Pixel	mechanische Pixel	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=2007		
 Pixel	pixel maps	R_Sicht=informatics			R_Sparte=	R_Quelle=PF
 Pixel	Pixel-Art	R_Sicht=art				
@@ -11574,11 +11574,11 @@ plant growing	interactive plant growing				R_Sparte=I
 plant growing	Telegarden				R_Sparte=N	
 plants as interface (touching the leaves)	Room of Plants	R_Sicht=interface	R_GD_View=05 interface view			
 plants as interface (touching the leaves)	Touch	R_Sicht=interface	R_GD_View=05 interface view			
-Planungstool für Stadtplanung	Stadtplanung	R_Sicht=tool				
+Planungstool fÃ¼r Stadtplanung	Stadtplanung	R_Sicht=tool				
 plastic	synthetic material					
 Player	Media-Player				R_Sparte=	R_Quelle=SN
 playing with identity	Identity	R_Sicht=culture	R_GD_View=11 feminist view	R_JJJJ=1996		
-playing with people´s desires	Desire					
+playing with peopleÂ´s desires	Desire					
 Playstation	action game	R_Sicht=Hardware	R_GD_View=32 gaming view	R_JJJJ=2004	R_Sparte=G	
 Playstation	Sony	R_Sicht=Hardware	R_GD_View=32 gaming view	R_JJJJ=2004	R_Sparte=G	
 Plotter	Flachbettplotter	R_Sicht=Hardware				
@@ -11588,12 +11588,12 @@ plug-in	device	R_Sicht=interface	R_GD_View=05 interface view
 pneumatische Plastik	Skulptur   (Plastik)	R_Sicht=art			R_Sparte=B	
 podcast	Podcasts	R_Sicht=media			R_Sparte=M	R_Quelle=GS
 Podcasts	networked audio	R_Sicht=media			R_Sparte=M	
-Podcasts	Veröffentlichung von Audiodaten	R_Sicht=media			R_Sparte=M	
+Podcasts	VerÃ¶ffentlichung von Audiodaten	R_Sicht=media			R_Sparte=M	
 Poesie	digitale Poesie	R_Sicht=art			R_Sparte=L	
 Poesie	E-Poesie	R_Sicht=art			R_Sparte=L	
 Poesie	Poetry	R_Sicht=art			R_Sparte=L	
 Poesie der Konstruktion	code art	R_Sicht=art			R_Sparte=L	
-Poesie des Programmierens	Die Ästhetik des Programmierens			R_JJJJ=(2003)		
+Poesie des Programmierens	Die Ã„sthetik des Programmierens			R_JJJJ=(2003)		
 Poesie des Programmierens	programming			R_JJJJ=2003		
 Poesiegenerator	digitale Poesie			R_JJJJ=(2001)	R_Sparte=L	
 Poetic	modes of Net Art	R_Sicht=art			R_Sparte=L	
@@ -11696,7 +11696,7 @@ Position	Positiontracker
 Position	spatial location					
 Position of women	11 feminist view	R_Sicht=culture	R_GD_View=11 feminist view			
 Position of women	Cyberfeminism	R_Sicht=culture	R_GD_View=11 feminist view			
-Position of women	cyberstalking  (Datenausspähung)	R_Sicht=culture	R_GD_View=11 feminist view			
+Position of women	cyberstalking  (DatenausspÃ¤hung)	R_Sicht=culture	R_GD_View=11 feminist view			
 Position of women	Emancipation	R_Sicht=culture	R_GD_View=11 feminist view			
 Position of women	FACES mailinglist (women working in the field of media)	R_Sicht=culture	R_GD_View=11 feminist view			
 Position of women	Frauennetzwerke	R_Sicht=culture	R_GD_View=11 feminist view	R_JJJJ=(2001)		
@@ -11768,8 +11768,8 @@ powerful software	Software	R_Sicht=software
 powerful software	VirTool	R_Sicht=software				
 Powersphere	23 power-theoretical view		R_GD_View=23 power-theoretical view	R_JJJJ=(2001)		
 praise for the parasites - computer viruses	Virus			R_JJJJ=1993		
-Präsenz	Online-Präsenz	R_Sicht=comtech			R_Sparte=N	
-Präsenz	Telepraesenz	R_Sicht=comtech			R_Sparte=N	
+PrÃ¤senz	Online-PrÃ¤senz	R_Sicht=comtech			R_Sparte=N	
+PrÃ¤senz	Telepraesenz	R_Sicht=comtech			R_Sparte=N	
 presence	Omnipresence	R_Sicht=theory				
 presence	Tele-absence	R_Sicht=theory			R_Sparte=N	R_Quelle=SW
 presence	Telepresence	R_Sicht=comtech			R_Sparte=N	
@@ -11789,9 +11789,9 @@ private security	security			R_JJJJ=2007
 PRIX	prix ars electronica	R_Sicht=art			R_Sparte= -	
 prix ars electronica	ARS	R_Sicht=art			R_Sparte= -	
 prix ars electronica	PRIX	R_Sicht=art			R_Sparte= -	
-Problemlösung	Anwendung					
-Problemlösung	application					
-Problemlösung	Problem-solving				R_Sparte=	R_Quelle=PF
+ProblemlÃ¶sung	Anwendung					
+ProblemlÃ¶sung	application					
+ProblemlÃ¶sung	Problem-solving				R_Sparte=	R_Quelle=PF
 Problem-solving	general problem solver					
 Process	27 process view		R_GD_View=27 process view			
 Process	process architecture		R_GD_View=27 process view		R_Sparte=	R_Quelle=PF
@@ -11870,7 +11870,7 @@ programming	algorithmic programming	R_Sicht=informatics	R_GD_View=24 view of inf
 programming	Coder	R_Sicht=informatics	R_GD_View=24 view of informatics	R_JJJJ=(2001)		
 programming	command line	R_Sicht=informatics	R_GD_View=24 view of informatics	R_JJJJ=(2000)		
 programming	computer programming	R_Sicht=informatics	R_GD_View=24 view of informatics		R_Sparte=	R_Quelle=PF
-programming	Die Ästhetik des Programmierens	R_Sicht=informatics	R_GD_View=24 view of informatics	R_JJJJ=1992		
+programming	Die Ã„sthetik des Programmierens	R_Sicht=informatics	R_GD_View=24 view of informatics	R_JJJJ=1992		
 programming	Entwicklungsumgebung	R_Sicht=informatics	R_GD_View=24 view of informatics			
 programming	graphische Programmierung	R_Sicht=informatics	R_GD_View=24 view of informatics	R_JJJJ=(2003)		
 programming	hack	R_Sicht=informatics	R_GD_View=24 view of informatics			
@@ -11925,7 +11925,7 @@ Programmsystem	verteilte Systeme	R_Sicht=software	R_GD_View=24 view of informati
 Programmsystem	vision system	R_Sicht=software	R_GD_View=24 view of informatics	R_JJJJ=(n)		
 Programmsystem	VR-Systeme	R_Sicht=software	R_GD_View=24 view of informatics	R_JJJJ=(1998)		
 Programmsystem	Wearable AR System	R_Sicht=software	R_GD_View=24 view of informatics	R_JJJJ=(2002)		
-Programmsystem	Wearable System	R_Sicht=software	R_GD_View=24 view of informatics	R_JJJJ=(1998 …)		
+Programmsystem	Wearable System	R_Sicht=software	R_GD_View=24 view of informatics	R_JJJJ=(1998 Â…)		
 Programmsystem	Zwangsleitsystem	R_Sicht=software	R_GD_View=24 view of informatics	R_JJJJ=(1993)		
 projecting images directly onto the retina with laser	Eye			R_JJJJ=(1992)		
 projecting images directly onto the retina with laser	VRD (Virtual Retinal Display)			R_JJJJ=(1992)		
@@ -11969,7 +11969,7 @@ prototyping	rapid prototyping	R_Sicht=informatics	R_GD_View=24 view of informati
 prozedurale Keyframe-Animation	Animation				R_Sparte=A	
 Prozess	Process					
 Prozesskunst	27 process view	R_Sicht=art			R_Sparte=B	
-Prozesskunst	Klanganimation als Echtzeitprozeß	R_Sicht=art		R_JJJJ=1993	R_Sparte=M	
+Prozesskunst	Klanganimation als EchtzeitprozeÃŸ	R_Sicht=art		R_JJJJ=1993	R_Sparte=M	
 Prozesskunst	process art	R_Sicht=art			R_Sparte=B	
 Prozessor	CPU	R_Sicht=hardware				
 Prozessor	Prozessorleistung	R_Sicht=hardware				
@@ -12098,7 +12098,7 @@ radikal dezentralisiert	many-to-many medium - radically decentralized			R_JJJJ=(
 Radio	28 radio view	R_Sicht=media	R_GD_View=28 radio view			
 Radio	antennas	R_Sicht=media	R_GD_View=28 radio view			
 Radio	freies Radio	R_Sicht=media	R_GD_View=28 radio view			
-Radio	Kurzwellen-Empfänger	R_Sicht=media	R_GD_View=28 radio view			
+Radio	Kurzwellen-EmpfÃ¤nger	R_Sicht=media	R_GD_View=28 radio view			
 Radio	mass media	R_Sicht=media	R_GD_View=28 radio view			
 Radio	Medienaether		R_GD_View=28 radio view	R_JJJJ=(1991)		
 Radio	net.radio	R_Sicht=media	R_GD_View=28 radio view		R_Sparte=N	
@@ -12107,7 +12107,7 @@ Radio	Radio-Kunst		R_GD_View=28 radio view
 Radio	webcast	R_Sicht=media	R_GD_View=28 radio view		R_Sparte=N	
 radio art	art radio	R_Sicht=art	R_GD_View=28 radio view		R_Sparte=	R_Quelle=SW
 radio art	Expanded Radio Art	R_Sicht=art	R_GD_View=28 radio view	R_JJJJ=2004		
-radio art	Hörspiel	R_Sicht=art	R_GD_View=28 radio view			
+radio art	HÃ¶rspiel	R_Sicht=art	R_GD_View=28 radio view			
 radio art	Radio	R_Sicht=art	R_GD_View=28 radio view			
 radio art	Radio-Kunst	R_Sicht=art	R_GD_View=28 radio view			
 Radio Free Utopia	Radio-Kunst		R_GD_View=28 radio view	R_JJJJ=1989		
@@ -12170,7 +12170,7 @@ RDF	Standard Semantic Web	R_Sicht=representation			R_Sparte=N
 reactive environments	27 view of the act	R_Sicht=interface	R_GD_View=27 view of the act		R_Sparte=PI	
 reactive wall mirror	Mirror			R_JJJJ=2005		
 Readability	Skalierbarbeit	R_Sicht=representation			R_Sparte=	R_Quelle=PF
-Ready-Made-Medium als Präsentationsform/TV	Medium			R_JJJJ=1995		
+Ready-Made-Medium als PrÃ¤sentationsform/TV	Medium			R_JJJJ=1995		
 Real time	Echtzeit					
 Real time	Real time / Echtzeit					
 Real time	timesharing					
@@ -12191,7 +12191,7 @@ Real time / Echtzeit	Echtzeitvideos		R_GD_View=26 temporal view	R_JJJJ=(n)
 Real time / Echtzeit	Interaktion in Echtzeit		R_GD_View=26 temporal view	R_JJJJ=(n)	R_Sparte=I	
 Real time / Echtzeit	Musik in Echtzeit		R_GD_View=26 temporal view	R_JJJJ=1979	R_Sparte=M	
 Real time / Echtzeit	Real time		R_GD_View=26 temporal view			
-Real time / Echtzeit	Simultaneitaet – Echtzeit		R_GD_View=26 temporal view			
+Real time / Echtzeit	Simultaneitaet Â– Echtzeit		R_GD_View=26 temporal view			
 Real time / Echtzeit	stereographische Echtzeitanwendung		R_GD_View=26 temporal view	R_JJJJ=(1999)		
 Real time / Echtzeit	Time		R_GD_View=26 temporal view			
 Real time / Echtzeit	Videos in Echtzeit manipulieren		R_GD_View=26 temporal view	R_JJJJ=(2003)		
@@ -12314,7 +12314,7 @@ remote electronic control battle systems (REC)	War
 remote medicine	Fernoperation				R_Sparte=	R_Quelle=SW
 remote medicine	Telechirurgie				R_Sparte=	R_Quelle=SW
 remote observation	earth observation					
-remote observation	Fernüberwachung					
+remote observation	FernÃ¼berwachung					
 remote observation	observation				R_Sparte=	R_Quelle=SW
 rendering	11 light view	R_Sicht=representation	R_GD_View=11 light view		R_Sparte=DA	
 rendering	128-Bit-Rendering	R_Sicht=representation	R_GD_View=11 light view		R_Sparte=DA	
@@ -12328,7 +12328,7 @@ Repraesentation	Code	R_Sicht=representation	R_GD_View=19 view of representation
 Repraesentation	Database	R_Sicht=representation	R_GD_View=19 view of representation			
 Repraesentation	Detailrepraesentation	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(n)		
 Repraesentation	Informationsarchitektur	R_Sicht=representation	R_GD_View=19 view of representation			
-Repraesentation	Informationsträger	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=2006		
+Repraesentation	InformationstrÃ¤ger	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=2006		
 Repraesentation	mediale Repraesentation	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(2001)		
 Repraesentation	mimetische Repraesentation	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(1995)		
 Repraesentation	Multimedia	R_Sicht=representation	R_GD_View=19 view of representation			
@@ -12389,8 +12389,8 @@ retrieve	information retrieval
 Retro-Aesthetik	Aesthetics			R_JJJJ=2006		
 Retro-Aesthetik	Aesthetik					
 Retro-Aesthetik	Aesthetikdiskurs			R_JJJJ=( < 1996 > )		
-Retro-Ansätze	Retro-Aesthetik					
-Retro-Ansätze	Retro-Engineering				R_Sparte=	R_Quelle=SN
+Retro-AnsÃ¤tze	Retro-Aesthetik					
+Retro-AnsÃ¤tze	Retro-Engineering				R_Sparte=	R_Quelle=SN
 revealing the viewer to himself as a voyeur	Voyeurism					
 reverse	reverse engineering					
 reverse	reverse simulation					
@@ -12398,7 +12398,7 @@ reverse engineering	reverse
 reverse engineering	reverse engineered animation			R_JJJJ=2005	R_Sparte=A	
 reverse engineering	software engineering					
 reverse simulation	reverse				R_Sparte=A	
-Rezentralisierung	Großrechner					
+Rezentralisierung	GroÃŸrechner					
 RFID	Radio Frequency Identification				R_Sparte=	R_Quelle=PF
 RFID	wireless communication					
 RGB	RGB editor				R_Sparte=	R_Quelle=PF
@@ -12415,8 +12415,8 @@ Rhythmus	Rhythmusdiagramm
 Rhythmusdiagramm	Rhythmus	R_Sicht=representation			R_Sparte=D	
 riechen	19 olfactory "view" (smell)					
 riechen	elektronische Nasen			R_JJJJ=(n)		
-Ringo Musikdatenbank (Ähnlichkeitsprofile)	Firefly Musikdatenbank		R_GD_View=01 contextual view		R_Sparte=M	
-Ringo Musikdatenbank (Ähnlichkeitsprofile)	Musikdatenbank			R_JJJJ=1995	R_Sparte=M	
+Ringo Musikdatenbank (Ã„hnlichkeitsprofile)	Firefly Musikdatenbank		R_GD_View=01 contextual view		R_Sparte=M	
+Ringo Musikdatenbank (Ã„hnlichkeitsprofile)	Musikdatenbank			R_JJJJ=1995	R_Sparte=M	
 RISC	CPU					
 RISC	RISC  reduced instruction set computing			R_JJJJ=(1996)		
 RISC  reduced instruction set computing	Rechner_calc	R_Sicht=informatics	R_GD_View=24 view of informatics	R_JJJJ=(1996)		
@@ -12565,7 +12565,7 @@ RSS	RSS-Feeds (Inhalte abonnieren)				R_Sparte=N
 RSS	Standard Semantic Web				R_Sparte=N	
 RSS-Feeds (Inhalte abonnieren)	RSS				R_Sparte=N	
 Rucksackkunst	piggyback art	R_Sicht=art				
-Rückkoppelungsschleife	Feedback					
+RÃ¼ckkoppelungsschleife	Feedback					
 Rueckkopplung	Feedback			R_JJJJ=1960		
 Rueckkopplung	neuro-digitale Rueckkopplung			R_JJJJ=(n)		
 rule based	regelbasiert	R_Sicht=informatics		R_JJJJ=2007		
@@ -12638,18 +12638,18 @@ Schnittstelle	USB	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=2007
 Schnittstellendesign	Schnittstelle	R_Sicht=informatics		R_JJJJ=(1994)		
 Schnittstellenproblem	Schnittstelle	R_Sicht=informatics		R_JJJJ=(1992)		
 Schoenbildschauer	Schoenheit					
-Schoenbildschauer	Schönbildschauer					
+Schoenbildschauer	SchÃ¶nbildschauer					
 Schoenheit	algorithmische Schoenheit					
 Schoenheit	Schoenbildschauer					
-Schönbildschauer	Kaleidoskop					
-Schönbildschauer	Schoenbildschauer					
+SchÃ¶nbildschauer	Kaleidoskop					
+SchÃ¶nbildschauer	Schoenbildschauer					
 Schreibmaschinengrafik	Computer Graphic		R_GD_View=15 typographical view	R_JJJJ=1979		
 Schriftgenerator	15 typographical view		R_GD_View=15 typographical view	R_JJJJ=2004		
 Schrittmachersysteme	timing			R_JJJJ=(1997)		
 Schwebemagneten	Electricity			R_JJJJ=(1980)		
 Schwerkraft	Materialitaet	R_Sicht=physics				
 Schwerpunkt Kunst-UNI Linz	Intermediality					
-Schwerpunkt Kunst-UNI Linz	Kunstuniversität Linz					
+Schwerpunkt Kunst-UNI Linz	KunstuniversitÃ¤t Linz					
 Schwingungsgenerator	Generativitaet			R_JJJJ=1992	R_Sparte=M	
 Schwingungsgenerator	Schwingungen			R_JJJJ=1992	R_Sparte=M	R_Quelle=SN
 science art	14 researcher view	R_Sicht=art	R_GD_View=14 researcher view			
@@ -12719,7 +12719,7 @@ search engine	Suchmaschinen				R_Sparte=N
 search engine	Suchmaschinen			R_JJJJ=2000	R_Sparte=N	
 search engine	Web Stalker				R_Sparte=N	
 search engines that rank "paid" contents high in the search result	search engine				R_Sparte=N	
-search engines that rank "paid" contents high in the search result	Suchmaschinen die „bezahlte“ Inhalte in den Trefferlisten hoch reihen				R_Sparte=N	
+search engines that rank "paid" contents high in the search result	Suchmaschinen die Â„bezahlteÂ“ Inhalte in den Trefferlisten hoch reihen				R_Sparte=N	
 searching	search engine				R_Sparte=N	R_Quelle=PF
 Second Life	metaverse			R_JJJJ=2007	R_Sparte=AN	
 security	Firewall					
@@ -12729,7 +12729,7 @@ Sehmaschinen	vision system	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=
 Sehrohr	Periscope	R_Sicht=interface	R_GD_View=05 interface view			
 Sehsensor	Eye Scanner	R_Sicht=interface	R_GD_View=14 view of sensor technology	R_JJJJ=(n)		
 Selbst	Selbstwahrnehmung					
-Selbstermächtigung	Partizipation	R_Sicht=culture				
+SelbstermÃ¤chtigung	Partizipation	R_Sicht=culture				
 Selbstorganisation	Autopoiesis			R_JJJJ=(n)		
 Selbstorganisation	Selbststeuerung					
 Selbstorganisation	Self-organizing			R_JJJJ=1993		
@@ -12952,7 +12952,7 @@ Signal	Signalmodulation
 Signal	Video-Signale				R_Sparte=	R_Quelle=SN
 Signalmodulation	Modulation					
 Signalmodulation	Signal					
-silence recording	weißes Rauschen				R_Sparte=M	
+silence recording	weiÃŸes Rauschen				R_Sparte=M	
 silicon	Silicon Graphics			R_JJJJ=(1993,97)		
 Silicon Graphics	Bildmaschine					
 Silicon Graphics	graphic modul					
@@ -13051,7 +13051,7 @@ Simultaneitaet	26 temporal view		R_GD_View=26 temporal view
 Simultaneitaet	Echtzeit		R_GD_View=26 temporal view			
 Simultaneitaet	simultaneity		R_GD_View=26 temporal view			
 Simultaneitaet	track		R_GD_View=26 temporal view			
-Simultaneitaet – Echtzeit	Real time / Echtzeit		R_GD_View=26 temporal view			
+Simultaneitaet Â– Echtzeit	Real time / Echtzeit		R_GD_View=26 temporal view			
 simultaneity	simultan		R_GD_View=26 temporal view	R_JJJJ=(n)		
 simultaneity	simultane Schichten		R_GD_View=26 temporal view	R_JJJJ=(n)		
 simultaneity	Simultaneitaet		R_GD_View=26 temporal view			
@@ -13096,7 +13096,7 @@ skulpturale Installation	Skulptur   (Plastik)				R_Sparte=B
 skulpturale Systeme	Sculpture art			R_JJJJ=(2000)		
 sky art	01 atmospheres view	R_Sicht=art	R_GD_View=01 atmospheres view		R_Sparte=B	
 sky art	Himmelskuenste	R_Sicht=art	R_GD_View=01 atmospheres view		R_Sparte=B	
-sky art	Künstliche Wolken	R_Sicht=art	R_GD_View=01 atmospheres view	R_JJJJ=1980	R_Sparte=B	
+sky art	KÃ¼nstliche Wolken	R_Sicht=art	R_GD_View=01 atmospheres view	R_JJJJ=1980	R_Sparte=B	
 sky art	Laser Art	R_Sicht=art	R_GD_View=01 atmospheres view		R_Sparte=B	
 sky art	Sky Art Conference 1982	R_Sicht=art	R_GD_View=01 atmospheres view	R_JJJJ=1982	R_Sparte=B	
 sky art	solar art	R_Sicht=art	R_GD_View=01 atmospheres view		R_Sparte=B	
@@ -13149,7 +13149,7 @@ social metadata	metadata				R_Sparte=	R_Quelle=GS
 social networking	community networking					
 social networks	community networks					
 social networks	social space					
-social networks	women´s networks					
+social networks	womenÂ´s networks					
 social science concepts	29 societal view	R_Sicht=science	R_GD_View=29 societal view			
 social science concepts	Concept	R_Sicht=science				
 social shaping of technology	social issues					
@@ -13280,11 +13280,11 @@ Sound	elektronische Klangfarben			R_JJJJ=(1980)	R_Sparte=M
 Sound	Elektronischer Klangteppich			R_JJJJ=(1980)	R_Sparte=M	
 Sound	Flexible Sound-Engine			R_JJJJ=2001	R_Sparte=M	
 Sound	Fluid Sound				R_Sparte=M	
-Sound	Geräusch				R_Sparte=M	
+Sound	GerÃ¤usch				R_Sparte=M	
 Sound	juke bots - Interaktive Roboter-Sound-Installation				R_Sparte=MI	
 Sound	Klangenvironment			R_JJJJ=1979	R_Sparte=M	
 Sound	Klanggenerator			R_JJJJ=(1984)	R_Sparte=M	
-Sound	Maschinengeräusche			R_JJJJ=(1980)	R_Sparte=M	
+Sound	MaschinengerÃ¤usche			R_JJJJ=(1980)	R_Sparte=M	
 Sound	networked sound				R_Sparte=M	
 Sound	On-line/On-site/On-air-Soundinstallation				R_Sparte=M	
 Sound	sonology				R_Sparte=M	
@@ -13360,7 +13360,7 @@ Soundinstallation	Sound	R_Sicht=art	R_GD_View=25 acoustic "view"		R_Sparte=M
 Soundreaktivitaet	reaktiv				R_Sparte=M	R_Quelle=SN
 Soundreaktivitaet	Sound-Image-Interaction				R_Sparte=MI	
 Sounds vom Eigenleben der Apparate	Eigenleben der Apparate				R_Sparte=M	R_Quelle=SN
-Sounds vom Eigenleben der Apparate	Maschinengeräusche				R_Sparte=M	R_Quelle=SN
+Sounds vom Eigenleben der Apparate	MaschinengerÃ¤usche				R_Sparte=M	R_Quelle=SN
 Soundscape	Sound				R_Sparte=M	R_Quelle=SN
 Sound-Spectograph	Sound	R_Sicht=interface	R_GD_View=05 interface view		R_Sparte=M	R_Quelle=SN
 Sound-Spectograph	Soundvisualisierung	R_Sicht=interface	R_GD_View=05 interface view		R_Sparte=M	R_Quelle=SN
@@ -13473,7 +13473,7 @@ Speakers	rotor system with loudspeakers	R_Sicht=interface	R_GD_View=05 interface
 Speakers	singende Flammen (Pyrophon)	R_Sicht=interface	R_GD_View=05 interface view		R_Sparte=M	R_Quelle=SN
 Speakers	Speaker	R_Sicht=interface	R_GD_View=05 interface view		R_Sparte=M	R_Quelle=SW
 Speakers	speaker swinging	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=1988	R_Sparte=PM	
-Speakers	Verstärker	R_Sicht=interface	R_GD_View=05 interface view		R_Sparte=M	
+Speakers	VerstÃ¤rker	R_Sicht=interface	R_GD_View=05 interface view		R_Sparte=M	
 special effects	Effects				R_Sparte=	R_Quelle=SN
 special effects	Visual effect					
 specialized thesaurus	Fachthesaurus					
@@ -13507,11 +13507,11 @@ Spielerische Interaktion	Game		R_GD_View=32 gaming view	R_JJJJ=(1996) (2002)	R_S
 Spielzeug	Interaktionsspiel		R_GD_View=32 gaming view		R_Sparte=G	
 Spielzeug	toys		R_GD_View=32 gaming view		R_Sparte=G	
 Spionkamera	Mikrovideokamera			R_JJJJ=(1996)	R_Sparte=V	
-spiritual software	Spiritualität	R_Sicht=software				
+spiritual software	SpiritualitÃ¤t	R_Sicht=software				
 spiritual software	the soul of the machine	R_Sicht=software				
-Spiritualität	10 psychological view	R_Sicht=GD-View	R_GD_View=10 psychological view		R_Sparte=	R_Quelle=SN
-Spiritualität	spiritual software	R_Sicht=software				
-Spiritualität	spirituality				R_Sparte=	R_Quelle=SN,SW
+SpiritualitÃ¤t	10 psychological view	R_Sicht=GD-View	R_GD_View=10 psychological view		R_Sparte=	R_Quelle=SN
+SpiritualitÃ¤t	spiritual software	R_Sicht=software				
+SpiritualitÃ¤t	spirituality				R_Sparte=	R_Quelle=SN,SW
 Sport	13 achievement view	R_Sicht=Body	R_GD_View=13 achievement view		R_Sparte=P	
 Sport	13 achievement view / Leistungssicht	R_Sicht=Body	R_GD_View=13 achievement view / Leistungssicht		R_Sparte=P	
 Sport	22 athletic aspects	R_Sicht=Body	R_GD_View=22 athletic aspects		R_Sparte=P	
@@ -13650,7 +13650,7 @@ storage	Videodisk	R_Sicht=storage	R_GD_View=20 view of storage media	R_JJJJ=(197
 storage device	device	R_Sicht=storage	R_GD_View=20 view of storage media			
 storage device	storage	R_Sicht=storage	R_GD_View=20 view of storage media			
 storry telling	digitale Poesie				R_Sparte=PL	
-Störung	Disturbance				R_Sparte=	R_Quelle=SN
+StÃ¶rung	Disturbance				R_Sparte=	R_Quelle=SN
 story telling	auditive digital storytelling				R_Sparte=PL	
 story telling	augmented reality digital storytelling				R_Sparte=PL	
 story telling	Erzaehlkunst				R_Sparte=PL	
@@ -13731,7 +13731,7 @@ Subversion	hacker		R_GD_View=07 subversion view
 Subversion	out of control		R_GD_View=07 subversion view			
 Subversion	Underground		R_GD_View=07 subversion view			
 Suchmaschinen	search engine			R_JJJJ=2000	R_Sparte=N	
-Suchmaschinen die „bezahlte“ Inhalte in den Trefferlisten hoch reihen	search engines that rank "paid" contents high in the search result					
+Suchmaschinen die Â„bezahlteÂ“ Inhalte in den Trefferlisten hoch reihen	search engines that rank "paid" contents high in the search result					
 SUN - Java: standard for the Internet	Java			R_JJJJ=(1995)		
 SUN - Java: standard for the Internet	SUN veroeffentlicht Java u. JavaScript			R_JJJJ=(1995)		
 SUN veroeffentlicht Java u. JavaScript	SUN - Java: standard for the Internet			R_JJJJ=1995		
@@ -13794,10 +13794,10 @@ synaesthetische Interaktion	03 synaesthetic view		R_GD_View=03 synaesthetic view
 synaesthetische Interaktionen	Synesthesia		R_GD_View=03 synaesthetic view	R_JJJJ=(1988)	R_Sparte=MI	
 synaesthetische Transformation	Synesthesia		R_GD_View=03 synaesthetic view	R_JJJJ=(n)	R_Sparte=M	
 synaesthetische Welle	Synesthesia		R_GD_View=03 synaesthetic view	R_JJJJ=(1988)	R_Sparte=M	
-Synästhesie	03 synaesthetic view	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	R_Quelle=SN
-Synästhesie	Synesthesia	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	R_Quelle=SN
-Synästhesie ist eines der Leitmotive der Medienkunst	Synesthesia		R_GD_View=03 synaesthetic view	R_JJJJ=(2003)	R_Sparte=M	
-Synchronisation	Geräte Synchronisaion				R_Sparte=	R_Quelle=SN
+SynÃ¤sthesie	03 synaesthetic view	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	R_Quelle=SN
+SynÃ¤sthesie	Synesthesia	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	R_Quelle=SN
+SynÃ¤sthesie ist eines der Leitmotive der Medienkunst	Synesthesia		R_GD_View=03 synaesthetic view	R_JJJJ=(2003)	R_Sparte=M	
+Synchronisation	GerÃ¤te Synchronisaion				R_Sparte=	R_Quelle=SN
 Synchronisation	synchronization				R_Sparte=	R_Quelle=SN
 synchronisierte Animation	Computer Animation				R_Sparte=A	
 synchronisierte Animation	Synchronisierte Animation (Fenster-Schiebe-Experimente)				R_Sparte=A	
@@ -13810,7 +13810,7 @@ synchronous/asynchronous communication	communications protocols
 synchronous/asynchronous communication	Protokoll					
 synergetische Interaktion	Interactive Art			R_JJJJ=(n)	R_Sparte=I	
 Synesthesia	03 synaesthetic view		R_GD_View=03 synaesthetic view		R_Sparte=M	
-Synesthesia	Mixed Reality: Das Interface als Ein-/Ausgabeinstrument ist kein multimediales, sondern ein Handlungsinstrument zur synästh. Transformation der Wahrnehmung des Medienraumes.		R_GD_View=03 synaesthetic view		R_Sparte=M	
+Synesthesia	Mixed Reality: Das Interface als Ein-/Ausgabeinstrument ist kein multimediales, sondern ein Handlungsinstrument zur synÃ¤sth. Transformation der Wahrnehmung des Medienraumes.		R_GD_View=03 synaesthetic view		R_Sparte=M	
 Synesthesia	Multimediale versus synaesthetische Interaktionskonzepte (Mixed Reality)		R_GD_View=03 synaesthetic view		R_Sparte=MI	
 Synesthesia	Synaesthesie - NeoBarock ?		R_GD_View=03 synaesthetic view		R_Sparte=M	
 Synesthesia	synaesthetic wave in modern art		R_GD_View=03 synaesthetic view	R_JJJJ=(1988)	R_Sparte=M	
@@ -13818,8 +13818,8 @@ Synesthesia	synaesthetisch		R_GD_View=03 synaesthetic view	R_JJJJ=(n)	R_Sparte=M
 Synesthesia	synaesthetische Interaktionen		R_GD_View=03 synaesthetic view	R_JJJJ=(1988)	R_Sparte=MI	
 Synesthesia	synaesthetische Transformation		R_GD_View=03 synaesthetic view	R_JJJJ=(n)	R_Sparte=M	
 Synesthesia	synaesthetische Welle		R_GD_View=03 synaesthetic view	R_JJJJ=(1988)	R_Sparte=M	
-Synesthesia	Synästhesie	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	R_Quelle=SN
-Synesthesia	Synästhesie ist eines der Leitmotive der Medienkunst		R_GD_View=03 synaesthetic view		R_Sparte=M	
+Synesthesia	SynÃ¤sthesie	R_Sicht=GD-View	R_GD_View=03 synaesthetic view		R_Sparte=M	R_Quelle=SN
+Synesthesia	SynÃ¤sthesie ist eines der Leitmotive der Medienkunst		R_GD_View=03 synaesthetic view		R_Sparte=M	
 Syntax	Bildsyntax					
 Syntax	programming languages					
 Synthese	06 view of designing gestures		R_GD_View=06 view of designing gestures			
@@ -14039,7 +14039,7 @@ technische Medien	technische Medialitaet			R_JJJJ=(1980,86,88,89,98)
 Techno	ambientes Techno			R_JJJJ=(1994)	R_Sparte=M	
 Techno	music style				R_Sparte=M	
 Techno	Musikrichtung				R_Sparte=M	
-Techno	Techno-Séance			R_JJJJ=(1994)	R_Sparte=M	
+Techno	Techno-SÃ©ance			R_JJJJ=(1994)	R_Sparte=M	
 Techno...	Technologie					
 Techno...	Technology					
 Techno-Aesthetik	Aesthetics			R_JJJJ=(1991)		
@@ -14117,7 +14117,7 @@ Technology	Techno-Mystizismus			R_JJJJ=1996
 Technology	Techno-Oekologie			R_JJJJ=(n)		
 Technology	Techno-Positivisten			R_JJJJ=1996		
 Technology	Techno-religioese Ekstasen					
-Technology	Techno-Séance			R_JJJJ=1994		
+Technology	Techno-SÃ©ance			R_JJJJ=1994		
 Technology	Technosphere			R_JJJJ=(1997)		
 Technology	Techno-Utopismus			R_JJJJ=(1998)		
 Technology	Techno-Welt			R_JJJJ=(1986,87,94,2000)		
@@ -14138,8 +14138,8 @@ technoscience art	Art & Science	R_Sicht=art
 technoscience art	Technologiekunst	R_Sicht=art				
 technoscience art	Technoscience	R_Sicht=art		R_JJJJ=(1997)		
 technoscience art / techno-scientific art	science art	R_Sicht=art				
-Techno-Séance	Techno			R_JJJJ=(1994)		
-Techno-Séance	Technology			R_JJJJ=1994		
+Techno-SÃ©ance	Techno			R_JJJJ=(1994)		
+Techno-SÃ©ance	Technology			R_JJJJ=1994		
 Technosphere	Technology			R_JJJJ=(1997)		
 Techno-Transformation	Hardware Transformation			R_JJJJ=(1987,88)		
 techno-utopianism	Techno-Utopismus					
@@ -14216,8 +14216,8 @@ Teleinformatik	Telematik			R_JJJJ=(1994)	R_Sparte=N
 Tele-Interaktion	Interactive Art		R_GD_View=32 view of interactivity	R_JJJJ=(n)	R_Sparte=IN	
 Tele-Interaktion	Tele		R_GD_View=32 view of interactivity	R_JJJJ=(n)	R_Sparte=IN	
 Teleintimitaet	Intimacy			R_JJJJ=(1994)		
-Teleintimitaet	Teleintimität			R_JJJJ=(1994)		
-Teleintimität	Teleintimitaet			R_JJJJ=(1994)		
+Teleintimitaet	TeleintimitÃ¤t			R_JJJJ=(1994)		
+TeleintimitÃ¤t	Teleintimitaet			R_JJJJ=(1994)		
 Telekiosking	Economy			R_JJJJ=1994		
 Teleklettergarten	Tele			R_JJJJ=(2003)		
 Telekommunikation	07 view of communication		R_GD_View=07 view of telecommunications			
@@ -14322,11 +14322,11 @@ telephone	Video-Telefonie		R_GD_View=07 view of telecommunications	R_JJJJ=(2001)
 Telepistemology	16 epistemological view		R_GD_View=16 epistemological view			
 Telepolis	Tele			R_JJJJ=(1997,98,2000,01,02)		
 Telepraesenz	02 view of absense		R_GD_View=02 view of absense			
-Telepraesenz	Präsenz		R_GD_View=02 view of absense			
+Telepraesenz	PrÃ¤senz		R_GD_View=02 view of absense			
 Telepraesenz	Robotic		R_GD_View=02 view of absense			
 Telepraesenz	satellite art		R_GD_View=02 view of absense			
 Telepraesenz	Telekommunikation		R_GD_View=02 view of absense			
-Telepraesenz	Telepräsenz		R_GD_View=02 view of absense			
+Telepraesenz	TeleprÃ¤senz		R_GD_View=02 view of absense			
 Telepraesenz	Telepresence		R_GD_View=02 view of absense			
 Telepraesenz-Installation	installation art	R_Sicht=art	R_GD_View=02 view of absense	R_JJJJ=(1995,98)		
 Telepraesenz-Installation	Telepresence	R_Sicht=art	R_GD_View=02 view of absense	R_JJJJ=(1995,98)		
@@ -14483,7 +14483,7 @@ Thesaurus	specialized thesaurus	R_Sicht=representation			R_Sparte=L
 Thesaurus	Terminology	R_Sicht=representation			R_Sparte=L	
 Thesaurus	Thesaurus on media art	R_Sicht=representation			R_Sparte=L	
 Thesaurus	Visual Thesaurus	R_Sicht=representation		R_JJJJ=(2004)	R_Sparte=L	
-Thesaurus	Wörterbuch	R_Sicht=representation			R_Sparte=L	
+Thesaurus	WÃ¶rterbuch	R_Sicht=representation			R_Sparte=L	
 Thesaurus on media art	specialized thesaurus	R_Sicht=representation				
 Thesaurus on media art	Thesaurus	R_Sicht=representation				
 thin client	web					
@@ -14521,14 +14521,14 @@ Tomographie	MRT Magnet Resonanz Tomographie				R_Sparte=DA
 Tomographie	tomography				R_Sparte=DA	R_Quelle=SW
 tomography	CAT (computer aided tomography)				R_Sparte=DA	R_Quelle=SW
 tomography	Tomographie				R_Sparte=DA	R_Quelle=SW
-Tonbandgerät	Musikinstrument	R_Sicht=storage	R_GD_View=20 view of storage media		R_Sparte=M	
-Tonbandgerät	Tonbandkomposition	R_Sicht=storage	R_GD_View=20 view of storage media		R_Sparte=M	
-Tonbandkomposition	Tonbandgerät				R_Sparte=M	
-Töne-Farben Analogiemodelle	12 color view				R_Sparte=M	R_Quelle=SN
-Töne-Farben Analogiemodelle	Analogie				R_Sparte=M	R_Quelle=SN
-Töne-Farben Analogiemodelle	Farbe/Ton-Beziehungen				R_Sparte=M	R_Quelle=SN
-Töne-Farben Korrespondenzmodelle	12 color view				R_Sparte=M	R_Quelle=SN
-Töne-Farben Korrespondenzmodelle	Korrespondenz				R_Sparte=M	R_Quelle=SN
+TonbandgerÃ¤t	Musikinstrument	R_Sicht=storage	R_GD_View=20 view of storage media		R_Sparte=M	
+TonbandgerÃ¤t	Tonbandkomposition	R_Sicht=storage	R_GD_View=20 view of storage media		R_Sparte=M	
+Tonbandkomposition	TonbandgerÃ¤t				R_Sparte=M	
+TÃ¶ne-Farben Analogiemodelle	12 color view				R_Sparte=M	R_Quelle=SN
+TÃ¶ne-Farben Analogiemodelle	Analogie				R_Sparte=M	R_Quelle=SN
+TÃ¶ne-Farben Analogiemodelle	Farbe/Ton-Beziehungen				R_Sparte=M	R_Quelle=SN
+TÃ¶ne-Farben Korrespondenzmodelle	12 color view				R_Sparte=M	R_Quelle=SN
+TÃ¶ne-Farben Korrespondenzmodelle	Korrespondenz				R_Sparte=M	R_Quelle=SN
 Tonfilm	Film	R_Sicht=media			R_Sparte=FVA	R_Quelle=SN
 Tonfilm	Tonfilmmanifest	R_Sicht=media			R_Sparte=FVA	R_Quelle=SN
 Tonmontage	Montage	R_Sicht=art			R_Sparte=M	R_Quelle=SN
@@ -14649,12 +14649,12 @@ Traditionen digitaler Aesthetik	Tradition 1
 tragbare Ausruestung	Tragbarkeit	R_Sicht=hardware	R_GD_View=08 view of portability	R_JJJJ=(1984)		
 tragbare Computer	Laptop	R_Sicht=hardware	R_GD_View=08 view of portability	R_JJJJ=(n)		
 tragbare Computer	tragbare Systeme	R_Sicht=hardware	R_GD_View=08 view of portability	R_JJJJ=(n)		
-tragbare Hörräume	Discman				R_Sparte=M	R_Quelle=SN
-tragbare Hörräume	Headset				R_Sparte=M	
-tragbare Hörräume	Hoerstation				R_Sparte=M	R_Quelle=SN
-tragbare Hörräume	iPod				R_Sparte=M	R_Quelle=SN
-tragbare Hörräume	Tragbarkeit				R_Sparte=M	R_Quelle=SN
-tragbare Hörräume	Walkman				R_Sparte=M	R_Quelle=SN
+tragbare HÃ¶rrÃ¤ume	Discman				R_Sparte=M	R_Quelle=SN
+tragbare HÃ¶rrÃ¤ume	Headset				R_Sparte=M	
+tragbare HÃ¶rrÃ¤ume	Hoerstation				R_Sparte=M	R_Quelle=SN
+tragbare HÃ¶rrÃ¤ume	iPod				R_Sparte=M	R_Quelle=SN
+tragbare HÃ¶rrÃ¤ume	Tragbarkeit				R_Sparte=M	R_Quelle=SN
+tragbare HÃ¶rrÃ¤ume	Walkman				R_Sparte=M	R_Quelle=SN
 tragbare Systeme	Laptop	R_Sicht=hardware	R_GD_View=08 view of portability	R_JJJJ=1982		
 tragbare Systeme	Programmsystem	R_Sicht=hardware	R_GD_View=08 view of portability	R_JJJJ=1982		
 tragbare Systeme	tragbare Computer	R_Sicht=hardware	R_GD_View=08 view of portability	R_JJJJ=1982		
@@ -14668,7 +14668,7 @@ Tragbarkeit	PDA	R_Sicht=hardware	R_GD_View=08 view of portability
 Tragbarkeit	Portabilitaet	R_Sicht=hardware	R_GD_View=08 view of portability			
 Tragbarkeit	portable	R_Sicht=hardware	R_GD_View=08 view of portability			
 Tragbarkeit	tragbare Ausruestung	R_Sicht=hardware	R_GD_View=08 view of portability	R_JJJJ=(1984)		
-Tragbarkeit	tragbare Hörräume		R_GD_View=08 view of portability		R_Sparte=M	R_Quelle=SN
+Tragbarkeit	tragbare HÃ¶rrÃ¤ume		R_GD_View=08 view of portability		R_Sparte=M	R_Quelle=SN
 Tragbarkeit	wearables	R_Sicht=hardware	R_GD_View=08 view of portability			
 Trance	music style					
 Trans...	Fern...					
@@ -14701,7 +14701,7 @@ transmediale	Festival			R_JJJJ= (1998,2002,03)
 transmediale	transmedial				R_Sparte=	R_Quelle=SN
 transport	07 view of transportation networks		R_GD_View=07 view of transportation networks			
 transport	backbone					
-transport	Elektronische Übertragungsmedien					
+transport	Elektronische Ãœbertragungsmedien					
 transport	high-speed surveillance superhighways					
 transport	Informationhighway			R_JJJJ=(1994,95,96,97,98,2002)		
 transport	Informations-Superhighways			R_JJJJ=1994		
@@ -14778,10 +14778,10 @@ Ubiquitous Media & Reaktive Environment	reaktiv				R_Sparte=	R_Quelle=SN
 Ubiquitous Media & Reaktive Environment	Ubiquitous Computing			R_JJJJ=1997		
 ubiquitous telepresence	Telepresence				R_Sparte=N	
 ubiquity	Ubiquitaet				R_Sparte=	R_Quelle=PF
-Überlagerung	overlay	R_Sicht=representation			R_Sparte=	R_Quelle=SN
-Übertragung	Übertragungsmedien					
-Übertragungsmedien	Elektronische Übertragungsmedien					
-Übertragungsmedien	Übertragung					
+Ãœberlagerung	overlay	R_Sicht=representation			R_Sparte=	R_Quelle=SN
+Ãœbertragung	Ãœbertragungsmedien					
+Ãœbertragungsmedien	Elektronische Ãœbertragungsmedien					
+Ãœbertragungsmedien	Ãœbertragung					
 Uebertragungstechnik	transport				R_Sparte=N	
 Ueberwachung, Beaufsichtigung	Surveillance					
 Ultraschall-Interface	Interface	R_Sicht=interface	R_GD_View=05 interface view	R_JJJJ=(1992)		
@@ -14831,7 +14831,7 @@ Urbanity	urban investigations (knowbotic research)		R_GD_View=21 view of cities 
 Urbanity	urban memories		R_GD_View=21 view of cities and regions			
 Urbanity	urban planning workbench		R_GD_View=21 view of cities and regions			
 Urbanity	urbanism		R_GD_View=21 view of cities and regions			
-Urbanity	Urbanität		R_GD_View=21 view of cities and regions			
+Urbanity	UrbanitÃ¤t		R_GD_View=21 view of cities and regions			
 Urbanity	video game - urban parody of violence		R_GD_View=21 view of cities and regions	R_JJJJ=2000	R_Sparte=G	
 Urheber- und Datenschutzrecht	Authorship	R_Sicht=GD-View			R_Sparte=	R_Quelle=PF
 Urheber- und Datenschutzrecht	copy right					
@@ -14905,20 +14905,20 @@ vernetzte Buehne	vernetzen 			R_JJJJ=(1995,97)
 vernetzte Buehne	vernetzter Showroom			R_JJJJ=(2001)	R_Sparte=N	
 vernetzte Buehne	VR-Buehne			R_JJJJ=(1995,97)		
 vernetzte CAVEs	CAVE			R_JJJJ=(1997)(1999)	R_Sparte=AN	
-Vernetzte Strukturen für neue Formen kollaborativen Arbeitens (Mixed Realities)	Mixed Reality					
+Vernetzte Strukturen fÃ¼r neue Formen kollaborativen Arbeitens (Mixed Realities)	Mixed Reality					
 vernetzte Wissensraeume	dataspace					
-vernetzte Wissensraeume	Wissensräume					
+vernetzte Wissensraeume	WissensrÃ¤ume					
 vernetzter Showroom	vernetzen			R_JJJJ=(2001)		
 vernetzter Showroom	vernetzte Buehne			R_JJJJ=(2001)		
 Vernetzung	Net			R_JJJJ=(1995)	R_Sparte=N	
-Veröffentlichung von Audiodaten	Podcasts				R_Sparte=M	
+VerÃ¶ffentlichung von Audiodaten	Podcasts				R_Sparte=M	
 Verortung	Funkkommunikation					
 Verortung	GPS VR.GPS					
 Verortung	Lage					
 Verortung	Mixed Reality Integration					
 Verortung	Situativitaet					
 Verschraenkung zweier Realitaeten	Augmented Reality					
-Verstärker	Speakers				R_Sparte=M	
+VerstÃ¤rker	Speakers				R_Sparte=M	
 verteilte Systeme	Programmsystem	R_Sicht=informatics		R_JJJJ=2002		
 verteilte Systeme	verteiltes Rechnen	R_Sicht=informatics				
 verteiltes Rechnen	Supercomputing	R_Sicht=informatics	R_GD_View=24 view of informatics			
@@ -14938,7 +14938,7 @@ Verzerrung	distortion				R_Sparte=	R_Quelle=SN
 Vicinity	01 contextual view		R_GD_View=01 contextual view			
 Vicinity	01 contextual view		R_GD_View=01 contextual view			
 Vicinity	Nachbarschaft		R_GD_View=01 contextual view			
-Vicinity	Ringo Musikdatenbank (Ähnlichkeitsprofile)		R_GD_View=01 contextual view		R_Sparte=M	
+Vicinity	Ringo Musikdatenbank (Ã„hnlichkeitsprofile)		R_GD_View=01 contextual view		R_Sparte=M	
 Video	27 film, video, TV	R_Sicht=media	R_GD_View=27 film, video, TV		R_Sparte=V	
 Video	blue box	R_Sicht=media	R_GD_View=27 film, video, TV		R_Sparte=V	
 Video	digitales Video	R_Sicht=media	R_GD_View=27 film, video, TV		R_Sparte=V	
@@ -15103,7 +15103,7 @@ Virtual Workbench	clearboard - double projection work table	R_Sicht=software	R_G
 Virtual Workbench	urban planning workbench	R_Sicht=software	R_GD_View=02 view of virtuality		R_Sparte=IN	
 Virtualitaet	02 view of virtuality	R_Sicht=theory	R_GD_View=02 view of virtuality			
 Virtualitaet	Allgegenwart	R_Sicht=theory	R_GD_View=02 view of virtuality			
-Virtualitaet	Flüchtigkeit	R_Sicht=theory	R_GD_View=02 view of virtuality			
+Virtualitaet	FlÃ¼chtigkeit	R_Sicht=theory	R_GD_View=02 view of virtuality			
 Virtualitaet	Immaterialitaet	R_Sicht=theory	R_GD_View=02 view of virtuality			
 Virtualitaet	Immersion	R_Sicht=theory	R_GD_View=02 view of virtuality			
 Virtualitaet	Koerperlosigkeit	R_Sicht=theory	R_GD_View=02 view of virtuality			
@@ -15182,12 +15182,12 @@ virtuelle Wesen	virtuell	R_Sicht=body		R_JJJJ=1996	R_Sparte=A
 virtuelle Wesen	virtuelle Kreaturen	R_Sicht=body		R_JJJJ=(1993)	R_Sparte=A	
 virtuelle Wirklichkeit	virtuell	R_Sicht=theory		R_JJJJ=(1990)		
 virtueller Blindenstock	Welt der Blinden	R_Sicht=tool		R_JJJJ=(1998)		
-Virtueller Denkraum	Denkräume	R_Sicht=representation			R_Sparte=DA	
+Virtueller Denkraum	DenkrÃ¤ume	R_Sicht=representation			R_Sparte=DA	
 Virtueller Denkraum	Thinking Space	R_Sicht=representation			R_Sparte=DA	
 virtueller Popstar	Pop Culture	R_Sicht=art		R_JJJJ=(n)	R_Sparte=P	
 virtueller Sex	Cybersex	R_Sicht=body	R_GD_View=08 view of sexuality	R_JJJJ=(1995)	R_Sparte=PI	
 virtueller Sex	on virtual sex and the loss of desire	R_Sicht=body	R_GD_View=08 view of sexuality	R_JJJJ=1995	R_Sparte=PI	
-virtuelles Büro	mobile office	R_Sicht=software			R_Sparte=N	
+virtuelles BÃ¼ro	mobile office	R_Sicht=software			R_Sparte=N	
 virtuelles Museum	digital museum	R_Sicht=culture			R_Sparte=NA	
 Virus	02 chaos view	R_Sicht=informatics	R_GD_View=02 chaos view			
 Virus	13 view of destruction	R_Sicht=informatics	R_GD_View=13 view of destruction			
@@ -15448,7 +15448,7 @@ walk-in database (knowbotic research)	walk-in database	R_Sicht=representation			
 walk-in knowledge spaces	knowledge spaces	R_Sicht=representation			R_Sparte=A	
 walk-in knowledge spaces	walk-in database	R_Sicht=representation			R_Sparte=A	
 walk-in monitors/scanner - image trace	Scanner			R_JJJJ=1999	R_Sparte=VA	
-Walkman	tragbare Hörräume				R_Sparte=M	R_Quelle=SN
+Walkman	tragbare HÃ¶rrÃ¤ume				R_Sparte=M	R_Quelle=SN
 WAN	high bandwidth	R_Sicht=comtech			R_Sparte=N	
 WAN	Transportnetzwerke	R_Sicht=comtech		R_JJJJ=(n)	R_Sparte=N	
 Wandbildschirm	Display	R_Sicht=interface	R_GD_View=05 interface view			
@@ -15627,7 +15627,7 @@ Web-Kamera	Camera recording	R_Sicht=interface		R_JJJJ=(1997)	R_Sparte=N
 Web-Kamera	Webcam	R_Sicht=interface		R_JJJJ=(1997)	R_Sparte=N	
 weblog	15 content view	R_Sicht=culture	R_GD_View=15 content view		R_Sparte=N	
 weblog	blog	R_Sicht=culture			R_Sparte=N	
-weblog	Blogosphäre	R_Sicht=culture			R_Sparte=N	
+weblog	BlogosphÃ¤re	R_Sicht=culture			R_Sparte=N	
 weblog	collective weblogs	R_Sicht=culture		R_JJJJ=(2004)	R_Sparte=N	
 weblog	digital editing	R_Sicht=culture			R_Sparte=N	
 weblog	linkhubs	R_Sicht=culture			R_Sparte=N	
@@ -15649,7 +15649,7 @@ webmall	Hypermedia Mall			R_JJJJ=(n)	R_Sparte=N
 webmaster	Internet Portal			R_JJJJ=(1996)	R_Sparte=N	
 webmaster	web				R_Sparte=N	
 webness	Net Art			R_JJJJ=1995	R_Sparte=N	
-Webportal	Online-Präsenz	R_Sicht=software	R_GD_View=10 internet view	R_JJJJ=(04,05,06)	R_Sparte=N	
+Webportal	Online-PrÃ¤senz	R_Sicht=software	R_GD_View=10 internet view	R_JJJJ=(04,05,06)	R_Sparte=N	
 Webportal	portal	R_Sicht=software	R_GD_View=10 internet view	R_JJJJ=(04,05,06)	R_Sparte=N	
 Webportal	Web-Portal	R_Sicht=software	R_GD_View=10 internet view	R_JJJJ=(00)	R_Sparte=N	
 Webportal	Web-Zugang	R_Sicht=software	R_GD_View=10 internet view	R_JJJJ=(04,05,06)	R_Sparte=N	
@@ -15668,15 +15668,15 @@ Webucation	WBT			R_JJJJ=2000	R_Sparte=N
 Web-Zugang	Access / Account			R_JJJJ=(1995)	R_Sparte=N	
 Web-Zugang	Internet Portal			R_JJJJ=(1995)	R_Sparte=N	
 weekness of the memesis statement - biological analogies	Meme			R_JJJJ=1996		
-weißes Rauschen	noise				R_Sparte=M	
-weißes Rauschen	silence recording				R_Sparte=M	
+weiÃŸes Rauschen	noise				R_Sparte=M	
+weiÃŸes Rauschen	silence recording				R_Sparte=M	
 Welche Funktionen und Bedeutungen haben Koerper und Sinne im realen Raum gegenueber dem virtuellen Raum? (mixed reality)	Body					
 Welche Funktionen und Bedeutungen haben Koerper und Sinne im realen Raum gegenueber dem virtuellen Raum? (mixed reality)	Mixed Reality					
 Welche Funktionen und Bedeutungen haben Koerper und Sinne im realen Raum gegenueber dem virtuellen Raum? (mixed reality)	Senses					
 Welt der Blinden	keyboard for the blind	R_Sicht=interface				
 Welt der Blinden	virtueller Blindenstock	R_Sicht=interface		R_JJJJ=(1998)		
-Welterklärungsmodelle	11 view of worldviews		R_GD_View=11 view of worldviews		R_Sparte=	R_Quelle=SN
-Welterklärungsmodelle	Theosophie		R_GD_View=11 view of worldviews		R_Sparte=	R_Quelle=SN
+WelterklÃ¤rungsmodelle	11 view of worldviews		R_GD_View=11 view of worldviews		R_Sparte=	R_Quelle=SN
+WelterklÃ¤rungsmodelle	Theosophie		R_GD_View=11 view of worldviews		R_Sparte=	R_Quelle=SN
 Wenn Gebrauchsgegenstaende/Waren zu kommunizieren beginnen	Intelligent ambiente					
 Wenn Gebrauchsgegenstaende/Waren zu kommunizieren beginnen	pervasive computing					
 Werbeclip	Advertising	R_Sicht=culture			R_Sparte=V	R_Quelle=SN
@@ -15794,9 +15794,9 @@ Wissensordnung	Ordnung	R_Sicht=representation	R_GD_View=19 view of representatio
 Wissensordnung	Representation of knowledge	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(n)	R_Sparte=D	
 Wissensraeume	knowledge spaces	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(2001)	R_Sparte=A	
 Wissensraeume	Representation of knowledge	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(2001)	R_Sparte=A	
-Wissensraeume	Wissensräume	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(2001)	R_Sparte=A	
-Wissensräume	vernetzte Wissensraeume	R_Sicht=representation	R_GD_View=19 view of representation		R_Sparte=A	
-Wissensräume	Wissensraeume	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(2001)	R_Sparte=A	
+Wissensraeume	WissensrÃ¤ume	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(2001)	R_Sparte=A	
+WissensrÃ¤ume	vernetzte Wissensraeume	R_Sicht=representation	R_GD_View=19 view of representation		R_Sparte=A	
+WissensrÃ¤ume	Wissensraeume	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(2001)	R_Sparte=A	
 Wissensrepraesentation	knowledge representation	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(1995)		
 Wissensrepraesentation	Representation of knowledge	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(1995)		
 Wissensspeicherung	Representation of knowledge	R_Sicht=representation	R_GD_View=19 view of representation	R_JJJJ=(1986,90)		
@@ -15810,9 +15810,9 @@ WLAN	Mobiles Internet	R_Sicht=comtech		R_JJJJ=2001	R_Sparte=N
 WLAN	wireless communication	R_Sicht=comtech			R_Sparte=N	
 WLAN	Wireless LAN	R_Sicht=comtech			R_Sparte=N	
 women, art & technology	Position of women	R_Sicht=culture				
-women´s networks	Frauennetzwerke	R_Sicht=culture		R_JJJJ=2001		
+womenÂ´s networks	Frauennetzwerke	R_Sicht=culture		R_JJJJ=2001		
 Wording	Terminology				R_Sparte=L	
-Wording	Wörterbuch				R_Sparte=L	
+Wording	WÃ¶rterbuch				R_Sparte=L	
 workgroup computing	collaborative computing	R_Sicht=informatics	R_GD_View=24 view of informatics		R_Sparte=IN	
 workgroup computing	groupware	R_Sicht=informatics	R_GD_View=24 view of informatics		R_Sparte=IN	
 Working Class	05 view of the working world	R_Sicht=culture	R_GD_View=05 view of the working world			
@@ -15824,8 +15824,8 @@ World Wide Web	browser	R_Sicht=comtech			R_Sparte=N
 World Wide Web	WWW	R_Sicht=comtech			R_Sparte=N	
 worm	computer virus					
 Wortdiagramm	Diagramm	R_Sicht=representation			R_Sparte=D	
-Wörterbuch	Thesaurus	R_Sicht=representation			R_Sparte=L	
-Wörterbuch	Wording	R_Sicht=representation			R_Sparte=L	
+WÃ¶rterbuch	Thesaurus	R_Sicht=representation			R_Sparte=L	
+WÃ¶rterbuch	Wording	R_Sicht=representation			R_Sparte=L	
 WWW	homepage	R_Sicht=comtech			R_Sparte=N	
 WWW	HTTP hypertext transfer protocol	R_Sicht=comtech			R_Sparte=N	
 WWW	Mine of Information	R_Sicht=comtech			R_Sparte=N	
@@ -15872,16 +15872,16 @@ Zeichenautomaten	drawing tool	R_Sicht=tool		R_JJJJ=1979	R_Sparte=DA
 Zeit	Time					
 Zeitliche Struktur von Animationsarbeiten	Computer Animation	R_Sicht=representation			R_Sparte=A	
 Zensur	Censorship	R_Sicht=culture				
-Zerstörung	13 view of destruction		R_GD_View=13 view of destruction			
+ZerstÃ¶rung	13 view of destruction		R_GD_View=13 view of destruction			
 Zoosystemic	Zoosystemicist	R_Sicht=science		R_JJJJ=1993	R_Sparte=A	
 Zoosystemicist	Bio art	R_Sicht=science				
 Zoosystemicist	Technozoosemiotics	R_Sicht=science				
 Zoosystemicist	Zoosystemic	R_Sicht=science		R_JJJJ=1993		
-Zufall	Anti-Intentionalität					
+Zufall	Anti-IntentionalitÃ¤t					
 Zufall	PHP und Javascript Zufallsfunktionen			R_JJJJ=2006		
 Zufall	random					
 Zufall	Randomness				R_Sparte=	R_Quelle=PF
 Zufallsgenerator	random			R_JJJJ=1986,92,2000)		
 Zwangsleitsystem	Programmsystem	R_Sicht=software		R_JJJJ=(1993)		
-Zweckentfremdung von Bild- u. Tonträgern	Entfremdung				R_Sparte=M	R_Quelle=SN
+Zweckentfremdung von Bild- u. TontrÃ¤gern	Entfremdung				R_Sparte=M	R_Quelle=SN
 Zweiweginteraktion	Interactive Art		R_GD_View=32 view of interactivity	R_JJJJ=(n)	R_Sparte=I

@@ -50,9 +50,9 @@ public class NetStack {
 		return nets.keySet();
 	}
 
-	public boolean edgeListLoad(File file) {
+	public boolean edgeListLoad(File file, boolean tab) {
 		HashSet<Edge> e = new HashSet<Edge>();
-		e = global.edgelistLoad(file);
+		if (tab) e= global.edgelistLoad2(file); else e = global.edgelistLoad(file);
 		if (e!=null&&e.size()>0) {
 			nets.put(file.getName(), e);
 			return true;
@@ -69,8 +69,8 @@ public class NetStack {
 		nets.remove(net);
 	}
 	
-	public void nodeListLoad(File file2) {
-		global.nodelistLoad(file2);
+	public void nodeListLoad(File file2, boolean tab) {
+		if (tab) global.nodelistLoad2(file2); else global.nodelistLoad(file2);
 	}
 
 	public Net search(Node n, int searchdepth, boolean add) {
