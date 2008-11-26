@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import semaGL.NetLoader;
 import semaGL.SemaSpace;
 
 public class NetStack {
@@ -12,11 +13,13 @@ public class NetStack {
 	SemaSpace app;
 	public Net global;
 	public Net view;
+	private NetLoader loader;
 
 	public NetStack(SemaSpace app_) {
 		nets = new HashMap<String, HashSet<Edge>>();
 		nets.put("none", new HashSet<Edge>());
 		app = app_;
+		loader = new NetLoader(app);
 		global = new Net(app);
 		setView(new Net(app));
 	}
@@ -51,12 +54,17 @@ public class NetStack {
 	}
 
 	public boolean edgeListLoad(File file, boolean tab) {
-		HashSet<Edge> e = new HashSet<Edge>();
-		if (tab) e= global.edgelistLoad2(file); else e = global.edgelistLoad(file);
-		if (e!=null&&e.size()>0) {
-			nets.put(file.getName(), e);
+		Net e = new Net(app);
+		if (tab) e= loader.edgelistLoad2(file); else e = loader.edgelistLoad(file);
+		if (e!=null&&e.nEdges.size()>0) {
+			nets.put(file.getName(), e.nEdges);
+			global.netMerge(e);
 			return true;
 		}else return false;
+	}
+	
+	public void nodeListLoad(File file2, boolean tab) {
+		if (tab) loader.nodelistLoad2(file2, global); else loader.nodelistLoad(file2, global);
 	}
 	
 	public void addSubnet(HashSet<Edge> e) {
@@ -69,10 +77,6 @@ public class NetStack {
 		nets.remove(net);
 	}
 	
-	public void nodeListLoad(File file2, boolean tab) {
-		if (tab) global.nodelistLoad2(file2); else global.nodelistLoad(file2);
-	}
-
 	public Net search(Node n, int searchdepth, boolean add) {
 		if (n==null) {
 			setView(global);
@@ -116,5 +120,16 @@ public class NetStack {
 		HashSet<Edge> edges = nets.get(net);
 		for (Edge e:edges) view.addEdge(e);
 		view.updateNet();
+	}
+
+	public void exportNet(String filename, boolean tab) {
+		if (!tab){
+			loader.saveNet(filename, view);
+			loader.saveNodeData(filename+".n", view); 
+			} else {
+			loader.saveNet2(filename, view);
+			loader.saveNodeData2(filename+".n", view); 
+			}
+		
 	}
 }

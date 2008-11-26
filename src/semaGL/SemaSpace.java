@@ -751,21 +751,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		layout.layoutLocksRemove();
 	}
 
-	public void netDownload(String urlpath) throws IOException{
-		System.out.println("SemaSpace.download() "+urlpath); //$NON-NLS-1$
-		String dl = fileIO.getPage(urlpath);
-		ns.getView().edgelistParse(dl);
-		ns.getView().updateNet();
-		System.out.println(ns.getView().eTable.size());
-		System.out.println(ns.getView().nNodes.size());
-	}
-
-	public void netDownloadNodes(String urlpath) throws IOException{
-		System.out.println("SemaSpace.download() "+urlpath); //$NON-NLS-1$
-		String dl = fileIO.getPage(urlpath);
-		ns.getView().nodelistParse(dl);
-	}
-
 	public void netExpandAll() {
 		netExpandNodes(ns.getView().nNodes);
 	}
