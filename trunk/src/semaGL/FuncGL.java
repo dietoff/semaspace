@@ -105,7 +105,7 @@ public class FuncGL {
 			float scale = offset*0.01f;
 			gl.glScalef(scale, scale, scale);
 			gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
-			gl.glLineWidth(3);
+			gl.glLineWidth(app.textwidth+2);
 			gl.glColor4f(1f,1f,1f,1f);
 			renderStrokeString( app, GLUT.STROKE_ROMAN, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
 			gl.glLineWidth(app.textwidth);

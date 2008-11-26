@@ -8,11 +8,13 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/gluegen-rt.jar">
 		<attributes>
+			<attribute name="javadoc_location" value="file:/Users/d/Documents/workspace_java/jogl-1.1.1-docs/"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/d/Documents/workspace_java/SemaSpace/lib"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/jogl.jar">
 		<attributes>
+			<attribute name="javadoc_location" value="file:/Users/d/Documents/workspace_java/jogl-1.1.1-docs/"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/d/Documents/workspace_java/SemaSpace/lib"/>
 		</attributes>
 	</classpathentry>

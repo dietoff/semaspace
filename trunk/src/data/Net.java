@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.Map.Entry;
 
 import semaGL.FileIO;
@@ -375,17 +376,11 @@ public class Net {
 	 */
 	public HashSet<Edge> edgelistLoad(File file_) {
 		HashSet<Edge> edges = null;
-		boolean a = app.isRender();
-		boolean b = app.calculate;
-		app.setRender(false);
-		app.calculate=true;
 		String file=FileIO.loadFile(file_);
 		if (file!=null&&file.length()>0) {
 			edges = edgelistParse(file); 
 			updateNet();
 		}
-		app.setRender(a);
-		app.calculate=b;
 		return edges;
 	}
 	/**
@@ -395,15 +390,9 @@ public class Net {
 	 */
 	public HashSet<Edge> edgelistLoad2(File file_) {
 		HashSet<Edge> edges = null;
-		boolean a = app.isRender();
-		boolean b = app.calculate;
-		app.setRender(false);
-		app.calculate=true;
 		String file=FileIO.loadFile(file_);
 		if (file!=null&&file.length()>0)  edges = edgelistParse2(file); 
 		updateNet();
-		app.setRender(a);
-		app.calculate=b;
 		return edges;
 	}
 	/**
@@ -432,7 +421,6 @@ public class Net {
 
 					// db id as first attribute
 					tmp.getA().setAttribute("id", cols[0].trim());
-					nodeattributes.add("id");
 					tmp.getB().setAttribute("id", cols[1].trim());
 					nodeattributes.add("id");
 
@@ -480,6 +468,7 @@ public class Net {
 
 					// db id as first attribute
 					tmp.getA().setAttribute("id", cols[0]);
+					nodeattributes.add("id");
 					tmp.getB().setAttribute("id", cols[1]);
 
 					edges.add(tmp);
@@ -902,39 +891,85 @@ public class Net {
 	}
 
 	public void saveNet(String filename) {
-		String outString="";
-
+		StringBuffer sb = new StringBuffer();
 		for (Edge e :nEdges){
-			outString+=e.getA().name+"\t"+e.getB().name;
+			sb.append(e.getA().name+"\t"+e.getB().name);
 			if (e.attributes.size()>1) {
 				String attributes = "";
 				for (Entry ent:e.attributes.entrySet()) {
 					if (ent.getKey()!="id") attributes+="\t"+ent.getKey()+"="+ent.getValue();
 				}
-				outString+=attributes;
+				sb.append(attributes);
 			}
-			outString+="\n";
+			sb.append("\n");
 		}
+		String outString = sb.toString();
+		FileIO.fileWrite(filename, outString); 
+	}
+
+	public void saveNet2(String filename) {
+		StringBuffer sb = new StringBuffer();
+		TreeSet<String> attrib = new TreeSet<String>();
+		for (Edge e :nEdges) attrib.addAll(e.attributes.keySet());
+		attrib.remove("id");
+
+		sb.append("start\ttarget");
+		for (String l:attrib) sb.append("\t"+l);
+		sb.append("\n");
+
+		for (Edge e :nEdges){
+			sb.append(e.getA().name+"\t"+e.getB().name);
+			for (String l:attrib) {
+				sb.append("\t");
+				if (l!="id"&&e.attributes!=null&&e.attributes.containsKey(l)) sb.append(e.attributes.get(l));
+			}
+			sb.append("\n");
+		}
+		String outString = sb.toString();
 		FileIO.fileWrite(filename, outString); 
 	}
 
 	public void saveNodeData( String filename){
-		String outString="";
+		StringBuffer sb = new StringBuffer();
 		for (Node n :nNodes){
-			outString+=n.name; //+"\t"+nRef.altName+"\t";
-			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) outString += "\tname="+n.altName;
+			sb.append(n.name); //+"\t"+nRef.altName+"\t";
+			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) sb.append("\tname="+n.altName);
 			if (n.attributes.size()>1) {
 				String attributes = "";
 				for (Entry ent:n.attributes.entrySet()) {
 					if (ent.getKey()!="id") attributes+="\t"+ent.getKey()+"="+ent.getValue();
 				}
-				outString+=attributes;
+				sb.append(attributes);
 			}
-			outString+="\n";
+			sb.append("\n");
 		}
+		String outString = sb.toString();
 		FileIO.fileWrite(filename, outString); 
 	}
 
+	public void saveNodeData2( String filename){
+		
+		StringBuffer sb = new StringBuffer();
+		TreeSet<String> attrib = new TreeSet<String>();
+		for (Node e :nNodes) attrib.addAll(e.attributes.keySet());
+		attrib.remove("id");
+		
+		sb.append("node");
+		for (String l:attrib) sb.append("\t"+l);
+		sb.append("\n");
+
+		for (Node n :nNodes){
+			sb.append(n.name); 
+			for (String l:attrib) {
+				sb.append("\t");
+				if (l!="id"&&n.attributes!=null&&n.attributes.containsKey(l)) sb.append(n.attributes.get(l));
+			}
+			sb.append("\n");
+		}
+		String outString = sb.toString();
+		FileIO.fileWrite(filename, outString); 
+	}
+	
 	public void updateAdLists(boolean d) {
 		Node a=null;
 		Node b=null;

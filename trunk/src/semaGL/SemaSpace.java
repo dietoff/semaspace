@@ -2,8 +2,11 @@ package semaGL;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLDrawableFactory;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
+import javax.media.opengl.GLPbuffer;
 import javax.media.opengl.glu.GLU;
 
 import java.awt.Color;
@@ -122,7 +125,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean radial = false;
 	private boolean repNeighbors = false;
 	private int overID;
-	boolean moved;
+	public boolean moved;
 	public Layouter layout;
 	private String attribute="none"; //$NON-NLS-1$
 	public int thumbsize = Integer.parseInt(Messages.getString("thumbnailRes"));
@@ -136,14 +139,17 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private float labelsize= Float.parseFloat(Messages.getString("labelSize"));
 	private float labelVar= Float.parseFloat(Messages.getString("labelSizeVariance"));
 	private boolean initTree;
-	private boolean screenshot = false;
 	public boolean inheritEdgeColorFromNodes = Boolean.parseBoolean(Messages.getString("inheritEdgeColorFromNodes"));
 	public boolean drawClusters= Boolean.parseBoolean(Messages.getString("clusters"));
 	//	private GLPbuffer pbuffer;
 	public NetStack ns;
 	FTGLTextureFont texturefont;
 	public boolean tilt = Boolean.parseBoolean(Messages.getString("tiltedLabels"));
-
+	int screenshotcounter = 0;
+	private int shotres = Integer.parseInt(Messages.getString("screenshotResolution"));
+	public float maxLabelRenderDistance = Float.parseFloat(Messages.getString("maxLabelRenderDistance"));
+	private boolean tabular = false;
+	
 	public SemaSpace(){
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
 		Color.decode(Messages.getString("pickGradientCenter")).getComponents(pickGradStart);
@@ -165,6 +171,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		gLDrawable.addMouseListener(this);
 		gLDrawable.addMouseMotionListener(this);
 		gLDrawable.addKeyListener(this);
+		initGLsettings(gl);
+		cam = new Cam(gLDrawable,FOV,0,0,zInc,focus,znear,zfar);
+
+		initFonts(gl);
+		if (random) ns.global.generateRandomNet (100, 146);		// random network
+		else netLoad(isTabular());
+	}
+
+	private void initGLsettings(GL gl) {
 		gl.glEnable(GL.GL_TEXTURE_2D);								// Enable Texture Mapping
 		gl.glShadeModel(GL.GL_SMOOTH);              				// Enable Smooth Shading
 		gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST); // Really Nice Perspective Calculations
@@ -182,11 +197,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		gl.glFogf(GL.GL_FOG_START, 1000f);							// Fog Start Depth
 		gl.glFogf(GL.GL_FOG_END, 10000f);							// Fog End Depth
 		if (FOG) gl.glEnable(GL.GL_FOG);							// Enables GL.GL_FOG
-		cam = new Cam(gLDrawable,FOV,0,0,zInc,focus,znear,zfar);
-
-		initFonts(gl);
-		if (random) ns.global.generateRandomNet (100, 146);		// random network
-		else netLoad();
 	}
 
 
@@ -211,24 +221,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void display(GLAutoDrawable gLDrawable) {
 		try {
-
-			if (screenshot) {
-				//				int w = glD.getWidth();
-				//				int h = glD.getHeight();
-				//				glD.setSize(2000, 2000);
-				//				reshape(glD, 0, 0, 2000, 2000);
-				updateTime();
-				layout();
-				if (isRender()) render();
-				glD.swapBuffers();
-				screenshot(glD.getWidth(), glD.getHeight(),"capt.tga"); //$NON-NLS-1$
-				screenshot=false;
-			}
-
 			updateTime();
-			//			if (nets.view.nNodes.size()==globalnets.view.nNodes.size()&&nets.view.eTable.size()==globalnets.view.eTable.size()) net=globalNet;
 			layout();
-			render();
+			render(gLDrawable.getGL());
 		}
 		catch (ConcurrentModificationException e) {
 		}
@@ -251,7 +246,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	}
 
-	void layout() {
+	public void layout() {
 		float str = strength;
 		boolean rep = repell;
 
@@ -310,16 +305,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		layout.layoutFlat();
 	}
 
-	public void render(){
+	public void render(GL gl){
 		if (!render) return;
 
-		GL gl = glD.getGL();
 		if (FOG&&!flat) gl.glEnable(GL.GL_FOG); else gl.glDisable(GL.GL_FOG);
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-		cam.posIncrement(glD, yRotInc, xRotInc, zInc, focus); 
+		cam.posIncrement(gl, yRotInc, xRotInc, zInc, focus); 
 		layout.renderGroups(gl,ns.view,fonttype);
-		if (isEdges()) layout.renderEdges(gl, fonttype);
 		if (!tree) layout.renderClusters(gl);
+		if (isEdges()) layout.renderEdges(gl, fonttype);
 		if (fonttype==0) layout.renderLabels(gl,fonttype); //workaround for gl transform bug in ftgl library
 		layout.renderNodes(gl,fonttype);
 		if (fonttype!=0) layout.renderLabels(gl,fonttype);
@@ -330,7 +324,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		//		else
 		//		{
 		if (moved) {
-			setOverID(selectCoord());
+			setOverID(selectCoord(gl));
 			if (pressed) select(); //initiate picking
 			clearRollover();
 			GraphElement n = ns.getView().getByID(overID);
@@ -338,6 +332,25 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			moved=false;
 		}
 		statusMsg();
+	}
+
+	public void renderPbuffer(GL gl, int width, int height) {
+		if (height <= 0) height = 1;
+		float h = (float)width/(float)height;
+//		float e = edgewidth;
+//		float t = textwidth;
+//		edgewidth=2f;
+//		textwidth=2f;
+		
+		initGLsettings(gl);
+		
+		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glLoadIdentity();
+		glu.gluPerspective(FOV, 1, znear, zfar);
+		render(gl);
+		
+//		edgewidth = e;
+//		textwidth = t;
 	}
 
 	void select(){
@@ -348,8 +361,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		updatePick(pickID);
 	}
 
-	int selectCoord(){
-		GL gl = glD.getGL();
+	int selectCoord(GL gl){
 		GLU glu = new GLU();
 
 		int buffsize = (ns.getView().nNodes.size()+ns.getView().nEdges.size())*4;
@@ -368,10 +380,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		glu.gluPickMatrix(x, glD.getHeight() - y, 5.0d, 5.0d, viewPort, 0);
 		glu.gluPerspective(FOV, h, znear, zfar);
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-		cam.posIncrement(glD, yRotInc, xRotInc, zInc, focus);
+		cam.posIncrement(gl, yRotInc, xRotInc, zInc, focus);
 
+		if (edges) layout.renderEdges(gl, 0);
 		layout.renderNodes(gl, 0); //render the nets.viewwork 
-		layout.renderEdges(gl, 0);
 		//		gl.glFlush();
 
 		gl.glMatrixMode(GL.GL_PROJECTION);
@@ -401,20 +413,19 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		switch (evt.getKeyCode())
 		{
 		case KeyEvent.VK_SPACE:
-			float x=0;
+			calculate=!calculate;
+			updateUI();
 			break;
 		case KeyEvent.VK_SHIFT:
 			break;
 		case KeyEvent.VK_F1:
-			screenshot  = true;
+			screenshot(shotres,shotres );
 			break;
 		case KeyEvent.VK_F2: 
 			inflate=true;
 			System.out.println("inflate = true"); //$NON-NLS-1$
 			break;
-		case KeyEvent.VK_F3: 
-			opt=!opt;
-			System.out.println("optimised repell= "+opt); //$NON-NLS-1$
+		case KeyEvent.VK_F3:
 			break;
 		case KeyEvent.VK_F4: 
 			layout.layoutLocksRemove();
@@ -812,7 +823,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		updateUI();
 	}
 
-	public void netLoad() {
+	public void netLoad(boolean tab) {
 		clearNets();
 		//		try {
 		//		downloadNet(getUrl());
@@ -820,24 +831,22 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		//		if (edgeUrl!=null) downloadEdgeData(edgeUrl);
 		//		} catch (IOException e) {
 		//		}
-		//		nets.view.loadNodeData(filename+".nodedata");
-		//		nets.view.loadEdgeData(filename+".edgedata");
-		if (edgeListLoad(new File(filename))) netStartRandom(false);
+		if (loadNetwork(new File(filename), tab)) netStartRandom(false);
 	}
 
-	public boolean edgeListLoad(File file) {
-		boolean success = ns.edgeListLoad(file);
+	public boolean loadNetwork(File file, boolean tab) {
+		boolean success = ns.edgeListLoad(file, tab);
 		if (success) {
 			File node = new File(file.getAbsoluteFile()+".n"); //$NON-NLS-1$
-			ns.nodeListLoad(node);
+			ns.nodeListLoad(node, tab);
 		} 
 		ns.getView().updateNet();
 		updateUI();
 		return success;
 	}
 
-	public void nodeListLoad(File file2) {
-		ns.nodeListLoad(file2);
+	public void nodeListLoad(File file2, boolean tab) {
+		ns.nodeListLoad(file2, tab);
 		ns.getView().updateNet();
 		updateUI();
 	}
@@ -1107,6 +1116,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 
+
 	public HashSet<GraphElement> findSubstringAttributes(String text, String key) {
 		String subString=text.toLowerCase();
 		HashSet<GraphElement> resultL = new HashSet<GraphElement>();
@@ -1213,16 +1223,40 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 
-	public void screenshot(int w, int h, String file){
+	public void screenshot (int width, int height) {
+		if (!GLDrawableFactory.getFactory().canCreateGLPbuffer()) return;
+		boolean f = flat;
+		flat = false;
+//		int width = glD.getWidth()*2;
+//		int height = glD.getHeight()*2;
+		
+		GLCapabilities caps = new GLCapabilities();
+		GLPbuffer pbuffer = GLDrawableFactory.getFactory().createGLPbuffer(caps, null, width, height, null);
+		pbuffer.getContext().makeCurrent();
+		GL gl = pbuffer.getGL();
+		moved = false;
+		
+//		FontRenderContext context = FTFont.STANDARDCONTEXT;
+//		texturefont = new FTGLTextureFont(font,context);
+		texturefont.setGLGLU(gl, new GLU());
+		texturefont.faceSize(70f);
+		
+		renderPbuffer(gl, width, height);
+
 		try {
-			Screenshot.writeToTargaFile(new File(file), w, w);
+			Screenshot.writeToTargaFile(new File("capt"+screenshotcounter+".tga"), width, height);
 		} catch (GLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		pbuffer.destroy();
+		screenshotcounter++;
+		
+		glD.getContext().makeCurrent();
+		texturefont.setGLGLU(gl, glu);
+		texturefont.faceSize(70f);
+		flat = f;
 	}
 
 	public void clearFrames(Net net) {
@@ -1306,5 +1340,13 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public float getLabelVar() {
 		return labelVar;
+	}
+
+	public void setTabular(boolean tabular) {
+		this.tabular = tabular;
+	}
+
+	public boolean isTabular() {
+		return tabular;
 	}
 }

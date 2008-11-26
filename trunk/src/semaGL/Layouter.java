@@ -59,7 +59,7 @@ public class Layouter {
 	private float calcClusterDistance(Node n) {
 		float x;
 		if (!n.spiralcluster)
-			x= app.clusterRad*n.cluster.size()+n.getSize()/2f;
+			x= app.clusterRad*n.cluster.size()+n.size()/2f;
 		else
 			x=spiral_rad(n, n.cluster.size());
 		return x;
@@ -163,7 +163,7 @@ public class Layouter {
 		return 90+(float)Math.sqrt(app.clusterRad*i+n.getSize())*75f;
 	}
 	private float spiral_rad(Node n, int i) {
-		return app.clusterRad+(float)Math.sqrt(app.clusterRad*i+n.getSize())*15f;
+		return app.clusterRad+(float)Math.sqrt(app.clusterRad*i+n.getSize())*10f;
 	}
 	public void clustersSetup(GL gl){
 		float xRot = app.cam.getYRot();		//should be global camera orientation
@@ -174,7 +174,7 @@ public class Layouter {
 			float rad = aref.cluster.size();
 
 			//	if (fact>app.clusterRad*10f) 
-			if (rad>20)
+			if (rad>8)
 				clusterSpiral(gl, xRot, yRot, aref); 
 			else
 				//					if (rad>0) 
