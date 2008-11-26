@@ -24,7 +24,7 @@ public class Node extends GraphElement {
 	public String imgurl = null;
 	private boolean locked = false;
 	public boolean spiralcluster = false;
-	boolean partOfGroup = false;
+	public boolean partOfGroup = false;
 	private Float time = null;
 
 

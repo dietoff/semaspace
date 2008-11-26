@@ -102,7 +102,7 @@ public abstract class GraphElement {
 	public String getAttribute(String key) {
 		return attributes.get(key);
 	}
-	void setAttribute(String key, String value) {
+	public void setAttribute(String key, String value) {
 		attributes.put(key, value);
 	}
 

@@ -1512,7 +1512,7 @@ public class SwingSema {
 			saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,Event.CTRL_MASK,true));
 			saveMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					saveNetwork(true);
+					exportNetwork(true);
 				}
 			});
 		}
@@ -2014,7 +2014,7 @@ public class SwingSema {
 			file.add(getLoadNet());
 			file.add(getLoadNodeAtt());
 			file.add(getSetImgDir());
-			file.add(getSaveNet());
+			file.add(getSaveNetButton());
 			file.add(getClear());
 			file.add(getSimButton11());
 			file.add(getJCheckBox1());
@@ -2082,35 +2082,31 @@ public class SwingSema {
 		return imgDir;
 	}
 
-	private void saveNetwork(boolean tab) {
+	private void exportNetwork(boolean tab) {
 		boolean t = app.isRender();
 		app.setRender(false);
 		int returnVal = saveFile.showSaveDialog(saveFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			if (!tab){
-			app.ns.view.saveNet(saveFile.getSelectedFile().toString());
-			app.ns.view.saveNodeData(saveFile.getSelectedFile().toString()+".n"); 
-			} else {
-			app.ns.view.saveNet2(saveFile.getSelectedFile().toString());
-			app.ns.view.saveNodeData2(saveFile.getSelectedFile().toString()+".n"); 
-			}
+			String filename = saveFile.getSelectedFile().toString();
+			app.ns.exportNet(filename , tab);
 		}
 		app.setRender(t);
 	}
 
-	private SimButton getSaveNet() {
+	private SimButton getSaveNetButton() {
 		if(saveNet == null) {
 			saveNet = new SimButton();
 			saveNet.setText("export");
 			saveNet.setBounds(144, 128, 67, 15);
 			saveNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					saveNetwork(app.isTabular());
+					exportNetwork(app.isTabular());
 				}
 			});
 		}
 		return saveNet;
 	}
+	
 	private SimButton getClear() {
 		if (clear == null) {
 			clear = new SimButton();
