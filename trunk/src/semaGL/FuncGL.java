@@ -163,9 +163,11 @@ public class FuncGL {
 		gl.glEnd();
 	}
 	static void symArrowHead(GL gl, float size, Vector3D pos, Vector3D dir) {
+		Vector3D dn = dir.copy();
+		dn.normalize();
 		gl.glBegin(GL.GL_TRIANGLES);
-		gl.glVertex3f(pos.x-size*dir.x-size*0.2f*dir.y,pos.y-size*dir.y+size*0.2f*dir.x,pos.z-size*dir.z);
-		gl.glVertex3f(pos.x-size*dir.x+size*0.2f*dir.y,pos.y-size*dir.y-size*0.2f*dir.x,pos.z-size*dir.z);
+		gl.glVertex3f(pos.x-dir.x-size*dn.y,pos.y-dir.y+size*dn.x,pos.z-dir.z);
+		gl.glVertex3f(pos.x-dir.x+size*dn.y,pos.y-dir.y-size*dn.x,pos.z-dir.z);
 		gl.glVertex3f(pos.x,pos.y,pos.z);
 		gl.glEnd();
 	}

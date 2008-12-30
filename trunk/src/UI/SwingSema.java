@@ -181,6 +181,7 @@ public class SwingSema {
 	private JLabel depthLabel;
 	private JSlider depth;
 	private SimButton searchButton;
+	private JCheckBox drawgroups;
 	private JCheckBox jFileFormat;
 	private JLabel jLabel17;
 	private JSlider jSlider4;
@@ -974,6 +975,7 @@ public class SwingSema {
 			viewTab.add(getJSlider3());
 			viewTab.add(getJSlider4());
 			viewTab.add(getJLabel17());
+			viewTab.add(getJCheckBox2xxx());
 		}
 		return viewTab;
 	}
@@ -1600,7 +1602,7 @@ public class SwingSema {
 		repellBox1.setSelected(app.repell);
 		repNeighbors.setSelected(app.isRepN());
 		treeBox.setSelected(app.isTree());
-		timeBox.setSelected(app.isTree());
+		timeBox.setSelected(app.isTime());
 		clusters.setSelected(app.isCluster());
 		noRender.setSelected(app.isRender());
 		drawedges.setSelected(app.isEdges());
@@ -1611,6 +1613,7 @@ public class SwingSema {
 		directedGraph.setSelected(app.directed);
 		drawclusters.setSelected(app.drawClusters);
 		jFileFormat.setSelected(app.isTabular());
+		drawgroups.setSelected(app.isGroups());
 	}
 	private JSlider getJSlider1() {
 		if(jSlider1 == null) {
@@ -2504,10 +2507,10 @@ public class SwingSema {
 	private JCheckBox getJFileFormat() {
 		if(jFileFormat == null) {
 			jFileFormat = new JCheckBox();
-			jFileFormat.setText("table file format");
+			jFileFormat.setText("tabular file format");
 			jFileFormat.setFont(new java.awt.Font("Dialog",0,10));
 			jFileFormat.setSelected(app.isTabular());
-			jFileFormat.setBounds(-1, 33, 126, 23);
+			jFileFormat.setBounds(-1, 33, 120, 23);
 			jFileFormat.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.setTabular(jFileFormat.isSelected());
@@ -2515,5 +2518,22 @@ public class SwingSema {
 			});
 		}
 		return jFileFormat;
+	}
+	
+	private JCheckBox getJCheckBox2xxx() {
+		if(drawgroups == null) {
+			drawgroups = new JCheckBox();
+			drawgroups.setText("groups");
+			drawgroups.setMargin(new java.awt.Insets(0,0,0,0));
+			drawgroups.setContentAreaFilled(false);
+			drawgroups.setFont(new java.awt.Font("Dialog",0,10));
+			drawgroups.setBounds(144, 18, 58, 17);
+			drawgroups.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.setGroups(drawgroups.isSelected());
+				}
+			});
+		}
+		return drawgroups;
 	}
 }	

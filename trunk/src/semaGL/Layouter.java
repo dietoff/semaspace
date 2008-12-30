@@ -21,12 +21,11 @@ public class Layouter {
 	private float innerRad=100;
 	private boolean first=true;
 	//	private BBox3D bounds;
-	private GraphRenderer nr;
 
 	Layouter (SemaSpace app_) {
 		app= app_;
-		nr = new GraphRenderer(app_);
 	}
+	
 	public void applyAttributeColors() {
 		for (Node n:app.ns.getView().nNodes) n.genColorFromAtt();
 		for (Edge e:app.ns.getView().nEdges) e.genColorFromAtt();
@@ -50,7 +49,7 @@ public class Layouter {
 			n.setPickColor(result);
 
 			//			set the alpha of the node color	based on selection		
-			if (app.fadeNodes&&!n.rollover&&!n.isFrame()) n.setAlpha(Math.max(0.1f,alpha)); else n.setAlpha(app.nodeColor[3]);
+			if (app.fadeNodes&&!n.rollover&&!n.isFrame()) n.setAlpha(Math.max(0.05f,alpha)); else n.setAlpha(app.nodeColor[3]);
 
 			n.genColorFromAtt();
 		}
@@ -554,8 +553,23 @@ public class Layouter {
 		}
 		layoutNodePosJitter(0.01f);
 	}
-
-	void renderClusters(GL gl) {
+	
+	void render(GL gl, int fonttype, Net view, GraphRenderer nr){
+		Layouter layout = this;
+		if (!app.isTree()) layout.renderClusters(gl, nr);
+		if (!app.isGroups()) layout.renderGroups(gl,nr, view,fonttype);
+		layout.renderGroupLabels(gl, nr, view,fonttype);
+		if (app.fonttype==0) {
+			layout.renderLabels(gl,nr, fonttype); //workaround for gl transform bug in ftgl library
+		}
+		layout.renderNodes(gl,nr, fonttype);
+		if (app.fonttype!=0) {
+			layout.renderLabels(gl,nr, fonttype);
+		}
+		if (app.isEdges()) layout.renderEdges(gl, nr, fonttype);
+	}
+	
+	void renderClusters(GL gl, GraphRenderer nr) {
 		clustersSetup( gl );
 		HashSet<Node>cl=null;
 		for (Node n:net.fNodes) {
@@ -567,18 +581,18 @@ public class Layouter {
 		}
 	}
 
-	public  void renderEdges(GL gl, int text) {
+	public  void renderEdges(GL gl, GraphRenderer nr, int text) {
 		for (Edge eref: net.nEdges) {
 			nr.renderEdges(gl, eref);
 		}
 	}
 
-	void renderLabels(GL gl, int text) {
+	void renderLabels(GL gl, GraphRenderer nr, int text) {
 		for (Node nref: net.nNodes)	nr.renderNodeLabels(gl, nref, text);
 		for (Edge eref: net.nEdges) nr.renderEdgeLabels(gl, eref, text);
 	}
 	
-	public  void renderNodes(GL gl,  int text) {
+	public  void renderNodes(GL gl, GraphRenderer nr,  int text) {
 		applyPickColors();
 		//		Vector3D cam = new Vector3D(app.cam.getX(),app.cam.getY(),app.cam.getZ());
 		//		TreeMap<Float, Node> depth = new TreeMap<Float, Node>();
@@ -593,17 +607,12 @@ public class Layouter {
 			nr.renderNodes(gl, n);
 		}
 	}
-	public void renderGroups(GL gl, Net net, int fonttype) {
+	public void renderGroups(GL gl, GraphRenderer nr, Net net, int fonttype) {
 		for (String n:net.groups.keySet()) {
 			Net group = net.groups.get(n);
 			Node center = group.hasNode(n);
 			nr.renderStar(gl, group.nNodes, center);
 			
-			for (String m:net.groups.keySet()) {
-				Net group1 = net.groups.get(m);
-				 center = group1.hasNode(m);
-				nr.renderGroupLabels(gl, center, fonttype);
-			}
 //			nr.renderNodes(gl, center);
 			
 //			for (Node eref: group.nNodes) {
@@ -614,6 +623,14 @@ public class Layouter {
 //			for (Edge eref: group.nEdges) {
 //				nr.renderEdges(gl, eref);
 //			}
+		}
+	}
+	public void renderGroupLabels(GL gl, GraphRenderer nr, Net net, int fonttype) {
+		Node center;
+		for (String m:net.groups.keySet()) {
+			Net group1 = net.groups.get(m);
+			 center = group1.hasNode(m);
+			nr.renderGroupLabels(gl, center, fonttype);
 		}
 	}
 

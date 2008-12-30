@@ -51,15 +51,6 @@ public class GLDisplayPanel {
 		return frame;
 	}
 	
-	public void saveImage() {
-		Image im = glCanvas.createImage(1024, 768);
-		try {
-			ImageIO.write((RenderedImage) im, "png", new File("./capture.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void start() {
 		try {
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

@@ -213,8 +213,9 @@ public class GraphRenderer {
 				bCol[3]=1f;
 				aCol[3]=1f;
 			} else {
-				aCol[3] = e.getA().alpha*0.5f;
-				bCol[3] = e.getB().alpha*0.5f;
+				float f = app.edgeAlpha;
+				aCol[3] = e.getA().alpha*f;
+				bCol[3] = e.getB().alpha*f;
 			}
 
 			if (app.inheritEdgeColorFromNodes) {
@@ -305,7 +306,7 @@ public class GraphRenderer {
 				D = bref.pos.copy();
 				D.sub(center.pos); 
 				D.mult(-1);
-				FuncGL.symArrowHead(gl, 1, center.pos, D);
+				FuncGL.symArrowHead(gl, bref.size()*1.5f, center.pos, D);
 			}
 		}
 		gl.glPopMatrix();
