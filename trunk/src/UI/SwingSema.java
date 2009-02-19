@@ -613,7 +613,6 @@ public class SwingSema {
 		if (jSplitPane == null) {
 			jSplitPane = new JSplitPane();
 			jSplitPane.setResizeWeight(0.0D);
-			jSplitPane.setDividerLocation(220);
 			jSplitPane.setDividerSize(0);
 			jSplitPane.setPreferredSize(new Dimension(1000,800));
 			jSplitPane.add(getJSplitPane1(), JSplitPane.LEFT);
