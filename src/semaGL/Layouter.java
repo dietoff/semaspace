@@ -5,12 +5,16 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Map.Entry;
 import javax.media.opengl.GL;
+
+import com.sun.org.apache.bcel.internal.generic.FNEG;
+
 import data.*;
 import semaGL.SemaSpace;
 
@@ -20,12 +24,16 @@ public class Layouter {
 	protected Net net;
 	private float innerRad=100;
 	private boolean first=true;
-	//	private BBox3D bounds;
+	HashMap<String, nodeTuple> replist;
+	private int a=0;
+	private int num;
+	private int edgeTresh=2000;
 
 	Layouter (SemaSpace app_) {
 		app= app_;
+		replist = new HashMap<String, nodeTuple>();
 	}
-	
+
 	public void applyAttributeColors() {
 		for (Node n:app.ns.getView().nNodes) n.genColorFromAtt();
 		for (Edge e:app.ns.getView().nEdges) e.genColorFromAtt();
@@ -404,28 +412,77 @@ public class Layouter {
 		if (app.opt) layoutRepVisible ( abstand,  strength);
 		//		else layoutRepNOpt( abstand,  strength );
 		else 
-			layoutRepFruchtermann( abstand,  strength, net );
+			if (net.nEdges.size()>edgeTresh) layoutRepFruchtermannLazy( abstand,  strength, net );
+			else layoutRepFruchtermann( abstand,  strength, net );
 	}
 
-	private void layoutRepFruchtermann(float abstand, float strength, Net net ){
-		Vector3D dist = new Vector3D();
-		for (Node a: net.fNodes) {
-			for (Node b: net.fNodes) {
-				if (a!=b) {
-					repFrucht(abstand, strength, dist, a, b); 
+		private void layoutRepFruchtermann(float abstand, float strength, Net net ){
+			Vector3D dist = new Vector3D();
+	
+			for (Node a: net.fNodes) {
+				for (Node b: net.fNodes) {
+					if (a!=b) {
+						repFrucht(abstand, strength, dist, a, b); 
+					}
 				}
 			}
 		}
+
+	/**
+	 * optimized repulsions based on lists. nodes with distance > 5*rad are removed from list and not evaluated next time.
+	 * @param abstand
+	 * @param strength
+	 * @param net
+	 */
+	private void layoutRepFruchtermannLazy(float abstand, float strength, Net net ){
+		Vector3D dist = new Vector3D();
+//		System.out.println(replist.size());
+		a++;
+
+		Object[] array = net.fNodes.toArray();
+		for (int i=0; i<net.fNodes.size(); i++){
+			Node a = (Node)array[(int) (Math.random()*array.length)];
+			Node b = (Node)array[(int) (Math.random()*array.length)];
+			if (a!=b) {
+				replist.put(nodeTuple.getName(a, b), new nodeTuple(a,b));
+			}
+		} 
+
+		Object[] values = replist.values().toArray();
+		int max = 500;
+		for (Object n:values) {
+			repFrucht(abstand, strength, dist, (nodeTuple)n,max); 
+		}
 	}
+
+	private float repFrucht(float abstand, float strength, Vector3D dist, nodeTuple n, int max) {
+		Node a = n.getA();
+		Node b = n.getB();
+		if (a.adList.size()==0||b.adList.size()==0) max = 0;
+		dist.setXYZ(b.pos);
+		dist.sub(a.pos);
+		float d = dist.magnitude()+0.000000001f;
+		float radius = calcClusterDistance(a)+calcClusterDistance(b)+abstand;
+		float f=0;
+
+		if (d<Math.max(max,radius)) {
+			if (d<radius) {
+				f = 1-(d/radius);
+			}
+			else {
+				f = 0.1f/d;
+			}
+			dist.mult(f*strength);
+			b.pos.add(dist);
+			a.pos.sub(dist);
+		} 
+		
+		if (d>radius*5) replist.remove(n.getName()); 
+		return d;
+	}
+
 	public void layoutRepFruchtermannRadial(float abstand, float strength ){
 		Vector3D dist = new Vector3D();
-		//		for (Node a: net.fNodes) {
-		//			for (Node b: net.fNodes) {
-		//				if ((a!=b)&&(net.distTable.get(a)==net.distTable.get(b))) {
-		//					repFrucht(abstand, strength, dist, a, b); 
-		//				}
-		//			}
-		//		}
 		for (HashSet<Node>e:net.distances.nodeSets()) {
 			for (Node n:e) {
 				for(Node m:e) {
@@ -434,7 +491,15 @@ public class Layouter {
 			}
 		}
 	}
-	private void repFrucht(float abstand, float strength, Vector3D dist,
+	/**
+	 * @param abstand
+	 * @param strength
+	 * @param dist
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	private float repFrucht(float abstand, float strength, Vector3D dist,
 			Node a, Node b) {
 		int max = 500;
 		if (a.adList.size()==0||b.adList.size()==0) max = 0;
@@ -443,15 +508,19 @@ public class Layouter {
 		float d = dist.magnitude()+0.000000001f;
 		float radius = calcClusterDistance(a)+calcClusterDistance(b)+abstand;
 		float f=0;
+
 		if (d<Math.max(max,radius)) {
 			if (d<radius) {
 				f = 1-(d/radius);
 			}
-			else f = 0.1f/d;
+			else {
+				f = 0.1f/d;
+			}
 			dist.mult(f*strength);
 			b.pos.add(dist);
 			a.pos.sub(dist);
 		}
+		return d;
 	}
 
 	// still experimental - repell only top. neighbourhood
@@ -553,7 +622,7 @@ public class Layouter {
 		}
 		layoutNodePosJitter(0.01f);
 	}
-	
+
 	void render(GL gl, int fonttype, Net view, GraphRenderer nr){
 		Layouter layout = this;
 		if (!app.isTree()) layout.renderClusters(gl, nr);
@@ -563,12 +632,17 @@ public class Layouter {
 			layout.renderLabels(gl,nr, fonttype); //workaround for gl transform bug in ftgl library
 		}
 		layout.renderNodes(gl,nr, fonttype);
+		if (app.isEdges()) layout.renderEdges(gl, nr, fonttype);
 		if (app.fonttype!=0) {
 			layout.renderLabels(gl,nr, fonttype);
 		}
-		if (app.isEdges()) layout.renderEdges(gl, nr, fonttype);
 	}
-	
+
+	/**
+	 * setup and render the grouped nodes in net
+	 * @param gl
+	 * @param nr
+	 */
 	void renderClusters(GL gl, GraphRenderer nr) {
 		clustersSetup( gl );
 		HashSet<Node>cl=null;
@@ -581,17 +655,35 @@ public class Layouter {
 		}
 	}
 
+	/**
+	 * render edges contained in net
+	 * @param gl
+	 * @param nr
+	 * @param text
+	 */
 	public  void renderEdges(GL gl, GraphRenderer nr, int text) {
 		for (Edge eref: net.nEdges) {
 			nr.renderEdges(gl, eref);
 		}
 	}
 
+	/**
+	 * render node labels with font = text 
+	 * @param gl
+	 * @param nr
+	 * @param text
+	 */
 	void renderLabels(GL gl, GraphRenderer nr, int text) {
 		for (Node nref: net.nNodes)	nr.renderNodeLabels(gl, nref, text);
 		for (Edge eref: net.nEdges) nr.renderEdgeLabels(gl, eref, text);
 	}
-	
+
+	/**
+	 * render the nodes in net
+	 * @param gl
+	 * @param nr
+	 * @param text
+	 */
 	public  void renderNodes(GL gl, GraphRenderer nr,  int text) {
 		applyPickColors();
 		//		Vector3D cam = new Vector3D(app.cam.getX(),app.cam.getY(),app.cam.getZ());
@@ -607,29 +699,43 @@ public class Layouter {
 			nr.renderNodes(gl, n);
 		}
 	}
+	/**
+	 * render the groups defined in the group attribute
+	 * @param gl
+	 * @param nr
+	 * @param net
+	 * @param fonttype
+	 */
 	public void renderGroups(GL gl, GraphRenderer nr, Net net, int fonttype) {
 		for (String n:net.groups.keySet()) {
 			Net group = net.groups.get(n);
 			Node center = group.hasNode(n);
 			nr.renderStar(gl, group.nNodes, center);
-			
-//			nr.renderNodes(gl, center);
-			
-//			for (Node eref: group.nNodes) {
-//				nr.renderNodes(gl, eref);
-//				nr.renderNodeLabels(gl, eref, 2);
-//			}
-//			
-//			for (Edge eref: group.nEdges) {
-//				nr.renderEdges(gl, eref);
-//			}
+
+			//			nr.renderNodes(gl, center);
+
+			//			for (Node eref: group.nNodes) {
+			//				nr.renderNodes(gl, eref);
+			//				nr.renderNodeLabels(gl, eref, 2);
+			//			}
+			//			
+			//			for (Edge eref: group.nEdges) {
+			//				nr.renderEdges(gl, eref);
+			//			}
 		}
 	}
+	/**
+	 * render the group labels
+	 * @param gl
+	 * @param nr
+	 * @param net
+	 * @param fonttype
+	 */
 	public void renderGroupLabels(GL gl, GraphRenderer nr, Net net, int fonttype) {
 		Node center;
 		for (String m:net.groups.keySet()) {
 			Net group1 = net.groups.get(m);
-			 center = group1.hasNode(m);
+			center = group1.hasNode(m);
 			nr.renderGroupLabels(gl, center, fonttype);
 		}
 	}
@@ -637,6 +743,11 @@ public class Layouter {
 	public void setNet(Net net) {
 		this.net = net;
 	}
+	/**
+	 * calculate node color based on gradient and level
+	 * @param level
+	 * @param m
+	 */
 	void setNodeColor(int level, Node m) {
 		float[] nodeHSV = new float[3];
 		nodeHSV = Func.RGBtoHSV(app.pickGradEnd);
@@ -673,16 +784,16 @@ public class Layouter {
 		}
 	}
 	public void layoutGroups(Net net) {
-		
-		 
+
+
 		for (String n:net.groups.keySet()) {
 			Net group = net.groups.get(n);
 			Vector3D center = calcPivot(group.nNodes);
 			group.hasNode(n).pos.setXYZ(center);
-			
-//			layoutDistance(app.nodeSize*4f, 0, 1f, group);
-//			layoutRepell(app.nodeSize*4f, .5f, group);
-//			layoutInflate(net.nNodes.size()+10f, net);
+
+			//			layoutDistance(app.nodeSize*4f, 0, 1f, group);
+			//			layoutRepell(app.nodeSize*4f, .5f, group);
+			//			layoutInflate(net.nNodes.size()+10f, net);
 		}
 	}
 

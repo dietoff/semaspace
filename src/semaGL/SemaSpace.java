@@ -794,6 +794,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	private void netInit() {
 		ns.getView().updateNet();
+		layout.replist.clear();
 		layout.setNet(ns.getView());
 		//		layout.layoutNodePosRandomize();
 		layout.layoutBox(ns.getView().nNodes);

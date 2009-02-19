@@ -83,8 +83,9 @@ public abstract class GraphElement {
 		return result;
 	}
 
-	void genId() {
+	public int genId() {
 		id = name.hashCode();
+		return id;
 	}
 	public int getId() {
 		return id;
