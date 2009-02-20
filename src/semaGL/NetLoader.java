@@ -11,7 +11,7 @@ import data.Node;
 
 public class NetLoader {
 	SemaSpace app;
-	private String lineBreak = "\r\n|\n|\f";
+	private String lineBreak = "\r\n|\n|\r";
 	private String separator = "\t";
 	private String value = "=";
 
@@ -114,24 +114,26 @@ public class NetLoader {
 					String col1 = cols[0].trim();
 					String col2 = cols[1].trim();
 					tmp = r.addEdge (col1,col2);
-					// database id as first attribute
-					tmp.setAttribute("id", tmp.name);
-					r.edgeattributes.add("id");
 
-					// db id as first attribute
-					tmp.getA().setAttribute("id", col1);
-					r.nodeattributes.add("id");
-					tmp.getB().setAttribute("id", col2);
+					if (tmp!=null){
+						// database id as first attribute
+						tmp.setAttribute("id", tmp.name);
+						r.edgeattributes.add("id");
 
+						// db id as first attribute
+						tmp.getA().setAttribute("id", col1);
+						r.nodeattributes.add("id");
+						tmp.getB().setAttribute("id", col2);
 
-					if (cols.length>2) {
-						for (int j=2; j<cols.length; j++){
-							if (cols[j].length()>0) {
-								String val1 = fields[j].toLowerCase().trim();
-								String val2 = cols[j].trim();
-								tmp.setAttribute(val1, val2);
+						if (cols.length>2) {
+							for (int j=2; j<cols.length; j++){
+								if (cols[j].length()>0) {
+									String val1 = fields[j].toLowerCase().trim();
+									String val2 = cols[j].trim();
+									tmp.setAttribute(val1, val2);
+								}
+								setedgeAttributes(tmp);
 							}
-							setedgeAttributes(tmp);
 						}
 					}
 				}
@@ -145,7 +147,9 @@ public class NetLoader {
 	 * @param tmp
 	 */
 	private void setedgeAttributes(Edge tmp) {
-		if (tmp.hasAttribute("function")) tmp.setAltName(tmp.getAttribute("function"));
+		if (tmp==null) return;
+		if (tmp.hasAttribute("function")) 
+			tmp.setAltName(tmp.getAttribute("function"));
 		if (tmp.hasAttribute("similarity"))
 			try {
 				tmp.setProperty(10f*Float.parseFloat(tmp.getAttribute("similarity")));
