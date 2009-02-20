@@ -409,24 +409,25 @@ public class Layouter {
 
 	//repell all nodes
 	public void layoutRepell(float abstand, float strength , Net net){
+		int etresh = net.nEdges.size()-(net.nNodes.size()-net.fNodes.size());
+		
 		if (app.opt) layoutRepVisible ( abstand,  strength);
-		//		else layoutRepNOpt( abstand,  strength );
 		else 
-			if (net.nEdges.size()>edgeTresh) layoutRepFruchtermannLazy( abstand,  strength, net );
+			if (etresh>edgeTresh) layoutRepFruchtermannLazy( abstand,  strength, net );
 			else layoutRepFruchtermann( abstand,  strength, net );
 	}
 
-		private void layoutRepFruchtermann(float abstand, float strength, Net net ){
-			Vector3D dist = new Vector3D();
-	
-			for (Node a: net.fNodes) {
-				for (Node b: net.fNodes) {
-					if (a!=b) {
-						repFrucht(abstand, strength, dist, a, b); 
-					}
+	private void layoutRepFruchtermann(float abstand, float strength, Net net ){
+		Vector3D dist = new Vector3D();
+
+		for (Node a: net.fNodes) {
+			for (Node b: net.fNodes) {
+				if (a!=b) {
+					repFrucht(abstand, strength, dist, a, b); 
 				}
 			}
 		}
+	}
 
 	/**
 	 * optimized repulsions based on lists. nodes with distance > 5*rad are removed from list and not evaluated next time.
@@ -436,7 +437,7 @@ public class Layouter {
 	 */
 	private void layoutRepFruchtermannLazy(float abstand, float strength, Net net ){
 		Vector3D dist = new Vector3D();
-//		System.out.println(replist.size());
+		//		System.out.println(replist.size());
 		a++;
 
 		Object[] array = net.fNodes.toArray();
@@ -476,7 +477,7 @@ public class Layouter {
 			b.pos.add(dist);
 			a.pos.sub(dist);
 		} 
-		
+
 		if (d>radius*5) replist.remove(n.getName()); 
 		return d;
 	}
@@ -674,8 +675,10 @@ public class Layouter {
 	 * @param text
 	 */
 	void renderLabels(GL gl, GraphRenderer nr, int text) {
-		for (Node nref: net.nNodes)	nr.renderNodeLabels(gl, nref, text);
-		for (Edge eref: net.nEdges) nr.renderEdgeLabels(gl, eref, text);
+//		boolean fast = (net.nNodes.size()>edgeTresh);
+		boolean fast = false;
+		for (Node nref: net.nNodes)	nr.renderNodeLabels(gl, nref, text, fast);
+		for (Edge eref: net.nEdges) nr.renderEdgeLabels(gl, eref, text, fast);
 	}
 
 	/**
@@ -686,15 +689,6 @@ public class Layouter {
 	 */
 	public  void renderNodes(GL gl, GraphRenderer nr,  int text) {
 		applyPickColors();
-		//		Vector3D cam = new Vector3D(app.cam.getX(),app.cam.getY(),app.cam.getZ());
-		//		TreeMap<Float, Node> depth = new TreeMap<Float, Node>();
-		//
-		//		for (Node nref: net.nNodes) {
-		//			depth.put(Vector3D.distance(nref.pos, cam), nref);
-		//		}
-		//		for (Node n: depth.values()) {
-		//			n.render();
-		//		}
 		for (Node n: net.nNodes) {
 			nr.renderNodes(gl, n);
 		}

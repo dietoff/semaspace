@@ -103,7 +103,7 @@ public class GraphRenderer {
 		gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
 	}
 
-	public synchronized void renderNodeLabels(GL gl, Node n, int font){
+	public synchronized void renderNodeLabels(GL gl, Node n, int font, boolean fast){
 
 		if (app.flat&&outsideView(n)) return;
 
@@ -129,7 +129,7 @@ public class GraphRenderer {
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
 		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
-		FuncGL.renderText(app, att, textcolor, app.getLabelsize()+n.size()*app.getLabelVar(), font, n.id, distToCam, false); //dont draw the text if alpha is too low
+		FuncGL.renderText(app, att, textcolor, app.getLabelsize()+n.size()*app.getLabelVar(), font, n.id, distToCam, false, fast); //dont draw the text if alpha is too low
 		// reset all transformations
 		gl.glPopMatrix();
 	}
@@ -150,7 +150,7 @@ public class GraphRenderer {
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
 		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
-		FuncGL.renderText(app, n.name, textcolor, 1.5f*app.getLabelsize()+n.size()*app.getLabelVar(), font, n.id, distToCam, true); //dont draw the text if alpha is too low
+		FuncGL.renderText(app, n.name, textcolor, 1.5f*app.getLabelsize()+n.size()*app.getLabelVar(), font, n.id, distToCam, true, false); //dont draw the text if alpha is too low
 		// reset all transformations
 		gl.glPopMatrix();
 	}
@@ -244,7 +244,7 @@ public class GraphRenderer {
 		}
 		gl.glPopMatrix();
 	}
-	synchronized void renderEdgeLabels(GL gl, Edge e, int Text) {
+	synchronized void renderEdgeLabels(GL gl, Edge e, int Text, boolean fast) {
 		float[] color = e.color;
 		int font = Text;
 		Node a = e.getA();
@@ -268,7 +268,7 @@ public class GraphRenderer {
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
 		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
-		FuncGL.renderText(app, rText, textcolor,app.getLabelsize(), font, e.getId(), distToCam, false); //render text in dark grey, with alpha of edge
+		FuncGL.renderText(app, rText, textcolor,app.getLabelsize(), font, e.getId(), distToCam, false, fast); //render text in dark grey, with alpha of edge
 		gl.glPopMatrix();
 	}
 	synchronized void renderFan(GL gl, HashSet<Node> nodes, Node center) {

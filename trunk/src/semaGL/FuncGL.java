@@ -23,14 +23,14 @@ public class FuncGL {
 		app=space;
 	}
 
-	static void renderText( SemaSpace app, String text, float[] textColor, float offset , int font, int id, float distToCam, boolean centerOnNode) {
+	static void renderText( SemaSpace app, String text, float[] textColor, float offset , int font, int id, float distToCam, boolean centerOnNode, boolean fast) {
 
 		switch (font){
 		case 0:
 			renderHiqTxt(app, text, textColor, id, offset, centerOnNode);
 			break;
 		case 1:
-			renderTxt(app, text, textColor, id, offset, centerOnNode);
+			renderTxt(app, text, textColor, id, offset, centerOnNode, fast);
 			break;
 		case 2:
 			renderBtxt(app, text, textColor, id, offset, distToCam);
@@ -44,44 +44,45 @@ public class FuncGL {
 		float h = app.glD.getHeight();
 		gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
 		int font =	GLUT.BITMAP_HELVETICA_12;
-		
+
 		String[] lines = text.split("\n"); 
 		float pos[] = new float[4];
 		gl.glGetFloatv( GL.GL_CURRENT_RASTER_POSITION, pos, 0 );
 		float factor = pos[3]/h;
 
 		for (int i = 0; i<lines.length; i++){
-//			j2d.drawString(lines[i], pos[0], pos[1]);
+			//			j2d.drawString(lines[i], pos[0], pos[1]);
 
-			
+
 			if (app.flat) { 
-			//paint background frame
-			int len = app.glut.glutBitmapLength(font, lines[i]);
-			gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
-			gl.glColor4f(.9f, .9f, .9f, textColor[3]);
-			gl.glRecti((int)offset, (int)(-factor*(i*25f+7)), (int)(offset+factor*len*1.4f),(int)(factor*(-i*25f+18)));
+				//paint background frame
+				int len = app.glut.glutBitmapLength(font, lines[i]);
+				gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
+//				gl.glColor4f(.9f, .9f, .9f, textColor[3]);
+				gl.glColor4f(1f, 1f, 1f, textColor[3]);
+				gl.glRecti((int)offset, (int)(-factor*(i*25f+7)), (int)(offset+factor*len*1.4f),(int)(factor*(-i*25f+18)));
 			}
-			
+
 			//paint text
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
 			gl.glRasterPos2i((int)offset, (int)(-factor*i*25f));
-			
+
 			app.glut.glutBitmapString(font, lines[i]);
-			
+
 		}
 		gl.glPopMatrix();
 	}
-	
+
 	static void renderHiqTxt( SemaSpace app, String text, float[] textColor, int id, float offset, boolean center) {
 		GL gl=app.glD.getGL();
-		
+
 		gl.glPushMatrix();
-//		gl.glLoadName(id);
+		//		gl.glLoadName(id);
 		float scale = offset*0.025f;
 		gl.glScalef(scale, scale, scale);
 		gl.glLineWidth(1f);
 		gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
-		
+
 		String[] lines = text.split("\n"); 
 		if (!center) gl.glTranslatef(40, 90, 0);
 		for (int i = 0; i<lines.length; i++){
@@ -92,8 +93,8 @@ public class FuncGL {
 		gl.glLineWidth(app.textwidth);
 		gl.glPopMatrix();
 	}
-	
-	static void renderTxt(SemaSpace app, String text, float[] textColor, int id, float offset, boolean center) {
+
+	static void renderTxt(SemaSpace app, String text, float[] textColor, int id, float offset, boolean center, boolean fast) {
 		GL gl=app.glD.getGL();
 		gl.glLoadName(id);
 		int fontsize = 8;
@@ -105,16 +106,18 @@ public class FuncGL {
 			float scale = offset*0.01f;
 			gl.glScalef(scale, scale, scale);
 			gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
-			gl.glLineWidth(app.textwidth+2);
-			gl.glColor4f(1f,1f,1f,1f);
-			renderStrokeString( app, GLUT.STROKE_ROMAN, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
+			if (!fast) {
+				gl.glLineWidth(5);
+				gl.glColor4f(1f,1f,1f,1f);
+				renderStrokeString( app, GLUT.STROKE_ROMAN, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
+			}
 			gl.glLineWidth(app.textwidth);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
 			renderStrokeString( app, GLUT.STROKE_ROMAN, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
 			gl.glPopMatrix();
 		}
 	}
-	
+
 	static void renderStrokeString( SemaSpace app, int font, String string, float offset, float offsety) {
 		// Center Our Text On The Screen
 		GL gl=app.glD.getGL();
@@ -125,7 +128,7 @@ public class FuncGL {
 			float offset, float offsety, GL gl) {
 		gl.glPushMatrix();
 		gl.glTranslatef(offset*10f, offsety*10f, 0);
-	
+
 		// Render The Text
 		for (int i = 0; i < string.length(); i++) {
 			char c = string.charAt(i);
@@ -142,19 +145,19 @@ public class FuncGL {
 		gl.glVertex3f(end.x,end.y,end.z);
 		gl.glEnd();
 	}
-	
+
 	static void propertyVector(GL gl, float size, float width, Vector3D pos, Vector3D dir) {
 		gl.glBegin(GL.GL_POLYGON);
-//		gl.glVertex3f(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
+		//		gl.glVertex3f(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
 		gl.glVertex3f(pos.x-size*dir.x-width*dir.y,pos.y-size*dir.y+width*dir.x,pos.z-size*dir.z);
-//		gl.glVertex3f(pos.x-(size-width)*dir.x,pos.y-(size-width)*dir.y,pos.z-(size-width)*dir.z);
+		//		gl.glVertex3f(pos.x-(size-width)*dir.x,pos.y-(size-width)*dir.y,pos.z-(size-width)*dir.z);
 		gl.glVertex3f(pos.x-size*dir.x+width*dir.y,pos.y-size*dir.y-width*dir.x,pos.z-size*dir.z);
 		gl.glVertex3f(pos.x+width*dir.y,pos.y-width*dir.x,pos.z);
 		gl.glVertex3f(pos.x-width*dir.y,pos.y+width*dir.x,pos.z);
-//		gl.glVertex3f(pos.x,pos.y,pos.z);
+		//		gl.glVertex3f(pos.x,pos.y,pos.z);
 		gl.glEnd();
 	}
-	
+
 	static void arrowHead(GL gl, float size, Vector3D pos, Vector3D dir) {
 		gl.glBegin(GL.GL_TRIANGLES);
 		gl.glVertex3f(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
@@ -246,14 +249,14 @@ public class FuncGL {
 		gl.glTexImage2D(GL.GL_TEXTURE_2D,0,3,tex.getWidth(),tex.getHeight(),0,GL.GL_RGB,GL.GL_UNSIGNED_BYTE,tex.getPixels());
 		tex=null;
 	}
-	
-	
+
+
 	static public BufferedImage scale(BufferedImage image2D, float x , float y) {
-		
+
 		BufferedImage thumbnail = new BufferedImage((int)(image2D.getWidth()*x+1),(int)(image2D.getHeight()*y+1),BufferedImage.TYPE_INT_ARGB);
 		Graphics2D bg = thumbnail.createGraphics();
 		bg.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		
+
 		// scale image
 		AffineTransform xform = AffineTransform.getScaleInstance(x,y);
 		bg.drawRenderedImage(image2D, xform);
@@ -261,7 +264,7 @@ public class FuncGL {
 
 		return thumbnail;
 	}
-	
+
 	private static byte rasters[][] = {
 		{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00 },
