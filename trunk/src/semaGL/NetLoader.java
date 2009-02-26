@@ -173,7 +173,8 @@ public class NetLoader {
 		String lines[]= file.split(lineBreak);
 		for (int i=0; i<lines.length; i++){
 			String cols[] = lines[i].split(separator);
-			String col1 = cols[0].trim();
+			String col1 = null;
+			if (cols[0].length()>1) col1 = cols[0].trim();
 			tmp = n.addNode(col1);
 			//			tmp = nTable.get(cols[0].trim());
 			if (tmp!=null){
