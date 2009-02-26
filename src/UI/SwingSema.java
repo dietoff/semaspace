@@ -512,7 +512,7 @@ public class SwingSema {
 		valenzSlider.setValue((int)(app.getVal()*100));
 		groupRadius.setValue((int)(app.getClusterRad()*10));
 		pushSlider.setValue((int)(app.getRepell()));
-		stretchSlider.setValue((int)(app.getPermInflate()));
+		stretchSlider.setValue((int)(app.getPermInflate()*100));
 		strengthSlider.setValue((int)(app.getStrength()*100));
 		distanceSlider.setValue((int)app.getDistance());
 		picSizeSlider.setValue(app.getPicSize());
@@ -1198,7 +1198,7 @@ public class SwingSema {
 			stretchSlider.setBounds(0, 21, 151, 16);
 			stretchSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setPermInflate(stretchSlider.getValue()); //  Auto-generated Event stub stateChanged()
+					app.setPermInflate(stretchSlider.getValue()/100f); //  Auto-generated Event stub stateChanged()
 				}
 			});
 		}

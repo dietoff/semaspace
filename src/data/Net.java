@@ -652,14 +652,34 @@ public class Net {
 	}
 
 	void mergeRaw(Net net) {
-		nNodes.addAll(net.nNodes);
-		nEdges.addAll(net.nEdges);
-		nTable.putAll(net.nTable);
-		eTable.putAll(net.eTable);
-		eTableID.putAll(net.eTableID);
-		nTableID.putAll(net.nTableID);
-		timeTable.putAll(net.timeTable);
-		groups.putAll(net.groups);
+		// check if a different instance of a node with the same name exists in the merged net, in this case eliminate it
+		for (Node n:net.nNodes) {
+			if (nTable.containsKey(n.name)) {
+				for (Edge e:net.nEdges) {
+					Node tmp = e.getA();
+					if (tmp.name.contentEquals(n.name)) e.setA(nTable.get(n.name)) ;
+					tmp = e.getB();
+					if (tmp.name.contentEquals(n.name)) e.setB(nTable.get(n.name)) ;
+				}
+			}
+			else nNodes.add(n); 
+		}
+		
+		for (Edge e:net.nEdges) {
+			if (!eTable.containsKey(e.getName())) nEdges.add(e);
+		}
+		net.nTable.putAll(nTable);
+		nTable=net.nTable;
+		net.eTable.putAll(eTable);
+		eTable=net.eTable;
+		net.eTableID.putAll(eTableID);
+		eTableID=net.eTableID;
+		net.nTableID.putAll(nTableID);
+		nTableID=net.nTableID;
+		net.timeTable.putAll(timeTable);
+		timeTable=net.timeTable;
+		net.groups.putAll(groups);
+		groups = net.groups;
 		nodeattributes.addAll(net.nodeattributes);
 		edgeattributes.addAll(net.edgeattributes);
 		distances.clear();

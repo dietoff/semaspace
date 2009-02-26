@@ -17,13 +17,11 @@ import java.awt.font.FontRenderContext;
 import java.io.File;
 import java.io.IOException;
 import java.nio.IntBuffer;
-import java.util.Collections;
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
 import java.util.Random;
 
 import javax.swing.SwingUtilities;
-import javax.vecmath.Color4f;
 
 import nehe.TextureReader.Texture;
 import UI.SwingSema;
@@ -45,6 +43,9 @@ import net.sourceforge.ftgl.glfont.FTGLTextureFont;
 public class SemaSpace implements GLEventListener, MouseListener, MouseMotionListener, KeyListener  {
 	private static final long serialVersionUID = -1864003907508879499L;
 	GLUT glut = new GLUT();
+	
+//	HashSet<String> map = Messages.getArray("map");
+	
 	String filename = Messages.getString("defaultFilename"); //$NON-NLS-1$
 	public String texfolder = Messages.getString("textureDirectory"); //$NON-NLS-1$
 	String cacheDir = "./cache/"; //$NON-NLS-1$
@@ -117,7 +118,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private GLU glu;
 	public FileIO fileIO;
 	public int ageThresh=Integer.MAX_VALUE;
-	float perminflate= Integer.parseInt(Messages.getString("permanentInflate"));
+	float perminflate= Float.parseFloat(Messages.getString("permanentInflate"));
 	private SwingSema swingapp;
 	private float frame;
 	public Texture tex;
@@ -275,7 +276,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 					rep = false;
 				}
 
-				if (perminflate>0) layout.layoutInflate(perminflate, ns.getView());
+				if (perminflate>0) layout.layoutInflate(perminflate*100f, ns.getView());
 
 				if (distance) layout.layoutDistance(standardNodeDistance , getVal(), str, ns.getView()); 
 
@@ -981,8 +982,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		this.overID = overID;
 	}
 
-	public void setPermInflate(int value) {
-		perminflate=value;
+	public void setPermInflate(float f) {
+		perminflate=f;
 	}
 
 	public void setPickdepth(int pickdepth) {

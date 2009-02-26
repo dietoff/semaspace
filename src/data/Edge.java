@@ -149,4 +149,11 @@ public class Edge extends GraphElement{
 	public void setProperty(float property) {
 		this.property = property;
 	}
+
+	public void setA(Node n) {
+		a = n;
+	}
+	public void setB(Node n) {
+		b = n;
+	}
 }
