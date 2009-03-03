@@ -726,9 +726,9 @@ public class Layouter {
 
 	private void createSVG(String filename)
 	throws UnsupportedEncodingException, SVGGraphics2DIOException {
-		
+
 		BBox3D bbx = BBox3D.calcBounds(net.nNodes);
-		
+
 		// Get a DOMImplementation.
 		DOMImplementation domImpl =
 			GenericDOMImplementation.getDOMImplementation();
@@ -736,14 +736,14 @@ public class Layouter {
 		// Create an instance of org.w3c.dom.Document.
 		String svgNS = "http://www.w3.org/2000/svg";
 		Document doc = domImpl.createDocument(svgNS, "svg", null);
-		
+
 		// Create an instance of the SVG Generator.
 		SVGGraphics2D svgG = new SVGGraphics2D(doc);
 
 		Dimension bounds = new Dimension((int)bbx.size.x+200, (int)bbx.size.y+200);
-		
+
 		svgG.setSVGCanvasSize(bounds);
-		
+
 		paintSVG(svgG, bbx.min.x-50, bbx.min.y-50);
 
 		//		GVTBuilder builder = new GVTBuilder();
@@ -768,10 +768,14 @@ public class Layouter {
 		Font nf = new Font(fontFam,Font.PLAIN, (int)(app.getLabelsize()*1.3f));
 		Font ef = new Font(fontFam,Font.PLAIN, (int)(app.getLabelsize()));
 
+		AffineTransform id = new AffineTransform();
+		id.setToIdentity();
+
 		AffineTransform t = new AffineTransform();
 		t.setToIdentity();
 		t.translate(-origX, -origY);
 		g2d.setTransform(t);
+
 
 
 		// edges
@@ -852,13 +856,15 @@ public class Layouter {
 						FontRenderContext frc = g2d.getFontRenderContext();
 						TextLayout tl = new TextLayout(txt,nf,frc);
 						g2d.setPaint(new Color(1,1,1,e.color[3]));
-						Shape outline = tl.getOutline(t);
+						Shape outline = tl.getOutline(id);
 						g2d.setStroke(dbl);
 						g2d.draw(outline);
 						g2d.setPaint(new Color((e.color[0]*0.5f),(e.color[1]*0.5f),(e.color[2]*0.5f),e.color[3]));
 						//						g2d.fill(outline);
-						tl.draw(g2d, 0, 0);
 						g2d.setStroke(sngl);
+						g2d.fill(outline);
+						//						tl.draw(g2d, 0, 0);
+
 					} else {
 						g2d.setFont(ef);
 						g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
@@ -872,26 +878,40 @@ public class Layouter {
 			for (Node n: net.nNodes) {
 				float size = n.size()*2f;
 				String txt = n.genTextSelAttributes();
-				g2d.translate((int)(n.pos.x)+(int)(size/2), (int)(n.pos.y)-(int)(size/2));
-				if (app.tilt) g2d.rotate(-0.436332312998582);
+
+				String[] sp = txt.split("\n");
+
+				g2d.translate((int)(n.pos.x), (int)(n.pos.y));
+				if (app.tilt&&!app.isTree()) {
+					g2d.translate((int)(size/2),(int)(size/2));
+					g2d.rotate(-0.436332312998582);
+				}
 
 				if (n.color[3]>0.2f&& txt.length()>0) {
-					String[] sp = txt.split("\n");
 					for (int i = 0; i<sp.length; i++){
 						int fntsize = (int)(app.getLabelsize()+n.size()*app.getLabelVar());
 						Font tmp = new Font(fontFam,Font.PLAIN, fntsize);
+						FontRenderContext frc = g2d.getFontRenderContext();
+						TextLayout tl = new TextLayout(sp[i],tmp,frc);
+
+						if (app.isTree()) {
+							float angle = (float) (Math.atan(n.pos.y/n.pos.x));
+							g2d.rotate(angle);
+							if (n.pos.x<0) {
+								float advance = tl.getAdvance()+n.size()+5;
+								g2d.translate(-advance, 0);
+							} else	g2d.translate(n.size()+5, 0);
+						}
+
 						if (font==0) {
-							FontRenderContext frc = g2d.getFontRenderContext();
-							TextLayout tl = new TextLayout(sp[i],tmp,frc);
 							g2d.setPaint(new Color(1,1,1,n.color[3]));
 							g2d.setStroke(dbl);
-							Shape outline = tl.getOutline(t);
 							g2d.translate(0, i*fntsize);
+							Shape outline = tl.getOutline(id);
 							g2d.draw(outline);
 							g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));
-							tl.draw(g2d, 0, 0);
 							g2d.setStroke(sngl);
-							g2d.transform(t);
+							g2d.fill(outline);
 						} else {
 							g2d.setFont(tmp);
 							g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));

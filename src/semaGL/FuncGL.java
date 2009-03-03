@@ -15,7 +15,7 @@ import data.Vector3D;
 
 
 public class FuncGL {
-
+	private static int strokefont = GLUT.STROKE_ROMAN;
 	private static int fontOffset;
 	SemaSpace app;
 
@@ -109,11 +109,11 @@ public class FuncGL {
 			if (!fast) {
 				gl.glLineWidth(5);
 				gl.glColor4f(1f,1f,1f,1f);
-				renderStrokeString( app, GLUT.STROKE_ROMAN, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
+				renderStrokeString( app, strokefont, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
 			}
 			gl.glLineWidth(app.textwidth);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
-			renderStrokeString( app, GLUT.STROKE_ROMAN, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
+			renderStrokeString( app, strokefont, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
 			gl.glPopMatrix();
 		}
 	}
@@ -130,13 +130,14 @@ public class FuncGL {
 		gl.glTranslatef(offset*10f, offsety*10f, 0);
 
 		// Render The Text
-		for (int i = 0; i < string.length(); i++) {
-			char c = string.charAt(i);
-			app.glut.glutStrokeCharacter(font, c);
-		}
+			app.glut.glutStrokeString(font, string);
 		gl.glPopMatrix();
 	}
 
+	static float stringlength (SemaSpace app, String st){
+		return app.glut.glutStrokeLengthf(strokefont, st);
+	}
+	
 	static void drawLine(GL gl, Vector3D start, Vector3D end, float[] startc, float[] endc) {
 		gl.glBegin(GL.GL_LINES);
 		gl.glColor4fv(startc,0);
