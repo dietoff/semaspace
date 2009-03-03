@@ -1,5 +1,21 @@
 package semaGL;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,6 +28,17 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Map.Entry;
 import javax.media.opengl.GL;
+import javax.vecmath.Vector2d;
+
+import org.apache.batik.bridge.BridgeContext;
+import org.apache.batik.bridge.GVTBuilder;
+import org.apache.batik.bridge.UserAgentAdapter;
+import org.apache.batik.dom.GenericDOMImplementation;
+import org.apache.batik.gvt.GraphicsNode;
+import org.apache.batik.svggen.SVGGraphics2D;
+import org.apache.batik.svggen.SVGGraphics2DIOException;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
 
 import com.sun.org.apache.bcel.internal.generic.FNEG;
 
@@ -20,18 +47,21 @@ import semaGL.SemaSpace;
 
 public class Layouter {
 
+	private String fontFam = "Helvetica";
 	private SemaSpace app;
 	protected Net net;
 	private float innerRad=100;
 	private boolean first=true;
 	HashMap<String, nodeTuple> replist;
 	private int a=0;
-	private int num;
 	private int edgeTresh=2000;
-
+	boolean circles= false;
 	Layouter (SemaSpace app_) {
 		app= app_;
 		replist = new HashMap<String, nodeTuple>();
+		edgeTresh=Integer.parseInt(Messages.getString("edgeTresholdRepell"));
+		circles = Boolean.parseBoolean(Messages.getString("SVGNodesCircles"));
+		fontFam = Messages.getString("SVGFontFamily");
 	}
 
 	public void applyAttributeColors() {
@@ -97,27 +127,6 @@ public class Layouter {
 		pivot.div(nodes.size());
 		return pivot;
 	}
-	public BBox3D calcBounds(Net net) {
-		BBox3D bounds = new BBox3D();
-		bounds.max.setXYZ(0,0,0);
-		bounds.min.setXYZ(0,0,0);
-		bounds.size.setXYZ(0,0,0);
-		for (Node nodeRef: net.nNodes) {
-			bounds.max.setX(Math.max(nodeRef.pos.x, bounds.max.x));
-			bounds.max.setY(Math.max(nodeRef.pos.y, bounds.max.y));
-			bounds.max.setZ(Math.max(nodeRef.pos.z, bounds.max.z));
-			bounds.min.setX(Math.min(nodeRef.pos.x, bounds.min.x));
-			bounds.min.setY(Math.min(nodeRef.pos.y, bounds.min.y));
-			bounds.min.setZ(Math.min(nodeRef.pos.z, bounds.min.z));
-		}
-		bounds.size.setXYZ(bounds.max);
-		bounds.size.sub(bounds.min);
-		bounds.center.setXYZ(bounds.max);
-		bounds.center.add(bounds.min);
-		bounds.center.div(2f);
-		return bounds;
-	}
-
 
 	private void clusterCircle(final GL gl, float xRot, float yRot, Node aref) {
 		aref.spiralcluster=false;
@@ -276,7 +285,7 @@ public class Layouter {
 	}
 	public void layoutInflate(float st_, Net net2) {
 		float strength = st_;
-		BBox3D bounds = calcBounds(net2);
+		BBox3D bounds = BBox3D.calcBounds(net2.nNodes);
 		layoutCenterOnPivot();
 		if (net2.fNodes.size()==1) return;
 		for (Node nodeRef: net2.fNodes) {
@@ -410,7 +419,7 @@ public class Layouter {
 	//repell all nodes
 	public void layoutRepell(float abstand, float strength , Net net){
 		int etresh = net.nEdges.size()-(net.nNodes.size()-net.fNodes.size());
-		
+
 		if (app.opt) layoutRepVisible ( abstand,  strength);
 		else 
 			if (etresh>edgeTresh) layoutRepFruchtermannLazy( abstand,  strength, net );
@@ -503,7 +512,7 @@ public class Layouter {
 	private float repFrucht(float abstand, float strength, Vector3D dist,
 			Node a, Node b) {
 		int max = 500;
-		if (a.adList.size()==0||b.adList.size()==0) max = 0;
+		if (a.adList.size()+a.inList.size()==0||b.adList.size()+b.inList.size()==0) max = 0;
 		dist.setXYZ(b.pos);
 		dist.sub(a.pos);
 		float d = dist.magnitude()+0.000000001f;
@@ -675,7 +684,7 @@ public class Layouter {
 	 * @param text
 	 */
 	void renderLabels(GL gl, GraphRenderer nr, int text) {
-//		boolean fast = (net.nNodes.size()>edgeTresh);
+		//		boolean fast = (net.nNodes.size()>edgeTresh);
 		boolean fast = false;
 		for (Node nref: net.nNodes)	nr.renderNodeLabels(gl, nref, text, fast);
 		for (Edge eref: net.nEdges) nr.renderEdgeLabels(gl, eref, text, fast);
@@ -690,9 +699,211 @@ public class Layouter {
 	public  void renderNodes(GL gl, GraphRenderer nr,  int text) {
 		applyPickColors();
 		for (Node n: net.nNodes) {
-			nr.renderNodes(gl, n);
+			nr.renderNode(gl, n);
 		}
 	}
+
+	void renderSVG(GL gl, GraphRenderer nr,  int text, String filename) throws UnsupportedEncodingException, SVGGraphics2DIOException {
+		/*
+		HashMap<Node,double[]> node2Dpos = new HashMap<Node, double[]>();
+		HashMap<Edge,double[]> edge2Dvec = new HashMap<Edge, double[]>();
+
+		if (!app.isTree()) renderClusters(gl, nr);
+
+		for (Node n: net.nNodes) {
+			double[] pos = nr.project2screen(gl, n.pos);
+			node2Dpos.put(n, pos);
+		}
+		for (Edge e: net.nEdges) {
+			double[] a = nr.project2screen(gl, e.getA().pos);
+			double[] b = nr.project2screen(gl, e.getB().pos);
+			double[] evec = {a[0],a[1],b[0],b[1]};
+			edge2Dvec.put(e, evec);
+		}*/
+
+		createSVG(filename);
+	}
+
+	private void createSVG(String filename)
+	throws UnsupportedEncodingException, SVGGraphics2DIOException {
+		
+		BBox3D bbx = BBox3D.calcBounds(net.nNodes);
+		
+		// Get a DOMImplementation.
+		DOMImplementation domImpl =
+			GenericDOMImplementation.getDOMImplementation();
+
+		// Create an instance of org.w3c.dom.Document.
+		String svgNS = "http://www.w3.org/2000/svg";
+		Document doc = domImpl.createDocument(svgNS, "svg", null);
+		
+		// Create an instance of the SVG Generator.
+		SVGGraphics2D svgG = new SVGGraphics2D(doc);
+
+		Dimension bounds = new Dimension((int)bbx.size.x+200, (int)bbx.size.y+200);
+		
+		svgG.setSVGCanvasSize(bounds);
+		
+		paintSVG(svgG, bbx.min.x-50, bbx.min.y-50);
+
+		//		GVTBuilder builder = new GVTBuilder();
+		//		BridgeContext ctx;
+		//		ctx = new BridgeContext(new UserAgentAdapter());
+		//		GraphicsNode gvtRoot = builder.build(ctx, document);
+		//		Rectangle2D b2d = gvtRoot.getSensitiveBounds();
+		//		svgGenerator.setSVGCanvasSize(new Dimension((int) b2d.getWidth(), (int) b2d.getHeight()));
+		//		svgGenerator.getRoot().setAttributeNS(svgNS, "viewBox", b2d.getMinX()+","+b2d.getMinY()+","+b2d.getMaxX()+","+b2d.getMaxY()); 
+
+		// Finally, stream out SVG to the standard output using
+		// UTF-8 encoding.
+		boolean useCSS = true; // we want to use CSS style attributes
+		Writer out = new OutputStreamWriter(System.out, "UTF-8");
+		svgG.stream(filename);
+	}
+
+	public void paintSVG(Graphics2D g2d, float origX, float origY) {
+		int font = app.fonttype;
+		BasicStroke sngl = new BasicStroke(1f);
+		BasicStroke dbl = new BasicStroke(2f); 
+		Font nf = new Font(fontFam,Font.PLAIN, (int)(app.getLabelsize()*1.3f));
+		Font ef = new Font(fontFam,Font.PLAIN, (int)(app.getLabelsize()));
+
+		AffineTransform t = new AffineTransform();
+		t.setToIdentity();
+		t.translate(-origX, -origY);
+		g2d.setTransform(t);
+
+
+		// edges
+		for (Edge e: net.nEdges) {
+			e.genColorFromAtt();
+
+			Node a = e.getA();
+			Node b = e.getB();
+			float af = a.size(); 
+			float bf = b.size(); 
+
+			Vector3D D = Vector3D.sub(b.pos, a.pos);
+			Vector3D DN= D.copy();
+			DN.normalize();
+
+			Vector3D start = a.pos.copy();
+			Vector3D end = b.pos.copy();
+			start.add(Vector3D.mult(DN, af));
+			end.sub(Vector3D.mult(DN, bf));
+			if (font==0){
+				g2d.setStroke(dbl);
+				g2d.setPaint(new Color(1,1,1,e.color[3]));
+				g2d.drawLine((int)start.x,(int)start.y,(int)end.x,(int)end.y);
+			}
+			g2d.setStroke(sngl);
+			//			float alpha = Math.max(1, (a.color[3]+b.color[3])/2f);
+			g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
+			g2d.drawLine((int)start.x,(int)start.y,(int)end.x,(int)end.y);
+		}
+
+		// clusters
+		if (app.cluster&&app.drawClusters){
+			for (Node n: net.nNodes) {
+				if (n.cluster.size()>1) {
+					float[] col = GraphElement.colorFunction(n.name);
+					col[3]=Math.min(n.alpha, 0.05f);
+					Polygon p = new Polygon();
+					p.addPoint((int)n.pos.x, (int)n.pos.y);
+					for (Node c:n.cluster){
+						p.addPoint((int)c.pos.x, (int)c.pos.y);
+					}
+					Node c= n.cluster.iterator().next();
+					p.addPoint((int)c.pos.x, (int)c.pos.y);
+					p.addPoint((int)n.pos.x, (int)n.pos.y);
+					g2d.setPaint(new Color(col[0],col[1],col[2],col[3]));
+					g2d.fillPolygon(p);
+				}
+			}
+		}
+
+		// nodes
+		for (Node n: net.nNodes) {
+			n.genColorFromAtt();
+			float size = n.size()*2f;
+			g2d.setPaint(new Color(n.color[0],n.color[1],n.color[2],n.color[3]));
+			if (circles) g2d.fillOval((int)(n.pos.x)-(int)(size/2), (int)(n.pos.y)-(int)(size/2), (int)size, (int)size);
+			else g2d.fillRect((int)(n.pos.x)-(int)(size/2), (int)(n.pos.y)-(int)(size/2), (int)size, (int)size);
+		}
+
+		if (font!=3){
+			// edge labels
+			for (Edge e: net.nEdges) {
+				g2d.setFont(ef);
+				Node a = e.getA();
+				Node b = e.getB();
+
+				Vector3D midP = Vector3D.midPoint(a.pos,b.pos);
+				String txt = e.genTextSelAttributes();
+				//				FontRenderContext frc = g2d.getFontRenderContext();
+				//				TextLayout tl = new TextLayout(txt,ef,frc);
+
+				g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
+
+				g2d.translate((int)(midP.x), (int)(midP.y));
+				if (app.tilt) g2d.rotate(-0.436332312998582);
+				if (e.color[3]>0.2f&& txt.length()>0){
+					if (font==0){
+						FontRenderContext frc = g2d.getFontRenderContext();
+						TextLayout tl = new TextLayout(txt,nf,frc);
+						g2d.setPaint(new Color(1,1,1,e.color[3]));
+						Shape outline = tl.getOutline(t);
+						g2d.setStroke(dbl);
+						g2d.draw(outline);
+						g2d.setPaint(new Color((e.color[0]*0.5f),(e.color[1]*0.5f),(e.color[2]*0.5f),e.color[3]));
+						//						g2d.fill(outline);
+						tl.draw(g2d, 0, 0);
+						g2d.setStroke(sngl);
+					} else {
+						g2d.setFont(ef);
+						g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
+						g2d.drawString(txt, 0, 0);
+					}
+				}
+				g2d.setTransform(t);
+			}
+
+			// node labels
+			for (Node n: net.nNodes) {
+				float size = n.size()*2f;
+				String txt = n.genTextSelAttributes();
+				g2d.translate((int)(n.pos.x)+(int)(size/2), (int)(n.pos.y)-(int)(size/2));
+				if (app.tilt) g2d.rotate(-0.436332312998582);
+
+				if (n.color[3]>0.2f&& txt.length()>0) {
+					String[] sp = txt.split("\n");
+					for (int i = 0; i<sp.length; i++){
+						int fntsize = (int)(app.getLabelsize()+n.size()*app.getLabelVar());
+						Font tmp = new Font(fontFam,Font.PLAIN, fntsize);
+						if (font==0) {
+							FontRenderContext frc = g2d.getFontRenderContext();
+							TextLayout tl = new TextLayout(sp[i],tmp,frc);
+							g2d.setPaint(new Color(1,1,1,n.color[3]));
+							g2d.setStroke(dbl);
+							Shape outline = tl.getOutline(t);
+							g2d.translate(0, i*fntsize);
+							g2d.draw(outline);
+							g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));
+							tl.draw(g2d, 0, 0);
+							g2d.setStroke(sngl);
+							g2d.transform(t);
+						} else {
+							g2d.setFont(tmp);
+							g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));
+							g2d.drawString(sp[i], 0, i*fntsize);
+						}
+					}
+				}
+				g2d.setTransform(t);
+			}
+		}
+	}
+
 	/**
 	 * render the groups defined in the group attribute
 	 * @param gl

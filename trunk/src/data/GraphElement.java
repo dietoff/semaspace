@@ -67,8 +67,8 @@ public abstract class GraphElement {
 		String id=name;
 		if (altName!=null)  id = altName;
 		String a = attributes.get(app.getAttribute());
-		String disp;
-		if (id.length()>30) disp = id.substring(0,29)+"..."; else disp = id;
+		String disp="";
+		if (id.length()>50) disp = id.substring(0,49)+"..."; else disp = id;
 		if (a==null) return disp;
 		if (a!=null&&!id.contentEquals(a)) {
 			disp +="\n"+a;

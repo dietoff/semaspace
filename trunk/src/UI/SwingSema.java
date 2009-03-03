@@ -181,6 +181,9 @@ public class SwingSema {
 	private JLabel depthLabel;
 	private JSlider depth;
 	private SimButton searchButton;
+	private SimButton simButton19;
+	private SimButton simButton18;
+	private JLabel jLabel18;
 	private JCheckBox drawgroups;
 	private JCheckBox jFileFormat;
 	private JLabel jLabel17;
@@ -1470,14 +1473,17 @@ public class SwingSema {
 	}
 
 	private void loadNetwork(boolean tab) {
-		boolean t = app.isRender();
-		app.setRender(false);
+		boolean calc = app.calculate;
+		boolean rnd = app.render;
+		app.calculate = false;
+		app.render = false;
 		int returnVal = openFile.showOpenDialog(openFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File filename =openFile.getSelectedFile();
 			app.loadNetwork(filename, tab);
 			setCounter();
-			app.setRender(t);
+			app.calculate=calc;
+			app.render=rnd;
 		}
 	}
 
@@ -1496,14 +1502,16 @@ public class SwingSema {
 	}
 
 	private void loadNodeAttributes() {
-		boolean t = app.isRender();
-		app.setRender(false);
+		boolean calc = app.calculate;
+		boolean rnd = app.render;
+		app.calculate = false;
+		app.render = false;
 		int returnVal = openFile.showOpenDialog(openFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			String filename = openFile.getSelectedFile().getAbsoluteFile().toString();
 			app.nodeListLoad(openFile.getSelectedFile(), app.isTabular());
 			setCounter();
-			app.setRender(t);
+			app.calculate=calc;
+			app.render=rnd;
 		}
 	}
 	private JMenuItem getSaveMenuItem() {
@@ -2027,6 +2035,9 @@ public class SwingSema {
 			file.add(getSimButton15x());
 			file.add(getSimButton16());
 			file.add(getJFileFormat());
+			file.add(getJLabel18());
+			file.add(getSimButton18());
+			file.add(getSimButton19());
 		}
 		return file;
 	}
@@ -2060,14 +2071,17 @@ public class SwingSema {
 	}
 
 	private void setImageDir() {
-		boolean t = app.isRender();
-		app.setRender(false);
+		boolean calc = app.calculate;
+		boolean rnd = app.render;
+		app.calculate = false;
+		app.render = false;
 		int returnVal = openPicDir.showOpenDialog(openPicDir);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			app.setTexFolder(openPicDir.getSelectedFile().getAbsolutePath()+"/");
 			app.fileIO.loadTextures(app.texfolder, app.ns.view);
 		}
-		app.setRender(t);
+		app.calculate=calc;
+		app.render=rnd;
 	}
 
 	private SimButton getSetImgDir() {
@@ -2085,21 +2099,24 @@ public class SwingSema {
 	}
 
 	private void exportNetwork(boolean tab) {
-		boolean t = app.isRender();
-		app.setRender(false);
+		boolean calc = app.calculate;
+		boolean rnd = app.render;
+		app.calculate = false;
+		app.render = false;
 		int returnVal = saveFile.showSaveDialog(saveFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			String filename = saveFile.getSelectedFile().toString();
 			app.ns.exportNet(filename , tab);
 		}
-		app.setRender(t);
+		app.calculate=calc;
+		app.render=rnd;
 	}
 
 	private SimButton getSaveNetButton() {
 		if(saveNet == null) {
 			saveNet = new SimButton();
-			saveNet.setText("export");
-			saveNet.setBounds(144, 128, 67, 15);
+			saveNet.setText("visible net");
+			saveNet.setBounds(2, 195, 67, 15);
 			saveNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					exportNetwork(app.isTabular());
@@ -2534,5 +2551,65 @@ public class SwingSema {
 			});
 		}
 		return drawgroups;
+	}
+	
+	private JLabel getJLabel18() {
+		if(jLabel18 == null) {
+			jLabel18 = new JLabel();
+			jLabel18.setText("export");
+			jLabel18.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel18.setBounds(2, 175, 60, 14);
+		}
+		return jLabel18;
+	}
+	
+	private SimButton getSimButton18() {
+		if(simButton18 == null) {
+			simButton18 = new SimButton();
+			simButton18.setText("tga file");
+			simButton18.setBounds(74, 195, 67, 15);
+			simButton18.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					boolean calc = app.calculate;
+					boolean rnd = app.render;
+					app.calculate = false;
+					app.render = false;
+					int returnVal = saveFile.showSaveDialog(saveFile);
+					if (returnVal == JFileChooser.APPROVE_OPTION) {
+						String filename = saveFile.getSelectedFile().toString();
+						if (!filename.endsWith(".tga")) filename+=".tga";
+						app.calculate=calc;
+						app.render=rnd;
+						app.screenshot(app.shotres, app.shotres, filename);
+					}
+				}
+			});
+		}
+		return simButton18;
+	}
+	
+	private SimButton getSimButton19() {
+		if(simButton19 == null) {
+			simButton19 = new SimButton();
+			simButton19.setText("svg file");
+			simButton19.setBounds(146, 195, 67, 15);
+			simButton19.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					boolean calc = app.calculate;
+					boolean rnd = app.render;
+					app.calculate = false;
+					app.render = false;
+					int returnVal = saveFile.showSaveDialog(saveFile);
+					if (returnVal == JFileChooser.APPROVE_OPTION) {
+						String filename = saveFile.getSelectedFile().toString();
+						if (!filename.endsWith(".svg")) filename+=".svg";
+						app.calculate=calc;
+						app.render=rnd;
+						app.exportSVG (filename);
+					}
+				}
+			});
+		}
+		return simButton19;
 	}
 }	
