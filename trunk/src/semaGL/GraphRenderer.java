@@ -149,8 +149,31 @@ public class GraphRenderer {
 		gl.glTranslatef(n.pos.x, n.pos.y, n.pos.z);
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
-		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
-		FuncGL.renderText(app, att, textcolor, app.getLabelsize()+n.size()*app.getLabelVar(), font, n.id, distToCam, false, fast); //dont draw the text if alpha is too low
+
+		float fsize = app.getLabelsize()+n.size()*app.getLabelVar();
+		if (font<2){
+
+			if (app.isTree()) {
+				float angle = (float) ((Math.atan(n.pos.y/n.pos.x))/(2*Math.PI)*360f);
+
+				gl.glRotatef(angle, 0, 0, 1);
+				if (n.pos.x<0) {
+					String[] split = att.split("\n");
+					float advance=0;
+					if (font==0)
+						advance = -app.texturefont.advance(split[0])*fsize*0.025f-n.size()-25f;
+					else 
+						advance = -FuncGL.stringlength(app, split[0])*fsize*0.01f-n.size()-25f;
+
+					gl.glTranslatef(advance, 0, 0);
+				} else	gl.glTranslatef(n.size(), 0, 0);
+			} else
+			{
+				if (app.tilt) gl.glRotatef(25, 0, 0, 1);
+			}
+		}
+
+		FuncGL.renderText(app, att, textcolor, fsize, font, n.id, distToCam, false, fast); //dont draw the text if alpha is too low
 		// reset all transformations
 		gl.glPopMatrix();
 	}
