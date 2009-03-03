@@ -113,22 +113,22 @@ public final class Vector3D {
 		return -1 * angle;
 	}
 
-	public Vector3D add(Vector3D v1, Vector3D v2) {
+	public static Vector3D add(Vector3D v1, Vector3D v2) {
 		Vector3D v = new Vector3D(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
 		return v;
 	}
 
-	public Vector3D sub(Vector3D v1, Vector3D v2) {
+	public static Vector3D sub(Vector3D v1, Vector3D v2) {
 		Vector3D v = new Vector3D(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
 		return v;
 	}
 
-	public Vector3D div(Vector3D v1, float n) {
+	public static Vector3D div(Vector3D v1, float n) {
 		Vector3D v = new Vector3D(v1.x / n, v1.y / n, v1.z / n);
 		return v;
 	}
 
-	public Vector3D mult(Vector3D v1, float n) {
+	public static Vector3D mult(Vector3D v1, float n) {
 		Vector3D v = new Vector3D(v1.x * n, v1.y * n, v1.z * n);
 		return v;
 	}
@@ -140,8 +140,15 @@ public final class Vector3D {
 		return (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
 	}
 	
-	public Vector3D cross(Vector3D v1, Vector3D v2){
+	public static Vector3D cross(Vector3D v1, Vector3D v2){
 		Vector3D v = new Vector3D(v1.y*v2.z-v1.z*v2.y,v1.x*v2.z-v1.z*v2.x,v1.x*v2.y-v1.y*v2.x);
 		return v;
+	}
+	public static Vector3D midPoint(Vector3D v1, Vector3D v2) {
+		Vector3D midP = v2.copy();
+		midP.sub(v1); //direction of the edge
+		midP.mult(0.5f);
+		midP.add(v1);
+		return midP;
 	}
 }

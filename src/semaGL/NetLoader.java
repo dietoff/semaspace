@@ -289,6 +289,7 @@ public class NetLoader {
 
 	public void saveNodeData( String filename, Net net){
 		StringBuffer sb = new StringBuffer();
+		
 		for (Node n :net.nNodes){
 			sb.append(n.name); //+"\t"+nRef.altName+"\t";
 			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) sb.append("\tname="+n.altName);

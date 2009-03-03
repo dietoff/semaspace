@@ -16,12 +16,15 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.IntBuffer;
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
 import java.util.Random;
 
 import javax.swing.SwingUtilities;
+
+import org.apache.batik.svggen.SVGGraphics2DIOException;
 
 import nehe.TextureReader.Texture;
 import UI.SwingSema;
@@ -123,7 +126,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private float frame;
 	public Texture tex;
 	public boolean texRead= false;
-	private boolean render= true;
+	public boolean render= true;
 	private boolean tree = false;
 	private boolean radial = false;
 	private boolean repNeighbors = false;
@@ -150,11 +153,13 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	FTGLTextureFont texturefont;
 	public boolean tilt = Boolean.parseBoolean(Messages.getString("tiltedLabels"));
 	int screenshotcounter = 0;
-	private int shotres = Integer.parseInt(Messages.getString("screenshotResolution"));
+	public int shotres = Integer.parseInt(Messages.getString("screenshotResolution"));
 	public float maxLabelRenderDistance = Float.parseFloat(Messages.getString("maxLabelRenderDistance"));
 	private boolean tabular = false;
 	public float edgeAlpha = Float.parseFloat(Messages.getString("edgeAlpha"));
-	private boolean groups =  Boolean.parseBoolean(Messages.getString("drawGroups"));;
+	private boolean groups =  Boolean.parseBoolean(Messages.getString("drawGroups"));
+	private boolean SVGexport;
+	private String svgFile;
 	
 	public SemaSpace(){
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
@@ -314,6 +319,17 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void render(GL gl){
+		if (SVGexport) {
+			try {
+				layout.renderSVG(gl, renderer, fonttype, svgFile);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} catch (SVGGraphics2DIOException e) {
+				e.printStackTrace();
+			}
+			SVGexport=false;
+		}
+		
 		if (!render) return;
 		if (FOG&&!flat) gl.glEnable(GL.GL_FOG); else gl.glDisable(GL.GL_FOG);
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -321,6 +337,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		layout.render(gl, fonttype, ns.view, renderer);
 		gl.glFlush();
 		gl.glFinish();
+
 		//		}
 		//		else
 		//		{
@@ -333,6 +350,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			moved=false;
 		}
 		statusMsg();
+		
+		
 	}
 
 	public void renderPbuffer(GL gl, int width, int height) {
@@ -414,20 +433,17 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		switch (evt.getKeyCode())
 		{
 		case KeyEvent.VK_SPACE:
-			calculate=!calculate;
-			updateUI();
 			break;
 		case KeyEvent.VK_SHIFT:
 			break;
 		case KeyEvent.VK_F1:
-			screenshot(shotres,shotres);
+			nameCurrentAttribute();
 			break;
 		case KeyEvent.VK_F2: 
 			inflate=true;
 			System.out.println("inflate = true"); //$NON-NLS-1$
 			break;
 		case KeyEvent.VK_F3:
-			GL x = glD.getGL();
 			break;
 		case KeyEvent.VK_F4: 
 			layout.layoutLocksRemove();
@@ -450,6 +466,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		case KeyEvent.VK_F11: 
 			break;
 		}
+	}
+
+	private void nameCurrentAttribute() {
+		ns.global.altNameByAttribute(attribute);
 	}
 
 	public void keyReleased(KeyEvent evt) {
@@ -1211,7 +1231,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 
-	public void screenshot (int width, int height) {
+	public void screenshot (int width, int height, String filename2) {
 		if (!GLDrawableFactory.getFactory().canCreateGLPbuffer()) return;
 		boolean f = flat;
 		flat = false;
@@ -1232,7 +1252,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		renderPbuffer(gl, width, height);
 
 		try {
-			Screenshot.writeToTargaFile(new File("capt"+screenshotcounter+".tga"), width, height);
+			Screenshot.writeToTargaFile(new File(filename2), width, height);
 		} catch (GLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -1344,5 +1364,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public boolean isGroups() {
 		return groups;
+	}
+
+	public void exportSVG(String file) {
+		svgFile = file;
+		SVGexport=true;
 	}
 }

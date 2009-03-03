@@ -10,15 +10,15 @@ import javax.media.opengl.glu.*;
 
 import data.*;
 
-public class GraphRenderer {
+public class GraphRendererSVG {
 	private SemaSpace app;
 	private GLU glu;
 	private double[] projection= new double[16];
 	private double[] model = new double[16];
 	private int[] view = new int[16];
+	
 
-
-	public GraphRenderer (SemaSpace app_){
+	public GraphRendererSVG (SemaSpace app_){
 		glu = new GLU();
 		app=app_;
 	}
@@ -26,13 +26,13 @@ public class GraphRenderer {
 	synchronized void renderNode(GL gl, Node n) {
 		if (app.flat&&outsideView(n)) return;
 
-		if (n.newTex=true&&n.tex!=null){
-			FuncGL.initGLTexture(gl,n.tex, n.textures);
-			n.newTex = false;
-			n.tex=null;
-		}
+//		if (n.newTex=true&&n.tex!=null){
+//			FuncGL.initGLTexture(gl,n.tex, n.textures);
+//			n.newTex = false;
+//			n.tex=null;
+//		}
 		gl.glPushMatrix();
-		gl.glLoadName(n.id);
+//		gl.glLoadName(n.id);
 
 		//transform model
 		float xRot = app.cam.getYRot();		//should be global camera orientation
@@ -51,6 +51,7 @@ public class GraphRenderer {
 		gl.glPolygonMode(GL.GL_FRONT, GL.GL_LINE);
 		gl.glLineWidth(1f);
 		FuncGL.quad(gl);
+		
 
 		gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
 		gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
@@ -110,9 +111,7 @@ public class GraphRenderer {
 		// reset all transformations
 		gl.glPopMatrix();
 		gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
-
-		//		double[] ps = project2screen(gl, n.pos);
-		//		System.out.println((int)ps[0]+","+(int)ps[1]);
+		
 	}
 
 	public double[] project2screen(GL gl, Vector3D pos) {
@@ -121,11 +120,12 @@ public class GraphRenderer {
 		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, model,0);
 		double[] winPos = new double[3];
 		glu.gluUnProject(pos.x, pos.y, pos.z, model, 0, projection, 0, view, 0, winPos,0);
-		//		System.out.println(winPos[0]+","+winPos[1]);
+//		System.out.println(winPos[0]+","+winPos[1]);
 		return winPos;
 	}
 
 	public synchronized void renderNodeLabels(GL gl, Node n, int font, boolean fast){
+
 		if (app.flat&&outsideView(n)) return;
 
 		float distToCam = app.cam.distToCam(n.pos);
@@ -154,13 +154,13 @@ public class GraphRenderer {
 		// reset all transformations
 		gl.glPopMatrix();
 	}
-
+	
 	public synchronized void renderGroupLabels(GL gl, Node n, int font){
 
 		if (app.flat&&outsideView(n)) return;
 
 		float distToCam = app.cam.distToCam(n.pos);
-		//		float[] textcolor = {n.color[0]/2f, n.color[1]/2f, n.color[2]/2f, 1};
+//		float[] textcolor = {n.color[0]/2f, n.color[1]/2f, n.color[2]/2f, 1};
 		float[] textcolor = GraphElement.colorFunction(n.name);
 		n.textColor[3]=1;
 		gl.glPushMatrix();
@@ -184,14 +184,18 @@ public class GraphRenderer {
 		float af = a.size(); //length of "arrowheads"
 		float bf = b.size();
 
-		Vector3D D = Vector3D.sub(b.pos, a.pos);
+		Vector3D D = b.pos.copy();
+		D.sub(a.pos); //direction of the edge
+		Vector3D midP = D.copy();
+		midP.mult(0.5f);
+		midP.add(a.pos);
 		Vector3D DN= D.copy();
 		DN.normalize();
 
 		Vector3D start = a.pos.copy();
 		Vector3D end = b.pos.copy();
-		start.add(Vector3D.mult(DN, af));
-		end.sub(Vector3D.mult(DN, bf));
+		start.add(DN.mult(DN, af));
+		end.sub(DN.mult(DN, bf));
 
 		gl.glPushMatrix();
 		gl.glLoadName(e.id);

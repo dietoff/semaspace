@@ -739,4 +739,13 @@ public class Net {
 		updateNet();
 	}
 
+	public void altNameByAttribute(String attribute) {
+		for (Node n:nNodes) {
+			if (n.hasAttribute(attribute)) n.altName=n.getAttribute(attribute);
+		}
+		for (Edge n:nEdges) {
+			if (n.hasAttribute(attribute)) n.altName=n.getAttribute(attribute);
+		}
+	}
+
 }
