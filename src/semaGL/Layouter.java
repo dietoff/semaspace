@@ -56,11 +56,13 @@ public class Layouter {
 	private int a=0;
 	private int edgeTresh=2000;
 	boolean circles= false;
+	private boolean nodeAligned;
 	Layouter (SemaSpace app_) {
 		app= app_;
 		replist = new HashMap<String, nodeTuple>();
 		edgeTresh=Integer.parseInt(Messages.getString("edgeTresholdRepell"));
 		circles = Boolean.parseBoolean(Messages.getString("SVGNodesCircles"));
+		nodeAligned = Boolean.parseBoolean(Messages.getString("SVGNodesAligned"));
 		fontFam = Messages.getString("SVGFontFamily");
 	}
 
@@ -740,11 +742,11 @@ public class Layouter {
 		// Create an instance of the SVG Generator.
 		SVGGraphics2D svgG = new SVGGraphics2D(doc);
 
-		Dimension bounds = new Dimension((int)bbx.size.x+200, (int)bbx.size.y+200);
+		Dimension bounds = new Dimension((int)bbx.size.x+400, (int)bbx.size.y+400);
 
 		svgG.setSVGCanvasSize(bounds);
 
-		paintSVG(svgG, bbx.min.x-50, bbx.min.y-50);
+		paintSVG(svgG, bbx.min.x-200, bbx.min.y-200);
 
 		//		GVTBuilder builder = new GVTBuilder();
 		//		BridgeContext ctx;
@@ -765,7 +767,6 @@ public class Layouter {
 		int font = app.fonttype;
 		BasicStroke sngl = new BasicStroke(1f);
 		BasicStroke dbl = new BasicStroke(2f); 
-		Font nf = new Font(fontFam,Font.PLAIN, (int)(app.getLabelsize()*1.3f));
 		Font ef = new Font(fontFam,Font.PLAIN, (int)(app.getLabelsize()));
 
 		AffineTransform id = new AffineTransform();
@@ -838,90 +839,122 @@ public class Layouter {
 		if (font!=3){
 			// edge labels
 			for (Edge e: net.nEdges) {
-				g2d.setFont(ef);
-				Node a = e.getA();
-				Node b = e.getB();
-
-				Vector3D midP = Vector3D.midPoint(a.pos,b.pos);
 				String txt = e.genTextSelAttributes();
-				//				FontRenderContext frc = g2d.getFontRenderContext();
-				//				TextLayout tl = new TextLayout(txt,ef,frc);
+				if (txt.length()>0){
 
-				g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
+					g2d.setFont(ef);
+					Node a = e.getA();
+					Node b = e.getB();
 
-				g2d.translate((int)(midP.x), (int)(midP.y));
-				if (app.tilt) g2d.rotate(-0.436332312998582);
-				if (e.color[3]>0.2f&& txt.length()>0){
-					if (font==0){
-						FontRenderContext frc = g2d.getFontRenderContext();
-						TextLayout tl = new TextLayout(txt,nf,frc);
-						g2d.setPaint(new Color(1,1,1,e.color[3]));
-						Shape outline = tl.getOutline(id);
-						g2d.setStroke(dbl);
-						g2d.draw(outline);
-						g2d.setPaint(new Color((e.color[0]*0.5f),(e.color[1]*0.5f),(e.color[2]*0.5f),e.color[3]));
-						//						g2d.fill(outline);
-						g2d.setStroke(sngl);
-						g2d.fill(outline);
-						//						tl.draw(g2d, 0, 0);
+					Vector3D midP = Vector3D.midPoint(a.pos,b.pos);
+					TextLayout tl = new TextLayout(txt,ef,g2d.getFontRenderContext());
 
-					} else {
-						g2d.setFont(ef);
-						g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
-						g2d.drawString(txt, 0, 0);
+					g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
+
+					g2d.translate((int)(midP.x), (int)(midP.y));
+
+					Vector3D sub = Vector3D.sub(a.pos, b.pos);
+					float angle = (float) (Math.atan(sub.y/sub.x));
+					g2d.rotate(angle);
+					g2d.translate(0, -2);
+
+
+					float advance = tl.getAdvance()/2f;
+					//					if (midP.x<0) {
+					g2d.translate(-advance, 0);
+					//					} else	g2d.translate(advance, 0);
+
+
+					if (e.color[3]>0.2f&& txt.length()>0){
+						if (font==0){
+							g2d.setPaint(new Color(1,1,1,e.color[3]));
+							Shape outline = tl.getOutline(id);
+							g2d.setStroke(dbl);
+							g2d.draw(outline);
+							g2d.setPaint(new Color((e.color[0]*0.5f),(e.color[1]*0.5f),(e.color[2]*0.5f),e.color[3]));
+							//						g2d.fill(outline);
+							g2d.setStroke(sngl);
+							g2d.fill(outline);
+							//						tl.draw(g2d, 0, 0);
+
+						} else {
+							g2d.setFont(ef);
+							g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
+							g2d.drawString(txt, 0, 0);
+						}
 					}
+					g2d.setTransform(t);
 				}
-				g2d.setTransform(t);
 			}
 
 			// node labels
 			for (Node n: net.nNodes) {
-				float size = n.size()*2f;
 				String txt = n.genTextSelAttributes();
 
-				String[] sp = txt.split("\n");
+				if (txt.length()>0){
+					float size = n.size();
+					String[] sp = txt.split("\n");
+					g2d.translate((int)(n.pos.x), (int)(n.pos.y));
+					if (!app.isTree()) {
+						g2d.translate((int)(size/2),-(int)(size/2));
+						if (app.tilt&&!nodeAligned) {
+							g2d.rotate(-0.436332312998582);
+						} 
+					}
 
-				g2d.translate((int)(n.pos.x), (int)(n.pos.y));
-				if (app.tilt&&!app.isTree()) {
-					g2d.translate((int)(size/2),(int)(size/2));
-					g2d.rotate(-0.436332312998582);
-				}
+					if (n.color[3]>0.2f&& txt.length()>0) {
+						for (int i = 0; i<sp.length; i++){
+							int fntsize = (int)((app.getLabelsize()+n.size()*app.getLabelVar())*1.5f);
+							Font tmp = new Font(fontFam,Font.PLAIN, fntsize);
+							FontRenderContext frc = g2d.getFontRenderContext();
+							TextLayout tl = new TextLayout(sp[i],tmp,frc);
 
-				if (n.color[3]>0.2f&& txt.length()>0) {
-					for (int i = 0; i<sp.length; i++){
-						int fntsize = (int)(app.getLabelsize()+n.size()*app.getLabelVar());
-						Font tmp = new Font(fontFam,Font.PLAIN, fntsize);
-						FontRenderContext frc = g2d.getFontRenderContext();
-						TextLayout tl = new TextLayout(sp[i],tmp,frc);
+							if (app.isTree()) alignLabel(g2d, n.pos, n.size(), tl);
 
-						if (app.isTree()) {
-							float angle = (float) (Math.atan(n.pos.y/n.pos.x));
-							g2d.rotate(angle);
-							if (n.pos.x<0) {
-								float advance = tl.getAdvance()+n.size()+5;
-								g2d.translate(-advance, 0);
-							} else	g2d.translate(n.size()+5, 0);
-						}
+							if (nodeAligned){
+								if (n.adList.size()==1) {
+									Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
+									alignLabel(g2d, sub, n.size(), tl);
+								} else
+									if (n.inList.size()==1) {
+										Vector3D sub = Vector3D.sub(n.pos, n.inList.iterator().next().pos);
+										alignLabel(g2d, sub, n.size(), tl);
+									}
+									else {
+										float advance = tl.getAdvance()/2f;
+										g2d.translate(-advance, -n.size()/2f);
+									}
+							}
 
-						if (font==0) {
-							g2d.setPaint(new Color(1,1,1,n.color[3]));
-							g2d.setStroke(dbl);
-							g2d.translate(0, i*fntsize);
-							Shape outline = tl.getOutline(id);
-							g2d.draw(outline);
-							g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));
-							g2d.setStroke(sngl);
-							g2d.fill(outline);
-						} else {
-							g2d.setFont(tmp);
-							g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));
-							g2d.drawString(sp[i], 0, i*fntsize);
+							if (font==0) {
+								g2d.setPaint(new Color(1,1,1,n.color[3]));
+								g2d.setStroke(dbl);
+								g2d.translate(0, i*fntsize);
+								Shape outline = tl.getOutline(id);
+								g2d.draw(outline);
+								g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));
+								g2d.setStroke(sngl);
+								g2d.fill(outline);
+							} else {
+								g2d.setFont(tmp);
+								g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));
+								g2d.drawString(sp[i], 0, i*fntsize);
+							}
 						}
 					}
+					g2d.setTransform(t);
 				}
-				g2d.setTransform(t);
 			}
 		}
+	}
+
+	private void alignLabel(Graphics2D g2d, Vector3D n, float margin, TextLayout tl) {
+		float angle = (float) (Math.atan(n.y/n.x));
+		g2d.rotate(angle);
+		if (n.x<0) {
+			float advance = tl.getAdvance()+margin+5;
+			g2d.translate(-advance, 0);
+		} else	g2d.translate(margin+5, 0);
 	}
 
 	/**

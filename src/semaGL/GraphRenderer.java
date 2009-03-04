@@ -18,6 +18,7 @@ public class GraphRenderer {
 	private int[] view = new int[16];
 
 
+
 	public GraphRenderer (SemaSpace app_){
 		glu = new GLU();
 		app=app_;
@@ -151,31 +152,60 @@ public class GraphRenderer {
 		gl.glRotatef(yRot, 1, 0, 0);
 
 		float fsize = app.getLabelsize()+n.size()*app.getLabelVar();
+		String[] split = att.split("\n");
+
 		if (font<2){
 
 			if (app.isTree()) {
-				float angle = (float) ((Math.atan(n.pos.y/n.pos.x))/(2*Math.PI)*360f);
-
-				gl.glRotatef(angle, 0, 0, 1);
-				if (n.pos.x<0) {
-					String[] split = att.split("\n");
-					float advance=0;
-					if (font==0)
-						advance = -app.texturefont.advance(split[0])*fsize*0.025f-n.size()-25f;
-					else 
-						advance = -FuncGL.stringlength(app, split[0])*fsize*0.01f-n.size()-25f;
-
-					gl.glTranslatef(advance, 0, 0);
-				} else	gl.glTranslatef(n.size(), 0, 0);
+				alignLabel(gl,n.pos, n.size(), font, fsize, split[0]);
 			} else
 			{
-				if (app.tilt) gl.glRotatef(25, 0, 0, 1);
+				if (app.tilt) gl.glRotatef(25, 0, 0, 1); 
+					else
+				{
+
+					if (app.isLabelsEdgeDir()){
+						if (n.adList.size()==1) {
+							Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
+							alignLabel(gl, sub, n.size(), font, fsize, split[0]);
+
+						} else
+							if (n.inList.size()==1) {
+								Vector3D sub = Vector3D.sub(n.pos, n.inList.iterator().next().pos);
+								alignLabel(gl, sub, n.size(), font, fsize, split[0]);
+							}
+							else {
+								float advance = getAdvance(n.size(), font, fsize, split[0])/2f;
+								gl.glTranslatef(advance+n.size()/2f, n.size()/2f, 0);
+							}
+					}
+				}
 			}
 		}
 
 		FuncGL.renderText(app, att, textcolor, fsize, font, n.id, distToCam, false, fast); //dont draw the text if alpha is too low
 		// reset all transformations
 		gl.glPopMatrix();
+	}
+
+	private void alignLabel(GL gl, Vector3D n, float nSize, int font, float fsize, String split) {
+		float angle = (float) ((Math.atan(n.y/n.x))/(2*Math.PI)*360f); // this has to be fixed for 3D
+
+		gl.glRotatef(angle, 0, 0, 1);
+		if (n.x<0) {
+			float advance = getAdvance(nSize, font, fsize, split);
+
+			gl.glTranslatef(advance, 0, 0);
+		} else	gl.glTranslatef(nSize, 0, 0);
+	}
+
+	private float getAdvance(float nSize, int font, float fsize, String split) {
+		float advance=0;
+		if (font==0)
+			advance = -app.texturefont.advance(split)*fsize*0.025f-nSize-25f;
+		else 
+			advance = -FuncGL.stringlength(app, split)*fsize*0.01f-nSize-25f;
+		return advance;
 	}
 
 	public synchronized void renderGroupLabels(GL gl, Node n, int font){
