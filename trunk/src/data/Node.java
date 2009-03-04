@@ -103,6 +103,10 @@ public class Node extends GraphElement {
 		if (r==null) r=name;
 		return r;
 	}
+
+	public int inOut() {
+		return adList.size()+inList.size();
+	}
 }
 
 

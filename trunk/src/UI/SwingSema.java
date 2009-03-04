@@ -181,6 +181,7 @@ public class SwingSema {
 	private JLabel depthLabel;
 	private JSlider depth;
 	private SimButton searchButton;
+	private JCheckBox radLabels;
 	private SimButton simButton19;
 	private SimButton simButton18;
 	private JLabel jLabel18;
@@ -1621,6 +1622,7 @@ public class SwingSema {
 		drawclusters.setSelected(app.drawClusters);
 		jFileFormat.setSelected(app.isTabular());
 		drawgroups.setSelected(app.isGroups());
+		radLabels.setSelected(app.isLabelsEdgeDir());
 	}
 	private JSlider getJSlider1() {
 		if(jSlider1 == null) {
@@ -1796,6 +1798,7 @@ public class SwingSema {
 			midPanels.add(getJLabel1());
 			midPanels.add(getForceBox());
 			midPanels.add(getJCheckBox2xx());
+			midPanels.add(getJCheckBox2xxxx());
 		}
 		return midPanels;
 	}
@@ -1846,9 +1849,9 @@ public class SwingSema {
 	private JLabel getJLabel1() {
 		if (jLabel1 == null) {
 			jLabel1 = new JLabel();
-			jLabel1.setText("labeltype");
+			jLabel1.setText("labelstyle");
 			jLabel1.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel1.setBounds(125, 28, 45, 13);
+			jLabel1.setBounds(125, 28, 50, 13);
 		}
 		return jLabel1;
 	}
@@ -2422,11 +2425,11 @@ public class SwingSema {
 	private JCheckBox getJCheckBox2xx() {
 		if(tiltBox == null) {
 			tiltBox = new JCheckBox();
-			tiltBox.setText("30¡");
+			tiltBox.setText("25¡");
 			tiltBox.setMargin(new java.awt.Insets(0,0,0,0));
 			tiltBox.setContentAreaFilled(false);
 			tiltBox.setFont(new java.awt.Font("Dialog",0,10));
-			tiltBox.setBounds(176, 11, 85, 47);
+			tiltBox.setBounds(173, 22, 50, 14);
 			tiltBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.tilt=tiltBox.isSelected();
@@ -2611,5 +2614,22 @@ public class SwingSema {
 			});
 		}
 		return simButton19;
+	}
+	
+	private JCheckBox getJCheckBox2xxxx() {
+		if(radLabels == null) {
+			radLabels = new JCheckBox();
+			radLabels.setText("rad");
+			radLabels.setMargin(new java.awt.Insets(0,0,0,0));
+			radLabels.setContentAreaFilled(false);
+			radLabels.setFont(new java.awt.Font("Dialog",0,10));
+			radLabels.setBounds(173, 37, 50, 14);
+			radLabels.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.setLabelsEdgeDir(radLabels.isSelected());
+				}
+			});
+		}
+		return radLabels;
 	}
 }	

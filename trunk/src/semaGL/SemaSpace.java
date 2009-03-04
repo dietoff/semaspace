@@ -46,9 +46,9 @@ import net.sourceforge.ftgl.glfont.FTGLTextureFont;
 public class SemaSpace implements GLEventListener, MouseListener, MouseMotionListener, KeyListener  {
 	private static final long serialVersionUID = -1864003907508879499L;
 	GLUT glut = new GLUT();
-	
-//	HashSet<String> map = Messages.getArray("map");
-	
+
+	//	HashSet<String> map = Messages.getArray("map");
+
 	String filename = Messages.getString("defaultFilename"); //$NON-NLS-1$
 	public String texfolder = Messages.getString("textureDirectory"); //$NON-NLS-1$
 	String cacheDir = "./cache/"; //$NON-NLS-1$
@@ -160,7 +160,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean groups =  Boolean.parseBoolean(Messages.getString("drawGroups"));
 	private boolean SVGexport;
 	private String svgFile;
-	
+	private boolean labelsEdgeDir=true;
+
 	public SemaSpace(){
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
 		Color.decode(Messages.getString("pickGradientCenter")).getComponents(pickGradStart);
@@ -169,6 +170,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		nodeColor[3]=Float.parseFloat(Messages.getString("nodeAlpha"));
 		Color.decode(Messages.getString("edgeColor")).getComponents(edgeColor);
 		Color.decode(Messages.getString("frameColor")).getComponents(frameColor);
+		labelsEdgeDir = (Boolean.parseBoolean(Messages.getString("labelsEdgeDir")));
 		fileIO = new FileIO(this);
 		ns = (new NetStack(this));
 		layout = new Layouter(this);
@@ -329,7 +331,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			}
 			SVGexport=false;
 		}
-		
+
 		if (!render) return;
 		if (FOG&&!flat) gl.glEnable(GL.GL_FOG); else gl.glDisable(GL.GL_FOG);
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -350,27 +352,27 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			moved=false;
 		}
 		statusMsg();
-		
-		
+
+
 	}
 
 	public void renderPbuffer(GL gl, int width, int height) {
 		if (height <= 0) height = 1;
 		float h = (float)width/(float)height;
-//		float e = edgewidth;
-//		float t = textwidth;
-//		edgewidth=2f;
-//		textwidth=2f;
-		
+		//		float e = edgewidth;
+		//		float t = textwidth;
+		//		edgewidth=2f;
+		//		textwidth=2f;
+
 		initGLsettings(gl);
-		
+
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glLoadIdentity();
 		glu.gluPerspective(FOV, 1, znear, zfar);
 		render(gl);
-		
-//		edgewidth = e;
-//		textwidth = t;
+
+		//		edgewidth = e;
+		//		textwidth = t;
 	}
 
 	void select(){
@@ -519,8 +521,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 			//			if (evt.isShiftDown()) 
 			//			if (!layout.isLocked(picked))
-			layout.layoutLockNode(picked,picked.pos, ns.getView());
-			//			else layout.layoutRemoveLock(picked);
+			if (!evt.isAltDown()) layout.layoutLockNode(picked,picked.pos, ns.getView());
+			else layout.layoutLockRemove(picked,ns.getView());
 		}
 
 		else {
@@ -1235,20 +1237,20 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (!GLDrawableFactory.getFactory().canCreateGLPbuffer()) return;
 		boolean f = flat;
 		flat = false;
-//		int width = glD.getWidth()*2;
-//		int height = glD.getHeight()*2;
-		
+		//		int width = glD.getWidth()*2;
+		//		int height = glD.getHeight()*2;
+
 		GLCapabilities caps = new GLCapabilities();
 		GLPbuffer pbuffer = GLDrawableFactory.getFactory().createGLPbuffer(caps, null, width, height, null);
 		pbuffer.getContext().makeCurrent();
 		GL gl = pbuffer.getGL();
 		moved = false;
-		
-//		FontRenderContext context = FTFont.STANDARDCONTEXT;
-//		texturefont = new FTGLTextureFont(font,context);
+
+		//		FontRenderContext context = FTFont.STANDARDCONTEXT;
+		//		texturefont = new FTGLTextureFont(font,context);
 		texturefont.setGLGLU(gl, new GLU());
 		texturefont.faceSize(70f);
-		
+
 		renderPbuffer(gl, width, height);
 
 		try {
@@ -1260,7 +1262,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		}
 		pbuffer.destroy();
 		screenshotcounter++;
-		
+
 		glD.getContext().makeCurrent();
 		texturefont.setGLGLU(gl, glu);
 		texturefont.faceSize(70f);
@@ -1369,5 +1371,14 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void exportSVG(String file) {
 		svgFile = file;
 		SVGexport=true;
+	}
+
+	public void setLabelsEdgeDir(boolean labelsEdgeDir) {
+		//		this.tilt=false;
+		this.labelsEdgeDir = labelsEdgeDir;
+	}
+
+	public boolean isLabelsEdgeDir() {
+		return labelsEdgeDir;
 	}
 }
