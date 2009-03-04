@@ -897,7 +897,7 @@ public class Layouter {
 					g2d.translate((int)(n.pos.x), (int)(n.pos.y));
 					if (!app.isTree()) {
 						g2d.translate((int)(size/2),-(int)(size/2));
-						if (app.tilt&&!nodeAligned) {
+						if (app.tilt&&!app.labelsEdgeDir) {
 							g2d.rotate(-0.436332312998582);
 						} 
 					}
@@ -911,7 +911,7 @@ public class Layouter {
 
 							if (app.isTree()) alignLabel(g2d, n.pos, n.size(), tl);
 
-							if (nodeAligned){
+							if (app.labelsEdgeDir){
 								if (n.adList.size()==1) {
 									Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
 									alignLabel(g2d, sub, n.size(), tl);
