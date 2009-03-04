@@ -160,7 +160,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean groups =  Boolean.parseBoolean(Messages.getString("drawGroups"));
 	private boolean SVGexport;
 	private String svgFile;
-	private boolean labelsEdgeDir=true;
+	boolean labelsEdgeDir=true;
 
 	public SemaSpace(){
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
