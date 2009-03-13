@@ -28,6 +28,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.*;
 
 import java.awt.Dimension;
@@ -396,6 +397,8 @@ public class SwingSema {
 			openPicDir = new JFileChooser();
 			openPicDir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 			saveFile = new JFileChooser();
+			saveFile.addChoosableFileFilter(new SemaTableFilter());
+			saveFile.addChoosableFileFilter(new SemaInlineFilter());
 		}
 		return mainWindow;
 	}
@@ -1466,25 +1469,36 @@ public class SwingSema {
 			openMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,Event.CTRL_MASK,true));
 			openMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					loadNetwork(true);
+					loadNetwork();
 				}
 			});
 		}
 		return openMenuItem;
 	}
 
-	private void loadNetwork(boolean tab) {
+	private void loadNetwork() {
 		boolean calc = app.calculate;
 		boolean rnd = app.render;
 		app.calculate = false;
 		app.render = false;
+
+		openFile.resetChoosableFileFilters();
+		openFile.addChoosableFileFilter(new SemaTableFilter());
+		openFile.addChoosableFileFilter(new SemaInlineFilter());
+
 		int returnVal = openFile.showOpenDialog(openFile);
+		app.calculate=calc;
+		app.render=rnd;
+
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File filename =openFile.getSelectedFile();
-			app.loadNetwork(filename, tab);
+			if (openFile.getFileFilter() instanceof SemaInlineFilter) {
+				app.loadNetwork(filename, false);
+			} else
+				if (openFile.getFileFilter() instanceof SemaTableFilter) {
+					app.loadNetwork(filename, true);
+				}
 			setCounter();
-			app.calculate=calc;
-			app.render=rnd;
 		}
 	}
 
@@ -1507,9 +1521,20 @@ public class SwingSema {
 		boolean rnd = app.render;
 		app.calculate = false;
 		app.render = false;
+
+		openFile.resetChoosableFileFilters();
+		openFile.addChoosableFileFilter(new SemaInlineFilter());
+		openFile.addChoosableFileFilter(new SemaTableFilter());
+
 		int returnVal = openFile.showOpenDialog(openFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			app.nodeListLoad(openFile.getSelectedFile(), app.isTabular());
+			if (openFile.getFileFilter() instanceof SemaInlineFilter) {
+				app.nodeListLoad(openFile.getSelectedFile(), false);
+			} else
+				if (openFile.getFileFilter() instanceof SemaTableFilter) {
+					app.nodeListLoad(openFile.getSelectedFile(), true);
+				}
+
 			setCounter();
 			app.calculate=calc;
 			app.render=rnd;
@@ -1522,7 +1547,6 @@ public class SwingSema {
 			saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,Event.CTRL_MASK,true));
 			saveMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					exportNetwork(true);
 				}
 			});
 		}
@@ -2050,11 +2074,11 @@ public class SwingSema {
 			loadNet = new SimButton();
 			loadNet.setText("add net");
 			loadNet.setBounds(2, 18, 67, 15);
+
 			loadNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					loadNetwork(app.isTabular());
-				}
-			});
+					loadNetwork();
+				}});
 		}
 		return loadNet;
 	}
@@ -2101,19 +2125,6 @@ public class SwingSema {
 		return imgDir;
 	}
 
-	private void exportNetwork(boolean tab) {
-		boolean calc = app.calculate;
-		boolean rnd = app.render;
-		app.calculate = false;
-		app.render = false;
-		int returnVal = saveFile.showSaveDialog(saveFile);
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			String filename = saveFile.getSelectedFile().toString();
-			app.ns.exportNet(filename , tab);
-		}
-		app.calculate=calc;
-		app.render=rnd;
-	}
 
 	private SimButton getSaveNetButton() {
 		if(saveNet == null) {
@@ -2122,13 +2133,51 @@ public class SwingSema {
 			saveNet.setBounds(2, 195, 67, 15);
 			saveNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					exportNetwork(app.isTabular());
+
+					boolean calc = app.calculate;
+					boolean rnd = app.render;
+					app.calculate = false;
+					app.render = false;
+
+					saveFile.resetChoosableFileFilters();
+					saveFile.addChoosableFileFilter(new GmlFilter());
+					saveFile.addChoosableFileFilter(new GraphMLFilter());
+					saveFile.addChoosableFileFilter(new SemaTableFilter());
+					saveFile.addChoosableFileFilter(new SemaInlineFilter());
+
+					int returnVal = saveFile.showSaveDialog(saveFile);
+
+					app.calculate=calc;
+					app.render=rnd;
+
+					if (returnVal == JFileChooser.APPROVE_OPTION) {
+						String filename = saveFile.getSelectedFile().toString();
+
+						if (saveFile.getFileFilter() instanceof SemaInlineFilter) {
+							if (!filename.endsWith(".txt")) filename += ".txt";
+							app.ns.exportNet(filename , false);
+						}
+						if (saveFile.getFileFilter() instanceof SemaTableFilter) {
+							if (!filename.endsWith(".tab")) filename += ".tab";
+							app.ns.exportNet(filename , true);
+						}
+
+						if (saveFile.getFileFilter() instanceof GmlFilter) {
+							if (!filename.endsWith(".gml")) filename += ".gml";
+							app.ns.exportGML(filename);
+						}
+						if (saveFile.getFileFilter() instanceof GraphMLFilter) {
+							if (!filename.endsWith(".graphml")) filename += ".graphml";
+							app.ns.exportGraphML(filename);
+						}
+					}
+
 				}
 			});
 		}
 		return saveNet;
 	}
-	
+
 	private SimButton getClear() {
 		if (clear == null) {
 			clear = new SimButton();
@@ -2421,7 +2470,7 @@ public class SwingSema {
 		}
 		return simButton17;
 	}
-	
+
 	private JCheckBox getJCheckBox2xx() {
 		if(tiltBox == null) {
 			tiltBox = new JCheckBox();
@@ -2438,7 +2487,7 @@ public class SwingSema {
 		}
 		return tiltBox;
 	}
-	
+
 	private SimButton getSimButton15x() {
 		if(simButton15 == null) {
 			simButton15 = new SimButton();
@@ -2452,7 +2501,7 @@ public class SwingSema {
 		}
 		return simButton15;
 	}
-	
+
 	private SimButton getSimButton16() {
 		if(simButton16 == null) {
 			simButton16 = new SimButton();
@@ -2466,7 +2515,7 @@ public class SwingSema {
 		}
 		return simButton16;
 	}
-	
+
 	private JLabel getJLabel16() {
 		if(jLabel16 == null) {
 			jLabel16 = new JLabel();
@@ -2476,7 +2525,7 @@ public class SwingSema {
 		}
 		return jLabel16;
 	}
-	
+
 	private JSlider getJSlider3() {
 		if(jSlider3 == null) {
 			jSlider3 = new JSlider();
@@ -2494,7 +2543,7 @@ public class SwingSema {
 		}
 		return jSlider3;
 	}
-	
+
 	private JSlider getJSlider4() {
 		if(jSlider4 == null) {
 			jSlider4 = new JSlider();
@@ -2512,7 +2561,7 @@ public class SwingSema {
 		}
 		return jSlider4;
 	}
-	
+
 	private JLabel getJLabel17() {
 		if(jLabel17 == null) {
 			jLabel17 = new JLabel();
@@ -2530,6 +2579,7 @@ public class SwingSema {
 			jFileFormat.setFont(new java.awt.Font("Dialog",0,10));
 			jFileFormat.setSelected(app.isTabular());
 			jFileFormat.setBounds(-1, 33, 120, 23);
+			jFileFormat.setVisible(false);
 			jFileFormat.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.setTabular(jFileFormat.isSelected());
@@ -2538,7 +2588,7 @@ public class SwingSema {
 		}
 		return jFileFormat;
 	}
-	
+
 	private JCheckBox getJCheckBox2xxx() {
 		if(drawgroups == null) {
 			drawgroups = new JCheckBox();
@@ -2555,7 +2605,7 @@ public class SwingSema {
 		}
 		return drawgroups;
 	}
-	
+
 	private JLabel getJLabel18() {
 		if(jLabel18 == null) {
 			jLabel18 = new JLabel();
@@ -2565,12 +2615,13 @@ public class SwingSema {
 		}
 		return jLabel18;
 	}
-	
+
 	private SimButton getSimButton18() {
 		if(simButton18 == null) {
 			simButton18 = new SimButton();
 			simButton18.setText("tga file");
 			simButton18.setBounds(74, 195, 67, 15);
+			simButton18.setVisible(false);
 			simButton18.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					boolean calc = app.calculate;
@@ -2590,32 +2641,44 @@ public class SwingSema {
 		}
 		return simButton18;
 	}
-	
+
 	private SimButton getSimButton19() {
 		if(simButton19 == null) {
 			simButton19 = new SimButton();
-			simButton19.setText("svg file");
-			simButton19.setBounds(146, 195, 67, 15);
+			simButton19.setText("image");
+			simButton19.setBounds(73, 195, 67, 15);
 			simButton19.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					boolean calc = app.calculate;
 					boolean rnd = app.render;
 					app.calculate = false;
 					app.render = false;
+					saveFile.resetChoosableFileFilters();
+					saveFile.addChoosableFileFilter(new SVGFilter());
+					saveFile.addChoosableFileFilter(new TGAFilter());
 					int returnVal = saveFile.showSaveDialog(saveFile);
+					app.calculate=calc;
+					app.render=rnd;
+
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
-						if (!filename.endsWith(".svg")) filename+=".svg";
-						app.calculate=calc;
-						app.render=rnd;
-						app.exportSVG (filename);
+
+						if (saveFile.getFileFilter() instanceof SVGFilter) {
+							if (!filename.endsWith(".svg")) filename+=".svg";
+							app.exportSVG (filename);
+						}
+						if (saveFile.getFileFilter() instanceof TGAFilter) {
+							if (!filename.endsWith(".tga")) filename+=".tga";
+							app.screenshot(app.shotres, app.shotres, filename);
+						}
 					}
+
 				}
 			});
 		}
 		return simButton19;
 	}
-	
+
 	private JCheckBox getJCheckBox2xxxx() {
 		if(radLabels == null) {
 			radLabels = new JCheckBox();

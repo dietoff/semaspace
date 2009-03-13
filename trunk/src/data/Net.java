@@ -34,8 +34,8 @@ public class Net {
 	int depth= 1;
 	public boolean opt=false;
 	private HashSet<String> nTriangles;
-	public HashSet<String> nodeattributes;
-	public HashSet<String> edgeattributes;
+	public TreeSet<String> nodeattributes;
+	public TreeSet<String> edgeattributes;
 	boolean directed;
 	public HashMap<String, Net> groups;
 	private String lineBreak;
@@ -60,8 +60,8 @@ public class Net {
 		repNodes = new HashSet<Node>();
 		nTriangles = new HashSet<String>();
 		//		bounds = new BBox3D();
-		nodeattributes = new HashSet<String>();
-		edgeattributes = new HashSet<String>();
+		nodeattributes = new TreeSet<String>();
+		edgeattributes = new TreeSet<String>();
 	}
 
 	/**
@@ -535,7 +535,9 @@ public class Net {
 				if (tmp!=null) searchNodes.add(tmp);
 			}
 		}
-		//		resultNet.updateNet();
+		
+		
+//				resultNet.updateNet();
 		return resultNet;
 	}
 
@@ -717,6 +719,10 @@ public class Net {
 		timeTable.clear();
 		for (Node n:nNodes) {
 			if (n.getTime()!=null) timeTable.put(n, n.getTime());
+			nodeattributes.addAll(n.attributes.keySet());
+		}
+		for (Edge n:nEdges) {
+			edgeattributes.addAll(n.attributes.keySet());
 		}
 	}
 
