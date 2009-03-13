@@ -10,8 +10,11 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -118,7 +121,8 @@ public class FileIO {
 
 	public static void fileWrite(String filename, String outString) {
 		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(filename));
+			OutputStreamWriter os = new OutputStreamWriter(new FileOutputStream(filename), "UTF-8");
+			BufferedWriter out = new BufferedWriter(os);
 			out.write(outString);
 			out.close();
 		} catch (IOException e) {
@@ -246,5 +250,39 @@ public class FileIO {
 	public boolean storeStream(String url, String filename) {
 		return httpClient.storeStream(url, filename);
 	}
+	
+	public static String HTMLEntityEncode( String s )
+	   {
+	       StringBuffer buf = new StringBuffer();
+	       int len = (s == null ? -1 : s.length());
+
+	       for ( int i = 0; i < len; i++ )
+	       {
+	           char c = s.charAt( i );
+	           if ( c>='a' && c<='z' || c>='A' && c<='Z' || c>='0' && c<='9' )
+	           {
+	               buf.append( c );
+	           }
+	           else
+	           {
+	               buf.append( "&#" + (int)c + ";" );
+	           }
+	       }
+	       return buf.toString();
+	   }
+	   /*
+     * Get the extension of a file.
+     */
+    public static String getExtension(String f) {
+        String ext = null;
+        String s = f;
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = s.substring(i+1).toLowerCase();
+        }
+        return ext;
+    }
+
 }
 

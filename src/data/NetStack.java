@@ -55,7 +55,7 @@ public class NetStack {
 
 	public boolean edgeListLoad(File file, boolean tab) {
 		Net e = new Net(app);
-		if (tab) e= loader.edgelistLoad2(file); else e = loader.edgelistLoad(file);
+		if (tab) e= loader.edgelistLoadTab(file); else e = loader.edgelistLoad(file);
 		if (e!=null&&e.nEdges.size()>0) {
 			nets.put(file.getName(), e.nEdges);
 			global.netMerge(e);
@@ -122,13 +122,19 @@ public class NetStack {
 		view.updateNet();
 	}
 
+	public void exportGraphML (String filename){
+		loader.saveGraphML(filename, view);
+	}
+	public void exportGML (String filename){
+		loader.saveGML(filename, view);
+	}
 	public void exportNet(String filename, boolean tab) {
 		if (!tab){
 			loader.saveNet(filename, view);
 			loader.saveNodeData(filename+".n", view); 
 			} else {
-			loader.saveNet2(filename, view);
-			loader.saveNodeData2(filename+".n", view); 
+			loader.saveNetTab(filename, view);
+			loader.saveNodeDataTab(filename+".nt", view); 
 			}
 		
 	}

@@ -35,7 +35,7 @@ public abstract class GraphElement {
 
 	public void genColorFromAtt(){
 		float[] col=defaultcolor.clone();
-		col[3]=alpha;
+		col[3]=Math.min(1,Math.max(0,alpha));
 
 		if (app.getAttribute().contentEquals("none")) {
 			color = col;

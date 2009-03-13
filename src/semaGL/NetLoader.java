@@ -1,6 +1,8 @@
 package semaGL;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.Map.Entry;
@@ -37,7 +39,7 @@ public class NetLoader {
 	 * @param file_
 	 * @return 
 	 */
-	public Net edgelistLoad2(File file_) {
+	public Net edgelistLoadTab(File file_) {
 		Net edges = null;
 		String file=FileIO.loadFile(file_);
 		if (file!=null&&file.length()>0)  edges = edgelistParse2(file); 
@@ -265,7 +267,7 @@ public class NetLoader {
 		FileIO.fileWrite(filename, outString); 
 	}
 
-	public void saveNet2(String filename, Net net) {
+	public void saveNetTab(String filename, Net net) {
 		StringBuffer sb = new StringBuffer();
 		TreeSet<String> attrib = new TreeSet<String>();
 		for (Edge e :net.nEdges) attrib.addAll(e.attributes.keySet());
@@ -289,7 +291,7 @@ public class NetLoader {
 
 	public void saveNodeData( String filename, Net net){
 		StringBuffer sb = new StringBuffer();
-		
+
 		for (Node n :net.nNodes){
 			sb.append(n.name); //+"\t"+nRef.altName+"\t";
 			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) sb.append("\tname="+n.altName);
@@ -306,7 +308,7 @@ public class NetLoader {
 		FileIO.fileWrite(filename, outString); 
 	}
 
-	public void saveNodeData2( String filename, Net net){
+	public void saveNodeDataTab( String filename, Net net){
 
 		StringBuffer sb = new StringBuffer();
 		TreeSet<String> attrib = new TreeSet<String>();
@@ -329,4 +331,81 @@ public class NetLoader {
 		FileIO.fileWrite(filename, outString); 
 	}
 
+	public void saveGraphML (String filename, Net net) {
+		StringBuffer sb = new StringBuffer();
+		String dir; 
+		if (app.directed) dir="directed"; else dir = "undirected";
+		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\"\nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\nxsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns\nhttp://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n<graph id=\"G\" edgedefault=\""+dir+"\">\n");
+
+		for (String key:net.nodeattributes) {
+			String enc = FileIO.HTMLEntityEncode(key);
+			sb.append("<key id=\""+enc+"\" for=\"node\" attr.name=\""+enc+"\" attr.type=\"string\"/>\n");
+		}
+		for (String key:net.edgeattributes) {
+			String enc = FileIO.HTMLEntityEncode(key);
+			sb.append("<key id=\""+enc+"\" for=\"edge\" attr.name=\""+enc+"\" attr.type=\"string\"/>\n");
+		}
+		for (Node n :net.nNodes){
+			sb.append("<node id=\""+FileIO.HTMLEntityEncode(n.name)+"\">\n");
+			for (String att:n.attributes.keySet()) {
+				String enc = FileIO.HTMLEntityEncode(att);
+				sb.append("<data key=\""+enc+"\">"+FileIO.HTMLEntityEncode(n.attributes.get(att))+"</data>\n");
+			}
+			sb.append("</node>\n");
+		}
+		for (Edge e :net.nEdges){
+			sb.append("<edge source=\""+FileIO.HTMLEntityEncode(e.getA().name)+"\" target=\""+FileIO.HTMLEntityEncode(e.getB().name)+"\">\n");
+			for (String att:e.attributes.keySet()) {
+				String enc = FileIO.HTMLEntityEncode(att);
+				sb.append("<data key=\""+enc+"\">"+FileIO.HTMLEntityEncode(e.attributes.get(att))+"</data>\n");
+			}
+			sb.append("</edge>\n");
+		}
+		sb.append("</graph>\n</graphml>\n");
+		String outString = sb.toString();
+		String encode;
+		FileIO.fileWrite(filename, outString); 
+	}
+
+	public void saveGML (String filename, Net net) {
+		StringBuffer sb = new StringBuffer();
+		String dir; 
+		if (app.directed) dir="directed"; else dir = "undirected";
+		sb.append("Creator	\"SemaSpace\"\nVersion	1.0\ngraph	[\n");
+//		for (String key:net.nodeattributes) {
+//			String enc = FileIO.HTMLEntityEncode(key);
+//			sb.append("<key id=\""+enc+"\" for=\"node\" attr.name=\""+enc+"\" attr.type=\"string\"/>\n");
+//		}
+//		for (String key:net.edgeattributes) {
+//			String enc = FileIO.HTMLEntityEncode(key);
+//			sb.append("<key id=\""+enc+"\" for=\"edge\" attr.name=\""+enc+"\" attr.type=\"string\"/>\n");
+//		}
+		for (Node n :net.nNodes){
+			String altName = FileIO.HTMLEntityEncode(n.altName.replace('\"', '\''));
+			sb.append("\tnode\t[\n\troot_index\t"+n.genId()+"\n\tid\t"+n.genId()+"\n");
+			sb.append("\tgraphics\t[\n\t\tx\t"+n.pos.x+"\n");
+			sb.append("\t\ty\t"+n.pos.y+"\n");
+			sb.append("\t\ttype\t\"ellipse\"\n");
+			sb.append("\t\toutline_width\t0\n");
+			sb.append("\t]\n");
+			sb.append("\tlabel\t\""+altName+"\"\n");
+//			for (String att:n.attributes.keySet()) {
+//				String enc = FileIO.HTMLEntityEncode(att);
+//				sb.append("\t"+enc+"\"\t"+FileIO.HTMLEntityEncode(n.attributes.get(att))+"\"\n");
+//			}
+			sb.append("\t]\n");
+		}
+		for (Edge e :net.nEdges){
+			String altName = FileIO.HTMLEntityEncode(e.altName.replace('\"', '\''));
+			sb.append("\tedge\t[\n\troot_index\t"+e.genId()+"\n\ttarget\t"+e.getB().genId()+"\n\tsource\t"+e.getA().genId()+"\n\tlabel\t\""+altName+"\"\n\t]\n");
+//			for (String att:e.attributes.keySet()) {
+//				String enc = FileIO.HTMLEntityEncode(att);
+//				sb.append("<data key=\""+enc+"\">"+FileIO.HTMLEntityEncode(e.attributes.get(att))+"</data>\n");
+//			}
+		}
+		sb.append("]\n");
+		String outString = sb.toString();
+		String encode;
+		FileIO.fileWrite(filename, outString); 
+	}
 }

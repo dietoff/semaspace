@@ -322,6 +322,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void render(GL gl){
 		if (SVGexport) {
+			SVGexport=false;
 			try {
 				layout.renderSVG(gl, renderer, fonttype, svgFile);
 			} catch (UnsupportedEncodingException e) {
@@ -329,7 +330,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			} catch (SVGGraphics2DIOException e) {
 				e.printStackTrace();
 			}
-			SVGexport=false;
 		}
 
 		if (!render) return;
@@ -446,6 +446,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			System.out.println("inflate = true"); //$NON-NLS-1$
 			break;
 		case KeyEvent.VK_F3:
+			layout.circles=!layout.circles;
+			System.out.println("SVG circles = "+layout.circles);
 			break;
 		case KeyEvent.VK_F4: 
 			layout.layoutLocksRemove();
@@ -454,10 +456,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			ns.getView().findTriangles();
 			break;
 		case KeyEvent.VK_F6:
-			fonttype++;
-			fonttype=fonttype%3;
+			ns.exportGraphML("/tst.graphML");
 			break;
 		case KeyEvent.VK_F7:
+			ns.exportGML("/tst.gml");
 			break;
 		case KeyEvent.VK_F8: 
 			break;
@@ -848,8 +850,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		boolean success = ns.edgeListLoad(file, tab);
 		if (success) {
 			File node = new File(file.getAbsoluteFile()+".n"); //$NON-NLS-1$
-			ns.nodeListLoad(node, tab);
+			if (node.exists()) ns.nodeListLoad(node, tab);
 		} 
+
 		ns.getView().updateNet();
 		updateUI();
 		return success;

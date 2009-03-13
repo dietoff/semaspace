@@ -640,11 +640,11 @@ public class Layouter {
 		if (!app.isTree()) layout.renderClusters(gl, nr);
 		if (!app.isGroups()) layout.renderGroups(gl,nr, view,fonttype);
 		layout.renderGroupLabels(gl, nr, view,fonttype);
+		if (app.isEdges()) layout.renderEdges(gl, nr, fonttype);
 		if (app.fonttype==0) {
 			layout.renderLabels(gl,nr, fonttype); //workaround for gl transform bug in ftgl library
 		}
 		layout.renderNodes(gl,nr, fonttype);
-		if (app.isEdges()) layout.renderEdges(gl, nr, fonttype);
 		if (app.fonttype!=0) {
 			layout.renderLabels(gl,nr, fonttype);
 		}
@@ -741,7 +741,6 @@ public class Layouter {
 
 		// Create an instance of the SVG Generator.
 		SVGGraphics2D svgG = new SVGGraphics2D(doc);
-
 		Dimension bounds = new Dimension((int)bbx.size.x+400, (int)bbx.size.y+400);
 
 		svgG.setSVGCanvasSize(bounds);
@@ -758,9 +757,8 @@ public class Layouter {
 
 		// Finally, stream out SVG to the standard output using
 		// UTF-8 encoding.
-		boolean useCSS = true; // we want to use CSS style attributes
-		Writer out = new OutputStreamWriter(System.out, "UTF-8");
-		svgG.stream(filename);
+		boolean useCSS = false; // we want to use CSS style attributes
+		svgG.stream(filename, useCSS);
 	}
 
 	public void paintSVG(Graphics2D g2d, float origX, float origY) {
@@ -776,8 +774,6 @@ public class Layouter {
 		t.setToIdentity();
 		t.translate(-origX, -origY);
 		g2d.setTransform(t);
-
-
 
 		// edges
 		for (Edge e: net.nEdges) {
@@ -802,7 +798,6 @@ public class Layouter {
 				g2d.drawLine((int)start.x,(int)start.y,(int)end.x,(int)end.y);
 			}
 			g2d.setStroke(sngl);
-			//			float alpha = Math.max(1, (a.color[3]+b.color[3])/2f);
 			g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
 			g2d.drawLine((int)start.x,(int)start.y,(int)end.x,(int)end.y);
 		}
@@ -858,12 +853,8 @@ public class Layouter {
 					g2d.rotate(angle);
 					g2d.translate(0, -2);
 
-
 					float advance = tl.getAdvance()/2f;
-					//					if (midP.x<0) {
 					g2d.translate(-advance, 0);
-					//					} else	g2d.translate(advance, 0);
-
 
 					if (e.color[3]>0.2f&& txt.length()>0){
 						if (font==0){
@@ -872,10 +863,8 @@ public class Layouter {
 							g2d.setStroke(dbl);
 							g2d.draw(outline);
 							g2d.setPaint(new Color((e.color[0]*0.5f),(e.color[1]*0.5f),(e.color[2]*0.5f),e.color[3]));
-							//						g2d.fill(outline);
 							g2d.setStroke(sngl);
 							g2d.fill(outline);
-							//						tl.draw(g2d, 0, 0);
 
 						} else {
 							g2d.setFont(ef);
@@ -894,24 +883,27 @@ public class Layouter {
 				if (txt.length()>0){
 					float size = n.size();
 					String[] sp = txt.split("\n");
-					g2d.translate((int)(n.pos.x), (int)(n.pos.y));
-					if (!app.isTree()) {
-						g2d.translate((int)(size/2),-(int)(size/2));
-						if (app.tilt&&!app.labelsEdgeDir) {
-							g2d.rotate(-0.436332312998582);
-						} 
-					}
+
 
 					if (n.color[3]>0.2f&& txt.length()>0) {
 						for (int i = 0; i<sp.length; i++){
+
+							g2d.translate((int)(n.pos.x), (int)(n.pos.y));
+							if (!app.isTree()&&!app.labelsEdgeDir) {
+								g2d.translate((int)(size/2),-(int)(size/2));
+							}
+							if (app.tilt) {
+								g2d.rotate(-0.436332312998582);
+							} 
+
 							int fntsize = (int)((app.getLabelsize()+n.size()*app.getLabelVar())*1.5f);
-							Font tmp = new Font(fontFam,Font.PLAIN, fntsize);
+							Font varFont = new Font(fontFam,Font.PLAIN, fntsize);
 							FontRenderContext frc = g2d.getFontRenderContext();
-							TextLayout tl = new TextLayout(sp[i],tmp,frc);
+							TextLayout tl = new TextLayout(sp[i],varFont,frc);
 
 							if (app.isTree()) alignLabel(g2d, n.pos, n.size(), tl);
 
-							if (app.labelsEdgeDir){
+							if (app.labelsEdgeDir&&!app.tilt){
 								if (n.adList.size()==1) {
 									Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
 									alignLabel(g2d, sub, n.size(), tl);
@@ -936,13 +928,14 @@ public class Layouter {
 								g2d.setStroke(sngl);
 								g2d.fill(outline);
 							} else {
-								g2d.setFont(tmp);
+								g2d.setFont(varFont);
 								g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));
+								//								tl.draw(g2d, 0, i*fntsize);
 								g2d.drawString(sp[i], 0, i*fntsize);
 							}
+							g2d.setTransform(t);
 						}
 					}
-					g2d.setTransform(t);
 				}
 			}
 		}
@@ -951,10 +944,11 @@ public class Layouter {
 	private void alignLabel(Graphics2D g2d, Vector3D n, float margin, TextLayout tl) {
 		float angle = (float) (Math.atan(n.y/n.x));
 		g2d.rotate(angle);
+		float marg = margin+5;
 		if (n.x<0) {
-			float advance = tl.getAdvance()+margin+5;
+			float advance = tl.getAdvance()+marg;
 			g2d.translate(-advance, 0);
-		} else	g2d.translate(margin+5, 0);
+		} else	g2d.translate(marg, 0);
 	}
 
 	/**
