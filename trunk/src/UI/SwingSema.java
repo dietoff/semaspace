@@ -182,6 +182,8 @@ public class SwingSema {
 	private JLabel depthLabel;
 	private JSlider depth;
 	private SimButton searchButton;
+	private JLabel jLabel19;
+	private JSlider jSlider5;
 	private JCheckBox radLabels;
 	private SimButton simButton19;
 	private SimButton simButton18;
@@ -523,7 +525,8 @@ public class SwingSema {
 		strengthSlider.setValue((int)(app.getStrength()*100));
 		distanceSlider.setValue((int)app.getDistance());
 		picSizeSlider.setValue(app.getPicSize());
-		jSlider2.setValue((int)app.getNodevar()*10);
+		jSlider2.setValue((int)app.getInVar()*10);
+		jSlider5.setValue((int)app.getOutVar()*10);
 		jSlider3.setValue((int)app.getLabelsize()*10);
 		jSlider4.setValue((int)app.getLabelVar()*10);
 	}
@@ -982,6 +985,8 @@ public class SwingSema {
 			viewTab.add(getJSlider4());
 			viewTab.add(getJLabel17());
 			viewTab.add(getJCheckBox2xxx());
+			viewTab.add(getJSlider5());
+			viewTab.add(getJLabel19());
 		}
 		return viewTab;
 	}
@@ -1523,8 +1528,8 @@ public class SwingSema {
 		app.render = false;
 
 		openFile.resetChoosableFileFilters();
-		openFile.addChoosableFileFilter(new SemaInlineFilter());
 		openFile.addChoosableFileFilter(new SemaTableFilter());
+		openFile.addChoosableFileFilter(new SemaInlineFilter());
 
 		int returnVal = openFile.showOpenDialog(openFile);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -1776,15 +1781,15 @@ public class SwingSema {
 	private JSlider getJSlider2() {
 		if(jSlider2 == null) {
 			jSlider2 = new JSlider();
-			jSlider2.setMaximum(100);
+			jSlider2.setMaximum(50);
 			jSlider2.setMinimum(0);
-			jSlider2.setToolTipText("set pic size as multiplier of node size");
+			jSlider2.setToolTipText("set node size depending on its in-degree");
 			jSlider2.setOpaque(false);
 			jSlider2.setName("jSlider2");
 			jSlider2.setBounds(1, 110, 140, 16);
 			jSlider2.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setNodeVar(jSlider2.getValue()/10f);
+					app.setInVar(jSlider2.getValue()/10f);
 				}
 			});
 		}
@@ -1794,7 +1799,7 @@ public class SwingSema {
 	private JLabel getJLabel10() {
 		if(jLabel10 == null) {
 			jLabel10 = new JLabel();
-			jLabel10.setText("nodeVar");
+			jLabel10.setText("inDeg");
 			jLabel10.setFont(new java.awt.Font("Dialog",0,10));
 			jLabel10.setBounds(144, 110, 41, 13);
 		}
@@ -1905,7 +1910,7 @@ public class SwingSema {
 			simButton4.setText("reset");
 			simButton4.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton4.setToolTipText("set the camera to 0,0");
-			simButton4.setBounds(1, 189, 65, 15);
+			simButton4.setBounds(1, 209, 65, 15);
 			simButton4.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.resetCam();
@@ -1921,7 +1926,7 @@ public class SwingSema {
 			simButton5.setText("to picked");
 			simButton5.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton5.setToolTipText("set the camera to selected node");
-			simButton5.setBounds(71, 189, 65, 15);
+			simButton5.setBounds(71, 209, 65, 15);
 			simButton5.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.camOnSelected();
@@ -1936,7 +1941,7 @@ public class SwingSema {
 			jLabel11 = new JLabel();
 			jLabel11.setText("viewpoint");
 			jLabel11.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel11.setBounds(0, 170, 73, 14);
+			jLabel11.setBounds(0, 190, 73, 14);
 		}
 		return jLabel11;
 	}
@@ -2521,7 +2526,7 @@ public class SwingSema {
 			jLabel16 = new JLabel();
 			jLabel16.setText("labelSize");
 			jLabel16.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel16.setBounds(144, 130, 60, 15);
+			jLabel16.setBounds(144, 150, 60, 15);
 		}
 		return jLabel16;
 	}
@@ -2534,7 +2539,7 @@ public class SwingSema {
 			jSlider3.setToolTipText("set label size");
 			jSlider3.setOpaque(false);
 			jSlider3.setName("jSlider3");
-			jSlider3.setBounds(1, 130, 140, 16);
+			jSlider3.setBounds(1, 150, 140, 16);
 			jSlider3.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setLabelsize(jSlider3.getValue()/10f);
@@ -2552,7 +2557,7 @@ public class SwingSema {
 			jSlider4.setToolTipText("set label variance");
 			jSlider4.setOpaque(false);
 			jSlider4.setName("jSlider4");
-			jSlider4.setBounds(1, 150, 140, 16);
+			jSlider4.setBounds(1, 170, 140, 16);
 			jSlider4.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setLabelVar(jSlider4.getValue()/10f);
@@ -2567,7 +2572,7 @@ public class SwingSema {
 			jLabel17 = new JLabel();
 			jLabel17.setText("labelVar");
 			jLabel17.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel17.setBounds(144, 150, 60, 15);
+			jLabel17.setBounds(144, 170, 60, 15);
 		}
 		return jLabel17;
 	}
@@ -2694,5 +2699,33 @@ public class SwingSema {
 			});
 		}
 		return radLabels;
+	}
+	
+	private JSlider getJSlider5() {
+		if(jSlider5 == null) {
+			jSlider5 = new JSlider();
+			jSlider5.setMaximum(50);
+			jSlider5.setMinimum(0);
+			jSlider5.setToolTipText("set node size depending on its out-degree");
+			jSlider5.setOpaque(false);
+			jSlider5.setName("jSlider5");
+			jSlider5.setBounds(1, 130, 140, 16);
+			jSlider5.addChangeListener(new ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					app.setOutVar(jSlider5.getValue()/10f);
+				}
+			});
+		}
+		return jSlider5;
+	}
+	
+	private JLabel getJLabel19() {
+		if(jLabel19 == null) {
+			jLabel19 = new JLabel();
+			jLabel19.setText("outDeg");
+			jLabel19.setFont(new java.awt.Font("Dialog",0,10));
+			jLabel19.setBounds(144, 130, 41, 13);
+		}
+		return jLabel19;
 	}
 }	

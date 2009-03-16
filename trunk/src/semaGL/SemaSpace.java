@@ -138,7 +138,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public int thumbsize = Integer.parseInt(Messages.getString("thumbnailRes"));
 	public Graphics2D j2d;
 	private boolean timeline;
-	private float nodevar= Float.parseFloat(Messages.getString("nodeSizeVariance"));
+	private float invar= Float.parseFloat(Messages.getString("nodeSizeVariance"));
 	public boolean textures= Boolean.parseBoolean(Messages.getString("textures"));
 	private Font font;
 	FTFont outlinefont;
@@ -161,6 +161,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean SVGexport;
 	private String svgFile;
 	boolean labelsEdgeDir=true;
+	private float outvar;
 
 	public SemaSpace(){
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
@@ -439,7 +440,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		case KeyEvent.VK_SHIFT:
 			break;
 		case KeyEvent.VK_F1:
-			nameCurrentAttribute();
+			String name = nameCurrentAttribute();
+			System.out.println("applied "+name);
 			break;
 		case KeyEvent.VK_F2: 
 			inflate=true;
@@ -456,10 +458,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			ns.getView().findTriangles();
 			break;
 		case KeyEvent.VK_F6:
-			ns.exportGraphML("/tst.graphML");
 			break;
 		case KeyEvent.VK_F7:
-			ns.exportGML("/tst.gml");
 			break;
 		case KeyEvent.VK_F8: 
 			break;
@@ -472,8 +472,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		}
 	}
 
-	private void nameCurrentAttribute() {
+	private String nameCurrentAttribute() {
 		ns.global.altNameByAttribute(attribute);
+		return attribute;
 	}
 
 	public void keyReleased(KeyEvent evt) {
@@ -595,11 +596,25 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void delNodesAtt() {
 		HashSet<Node> ne = new HashSet<Node>();
 		ns.global.updateNet();
+		Net view = ns.getView();
 		for (Node n:ns.global.nNodes) {
 			if (n.hasAttribute(attribute)) ne.add(n);
 		}
+		
+		if (directed) {
+			
 		for (Node n:ne) {
-			ns.global.removeNode(n);
+			if (n.adList.size()>0&&n.inList.size()>0) {
+				for (Node from:n.inList) {
+					for (Node to:n.adList) {
+						view.addEdge(from, to);
+					}
+				}
+			}
+		}
+		}
+		for (Node n:ne) {
+//			ns.global.removeNode(n);
 			ns.getView().removeNode(n);
 		}
 		updatePick();
@@ -1175,16 +1190,20 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		return timeline;
 	}
 
-	public void setNodeVar(float value) {
-		nodevar = value;
+	public void setInVar(float value) {
+		invar = value;
 	}
 
-	public float getNodevar() {
-		return nodevar;
+	public float getInVar() {
+		return invar;
+	}
+	
+	public void setOutVar(float value) {
+		outvar = value;
 	}
 
-	public void setNodevar(float nodevar) {
-		this.nodevar = nodevar;
+	public float getOutVar() {
+		return outvar;
 	}
 
 	public void setVal(float val) {

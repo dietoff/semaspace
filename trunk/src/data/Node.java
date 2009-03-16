@@ -43,7 +43,7 @@ public class Node extends GraphElement {
 
 	
 	public float size() {
-		return app.nodeSize+getDegree()*app.getNodevar();
+		return app.nodeSize+inList.size()*app.getInVar()+adList.size()*app.getOutVar();
 	}
 
 	public void setPickColor(float[] col) {
