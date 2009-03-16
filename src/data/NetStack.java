@@ -134,7 +134,7 @@ public class NetStack {
 			loader.saveNodeData(filename+".n", view); 
 			} else {
 			loader.saveNetTab(filename, view);
-			loader.saveNodeDataTab(filename+".nt", view); 
+			loader.saveNodeDataTab(filename+".n", view); 
 			}
 		
 	}

@@ -333,10 +333,6 @@ public class GraphRendererSVG {
 		gl.glPopMatrix();
 	}
 
-	private float size(Node n) {
-		return app.nodeSize+n.getDegree()*app.getNodevar();
-	}
-
 	private boolean outsideView(Node n) {
 		Vector3D p = app.cam.getFocalPoint();
 		float d = Vector3D.distance(n.pos, p);

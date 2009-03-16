@@ -188,7 +188,7 @@ public class NetLoader {
 
 						if (tmp.hasAttribute(key)) {
 							String attribute = tmp.getAttribute(key);
-							if (attribute!=value) tmp.setAttribute(key, attribute+","+value);
+							if (!attribute.contentEquals(value)) tmp.setAttribute(key, attribute+","+value);
 						} else {
 							tmp.setAttribute(key, value);
 							n.nodeattributes.add(key);
