@@ -171,29 +171,31 @@ public class NetLoader {
 		if  (file!=null&&file.length()>0)  nodelistParse2(file, n);
 	}
 	public void nodelistParse(String file, Net n) {
-		Node tmp;
+		Node tmp= null;
 		String lines[]= file.split(lineBreak);
 		for (int i=0; i<lines.length; i++){
 			String cols[] = lines[i].split(separator);
-			String col1 = null;
+			String col1 = "";
 			if (cols[0].length()>1) col1 = cols[0].trim();
-			tmp = n.addNode(col1);
-			//			tmp = nTable.get(cols[0].trim());
+			if (col1.length()>0) tmp = n.addNode(col1);
+
 			if (tmp!=null){
 				for (int j=1; j<cols.length;j++) {
 					String val[]=cols[j].split(value);	
 					if (val.length>1) {
 						String key = val[0].toLowerCase().trim();
 						String value = val[1].trim();
+						if (key.length()>0&&value.length()>0) {
 
-						if (tmp.hasAttribute(key)) {
-							String attribute = tmp.getAttribute(key);
-							if (!attribute.contentEquals(value)) tmp.setAttribute(key, attribute+","+value);
-						} else {
-							tmp.setAttribute(key, value);
-							n.nodeattributes.add(key);
+							if (tmp.hasAttribute(key)) {
+								String attribute = tmp.getAttribute(key);
+								if (!attribute.contentEquals(value)) tmp.setAttribute(key, attribute+","+value);
+							} else {
+								tmp.setAttribute(key, value);
+								n.nodeattributes.add(key);
+							}
+							parseAttributes(tmp, n);
 						}
-						parseAttributes(tmp, n);
 					}
 				}
 			}
@@ -335,16 +337,16 @@ public class NetLoader {
 		StringBuffer sb = new StringBuffer();
 		String dir; 
 		if (app.directed) dir="directed"; else dir = "undirected";
-		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\"\nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\nxsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns\nhttp://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n<graph id=\"G\" edgedefault=\""+dir+"\">\n");
-
+		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\"\nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\nxsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns\nhttp://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n");
 		for (String key:net.nodeattributes) {
 			String enc = FileIO.HTMLEntityEncode(key);
-			sb.append("<key id=\""+enc+"\" for=\"node\" attr.name=\""+enc+"\" attr.type=\"string\"/>\n");
+			sb.append("<key attr.name=\""+enc+"\" attr.type=\"string\" for=\"node\" id=\""+enc+"\"/>\n");
 		}
 		for (String key:net.edgeattributes) {
 			String enc = FileIO.HTMLEntityEncode(key);
 			sb.append("<key id=\""+enc+"\" for=\"edge\" attr.name=\""+enc+"\" attr.type=\"string\"/>\n");
 		}
+		sb.append("<graph id=\"G\" edgedefault=\""+dir+"\">\n");
 		for (Node n :net.nNodes){
 			sb.append("<node id=\""+FileIO.HTMLEntityEncode(n.name)+"\">\n");
 			for (String att:n.attributes.keySet()) {
@@ -372,14 +374,14 @@ public class NetLoader {
 		String dir; 
 		if (app.directed) dir="directed"; else dir = "undirected";
 		sb.append("Creator	\"SemaSpace\"\nVersion	1.0\ngraph	[\n");
-//		for (String key:net.nodeattributes) {
-//			String enc = FileIO.HTMLEntityEncode(key);
-//			sb.append("<key id=\""+enc+"\" for=\"node\" attr.name=\""+enc+"\" attr.type=\"string\"/>\n");
-//		}
-//		for (String key:net.edgeattributes) {
-//			String enc = FileIO.HTMLEntityEncode(key);
-//			sb.append("<key id=\""+enc+"\" for=\"edge\" attr.name=\""+enc+"\" attr.type=\"string\"/>\n");
-//		}
+		//		for (String key:net.nodeattributes) {
+		//			String enc = FileIO.HTMLEntityEncode(key);
+		//			sb.append("<key id=\""+enc+"\" for=\"node\" attr.name=\""+enc+"\" attr.type=\"string\"/>\n");
+		//		}
+		//		for (String key:net.edgeattributes) {
+		//			String enc = FileIO.HTMLEntityEncode(key);
+		//			sb.append("<key id=\""+enc+"\" for=\"edge\" attr.name=\""+enc+"\" attr.type=\"string\"/>\n");
+		//		}
 		for (Node n :net.nNodes){
 			String altName = FileIO.HTMLEntityEncode(n.altName.replace('\"', '\''));
 			sb.append("\tnode\t[\n\troot_index\t"+n.genId()+"\n\tid\t"+n.genId()+"\n");
@@ -389,19 +391,19 @@ public class NetLoader {
 			sb.append("\t\toutline_width\t0\n");
 			sb.append("\t]\n");
 			sb.append("\tlabel\t\""+altName+"\"\n");
-//			for (String att:n.attributes.keySet()) {
-//				String enc = FileIO.HTMLEntityEncode(att);
-//				sb.append("\t"+enc+"\"\t"+FileIO.HTMLEntityEncode(n.attributes.get(att))+"\"\n");
-//			}
+			//			for (String att:n.attributes.keySet()) {
+			//				String enc = FileIO.HTMLEntityEncode(att);
+			//				sb.append("\t"+enc+"\"\t"+FileIO.HTMLEntityEncode(n.attributes.get(att))+"\"\n");
+			//			}
 			sb.append("\t]\n");
 		}
 		for (Edge e :net.nEdges){
 			String altName = FileIO.HTMLEntityEncode(e.altName.replace('\"', '\''));
 			sb.append("\tedge\t[\n\troot_index\t"+e.genId()+"\n\ttarget\t"+e.getB().genId()+"\n\tsource\t"+e.getA().genId()+"\n\tlabel\t\""+altName+"\"\n\t]\n");
-//			for (String att:e.attributes.keySet()) {
-//				String enc = FileIO.HTMLEntityEncode(att);
-//				sb.append("<data key=\""+enc+"\">"+FileIO.HTMLEntityEncode(e.attributes.get(att))+"</data>\n");
-//			}
+			//			for (String att:e.attributes.keySet()) {
+			//				String enc = FileIO.HTMLEntityEncode(att);
+			//				sb.append("<data key=\""+enc+"\">"+FileIO.HTMLEntityEncode(e.attributes.get(att))+"</data>\n");
+			//			}
 		}
 		sb.append("]\n");
 		String outString = sb.toString();
