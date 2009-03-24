@@ -41,6 +41,9 @@ import data.Node;
 import data.Vector3D;
 
 import net.sourceforge.ftgl.glfont.FTFont;
+import net.sourceforge.ftgl.glfont.FTGLOutlineFont;
+import net.sourceforge.ftgl.glfont.FTGLPixmapFont;
+import net.sourceforge.ftgl.glfont.FTGLPolygonFont;
 import net.sourceforge.ftgl.glfont.FTGLTextureFont;
 
 public class SemaSpace implements GLEventListener, MouseListener, MouseMotionListener, KeyListener  {
@@ -162,6 +165,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private String svgFile;
 	boolean labelsEdgeDir=true;
 	private float outvar;
+	public boolean fadeLabels=false;
 
 	public SemaSpace(){
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
@@ -1122,7 +1126,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	void updatePick(int pickID2) {
 		if (pickID2 == -1) ns.getView().distances.clearPick();
 		ns.getView().distances.findPickDistances(pickID2,pickdepth);
-		//		}
 		layout.applyPickColors();
 	}
 

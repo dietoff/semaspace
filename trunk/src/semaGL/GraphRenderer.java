@@ -132,17 +132,25 @@ public class GraphRenderer {
 		float distToCam = app.cam.distToCam(n.pos);
 		String att="";
 		float[] textcolor = {n.color[0]/2f, n.color[1]/2f, n.color[2]/2f, 1};
+		
+		
+		
 		if (n.rollover) {
 			att= n.genTextAttributeList();
 			if (font==3) font=2;
 		}
 		else {
-			if ((n.pickColor[3]==0&&(n.alpha<0.2f)||font==3)) return;
+			if (n.pickColor[3]==0&&(n.alpha<0.2f)) return;
 			if (distToCam>app.maxLabelRenderDistance) return; 
 			att = n.genTextSelAttributes();
 		}
 		n.textColor[3]=n.alpha;
 
+		
+		if (app.fadeLabels&&n.pickColor[3]==0) {
+			font=3;
+		}
+		
 		gl.glPushMatrix();
 		//transform model
 		float xRot = app.cam.getYRot();		//should be global camera orientation

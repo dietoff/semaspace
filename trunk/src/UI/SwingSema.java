@@ -182,6 +182,7 @@ public class SwingSema {
 	private JLabel depthLabel;
 	private JSlider depth;
 	private SimButton searchButton;
+	private JCheckBox fadeLabels;
 	private JLabel jLabel19;
 	private JSlider jSlider5;
 	private JCheckBox radLabels;
@@ -1645,6 +1646,7 @@ public class SwingSema {
 		drawedges.setSelected(app.isEdges());
 		draw3d.setSelected(!app.get3D());
 		fadenodes.setSelected(app.fadeNodes);
+		fadeLabels.setSelected(app.fadeLabels);
 		forceBox.setSelected(app.getCalc());
 		renderTextures.setSelected(app.textures);
 		directedGraph.setSelected(app.directed);
@@ -1826,15 +1828,16 @@ public class SwingSema {
 			midPanels.add(getFontslider());
 			midPanels.add(getJLabel1());
 			midPanels.add(getForceBox());
-			midPanels.add(getJCheckBox2xx());
-			midPanels.add(getJCheckBox2xxxx());
+			midPanels.add(getTiltBox());
+			midPanels.add(getRadbox());
+			midPanels.add(getFadeLabelsBox());
 		}
 		return midPanels;
 	}
 	private JCheckBox getFadeNodes() {
 		if (fadenodes == null) {
 			fadenodes = new JCheckBox();
-			fadenodes.setText("fade nodes");
+			fadenodes.setText("fade n");
 			fadenodes.setMargin(new java.awt.Insets(0,0,0,0));
 			fadenodes.setContentAreaFilled(false);
 			fadenodes.setFont(new java.awt.Font("Dialog",0,10));
@@ -1893,7 +1896,7 @@ public class SwingSema {
 			forceBox.setMargin(new java.awt.Insets(0,0,0,0));
 			forceBox.setContentAreaFilled(false);
 			forceBox.setFont(new java.awt.Font("Dialog",0,10));
-			forceBox.setBounds(85, 1, 85, 17);
+			forceBox.setBounds(133, 1, 85, 17);
 			forceBox.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.setCalc(!app.getCalc());
@@ -2476,7 +2479,7 @@ public class SwingSema {
 		return simButton17;
 	}
 
-	private JCheckBox getJCheckBox2xx() {
+	private JCheckBox getTiltBox() {
 		if(tiltBox == null) {
 			tiltBox = new JCheckBox();
 			tiltBox.setText("25¡");
@@ -2684,7 +2687,7 @@ public class SwingSema {
 		return simButton19;
 	}
 
-	private JCheckBox getJCheckBox2xxxx() {
+	private JCheckBox getRadbox() {
 		if(radLabels == null) {
 			radLabels = new JCheckBox();
 			radLabels.setText("rad");
@@ -2727,5 +2730,22 @@ public class SwingSema {
 			jLabel19.setBounds(144, 130, 41, 13);
 		}
 		return jLabel19;
+	}
+	
+	private JCheckBox getFadeLabelsBox() {
+		if(fadeLabels == null) {
+			fadeLabels = new JCheckBox();
+			fadeLabels.setText("fade l");
+			fadeLabels.setMargin(new java.awt.Insets(0,0,0,0));
+			fadeLabels.setContentAreaFilled(false);
+			fadeLabels.setFont(new java.awt.Font("Dialog",0,10));
+			fadeLabels.setBounds(60, 1, 75, 17);
+			fadeLabels.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.fadeLabels=fadeLabels.isSelected();
+				}
+			});
+		}
+		return fadeLabels;
 	}
 }	
