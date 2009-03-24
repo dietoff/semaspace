@@ -112,7 +112,6 @@ public class DistanceTable {
 	 * find distances, depth first
 	 */
 	public void findPickDistances(int ID, int maxdepth_) {
-		net.updateNet(); // to make sure adjacency lists are consistent
 		maxdepth = maxdepth_;
 		int depth = 0;
 		Node a;
@@ -123,7 +122,8 @@ public class DistanceTable {
 			// depth 1
 			a.pickDistance=depth; //node a depth = 0
 			iterDepth(a, depth);
-		} else {
+		} 
+		else {
 			Edge e = net.getEdgeByID(ID);
 			if (e!=null) {
 				e.setPicked(true);
@@ -136,7 +136,12 @@ public class DistanceTable {
 		depth++;
 		if (depth>maxdepth) return;
 		else{
-			for (Node n:a.adList){
+			
+			HashSet<Node> list = new HashSet<Node>();
+			list.addAll(a.adList);
+			list.addAll(a.inList);
+			
+			for (Node n:list){
 				iterDepth(n,depth);
 				if (n.pickDistance>depth) {
 					n.pickDistance=depth;
