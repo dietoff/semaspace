@@ -26,6 +26,7 @@ public class Node extends GraphElement {
 	public boolean spiralcluster = false;
 	public boolean partOfGroup = false;
 	private Float time = null;
+	public boolean group = false;
 
 
 	Node(SemaSpace app_, String n_, float x, float y, float z) {

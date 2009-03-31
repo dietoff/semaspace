@@ -236,7 +236,8 @@ public class Layouter {
 		}
 	}
 
-	public void layoutDistance(float offset, float valencefactor, float attenuation, Net net2) {
+	public void layoutDistance(float offset, float valencefactor, float attenuation, Net net) {
+		if (net.nEdges.size()==0) return;
 		float o = offset;
 		if (app.flat) o*=0.5f;
 		float val = valencefactor;
@@ -244,12 +245,12 @@ public class Layouter {
 		float dist;
 		Node a;
 		Node b;
-		for (Edge eref : net2.nEdges) {
-			a= eref.getA();
-			b= eref.getB();
-			if (net2.fNodes.contains(a)&&net2.fNodes.contains(b)) {
+		for (Edge e : net.nEdges) {
+			a= e.getA();
+			b= e.getB();
+			if (net.fNodes.contains(a)&&net.fNodes.contains(b)) {
 				dist = calcDist(a,b,o,val);
-				eref.chain(dist, Math.min(1f,att)); 
+				e.chain(dist, Math.min(1f,att)); 
 			}
 		}
 	}
@@ -434,7 +435,7 @@ public class Layouter {
 		for (Node a: net.fNodes) {
 			for (Node b: net.fNodes) {
 				if (a!=b) {
-					repFrucht(abstand, strength, dist, a, b); 
+					repFrucht(abstand, strength, dist, a, b, app.getRepellMax()); 
 				}
 			}
 		}
@@ -461,16 +462,16 @@ public class Layouter {
 		} 
 
 		Object[] values = replist.values().toArray();
-		int max = 500;
 		for (Object n:values) {
-			repFrucht(abstand, strength, dist, (nodeTuple)n,max); 
+			repFrucht(abstand, strength, dist, (nodeTuple)n,app.getRepellMax()); 
 		}
 	}
 
 	private float repFrucht(float abstand, float strength, Vector3D dist, nodeTuple n, int max) {
 		Node a = n.getA();
 		Node b = n.getB();
-		if (a.adList.size()==0||b.adList.size()==0) max = 0;
+		
+		if (a.adList.size()+a.inList.size()==0||b.adList.size()+b.inList.size()==0) max = 0;
 		dist.setXYZ(b.pos);
 		dist.sub(a.pos);
 		float d = dist.magnitude()+0.000000001f;
@@ -498,7 +499,7 @@ public class Layouter {
 		for (HashSet<Node>e:net.distances.nodeSets()) {
 			for (Node n:e) {
 				for(Node m:e) {
-					if (n!=m) repFrucht(abstand, strength, dist, n, m); 
+					if (n!=m) repFrucht(abstand, strength, dist, n, m, app.getRepellMax()); 
 				}
 			}
 		}
@@ -512,8 +513,7 @@ public class Layouter {
 	 * @return
 	 */
 	private float repFrucht(float abstand, float strength, Vector3D dist,
-			Node a, Node b) {
-		int max = 500;
+			Node a, Node b, int max) {
 		if (a.adList.size()+a.inList.size()==0||b.adList.size()+b.inList.size()==0) max = 0;
 		dist.setXYZ(b.pos);
 		dist.sub(a.pos);
@@ -535,7 +535,7 @@ public class Layouter {
 		return d;
 	}
 
-	// still experimental - repell only top. neighbourhood
+	// experimental - repell only top. neighbourhood
 	void layoutRepNeighbors(float strength, float offset, Net net2){
 		Vector3D dist = new Vector3D();
 		for (Node a: net2.fNodes) {
@@ -597,7 +597,7 @@ public class Layouter {
 		for (Node a: net.fNodes) {
 			for (Node b: net.fNodes) {
 				if ((a!=b)&&(a.color[3]>0.2&&b.color[3]>0.2)) {
-					repFrucht(abstand, strength, dist, a, b); 
+					repFrucht(abstand, strength, dist, a, b, app.getRepellMax()); 
 				}
 			}
 		}
@@ -638,16 +638,11 @@ public class Layouter {
 	void render(GL gl, int fonttype, Net view, GraphRenderer nr){
 		Layouter layout = this;
 		if (!app.isTree()) layout.renderClusters(gl, nr);
-		if (!app.isGroups()) layout.renderGroups(gl,nr, view,fonttype);
-		layout.renderGroupLabels(gl, nr, view,fonttype);
+		if (app.isGroups()) {layout.renderGroups(gl,nr, view,fonttype);
+		layout.renderGroupLabels(gl, nr, view,fonttype);}
 		if (app.isEdges()) layout.renderEdges(gl, nr, fonttype);
-		if (app.fonttype==0) {
-			layout.renderLabels(gl,nr, fonttype); //workaround for gl transform bug in ftgl library
-		}
 		layout.renderNodes(gl,nr, fonttype);
-		if (app.fonttype!=0) {
-			layout.renderLabels(gl,nr, fonttype);
-		}
+		layout.renderLabels(gl,nr, fonttype);
 	}
 
 	/**
@@ -962,18 +957,18 @@ public class Layouter {
 		for (String n:net.groups.keySet()) {
 			Net group = net.groups.get(n);
 			Node center = group.hasNode(n);
-			nr.renderStar(gl, group.nNodes, center);
+			nr.renderGroups(gl, group.nNodes, center);
 
-			//			nr.renderNodes(gl, center);
-
-			//			for (Node eref: group.nNodes) {
-			//				nr.renderNodes(gl, eref);
-			//				nr.renderNodeLabels(gl, eref, 2);
-			//			}
-			//			
-			//			for (Edge eref: group.nEdges) {
-			//				nr.renderEdges(gl, eref);
-			//			}
+			//						nr.renderNode(gl, center);
+			//
+			//						for (Node eref: group.nNodes) {
+			//							nr.renderNode(gl, eref);
+			//							nr.renderNodeLabels(gl, eref, 2, false);
+			//						}
+			//						
+			//						for (Edge eref: group.nEdges) {
+			//							nr.renderEdges(gl, eref);
+			//						}
 		}
 	}
 	/**
@@ -1043,9 +1038,9 @@ public class Layouter {
 			Vector3D center = calcPivot(group.nNodes);
 			group.hasNode(n).pos.setXYZ(center);
 
-			//			layoutDistance(app.nodeSize*4f, 0, 1f, group);
-			//			layoutRepell(app.nodeSize*4f, .5f, group);
-			//			layoutInflate(net.nNodes.size()+10f, net);
+			//					layoutDistance(app.nodeSize*4f, 0, 1f, group);
+			//		layoutRepell(app.nodeSize*4f, .5f, group);
+			//		layoutInflate(net.nNodes.size()+10f, net);
 		}
 	}
 

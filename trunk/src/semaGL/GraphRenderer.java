@@ -133,7 +133,9 @@ public class GraphRenderer {
 		String att="";
 		float[] textcolor = {n.color[0]/2f, n.color[1]/2f, n.color[2]/2f, 1};
 		
-		
+		if (app.fadeLabels&&n.pickColor[3]==0&&!n.rollover&&!n.isFrame()) {
+			font=3;
+		}
 		
 		if (n.rollover) {
 			att= n.genTextAttributeList();
@@ -147,9 +149,7 @@ public class GraphRenderer {
 		n.textColor[3]=n.alpha;
 
 		
-		if (app.fadeLabels&&n.pickColor[3]==0) {
-			font=3;
-		}
+		
 		
 		gl.glPushMatrix();
 		//transform model
@@ -370,21 +370,26 @@ public class GraphRenderer {
 		gl.glEnd();
 		gl.glPopMatrix();
 	}
-	synchronized void renderStar(GL gl, HashSet<Node> nodes, Node center){
+	synchronized void renderGroups(GL gl, HashSet<Node> nodes, Node center){
 		float[] col = GraphElement.colorFunction(center.name);
 		col[3]=Math.min(center.alpha, 0.15f);
+		float[] white = {1,1,1,0};
+		float[] col2 = col.clone();
+		col2[3]=0;
 
 		gl.glPushMatrix();
 		gl.glColor4fv(col, 0);
-		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
-
+		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
+		
 		Vector3D D;
 		for (Node bref : nodes){
 			if (bref!=center){
 				D = bref.pos.copy();
 				D.sub(center.pos); 
 				D.mult(-1);
-				FuncGL.symArrowHead(gl, bref.size()*1.5f, center.pos, D);
+//				FuncGL.symArrowHead(gl, bref.size()*1.5f, center.pos, D);
+				gl.glLineWidth(5);
+				FuncGL.drawLine(gl, center.pos, bref.pos, white, col);
 			}
 		}
 		gl.glPopMatrix();
