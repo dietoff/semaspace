@@ -182,6 +182,8 @@ public class SwingSema {
 	private JLabel depthLabel;
 	private JSlider depth;
 	private SimButton searchButton;
+	private JLabel jLabel20;
+	private JSlider maxRepSlider;
 	private JCheckBox fadeLabels;
 	private JLabel jLabel19;
 	private JSlider jSlider5;
@@ -526,6 +528,7 @@ public class SwingSema {
 		strengthSlider.setValue((int)(app.getStrength()*100));
 		distanceSlider.setValue((int)app.getDistance());
 		picSizeSlider.setValue(app.getPicSize());
+		maxRepSlider.setValue((int)app.getRepellMax());
 		jSlider2.setValue((int)app.getInVar()*10);
 		jSlider5.setValue((int)app.getOutVar()*10);
 		jSlider3.setValue((int)app.getLabelsize()*10);
@@ -1113,6 +1116,8 @@ public class SwingSema {
 			layoutTab.add(getCircle());
 			layoutTab.add(getShuffleButton());
 			layoutTab.add(getJCheckBox());
+			layoutTab.add(getJSlider6());
+			layoutTab.add(getJLabel20());
 		}
 		return layoutTab;
 	}
@@ -1157,7 +1162,7 @@ public class SwingSema {
 			groupRadius.setOpaque(false);
 			groupRadius.setToolTipText("set cluster radius");
 			groupRadius.setName("group radius");
-			groupRadius.setBounds(0, 91, 151, 16);
+			groupRadius.setBounds(0, 79, 151, 16);
 			groupRadius.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setClusterRad(groupRadius.getValue()/10f); //  Auto-generated Event stub stateChanged()
@@ -1172,9 +1177,9 @@ public class SwingSema {
 			pushSlider.setMaximum(200);
 			pushSlider.setMinimum(-50);
 			pushSlider.setOpaque(false);
-			pushSlider.setToolTipText("set repell distance factor");
+			pushSlider.setToolTipText("set min repell distance");
 			pushSlider.setName("repell");
-			pushSlider.setBounds(0, 149, 151, 16);
+			pushSlider.setBounds(0, 152, 151, 16);
 			pushSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setRepell((float)pushSlider.getValue());
@@ -1191,7 +1196,7 @@ public class SwingSema {
 			repellStSlider.setValue((int)(app.getRepStr()*100));
 			repellStSlider.setToolTipText("set repell strength factor");
 			repellStSlider.setName("rep. st.");
-			repellStSlider.setBounds(0, 165, 151, 16);
+			repellStSlider.setBounds(0, 168, 151, 16);
 			repellStSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setRepStr((float)repellStSlider.getValue()/100f);
@@ -1257,16 +1262,16 @@ public class SwingSema {
 			group = new JLabel();
 			group.setText("radius");
 			group.setFont(new java.awt.Font("Dialog",0,10));
-			group.setBounds(148, 92, 30, 13);
+			group.setBounds(148, 80, 30, 13);
 		}
 		return group;
 	}
 	private JLabel getPushLabel() {
 		if (pushLabel == null) {
 			pushLabel = new JLabel();
-			pushLabel.setText("distance");
+			pushLabel.setText("min dist");
 			pushLabel.setFont(new java.awt.Font("Dialog",0,10));
-			pushLabel.setBounds(148, 150, 41, 13);
+			pushLabel.setBounds(148, 153, 48, 13);
 		}
 		return pushLabel;
 	}
@@ -1275,7 +1280,7 @@ public class SwingSema {
 			pushLabel1 = new JLabel();
 			pushLabel1.setText("strength");
 			pushLabel1.setFont(new java.awt.Font("Dialog",0,10));
-			pushLabel1.setBounds(148, 166, 41, 13);
+			pushLabel1.setBounds(148, 169, 41, 13);
 		}
 		return pushLabel1;
 	}
@@ -1314,7 +1319,7 @@ public class SwingSema {
 			clusters.setMargin(new java.awt.Insets(0,0,0,0));
 			clusters.setContentAreaFilled(false);
 			clusters.setFont(new java.awt.Font("Dialog",0,10));
-			clusters.setBounds(0, 72, 33, 17);
+			clusters.setBounds(145, 59, 33, 17);
 			clusters.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setCluster(clusters.isSelected());
@@ -1366,7 +1371,7 @@ public class SwingSema {
 			repNeighbors.setMargin(new java.awt.Insets(0,0,0,0));
 			repNeighbors.setContentAreaFilled(false);
 			repNeighbors.setFont(new java.awt.Font("Dialog",0,10));
-			repNeighbors.setBounds(61, 130, 59, 17);
+			repNeighbors.setBounds(61, 119, 59, 17);
 			repNeighbors.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setRepN(!app.isRepN());
@@ -1383,7 +1388,7 @@ public class SwingSema {
 			repellBox1.setMargin(new java.awt.Insets(0,0,0,0));
 			repellBox1.setContentAreaFilled(false);
 			repellBox1.setFont(new java.awt.Font("Dialog",0,10));
-			repellBox1.setBounds(0, 130, 33, 17);
+			repellBox1.setBounds(0, 119, 33, 17);
 			repellBox1.setSelected(app.repell);
 			repellBox1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1399,7 +1404,7 @@ public class SwingSema {
 			jLabel3 = new JLabel();
 			jLabel3.setText("clusters");
 			jLabel3.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel3.setBounds(0, 58, 151, 14);
+			jLabel3.setBounds(0, 60, 151, 14);
 		}
 		return jLabel3;
 	}
@@ -1408,7 +1413,7 @@ public class SwingSema {
 			jLabel4 = new JLabel();
 			jLabel4.setText("repulsive forces (slow)");
 			jLabel4.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel4.setBounds(0, 112, 151, 14);
+			jLabel4.setBounds(0, 103, 151, 14);
 		}
 		return jLabel4;
 	}
@@ -2747,5 +2752,33 @@ public class SwingSema {
 			});
 		}
 		return fadeLabels;
+	}
+
+	private JSlider getJSlider6() {
+		if(maxRepSlider == null) {
+			maxRepSlider = new JSlider();
+			maxRepSlider.setMaximum(2000);
+			maxRepSlider.setMinimum(100);
+			maxRepSlider.setToolTipText("set max repell distance");
+			maxRepSlider.setOpaque(false);
+			maxRepSlider.setName("jSlider6");
+			maxRepSlider.setBounds(1, 136, 151, 16);
+			maxRepSlider.addChangeListener(new ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					app.setRepellMax(maxRepSlider.getValue());
+				}
+			});
+		}
+		return maxRepSlider;
+	}
+	
+	private JLabel getJLabel20() {
+		if(jLabel20 == null) {
+			jLabel20 = new JLabel();
+			jLabel20.setText("max dist");
+			jLabel20.setFont(new java.awt.Font("Dialog",0,10));
+			jLabel20.setBounds(149, 137, 50, 13);
+		}
+		return jLabel20;
 	}
 }	

@@ -102,8 +102,8 @@ public class Net {
 			newEdge = new Edge(app, aref, bref, id);
 			addEdge(newEdge);
 
-			aref.adList.add(bref);
-			if (!dir) bref.adList.add(aref); else bref.inList.add(aref);
+//			aref.adList.add(bref);
+//			if (!dir) bref.adList.add(aref); else bref.inList.add(aref);
 
 			return eTable.get(name);
 		}
@@ -404,6 +404,7 @@ public class Net {
 	}
 
 	public void  findGroups(){
+		groups.clear();
 		for (Node n:nNodes) {
 			if (n.partOfGroup) {
 				String groupname = n.attributes.get("group");
@@ -416,7 +417,7 @@ public class Net {
 					} else {
 						grp = new Net(app);
 						Node center = grp.addNode(gn);
-						//					addNode(center);
+						center.group = true;
 						groups.put(gn, grp);
 					}
 					grp.addNode(n);
@@ -714,8 +715,8 @@ public class Net {
 	}
 
 	public void updateNet() {
-		updateAdLists(app.directed); //update adj. lists etc.
 		findGroups();
+		updateAdLists(app.directed); //update adj. lists etc.
 		timeTable.clear();
 		for (Node n:nNodes) {
 			if (n.getTime()!=null) timeTable.put(n, n.getTime());

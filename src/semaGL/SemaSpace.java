@@ -11,12 +11,15 @@ import javax.media.opengl.glu.GLU;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.nio.IntBuffer;
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
@@ -144,8 +147,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private float invar= Float.parseFloat(Messages.getString("nodeSizeVariance"));
 	public boolean textures= Boolean.parseBoolean(Messages.getString("textures"));
 	private Font font;
-	FTFont outlinefont;
-	FTFont polyfont;
+	FTGLOutlineFont outlinefont ;
+	FTFont polygonfont;
+	FTFont texturefont;
+
 	private float labelsize= Float.parseFloat(Messages.getString("labelSize"));
 	private float labelVar= Float.parseFloat(Messages.getString("labelSizeVariance"));
 	private boolean initTree;
@@ -153,7 +158,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public boolean drawClusters= Boolean.parseBoolean(Messages.getString("clusters"));
 	//	private GLPbuffer pbuffer;
 	public NetStack ns;
-	FTGLTextureFont texturefont;
+
 	public boolean tilt = Boolean.parseBoolean(Messages.getString("tiltedLabels"));
 	int screenshotcounter = 0;
 	public int shotres = Integer.parseInt(Messages.getString("screenshotResolution"));
@@ -166,6 +171,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	boolean labelsEdgeDir=true;
 	private float outvar;
 	public boolean fadeLabels=false;
+	private int repellMax = 1000;
 
 	public SemaSpace(){
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
@@ -176,6 +182,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		Color.decode(Messages.getString("edgeColor")).getComponents(edgeColor);
 		Color.decode(Messages.getString("frameColor")).getComponents(frameColor);
 		labelsEdgeDir = (Boolean.parseBoolean(Messages.getString("labelsEdgeDir")));
+		repellMax = (int) Float.parseFloat(Messages.getString("repellMaxDist"));
 		fileIO = new FileIO(this);
 		ns = (new NetStack(this));
 		layout = new Layouter(this);
@@ -220,22 +227,28 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 
 	private void initFonts(GL gl) {
-		//		try {
-		//			File file = new File("machtgth.ttf");
-		//			FileInputStream is = new FileInputStream(file);
-		//			font = Font.createFont(Font.TRUETYPE_FONT, is);
-		//		} catch (MalformedURLException e) {
-		//			e.printStackTrace();
-		//		} catch (IOException e) {
-		//			e.printStackTrace();
-		//		} catch (FontFormatException e) {
-		//			e.printStackTrace();
-		//		}
-		font = Font.decode("Times New Roman").deriveFont(172f); //$NON-NLS-1$
+		//				try {
+		//					File file = new File("lib/machtgth.ttf");
+		//					FileInputStream is = new FileInputStream(file);
+		//					font = Font.createFont(Font.TRUETYPE_FONT, is);
+		//				} catch (MalformedURLException e) {
+		//					e.printStackTrace();
+		//				} catch (IOException e) {
+		//					e.printStackTrace();
+		//				} catch (FontFormatException e) {
+		//					e.printStackTrace();
+		//				}
+		font = Font.decode("Times new Roman").deriveFont(172f); //$NON-NLS-1$
 		FontRenderContext context = FTFont.STANDARDCONTEXT;
 		texturefont = new FTGLTextureFont(font,context);
+		polygonfont = new FTGLPolygonFont(font,context);
+		outlinefont =  new FTGLOutlineFont(font,context);
 		texturefont.setGLGLU(gl, glu);
 		texturefont.faceSize(70f);
+		polygonfont.setGLGLU(gl, glu);
+		polygonfont.faceSize(70f);
+		outlinefont.setGLGLU(gl, glu);
+		outlinefont.faceSize(70f);
 	}
 
 	public void display(GLAutoDrawable gLDrawable) {
@@ -439,6 +452,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 		switch (evt.getKeyCode())
 		{
+		case KeyEvent.VK_0:
+			ns.view.updateNet();
+			break;
 		case KeyEvent.VK_SPACE:
 			break;
 		case KeyEvent.VK_SHIFT:
@@ -459,7 +475,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			layout.layoutLocksRemove();
 			break;
 		case KeyEvent.VK_F5: 
-			ns.getView().findTriangles();
+			initFonts(glD.getGL());
 			break;
 		case KeyEvent.VK_F6:
 			break;
@@ -599,28 +615,30 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void delNodesAtt() {
 		HashSet<Node> ne = new HashSet<Node>();
-		ns.global.updateNet();
 		Net view = ns.getView();
-		for (Node n:ns.global.nNodes) {
+		
+		
+		for (Node n:view.nNodes) {
 			if (n.hasAttribute(attribute)) ne.add(n);
 		}
 		
 		if (directed) {
-			
-		for (Node n:ne) {
-			if (n.adList.size()>0&&n.inList.size()>0) {
-				for (Node from:n.inList) {
-					for (Node to:n.adList) {
-						view.addEdge(from, to);
+			for (Node n:ne) {
+				if (n.adList.size()>0&&n.inList.size()>0) {
+					for (Node from:n.inList) {
+						for (Node to:n.adList) {
+								view.addEdge(from, to);
+						}
 					}
 				}
 			}
 		}
-		}
+		view.updateNet();
+
 		for (Node n:ne) {
-//			ns.global.removeNode(n);
-			ns.getView().removeNode(n);
+			view.removeNode(n);
 		}
+		view.updateNet();
 		updatePick();
 	}
 
@@ -1200,7 +1218,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public float getInVar() {
 		return invar;
 	}
-	
+
 	public void setOutVar(float value) {
 		outvar = value;
 	}
@@ -1405,5 +1423,13 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public boolean isLabelsEdgeDir() {
 		return labelsEdgeDir;
+	}
+
+	public void setRepellMax(int value) {
+		repellMax = value;
+	}
+
+	public int getRepellMax() {
+		return repellMax;
 	}
 }

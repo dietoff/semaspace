@@ -1,6 +1,5 @@
 package semaGL;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
@@ -8,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import javax.media.opengl.GL;
 import nehe.TextureReader.Texture;
+import net.sourceforge.ftgl.FTBBox;
+
 import com.sun.opengl.util.BufferUtil;
 import com.sun.opengl.util.GLUT;
 
@@ -58,7 +59,7 @@ public class FuncGL {
 				//paint background frame
 				int len = app.glut.glutBitmapLength(font, lines[i]);
 				gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
-//				gl.glColor4f(.9f, .9f, .9f, textColor[3]);
+				//				gl.glColor4f(.9f, .9f, .9f, textColor[3]);
 				gl.glColor4f(1f, 1f, 1f, textColor[3]);
 				gl.glRecti((int)offset, (int)(-factor*(i*25f+7)), (int)(offset+factor*len*1.4f),(int)(factor*(-i*25f+18)));
 			}
@@ -80,15 +81,25 @@ public class FuncGL {
 		//		gl.glLoadName(id);
 		float scale = offset*0.025f;
 		gl.glScalef(scale, scale, scale);
-		gl.glLineWidth(1f);
 		gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
 
 		String[] lines = text.split("\n"); 
 		if (!center) gl.glTranslatef(40, 90, 0);
 		for (int i = 0; i<lines.length; i++){
 			gl.glTranslatef(0, -60f, 0);
+			
+			gl.glPushMatrix();
+				FTBBox box = app.texturefont.getBBox(lines[i]);
+				gl.glTranslatef(box.lowerX,box.lowerY,0);
+				gl.glScalef(box.getWidth()/2f,box.getHeight()/2f,0);
+				gl.glColor4f(1,1,1,1f);
+				gl.glTranslatef(1f,1f,0);
+				quad(gl);
+			gl.glPopMatrix();
+
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
 			app.texturefont.render(lines[i]);
+			gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
 		}
 		gl.glLineWidth(app.textwidth);
 		gl.glPopMatrix();
@@ -130,14 +141,14 @@ public class FuncGL {
 		gl.glTranslatef(offset*10f, offsety*10f, 0);
 
 		// Render The Text
-			app.glut.glutStrokeString(font, string);
+		app.glut.glutStrokeString(font, string);
 		gl.glPopMatrix();
 	}
 
 	static float stringlength (SemaSpace app, String st){
 		return app.glut.glutStrokeLengthf(strokefont, st);
 	}
-	
+
 	static void drawLine(GL gl, Vector3D start, Vector3D end, float[] startc, float[] endc) {
 		gl.glBegin(GL.GL_LINES);
 		gl.glColor4fv(startc,0);
