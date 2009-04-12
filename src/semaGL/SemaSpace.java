@@ -11,15 +11,12 @@ import javax.media.opengl.glu.GLU;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.nio.IntBuffer;
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
@@ -45,7 +42,6 @@ import data.Vector3D;
 
 import net.sourceforge.ftgl.glfont.FTFont;
 import net.sourceforge.ftgl.glfont.FTGLOutlineFont;
-import net.sourceforge.ftgl.glfont.FTGLPixmapFont;
 import net.sourceforge.ftgl.glfont.FTGLPolygonFont;
 import net.sourceforge.ftgl.glfont.FTGLTextureFont;
 
@@ -276,7 +272,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		updateUI();
-		redrawUI();
+//		redrawUI();
 	}
 
 	public void layout() {

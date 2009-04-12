@@ -59,7 +59,10 @@ public abstract class GraphElement {
 		return;
 	}
 	public static float[] colorFunction(String param) {
-		return Func.parseColorInt(String.valueOf(param.hashCode()*726.12344381f).hashCode());
+		int h = param.hashCode();
+		int rot =    (h << (32-17)) | (h >>> 17);
+//		return Func.parseColorInt(String.valueOf(param.hashCode()*726.12344381f).hashCode());
+		return Func.parseColorInt(rot);
 	}
 
 
