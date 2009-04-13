@@ -10,13 +10,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.Event;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
-import javax.media.opengl.GLCapabilities;
-import javax.media.opengl.GLDrawable;
-import javax.media.opengl.GLDrawableFactory;
-import javax.media.opengl.GLException;
-import javax.media.opengl.GLPbuffer;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -28,7 +21,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.*;
 
 import java.awt.Dimension;
@@ -36,7 +28,6 @@ import java.awt.GridBagLayout;
 import javax.swing.JSplitPane;
 import java.awt.GridBagConstraints;
 import javax.swing.JCheckBox;
-import java.awt.Insets;
 import nehe.GLDisplayPanel;
 import javax.swing.JTextField;
 import javax.swing.JSlider;
@@ -49,16 +40,11 @@ import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import com.sun.opengl.util.Screenshot;
-
 import data.*;
-
 import semaGL.*;
-import sun.security.krb5.internal.UDPClient;
 import UI.SimButton;
 import java.awt.BorderLayout;
 import java.io.File;
-import java.io.IOException;
 
 
 /**
@@ -95,9 +81,8 @@ public class SwingSema {
 			private GLDisplayPanel semaGLDisplay;
 
 			public void run() {
-				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
-
 				space = new SemaSpace();
+				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
 				semaGLDisplay.addGLEventListener(space);
 				application = new SwingSema();
 				application.setSema(space);
@@ -398,14 +383,19 @@ public class SwingSema {
 			mainWindow.setSize(1000,600);
 			mainWindow.setTitle("SemaSpace");
 			mainWindow.setContentPane(getJSplitPane());
-			openFile = new JFileChooser();
-			openPicDir = new JFileChooser();
-			openPicDir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			saveFile = new JFileChooser();
-			saveFile.addChoosableFileFilter(new SemaTableFilter());
-			saveFile.addChoosableFileFilter(new SemaInlineFilter());
+			initFileChoosers();
 		}
 		return mainWindow;
+	}
+
+
+	public void initFileChoosers() {
+		openFile = new JFileChooser();
+		openPicDir = new JFileChooser();
+		openPicDir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		saveFile = new JFileChooser();
+		saveFile.addChoosableFileFilter(new SemaTableFilter());
+		saveFile.addChoosableFileFilter(new SemaInlineFilter());
 	}
 
 
@@ -441,8 +431,6 @@ public class SwingSema {
 		return jJMenuBar;
 	}
 
-
-
 	private JTextArea getJTextFieldMsg() {
 		if(jTextFieldMsg == null) {
 			jTextFieldMsg = new JTextArea();
@@ -453,8 +441,6 @@ public class SwingSema {
 		}
 		return jTextFieldMsg;
 	}
-
-
 
 	/**
 	 * This method initializes selectAButton	
@@ -504,6 +490,7 @@ public class SwingSema {
 	}
 
 	public void setCounter() {
+		if (mainWindow==null) return;
 		String title = "SemaSpace - "+app.ns.global.nNodes.size()+" Nodes, "+app.ns.global.nEdges.size()+" Edges";
 		if (app.ns.view!=app.ns.global) title+="; visible: "+app.ns.view.nNodes.size()+" Nodes, "+app.ns.view.nEdges.size()+" Edges";
 		getMainWindow().setTitle(title);
@@ -623,13 +610,13 @@ public class SwingSema {
 		} 
 		return edgeAttList;
 	}
-	private JSplitPane getJSplitPane() {
+	public JSplitPane getJSplitPane() {
 		if (jSplitPane == null) {
 			jSplitPane = new JSplitPane();
 			jSplitPane.setResizeWeight(0.0D);
 			jSplitPane.setDividerSize(0);
 			jSplitPane.setPreferredSize(new Dimension(1000,800));
-			jSplitPane.add(getJSplitPane1(), JSplitPane.LEFT);
+			jSplitPane.add(getControlPane(), JSplitPane.LEFT);
 			jSplitPane.add(getDummyPanel(), JSplitPane.RIGHT);
 		}
 		return jSplitPane;
@@ -645,7 +632,7 @@ public class SwingSema {
 		}
 		return controlPanel;
 	}
-	private JSplitPane getJSplitPane1() {
+	private JSplitPane getControlPane() {
 		if (jSplitPane1 == null) {
 			jSplitPane1 = new JSplitPane();
 			jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -653,7 +640,7 @@ public class SwingSema {
 			jSplitPane1.setDividerSize(0);
 			jSplitPane1.setDoubleBuffered(true);
 			jSplitPane1.setMinimumSize(new java.awt.Dimension(230, 400));
-			jSplitPane1.add(getJSplitPane2(), JSplitPane.TOP);
+			jSplitPane1.add(getUpperPart(), JSplitPane.TOP);
 			jSplitPane1.add(getInspectors(), JSplitPane.BOTTOM);
 		}
 		return jSplitPane1;
@@ -795,7 +782,7 @@ public class SwingSema {
 			depth.setMajorTickSpacing(1);
 			depth.setPaintTrack(false);
 			depth.setSnapToTicks(true);
-			depth.setFont(new java.awt.Font("Dialog",0,7));
+			depth.setFont(new java.awt.Font("Dialog",0,9));
 			depth.setInverted(false);
 			depth.setToolTipText("searchdepth");
 			depth.setOpaque(false);
@@ -1577,7 +1564,7 @@ public class SwingSema {
 	}
 
 	public void redrawUI(){
-		this.getMainWindow().paintAll(this.getMainWindow().getGraphics());
+		this.getControlPane().paintAll(this.getControlPane().getGraphics());
 	}
 
 	public void updateUI(NetStack n) {
@@ -1670,7 +1657,7 @@ public class SwingSema {
 			jSlider1.setSnapToTicks(true);
 			jSlider1.setPaintTrack(false);
 			jSlider1.setPaintLabels(true);
-			jSlider1.setFont(new java.awt.Font("Dialog",0,7));
+			jSlider1.setFont(new java.awt.Font("Dialog",0,9));
 			jSlider1.setToolTipText("searchdepth");
 			jSlider1.setOpaque(false);
 			jSlider1.setName("jSlider1");
@@ -1813,7 +1800,7 @@ public class SwingSema {
 		return jLabel10;
 	}
 
-	private JSplitPane getJSplitPane2() {
+	private JSplitPane getUpperPart() {
 		if(jSplitPane2 == null) {
 			jSplitPane2 = new JSplitPane();
 			jSplitPane2.setOrientation(JSplitPane.VERTICAL_SPLIT);
