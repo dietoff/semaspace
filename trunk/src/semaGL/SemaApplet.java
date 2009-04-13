@@ -1,13 +1,8 @@
 package semaGL;
 
-import javax.media.opengl.GLCanvas;
 import javax.swing.JApplet;
-import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import data.*;
-import UI.SemaTheme;
+import javax.swing.JSplitPane;
+import nehe.GLDisplayPanel;
 import UI.SwingSema;
 
 import com.sun.opengl.util.FPSAnimator;
@@ -20,35 +15,26 @@ public class SemaApplet extends JApplet {
 
 	@Override
 	public void init() {
-		MetalLookAndFeel.setCurrentTheme(new SemaTheme());
-		LookAndFeel laf = new MetalLookAndFeel();
-		try {
-			UIManager.setLookAndFeel(laf);
-		} catch (UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		}
-//		setSize(1000, 700);
+//		MetalLookAndFeel.setCurrentTheme(new SemaTheme());
+//		LookAndFeel laf = new MetalLookAndFeel();
+//		try {
+//			UIManager.setLookAndFeel(laf);
+//		} catch (UnsupportedLookAndFeelException e) {
+//			e.printStackTrace();
+//		}
+		setSize(1000, 700);
+		GLDisplayPanel semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
 		SemaSpace space = new SemaSpace();
-		getParameters(space);
+		semaGLDisplay.addGLEventListener(space);
 		SwingSema application = new SwingSema();
-		GLCanvas canvas = new GLCanvas();
 		application.setSema(space);
+		getParameters(space);
 		
-//		application.getJFrame2();
-//		JPanel controlp = application.getControlPanel();
-//		setJMenuBar(application.getJJMenuBar());
-//		JSplitPane jSplitPane1 = new JSplitPane();
-//		jSplitPane1.setPreferredSize(getSize());
-//		jSplitPane1.setDividerLocation(220);
-//		jSplitPane1.setDividerSize(0);
-//		jSplitPane1.setLeftComponent(controlp);
-//		jSplitPane1.setRightComponent(canvas);
-//		add(jSplitPane1);
-		add(canvas);
-//		add(controlp);
-		canvas.addGLEventListener(space);
-		animator = new FPSAnimator(canvas, 60);
-		canvas.requestFocus();
+		JSplitPane splitPane = application.getJSplitPane();
+		splitPane.setRightComponent(semaGLDisplay.getJPanel());
+		add(splitPane);
+		application.initFileChoosers();
+		semaGLDisplay.start();
 	}
 
 	private void getParameters(SemaSpace space) {
@@ -87,15 +73,5 @@ public class SemaApplet extends JApplet {
 		if (perminflate!=null) space.perminflate = Integer.parseInt(perminflate);
 		if (inflateTime!=null) space.inflatetime = Integer.parseInt(inflateTime);
 		if (valenceFact!=null) space.setVal(Float.parseFloat(valenceFact));
-	}
-
-	@Override
-	public void start() {
-		animator.start();
-	}
-
-	@Override
-	public void stop() {
-		animator.stop();
 	}
 }

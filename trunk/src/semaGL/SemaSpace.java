@@ -183,7 +183,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		ns = (new NetStack(this));
 		layout = new Layouter(this);
 		renderer = new GraphRenderer(this);
-
 	}
 
 	public void init(GLAutoDrawable gLDrawable) {
@@ -197,7 +196,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		cam = new Cam(gLDrawable,FOV,0,0,zInc,focus,znear,zfar);
 
 		initFonts(gl);
-		if (random) ns.global.generateRandomNet (100, 146);		// random network
+		if (random) {
+			ns.global.generateRandomNet (100, 146);		// random network
+			netStartRandom(true);
+		}
 		else netLoad(isTabular());
 	}
 
@@ -372,7 +374,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void renderPbuffer(GL gl, int width, int height) {
 		if (height <= 0) height = 1;
-		float h = (float)width/(float)height;
+//		float h = (float)width/(float)height;
 		//		float e = edgewidth;
 		//		float t = textwidth;
 		//		edgewidth=2f;
@@ -613,17 +615,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		HashSet<Node> ne = new HashSet<Node>();
 		Net view = ns.getView();
 		
-		
 		for (Node n:view.nNodes) {
 			if (n.hasAttribute(attribute)) ne.add(n);
 		}
-		
 		if (directed) {
 			for (Node n:ne) {
 				if (n.adList.size()>0&&n.inList.size()>0) {
 					for (Node from:n.inList) {
 						for (Node to:n.adList) {
-								view.addEdge(from, to);
+							view.addEdge(from, to);
 						}
 					}
 				}
@@ -885,7 +885,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			File node = new File(file.getAbsoluteFile()+".n"); //$NON-NLS-1$
 			if (node.exists()) ns.nodeListLoad(node, tab);
 		} 
-
 		ns.getView().updateNet();
 		updateUI();
 		return success;
@@ -971,7 +970,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		}
 		initTree = true;
 		netInit();
-		//		updateUI();
 	}
 
 	public void setAgeThresh(int age) {
@@ -1154,10 +1152,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		frame = (elapsedtime/100f)%100f;
 	}
 	void updateUI() {
-		swingapp.updateUI(ns);
+		if (swingapp!=null) swingapp.updateUI(ns);
 	}
 	void redrawUI() {
-		swingapp.redrawUI();
+		if (swingapp!=null) swingapp.redrawUI();
 	}
 
 
@@ -1330,6 +1328,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void saveNet() {
 		ns.addSubnet((HashSet<Edge>) ns.getView().nEdges.clone());
 		updateUI();
