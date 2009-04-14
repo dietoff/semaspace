@@ -407,7 +407,7 @@ public class Layouter {
 
 	//repell all nodes
 	public void layoutRepell(float abstand, float strength , Net net){
-		int etresh = net.nEdges.size()-(net.nNodes.size()-net.fNodes.size());
+		int etresh = net.fNodes.size();
 
 		if (app.opt) layoutRepVisible ( abstand,  strength);
 		else 
