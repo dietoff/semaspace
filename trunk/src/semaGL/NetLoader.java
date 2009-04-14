@@ -83,9 +83,9 @@ public class NetLoader {
 					if (val.length>1) {
 						String val2 = val[1].trim();
 						tmp.setAttribute(val1, val2);
+						r.edgeattributes.add(val1);
+						setedgeAttributes(tmp);
 					}
-					r.edgeattributes.add(val1);
-					setedgeAttributes(tmp);
 				}
 			}
 		}
@@ -133,8 +133,10 @@ public class NetLoader {
 									String val1 = fields[j].toLowerCase().trim();
 									String val2 = cols[j].trim();
 									tmp.setAttribute(val1, val2);
+									
+									r.edgeattributes.add(val1);
+									setedgeAttributes(tmp);
 								}
-								setedgeAttributes(tmp);
 							}
 						}
 					}
@@ -187,10 +189,14 @@ public class NetLoader {
 						String value = val[1].trim();
 						if (key.length()>0&&value.length()>0) {
 
+							/*
+							// chain attributes
 							if (tmp.hasAttribute(key)) {
 								String attribute = tmp.getAttribute(key);
 								if (!attribute.contentEquals(value)) tmp.setAttribute(key, attribute+","+value);
-							} else {
+							} 
+							else */
+							{
 								tmp.setAttribute(key, value);
 								n.nodeattributes.add(key);
 							}
@@ -221,12 +227,16 @@ public class NetLoader {
 						String value = cols[j].trim();
 						if (value.length()>0) {
 							String key = fields[j].toLowerCase().trim();
-
+							/*	
+							// chain attributes
 							if (tmp.hasAttribute(key)) {
 								String attribute = tmp.getAttribute(key);
 								if (!attribute.contentEquals(value)) tmp.setAttribute(key, attribute+","+value);
-							} else {
+							} 
+							else */
+							{
 								tmp.setAttribute(key, value);
+								n.nodeattributes.add(key);
 							}
 							parseAttributes(tmp, n);
 						}

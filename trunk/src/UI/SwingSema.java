@@ -480,8 +480,6 @@ public class SwingSema {
 		return selectBButton;
 	}
 
-
-
 	private void newETable() {
 		eTableModel.setColumnCount(2);
 		while (eTableModel.getRowCount() > 0) {
