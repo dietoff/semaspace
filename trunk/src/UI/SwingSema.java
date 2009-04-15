@@ -17,6 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
@@ -33,12 +35,17 @@ import javax.swing.JTextField;
 import javax.swing.JSlider;
 import java.awt.Font;
 import java.util.HashMap;
+import java.util.Properties;
 import java.util.TreeSet;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.table.DefaultTableModel;
+
+import com.jtattoo.plaf.fast.FastLookAndFeel;
 
 import data.*;
 import semaGL.*;
@@ -64,8 +71,44 @@ public class SwingSema {
 	{
 		//Set Look & Feel
 		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
+//			UIManager.setLookAndFeel(new MetalLookAndFeel());
+			
+         /*Defaults for FastLookAndFeel
+            selectionBackgroundColor = new ColorUIResource(210, 210, 210);
+            frameColor = gray;
+            focusColor = new ColorUIResource(160, 160, 200);
+            focusCellColor = new ColorUIResource(160, 160, 200);
+            buttonBackgroundColor = extraLightGray;
+            controlBackgroundColor = new ColorUIResource(220, 220, 220);*/
+            
+            Properties props = new Properties();
 
+            props.put("controlTextFont", "Dialog 10");
+            props.put("systemTextFont", "Dialog 10");
+            props.put("userTextFont", "Dialog 10");
+            props.put("menuTextFont", "Dialog 10");
+            props.put("windowTitleFont", "Dialog bold 10");
+            props.put("subTextFont", "Dialog 8");
+            
+            props.put("backgroundColor","255 255 255");
+            props.put("controlBackgroundColor","220 220 220");
+            props.put("controlDarkShadowColor","20 20 20");
+            props.put("controlHighlightColor", "255 0 0");
+            props.put("frameColor","20 20 20");
+            props.put("selectionBackgroundColor", "255 110 90"); 
+            props.put("focusCellColor", "255 110 90"); 
+            props.put("selectionForegroundColor", "255 110 90"); 
+            props.put("buttonBackgroundColor", "200 200 200");
+            
+            props.put("focusColor", "255 110 90"); 
+            props.put("rolloverColor", "255 110 90"); 
+            props.put("rolloverColorLight", "255 110 90"); 
+            props.put("rolloverColorDark", "255 110 90"); 
+            UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+            FastLookAndFeel.setCurrentTheme(props);
+//            FastLookAndFeel.setTheme("Green");
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -1062,7 +1105,7 @@ public class SwingSema {
 			sizeLabel = new JLabel();
 			sizeLabel.setText("nodeSize");
 			sizeLabel.setFont(new java.awt.Font("Dialog",0,10));
-			sizeLabel.setBounds(144, 70, 44, 13);
+			sizeLabel.setBounds(147, 70, 44, 13);
 		}
 		return sizeLabel;
 	}
@@ -1229,7 +1272,7 @@ public class SwingSema {
 			valenzLabel = new JLabel();
 			valenzLabel.setText("degree f.");
 			valenzLabel.setFont(new java.awt.Font("Dialog",0,10));
-			valenzLabel.setBounds(148, 202, 44, 13);
+			valenzLabel.setBounds(151, 202, 44, 13);
 		}
 		return valenzLabel;
 	}
@@ -1238,7 +1281,7 @@ public class SwingSema {
 			distLabel = new JLabel();
 			distLabel.setText("distance");
 			distLabel.setFont(new java.awt.Font("Dialog",0,10));
-			distLabel.setBounds(148, 236, 41, 13);
+			distLabel.setBounds(151, 236, 41, 13);
 		}
 		return distLabel;
 	}
@@ -1247,7 +1290,7 @@ public class SwingSema {
 			group = new JLabel();
 			group.setText("radius");
 			group.setFont(new java.awt.Font("Dialog",0,10));
-			group.setBounds(148, 80, 30, 13);
+			group.setBounds(151, 80, 30, 13);
 		}
 		return group;
 	}
@@ -1256,7 +1299,7 @@ public class SwingSema {
 			pushLabel = new JLabel();
 			pushLabel.setText("min dist");
 			pushLabel.setFont(new java.awt.Font("Dialog",0,10));
-			pushLabel.setBounds(148, 153, 48, 13);
+			pushLabel.setBounds(151, 153, 48, 13);
 		}
 		return pushLabel;
 	}
@@ -1265,7 +1308,7 @@ public class SwingSema {
 			pushLabel1 = new JLabel();
 			pushLabel1.setText("strength");
 			pushLabel1.setFont(new java.awt.Font("Dialog",0,10));
-			pushLabel1.setBounds(148, 169, 41, 13);
+			pushLabel1.setBounds(151, 169, 41, 13);
 		}
 		return pushLabel1;
 	}
@@ -1274,7 +1317,7 @@ public class SwingSema {
 			pushLabel11 = new JLabel();
 			pushLabel11.setText("inflate");
 			pushLabel11.setFont(new java.awt.Font("Dialog",0,10));
-			pushLabel11.setBounds(148, 24, 32, 13);
+			pushLabel11.setBounds(151, 24, 32, 13);
 		}
 		return pushLabel11;
 	}
@@ -1283,7 +1326,7 @@ public class SwingSema {
 			strengthLabel = new JLabel();
 			strengthLabel.setText("strength");
 			strengthLabel.setFont(new java.awt.Font("Dialog",0,10));
-			strengthLabel.setBounds(148, 218, 41, 13);
+			strengthLabel.setBounds(151, 218, 41, 13);
 		}
 		return strengthLabel;
 	}
@@ -1765,7 +1808,7 @@ public class SwingSema {
 			jLabel9 = new JLabel();
 			jLabel9.setText("picSize");
 			jLabel9.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel9.setBounds(144, 90, 34, 13);
+			jLabel9.setBounds(147, 90, 34, 13);
 		}
 		return jLabel9;
 	}
@@ -1793,7 +1836,7 @@ public class SwingSema {
 			jLabel10 = new JLabel();
 			jLabel10.setText("inDeg");
 			jLabel10.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel10.setBounds(144, 110, 41, 13);
+			jLabel10.setBounds(147, 110, 41, 13);
 		}
 		return jLabel10;
 	}
@@ -1831,7 +1874,7 @@ public class SwingSema {
 			fadenodes.setMargin(new java.awt.Insets(0,0,0,0));
 			fadenodes.setContentAreaFilled(false);
 			fadenodes.setFont(new java.awt.Font("Dialog",0,10));
-			fadenodes.setBounds(2, 1, 75, 17);
+			fadenodes.setBounds(2, 1, 52, 17);
 			fadenodes.setSelected(app.fadeNodes);
 			fadenodes.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1873,7 +1916,7 @@ public class SwingSema {
 			jLabel1 = new JLabel();
 			jLabel1.setText("labelstyle");
 			jLabel1.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel1.setBounds(125, 28, 50, 13);
+			jLabel1.setBounds(117, 29, 50, 13);
 		}
 		return jLabel1;
 	}
@@ -2519,7 +2562,7 @@ public class SwingSema {
 			jLabel16 = new JLabel();
 			jLabel16.setText("labelSize");
 			jLabel16.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel16.setBounds(144, 150, 60, 15);
+			jLabel16.setBounds(147, 150, 60, 15);
 		}
 		return jLabel16;
 	}
@@ -2565,7 +2608,7 @@ public class SwingSema {
 			jLabel17 = new JLabel();
 			jLabel17.setText("labelVar");
 			jLabel17.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel17.setBounds(144, 170, 60, 15);
+			jLabel17.setBounds(147, 170, 60, 15);
 		}
 		return jLabel17;
 	}
@@ -2717,7 +2760,7 @@ public class SwingSema {
 			jLabel19 = new JLabel();
 			jLabel19.setText("outDeg");
 			jLabel19.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel19.setBounds(144, 130, 41, 13);
+			jLabel19.setBounds(147, 130, 41, 13);
 		}
 		return jLabel19;
 	}
@@ -2729,7 +2772,7 @@ public class SwingSema {
 			fadeLabels.setMargin(new java.awt.Insets(0,0,0,0));
 			fadeLabels.setContentAreaFilled(false);
 			fadeLabels.setFont(new java.awt.Font("Dialog",0,10));
-			fadeLabels.setBounds(60, 1, 75, 17);
+			fadeLabels.setBounds(60, 1, 51, 17);
 			fadeLabels.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.fadeLabels=fadeLabels.isSelected();
@@ -2762,7 +2805,7 @@ public class SwingSema {
 			jLabel20 = new JLabel();
 			jLabel20.setText("max dist");
 			jLabel20.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel20.setBounds(149, 137, 50, 13);
+			jLabel20.setBounds(152, 137, 50, 13);
 		}
 		return jLabel20;
 	}
