@@ -8,8 +8,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.metal.MetalLookAndFeel;
+
+import com.jtattoo.plaf.AbstractLookAndFeel;
 
 public class SimButton extends JButton {
 	/**
@@ -22,12 +22,14 @@ public class SimButton extends JButton {
 	
 	public SimButton(){
 		super();
-		borderC = new Color(.5f, 0.5f, 0.5f, 1f);
-		backgC = new Color(.8f, .8f, .8f, 1f);
-		rolloverC =new Color(.7f, .7f, 1f, 1f);
+		borderC = AbstractLookAndFeel.getTheme().getControlDarkShadow();
+		rolloverC = AbstractLookAndFeel.getTheme().getRolloverColor();
+		backgC = AbstractLookAndFeel.getTheme().getButtonBackgroundColor();
 		setBackground(backgC);
+		
 		setMargin(new Insets(2,2,2,2));
-		this.setBorder(new LineBorder(borderC, 1, false));
+//		this.setBorder(new LineBorder(borderC, 1, false));
+		this.setBorder(null);
 		this.setFont(new java.awt.Font("Dialog",0,10));
 //		this.setVerticalAlignment(SwingConstants.TOP);
 		this.setHorizontalAlignment(SwingConstants.LEFT);
