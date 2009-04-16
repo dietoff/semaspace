@@ -26,6 +26,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.*;
 
 import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridBagLayout;
 import javax.swing.JSplitPane;
 import java.awt.GridBagConstraints;
@@ -46,6 +48,7 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.table.DefaultTableModel;
 
 import com.jtattoo.plaf.fast.FastLookAndFeel;
+import com.sun.media.sound.Toolkit;
 
 import data.*;
 import semaGL.*;
@@ -67,75 +70,6 @@ import java.io.File;
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
 public class SwingSema {
-
-	{
-		//Set Look & Feel
-		try {
-//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
-//			UIManager.setLookAndFeel(new MetalLookAndFeel());
-			
-         /*Defaults for FastLookAndFeel
-            selectionBackgroundColor = new ColorUIResource(210, 210, 210);
-            frameColor = gray;
-            focusColor = new ColorUIResource(160, 160, 200);
-            focusCellColor = new ColorUIResource(160, 160, 200);
-            buttonBackgroundColor = extraLightGray;
-            controlBackgroundColor = new ColorUIResource(220, 220, 220);*/
-            
-            Properties props = new Properties();
-
-            props.put("controlTextFont", "Dialog 10");
-            props.put("systemTextFont", "Dialog 10");
-            props.put("userTextFont", "Dialog 10");
-            props.put("menuTextFont", "Dialog 10");
-            props.put("windowTitleFont", "Dialog bold 10");
-            props.put("subTextFont", "Dialog 8");
-            
-            props.put("backgroundColor","255 255 255");
-            props.put("controlBackgroundColor","220 220 220");
-            props.put("controlDarkShadowColor","20 20 20");
-            props.put("controlHighlightColor", "255 0 0");
-            props.put("frameColor","20 20 20");
-            props.put("selectionBackgroundColor", "255 110 90"); 
-            props.put("focusCellColor", "255 110 90"); 
-            props.put("selectionForegroundColor", "255 110 90"); 
-            props.put("buttonBackgroundColor", "200 200 200");
-            
-            props.put("focusColor", "255 110 90"); 
-            props.put("rolloverColor", "255 110 90"); 
-            props.put("rolloverColorLight", "255 110 90"); 
-            props.put("rolloverColorDark", "255 110 90"); 
-            UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
-            FastLookAndFeel.setCurrentTheme(props);
-//            FastLookAndFeel.setTheme("Green");
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Launches this application
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			private SwingSema application;
-			private SemaSpace space;
-			private GLDisplayPanel semaGLDisplay;
-
-			public void run() {
-				space = new SemaSpace();
-				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
-				semaGLDisplay.addGLEventListener(space);
-				application = new SwingSema();
-				application.setSema(space);
-				application.getMainWindow().setVisible(true);
-				application.jSplitPane.setRightComponent(semaGLDisplay.getJPanel());
-				semaGLDisplay.start();
-			}
-		});
-	}
-
 	SemaSpace app = null;  //  @jve:decl-index=0:
 	private JMenuBar jJMenuBar = null;
 	private JList edgeAttList;
@@ -294,6 +228,67 @@ public class SwingSema {
 	private JList netList;
 	private DefaultListModel netListModel;
 	protected boolean change=true;
+	private boolean fullscreen=false;
+
+	{
+		fullscreen = Boolean.parseBoolean(Messages.getString("fullscreen"));
+		//Set Look & Feel
+		try {
+			//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
+			//			UIManager.setLookAndFeel(new MetalLookAndFeel());
+
+			Properties props = new Properties();
+			props.put("controlTextFont", "Dialog 10");
+			props.put("systemTextFont", "Dialog 10");
+			props.put("userTextFont", "Dialog 10");
+			props.put("menuTextFont", "Dialog 10");
+			props.put("windowTitleFont", "Dialog bold 10");
+			props.put("subTextFont", "Dialog 8");
+
+			props.put("backgroundColor","255 255 255");
+			props.put("controlBackgroundColor","220 220 220");
+			props.put("controlDarkShadowColor","20 20 20");
+			props.put("controlHighlightColor", "255 0 0");
+			props.put("frameColor","20 20 20");
+			props.put("selectionBackgroundColor", "255 110 90"); 
+			props.put("focusCellColor", "255 110 90"); 
+			props.put("selectionForegroundColor", "255 110 90"); 
+			props.put("buttonBackgroundColor", "200 200 200");
+
+			props.put("focusColor", "255 110 90"); 
+			props.put("rolloverColor", "255 110 90"); 
+			props.put("rolloverColorLight", "255 110 90"); 
+			props.put("rolloverColorDark", "255 110 90"); 
+			UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+			FastLookAndFeel.setCurrentTheme(props);
+			//            FastLookAndFeel.setTheme("Green");
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Launches this application
+	 */
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			private SwingSema application;
+			private SemaSpace space;
+			private GLDisplayPanel semaGLDisplay;
+
+			public void run() {
+				space = new SemaSpace();
+				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
+				semaGLDisplay.addGLEventListener(space);
+				application = new SwingSema();
+				application.setSema(space);
+				application.getMainWindow().setVisible(true);
+				application.jSplitPane.setRightComponent(semaGLDisplay.getJPanel());
+				semaGLDisplay.start();
+			}
+		});
+	}
 	/**
 	 * This method initializes SimButton3	
 	 * 	
@@ -427,10 +422,50 @@ public class SwingSema {
 			mainWindow.setTitle("SemaSpace");
 			mainWindow.setContentPane(getJSplitPane());
 			initFileChoosers();
+			if (fullscreen) enterFullscreen();
 		}
 		return mainWindow;
 	}
 
+	public void fullscreen(Boolean _f) {
+
+		if (_f==fullscreen) return;
+		fullscreen = _f;
+
+		getMainWindow().removeNotify();
+
+		GraphicsEnvironment environment =GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] devices =  environment.getScreenDevices();
+
+		// we will assume the screen of interest is the 1st one
+		GraphicsDevice device = devices[0];
+		if (fullscreen)
+		{
+			enterFullscreen();
+		}
+		else
+		{
+			leaveFullscreen();
+		}
+	}
+	private void leaveFullscreen() {
+		//			device.setFullScreenWindow(null);
+		mainWindow.setSize(1000, 600);
+		mainWindow.setUndecorated(false);
+		mainWindow.setResizable(true);
+		//			mainWindow.validate();
+		mainWindow.setVisible(true);
+	}
+	private void enterFullscreen() {
+		mainWindow.setSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize());
+		mainWindow.setUndecorated(true);
+		mainWindow.setResizable(false);
+
+		// go into full screen mode
+		//			if (device.isFullScreenSupported()) device.setFullScreenWindow(mainWindow);
+		//			mainWindow.validate();
+		mainWindow.setVisible(true);
+	}
 
 	public void initFileChoosers() {
 		openFile = new JFileChooser();
@@ -2736,7 +2771,7 @@ public class SwingSema {
 		}
 		return radLabels;
 	}
-	
+
 	private JSlider getJSlider5() {
 		if(jSlider5 == null) {
 			jSlider5 = new JSlider();
@@ -2754,7 +2789,7 @@ public class SwingSema {
 		}
 		return jSlider5;
 	}
-	
+
 	private JLabel getJLabel19() {
 		if(jLabel19 == null) {
 			jLabel19 = new JLabel();
@@ -2764,7 +2799,7 @@ public class SwingSema {
 		}
 		return jLabel19;
 	}
-	
+
 	private JCheckBox getFadeLabelsBox() {
 		if(fadeLabels == null) {
 			fadeLabels = new JCheckBox();
@@ -2799,7 +2834,7 @@ public class SwingSema {
 		}
 		return maxRepSlider;
 	}
-	
+
 	private JLabel getJLabel20() {
 		if(jLabel20 == null) {
 			jLabel20 = new JLabel();

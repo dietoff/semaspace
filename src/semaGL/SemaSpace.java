@@ -444,9 +444,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		return overID;
 	}
 
-	public void keyPressed(KeyEvent evt) {
+	public void keyReleased(KeyEvent evt) {
 		CTRL = evt.isControlDown();
-		//		if(evt.isAltDown()) pause=!pause;
 
 		switch (evt.getKeyCode())
 		{
@@ -483,9 +482,13 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			break;
 		case KeyEvent.VK_F9: 
 			break;
-		case KeyEvent.VK_F12: 
+		case KeyEvent.VK_F12:
+			swingapp.fullscreen(true);
 			break;
 		case KeyEvent.VK_F11: 
+			break;
+		case KeyEvent.VK_ESCAPE:
+			swingapp.fullscreen(false);
 			break;
 		}
 	}
@@ -495,12 +498,11 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		return attribute;
 	}
 
-	public void keyReleased(KeyEvent evt) {
+	public void keyPressed(KeyEvent evt) {
 		CTRL = evt.isControlDown();
 		switch (evt.getKeyCode())
 		{
 		case KeyEvent.VK_F2: 
-			inflate=false;
 			break;
 		case KeyEvent.VK_SHIFT:
 			break;

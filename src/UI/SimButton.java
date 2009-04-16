@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import com.jtattoo.plaf.AbstractLookAndFeel;
 
 public class SimButton extends JButton {
@@ -23,6 +23,7 @@ public class SimButton extends JButton {
 	public SimButton(){
 		super();
 		borderC = AbstractLookAndFeel.getTheme().getControlDarkShadow();
+//		MetalLookAndFeel.getCurrentTheme().getControlDarkShadow();
 		rolloverC = AbstractLookAndFeel.getTheme().getRolloverColor();
 		backgC = AbstractLookAndFeel.getTheme().getButtonBackgroundColor();
 		setBackground(backgC);
