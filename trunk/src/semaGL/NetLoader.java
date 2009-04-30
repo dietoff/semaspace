@@ -8,6 +8,7 @@ import java.util.TreeSet;
 import java.util.Map.Entry;
 
 import data.Edge;
+import data.GraphElement;
 import data.Net;
 import data.Node;
 
@@ -25,31 +26,34 @@ public class NetLoader {
 	 * load an edge list (format 1)
 	 *
 	 * @param file_
+	 * @param global 
 	 */
-	public Net edgelistLoad(File file_) {
+	public Net edgelistLoad(File file_, Net global) {
 		Net edges = null;
 		String file=FileIO.loadFile(file_);
 		if (file!=null&&file.length()>0) {
-			edges = edgelistParse(file); 
+			edges = edgelistParse(file, global); 
 		}
 		return edges;
 	}
 	/**
 	 * load an edge list (format 2)
 	 * @param file_
+	 * @param global 
 	 * @return 
 	 */
-	public Net edgelistLoadTab(File file_) {
+	public Net edgelistLoadTab(File file_, Net global) {
 		Net edges = null;
 		String file=FileIO.loadFile(file_);
-		if (file!=null&&file.length()>0)  edges = edgelistParse2(file); 
+		if (file!=null&&file.length()>0)  edges = edgelistParse2(file, global); 
 		return edges;
 	}
 	/**
 	 * parse an edge list (format 1)
 	 * @param content
+	 * @param global 
 	 */
-	public Net edgelistParse(String content) {
+	public Net edgelistParse(String content, Net global) {
 		Edge tmp = null;
 		Net r= new Net(app);
 		String lines[]= content.split(lineBreak);
@@ -79,12 +83,11 @@ public class NetLoader {
 			if (cols.length>2) {
 				for (int j=2; j<cols.length; j++){
 					String val[]=cols[j].split(value);	
-					String val1 = val[0].toLowerCase().trim();
+					String key = val[0].toLowerCase().trim();
 					if (val.length>1) {
-						String val2 = val[1].trim();
-						tmp.setAttribute(val1, val2);
-						r.edgeattributes.add(val1);
-						setedgeAttributes(tmp);
+						String value = val[1].trim();
+						addAttribute(r, tmp, value, key);
+						parseEdgeAttributes(tmp);
 					}
 				}
 			}
@@ -96,8 +99,9 @@ public class NetLoader {
 	 * parse an edge list (format 2)
 	 * the fist line specifies the field names, the rest is values
 	 * @param content
+	 * @param global 
 	 */
-	Net edgelistParse2(String content) {
+	Net edgelistParse2(String content, Net global) {
 		Net r= new Net(app);
 		Edge tmp = null;
 		String lines[]= content.split(lineBreak);
@@ -130,12 +134,13 @@ public class NetLoader {
 						if (cols.length>2) {
 							for (int j=2; j<cols.length; j++){
 								if (cols[j].length()>0) {
-									String val1 = fields[j].toLowerCase().trim();
-									String val2 = cols[j].trim();
-									tmp.setAttribute(val1, val2);
+									String key = fields[j].toLowerCase().trim();
+									String value = cols[j].trim();
 									
-									r.edgeattributes.add(val1);
-									setedgeAttributes(tmp);
+									addAttribute(r, tmp, value, key);
+									
+									r.edgeattributes.add(key);
+									parseEdgeAttributes(tmp);
 								}
 							}
 						}
@@ -150,7 +155,7 @@ public class NetLoader {
 	 * parse some predefined edge attributes
 	 * @param tmp
 	 */
-	private void setedgeAttributes(Edge tmp) {
+	private void parseEdgeAttributes(Edge tmp) {
 		if (tmp==null) return;
 		if (tmp.hasAttribute("function")) 
 			tmp.setAltName(tmp.getAttribute("function"));
@@ -189,18 +194,8 @@ public class NetLoader {
 						String value = val[1].trim();
 						if (key.length()>0&&value.length()>0) {
 
-							/*
-							// chain attributes
-							if (tmp.hasAttribute(key)) {
-								String attribute = tmp.getAttribute(key);
-								if (!attribute.contentEquals(value)) tmp.setAttribute(key, attribute+","+value);
-							} 
-							else */
-							{
-								tmp.setAttribute(key, value);
-								n.nodeattributes.add(key);
-							}
-							parseAttributes(tmp, n);
+							addAttribute(n, tmp, value, key);
+							parseNodeAttributes(tmp, n);
 						}
 					}
 				}
@@ -227,18 +222,9 @@ public class NetLoader {
 						String value = cols[j].trim();
 						if (value.length()>0) {
 							String key = fields[j].toLowerCase().trim();
-							/*	
-							// chain attributes
-							if (tmp.hasAttribute(key)) {
-								String attribute = tmp.getAttribute(key);
-								if (!attribute.contentEquals(value)) tmp.setAttribute(key, attribute+","+value);
-							} 
-							else */
-							{
-								tmp.setAttribute(key, value);
-								n.nodeattributes.add(key);
-							}
-							parseAttributes(tmp, n);
+							
+							addAttribute(n, tmp, value, key);
+							parseNodeAttributes(tmp, n);
 						}
 					}
 				}
@@ -246,7 +232,21 @@ public class NetLoader {
 		}
 	}
 
-	public void parseAttributes(Node tmp, Net n) {
+	private void addAttribute(Net n, GraphElement tmp, String value, String key) {
+		// chain attributes
+		if (tmp.hasAttribute(key)) {
+			String attribute = tmp.getAttribute(key);
+			if (!attribute.contains(value)) tmp.setAttribute(key, attribute+","+value);
+		} 
+		else 
+		{
+			tmp.setAttribute(key, value);
+			if (tmp instanceof Node) n.nodeattributes.add(key);
+			if (tmp instanceof Edge) n.edgeattributes.add(key);
+		}
+	}
+
+	public void parseNodeAttributes(Node tmp, Net n) {
 		if (tmp.hasAttribute("name")) tmp.altName=tmp.getAttribute("name");
 		if (tmp.hasAttribute("color")) tmp.setColor(Func.parseColorInt(tmp.getAttribute("color")));
 		if (tmp.hasAttribute("color2")) tmp.setColor2(Func.parseColorInt(tmp.getAttribute("color2")));

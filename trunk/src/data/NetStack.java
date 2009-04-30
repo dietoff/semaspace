@@ -55,7 +55,7 @@ public class NetStack {
 
 	public boolean edgeListLoad(File file, boolean tab) {
 		Net e = new Net(app);
-		if (tab) e= loader.edgelistLoadTab(file); else e = loader.edgelistLoad(file);
+		if (tab) e= loader.edgelistLoadTab(file, global); else e = loader.edgelistLoad(file, global);
 		if (e!=null&&e.nEdges.size()>0) {
 			nets.put(file.getName(), e.nEdges);
 			global.netMerge(e);
