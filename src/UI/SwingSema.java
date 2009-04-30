@@ -26,6 +26,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.*;
 
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagLayout;
@@ -418,11 +419,11 @@ public class SwingSema {
 		if (mainWindow == null) {
 			mainWindow = new JFrame();
 			mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			mainWindow.setSize(1000,600);
 			mainWindow.setTitle("SemaSpace");
+			mainWindow.setSize(1000,600);
 			mainWindow.setContentPane(getJSplitPane());
 			initFileChoosers();
-			if (fullscreen) enterFullscreen();
+			if (fullscreen) enterFullscreen(); 
 		}
 		return mainWindow;
 	}
@@ -433,12 +434,7 @@ public class SwingSema {
 		fullscreen = _f;
 
 		getMainWindow().removeNotify();
-
-		GraphicsEnvironment environment =GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice[] devices =  environment.getScreenDevices();
-
-		// we will assume the screen of interest is the 1st one
-		GraphicsDevice device = devices[0];
+		
 		if (fullscreen)
 		{
 			enterFullscreen();
@@ -449,22 +445,35 @@ public class SwingSema {
 		}
 	}
 	private void leaveFullscreen() {
-		//			device.setFullScreenWindow(null);
+//		GraphicsDevice device = getDevice();
+//		device.setFullScreenWindow(null);
+		mainWindow.setExtendedState(JFrame.NORMAL);
 		mainWindow.setSize(1000, 600);
 		mainWindow.setUndecorated(false);
 		mainWindow.setResizable(true);
+		mainWindow.setVisible(true);
+		//			mainWindow.validate();
+	}
+	private void enterFullscreen() {
+//		GraphicsDevice device = getDevice();
+		// go into full screen mode
+//					if (device.isFullScreenSupported()) device.setFullScreenWindow(mainWindow);
+
+		Dimension size = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		mainWindow.setBounds(0,0,size.width,size.height);
+		mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		mainWindow.setUndecorated(true);
+		mainWindow.setResizable(false);
 		//			mainWindow.validate();
 		mainWindow.setVisible(true);
 	}
-	private void enterFullscreen() {
-		mainWindow.setSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize());
-		mainWindow.setUndecorated(true);
-		mainWindow.setResizable(false);
+	private GraphicsDevice getDevice() {
+		GraphicsEnvironment environment =GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] devices =  environment.getScreenDevices();
 
-		// go into full screen mode
-		//			if (device.isFullScreenSupported()) device.setFullScreenWindow(mainWindow);
-		//			mainWindow.validate();
-		mainWindow.setVisible(true);
+		// we will assume the screen of interest is the 1st one
+		GraphicsDevice device = devices[0];
+		return device;
 	}
 
 	public void initFileChoosers() {
