@@ -29,8 +29,17 @@ public class NetLoader {
 	 * @param global 
 	 */
 	public Net edgelistLoad(File file_, Net global) {
-		Net edges = null;
 		String file=FileIO.loadFile(file_);
+		return edgelistLoad(file,global);
+	}
+	/**
+	 * load an edge list (format 1)
+	 *
+	 * @param file_
+	 * @param global 
+	 */
+	public Net edgelistLoad(String file, Net global) {
+		Net edges = null;
 		if (file!=null&&file.length()>0) {
 			edges = edgelistParse(file, global); 
 		}
@@ -43,11 +52,22 @@ public class NetLoader {
 	 * @return 
 	 */
 	public Net edgelistLoadTab(File file_, Net global) {
-		Net edges = null;
 		String file=FileIO.loadFile(file_);
+		return edgelistLoadTab(file,global);
+	}
+
+	/**
+	 * load an edge list (format 2) 
+	 * @param file_
+	 * @param global 
+	 * @return 
+	 */
+	public Net edgelistLoadTab(String file, Net global) {
+		Net edges = null;
 		if (file!=null&&file.length()>0)  edges = edgelistParse2(file, global); 
 		return edges;
 	}
+
 	/**
 	 * parse an edge list (format 1)
 	 * @param content
@@ -114,7 +134,10 @@ public class NetLoader {
 			{			
 				if (i==0){
 					fields=cols.clone();
-					for (String s:fields) r.edgeattributes.add(s.toLowerCase());
+					for (int j=2; i<fields.length;i++) {
+						String s = fields[j];
+						r.edgeattributes.add(s.toLowerCase());
+					}
 				} else {
 
 					String col1 = cols[0].trim();
@@ -136,9 +159,9 @@ public class NetLoader {
 								if (cols[j].length()>0) {
 									String key = fields[j].toLowerCase().trim();
 									String value = cols[j].trim();
-									
+
 									addAttribute(r, tmp, value, key);
-									
+
 									r.edgeattributes.add(key);
 									parseEdgeAttributes(tmp);
 								}
@@ -167,16 +190,40 @@ public class NetLoader {
 			}
 	}
 
+	/**
+	 * @param file2
+	 * @param n
+	 */
 	public void nodelistLoad(File file2, Net n) {
 		String file = FileIO.loadFile(file2);
+		nodelistLoad(file, n);
+	}
+	/**
+	 * @param file2
+	 * @param n
+	 */
+	public void nodelistLoad(String file, Net n) {
 		if  (file!=null&&file.length()>0) {
 			nodelistParse(file, n);
 		}
 	}
+	/**
+	 * @param file_
+	 * @param n
+	 */
 	public void nodelistLoad2(File file_, Net n) {
 		String file = FileIO.loadFile(file_);
+		nodelistLoad2(file, n);
+	}
+	/**
+	 * @param file_
+	 * @param n
+	 */
+	public void nodelistLoad2(String file, Net n) {
 		if  (file!=null&&file.length()>0)  nodelistParse2(file, n);
 	}
+
+
 	public void nodelistParse(String file, Net n) {
 		Node tmp= null;
 		String lines[]= file.split(lineBreak);
@@ -222,7 +269,7 @@ public class NetLoader {
 						String value = cols[j].trim();
 						if (value.length()>0) {
 							String key = fields[j].toLowerCase().trim();
-							
+
 							addAttribute(n, tmp, value, key);
 							parseNodeAttributes(tmp, n);
 						}
@@ -236,7 +283,7 @@ public class NetLoader {
 		// chain attributes
 		if (tmp.hasAttribute(key)) {
 			String attribute = tmp.getAttribute(key);
-			if (!attribute.contains(value)) tmp.setAttribute(key, attribute+","+value);
+			if (!attribute.contains(value)) tmp.setAttribute(key, attribute+"; "+value);
 		} 
 		else 
 		{

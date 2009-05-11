@@ -16,6 +16,7 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.IntBuffer;
 import java.util.ConcurrentModificationException;
@@ -114,7 +115,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	long starttime, elapsedtime, lasttime, deltatime, currenttime;
 	boolean cluster=true;
 	private boolean FOG = true;
-	private boolean random = false;
+	private boolean loadFromJar = true;
 	boolean select;
 	private float FOV = 70f;
 	public GLAutoDrawable glD;
@@ -196,9 +197,11 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		cam = new Cam(gLDrawable,FOV,0,0,zInc,focus,znear,zfar);
 
 		initFonts(gl);
-		if (random) {
-			ns.global.generateRandomNet (100, 146);		// random network
-			netStartRandom(true);
+		if (loadFromJar) {
+//			ns.global.generateRandomNet (100, 146);		// random network
+//			netStartRandom(true);
+			clearNets();
+			if (loadNetworkJar("data.txt", isTabular())) netStartRandom(false);
 		}
 		else netLoad(isTabular());
 	}
@@ -274,7 +277,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		updateUI();
-//		redrawUI();
+		//		redrawUI();
 	}
 
 	public void layout() {
@@ -374,7 +377,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void renderPbuffer(GL gl, int width, int height) {
 		if (height <= 0) height = 1;
-//		float h = (float)width/(float)height;
+		//		float h = (float)width/(float)height;
 		//		float e = edgewidth;
 		//		float t = textwidth;
 		//		edgewidth=2f;
@@ -394,9 +397,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	void select(){
 		pickID = getOverID();
 		if (pickID!=-1) select = true;
+		else select = false;
 		pressed=false;
 		if (CTRL) focus.setXYZ(ns.getView().getPosByID(pickID)); //point to selected node's position
-		updatePick(pickID);
+		if (select) updatePick(pickID);
 	}
 
 	int selectCoord(GL gl){
@@ -512,9 +516,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void keyTyped(KeyEvent evt) {
 	}
 
-	public void mouseClicked(MouseEvent evt) {
-	}
-
 	public void mouseDragged(MouseEvent evt) {
 		//		System.out.println("SemaSpace.mouseDragged()"+select);
 		pressed = false;
@@ -580,6 +581,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		moved = true;
 	}
 
+	public void mouseClicked(MouseEvent evt) {
+		updatePick();
+	}
+
 	public void mousePressed(MouseEvent evt) {
 		moved = true;
 		pressed = true;
@@ -588,8 +593,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void mouseReleased(MouseEvent evt) {
-		pressed = false;
-		select = false;
+		//		pressed = false;
+		//		select = false;
 	}
 
 	public void addEdge(String a, String b) {
@@ -616,7 +621,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void delNodesAtt() {
 		HashSet<Node> ne = new HashSet<Node>();
 		Net view = ns.getView();
-		
+
 		for (Node n:view.nNodes) {
 			if (n.hasAttribute(attribute)) ne.add(n);
 		}
@@ -872,15 +877,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void netLoad(boolean tab) {
 		clearNets();
-		//		try {
-		//		downloadNet(getUrl());
-		//		if (nodeUrl!=null) downloadNodeData(nodeUrl);
-		//		if (edgeUrl!=null) downloadEdgeData(edgeUrl);
-		//		} catch (IOException e) {
-		//		}
 		if (loadNetwork(new File(filename), tab)) netStartRandom(false);
 	}
 
+	/**
+	 * Load a new network
+	 * @param file
+	 * @param tab - tabular file format?
+	 * @return
+	 */
 	public boolean loadNetwork(File file, boolean tab) {
 		boolean success = ns.edgeListLoad(file, tab);
 		if (success) {
@@ -892,12 +897,47 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		return success;
 	}
 
+	/**
+	 * Load a new network from jar
+	 * @param file
+	 * @param tab - tabular file format?
+	 * @return
+	 */
+	public boolean loadNetworkJar(String file, boolean tab) {
+		String jarRead;
+		try {
+			jarRead = fileIO.jarRead(file);
+			boolean success = ns.edgeListLoad(jarRead, file, tab);
+			if (success) {
+				String jarNodes = fileIO.jarRead(file+".n"); 
+				ns.nodeListLoad(jarNodes, tab);
+			} 
+			ns.getView().updateNet();
+			updateUI();
+			return true;
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * add node parameter file
+	 * @param file2 
+	 * @param tab - tabular file format?
+	 */
 	public void nodeListLoad(File file2, boolean tab) {
 		ns.nodeListLoad(file2, tab);
 		ns.getView().updateNet();
 		updateUI();
 	}
 
+	/**
+	 * New view from picked node
+	 * @param add - add to existing view
+	 */
 	public void netSearchPicked(boolean add) {
 		Node picked = getPicked();
 		if (picked!=null) {
@@ -906,32 +946,40 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		}
 	}
 
+	/**
+	 * generate view from specified node
+	 * @param n
+	 * @param add- add to existing view
+	 */
 	public void netStartNode(Node n, boolean add) {
 		initTree = true;
 		ns.search(n, searchdepth, add);
 	}
 
+	/**
+	 * generate view from node name
+	 * @param text
+	 * @param add- add to existing view
+	 */
 	public void netStartString(String text, boolean add) {
 		initTree = true;
 		ns.setView(ns.search(text, searchdepth, add));
 		netInit();
 	}
 
+	/**
+	 * generate view through substring search in node names
+	 * @param text
+	 * @param add- add to existing view
+	 */
 	public void netSearchSubstring(String text, boolean add) {
-		//		Net searchNet;
-		//		if (text.length()==0) {
-		//			return;
-		//		}
-		//		else {
-		//			initTree = true;
-		//			searchNet = nets.global.generateSubstringSearchNet(nets.global, text, searchdepth, getAttribute());
-		//		}
-		//		if (add) nets.view.netMerge(searchNet); else net=searchNet; 
-		//		
 		initTree = true;
 		ns.setView(ns.search(text, searchdepth, add, getAttribute()));
 		netInit();
 	}
+	/**
+	 * generate view from whole network
+	 */
 	public void netShowAll(){
 		initTree = true;
 		if (attribute == "none") { //$NON-NLS-1$
@@ -948,12 +996,20 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		netInit();
 	}
 
+	/**
+	 * view from first node in nodearray
+	 * @param add- add to existing view
+	 */
 	public void netStartFirst(boolean add) {
 		int ID = 0;
 		Node n = (Node)ns.global.nNodes.toArray()[ID];
 		netStartNode(n, add);
 	}
 
+	/**
+	 * generate view from random node
+	 * @param add- add to existing view
+	 */
 	public void netStartRandom(boolean add) {
 		if (attribute!="none") { //$NON-NLS-1$
 			HashSet<Node> hs = new HashSet<Node>();
@@ -1013,10 +1069,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		filename = selectedFile;
 	}
 
-	//	public void setFilepath(String string) {
-	//		filepath= string;
-	//
-	//	}
 	public void setFonttype(int fonttype_) {
 		fonttype = fonttype_;
 	}
@@ -1160,8 +1212,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (swingapp!=null) swingapp.redrawUI();
 	}
 
-
-
 	public HashSet<GraphElement> findSubstringAttributes(String text, String key) {
 		String subString=text.toLowerCase();
 		HashSet<GraphElement> resultL = new HashSet<GraphElement>();
@@ -1276,8 +1326,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (!GLDrawableFactory.getFactory().canCreateGLPbuffer()) return;
 		boolean f = flat;
 		flat = false;
-		//		int width = glD.getWidth()*2;
-		//		int height = glD.getHeight()*2;
 
 		GLCapabilities caps = new GLCapabilities();
 		GLPbuffer pbuffer = GLDrawableFactory.getFactory().createGLPbuffer(caps, null, width, height, null);
@@ -1285,8 +1333,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		GL gl = pbuffer.getGL();
 		moved = false;
 
-		//		FontRenderContext context = FTFont.STANDARDCONTEXT;
-		//		texturefont = new FTGLTextureFont(font,context);
 		texturefont.setGLGLU(gl, new GLU());
 		texturefont.faceSize(70f);
 
@@ -1414,7 +1460,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void setLabelsEdgeDir(boolean labelsEdgeDir) {
-		//		this.tilt=false;
 		this.labelsEdgeDir = labelsEdgeDir;
 	}
 

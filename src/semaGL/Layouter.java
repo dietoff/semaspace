@@ -42,7 +42,7 @@ public class Layouter {
 	private int edgeTresh=2000;
 	boolean circles= false;
 	private boolean nodeAligned;
-	
+
 	Layouter (SemaSpace app_) {
 		app= app_;
 		replist = new HashMap<String, nodeTuple>();
@@ -456,7 +456,7 @@ public class Layouter {
 	private float repFrucht(float abstand, float strength, Vector3D dist, nodeTuple n, int max) {
 		Node a = n.getA();
 		Node b = n.getB();
-		
+
 		if (a.adList.size()+a.inList.size()==0||b.adList.size()+b.inList.size()==0) max = 0;
 		dist.setXYZ(b.pos);
 		dist.sub(a.pos);
@@ -882,22 +882,22 @@ public class Layouter {
 							FontRenderContext frc = g2d.getFontRenderContext();
 							TextLayout tl = new TextLayout(sp[i],varFont,frc);
 
-							if (app.isTree()) alignLabel(g2d, n.pos, n.size(), tl);
-
-							if (app.labelsEdgeDir&&!app.tilt){
-								if (n.adList.size()==1) {
-									Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
-									alignLabel(g2d, sub, n.size(), tl);
-								} else
-									if (n.inList.size()==1) {
-										Vector3D sub = Vector3D.sub(n.pos, n.inList.iterator().next().pos);
+							if (app.isTree()&&app.ns.view.distances.getNodeDistance(n)>0) alignLabel(g2d, n.pos, n.size(), tl);
+							else
+								if (app.labelsEdgeDir&&!app.tilt){
+									if (n.adList.size()==1) {
+										Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
 										alignLabel(g2d, sub, n.size(), tl);
-									}
-									else {
-										float advance = tl.getAdvance()/2f;
-										g2d.translate(-advance, -n.size()/2f);
-									}
-							}
+									} else
+										if (n.inList.size()==1) {
+											Vector3D sub = Vector3D.sub(n.pos, n.inList.iterator().next().pos);
+											alignLabel(g2d, sub, n.size(), tl);
+										}
+										else {
+											float advance = tl.getAdvance()/2f;
+											g2d.translate(-advance, -n.size()/2f);
+										}
+								}
 
 							if (font==0) {
 								g2d.setPaint(new Color(1,1,1,n.color[3]));
