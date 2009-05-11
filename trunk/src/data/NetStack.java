@@ -26,6 +26,9 @@ public class NetStack {
 		setView(new Net(app));
 	}
 
+	/**
+	 * delete the net stack
+	 */
 	public void clear() {
 		nets.clear();
 		nets.put("none", new HashSet<Edge>());
@@ -33,6 +36,10 @@ public class NetStack {
 		setView(new Net(app));
 	}
 
+	/**
+	 * merge network to the global network and add to the stack
+	 * @param n
+	 */
 	public void add(Net n){
 		HashSet<Edge> e = new HashSet<Edge>();
 		e.addAll(n.nEdges);
@@ -40,6 +47,10 @@ public class NetStack {
 		global.netMerge(n);
 	}
 
+	/**
+	 * remove a network from the stack
+	 * @param n
+	 */
 	public void remove(Net n){
 		if (nets.containsKey(n)) {
 			nets.remove(n);
@@ -47,6 +58,10 @@ public class NetStack {
 		}
 	}
 
+	/**
+	 * get global, merged network
+	 * @return
+	 */
 	public Net getGlobal(){
 		return global;
 	}
@@ -55,19 +70,17 @@ public class NetStack {
 		return nets.keySet();
 	}
 
-	public boolean edgeListLoad(File file, boolean tab) {
-		Net e = new Net(app);
-		if (tab) e= loader.edgelistLoadTab(file, global); else e = loader.edgelistLoad(file, global);
-		if (e!=null&&e.nEdges.size()>0) {
-			nets.put(file.getName(), e.nEdges);
-			global.netMerge(e);
-			return true;
-		}else return false;
-	}
 
-	public boolean edgeListLoad(String jarRead, String name, boolean tab) {
+	/**
+	 * parse network from provided unparsed string
+	 * @param unparsed
+	 * @param name
+	 * @param tab
+	 * @return
+	 */
+	public boolean edgeListParse(String unparsed, String name, boolean tab) {
 			Net e = new Net(app);
-			if (tab) e= loader.edgelistLoadTab(jarRead, global); else e = loader.edgelistLoad(jarRead, global);
+			if (tab) e= loader.edgelistLoadTab(unparsed, global); else e = loader.edgelistLoad(unparsed, global);
 			if (e!=null&&e.nEdges.size()>0) {
 				nets.put(name, e.nEdges);
 				global.netMerge(e);
@@ -76,23 +89,40 @@ public class NetStack {
 		return false;
 	}
 
-	public void nodeListLoad(File file2, boolean tab) {
-		if (tab) loader.nodelistLoad2(file2, global); else loader.nodelistLoad(file2, global);
+	/**
+	 * parse node attributes from provided unparsed string
+	 * @param unparsed
+	 * @param tab
+	 */
+	public void nodeListParse(String unparsed, boolean tab) {
+		if (tab) loader.nodelistLoad2(unparsed, global); else loader.nodelistLoad(unparsed, global);
 	}
 	
-	public void nodeListLoad(String file2, boolean tab) {
-		if (tab) loader.nodelistLoad2(file2, global); else loader.nodelistLoad(file2, global);
-	}
+	/**
+	 * add a subnet to the netstack
+	 * @param e
+	 */
 	public void addSubnet(HashSet<Edge> e) {
 		if (e!=null&&e.size()>0) {
 			nets.put("subnet"+nets.size(),e);
 		}
 	}
 
+	/**
+	 * remove subnet from the network stack
+	 * @param net
+	 */
 	public void removeSubnet(String net) {
 		nets.remove(net);
 	}
 
+	/**
+	 * find the context of a node & generate a view
+	 * @param n
+	 * @param searchdepth
+	 * @param add
+	 * @return
+	 */
 	public Net search(Node n, int searchdepth, boolean add) {
 		if (n==null) {
 			setView(global);
@@ -105,6 +135,13 @@ public class NetStack {
 		return getView();
 	}
 
+	/**
+	 * search a regex string & generate a view
+	 * @param n
+	 * @param searchdepth
+	 * @param add
+	 * @return
+	 */
 	public Net search(String n, int searchdepth, boolean add) {
 		Net s;
 		s = global.generateSearchNet(global, n, searchdepth);
@@ -112,6 +149,14 @@ public class NetStack {
 		return getView();
 	}
 
+	/**
+	 * search a substring & generate a new view
+	 * @param n
+	 * @param searchdepth
+	 * @param add
+	 * @param attribute
+	 * @return
+	 */
 	public Net search(String n, int searchdepth, boolean add, String attribute) {
 		Net s;
 		s = global.generateAttribSearchNet(global, n, searchdepth, attribute);
@@ -131,6 +176,10 @@ public class NetStack {
 		return view;
 	}
 
+	/**
+	 * get view from the provided network name
+	 * @param net
+	 */
 	public void setView(String net) {
 		view.clearNet();
 		HashSet<Edge> edges = nets.get(net);
@@ -138,12 +187,27 @@ public class NetStack {
 		view.updateNet();
 	}
 
+	/**
+	 * export the view in graphML format
+	 * @param filename
+	 */
 	public void exportGraphML (String filename){
 		loader.saveGraphML(filename, view);
 	}
+	
+	/**
+	 * export the view in GML format
+	 * @param filename
+	 */
 	public void exportGML (String filename){
 		loader.saveGML(filename, view);
 	}
+	
+	/**
+	 * export the view in SemaSpace formats
+	 * @param filename
+	 * @param tab
+	 */
 	public void exportNet(String filename, boolean tab) {
 		if (!tab){
 			loader.saveNet(filename, view);
