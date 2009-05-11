@@ -1,10 +1,12 @@
 package data;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import semaGL.FileIO;
 import semaGL.NetLoader;
 import semaGL.SemaSpace;
 
@@ -62,21 +64,35 @@ public class NetStack {
 			return true;
 		}else return false;
 	}
-	
+
+	public boolean edgeListLoad(String jarRead, String name, boolean tab) {
+			Net e = new Net(app);
+			if (tab) e= loader.edgelistLoadTab(jarRead, global); else e = loader.edgelistLoad(jarRead, global);
+			if (e!=null&&e.nEdges.size()>0) {
+				nets.put(name, e.nEdges);
+				global.netMerge(e);
+				return true;
+			}
+		return false;
+	}
+
 	public void nodeListLoad(File file2, boolean tab) {
 		if (tab) loader.nodelistLoad2(file2, global); else loader.nodelistLoad(file2, global);
 	}
 	
+	public void nodeListLoad(String file2, boolean tab) {
+		if (tab) loader.nodelistLoad2(file2, global); else loader.nodelistLoad(file2, global);
+	}
 	public void addSubnet(HashSet<Edge> e) {
 		if (e!=null&&e.size()>0) {
 			nets.put("subnet"+nets.size(),e);
 		}
 	}
-	
+
 	public void removeSubnet(String net) {
 		nets.remove(net);
 	}
-	
+
 	public Net search(Node n, int searchdepth, boolean add) {
 		if (n==null) {
 			setView(global);
@@ -88,14 +104,14 @@ public class NetStack {
 		}
 		return getView();
 	}
-	
+
 	public Net search(String n, int searchdepth, boolean add) {
 		Net s;
 		s = global.generateSearchNet(global, n, searchdepth);
 		if (add) getView().netMerge(s); else setView(s);
 		return getView();
 	}
-	
+
 	public Net search(String n, int searchdepth, boolean add, String attribute) {
 		Net s;
 		s = global.generateAttribSearchNet(global, n, searchdepth, attribute);
@@ -132,10 +148,10 @@ public class NetStack {
 		if (!tab){
 			loader.saveNet(filename, view);
 			loader.saveNodeData(filename+".n", view); 
-			} else {
+		} else {
 			loader.saveNetTab(filename, view);
 			loader.saveNodeDataTab(filename+".n", view); 
-			}
-		
+		}
+
 	}
 }

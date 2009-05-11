@@ -13,8 +13,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -99,6 +104,24 @@ public class FileIO {
 		return target;
 	}
 
+	public String jarRead(String filename) throws IOException {
+		InputStream is = getClass().getClassLoader().getResourceAsStream(filename);
+
+		final char[] buffer = new char[0x10000];
+		StringBuilder out = new StringBuilder();
+		Reader in = new InputStreamReader(is, "UTF-8");
+		int read;
+		do {
+			read = in.read(buffer, 0, buffer.length);
+			if (read>0) {
+				out.append(buffer, 0, read);
+			}
+		}
+		while (read>=0);
+		
+		return out.toString();
+	}
+
 	public static String fileRead(File file) throws IOException {
 		// Create an input stream and file channel
 		// Using first argument as file name to read in
@@ -112,7 +135,7 @@ public class FileIO {
 		fis.close();
 		// Convert ByteBuffer to one long String
 		String content = new String(bb.array(), "UTF-8");
-//		String content2 = java.text.Normalizer.normalize(content, Normalizer.Form.NFC);
+		//		String content2 = java.text.Normalizer.normalize(content, Normalizer.Form.NFC);
 
 		bb = null;
 		System.gc();
@@ -189,11 +212,11 @@ public class FileIO {
 		else return null;
 	}
 
-//	public static String readCachedPage(String filename) throws IOException {
-//		String page;
-//		page = org.apache.commons.lang.StringEscapeUtils.unescapeHtml(FileIO.fileRead(filename));
-//		return page;
-//	}
+	//	public static String readCachedPage(String filename) throws IOException {
+	//		String page;
+	//		page = org.apache.commons.lang.StringEscapeUtils.unescapeHtml(FileIO.fileRead(filename));
+	//		return page;
+	//	}
 
 	static void saveImg(String folder, Node node) throws IOException {
 		Node n = node;
@@ -250,39 +273,39 @@ public class FileIO {
 	public boolean storeStream(String url, String filename) {
 		return httpClient.storeStream(url, filename);
 	}
-	
+
 	public static String HTMLEntityEncode( String s )
-	   {
-	       StringBuffer buf = new StringBuffer();
-	       int len = (s == null ? -1 : s.length());
+	{
+		StringBuffer buf = new StringBuffer();
+		int len = (s == null ? -1 : s.length());
 
-	       for ( int i = 0; i < len; i++ )
-	       {
-	           char c = s.charAt( i );
-	           if ( c>='a' && c<='z' || c>='A' && c<='Z' || c>='0' && c<='9' )
-	           {
-	               buf.append( c );
-	           }
-	           else
-	           {
-	               buf.append( "&#" + (int)c + ";" );
-	           }
-	       }
-	       return buf.toString();
-	   }
-	   /*
-     * Get the extension of a file.
-     */
-    public static String getExtension(String f) {
-        String ext = null;
-        String s = f;
-        int i = s.lastIndexOf('.');
+		for ( int i = 0; i < len; i++ )
+		{
+			char c = s.charAt( i );
+			if ( c>='a' && c<='z' || c>='A' && c<='Z' || c>='0' && c<='9' )
+			{
+				buf.append( c );
+			}
+			else
+			{
+				buf.append( "&#" + (int)c + ";" );
+			}
+		}
+		return buf.toString();
+	}
+	/*
+	 * Get the extension of a file.
+	 */
+	public static String getExtension(String f) {
+		String ext = null;
+		String s = f;
+		int i = s.lastIndexOf('.');
 
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
-        }
-        return ext;
-    }
+		if (i > 0 &&  i < s.length() - 1) {
+			ext = s.substring(i+1).toLowerCase();
+		}
+		return ext;
+	}
 
 }
 

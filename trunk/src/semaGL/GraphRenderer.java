@@ -164,7 +164,7 @@ public class GraphRenderer {
 
 		if (font<2){
 
-			if (app.isTree()) {
+			if (app.isTree()&&app.ns.view.distances.getNodeDistance(n)>0) {
 				alignLabel(gl,n.pos, n.size(), font, fsize, split[0]);
 			} else
 			{

@@ -1,6 +1,8 @@
 package data;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
+
 import semaGL.*;
 
 
@@ -81,8 +83,11 @@ public abstract class GraphElement {
 
 	public String genTextAttributeList(){
 		String content = attributes.toString();
+		String result ="";
+		for (Entry<String, String> c:attributes.entrySet()) {
+			result += c.getKey()+"="+c.getValue()+"\n";
+		}
 		content = content.substring(1, content.length()-1);
-		String result = content.replaceAll(", ", "\n");
 		return result;
 	}
 
