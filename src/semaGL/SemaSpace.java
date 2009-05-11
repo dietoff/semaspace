@@ -195,15 +195,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		gLDrawable.addKeyListener(this);
 		initGLsettings(gl);
 		cam = new Cam(gLDrawable,FOV,0,0,zInc,focus,znear,zfar);
-
 		initFonts(gl);
-		if (loadFromJar) {
-//			ns.global.generateRandomNet (100, 146);		// random network
-//			netStartRandom(true);
-			clearNets();
-			if (loadNetworkJar("data.txt", isTabular())) netStartRandom(false);
-		}
-		else netLoad(isTabular());
+		netLoad(isTabular());
 	}
 
 	private void initGLsettings(GL gl) {
@@ -225,7 +218,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		gl.glFogf(GL.GL_FOG_END, 10000f);							// Fog End Depth
 		if (FOG) gl.glEnable(GL.GL_FOG);							// Enables GL.GL_FOG
 	}
-
 
 	private void initFonts(GL gl) {
 		//				try {
@@ -877,6 +869,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void netLoad(boolean tab) {
 		clearNets();
+		if (loadFromJar) {
+			if (loadNetworkJar("data.txt", isTabular())) netStartRandom(false);
+		} else
 		if (loadNetwork(new File(filename), tab)) netStartRandom(false);
 	}
 
@@ -887,13 +882,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	 * @return
 	 */
 	public boolean loadNetwork(File file, boolean tab) {
-		boolean success = ns.edgeListLoad(file, tab);
+		String cont = FileIO.loadFile(file);
+		boolean success = ns.edgeListParse(cont, file.getName(), tab);
+		
 		if (success) {
+			cont = null;
 			File node = new File(file.getAbsoluteFile()+".n"); //$NON-NLS-1$
-			if (node.exists()) ns.nodeListLoad(node, tab);
-		} 
-		ns.getView().updateNet();
-		updateUI();
+			if (node.exists()) 	 cont = FileIO.loadFile(node);
+			ns.nodeListParse(cont, tab);
+		}
 		return success;
 	}
 
@@ -907,10 +904,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		String jarRead;
 		try {
 			jarRead = fileIO.jarRead(file);
-			boolean success = ns.edgeListLoad(jarRead, file, tab);
+			boolean success = ns.edgeListParse(jarRead, file, tab);
 			if (success) {
 				String jarNodes = fileIO.jarRead(file+".n"); 
-				ns.nodeListLoad(jarNodes, tab);
+				ns.nodeListParse(jarNodes, tab);
 			} 
 			ns.getView().updateNet();
 			updateUI();
@@ -929,7 +926,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	 * @param tab - tabular file format?
 	 */
 	public void nodeListLoad(File file2, boolean tab) {
-		ns.nodeListLoad(file2, tab);
+		String cont = FileIO.loadFile(file2);
+		ns.nodeListParse(cont, tab);
 		ns.getView().updateNet();
 		updateUI();
 	}
