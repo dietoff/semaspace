@@ -1,8 +1,10 @@
 package semaGL;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import javax.media.opengl.GL;
@@ -11,6 +13,7 @@ import net.sourceforge.ftgl.FTBBox;
 
 import com.sun.opengl.util.BufferUtil;
 import com.sun.opengl.util.GLUT;
+import com.sun.opengl.util.j2d.TextRenderer;
 
 import data.Vector3D;
 
@@ -19,9 +22,11 @@ public class FuncGL {
 	private static int strokefont = GLUT.STROKE_ROMAN;
 	private static int fontOffset;
 	SemaSpace app;
+	private TextRenderer renderer;
 
 	FuncGL(SemaSpace space) {
 		app=space;
+		
 	}
 
 	static void renderText( SemaSpace app, String text, float[] textColor, float offset , int font, int id, float distToCam, boolean centerOnNode, boolean fast) {
@@ -89,22 +94,28 @@ public class FuncGL {
 			gl.glTranslatef(0, -60f, 0);
 			
 			gl.glPushMatrix();
-				FTBBox box = app.texturefont.getBBox(lines[i]);
+				FTBBox box = app.outlinefont.getBBox(lines[i]);
 				gl.glTranslatef(box.lowerX,box.lowerY,0);
 				gl.glScalef(box.getWidth()/2f,box.getHeight()/2f,0);
 				gl.glColor4f(1,1,1,1f);
 				gl.glTranslatef(1f,1f,0);
 				quad(gl);
 			gl.glPopMatrix();
-
+//			
+//			gl.glLineWidth(5f);
+//			gl.glColor4f(1,1,1,1);
+//			app.outlinefont.render(lines[i]);
+			
+			gl.glLineWidth(0.5f);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
-			app.texturefont.render(lines[i]);
+			app.outlinefont.render(lines[i]);
+			app.polygonfont.render(lines[i]);
 			gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
 		}
 		gl.glLineWidth(app.textwidth);
 		gl.glPopMatrix();
 	}
-
+	
 	static void renderTxt(SemaSpace app, String text, float[] textColor, int id, float offset, boolean center, boolean fast) {
 		GL gl=app.glD.getGL();
 		gl.glLoadName(id);

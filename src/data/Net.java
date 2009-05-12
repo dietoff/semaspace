@@ -750,8 +750,8 @@ public class Net {
 		for (Node n:nNodes) {
 			if (n.hasAttribute(attribute)) n.altName=n.getAttribute(attribute);
 		}
-		for (Edge n:nEdges) {
-			if (n.hasAttribute(attribute)) n.altName=n.getAttribute(attribute);
+		for (Edge e:nEdges) {
+			if (e.hasAttribute(attribute)) e.altName=e.getAttribute(attribute);
 		}
 	}
 

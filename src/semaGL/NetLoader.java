@@ -76,7 +76,7 @@ public class NetLoader {
 	public Net edgelistParse(String content, Net global) {
 		Edge tmp = null;
 		Net r= new Net(app);
-		String lines[]= content.split(lineBreak);
+		String lines[]= content.trim().split(lineBreak);
 		for (int i=0; i<lines.length; i++){
 			String cols[] = lines[i].split(separator);
 
@@ -124,7 +124,7 @@ public class NetLoader {
 	Net edgelistParse2(String content, Net global) {
 		Net r= new Net(app);
 		Edge tmp = null;
-		String lines[]= content.split(lineBreak);
+		String lines[]= content.trim().split(lineBreak);
 		String fields[] = null; 
 		for (int i=0; i<lines.length; i++){
 			String line = lines[i].replaceAll(lineBreak, "");
@@ -226,7 +226,7 @@ public class NetLoader {
 
 	public void nodelistParse(String file, Net n) {
 		Node tmp= null;
-		String lines[]= file.split(lineBreak);
+		String lines[]= file.trim().split(lineBreak);
 		for (int i=0; i<lines.length; i++){
 			String cols[] = lines[i].split(separator);
 			String col1 = "";
@@ -252,9 +252,10 @@ public class NetLoader {
 
 	//second format: the first line specifies the name of the attribute
 	public void nodelistParse2(String file, Net n) {
-		Node tmp;
-		String lines[]= file.split(lineBreak);
+		Node tmp= null;
+		String lines[]= file.trim().split(lineBreak);
 		String fields[] = null;
+
 		for (int i=0; i<lines.length; i++){
 			String line = lines[i].replaceAll(lineBreak, "");
 			String cols[] = line.split(separator);

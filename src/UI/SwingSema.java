@@ -235,8 +235,8 @@ public class SwingSema {
 		fullscreen = Boolean.parseBoolean(Messages.getString("fullscreen"));
 		//Set Look & Feel
 		try {
-			//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
-			//			UIManager.setLookAndFeel(new MetalLookAndFeel());
+			//						MetalLookAndFeel.setCurrentTheme(new SemaTheme());
+			//						UIManager.setLookAndFeel(new MetalLookAndFeel());
 
 			Properties props = new Properties();
 			props.put("controlTextFont", "Dialog 10");
@@ -262,7 +262,6 @@ public class SwingSema {
 			props.put("rolloverColorDark", "255 110 90"); 
 			UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
 			FastLookAndFeel.setCurrentTheme(props);
-			//            FastLookAndFeel.setTheme("Green");
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -433,8 +432,8 @@ public class SwingSema {
 		if (_f==fullscreen) return;
 		fullscreen = _f;
 
-		getMainWindow().removeNotify();
-		
+		getMainWindow().dispose();
+
 		if (fullscreen)
 		{
 			enterFullscreen();
@@ -445,32 +444,31 @@ public class SwingSema {
 		}
 	}
 	private void leaveFullscreen() {
-//		GraphicsDevice device = getDevice();
-//		device.setFullScreenWindow(null);
+		//		GraphicsDevice device = getDevice();
+		//		device.setFullScreenWindow(null);
 		mainWindow.setExtendedState(JFrame.NORMAL);
 		mainWindow.setSize(1000, 600);
 		mainWindow.setUndecorated(false);
 		mainWindow.setResizable(true);
 		mainWindow.setVisible(true);
-		//			mainWindow.validate();
+		//		mainWindow.validate();
 	}
 	private void enterFullscreen() {
-//		GraphicsDevice device = getDevice();
 		// go into full screen mode
-//					if (device.isFullScreenSupported()) device.setFullScreenWindow(mainWindow);
+		//			GraphicsDevice device = getDevice();
+		//			if (device.isFullScreenSupported()) device.setFullScreenWindow(mainWindow);
 
 		Dimension size = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		mainWindow.setBounds(0,0,size.width,size.height);
 		mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainWindow.setUndecorated(true);
 		mainWindow.setResizable(false);
-		//			mainWindow.validate();
 		mainWindow.setVisible(true);
+		//				mainWindow.validate();
 	}
 	private GraphicsDevice getDevice() {
 		GraphicsEnvironment environment =GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice[] devices =  environment.getScreenDevices();
-
 		// we will assume the screen of interest is the 1st one
 		GraphicsDevice device = devices[0];
 		return device;
@@ -2739,7 +2737,7 @@ public class SwingSema {
 					app.calculate = false;
 					app.render = false;
 					saveFile.resetChoosableFileFilters();
-					saveFile.addChoosableFileFilter(new SVGFilter());
+					if (app.enableSvg) saveFile.addChoosableFileFilter(new SVGFilter());
 					saveFile.addChoosableFileFilter(new TGAFilter());
 					int returnVal = saveFile.showSaveDialog(saveFile);
 					app.calculate=calc;
@@ -2748,7 +2746,7 @@ public class SwingSema {
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
 
-						if (saveFile.getFileFilter() instanceof SVGFilter) {
+						if (app.enableSvg&&saveFile.getFileFilter() instanceof SVGFilter) {
 							if (!filename.endsWith(".svg")) filename+=".svg";
 							app.exportSVG (filename);
 						}

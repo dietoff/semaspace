@@ -1,352 +1,308 @@
 package semaGL;
 
-import java.nio.DoubleBuffer;
-import java.nio.IntBuffer;
-import java.util.HashSet;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.awt.Shape;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
+import java.io.UnsupportedEncodingException;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.*;
 
+import org.apache.batik.dom.GenericDOMImplementation;
+import org.apache.batik.svggen.SVGGraphics2D;
+import org.apache.batik.svggen.SVGGraphics2DIOException;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
 
-import data.*;
+import data.BBox3D;
+import data.Edge;
+import data.GraphElement;
+import data.Net;
+import data.Node;
+import data.Vector3D;
+
+
 
 public class GraphRendererSVG {
 	private SemaSpace app;
 	private GLU glu;
-	private double[] projection= new double[16];
-	private double[] model = new double[16];
-	private int[] view = new int[16];
-	
+	private Net net;
+	private String fontFam = "Helvetica";
+	boolean circles= false;
+	private boolean nodeAligned;
 
 	public GraphRendererSVG (SemaSpace app_){
 		glu = new GLU();
 		app=app_;
+		net = app.ns.getView();
+		fontFam = Messages.getString("SVGFontFamily");
+		circles = Boolean.parseBoolean(Messages.getString("SVGNodesCircles"));
+		nodeAligned = Boolean.parseBoolean(Messages.getString("SVGNodesAligned"));
 	}
 
-	synchronized void renderNode(GL gl, Node n) {
-		if (app.flat&&outsideView(n)) return;
 
-//		if (n.newTex=true&&n.tex!=null){
-//			FuncGL.initGLTexture(gl,n.tex, n.textures);
-//			n.newTex = false;
-//			n.tex=null;
-//		}
-		gl.glPushMatrix();
-//		gl.glLoadName(n.id);
-
-		//transform model
-		float xRot = app.cam.getYRot();		//should be global camera orientation
-		float yRot = app.cam.getXRot();
-		gl.glTranslatef(n.pos.x, n.pos.y, n.pos.z);
-		gl.glRotatef(xRot, 0, 1, 0);
-		gl.glRotatef(yRot, 1, 0, 0);
-		float size = n.size();
-		if (n.textures[0]!=0) size*=app.picSize;
-		//		if (colored) size*=2;
-		//draw node
-		gl.glPushMatrix();
-		gl.glScalef(size, size, size);
-
-		gl.glColor4fv(n.color,0);
-		gl.glPolygonMode(GL.GL_FRONT, GL.GL_LINE);
-		gl.glLineWidth(1f);
-		FuncGL.quad(gl);
-		
-
-		gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
-		gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
-
-		//			gl.glColor4fv(pickColor,0); //pick color
-
-		// textures
-		if (n.textures[0]!=0){
-			gl.glBindTexture(GL.GL_TEXTURE_2D, n.textures[0]);
-			gl.glColor4f(1f,1f,1f,n.color[3]);
-			//				gl.glColor4f(1f,1f,1f,pickColor[3]); //pick color 
-		}
-
-		//split quad or solid quad
-		if (n.color2 !=null) {
-			FuncGL.triangle1(gl);
-			gl.glColor4fv(n.color2,0);
-			FuncGL.triangle2(gl);
-		} else
-			FuncGL.quad(gl);
-
-		//pick frame
-		if (n.pickColor[3]>0){
-			gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
-			gl.glPolygonMode(GL.GL_FRONT, GL.GL_LINE);
-			gl.glLineWidth(2.5f);
-			gl.glColor4fv(n.pickColor,0);
-			FuncGL.quad(gl);	
-		}
-
-		if (n.isLocked()) {
-			gl.glPushMatrix();
-			gl.glLineWidth(1.5f);
-			gl.glTranslatef(0, 1, 0);
-			gl.glBegin(GL.GL_LINES);
-			gl.glVertex3f(0,0,0);
-			gl.glVertex3f(0,1,0);
-			gl.glEnd();
-			gl.glPopMatrix();
-		}
-
-		//hilight frame
-		if (n.isFrame()) {
-			gl.glColor4fv(app.frameColor,0);
-			drawFrame(gl);
-		}
-
-		//rollover frame
-		if (n.rollover) {
-			gl.glColor4fv(app.rollOverColor,0);
-			drawFrame(gl);
-		}
-
-		// reset scale transformations
-		gl.glPopMatrix();
-
-		// reset all transformations
-		gl.glPopMatrix();
-		gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
-		
-	}
-
-	public double[] project2screen(GL gl, Vector3D pos) {
-		gl.glGetIntegerv(GL.GL_VIEWPORT, view,0);
-		gl.glGetDoublev(GL.GL_PROJECTION_MATRIX, projection,0);
-		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, model,0);
-		double[] winPos = new double[3];
-		glu.gluUnProject(pos.x, pos.y, pos.z, model, 0, projection, 0, view, 0, winPos,0);
-//		System.out.println(winPos[0]+","+winPos[1]);
-		return winPos;
-	}
-
-	public synchronized void renderNodeLabels(GL gl, Node n, int font, boolean fast){
-
-		if (app.flat&&outsideView(n)) return;
-
-		float distToCam = app.cam.distToCam(n.pos);
-		String att="";
-		float[] textcolor = {n.color[0]/2f, n.color[1]/2f, n.color[2]/2f, 1};
-		if (n.rollover) {
-			att= n.genTextAttributeList();
-			if (font==3) font=2;
-		}
-		else {
-			if ((n.pickColor[3]==0&&(n.alpha<0.2f)||font==3)) return;
-			if (distToCam>app.maxLabelRenderDistance) return; 
-			att = n.genTextSelAttributes();
-		}
-		n.textColor[3]=n.alpha;
-
-		gl.glPushMatrix();
-		//transform model
-		float xRot = app.cam.getYRot();		//should be global camera orientation
-		float yRot = app.cam.getXRot();
-		gl.glTranslatef(n.pos.x, n.pos.y, n.pos.z);
-		gl.glRotatef(xRot, 0, 1, 0);
-		gl.glRotatef(yRot, 1, 0, 0);
-		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
-		FuncGL.renderText(app, att, textcolor, app.getLabelsize()+n.size()*app.getLabelVar(), font, n.id, distToCam, false, fast); //dont draw the text if alpha is too low
-		// reset all transformations
-		gl.glPopMatrix();
-	}
+	void renderSVG(GL gl,  Net net_, int text, String filename) {
+		/*
+		HashMap<Node,double[]> node2Dpos = new HashMap<Node, double[]>();
+		HashMap<Edge,double[]> edge2Dvec = new HashMap<Edge, double[]>();
 	
-	public synchronized void renderGroupLabels(GL gl, Node n, int font){
-
-		if (app.flat&&outsideView(n)) return;
-
-		float distToCam = app.cam.distToCam(n.pos);
-//		float[] textcolor = {n.color[0]/2f, n.color[1]/2f, n.color[2]/2f, 1};
-		float[] textcolor = GraphElement.colorFunction(n.name);
-		n.textColor[3]=1;
-		gl.glPushMatrix();
-		//transform model
-		float xRot = app.cam.getYRot();		//should be global camera orientation
-		float yRot = app.cam.getXRot();
-		gl.glTranslatef(n.pos.x, n.pos.y, n.pos.z);
-		gl.glRotatef(xRot, 0, 1, 0);
-		gl.glRotatef(yRot, 1, 0, 0);
-		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
-		FuncGL.renderText(app, n.name, textcolor, 1.5f*app.getLabelsize()+n.size()*app.getLabelVar(), font, n.id, distToCam, true, false); //dont draw the text if alpha is too low
-		// reset all transformations
-		gl.glPopMatrix();
+		if (!app.isTree()) renderClusters(gl, nr);
+	
+		for (Node n: net.nNodes) {
+			double[] pos = nr.project2screen(gl, n.pos);
+			node2Dpos.put(n, pos);
+		}
+		for (Edge e: net.nEdges) {
+			double[] a = nr.project2screen(gl, e.getA().pos);
+			double[] b = nr.project2screen(gl, e.getB().pos);
+			double[] evec = {a[0],a[1],b[0],b[1]};
+			edge2Dvec.put(e, evec);
+		}*/
+		net = net_;
+		try {
+			createSVG(filename);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SVGGraphics2DIOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	synchronized void renderEdges(GL gl, Edge e){
-		e.genColorFromAtt();
 
-		Node a = e.getA();
-		Node b = e.getB();
-		float af = a.size(); //length of "arrowheads"
-		float bf = b.size();
+	private void createSVG(String filename)
+	throws UnsupportedEncodingException, SVGGraphics2DIOException {
+	
+		BBox3D bbx = BBox3D.calcBounds(net.nNodes);
+	
+		// Get a DOMImplementation.
+		DOMImplementation domImpl =
+			GenericDOMImplementation.getDOMImplementation();
+	
+		// Create an instance of org.w3c.dom.Document.
+		String svgNS = "http://www.w3.org/2000/svg";
+		Document doc = domImpl.createDocument(svgNS, "svg", null);
+	
+		// Create an instance of the SVG Generator.
+		SVGGraphics2D svgG = new SVGGraphics2D(doc);
+		Dimension bounds = new Dimension((int)bbx.size.x+400, (int)bbx.size.y+400);
+	
+		svgG.setSVGCanvasSize(bounds);
+	
+		paintSVG(svgG, bbx.min.x-200, bbx.min.y-200);
+	
+		//		GVTBuilder builder = new GVTBuilder();
+		//		BridgeContext ctx;
+		//		ctx = new BridgeContext(new UserAgentAdapter());
+		//		GraphicsNode gvtRoot = builder.build(ctx, document);
+		//		Rectangle2D b2d = gvtRoot.getSensitiveBounds();
+		//		svgGenerator.setSVGCanvasSize(new Dimension((int) b2d.getWidth(), (int) b2d.getHeight()));
+		//		svgGenerator.getRoot().setAttributeNS(svgNS, "viewBox", b2d.getMinX()+","+b2d.getMinY()+","+b2d.getMaxX()+","+b2d.getMaxY()); 
+	
+		// Finally, stream out SVG to the standard output using
+		// UTF-8 encoding.
+		boolean useCSS = false; // we want to use CSS style attributes
+		svgG.stream(filename, useCSS);
+	}
 
-		Vector3D D = b.pos.copy();
-		D.sub(a.pos); //direction of the edge
-		Vector3D midP = D.copy();
-		midP.mult(0.5f);
-		midP.add(a.pos);
-		Vector3D DN= D.copy();
-		DN.normalize();
 
-		Vector3D start = a.pos.copy();
-		Vector3D end = b.pos.copy();
-		start.add(DN.mult(DN, af));
-		end.sub(DN.mult(DN, bf));
-
-		gl.glPushMatrix();
-		gl.glLoadName(e.id);
-
-		//draw edge
-		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
-		if  (e.isPartofTriangle){
-			gl.glEnable(GL.GL_LINE_STIPPLE);
-			gl.glLineStipple (5, (short)0xAAAA);
-		}
-
-		//edge or nodes picked: 
-		if (e.isPicked()||(a.getPickColor()[3]>0||b.getPickColor()[3]>0)||e.rollover||e.isFrame())
-		{
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
-			gl.glLineWidth(2.5f);
-			if (e.isPicked()) 
-				FuncGL.drawLine(gl, start, end,app.pickGradStart,app.pickGradStart);
-			if (e.rollover) 
-				FuncGL.drawLine(gl, start, end,app.rollOverColor,app.rollOverColor);
-			if (e.isFrame())
-				FuncGL.drawLine(gl, start, end,app.frameColor,app.frameColor);
-
-			FuncGL.drawLine(gl, start, end,a.getPickColor(),b.getPickColor());
-		} 
-		else 
-		{
-			// draw actual edge
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
-			gl.glLineWidth(app.edgewidth);
-			gl.glBegin(GL.GL_LINES);
-			float[] aCol = e.color.clone();
-			float[] bCol = e.color.clone();
-
-			if (e.colored) {
-				bCol[3]=1f;
-				aCol[3]=1f;
-			} else {
-				float f = app.edgeAlpha;
-				aCol[3] = e.getA().alpha*f;
-				bCol[3] = e.getB().alpha*f;
+	public void paintSVG(Graphics2D g2d, float origX, float origY) {
+		int font = app.fonttype;
+		BasicStroke sngl = new BasicStroke(1f);
+		BasicStroke dbl = new BasicStroke(2f); 
+		Font ef = new Font(fontFam,Font.PLAIN, (int)(app.getLabelsize()));
+	
+		AffineTransform id = new AffineTransform();
+		id.setToIdentity();
+	
+		AffineTransform t = new AffineTransform();
+		t.setToIdentity();
+		t.translate(-origX, -origY);
+		g2d.setTransform(t);
+	
+		// edges
+		for (Edge e: net.nEdges) {
+			e.genColorFromAtt();
+	
+			Node a = e.getA();
+			Node b = e.getB();
+			float af = a.size(); 
+			float bf = b.size(); 
+	
+			Vector3D D = Vector3D.sub(b.pos, a.pos);
+			Vector3D DN= D.copy();
+			DN.normalize();
+	
+			Vector3D start = a.pos.copy();
+			Vector3D end = b.pos.copy();
+			start.add(Vector3D.mult(DN, af));
+			end.sub(Vector3D.mult(DN, bf));
+			if (font==0){
+				g2d.setStroke(dbl);
+				g2d.setPaint(new Color(1,1,1,e.color[3]));
+				g2d.drawLine((int)start.x,(int)start.y,(int)end.x,(int)end.y);
 			}
-
-			if (app.inheritEdgeColorFromNodes) {
-				aCol = e.getA().color.clone();
-				bCol = e.getB().color.clone();
-			}
-
-			FuncGL.drawLine(gl, start, end, aCol, bCol);
-			gl.glDisable(GL.GL_LINE_STIPPLE);
+			g2d.setStroke(sngl);
+			g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
+			g2d.drawLine((int)start.x,(int)start.y,(int)end.x,(int)end.y);
 		}
-
-		// draw property vector 
-		if (e.getProperty()!=-1) {
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
-			FuncGL.propertyVector(gl, e.getProperty(), 3f, end, DN);
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
-			FuncGL.propertyVector(gl, e.getProperty(), 3f, end, DN);
-		}
-
-		//draw arrowhead
-		if (app.directed&&!e.getB().adList.contains(e.getA())){
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
-			FuncGL.arrowHeadEmpty(gl,20,end,DN);
-			//			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
-			//			FuncGL.arrowHead(gl,20,end,DN);
-		}
-		gl.glPopMatrix();
-	}
-	synchronized void renderEdgeLabels(GL gl, Edge e, int Text, boolean fast) {
-		float[] color = e.color;
-		int font = Text;
-		Node a = e.getA();
-		Node b = e.getB();
-
-		float[] textcolor = {color [0]/2f, color[1]/2f, color[2]/2f, 1};
-		if (!e.isPicked()&&(!e.attributes.containsKey(app.getAttribute())||color[3]<0.2f)&&!e.rollover) return;
-		if ((e.isPicked()||e.rollover)&&font==3) font=2;
-		Vector3D midP = b.pos.copy();
-		midP.sub(a.pos); //direction of the edge
-		midP.mult(0.5f);
-		midP.add(a.pos);
-		float distToCam = app.cam.distToCam(midP);
-		if (distToCam>app.maxLabelRenderDistance) return; 
-
-		String rText = e.genTextSelAttributes();
-		gl.glPushMatrix();
-		float xRot = app.cam.getYRot();		//billboard; should be global camera orientation
-		float yRot = app.cam.getXRot();
-		gl.glTranslatef(midP.x,midP.y,midP.z);
-		gl.glRotatef(xRot, 0, 1, 0);
-		gl.glRotatef(yRot, 1, 0, 0);
-		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
-		FuncGL.renderText(app, rText, textcolor,app.getLabelsize(), font, e.getId(), distToCam, false, fast); //render text in dark grey, with alpha of edge
-		gl.glPopMatrix();
-	}
-	synchronized void renderFan(GL gl, HashSet<Node> nodes, Node center) {
-		float[] col = Func.parseColorInt(center.name.hashCode()+"");
-		col[3]=Math.min(center.alpha, 0.1f);
-		gl.glColor4fv(col, 0);
-		Node tmp=null;
-		int jcount=0;
-		gl.glPushMatrix();
-		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
-		gl.glBegin(GL.GL_TRIANGLE_FAN);
-		gl.glVertex3f(center.pos.x, center.pos.y, center.pos.z);
-		for (Node bref : nodes){
-			if (bref != center) {
-				if (jcount==0) tmp=bref;
-				gl.glVertex3f(bref.pos.x, bref.pos.y, bref.pos.z);
-				jcount++;
+	
+		// clusters
+		if (app.cluster&&app.drawClusters){
+			for (Node n: net.nNodes) {
+				if (n.cluster.size()>1) {
+					float[] col = GraphElement.colorFunction(n.name);
+					col[3]=Math.min(n.alpha, 0.05f);
+					Polygon p = new Polygon();
+					p.addPoint((int)n.pos.x, (int)n.pos.y);
+					for (Node c:n.cluster){
+						p.addPoint((int)c.pos.x, (int)c.pos.y);
+					}
+					Node c= n.cluster.iterator().next();
+					p.addPoint((int)c.pos.x, (int)c.pos.y);
+					p.addPoint((int)n.pos.x, (int)n.pos.y);
+					g2d.setPaint(new Color(col[0],col[1],col[2],col[3]));
+					g2d.fillPolygon(p);
+				}
 			}
 		}
-		gl.glVertex3f(tmp.pos.x, tmp.pos.y, tmp.pos.z);
-		gl.glEnd();
-		gl.glPopMatrix();
-	}
-	synchronized void renderStar(GL gl, HashSet<Node> nodes, Node center){
-		float[] col = GraphElement.colorFunction(center.name);
-		col[3]=Math.min(center.alpha, 0.15f);
-
-		gl.glPushMatrix();
-		gl.glColor4fv(col, 0);
-		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
-
-		Vector3D D;
-		for (Node bref : nodes){
-			if (bref!=center){
-				D = bref.pos.copy();
-				D.sub(center.pos); 
-				D.mult(-1);
-				FuncGL.symArrowHead(gl, bref.size()*1.5f, center.pos, D);
+	
+		// nodes
+		for (Node n: net.nNodes) {
+			n.genColorFromAtt();
+			float size = n.size()*2f;
+			g2d.setPaint(new Color(n.color[0],n.color[1],n.color[2],n.color[3]));
+			if (circles) g2d.fillOval((int)(n.pos.x)-(int)(size/2), (int)(n.pos.y)-(int)(size/2), (int)size, (int)size);
+			else g2d.fillRect((int)(n.pos.x)-(int)(size/2), (int)(n.pos.y)-(int)(size/2), (int)size, (int)size);
+		}
+	
+		if (font!=3){
+			// edge labels
+			for (Edge e: net.nEdges) {
+				String txt = e.genTextSelAttributes();
+				if (txt.length()>0){
+	
+					g2d.setFont(ef);
+					Node a = e.getA();
+					Node b = e.getB();
+	
+					Vector3D midP = Vector3D.midPoint(a.pos,b.pos);
+					TextLayout tl = new TextLayout(txt,ef,g2d.getFontRenderContext());
+	
+					g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
+	
+					g2d.translate((int)(midP.x), (int)(midP.y));
+	
+					Vector3D sub = Vector3D.sub(a.pos, b.pos);
+					float angle = (float) (Math.atan(sub.y/sub.x));
+					g2d.rotate(angle);
+					g2d.translate(0, -2);
+	
+					float advance = tl.getAdvance()/2f;
+					g2d.translate(-advance, 0);
+	
+					if (e.color[3]>0.2f&& txt.length()>0){
+						if (font==0){
+							g2d.setPaint(new Color(1,1,1,e.color[3]));
+							Shape outline = tl.getOutline(id);
+							g2d.setStroke(dbl);
+							g2d.draw(outline);
+							g2d.setPaint(new Color((e.color[0]*0.5f),(e.color[1]*0.5f),(e.color[2]*0.5f),e.color[3]));
+							g2d.setStroke(sngl);
+							g2d.fill(outline);
+	
+						} else {
+							g2d.setFont(ef);
+							g2d.setPaint(new Color(e.color[0],e.color[1],e.color[2],e.color[3]));
+							g2d.drawString(txt, 0, 0);
+						}
+					}
+					g2d.setTransform(t);
+				}
+			}
+	
+			// node labels
+			for (Node n: net.nNodes) {
+				String txt = n.genTextSelAttributes();
+	
+				if (txt.length()>0){
+					float size = n.size();
+					String[] sp = txt.split("\n");
+	
+	
+					if (n.color[3]>0.2f&& txt.length()>0) {
+						for (int i = 0; i<sp.length; i++){
+	
+							g2d.translate((int)(n.pos.x), (int)(n.pos.y));
+							if (!app.isTree()&&!app.labelsEdgeDir) {
+								g2d.translate((int)(size/2),-(int)(size/2));
+							}
+							if (app.tilt) {
+								g2d.rotate(-0.436332312998582);
+							} 
+	
+							int fntsize = (int)((app.getLabelsize()+n.size()*app.getLabelVar())*1.5f);
+							Font varFont = new Font(fontFam,Font.PLAIN, fntsize);
+							FontRenderContext frc = g2d.getFontRenderContext();
+							TextLayout tl = new TextLayout(sp[i],varFont,frc);
+	
+							if (app.isTree()&&app.ns.view.distances.getNodeDistance(n)>0) alignLabel(g2d, n.pos, n.size(), tl);
+							else
+								if (app.labelsEdgeDir&&!app.tilt){
+									if (n.adList.size()==1) {
+										Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
+										alignLabel(g2d, sub, n.size(), tl);
+									} else
+										if (n.inList.size()==1) {
+											Vector3D sub = Vector3D.sub(n.pos, n.inList.iterator().next().pos);
+											alignLabel(g2d, sub, n.size(), tl);
+										}
+										else {
+											float advance = tl.getAdvance()/2f;
+											g2d.translate(-advance, -n.size()/2f);
+										}
+								}
+	
+							if (font==0) {
+								g2d.setPaint(new Color(1,1,1,n.color[3]));
+								g2d.setStroke(dbl);
+								g2d.translate(0, i*fntsize);
+								Shape outline = tl.getOutline(id);
+								g2d.draw(outline);
+								g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));
+								g2d.setStroke(sngl);
+								g2d.fill(outline);
+							} else {
+								g2d.setFont(varFont);
+								g2d.setPaint(new Color((n.color[0]*0.5f),(n.color[1]*0.5f),(n.color[2]*0.5f),n.color[3]));
+								//								tl.draw(g2d, 0, i*fntsize);
+								g2d.drawString(sp[i], 0, i*fntsize);
+							}
+							g2d.setTransform(t);
+						}
+					}
+				}
 			}
 		}
-		gl.glPopMatrix();
 	}
 
-	private boolean outsideView(Node n) {
-		Vector3D p = app.cam.getFocalPoint();
-		float d = Vector3D.distance(n.pos, p);
-		//		float d = pos.magnitude();
-		if (d>app.cam.getDist()*app.getSquareness()) return true; else return false;
-	}
 
-	private void drawFrame(GL gl) {
-		gl.glPushMatrix();
-		gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
-		gl.glPolygonMode(GL.GL_FRONT, GL.GL_LINE);
-		gl.glLineWidth(1.5f);
-		gl.glScalef(1.25f, 1.25f, 1.25f);
-		FuncGL.quad(gl);
-		gl.glPopMatrix();
+	private void alignLabel(Graphics2D g2d, Vector3D n, float margin, TextLayout tl) {
+		float angle = (float) (Math.atan(n.y/n.x));
+		g2d.rotate(angle);
+		float marg = margin+5;
+		if (n.x<0) {
+			float advance = tl.getAdvance()+marg;
+			g2d.translate(-advance, 0);
+		} else	g2d.translate(marg, 0);
 	}
 }
