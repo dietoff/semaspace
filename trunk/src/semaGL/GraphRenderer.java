@@ -132,11 +132,11 @@ public class GraphRenderer {
 		float distToCam = app.cam.distToCam(n.pos);
 		String att="";
 		float[] textcolor = {n.color[0]/2f, n.color[1]/2f, n.color[2]/2f, 1};
-		
+
 		if (app.fadeLabels&&n.pickColor[3]==0&&!n.rollover&&!n.isFrame()) {
 			font=3;
 		}
-		
+
 		if (n.rollover) {
 			att= n.genTextAttributeList();
 			if (font==3) font=2;
@@ -148,9 +148,7 @@ public class GraphRenderer {
 		}
 		n.textColor[3]=n.alpha;
 
-		
-		
-		
+
 		gl.glPushMatrix();
 		//transform model
 		float xRot = app.cam.getYRot();		//should be global camera orientation
@@ -169,7 +167,7 @@ public class GraphRenderer {
 			} else
 			{
 				if (app.tilt) gl.glRotatef(25, 0, 0, 1); 
-					else
+				else
 				{
 
 					if (app.isLabelsEdgeDir()){
@@ -210,7 +208,7 @@ public class GraphRenderer {
 	private float getAdvance(float nSize, int font, float fsize, String split) {
 		float advance=0;
 		if (font==0)
-			advance = -app.texturefont.advance(split)*fsize*0.025f-nSize-25f;
+			advance = -app.outlinefont.advance(split)*fsize*0.025f-nSize-25f;
 		else 
 			advance = -FuncGL.stringlength(app, split)*fsize*0.01f-nSize-25f;
 		return advance;
@@ -329,10 +327,13 @@ public class GraphRenderer {
 		Node b = e.getB();
 
 		float[] textcolor = {color [0]/2f, color[1]/2f, color[2]/2f, 1};
-		if (!e.isPicked()&&(!e.attributes.containsKey(app.getAttribute())||color[3]<0.2f)&&!e.rollover) return;
+		//		if (!e.isPicked()&&(!e.attributes.containsKey(app.getAttribute())||color[3]<0.2f)&&!e.rollover) return;
+		if (app.fadeLabels&&!e.rollover&&!e.isFrame()&&!(a.getPickColor()[3]>0||b.getPickColor()[3]>0)) return;
+			
 		if ((e.isPicked()||e.rollover)&&font==3) font=2;
-		Vector3D midP = b.pos.copy();
-		midP.sub(a.pos); //direction of the edge
+		Vector3D dir = b.pos.copy();
+		dir.sub(a.pos); //direction of the edge
+		Vector3D midP = dir.copy();
 		midP.mult(0.5f);
 		midP.add(a.pos);
 		float distToCam = app.cam.distToCam(midP);
@@ -345,10 +346,18 @@ public class GraphRenderer {
 		gl.glTranslatef(midP.x,midP.y,midP.z);
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
-		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
+		if (font<2) 
+			if (app.tilt) gl.glRotatef(25, 0, 0, 1);
+
+			else {
+				alignLabel(gl,dir, 0, font, app.getLabelsize(), rText);
+				//			gl.glTranslatef(0,app.getLabelsize(),0);
+			}
+
 		FuncGL.renderText(app, rText, textcolor,app.getLabelsize(), font, e.getId(), distToCam, false, fast); //render text in dark grey, with alpha of edge
 		gl.glPopMatrix();
 	}
+	
 	synchronized void renderFan(GL gl, HashSet<Node> nodes, Node center) {
 		float[] col = Func.parseColorInt(center.name.hashCode()+"");
 		col[3]=Math.min(center.alpha, 0.1f);
@@ -380,14 +389,14 @@ public class GraphRenderer {
 		gl.glPushMatrix();
 		gl.glColor4fv(col, 0);
 		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
-		
+
 		Vector3D D;
 		for (Node bref : nodes){
 			if (bref!=center){
 				D = bref.pos.copy();
 				D.sub(center.pos); 
 				D.mult(-1);
-//				FuncGL.symArrowHead(gl, bref.size()*1.5f, center.pos, D);
+				//				FuncGL.symArrowHead(gl, bref.size()*1.5f, center.pos, D);
 				gl.glLineWidth(5);
 				FuncGL.drawLine(gl, center.pos, bref.pos, white, col);
 			}

@@ -11,13 +11,16 @@ import javax.media.opengl.glu.GLU;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.nio.IntBuffer;
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
@@ -25,7 +28,6 @@ import java.util.Random;
 
 import javax.swing.SwingUtilities;
 
-import org.apache.batik.svggen.SVGGraphics2DIOException;
 
 import nehe.TextureReader.Texture;
 import UI.SwingSema;
@@ -33,6 +35,7 @@ import UI.SwingSema;
 import com.sun.opengl.util.BufferUtil;
 import com.sun.opengl.util.GLUT;
 import com.sun.opengl.util.Screenshot;
+import com.sun.opengl.util.j2d.TextRenderer;
 
 import data.Edge;
 import data.GraphElement;
@@ -163,12 +166,14 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean tabular = false;
 	public float edgeAlpha = Float.parseFloat(Messages.getString("edgeAlpha"));
 	private boolean groups =  Boolean.parseBoolean(Messages.getString("drawGroups"));
+	public boolean enableSvg =  Boolean.parseBoolean(Messages.getString("enableSVGexport"));
 	private boolean SVGexport;
 	private String svgFile;
 	boolean labelsEdgeDir=true;
 	private float outvar;
 	public boolean fadeLabels=false;
 	private int repellMax = 1000;
+	private GraphRendererSVG SVGrenderer;
 
 	public SemaSpace(){
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
@@ -184,6 +189,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		ns = (new NetStack(this));
 		layout = new Layouter(this);
 		renderer = new GraphRenderer(this);
+		if (enableSvg) SVGrenderer = new GraphRendererSVG(this);
 	}
 
 	public void init(GLAutoDrawable gLDrawable) {
@@ -200,8 +206,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	private void initGLsettings(GL gl) {
+		gl.setSwapInterval(0);
 		gl.glEnable(GL.GL_TEXTURE_2D);								// Enable Texture Mapping
-		gl.glShadeModel(GL.GL_SMOOTH);              				// Enable Smooth Shading
+		gl.glShadeModel(GL.GL_FLAT);              				// Enable Smooth Shading
 		gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST); // Really Nice Perspective Calculations
 		gl.glClearColor(1f, 1f, 1f, 1f);   
 		gl.glEnable(GL.GL_BLEND);
@@ -220,24 +227,27 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	private void initFonts(GL gl) {
-		//				try {
-		//					File file = new File("lib/machtgth.ttf");
-		//					FileInputStream is = new FileInputStream(file);
-		//					font = Font.createFont(Font.TRUETYPE_FONT, is);
-		//				} catch (MalformedURLException e) {
-		//					e.printStackTrace();
-		//				} catch (IOException e) {
-		//					e.printStackTrace();
-		//				} catch (FontFormatException e) {
-		//					e.printStackTrace();
-		//				}
-		font = Font.decode("Times new Roman").deriveFont(172f); //$NON-NLS-1$
+		try {
+			//			File file = new File("lib/Tall Films Expanded.ttf");
+			//			FileInputStream is = new FileInputStream(file);
+			InputStream is = getClass().getClassLoader().getResourceAsStream("Tall Films Expanded.ttf");
+//			InputStream is = getClass().getClassLoader().getResourceAsStream("machtgth.ttf");
+			font = Font.createFont(Font.TRUETYPE_FONT, is);
+
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		}
+		//		font = Font.decode("Arial Narrow").deriveFont(172f); //$NON-NLS-1$
 		FontRenderContext context = FTFont.STANDARDCONTEXT;
-		texturefont = new FTGLTextureFont(font,context);
+		//		texturefont = new FTGLTextureFont(font,context);
 		polygonfont = new FTGLPolygonFont(font,context);
 		outlinefont =  new FTGLOutlineFont(font,context);
-		texturefont.setGLGLU(gl, glu);
-		texturefont.faceSize(70f);
+		//		texturefont.setGLGLU(gl, glu);
+		//		texturefont.faceSize(70f);
 		polygonfont.setGLGLU(gl, glu);
 		polygonfont.faceSize(70f);
 		outlinefont.setGLGLU(gl, glu);
@@ -332,15 +342,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void render(GL gl){
-		if (SVGexport) {
+		if (enableSvg&&SVGexport) {
 			SVGexport=false;
-			try {
-				layout.renderSVG(gl, renderer, fonttype, svgFile);
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			} catch (SVGGraphics2DIOException e) {
-				e.printStackTrace();
-			}
+			SVGrenderer.renderSVG(gl, ns.getView(), fonttype, svgFile);
 		}
 
 		if (!render) return;
@@ -350,7 +354,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		layout.render(gl, fonttype, ns.view, renderer);
 		gl.glFlush();
 		gl.glFinish();
-
 		//		}
 		//		else
 		//		{
@@ -461,8 +464,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			System.out.println("inflate = true"); //$NON-NLS-1$
 			break;
 		case KeyEvent.VK_F3:
-			layout.circles=!layout.circles;
-			System.out.println("SVG circles = "+layout.circles);
+			SVGrenderer.circles=!SVGrenderer.circles;
+			System.out.println("SVG circles = "+SVGrenderer.circles);
 			break;
 		case KeyEvent.VK_F4: 
 			layout.layoutLocksRemove();
@@ -872,7 +875,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (loadFromJar) {
 			if (loadNetworkJar("data.txt", isTabular())) netStartRandom(false);
 		} else
-		if (loadNetwork(new File(filename), tab)) netStartRandom(false);
+			if (loadNetwork(new File(filename), tab)) netStartRandom(false);
 	}
 
 	/**
@@ -884,7 +887,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public boolean loadNetwork(File file, boolean tab) {
 		String cont = FileIO.loadFile(file);
 		boolean success = ns.edgeListParse(cont, file.getName(), tab);
-		
+
 		if (success) {
 			cont = null;
 			File node = new File(file.getAbsoluteFile()+".n"); //$NON-NLS-1$
@@ -912,7 +915,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			ns.getView().updateNet();
 			updateUI();
 			return true;
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1331,8 +1334,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		GL gl = pbuffer.getGL();
 		moved = false;
 
-		texturefont.setGLGLU(gl, new GLU());
-		texturefont.faceSize(70f);
+		polygonfont.setGLGLU(gl, new GLU());
+		polygonfont.faceSize(70f);
+		outlinefont.setGLGLU(gl, new GLU());
+		outlinefont.faceSize(70f);
 
 		renderPbuffer(gl, width, height);
 
@@ -1347,8 +1352,12 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		screenshotcounter++;
 
 		glD.getContext().makeCurrent();
-		texturefont.setGLGLU(gl, glu);
-		texturefont.faceSize(70f);
+
+		polygonfont.setGLGLU(gl, glu);
+		polygonfont.faceSize(70f);
+		outlinefont.setGLGLU(gl, glu);
+		outlinefont.faceSize(70f);
+
 		flat = f;
 	}
 

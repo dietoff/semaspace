@@ -54,8 +54,8 @@ public class GLDisplay {
         this.width = width;
         this.height = height;
 
-        animator = new FPSAnimator( glCanvas, 60 );
-        animator.setRunAsFastAsPossible(false);
+        animator = new FPSAnimator( glCanvas, 0 );
+        animator.setRunAsFastAsPossible(true);
     }
 
     public void start() {

@@ -138,7 +138,6 @@ public class FileIO {
 		//		String content2 = java.text.Normalizer.normalize(content, Normalizer.Form.NFC);
 
 		bb = null;
-		System.gc();
 		return content;
 	}
 
