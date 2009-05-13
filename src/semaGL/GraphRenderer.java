@@ -24,6 +24,11 @@ public class GraphRenderer {
 		app=app_;
 	}
 
+	/**
+	 * monolithic function for rendering nodes
+	 * @param gl
+	 * @param n
+	 */
 	synchronized void renderNode(GL gl, Node n) {
 		if (app.flat&&outsideView(n)) return;
 
@@ -116,16 +121,28 @@ public class GraphRenderer {
 		//		System.out.println((int)ps[0]+","+(int)ps[1]);
 	}
 
+	/**
+	 * get 2d screen position from 3d vector, given current projection & viewpoint 
+	 * @param gl
+	 * @param pos
+	 * @return
+	 */
 	public double[] project2screen(GL gl, Vector3D pos) {
 		gl.glGetIntegerv(GL.GL_VIEWPORT, view,0);
 		gl.glGetDoublev(GL.GL_PROJECTION_MATRIX, projection,0);
 		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, model,0);
 		double[] winPos = new double[3];
 		glu.gluUnProject(pos.x, pos.y, pos.z, model, 0, projection, 0, view, 0, winPos,0);
-		//		System.out.println(winPos[0]+","+winPos[1]);
 		return winPos;
 	}
 
+	/**
+	 * render node labels
+	 * @param gl
+	 * @param n
+	 * @param font
+	 * @param fast
+	 */
 	public synchronized void renderNodeLabels(GL gl, Node n, int font, boolean fast){
 		if (app.flat&&outsideView(n)) return;
 
@@ -205,15 +222,34 @@ public class GraphRenderer {
 		} else	gl.glTranslatef(nSize, 0, 0);
 	}
 
+	/**
+	 * Get the Advance (horizontal length) of a jftgl string 
+	 * @param nSize
+	 * @param font
+	 * @param fsize
+	 * @param split
+	 * @return
+	 */
 	private float getAdvance(float nSize, int font, float fsize, String split) {
 		float advance=0;
 		if (font==0)
-			advance = -app.outlinefont.advance(split)*fsize*0.025f-nSize-25f;
+			advance = -app.hiQfont.advance(split)*fsize*0.025f-nSize-25f;
 		else 
 			advance = -FuncGL.stringlength(app, split)*fsize*0.01f-nSize-25f;
 		return advance;
 	}
 
+	/**
+	 * Render the group lables
+	 * @param gl
+	 * @param n
+	 * @param font
+	 */
+	/**
+	 * @param gl
+	 * @param n
+	 * @param font
+	 */
 	public synchronized void renderGroupLabels(GL gl, Node n, int font){
 
 		if (app.flat&&outsideView(n)) return;
@@ -235,6 +271,11 @@ public class GraphRenderer {
 		gl.glPopMatrix();
 	}
 
+	/**
+	 * monolithic method for rendering all sorts of edges
+	 * @param gl
+	 * @param e
+	 */
 	synchronized void renderEdges(GL gl, Edge e){
 		e.genColorFromAtt();
 
@@ -320,6 +361,14 @@ public class GraphRenderer {
 		}
 		gl.glPopMatrix();
 	}
+	
+	/**
+	 * render edge labels
+	 * @param gl
+	 * @param e
+	 * @param Text
+	 * @param fast
+	 */
 	synchronized void renderEdgeLabels(GL gl, Edge e, int Text, boolean fast) {
 		float[] color = e.color;
 		int font = Text;
@@ -358,6 +407,12 @@ public class GraphRenderer {
 		gl.glPopMatrix();
 	}
 	
+	/**
+	 * render the colored background of the clusters
+	 * @param gl
+	 * @param nodes
+	 * @param center
+	 */
 	synchronized void renderFan(GL gl, HashSet<Node> nodes, Node center) {
 		float[] col = Func.parseColorInt(center.name.hashCode()+"");
 		col[3]=Math.min(center.alpha, 0.1f);
@@ -379,6 +434,12 @@ public class GraphRenderer {
 		gl.glEnd();
 		gl.glPopMatrix();
 	}
+	/**
+	 * render the group
+	 * @param gl
+	 * @param nodes
+	 * @param center
+	 */
 	synchronized void renderGroups(GL gl, HashSet<Node> nodes, Node center){
 		float[] col = GraphElement.colorFunction(center.name);
 		col[3]=Math.min(center.alpha, 0.15f);
@@ -404,6 +465,11 @@ public class GraphRenderer {
 		gl.glPopMatrix();
 	}
 
+	/**
+	 * test if node is outside the view
+	 * @param n
+	 * @return
+	 */
 	private boolean outsideView(Node n) {
 		Vector3D p = app.cam.getFocalPoint();
 		float d = Vector3D.distance(n.pos, p);
@@ -411,6 +477,10 @@ public class GraphRenderer {
 		if (d>app.cam.getDist()*app.getSquareness()) return true; else return false;
 	}
 
+	/**
+	 * render frame around node
+	 * @param gl
+	 */
 	private void drawFrame(GL gl) {
 		gl.glPushMatrix();
 		gl.glBindTexture(GL.GL_TEXTURE_2D, 0);

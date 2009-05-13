@@ -147,9 +147,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private float invar= Float.parseFloat(Messages.getString("nodeSizeVariance"));
 	public boolean textures= Boolean.parseBoolean(Messages.getString("textures"));
 	private Font font;
-	FTGLOutlineFont outlinefont ;
-	FTFont polygonfont;
-	FTFont texturefont;
+	FTFont outlinefont;
+	FTFont hiQfont;
+	private boolean textureFont= Boolean.parseBoolean(Messages.getString("useTextureFonts"));
 
 	private float labelsize= Float.parseFloat(Messages.getString("labelSize"));
 	private float labelVar= Float.parseFloat(Messages.getString("labelSizeVariance"));
@@ -228,10 +228,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	private void initFonts(GL gl) {
 		try {
-			//			File file = new File("lib/Tall Films Expanded.ttf");
-			//			FileInputStream is = new FileInputStream(file);
 			InputStream is = getClass().getClassLoader().getResourceAsStream("Tall Films Expanded.ttf");
-//			InputStream is = getClass().getClassLoader().getResourceAsStream("machtgth.ttf");
 			font = Font.createFont(Font.TRUETYPE_FONT, is);
 
 		} catch (MalformedURLException e) {
@@ -241,17 +238,21 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		}
-		//		font = Font.decode("Arial Narrow").deriveFont(172f); //$NON-NLS-1$
+//		font = Font.decode("Arial Narrow").deriveFont(172f); //$NON-NLS-1$
 		FontRenderContext context = FTFont.STANDARDCONTEXT;
 		//		texturefont = new FTGLTextureFont(font,context);
-		polygonfont = new FTGLPolygonFont(font,context);
-		outlinefont =  new FTGLOutlineFont(font,context);
-		//		texturefont.setGLGLU(gl, glu);
-		//		texturefont.faceSize(70f);
-		polygonfont.setGLGLU(gl, glu);
-		polygonfont.faceSize(70f);
-		outlinefont.setGLGLU(gl, glu);
-		outlinefont.faceSize(70f);
+		if (textureFont) {
+			hiQfont = new FTGLTextureFont(font,context); 
+		}
+		else {
+			hiQfont = new FTGLPolygonFont(font,context);
+			outlinefont =  new FTGLOutlineFont(font,context);
+			outlinefont.setGLGLU(gl, glu);
+			outlinefont.faceSize(70f);
+		}
+		hiQfont.setGLGLU(gl, glu);
+		hiQfont.faceSize(70f);
+
 	}
 
 	public void display(GLAutoDrawable gLDrawable) {
@@ -1334,10 +1335,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		GL gl = pbuffer.getGL();
 		moved = false;
 
-		polygonfont.setGLGLU(gl, new GLU());
-		polygonfont.faceSize(70f);
-		outlinefont.setGLGLU(gl, new GLU());
-		outlinefont.faceSize(70f);
+		updateFonts(gl, new GLU());
 
 		renderPbuffer(gl, width, height);
 
@@ -1353,12 +1351,18 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 		glD.getContext().makeCurrent();
 
-		polygonfont.setGLGLU(gl, glu);
-		polygonfont.faceSize(70f);
-		outlinefont.setGLGLU(gl, glu);
-		outlinefont.faceSize(70f);
+		updateFonts(gl, glu);
 
 		flat = f;
+	}
+
+	private void updateFonts(GL gl, GLU glu) {
+		hiQfont.setGLGLU(gl, glu);
+		hiQfont.faceSize(70f);
+		if (!textureFont) {
+			outlinefont.setGLGLU(gl, new GLU());
+			outlinefont.faceSize(70f);
+		}
 	}
 
 	public void clearFrames(Net net) {

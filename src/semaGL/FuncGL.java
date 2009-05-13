@@ -94,7 +94,7 @@ public class FuncGL {
 			gl.glTranslatef(0, -60f, 0);
 			
 			gl.glPushMatrix();
-				FTBBox box = app.outlinefont.getBBox(lines[i]);
+				FTBBox box = app.hiQfont.getBBox(lines[i]);
 				gl.glTranslatef(box.lowerX,box.lowerY,0);
 				gl.glScalef(box.getWidth()/2f,box.getHeight()/2f,0);
 				gl.glColor4f(1,1,1,1f);
@@ -108,8 +108,8 @@ public class FuncGL {
 			
 			gl.glLineWidth(0.5f);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
-			app.outlinefont.render(lines[i]);
-			app.polygonfont.render(lines[i]);
+			if (app.outlinefont!=null) app.outlinefont.render(lines[i]);
+			app.hiQfont.render(lines[i]);
 			gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
 		}
 		gl.glLineWidth(app.textwidth);
