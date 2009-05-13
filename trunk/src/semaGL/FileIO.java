@@ -106,7 +106,7 @@ public class FileIO {
 
 	public String jarRead(String filename) throws IOException {
 		InputStream is = getClass().getClassLoader().getResourceAsStream(filename);
-
+		if (is==null) return null;
 		final char[] buffer = new char[0x10000];
 		StringBuilder out = new StringBuilder();
 		Reader in = new InputStreamReader(is, "UTF-8");
