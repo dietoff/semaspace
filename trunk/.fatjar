@@ -1,14 +1,14 @@
 #Fat Jar Configuration File
-#Tue May 12 17:57:08 CEST 2009
+#Wed May 13 17:30:15 CEST 2009
 onejar.license.required=false
 manifest.classpath=.
 manifest.removesigners=true
 onejar.checkbox=false
-jarname=/Users/d/Sites/SemaSpace/sema.jar
+jarname=/Users/d/Sites/SemaSpace/sema2.jar
 manifest.mergeall=true
 manifest.mainclass=UI.SwingSema
 manifest.file=<createnew>
 jarname.isextern=true
 onejar.expand=
-excludes=<po|SemaSpace>~.svn/;<po|SemaSpace>~.DS_Store;<jar|gluegen-rt.jar>;<jar|jogl.jar>;<jar|js.jar>;<jar|pdf-transcoder.jar>;<jar|xerces_2_5_0.jar>;<jar|xml-apis.jar>;<jar|xml-apis-ext.jar>;<jar|xalan-2.6.0.jar>
+excludes=<po|SemaSpace>~.svn/;<po|SemaSpace>~.DS_Store;<po|SemaSpace>~LABTSEC_.ttf;<po|SemaSpace>~machtgth.ttf;<jar|gluegen-rt.jar>;<jar|jogl.jar>;<jar|js.jar>;<jar|pdf-transcoder.jar>;<jar|xerces_2_5_0.jar>;<jar|xml-apis.jar>;<jar|xml-apis-ext.jar>;<jar|xalan-2.6.0.jar>
 includes=

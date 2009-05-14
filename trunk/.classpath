@@ -19,7 +19,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/jftgl"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/batik"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/jTatoo"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/batik"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
