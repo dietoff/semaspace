@@ -913,6 +913,33 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	/**
+	 * Load a new network from net
+	 * @param url
+	 * @param tab - tabular file format?
+	 * @return
+	 */
+	public boolean loadNetworkHttp(String url, boolean tab) {
+		String dl;
+		try {
+			
+			dl = fileIO.getPage(url);
+			boolean success = ns.edgeListParse(dl, url, tab);
+			if (success) {
+				String dlNodes = fileIO.jarRead(url+".n"); 
+				ns.nodeListParse(dlNodes, tab);
+			} 
+			ns.getView().updateNet();
+			updateUI();
+			return true;
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
 	 * add node parameter file
 	 * @param file2 
 	 * @param tab - tabular file format?
