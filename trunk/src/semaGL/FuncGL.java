@@ -101,7 +101,7 @@ public class FuncGL {
 				FTBBox box = app.hiQfont.getBBox(lines[i]);
 				gl.glTranslatef(box.lowerX,box.lowerY,0);
 				gl.glScalef(box.getWidth()/2f,box.getHeight()/2f,0);
-				gl.glColor4f(1,1,1,1f);
+				gl.glColor4f(1,1,1,0.9f);
 				gl.glTranslatef(1f,1f,0);
 				quad(gl);
 			gl.glPopMatrix();
@@ -113,6 +113,7 @@ public class FuncGL {
 			gl.glLineWidth(0.5f);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
 			if (app.outlinefont!=null) app.outlinefont.render(lines[i]);
+			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
 			app.hiQfont.render(lines[i]);
 			gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
 		}
@@ -188,7 +189,7 @@ public class FuncGL {
 	static void arrowHead(GL gl, float size, Vector3D pos, Vector3D dir) {
 		gl.glBegin(GL.GL_TRIANGLES);
 		gl.glVertex3f(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
-		gl.glVertex3f(pos.x-size*dir.x+size*0.2f*dir.y,pos.y-size*dir.y-size*0.2f*dir.x,pos.z-size*dir.z);
+		gl.glVertex3f(pos.x-size*dir.x+size*0.3f*dir.y,pos.y-size*dir.y-size*0.3f*dir.x,pos.z-size*dir.z);
 		gl.glVertex3f(pos.x,pos.y,pos.z);
 		gl.glEnd();
 	}
@@ -201,10 +202,11 @@ public class FuncGL {
 		gl.glVertex3f(pos.x,pos.y,pos.z);
 		gl.glEnd();
 	}
+	
 	static void arrowHeadEmpty(GL gl, float size, Vector3D pos, Vector3D dir) {
 		gl.glBegin(GL.GL_LINE_STRIP);
 		gl.glVertex3f(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
-		gl.glVertex3f(pos.x-size*dir.x+size*0.2f*dir.y,pos.y-size*dir.y-size*0.2f*dir.x,pos.z-size*dir.z);
+		gl.glVertex3f(pos.x-size*dir.x+size*0.3f*dir.y,pos.y-size*dir.y-size*0.3f*dir.x,pos.z-size*dir.z);
 		gl.glVertex3f(pos.x,pos.y,pos.z);
 		gl.glEnd();
 	}

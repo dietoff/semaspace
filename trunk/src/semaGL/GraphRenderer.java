@@ -211,15 +211,16 @@ public class GraphRenderer {
 		gl.glPopMatrix();
 	}
 
-	private void alignLabel(GL gl, Vector3D n, float nSize, int font, float fsize, String split) {
+	private float alignLabel(GL gl, Vector3D n, float nSize, int font, float fsize, String split) {
 		float angle = (float) ((Math.atan(n.y/n.x))/(2*Math.PI)*360f); // this has to be fixed for 3D
-
+		float advance = getAdvance(nSize, font, fsize, split);
 		gl.glRotatef(angle, 0, 0, 1);
 		if (n.x<0) {
-			float advance = getAdvance(nSize, font, fsize, split);
-
+			
 			gl.glTranslatef(advance, 0, 0);
-		} else	gl.glTranslatef(nSize, 0, 0);
+		} else	
+			gl.glTranslatef(nSize, 0, 0);
+		return advance;
 	}
 
 	/**
@@ -353,9 +354,11 @@ public class GraphRenderer {
 		}
 
 		//draw arrowhead
-		if (app.directed&&!e.getB().adList.contains(e.getA())){
+		if (app.directed){
+			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
+			FuncGL.arrowHead(gl,10,end,DN);
 			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
-			FuncGL.arrowHeadEmpty(gl,20,end,DN);
+			FuncGL.arrowHeadEmpty(gl,10,end,DN);
 			//			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
 			//			FuncGL.arrowHead(gl,20,end,DN);
 		}
@@ -399,8 +402,12 @@ public class GraphRenderer {
 			if (app.tilt) gl.glRotatef(25, 0, 0, 1);
 
 			else {
-				alignLabel(gl,dir, 0, font, app.getLabelsize(), rText);
-				//			gl.glTranslatef(0,app.getLabelsize(),0);
+				float advance = alignLabel(gl,dir, 0, font, app.getLabelsize(), rText);
+				if (dir.x>=0) {
+					gl.glTranslatef(advance/2f,-2*app.getLabelsize(),0);
+				} else {
+					gl.glTranslatef(-advance/2f,-0.5f*app.getLabelsize(),0);
+				}
 			}
 
 		FuncGL.renderText(app, rText, textcolor,app.getLabelsize(), font, e.getId(), distToCam, false, fast); //render text in dark grey, with alpha of edge
