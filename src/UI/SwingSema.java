@@ -602,15 +602,15 @@ public class SwingSema implements SemaListener, KeyListener {
 		valenzSlider.setValue((int)(app.getVal()*100));
 		groupRadius.setValue((int)(app.getClusterRad()*10));
 		pushSlider.setValue((int)(app.getRepell()));
-		stretchSlider.setValue((int)(app.getPermInflate()*100));
-		strengthSlider.setValue((int)(app.getStrength()*100));
+		stretchSlider.setValue((int)(app.getPermInflate()*100f));
+		strengthSlider.setValue((int)(app.getStrength()*100f));
 		distanceSlider.setValue((int)app.getDistance());
 		picSizeSlider.setValue(app.getPicSize());
 		maxRepSlider.setValue((int)app.getRepellMax());
-		jSlider2.setValue((int)app.getInVar()*10);
-		jSlider5.setValue((int)app.getOutVar()*10);
-		jSlider3.setValue((int)app.getLabelsize()*10);
-		jSlider4.setValue((int)app.getLabelVar()*10);
+		jSlider2.setValue((int)(app.getInVar()*10f));
+		jSlider5.setValue((int)(app.getOutVar()*10f));
+		jSlider3.setValue((int)(app.getLabelsize()*10f));
+		jSlider4.setValue((int)(app.getLabelVar()*10f));
 	}
 
 	private JScrollPane getNodeAttPane() {

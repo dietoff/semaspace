@@ -117,7 +117,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	long starttime, elapsedtime, lasttime, deltatime, currenttime;
 	boolean cluster=Boolean.parseBoolean(Messages.getString("layoutClusters"));
 	private boolean FOG = true;
-	private boolean loadFromJar = true;
+	private int loadMethod = 1; //0 = local file, 1 = http, 2 = jar
 	boolean select;
 	private float FOV = 70f;
 	public GLAutoDrawable glD;
@@ -142,7 +142,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public int thumbsize = Integer.parseInt(Messages.getString("thumbnailRes"));
 	public Graphics2D j2d;
 	private boolean timeline;
-	private float invar= Float.parseFloat(Messages.getString("nodeSizeVariance"));
+	private float invar= Float.parseFloat(Messages.getString("nodeSizeInDegreeVariance"));
+	private float outvar= Float.parseFloat(Messages.getString("nodeSizeOutDegreeVariance"));;
 	public boolean textures= Boolean.parseBoolean(Messages.getString("textures"));
 	private Font font;
 	FTFont outlinefont;
@@ -165,7 +166,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean SVGexport;
 	private String svgFile;
 	boolean labelsEdgeDir=true;
-	private float outvar;
 	public boolean fadeLabels=false;
 	private int repellMax = 1000;
 	private GraphRendererSVG SVGrenderer;
@@ -224,6 +224,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	private void initFonts() {
+		/*
 		try {
 			InputStream is = getClass().getClassLoader().getResourceAsStream("Tall Films Expanded.ttf");
 			font = Font.createFont(Font.TRUETYPE_FONT, is);
@@ -235,9 +236,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		}
-		//		font = Font.decode("Arial Narrow").deriveFont(172f); //$NON-NLS-1$
+		 */
+		font = Font.decode("Arial Narrow").deriveFont(172f); //$NON-NLS-1$
 		FontRenderContext context = FTFont.STANDARDCONTEXT;
-		//		texturefont = new FTGLTextureFont(font,context);
+
 		if (textureFont) {
 			hiQfont = new FTGLTextureFont(font,context); 
 		}
@@ -272,7 +274,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		updateUI();
-		//		redrawUI();
 	}
 
 	public void layout() {
@@ -861,10 +862,18 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void netLoad() {
 		clearNets();
-		if (loadFromJar) {
-			if (loadNetworkJar("data.txt", isTabular())) netStartRandom(false);
-		} else
-			if (loadNetwork(new File(filename), isTabular())) netStartRandom(false);
+		switch (loadMethod) {
+		case 0:
+			loadNetwork(new File(filename), isTabular());
+			break;
+		case 1:
+			loadNetworkHttp("http://localhost/~d/np.tab", true);
+			break;
+		case 2:
+			loadNetworkJar("data.txt", isTabular());
+			break;
+		} 
+		netStartRandom(false);
 	}
 
 	/**
@@ -880,7 +889,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (success) {
 			cont = null;
 			File node = new File(file.getAbsoluteFile()+".n"); //$NON-NLS-1$
-			if (node.exists()) 	 cont = FileIO.loadFile(node);
+			if (node.exists()) 	cont = FileIO.loadFile(node);
 			ns.nodeListParse(cont, tab);
 		}
 		return success;
@@ -901,9 +910,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 				String jarNodes = fileIO.jarRead(file+".n"); 
 				ns.nodeListParse(jarNodes, tab);
 			} 
-			ns.getView().updateNet();
-			updateUI();
-			return true;
+			return success;
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -920,25 +927,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	 */
 	public boolean loadNetworkHttp(String url, boolean tab) {
 		String dl;
-		try {
-			
-			dl = fileIO.getPage(url);
-			boolean success = ns.edgeListParse(dl, url, tab);
-			if (success) {
-				String dlNodes = fileIO.jarRead(url+".n"); 
-				ns.nodeListParse(dlNodes, tab);
-			} 
-			ns.getView().updateNet();
-			updateUI();
-			return true;
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+		dl = fileIO.getPage(url);
+		boolean success = ns.edgeListParse(dl, url, tab);
+		if (success) {
+			String dlNodes = fileIO.getPage(url+".n"); 
+			ns.nodeListParse(dlNodes, tab);
+		} 
+		return success;
 	}
-	
+
 	/**
 	 * add node parameter file
 	 * @param file2 
@@ -1513,7 +1510,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private synchronized void fireSemaEvent(int semaEventCode, String msg) {
 		fireSemaEvent(semaEventCode).setContent(msg);
 	}
-	
+
 	private SemaEvent fireSemaEvent(int semaEventCode) {
 		SemaEvent evt = new SemaEvent( this, semaEventCode );
 		Iterator<SemaListener> listeners = _listeners.iterator();
