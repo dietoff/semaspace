@@ -7,7 +7,11 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
+import java.text.Normalizer.Form;
+
 import javax.media.opengl.GL;
+
+import sun.text.Normalizer;
 import nehe.TextureReader.Texture;
 import net.sourceforge.ftgl.FTBBox;
 
@@ -141,9 +145,9 @@ public class FuncGL {
 	}
 
 	static void renderStrokeString( SemaSpace app, int font, String string, float offset, float offsety) {
-		// Center Our Text On The Screen
+		String normalize = Normalizer.normalize(string, Form.NFKD, 1);
 		GL gl=app.glD.getGL();
-		stroke(app, font, string, offset, offsety, gl);
+		stroke(app, font, normalize, offset, offsety, gl);
 	}
 
 	private static void stroke(SemaSpace app, int font, String string,

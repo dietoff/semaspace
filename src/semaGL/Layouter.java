@@ -147,6 +147,10 @@ public class Layouter {
 	private float spiral_rad(Node n, int i) {
 		return app.clusterRad+(float)Math.sqrt(app.clusterRad*i+n.getSize())*10f;
 	}
+	/**
+	 * layout the leaf clusters
+	 * @param gl
+	 */
 	public void clustersSetup(GL gl){
 		float xRot = app.cam.getYRot();		//should be global camera orientation
 		float yRot = app.cam.getXRot();
@@ -599,6 +603,13 @@ public class Layouter {
 		layoutNodePosJitter(0.01f);
 	}
 
+	/**
+	 * render the view
+	 * @param gl
+	 * @param fonttype
+	 * @param view
+	 * @param nr
+	 */
 	void render(GL gl, int fonttype, Net view, GraphRenderer nr){
 		Layouter layout = this;
 		if (!app.isTree()) layout.renderClusters(gl, nr);

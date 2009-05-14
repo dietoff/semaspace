@@ -1,6 +1,7 @@
 package UI;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,6 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
@@ -26,7 +26,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.*;
 
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagLayout;
@@ -70,7 +69,7 @@ import java.io.File;
  * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class SwingSema {
+public class SwingSema implements SemaListener, KeyListener {
 	SemaSpace app = null;  //  @jve:decl-index=0:
 	private JMenuBar jJMenuBar = null;
 	private JList edgeAttList;
@@ -282,6 +281,7 @@ public class SwingSema {
 				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
 				semaGLDisplay.addGLEventListener(space);
 				application = new SwingSema();
+				space.addSemaListener(application);
 				application.setSema(space);
 				application.getMainWindow().setVisible(true);
 				application.jSplitPane.setRightComponent(semaGLDisplay.getJPanel());
@@ -423,11 +423,12 @@ public class SwingSema {
 			mainWindow.setContentPane(getJSplitPane());
 			initFileChoosers();
 			if (fullscreen) enterFullscreen(); 
+			mainWindow.addKeyListener(this);
 		}
 		return mainWindow;
 	}
 
-	public void fullscreen(Boolean _f) {
+	private void fullscreen(Boolean _f) {
 
 		if (_f==fullscreen) return;
 		fullscreen = _f;
@@ -443,28 +444,36 @@ public class SwingSema {
 			leaveFullscreen();
 		}
 	}
+
+	/**
+	 * leave fullscreen
+	 * never call directly - use fullscreen(false) instead
+	 */
 	private void leaveFullscreen() {
-		//		GraphicsDevice device = getDevice();
-		//		device.setFullScreenWindow(null);
 		mainWindow.setExtendedState(JFrame.NORMAL);
 		mainWindow.setSize(1000, 600);
 		mainWindow.setUndecorated(false);
 		mainWindow.setResizable(true);
 		mainWindow.setVisible(true);
-		//		mainWindow.validate();
+		mainWindow.validate();
+		//		GraphicsDevice device = getDevice();
+		//		device.setFullScreenWindow(null);
 	}
+	/**
+	 * enter fullscreen
+	 * never call directly - use fullscreen(true) instead
+	 */
 	private void enterFullscreen() {
 		// go into full screen mode
-		//			GraphicsDevice device = getDevice();
-		//			if (device.isFullScreenSupported()) device.setFullScreenWindow(mainWindow);
-
 		Dimension size = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		mainWindow.setBounds(0,0,size.width,size.height);
 		mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainWindow.setUndecorated(true);
 		mainWindow.setResizable(false);
 		mainWindow.setVisible(true);
-		//				mainWindow.validate();
+		mainWindow.validate();
+		//		GraphicsDevice device = getDevice();
+		//		if (device.isFullScreenSupported()) device.setFullScreenWindow(mainWindow);
 	}
 	private GraphicsDevice getDevice() {
 		GraphicsEnvironment environment =GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -584,7 +593,6 @@ public class SwingSema {
 	}
 	public void setSema(SemaSpace space) {
 		app = space;
-		app.setSwing(this);
 	}
 
 	private void initSliders() {
@@ -701,6 +709,7 @@ public class SwingSema {
 			jSplitPane.setPreferredSize(new Dimension(1000,800));
 			jSplitPane.add(getControlPane(), JSplitPane.LEFT);
 			jSplitPane.add(getDummyPanel(), JSplitPane.RIGHT);
+			jSplitPane.addKeyListener(this);
 		}
 		return jSplitPane;
 	}
@@ -725,6 +734,7 @@ public class SwingSema {
 			jSplitPane1.setMinimumSize(new java.awt.Dimension(230, 400));
 			jSplitPane1.add(getUpperPart(), JSplitPane.TOP);
 			jSplitPane1.add(getInspectors(), JSplitPane.BOTTOM);
+			jSplitPane1.addKeyListener(this);
 		}
 		return jSplitPane1;
 	}
@@ -736,6 +746,7 @@ public class SwingSema {
 			inspectors.addTab("node", null, getNodes(), null);
 			inspectors.addTab("edge", null, getEdgeWndSplitPane(), null);
 			inspectors.addTab("attrib", null, getAttributeSplitPane1(), null);
+			inspectors.addKeyListener(this);
 		}
 		return inspectors;
 	}
@@ -1890,6 +1901,7 @@ public class SwingSema {
 			jSplitPane2.setDividerSize(0);
 			jSplitPane2.setMinimumSize(new Dimension(230,375));
 			jSplitPane2.add(getControlPanel(), JSplitPane.TOP);
+			jSplitPane2.addKeyListener(this);
 			jSplitPane2.add(getJPanel1(), JSplitPane.BOTTOM);
 		}
 		return jSplitPane2;
@@ -1906,6 +1918,7 @@ public class SwingSema {
 			midPanels.add(getTiltBox());
 			midPanels.add(getRadbox());
 			midPanels.add(getFadeLabelsBox());
+			midPanels.addKeyListener(this);
 		}
 		return midPanels;
 	}
@@ -2850,5 +2863,45 @@ public class SwingSema {
 			jLabel20.setBounds(152, 137, 50, 13);
 		}
 		return jLabel20;
+	}
+	@Override
+	public void eventReceived(SemaEvent evt) {
+		switch (evt.getType()) {
+		case SemaEvent.MSGupdate:
+			setMsg(evt.getContent());
+			break;
+		case SemaEvent.EnterFullscreen:
+			fullscreen(true);
+			break;
+		case SemaEvent.LeaveFullscreen:
+			fullscreen(false);
+			break;
+		case SemaEvent.RedrawUI:
+			redrawUI();
+			break;
+		case SemaEvent.UpdateUI:
+			updateUI(app.ns);
+		}
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_F12:
+			fullscreen(true);
+			break;
+		case KeyEvent.VK_ESCAPE:
+			fullscreen(false);
+			break;
+		}
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }	
