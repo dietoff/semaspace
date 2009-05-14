@@ -180,8 +180,10 @@ public class NetLoader {
 	 */
 	private void parseEdgeAttributes(Edge tmp) {
 		if (tmp==null) return;
-		if (tmp.hasAttribute("function")) 
-			tmp.setAltName(tmp.getAttribute("function"));
+		if (tmp.hasAttribute("function")) tmp.setAltName(tmp.getAttribute("function"));
+		if (tmp.hasAttribute("name")) tmp.setAltName(tmp.getAttribute("name"));
+		if (tmp.hasAttribute("type")) tmp.setAltName(tmp.getAttribute("type"));
+		if (tmp.hasAttribute("role")) tmp.setAltName(tmp.getAttribute("role"));
 		if (tmp.hasAttribute("similarity"))
 			try {
 				tmp.setProperty(10f*Float.parseFloat(tmp.getAttribute("similarity")));

@@ -233,9 +233,9 @@ public class GraphRenderer {
 	private float getAdvance(float nSize, int font, float fsize, String split) {
 		float advance=0;
 		if (font==0)
-			advance = -app.hiQfont.advance(split)*fsize*0.025f-nSize-25f;
+			advance = -nSize-fsize*(app.hiQfont.advance(split)*0.025f+2f);
 		else 
-			advance = -FuncGL.stringlength(app, split)*fsize*0.01f-nSize-25f;
+			advance = -nSize-fsize*(FuncGL.stringlength(app, split)*0.01f+2f);
 		return advance;
 	}
 
