@@ -472,7 +472,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			layout.layoutLocksRemove();
 			break;
 		case KeyEvent.VK_F5: 
-			initFonts();
+			updatePicks();
 			break;
 		case KeyEvent.VK_F6:
 			break;
@@ -701,7 +701,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			}
 		}
 		ns.getView().updateNet();
-		
+
 	}
 
 	public void delAll(){
@@ -807,7 +807,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		return url;
 	}
 
-
 	public boolean isCluster() {
 		return cluster;
 	}
@@ -844,23 +843,20 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	private void netExpandNodes(HashSet<Node> framed) {
 		HashSet<Node> zi = ns.getView().distances.getNodesAtDistance(0);
-		Node z = null;
-		if (zi!=null&&zi.size()>0) z = zi.iterator().next();
 		int max = ns.getView().distances.getMaxDist();
 
 		//		for (Node n:framed) layout.layoutLockNode(n, n.pos, ns.getView());
 		Net result = ns.getView().generateSearchNet(ns.global,framed, 1 );
 
-		//		if ((result.eTable.size()+result.nNodes.size())>(ns.view.eTable.size()+ns.view.nNodes.size()))
-		//see if net did actually grow
 		{ 
 			ns.getView().netMerge(result);
 			ns.getView().app.clearFrames(ns.getView());
 		}
-		if (z!=null) ns.getView().distances.findSearchDistances(z, max+1);
+		if (zi==null||zi.size()==0) return; 
+		ns.getView().distances.findSearchDistances(zi, max+1);
 		downloadTextures();
 		ns.getView().updateNet();
-		updatePick();
+		updatePicks();
 		updateUI();
 	}
 
@@ -873,9 +869,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		ns.getView().updateNet();
 		layout.replist.clear();
 		layout.setNet(ns.getView());
-		//		layout.layoutNodePosRandomize();
 		layout.layoutBox(ns.getView().nNodes);
-		//		layout.layoutConstrainCircle();
 		layout.layoutLocksRemove();
 		starttime = System.currentTimeMillis();
 		lasttime = starttime;
@@ -1240,13 +1234,18 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void updatePick() {
 		updatePick(pickID);
 	}
-	
+
 	void updatePick(int pickID2) {
 		if (pickID2 == -1) ns.getView().distances.clearPick();
 		ns.getView().distances.findPickDistances(pickID2, pickdepth,SHIFT);
 		layout.applyPickColors();
 	}
-	
+
+	void updatePicks() {
+		ns.getView().distances.findPickDistancesMultiple(pickdepth);
+		layout.applyPickColors();
+	}
+
 	void clearPick() {
 		ns.getView().distances.clearPick();
 		layout.applyPickColors();

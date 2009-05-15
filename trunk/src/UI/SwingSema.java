@@ -1183,7 +1183,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			layoutTab.add(getStrengthLabel());
 			layoutTab.add(getForces());
 			layoutTab.add(getClusters());
-			layoutTab.add(getRadialBox());
+			layoutTab.add(getTimelineBox());
 			layoutTab.add(getTreeBox());
 			layoutTab.add(getRepNeighbors());
 			layoutTab.add(getRepellBox1());
@@ -1410,7 +1410,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		}
 		return clusters;
 	}
-	private JCheckBox getRadialBox() {
+	private JCheckBox getTimelineBox() {
 		if (timeBox == null) {
 			timeBox = new JCheckBox();
 			timeBox.setText("timeline");
