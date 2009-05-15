@@ -51,7 +51,7 @@ import net.sourceforge.ftgl.glfont.FTGLOutlineFont;
 import net.sourceforge.ftgl.glfont.FTGLPolygonFont;
 import net.sourceforge.ftgl.glfont.FTGLTextureFont;
 
-public class SemaSpace implements GLEventListener, MouseListener, MouseMotionListener, KeyListener  {
+public class SemaSpace implements GLEventListener, MouseListener, MouseMotionListener, MouseWheelListener, KeyListener  {
 	private static final long serialVersionUID = -1864003907508879499L;
 	GLUT glut = new GLUT();
 	//	HashSet<String> map = Messages.getArray("map");
@@ -196,6 +196,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		glu = new GLU();
 		gLDrawable.addMouseListener(this);
 		gLDrawable.addMouseMotionListener(this);
+		gLDrawable.addMouseWheelListener(this);
 		gLDrawable.addKeyListener(this);
 		initGLsettings(gl);
 		cam = new Cam(gLDrawable,FOV,0,0,zInc,focus,znear,zfar);
@@ -514,13 +515,12 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		mouseX = evt.getX();
 		Node picked = ns.getView().getNodeByID(pickID);
 
-		if (select&&!SwingUtilities.isRightMouseButton(evt)&&picked!=null&&ns.getView().fNodes.contains(picked)) { //drag a node
+		if (select&&!SwingUtilities.isRightMouseButton(evt)&&picked!=null&&picked.rollover&&ns.getView().fNodes.contains(picked)) { //drag a node
 			float wHeight = glD.getHeight();
 			float wWidth = glD.getWidth();
 			float dragX = mouseX-(wWidth/2f);
 			float dragY = mouseY-(wHeight/2f);
-
-			float screenfactor = (float)(cam.getDist()*1.4f*Math.tan((FOV/2)*TWO_PI/360)/(Math.sqrt(wHeight*wHeight+wWidth*wWidth)/2f));
+			float screenfactor = (float)(cam.getDist()*2f*Math.tan((FOV/2)*TWO_PI/360)/wHeight);
 
 			// drag a node
 			float localX = cam.getX()+dragX*screenfactor;
@@ -582,6 +582,14 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void mouseReleased(MouseEvent evt) {
 		//		pressed = false;
 		//		select = false;
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+	       int notches = e.getWheelRotation();
+	       	zoomNew *= 1-(notches*0.001f*deltatime) ;
+			zoomNew = Math.min(zoomNew, zfar);
+			zoomNew = Math.max(zoomNew, znear);
 	}
 
 	public void addEdge(String a, String b) {
@@ -867,7 +875,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			loadNetwork(new File(filename), isTabular());
 			break;
 		case 1:
-			loadNetworkHttp("http://localhost/~d/np.tab", true);
+			loadNetworkHttp("http://193.170.99.168/np/vis/index.php?todo=tab", true);
 			break;
 		case 2:
 			loadNetworkJar("data.txt", isTabular());
