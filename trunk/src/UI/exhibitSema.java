@@ -997,7 +997,7 @@ public class exhibitSema implements SemaListener, KeyListener {
 			expand2.setBounds(144, 114, 67, 15);
 			expand2.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.netExpandNode(); //  Auto-generated Event stub actionPerformed()
+					app.netExpandPickedNodes(); //  Auto-generated Event stub actionPerformed()
 				}
 			});
 		}

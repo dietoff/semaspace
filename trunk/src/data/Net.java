@@ -536,9 +536,6 @@ public class Net {
 				if (tmp!=null) searchNodes.add(tmp);
 			}
 		}
-		
-		
-//				resultNet.updateNet();
 		return resultNet;
 	}
 
