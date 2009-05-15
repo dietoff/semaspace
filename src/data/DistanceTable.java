@@ -111,12 +111,12 @@ public class DistanceTable {
 	/*
 	 * find distances, depth first
 	 */
-	public void findPickDistances(int ID, int maxdepth_) {
+	public void findPickDistances(int ID, int maxdepth_, boolean shift) {
 		maxdepth = maxdepth_;
 		int depth = 0;
 		Node a;
 		a=net.getNodeByID(ID);
-		clearPick(); //set depth counters to MAXVALUE
+		if (!shift) clearPick(); //set depth counters to MAXVALUE
 
 		if (a!=null){
 			// depth 1
@@ -127,6 +127,8 @@ public class DistanceTable {
 			Edge e = net.getEdgeByID(ID);
 			if (e!=null) {
 				e.setPicked(true);
+				e.getA().pickDistance=0;
+				e.getB().pickDistance=0;
 			}
 		}
 	}

@@ -379,8 +379,7 @@ public class GraphRenderer {
 		Node b = e.getB();
 
 		float[] textcolor = {color [0]/2f, color[1]/2f, color[2]/2f, 1};
-		//		if (!e.isPicked()&&(!e.attributes.containsKey(app.getAttribute())||color[3]<0.2f)&&!e.rollover) return;
-		if (app.fadeLabels&&!e.rollover&&!e.isFrame()&&!(a.getPickColor()[3]>0||b.getPickColor()[3]>0)) return;
+		if ((app.fadeLabels||app.fadeNodes)&&!e.rollover&&!e.isPicked()&&!e.isFrame()&&!(a.getPickColor()[3]>0&&b.getPickColor()[3]>0)) return;
 			
 		if ((e.isPicked()||e.rollover)&&font==3) font=2;
 		Vector3D dir = b.pos.copy();

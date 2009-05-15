@@ -909,7 +909,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			seachSelButton.setBounds(144, 40, 67, 15);
 			seachSelButton.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.netSearchPicked(add.isSelected());
+					app.netSearchPickedMultiple(add.isSelected());
 				}
 			});
 		}
@@ -997,7 +997,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			expand2.setBounds(144, 114, 67, 15);
 			expand2.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.netExpandNode(); //  Auto-generated Event stub actionPerformed()
+					app.netExpandPickedNodes(); //  Auto-generated Event stub actionPerformed()
 				}
 			});
 		}

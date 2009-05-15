@@ -170,6 +170,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private int repellMax = 1000;
 	private GraphRendererSVG SVGrenderer;
 	private List<SemaListener> _listeners = new ArrayList<SemaListener>();
+	private boolean SHIFT;
 
 	public SemaSpace(){
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
@@ -358,6 +359,11 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			clearRollover();
 			GraphElement n = ns.getView().getByID(overID);
 			if (n!=null) n.setRollover(true);
+			if (n instanceof Edge) { 
+				// if edge, also activate connected nodes
+				((Edge) n).getA().setRollover(true);
+				((Edge) n).getB().setRollover(true);
+			}
 			moved=false;
 		}
 		statusMsg();
@@ -414,11 +420,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 		layout.renderNodes(gl, renderer, 0); //render the nets.viewwork 
 		if (edges) layout.renderEdges(gl, renderer, 0);
-		//		gl.glFlush();
 
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glPopMatrix();
-		//		gl.glMatrixMode(GL.GL_MODELVIEW); // Select The Modelview Matrix
 		hits = gl.glRenderMode(GL.GL_RENDER);
 		int overID=-1;
 		if (hits!=0){
@@ -436,8 +440,14 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		return overID;
 	}
 
+	private String nameCurrentAttribute() {
+		ns.global.altNameByAttribute(attribute);
+		return attribute;
+	}
+
 	public void keyReleased(KeyEvent evt) {
 		CTRL = evt.isControlDown();
+		SHIFT = evt.isShiftDown();
 
 		switch (evt.getKeyCode())
 		{
@@ -445,8 +455,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			ns.view.updateNet();
 			break;
 		case KeyEvent.VK_SPACE:
-			break;
-		case KeyEvent.VK_SHIFT:
 			break;
 		case KeyEvent.VK_F1:
 			String name = nameCurrentAttribute();
@@ -485,13 +493,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		}
 	}
 
-	private String nameCurrentAttribute() {
-		ns.global.altNameByAttribute(attribute);
-		return attribute;
-	}
-
 	public void keyPressed(KeyEvent evt) {
 		CTRL = evt.isControlDown();
+		SHIFT = evt.isShiftDown();
 		switch (evt.getKeyCode())
 		{
 		case KeyEvent.VK_F2: 
@@ -586,10 +590,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
-	       int notches = e.getWheelRotation();
-	       	zoomNew *= 1-(notches*0.001f*deltatime) ;
-			zoomNew = Math.min(zoomNew, zfar);
-			zoomNew = Math.max(zoomNew, znear);
+		int notches = e.getWheelRotation();
+		zoomNew *= 1-(notches*0.001f*deltatime) ;
+		zoomNew = Math.min(zoomNew, zfar);
+		zoomNew = Math.max(zoomNew, znear);
 	}
 
 	public void addEdge(String a, String b) {
@@ -665,18 +669,26 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void delSelected() {
-		Node sel = ns.getView().getNodeByID(pickID);
-		if (sel==null) return; 
-		ns.getView().removeNode(sel);
-		updatePick();
+		HashSet<Node> pickeds = getPickeds();
+		clearPick();
+		if (pickeds.size()>0){
+			for (Node sel:pickeds){
+				ns.getView().removeNode(sel);
+			}
+			ns.getView().updateNet();
+		}
 	}
 
+	/**
+	 * @param b - invert the selection
+	 */
 	public void delRegion( boolean b) {
 		HashSet<Node> ne = new HashSet<Node>();
 
 		for (Node n:ns.getView().nNodes) {
-			if (n.isPicked()) ne.add(n);
+			if (n.isPickRegion()) ne.add(n);
 		}
+		clearPick();
 		if (!b) {
 			for (Node n:ne) {
 				ns.getView().removeNode(n);
@@ -688,7 +700,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 				if (!ne.contains(n)) ns.getView().removeNode(n);
 			}
 		}
-		updatePick();
+		ns.getView().updateNet();
+		
 	}
 
 	public void delAll(){
@@ -764,7 +777,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		}
 		return picked;
 	}
+	public HashSet<Node> getPickeds() {
 
+		HashSet<Node> result = new HashSet<Node>();
+
+		for (Node n:ns.view.nNodes) {
+			if (n.isPicked()) result.add(n);
+		}
+		return result;
+	}
 	public float getRepell() {
 		return  repellDist;
 	}
@@ -827,7 +848,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (zi!=null&&zi.size()>0) z = zi.iterator().next();
 		int max = ns.getView().distances.getMaxDist();
 
-		for (Node n:framed) layout.layoutLockNode(n, n.pos, ns.getView());
+		//		for (Node n:framed) layout.layoutLockNode(n, n.pos, ns.getView());
 		Net result = ns.getView().generateSearchNet(ns.global,framed, 1 );
 
 		//		if ((result.eTable.size()+result.nNodes.size())>(ns.view.eTable.size()+ns.view.nNodes.size()))
@@ -839,15 +860,13 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (z!=null) ns.getView().distances.findSearchDistances(z, max+1);
 		downloadTextures();
 		ns.getView().updateNet();
+		updatePick();
 		updateUI();
 	}
 
-	public void netExpandNode() {
-		Node sel = ns.getView().getNodeByID(pickID);
-		if (sel==null) return;
-		HashSet<Node> n = new HashSet<Node>();
-		n.add(sel);
-		netExpandNodes(n);
+	public void netExpandPickedNodes() {
+		HashSet<Node> n = getPickeds();
+		if (n.size()>0)	netExpandNodes(n);
 	}
 
 	private void netInit() {
@@ -967,7 +986,19 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			netStartString(picked.name, add);
 		}
 	}
-
+	/**
+	 * New view from picked nodes
+	 * @param add - add to existing view
+	 */
+	public void netSearchPickedMultiple(boolean add) {
+		Net view = ns.getView();
+		HashSet<Node> pickeds = getPickeds();
+		if (pickeds.size()>0){
+			Net result = view.generateSearchNet(ns.global,pickeds, searchdepth);
+			ns.setView(result);
+			netInit();
+		}
+	}
 	/**
 	 * generate view from specified node
 	 * @param n
@@ -1209,10 +1240,17 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void updatePick() {
 		updatePick(pickID);
 	}
+	
 	void updatePick(int pickID2) {
 		if (pickID2 == -1) ns.getView().distances.clearPick();
-		ns.getView().distances.findPickDistances(pickID2,pickdepth);
+		ns.getView().distances.findPickDistances(pickID2, pickdepth,SHIFT);
 		layout.applyPickColors();
+	}
+	
+	void clearPick() {
+		ns.getView().distances.clearPick();
+		layout.applyPickColors();
+		pickID=-1;
 	}
 
 	void updateTime(){

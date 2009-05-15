@@ -63,8 +63,11 @@ public class Node extends GraphElement {
 		this.size = size;
 	}
 
-	public boolean isPicked() {
+	public boolean isPickRegion() {
 		if (pickColor[3]!=0) return true; else return false;
+	}
+	public boolean isPicked() {
+		if (pickDistance==0) return true; else return false;
 	}
 	public boolean hasTexture(){
 		if (textures[0]!=0) return true; else return false;
