@@ -245,7 +245,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			props.put("windowTitleFont", "Dialog bold 10");
 			props.put("subTextFont", "Dialog 8");
 
-			props.put("backgroundColor","255 255 255");
+			props.put("backgroundColor","250 250 250");
 			props.put("controlBackgroundColor","220 220 220");
 			props.put("controlDarkShadowColor","20 20 20");
 			props.put("controlHighlightColor", "255 0 0");
