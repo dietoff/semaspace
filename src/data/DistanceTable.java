@@ -15,23 +15,22 @@ public class DistanceTable {
 		distTable = new HashMap<Node, Integer>();
 		distMap = new HashMap<Integer, HashSet<Node>>();
 	}
-	
+
 	/*
 	 * find distances, depth first
 	 */
-	public void findSearchDistances(Node a, int maxdepth_) {
+	public void findSearchDistances(HashSet<Node> set, int maxdepth_) {
 		net.updateNet(); // to make sure adjacency lists are consistent
 		maxdepth = maxdepth_;
 		int depth = 0;
 		clear();
-		
-		if (a!=null){
+		for (Node a:set) {
 			// depth 1
 			addDistances(a,depth); 
 			iterSearchDepth(a, depth);
-		} else return;
+		}
 	}
-	
+
 	void iterSearchDepth(Node a, int depth_) {
 		int depth = depth_;
 		depth++;
@@ -48,7 +47,7 @@ public class DistanceTable {
 			}
 		}
 	}
-	
+
 	void addDistances(Node tmp, int i) {
 		if (distTable.containsKey(tmp))	removeDistances(tmp);
 
@@ -102,7 +101,7 @@ public class DistanceTable {
 	public Collection<HashSet<Node>> nodeSets() {
 		return distMap.values();
 	}
-	
+
 	public int getMaxDist() {
 		int max = 0;
 		for (int x:distvalues()) if (x>max) max = x;
@@ -128,8 +127,35 @@ public class DistanceTable {
 			if (e!=null) {
 				e.setPicked(true);
 				e.getA().pickDistance=0;
+				iterDepth(e.getA(), depth);
 				e.getB().pickDistance=0;
+				iterDepth(e.getB(), depth);
 			}
+		}
+	}
+
+	/*
+	 * find distances, depth first
+	 */
+	public void findPickDistancesMultiple( int maxdepth_) {
+		maxdepth = maxdepth_;
+		int depth = 0;
+		HashSet<Node> result = new HashSet<Node>();
+
+		for (Node n:net.nNodes) {
+			if (n.isPicked()) result.add(n);
+		} 
+		for (Edge e:net.nEdges) {
+			if (e.isPicked()) {
+				result.add(e.getA());
+				result.add(e.getB());
+			}
+		}
+		clearPick(); //set depth counters to MAXVALUE
+
+		for (Node a:result) {
+			a.pickDistance=depth; //node a depth = 0
+			iterDepth(a, depth);
 		}
 	}
 
@@ -138,11 +164,11 @@ public class DistanceTable {
 		depth++;
 		if (depth>maxdepth) return;
 		else{
-			
+
 			HashSet<Node> list = new HashSet<Node>();
 			list.addAll(a.adList);
 			list.addAll(a.inList);
-			
+
 			for (Node n:list){
 				iterDepth(n,depth);
 				if (n.pickDistance>depth) {

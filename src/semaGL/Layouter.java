@@ -15,7 +15,7 @@ import semaGL.SemaSpace;
 
 public class Layouter {
 
-	
+
 	private SemaSpace app;
 	protected Net net;
 	private float innerRad=100;
@@ -718,7 +718,7 @@ public class Layouter {
 	public void setNet(Net net) {
 		this.net = net;
 	}
-	
+
 	/**
 	 * calculate node color based on gradient and level
 	 * @param level
@@ -739,11 +739,15 @@ public class Layouter {
 
 	public void layoutEgocentric() {
 		net.clearClusters();
+		float offset = 0;
+		if (net.distances.getNodesAtDistance(0).size()>1) offset = 0.15f;
 		for (Node n:net.nNodes) {
-			float f=0;
-			if (net.distances.contains(n)) layoutConstrainCircle(n, 0, 0, (net.distances.getNodeDistance(n)+f)*(app.radialDist));
+			if (net.distances.contains(n)) {
+				layoutConstrainCircle(n, 0, 0, (net.distances.getNodeDistance(n)+offset)*(app.radialDist));
+			}
 		}
 	}
+	
 	public void layoutTimeline() {
 		net.clearClusters();
 		Collection<Float> time = net.timeTable.values();
@@ -818,20 +822,23 @@ public class Layouter {
 	}
 	public void initRadial(float xn, float yn, float rad) {
 		if (net.distances.getNodesAtDistance(0) == null) return;
-		Node start = net.distances.getNodesAtDistance(0).iterator().next();
+		HashSet<Node> set = net.distances.getNodesAtDistance(0);
 
-		HashSet<Node> first = new HashSet<Node>();
-		first.addAll(start.adList);
-		first.addAll(start.inList);
-		float alpha = (float)Math.PI*2/(float)first.size();
-		float x;
-		float y;
-		int i = 1;
-		for (Node n:first) {
-			y = (float) (yn + Math.sin(alpha*i)*rad);
-			x = (float) (xn + Math.cos(alpha*i)*rad);
-			n.pos.setXY(x, y);
-			i++;
+		for (Node start:set){
+			//		Node start = net.distances.getNodesAtDistance(0).iterator().next();
+			HashSet<Node> first = new HashSet<Node>();
+			first.addAll(start.adList);
+			first.addAll(start.inList);
+			float alpha = (float)Math.PI*2/(float)first.size();
+			float x;
+			float y;
+			int i = 1;
+			for (Node n:first) {
+				y = (float) (yn + Math.sin(alpha*i)*rad);
+				x = (float) (xn + Math.cos(alpha*i)*rad);
+				n.pos.setXY(x, y);
+				i++;
+			}
 		}
 	}
 }
