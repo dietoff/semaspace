@@ -639,7 +639,7 @@ public class SwingSema implements SemaListener, KeyListener {
 							change = false;
 							if (edgeAttModel.contains(out))	edgeAttList.setSelectedValue(out, true);
 							else edgeAttList.setSelectedIndex(0);
-							getSearchTerm().setText("");
+//							getSearchTerm().setText("");
 						} else change = true;
 					}
 				}
@@ -692,7 +692,7 @@ public class SwingSema implements SemaListener, KeyListener {
 							change = false;
 							if (nodeAttModel.contains(out)) nodeAttList.setSelectedValue(out, true);
 							else nodeAttList.setSelectedIndex(0);
-							getSearchTerm().setText("");
+//							getSearchTerm().setText("");
 						} else change = true;
 					} 
 					//					textHilight();
@@ -835,7 +835,11 @@ public class SwingSema implements SemaListener, KeyListener {
 			searchTerm.setBounds(2, 19, 116, 15);
 			searchTerm.addKeyListener(new KeyAdapter() {
 				public void keyReleased(java.awt.event.KeyEvent e) {
-					if (e.getKeyCode()==10) app.netSearchSubstring(searchTerm.getText(),add.isSelected());
+					if (e.getKeyCode()==10) {
+					app.netSearchSubstring(searchTerm.getText(),add.isSelected());
+					searchTerm.setText("");
+					fade(false);
+					}
 					textHilight();
 				}
 
@@ -856,6 +860,8 @@ public class SwingSema implements SemaListener, KeyListener {
 			searchButton.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netSearchSubstring(searchTerm.getText(), add.isSelected());
+					searchTerm.setText("");
+					fade(false);
 					textHilight();
 				}
 			});
@@ -864,8 +870,21 @@ public class SwingSema implements SemaListener, KeyListener {
 	}
 	private void textHilight() {
 		app.clearFrames(app.ns.view);
-		if (searchTerm.getText().length()>0) app.findSubstringAttributes(searchTerm.getText(), app.getAttribute());
+		if (searchTerm.getText().length()>0) {
+			app.findSubstringAttributes(searchTerm.getText(), app.getAttribute());
+			if (app.isExhibitionMode()) {
+				fade(true);
+			}
+		} else
+			{
+				fade(false);
+			}
 	}
+	private void fade(boolean f) {
+		fadenodes.setSelected(f);
+		app.fadeNodes=f;
+	}
+	
 	private JSlider getDepth() {
 		if (depth == null) {
 			depth = new JSlider();
@@ -918,7 +937,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JLabel getSearch() {
 		if (search == null) {
 			search = new JLabel();
-			search.setText("search");
+			search.setText("filter / search");
 			search.setFont(new java.awt.Font("Dialog",1,11));
 			search.setBounds(0, 0, 210, 14);
 			//			search.setBackground(new java.awt.Color(192,192,192));

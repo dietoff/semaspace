@@ -64,12 +64,12 @@ public class FuncGL {
 			//			j2d.drawString(lines[i], pos[0], pos[1]);
 
 
-			if (app.flat) { 
+			if (app.layout2d) { 
 				//paint background frame
 				int len = app.glut.glutBitmapLength(font, lines[i]);
 				gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
 				//				gl.glColor4f(.9f, .9f, .9f, textColor[3]);
-				gl.glColor4f(1f, 1f, 1f, textColor[3]);
+				gl.glColor4f(1f, 1f, 1f, 0.9f);
 				gl.glRecti((int)offset, (int)(-factor*(i*25f+7)), (int)(offset+factor*len*1.4f),(int)(factor*(-i*25f+18)));
 			}
 
