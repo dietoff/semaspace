@@ -30,7 +30,7 @@ public class GraphRenderer {
 	 * @param n
 	 */
 	synchronized void renderNode(GL gl, Node n) {
-		if (app.flat&&outsideView(n)) return;
+		if (app.layout2d&&outsideView(n)) return;
 
 		if (n.newTex=true&&n.tex!=null){
 			FuncGL.initGLTexture(gl,n.tex, n.textures);
@@ -144,7 +144,7 @@ public class GraphRenderer {
 	 * @param fast
 	 */
 	public synchronized void renderNodeLabels(GL gl, Node n, int font, boolean fast){
-		if (app.flat&&outsideView(n)) return;
+		if (app.layout2d&&outsideView(n)) return;
 
 		float distToCam = app.cam.distToCam(n.pos);
 		String att="";
@@ -212,14 +212,17 @@ public class GraphRenderer {
 	}
 
 	private float alignLabel(GL gl, Vector3D n, float nSize, int font, float fsize, String split) {
+
 		float angle = (float) ((Math.atan(n.y/n.x))/(2*Math.PI)*360f); // this has to be fixed for 3D
 		float advance = getAdvance(nSize, font, fsize, split);
-		gl.glRotatef(angle, 0, 0, 1);
-		if (n.x<0) {
-			
-			gl.glTranslatef(advance, 0, 0);
-		} else	
-			gl.glTranslatef(nSize, 0, 0);
+
+		if (app.layout2d) {
+			gl.glRotatef(angle, 0, 0, 1);
+			if (n.x<0) {
+				gl.glTranslatef(advance, 0, 0);
+			} else	
+				gl.glTranslatef(nSize, 0, 0);
+		}
 		return advance;
 	}
 
@@ -253,7 +256,7 @@ public class GraphRenderer {
 	 */
 	public synchronized void renderGroupLabels(GL gl, Node n, int font){
 
-		if (app.flat&&outsideView(n)) return;
+		if (app.layout2d&&outsideView(n)) return;
 
 		float distToCam = app.cam.distToCam(n.pos);
 		//		float[] textcolor = {n.color[0]/2f, n.color[1]/2f, n.color[2]/2f, 1};
@@ -364,7 +367,7 @@ public class GraphRenderer {
 		}
 		gl.glPopMatrix();
 	}
-	
+
 	/**
 	 * render edge labels
 	 * @param gl
@@ -380,7 +383,7 @@ public class GraphRenderer {
 
 		float[] textcolor = {color [0]/2f, color[1]/2f, color[2]/2f, 1};
 		if ((app.fadeLabels||app.fadeNodes)&&!e.rollover&&!e.isPicked()&&!e.isFrame()&&!(a.getPickColor()[3]>0&&b.getPickColor()[3]>0)) return;
-			
+
 		if ((e.isPicked()||e.rollover)&&font==3) font=2;
 		Vector3D dir = b.pos.copy();
 		dir.sub(a.pos); //direction of the edge
@@ -412,7 +415,7 @@ public class GraphRenderer {
 		FuncGL.renderText(app, rText, textcolor,app.getLabelsize(), font, e.getId(), distToCam, false, fast); //render text in dark grey, with alpha of edge
 		gl.glPopMatrix();
 	}
-	
+
 	/**
 	 * render the colored background of the clusters
 	 * @param gl

@@ -207,7 +207,7 @@ public class Layouter {
 	public void layoutDistance(float offset, float valencefactor, float attenuation, Net net) {
 		if (net.nEdges.size()==0) return;
 		float o = offset;
-		if (app.flat) o*=0.5f;
+		if (app.layout2d) o*=0.5f;
 		float val = valencefactor;
 		float att = attenuation;
 		float dist;
@@ -224,7 +224,7 @@ public class Layouter {
 	}
 	public void layoutDistanceTree(float o_, float v_, float att_) {
 		float offset = o_;
-		if (app.flat) offset*=0.5f;
+		if (app.layout2d) offset*=0.5f;
 		float val = v_;
 		float att = att_;
 		float dist;
@@ -611,13 +611,23 @@ public class Layouter {
 	 * @param nr
 	 */
 	void render(GL gl, int fonttype, Net view, GraphRenderer nr){
+
 		Layouter layout = this;
-		if (!app.isTree()) layout.renderClusters(gl, nr);
-		if (app.isGroups()) {layout.renderGroups(gl,nr, view,fonttype);
-		layout.renderGroupLabels(gl, nr, view,fonttype);}
-		if (app.isEdges()) layout.renderEdges(gl, nr, fonttype);
-		layout.renderNodes(gl,nr, fonttype);
-		layout.renderLabels(gl,nr, fonttype);
+		if (app.layout2d){
+			if (!app.isTree()) layout.renderClusters(gl, nr);
+			if (app.isGroups()) {layout.renderGroups(gl,nr, view,fonttype);
+			layout.renderGroupLabels(gl, nr, view,fonttype);}
+			if (app.isEdges()) layout.renderEdges(gl, nr, fonttype);
+			layout.renderNodes(gl,nr, fonttype);
+			layout.renderLabels(gl,nr, fonttype);
+		}
+		else {
+			if (!app.isTree()) layout.renderClusters(gl, nr);
+			if (app.isGroups()) {layout.renderGroups(gl,nr, view,fonttype);
+			layout.renderGroupLabels(gl, nr, view,fonttype);}
+			if (app.isEdges()) layout.renderEdges3D(gl, nr, fonttype);
+			layout.renderNodes3D(gl,nr, fonttype);
+		}
 	}
 
 	/**
@@ -648,7 +658,18 @@ public class Layouter {
 			nr.renderEdges(gl, eref);
 		}
 	}
-
+	/**
+	 * render edges contained in net in 3d
+	 * @param gl
+	 * @param nr
+	 * @param text
+	 */
+	public  void renderEdges3D(GL gl, GraphRenderer nr, int text) {
+		for (Edge eref: net.nEdges) {
+			nr.renderEdges(gl, eref);
+			nr.renderEdgeLabels(gl, eref, text, false);
+		}
+	}
 	/**
 	 * render node labels with font = text 
 	 * @param gl
@@ -674,7 +695,19 @@ public class Layouter {
 			nr.renderNode(gl, n);
 		}
 	}
-
+	/**
+	 * render the nodes in net
+	 * @param gl
+	 * @param nr
+	 * @param text
+	 */
+	public  void renderNodes3D(GL gl, GraphRenderer nr,  int text) {
+		applyPickColors();
+		for (Node n: net.nNodes) {
+			nr.renderNode(gl, n);
+			nr.renderNodeLabels(gl, n, text, false);
+		}
+	}
 	/**
 	 * render the groups defined in the group attribute
 	 * @param gl
@@ -740,14 +773,16 @@ public class Layouter {
 	public void layoutEgocentric() {
 		net.clearClusters();
 		float offset = 0;
-		if (net.distances.getNodesAtDistance(0).size()>1) offset = 0.15f;
+
+		HashSet<Node> nodes = net.distances.getNodesAtDistance(0);
+		if (nodes!=null&&nodes.size()>1) offset = 0.15f;
 		for (Node n:net.nNodes) {
 			if (net.distances.contains(n)) {
 				layoutConstrainCircle(n, 0, 0, (net.distances.getNodeDistance(n)+offset)*(app.radialDist));
 			}
 		}
 	}
-	
+
 	public void layoutTimeline() {
 		net.clearClusters();
 		Collection<Float> time = net.timeTable.values();

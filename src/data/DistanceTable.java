@@ -77,7 +77,7 @@ public class DistanceTable {
 		}
 	}
 
-	void clear(){
+	public void clear(){
 		distTable.clear();
 		distMap.clear();
 	}
@@ -177,6 +177,8 @@ public class DistanceTable {
 			}
 		}
 	}
+	
+	
 	public void clearPick() {
 		for (Node nodeN:net.nNodes)	{
 			nodeN.pickDistance=Integer.MAX_VALUE;

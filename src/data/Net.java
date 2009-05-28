@@ -102,8 +102,8 @@ public class Net {
 			newEdge = new Edge(app, aref, bref, id);
 			addEdge(newEdge);
 
-//			aref.adList.add(bref);
-//			if (!dir) bref.adList.add(aref); else bref.inList.add(aref);
+			//			aref.adList.add(bref);
+			//			if (!dir) bref.adList.add(aref); else bref.inList.add(aref);
 
 			return eTable.get(name);
 		}
@@ -557,7 +557,9 @@ public class Net {
 
 	public Net generateAttribSearchNet(Net source, String term, int depth, String key) {
 		Net result = new Net(app);
-		String term2 = WildcardToRegex.wildcardToRegex(term); 
+		String term2;
+		if (!app.isExhibitionMode())  term2 = WildcardToRegex.wildcardToRegex(term); 
+		else term2 = term;
 		if (term==null||term=="") return null;
 		String subString = term2.toLowerCase();
 
@@ -570,7 +572,12 @@ public class Net {
 				//				att= n.name;
 				att = att.toLowerCase();
 				n.setFrame(false);
-				if (att.matches(subString))searchNodes.add(n);
+				if (!app.isExhibitionMode()) {
+					if (att.matches(subString))searchNodes.add(n);
+				}
+				else  {
+					if (att.contains(subString))searchNodes.add(n);
+				}
 			}
 		}
 		HashSet<Node> tmp = new HashSet<Node>();
@@ -579,7 +586,9 @@ public class Net {
 
 		if (tmp.size()>1){
 			result.distances.incDistances();
-			Node s = result.addNode("results \""+term+"\"");
+			String name = "results \""+term+"\"";
+			Node s = result.addNode(name);
+			s.attributes.put("id", name);
 			result.distances.addDistances(s, 0);
 			for (Node n:tmp){
 				result.addEdge(s, n);
@@ -664,7 +673,7 @@ public class Net {
 			}
 			else nNodes.add(n); 
 		}
-		
+
 		for (Edge e:net.nEdges) {
 			if (!eTable.containsKey(e.getName())) nEdges.add(e);
 		}
@@ -728,7 +737,7 @@ public class Net {
 		return (nEdges.size()==0&&nNodes.size()==0);
 	}
 
-	public void netSubstract(Net net) {
+	public Net netSubstract(Net net) {
 		nNodes.removeAll(net.nNodes);
 		nEdges.removeAll(net.nEdges);
 		for ( String n:net.nTable.keySet()) nTable.remove(n);
@@ -741,6 +750,7 @@ public class Net {
 		edgeattributes.removeAll(net.edgeattributes);
 		distances.clear();
 		updateNet();
+		return this;
 	}
 
 	public void altNameByAttribute(String attribute) {
