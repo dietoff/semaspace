@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+
 import com.jtattoo.plaf.AbstractLookAndFeel;
 
 public class SimButton extends JButton {
@@ -23,13 +24,13 @@ public class SimButton extends JButton {
 	
 	public SimButton(){
 		super();
-		borderC = AbstractLookAndFeel.getTheme().getControlDarkShadow();
-		rolloverC = AbstractLookAndFeel.getTheme().getRolloverColor();
-		backgC = AbstractLookAndFeel.getTheme().getButtonBackgroundColor();
+//		borderC = AbstractLookAndFeel.getTheme().getControlDarkShadow();
+//		rolloverC = AbstractLookAndFeel.getTheme().getRolloverColor();
+//		backgC = AbstractLookAndFeel.getTheme().getButtonBackgroundColor();
 
-//		borderC = MetalLookAndFeel.getCurrentTheme().getControlDarkShadow();
-//		rolloverC = new ColorUIResource(255, 170, 90);
-//		backgC = MetalLookAndFeel.getCurrentTheme().getWindowBackground();
+		borderC = MetalLookAndFeel.getCurrentTheme().getControlDarkShadow();
+		rolloverC = new ColorUIResource(255, 170, 90);
+		backgC = MetalLookAndFeel.getCurrentTheme().getWindowBackground();
 		setBackground(backgC);
 		
 		setMargin(new Insets(2,2,2,2));

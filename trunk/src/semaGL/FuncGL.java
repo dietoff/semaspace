@@ -1,20 +1,16 @@
 package semaGL;
 
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import java.text.Normalizer.Form;
-
+//import java.text.Normalizer.Form;
 import javax.media.opengl.GL;
-
 import sun.text.Normalizer;
 import nehe.TextureReader.Texture;
 import net.sourceforge.ftgl.FTBBox;
-
 import com.sun.opengl.util.BufferUtil;
 import com.sun.opengl.util.GLUT;
 import com.sun.opengl.util.j2d.TextRenderer;
@@ -146,7 +142,8 @@ public class FuncGL {
 	}
 
 	static void renderStrokeString( SemaSpace app, int font, String string, float offset, float offsety) {
-		String normalize = Normalizer.normalize(string, Form.NFKD, 1);
+		String normalize = Normalizer.normalize(string, Form.NFD, 0);
+//		String normalize = Normalizer.normalize(string, Normalizer.DECOMP, 0);
 		GL gl=app.glD.getGL();
 		stroke(app, font, normalize, offset, offsety, gl);
 	}
