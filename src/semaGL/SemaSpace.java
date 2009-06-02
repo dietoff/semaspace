@@ -591,7 +591,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		//		select = false;
 	}
 
-	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		int notches = e.getWheelRotation();
 		zoomNew *= 1-(notches*0.001f*deltatime) ;
@@ -881,6 +880,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		focus.setXYZ(0,0,0);
 		downloadTextures();
 		updateUI();
+		resetCam();
 		starttime = System.currentTimeMillis();
 	}
 
@@ -1350,12 +1350,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public float getVal() {
 		return val;
 	}
+	
 	public void resetCam() {
+		if (cam==null) return;
 		zInc = 700;
 		zoomNew = zInc;
 		focus.setXYZ(0, 0, 0);
 		cam.posAbsolute(glD,0f,0f,zInc,focus);
 	}
+	
 	public void camOnSelected() {
 		zInc = 700;
 		zoomNew = zInc;
