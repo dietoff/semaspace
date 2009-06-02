@@ -1,6 +1,5 @@
 package semaGL;
 
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,14 +32,12 @@ import data.Vector3D;
 
 public class GraphRendererSVG {
 	private SemaSpace app;
-	private GLU glu;
 	private Net net;
 	private String fontFam = "Helvetica";
 	boolean circles= false;
-	private boolean nodeAligned;
+	private boolean nodeAligned= false;
 
 	public GraphRendererSVG (SemaSpace app_){
-		glu = new GLU();
 		app=app_;
 		net = app.ns.getView();
 		fontFam = Messages.getString("SVGFontFamily");
