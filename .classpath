@@ -19,6 +19,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/jTatoo"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/batik"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/batik-1.7/lib/batik-svggen.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/batik-1.7/lib/batik-dom.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/batik-1.7/lib/batik-awt-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
