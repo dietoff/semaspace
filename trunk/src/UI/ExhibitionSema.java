@@ -9,9 +9,11 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
 import java.awt.Event;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -23,6 +25,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -44,6 +48,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.table.DefaultTableModel;
 
+import com.jtattoo.plaf.fast.FastLookAndFeel;
+
 import data.*;
 import semaGL.*;
 import UI.SimButton;
@@ -53,17 +59,18 @@ import java.io.File;
 
 
 /**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
+ * This code was edited or generated using CloudGarden's Jigloo
+ * SWT/Swing GUI Builder, which is free for non-commercial
+ * use. If Jigloo is being used commercially (ie, by a corporation,
+ * company or business for any purpose whatever) then you
+ * should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details.
+ * Use of Jigloo implies acceptance of these licensing terms.
+ * A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+ * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+ * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
+
 public class ExhibitionSema implements SemaListener, KeyListener {
 	SemaSpace app = null;  //  @jve:decl-index=0:
 	private JMenuBar jJMenuBar = null;
@@ -76,6 +83,9 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	private JFileChooser openFile = null;
 	private JFileChooser saveFile = null;
 	private DefaultListModel nodeListModel;
+	private DefaultListModel nodePersonListModel;
+	private DefaultListModel nodePlacesListModel;
+	private DefaultListModel nodeActivitiesListModel;
 	private JTable edgeJTable;
 	private JScrollPane eListScrollPane;
 	private DefaultTableModel eTableModel;
@@ -201,8 +211,8 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	private JSlider jSlider2;
 	private JLabel jLabel9;
 	private JSlider picSizeSlider;
-	private JLabel jLabel8;
-	private SimButton simButton3;
+	private JLabel locksLabel;
+	private SimButton lockallButton;
 	private SimButton simButton2;
 	private SimButton simButton1;
 	private JLabel jLabel7;
@@ -211,13 +221,19 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	private DefaultListModel netListModel;
 	protected boolean change=true;
 	private boolean fullscreen=false;
+	private JScrollPane nodesPersons;
+	private JScrollPane nodesPlaces;
+	private JScrollPane nodesActivities;
+	private JList nodePersonsList;
+	private JList nodePlacesList;
+	private JList nodeActivitiesList;
 
 	{
 		fullscreen = Boolean.parseBoolean(Messages.getString("fullscreen"));
 		//Set Look & Feel
 		try {
-			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
-			UIManager.setLookAndFeel(new MetalLookAndFeel());
+			//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
+			//			UIManager.setLookAndFeel(new MetalLookAndFeel());
 
 			Properties props = new Properties();
 			props.put("controlTextFont", "Dialog 10");
@@ -241,8 +257,8 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			props.put("rolloverColor", "255 110 90"); 
 			props.put("rolloverColorLight", "255 110 90"); 
 			props.put("rolloverColorDark", "255 110 90"); 
-			//			UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
-			//			FastLookAndFeel.setCurrentTheme(props);
+			UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+			FastLookAndFeel.setCurrentTheme(props);
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -438,8 +454,10 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		mainWindow.setResizable(true);
 		mainWindow.setVisible(true);
 		mainWindow.validate();
-		//		GraphicsDevice device = getDevice();
-		//		device.setFullScreenWindow(null);
+		if (app.isExhibitionMode()) {
+			GraphicsDevice device = getDevice();
+			device.setFullScreenWindow(null);
+		}
 	}
 	/**
 	 * enter fullscreen
@@ -454,8 +472,10 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		mainWindow.setResizable(false);
 		mainWindow.setVisible(true);
 		mainWindow.validate();
-		//		GraphicsDevice device = getDevice();
-		//		if (device.isFullScreenSupported()) device.setFullScreenWindow(mainWindow);
+		if (app.isExhibitionMode()) {
+			GraphicsDevice device = getDevice();
+			if (device.isFullScreenSupported()) device.setFullScreenWindow(mainWindow);
+		}
 	}
 	private GraphicsDevice getDevice() {
 		GraphicsEnvironment environment =GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -579,7 +599,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 
 	private void initSliders() {
 		searchsteps.getModel().setValue(new Integer(app.getDepth()));
-		sizeSlider.setValue((int)(app.getSize()));
+		/*		sizeSlider.setValue((int)(app.getSize()));
 		valenzSlider.setValue((int)(app.getVal()*100));
 		groupRadius.setValue((int)(app.getClusterRad()*10));
 		pushSlider.setValue((int)(app.getRepell()));
@@ -591,7 +611,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		jSlider2.setValue((int)(app.getInVar()*10f));
 		jSlider5.setValue((int)(app.getOutVar()*10f));
 		jSlider3.setValue((int)(app.getLabelsize()*10f));
-		jSlider4.setValue((int)(app.getLabelVar()*10f));
+		jSlider4.setValue((int)(app.getLabelVar()*10f));*/
 	}
 
 	private JScrollPane getNodeAttPane() {
@@ -699,9 +719,9 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			controlPanel = new JTabbedPane();
 			controlPanel.setMinimumSize(new Dimension(217, 320));
 			controlPanel.addTab("files", null, getFile(), null);
-			controlPanel.addTab("view", null, getDataTab(), null);
-			controlPanel.addTab("render", null, getViewTab(), null);
-			controlPanel.addTab("layout", null, getLayoutTab(), null);
+			//			controlPanel.addTab("view", null, getDataTab(), null);
+			//			controlPanel.addTab("render", null, getViewTab(), null);
+			//			controlPanel.addTab("layout", null, getLayoutTab(), null);
 		}
 		return controlPanel;
 	}
@@ -723,13 +743,42 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		if (inspectors == null) {
 			inspectors = new JTabbedPane();
 			inspectors.setPreferredSize(new java.awt.Dimension(212, 160));
-			inspectors.addTab("net", null, getNets(), null);
-			inspectors.addTab("node", null, getNodes(), null);
-			inspectors.addTab("edge", null, getEdgeWndSplitPane(), null);
-			inspectors.addTab("attrib", null, getAttributeSplitPane1(), null);
+			//			inspectors.addTab("net", null, getNets(), null);
+			//			inspectors.addTab("node", null, getNodes(), null);
+			inspectors.addTab("Actors", null, getNodesPersons(), null);
+			inspectors.addTab("Places", null, getNodesPlaces(), null);
+			inspectors.addTab("Activities", null, getNodesActivities(), null);
+			//			inspectors.addTab("edge", null, getEdgeWndSplitPane(), null);
+			//			inspectors.addTab("attrib", null, getAttributeSplitPane1(), null);
 			inspectors.addKeyListener(this);
 		}
 		return inspectors;
+	}
+	private JScrollPane getNodesPersons() {
+		if (nodesPersons == null) {
+			nodesPersons = new JScrollPane();
+			nodesPersons.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			nodesPersons.setViewportView(getNodePersonsList());
+		}
+		return nodesPersons;
+	}
+
+	private JScrollPane getNodesPlaces() {
+		if (nodesPlaces == null) {
+			nodesPlaces = new JScrollPane();
+			nodesPlaces.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			nodesPlaces.setViewportView(getNodePlacesList());
+		}
+		return nodesPlaces;
+	}
+
+	private JScrollPane getNodesActivities() {
+		if (nodesActivities == null) {
+			nodesActivities = new JScrollPane();
+			nodesActivities.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			nodesActivities.setViewportView(getNodeActivitiesList());
+		}
+		return nodesActivities;
 	}
 	private JScrollPane getNodes() {
 		if (nodes == null) {
@@ -739,6 +788,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return nodes;
 	}
+
 	private JList getNodeList() {
 		if (nodeList == null) {
 			nodeListModel = new DefaultListModel();
@@ -755,6 +805,125 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return nodeList;
 	}
+
+	private void postListAction(String elementAt) {
+		app.netSearchSubstring(elementAt, false);
+		app.setPickID(elementAt.hashCode());
+		app.resetCam();
+	}
+
+	private JList getNodePersonsList() {
+		if (nodePersonsList == null) {
+			nodePersonListModel = new DefaultListModel();
+			nodePersonsList = new JList();
+			nodePersonsList.setModel(nodePersonListModel);
+			nodePersonsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			nodePersonsList.setName("nodes");
+			nodePersonsList.addMouseListener(new MouseListener() {
+
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount()==2) {
+						int index = nodePersonsList.locationToIndex(e.getPoint());
+						String elementAt = (String) nodePersonListModel.getElementAt(index);;
+						nodePersonsList.ensureIndexIsVisible(index);
+						postListAction(elementAt);
+					}
+				}
+
+				public void mouseEntered(MouseEvent e) {
+				}
+				public void mouseExited(MouseEvent e) {
+				}
+				public void mousePressed(MouseEvent e) {
+				}
+				public void mouseReleased(MouseEvent e) {
+				}
+
+			});
+			nodePersonsList.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent e) {
+					String out = (String) nodePersonsList.getSelectedValue();
+					if (out!=null) app.setPickID(out.hashCode());
+				}
+			});
+		}
+		return nodePersonsList;
+	}
+	private JList getNodePlacesList() {
+		if (nodePlacesList == null) {
+			nodePlacesListModel = new DefaultListModel();
+			nodePlacesList = new JList();
+			nodePlacesList.setModel(nodePlacesListModel);
+			nodePlacesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			nodePlacesList.setName("nodes");
+			nodePlacesList.addMouseListener(new MouseListener() {
+
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount()==2) {
+						int index = nodePlacesList.locationToIndex(e.getPoint());
+						String elementAt = (String) nodePlacesListModel.getElementAt(index);;
+						nodePlacesList.ensureIndexIsVisible(index);
+						postListAction(elementAt);
+					}
+				}
+				public void mouseEntered(MouseEvent e) {
+				}
+				public void mouseExited(MouseEvent e) {
+				}
+				public void mousePressed(MouseEvent e) {
+				}
+				public void mouseReleased(MouseEvent e) {
+				}
+
+			});
+			nodePlacesList.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent e) {
+					String out = (String) nodePlacesList.getSelectedValue();
+					if (out!=null) app.setPickID(out.hashCode());
+
+				}
+			});
+		}
+		return nodePlacesList;
+	}
+	private JList getNodeActivitiesList() {
+		if (nodeActivitiesList == null) {
+			nodeActivitiesListModel = new DefaultListModel();
+			nodeActivitiesList = new JList();
+			nodeActivitiesList.setModel(nodeActivitiesListModel);
+			nodeActivitiesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			nodeActivitiesList.setName("nodes");
+			nodeActivitiesList.addMouseListener(new MouseListener() {
+
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount()==2) {
+						int index = nodeActivitiesList.locationToIndex(e.getPoint());
+						String elementAt = (String) nodeActivitiesListModel.getElementAt(index);;
+						nodeActivitiesList.ensureIndexIsVisible(index);
+						postListAction(elementAt);
+					}
+				}
+				public void mouseEntered(MouseEvent e) {
+				}
+				public void mouseExited(MouseEvent e) {
+				}
+				public void mousePressed(MouseEvent e) {
+				}
+				public void mouseReleased(MouseEvent e) {
+				}
+
+			});
+			nodeActivitiesList.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent e) {
+					String out = (String) nodeActivitiesList.getSelectedValue();
+					if (out!=null) app.setPickID(out.hashCode());
+				}
+			});
+		}
+		return nodeActivitiesList;
+	}
+
+
 	private JList getNetList() {
 		if (netList == null) {
 			netListModel = new DefaultListModel();
@@ -802,7 +971,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 
 	private void textHilight() {
-		app.clearFrames(app.ns.view);
+		app.clearFrames(app.ns.global);
 		if (searchTerm.getText().length()>0) {
 			app.findSubstringAttributes(searchTerm.getText(), app.getAttribute());
 			if (app.isExhibitionMode()) {
@@ -825,7 +994,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			elimButton1.setVerticalAlignment(SwingConstants.CENTER);
 			elimButton1.setVerticalTextPosition(SwingConstants.CENTER);
 			elimButton1.setToolTipText("remove leave nodes");
-			elimButton1.setBounds(73, 190, 67, 15);
+			elimButton1.setBounds(73, 190, 66, 15);
 			elimButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netRemoveLeafs();
@@ -854,7 +1023,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			showAll.setVerticalAlignment(SwingConstants.CENTER);
 			showAll.setVerticalTextPosition(SwingConstants.CENTER);
 			showAll.setText("show all");
-			showAll.setBounds(2, 40, 67, 15);
+			showAll.setBounds(72, 68, 67, 15);
 			showAll.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netShowAll(); //  Auto-generated Event stub actionPerformed()
@@ -887,7 +1056,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			expandnet.setVerticalTextPosition(SwingConstants.CENTER);
 			expandnet.setFont(new java.awt.Font("Dialog",0,10));
 			expandnet.setMargin(new java.awt.Insets(2,2,2,2));
-			expandnet.setBounds(2, 71, 67, 15);
+			expandnet.setBounds(2, 68, 67, 15);
 			expandnet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.netExpandAll();
@@ -1497,10 +1666,10 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 
 	public void updateUI(NetStack n) {
-		initNetList(n);
-		initNodeList(n.getView());
-		initEdgeList(n.view);
-		initAttList();
+		//		initNetList(n);
+		initNodeList(n.getGlobal());
+		//		initEdgeList(n.view);
+		//		initAttList();
 		setCounter();
 		initSliders();
 		initCheckboxes();
@@ -1540,11 +1709,25 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 
 	private void initNodeList(Net n) {
-		nodeListModel.clear();
-		TreeSet<String> sorted = new TreeSet<String>();
-		for (Node tmp:n.nNodes) if (tmp.hasAttribute("type")&&tmp.getAttribute("type").contains("Person")) sorted.add(tmp.name);
-		for (String tmp : sorted) {
-			nodeListModel.addElement(tmp);
+		nodePersonListModel.clear();
+		nodePlacesListModel.clear();
+		nodeActivitiesListModel.clear();
+		TreeSet<String> persons = new TreeSet<String>();
+		TreeSet<String> places = new TreeSet<String>();
+		TreeSet<String> activities = new TreeSet<String>();
+		for (Node tmp:n.nNodes) {
+			if (tmp.hasAttribute("type")&&(tmp.getAttribute("type").contains("Person")||tmp.getAttribute("type").contains("Social Body"))) persons.add(tmp.name);
+			if (tmp.hasAttribute("type")&&tmp.getAttribute("type").contains("Place")) places.add(tmp.name);
+			if (tmp.hasAttribute("type")&&tmp.getAttribute("type").contains("Activity")) activities.add(tmp.name);
+		}
+		for (String tmp : persons) {
+			nodePersonListModel.addElement(tmp);
+		}
+		for (String tmp : places) {
+			nodePlacesListModel.addElement(tmp);
+		}
+		for (String tmp : activities) {
+			nodeActivitiesListModel.addElement(tmp);
 		}
 	}
 
@@ -1558,21 +1741,21 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 	private void initCheckboxes() {
 		tiltBox.setSelected(app.tilt);
-		repellBox1.setSelected(app.repell);
+		draw3d.setSelected(!app.get3D());
+		radLabels.setSelected(app.isLabelsEdgeDir());
+		fadeLabels.setSelected(!app.fadeLabels);
+		clusters.setSelected(app.isCluster());
+		/*		repellBox1.setSelected(app.repell);
 		repNeighbors.setSelected(app.isRepN());
 		treeBox.setSelected(app.isTree());
 		timeBox.setSelected(app.isTime());
-		clusters.setSelected(app.isCluster());
 		noRender.setSelected(app.isRender());
 		drawedges.setSelected(app.isEdges());
-		draw3d.setSelected(!app.get3D());
-		fadeLabels.setSelected(app.fadeLabels);
 		forceBox.setSelected(app.getCalc());
 		renderTextures.setSelected(app.textures);
 		drawclusters.setSelected(app.drawClusters);
 		jFileFormat.setSelected(app.isTabular());
-		drawgroups.setSelected(app.isGroups());
-		radLabels.setSelected(app.isLabelsEdgeDir());
+		drawgroups.setSelected(app.isGroups());*/
 	}
 	private JSlider getJSlider1() {
 		if(jSlider1 == null) {
@@ -1645,30 +1828,30 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 
 	private SimButton getSimButton3() {
-		if(simButton3 == null) {
-			simButton3 = new SimButton();
-			simButton3.setText("lock all");
-			simButton3.setVerticalAlignment(SwingConstants.CENTER);
-			simButton3.setVerticalTextPosition(SwingConstants.CENTER);
-			simButton3.setFont(new java.awt.Font("Dialog",0,10));
-			simButton3.setBounds(73, 273, 67, 15);
-			simButton3.addActionListener(new ActionListener() {
+		if(lockallButton == null) {
+			lockallButton = new SimButton();
+			lockallButton.setText("lock all");
+			lockallButton.setVerticalAlignment(SwingConstants.CENTER);
+			lockallButton.setVerticalTextPosition(SwingConstants.CENTER);
+			lockallButton.setFont(new java.awt.Font("Dialog",0,10));
+			lockallButton.setBounds(73, 273, 67, 15);
+			lockallButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.lockAll();
 				}
 			});
 		}
-		return simButton3;
+		return lockallButton;
 	}
 
 	private JLabel getJLabel8() {
-		if(jLabel8 == null) {
-			jLabel8 = new JLabel();
-			jLabel8.setText("locks");
-			jLabel8.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel8.setBounds(0, 255, 51, 14);
+		if(locksLabel == null) {
+			locksLabel = new JLabel();
+			locksLabel.setText("locks");
+			locksLabel.setFont(new java.awt.Font("Dialog",1,11));
+			locksLabel.setBounds(0, 255, 51, 14);
 		}
-		return jLabel8;
+		return locksLabel;
 	}
 
 	private JSlider getPicSizeSlider() {
@@ -1766,7 +1949,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			simButton7.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton7.setFont(new java.awt.Font("Dialog",0,10));
 			simButton7.setToolTipText("remove all nodes from view");
-			simButton7.setBounds(144, 190, 67, 15);
+			simButton7.setBounds(144, 190, 68, 15);
 			simButton7.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delAll();
@@ -1858,6 +2041,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			file.add(getSearchTerm());
 			file.add(getAdd());
 			file.add(getSearchButton());
+			file.add(getShowAll());
 			file.add(getDepthLabel());
 			file.add(getJCheckBox());
 			file.add(getTreeBox());
@@ -2317,7 +2501,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 	public void keyTyped(KeyEvent e) {
 	}
-	
+
 	private JLabel getSearch() {
 		if(search == null) {
 			search = new JLabel();
@@ -2327,11 +2511,11 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return search;
 	}
-	
+
 	private JTextField getSearchTerm() {
 		if(searchTerm == null) {
 			searchTerm = new JTextField();
-//			searchTerm.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+			//			searchTerm.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 			searchTerm.setBounds(2, 25, 116, 15);
 			searchTerm.addKeyListener(new KeyAdapter() {
 				public void keyReleased(KeyEvent e) {
@@ -2346,7 +2530,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return searchTerm;
 	}
-	
+
 	private JCheckBox getAdd() {
 		if(add == null) {
 			add = new JCheckBox();
@@ -2359,7 +2543,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return add;
 	}
-	
+
 	private SimButton getSearchButton() {
 		if(searchButton == null) {
 			searchButton = new SimButton();
@@ -2433,7 +2617,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			fadeLabels.setBounds(100, 184, 51, 17);
 			fadeLabels.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.fadeLabels=fadeLabels.isSelected();
+					app.fadeLabels=!fadeLabels.isSelected();
 				}
 			});
 		}
@@ -2497,7 +2681,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return simButton5;
 	}
-	
+
 	private SimButton getSimButton11() {
 		if(simButton11 == null) {
 			simButton11 = new SimButton();
@@ -2506,7 +2690,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			simButton11.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton11.setFont(new java.awt.Font("Dialog",0,10));
 			simButton11.setToolTipText("remove all nodes from view");
-			simButton11.setBounds(72, 140, 67, 15);
+			simButton11.setBounds(72, 141, 67, 15);
 			simButton11.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delAll();
@@ -2515,7 +2699,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return simButton11;
 	}
-	
+
 	private SimButton getSimButton15() {
 		if(simButton15 == null) {
 			simButton15 = new SimButton();
@@ -2524,7 +2708,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			simButton15.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton15.setFont(new java.awt.Font("Dialog",0,10));
 			simButton15.setToolTipText("remove leave nodes");
-			simButton15.setBounds(2, 140, 67, 15);
+			simButton15.setBounds(2, 141, 68, 15);
 			simButton15.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.netRemoveLeafs();
@@ -2533,7 +2717,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return simButton15;
 	}
-	
+
 	private SimButton getSimButton16() {
 		if(simButton16 == null) {
 			simButton16 = new SimButton();
@@ -2551,7 +2735,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return simButton16;
 	}
-	
+
 	private SimButton getSimButton19() {
 		if(simButton19 == null) {
 			simButton19 = new SimButton();
@@ -2601,7 +2785,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return randomCenter;
 	}
-	
+
 	private JSpinner getSearchsteps() {
 		if(searchsteps == null) {
 			SpinnerListModel searchstepsModel = 
@@ -2609,20 +2793,22 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 						new Integer[] { 0,1,2,3,4,5});
 			searchsteps = new JSpinner();
 			searchsteps.setModel(searchstepsModel);
-			searchsteps.setBounds(152, 49, 35, 16);
-			((JSpinner.DefaultEditor)searchsteps.getEditor()).getTextField().setEditable(false);
-			    
+			searchsteps.setBounds(151, 49, 35, 16);
+			JFormattedTextField textField = ((JSpinner.DefaultEditor)searchsteps.getEditor()).getTextField();
+			textField.setEditable(false);
+			textField.setBackground(Color.white);
+
 			searchsteps.addChangeListener(new ChangeListener(){
 
 				public void stateChanged(ChangeEvent e) {
 					app.setDepth((Integer)searchsteps.getModel().getValue());
 				}
-				
+
 			});
 		}
 		return searchsteps;
 	}
-	
+
 	private JLabel getJLabel12() {
 		if(jLabel12 == null) {
 			jLabel12 = new JLabel();
@@ -2632,7 +2818,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return jLabel12;
 	}
-	
+
 	private JLabel getJLabel14() {
 		if(jLabel14 == null) {
 			jLabel14 = new JLabel();

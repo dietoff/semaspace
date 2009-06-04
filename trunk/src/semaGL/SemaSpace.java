@@ -109,7 +109,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private float yRotNew, xRotNew = 0;
 	private float mouseY=0, newY=0;
 	private float mouseX=0, newX=0;
-	private float zInc = 700;
+	private float zInc = 300;
 	private float zoomNew = zInc;
 	Vector3D focus = new Vector3D(0f,0f,0f);
 	Cam cam;
@@ -1244,6 +1244,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void toggle3D() {
 		layout2d=!layout2d;
 		changed=true;
+		if (!layout2d) layout.layoutNodePosRandomize();
 	}
 	public void updatePick() {
 		updatePick(pickID);
@@ -1353,14 +1354,14 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	
 	public void resetCam() {
 		if (cam==null) return;
-		zInc = 700;
+		zInc = 300;
 		zoomNew = zInc;
 		focus.setXYZ(0, 0, 0);
 		cam.posAbsolute(glD,0f,0f,zInc,focus);
 	}
 	
 	public void camOnSelected() {
-		zInc = 700;
+		zInc = 300;
 		zoomNew = zInc;
 		Node picked = getPicked();
 		if (picked != null) focus.setXYZ(picked.pos.copy()); else focus.setXYZ(0,0,0);

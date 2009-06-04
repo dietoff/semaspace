@@ -188,12 +188,13 @@ public class GraphRenderer {
 				{
 
 					if (app.isLabelsEdgeDir()){
-						if (n.adList.size()==1) {
+						n.getDegree();
+						if (n.adList.size()==1&&n.inList.size()==0) {
 							Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
 							alignLabel(gl, sub, n.size(), font, fsize, split[0]);
 
 						} else
-							if (n.inList.size()==1) {
+							if (n.inList.size()==1&&n.adList.size()==0) {
 								Vector3D sub = Vector3D.sub(n.pos, n.inList.iterator().next().pos);
 								alignLabel(gl, sub, n.size(), font, fsize, split[0]);
 							}
@@ -381,7 +382,7 @@ public class GraphRenderer {
 		Node a = e.getA();
 		Node b = e.getB();
 
-		float[] textcolor = {color [0]/2f, color[1]/2f, color[2]/2f, 1};
+		float[] textcolor = {color [0]/2f, color[1]/2f, color[2]/2f, 0.5f};
 		if ((app.fadeLabels||app.fadeNodes)&&!e.rollover&&!e.isPicked()&&!e.isFrame()&&!(a.getPickColor()[3]>0&&b.getPickColor()[3]>0)) return;
 
 		if ((e.isPicked()||e.rollover)&&font==3) font=2;
@@ -424,7 +425,7 @@ public class GraphRenderer {
 	 */
 	synchronized void renderFan(GL gl, HashSet<Node> nodes, Node center) {
 		float[] col = Func.parseColorInt(center.name.hashCode()+"");
-		col[3]=Math.min(center.alpha, 0.1f);
+		col[3]=Math.min(center.alpha, 0.05f);
 		gl.glColor4fv(col, 0);
 		Node tmp=null;
 		int jcount=0;

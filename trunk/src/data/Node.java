@@ -92,7 +92,11 @@ public class Node extends GraphElement {
 		return adList.size();
 	}
 	public int getiDegree() {
-		return adList.size()+inList.size();
+		int size2;
+		if (inList!=null) {
+			 size2 = inList.size();
+		} else size2=0;
+		return adList.size()+size2;
 	}
 
 	public void setTime(float f) {

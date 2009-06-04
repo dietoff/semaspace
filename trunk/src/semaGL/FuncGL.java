@@ -14,9 +14,7 @@ import net.sourceforge.ftgl.FTBBox;
 import com.sun.opengl.util.BufferUtil;
 import com.sun.opengl.util.GLUT;
 import com.sun.opengl.util.j2d.TextRenderer;
-
 import data.Vector3D;
-
 
 public class FuncGL {
 	private static int strokefont = GLUT.STROKE_ROMAN;

@@ -60,12 +60,25 @@ public class Layouter {
 	}
 
 	private float calcClusterDistance(Node n) {
+		if (n.cluster.size()==0) return n.size()/2f;
+
 		float x;
-		if (!n.spiralcluster)
-			x= app.clusterRad*n.cluster.size()+n.size()/2f;
-		else
+		if (n.spiralcluster)
 			x=spiral_rad(n, n.cluster.size());
+		else
+			x= circle_rad(n, n.cluster.size());
+
 		return x;
+	}
+
+	private float spiral_angle(Node n, int i) {
+		return (float)Math.sqrt(app.clusterRad*i+n.getSize())*75f;
+	}
+	private float spiral_rad(Node n, int i) {
+		return app.standardNodeDistance/2f+(float)Math.sqrt(app.clusterRad*i+n.getSize())*10f;
+	}
+	private float circle_rad(Node n, int i) {
+		return app.standardNodeDistance/2f+(float)Math.sqrt(app.clusterRad*n.cluster.size())*4f;
 	}
 
 	private float calcDist(Node a, Node b, float offset, float val) {
@@ -108,7 +121,7 @@ public class Layouter {
 				//				gl.glRotatef(xRot, 0, 1, 0);
 				//				gl.glRotatef(yRot, 1, 0, 0);
 				gl.glRotatef(90+360*jcount/rad, 0, 0, 1);
-				gl.glTranslatef(-app.clusterRad-clusterDist, 0, 0);
+				gl.glTranslatef(-clusterDist, 0, 0);
 				gl.glGetFloatv(GL.GL_MODELVIEW_MATRIX, matrix, 0);
 				bref.pos.setXYZ(matrix[12], matrix[13], matrix[14]);
 				gl.glPopMatrix();
@@ -141,12 +154,7 @@ public class Layouter {
 		}
 	}
 
-	private float spiral_angle(Node n, int i) {
-		return 90+(float)Math.sqrt(app.clusterRad*i+n.getSize())*75f;
-	}
-	private float spiral_rad(Node n, int i) {
-		return app.clusterRad+(float)Math.sqrt(app.clusterRad*i+n.getSize())*10f;
-	}
+
 	/**
 	 * layout the leaf clusters
 	 * @param gl
@@ -160,7 +168,7 @@ public class Layouter {
 			float rad = aref.cluster.size();
 
 			//	if (fact>app.clusterRad*10f) 
-			if (rad>8)
+			if (rad>30)
 				clusterSpiral(gl, xRot, yRot, aref); 
 			else
 				//					if (rad>0) 
@@ -641,7 +649,7 @@ public class Layouter {
 		for (Node n:net.fNodes) {
 			cl=n.cluster;
 			float rad = cl.size();
-			if (rad!=0&&app.drawClusters) {
+			if (rad>4&&app.drawClusters) {
 				nr.renderFan(gl, cl, n);
 			}
 		}

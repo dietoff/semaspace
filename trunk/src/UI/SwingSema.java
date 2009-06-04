@@ -48,7 +48,6 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.table.DefaultTableModel;
 
 import com.jtattoo.plaf.fast.FastLookAndFeel;
-import com.sun.media.sound.Toolkit;
 
 import data.*;
 import semaGL.*;
