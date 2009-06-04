@@ -576,7 +576,11 @@ public class Net {
 					if (att.matches(subString))searchNodes.add(n);
 				}
 				else  {
-					if (att.contains(subString))searchNodes.add(n);
+					if (att.contains(subString)){
+						searchNodes.add(n);
+						n.pos.setXYZ(0, 0, 0);
+					}
+					
 				}
 			}
 		}
