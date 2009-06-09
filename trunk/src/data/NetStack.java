@@ -151,15 +151,15 @@ public class NetStack {
 
 	/**
 	 * search a substring & generate a new view
-	 * @param n
+	 * @param text
 	 * @param searchdepth
 	 * @param add
 	 * @param attribute
 	 * @return
 	 */
-	public Net search(String n, int searchdepth, boolean add, String attribute) {
+	public Net search(String text, int searchdepth, boolean add, String attribute) {
 		Net s;
-		s = global.generateAttribSearchNet(global, n, searchdepth, attribute);
+		s = global.generateAttribSearchNet(global, text, searchdepth, attribute);
 		if (add) getView().netMerge(s); else setView(s);
 		return getView();
 	}

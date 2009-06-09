@@ -563,8 +563,8 @@ public class Net {
 		if (term==null||term=="") return null;
 		String subString = term2.toLowerCase();
 
+		//return found nodes
 		HashSet<Node> searchNodes = new HashSet<Node>();
-
 		for (Node n:nNodes){
 			String att = n.getAttribute(key);
 			if (key=="none") att=n.altName;
@@ -580,10 +580,10 @@ public class Net {
 						searchNodes.add(n);
 						n.pos.setXYZ(0, 0, 0);
 					}
-					
 				}
 			}
 		}
+
 		HashSet<Node> tmp = new HashSet<Node>();
 		tmp.addAll(searchNodes);
 		result = generateSearchNet(source, searchNodes, depth);
@@ -603,9 +603,14 @@ public class Net {
 			String att = e.getAttribute(key);
 			if (att!=null) {
 				att = att.toLowerCase();
-				if (att.matches(subString)){
-					result.addEdge(e);
-				}
+				e.setFrame(false);
+				
+				if (!app.isExhibitionMode()) {
+					if (att.matches(subString)) result.addEdge(e);
+				} else
+					if (att.contains(subString)){
+						result.addEdge(e);
+					}
 			}
 		}
 		return result;

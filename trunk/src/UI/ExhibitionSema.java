@@ -227,6 +227,10 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	private JList nodePersonsList;
 	private JList nodePlacesList;
 	private JList nodeActivitiesList;
+	private JList rolesList;
+	private DefaultListModel rolesListModel;
+	private JScrollPane roles;
+	private DefaultTableModel RoleModel;
 
 	{
 		fullscreen = Boolean.parseBoolean(Messages.getString("fullscreen"));
@@ -748,8 +752,9 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			inspectors.addTab("Actors", null, getNodesPersons(), null);
 			inspectors.addTab("Places", null, getNodesPlaces(), null);
 			inspectors.addTab("Activities", null, getNodesActivities(), null);
+			inspectors.addTab("Roles", null, getRoles(), null);
 			//			inspectors.addTab("edge", null, getEdgeWndSplitPane(), null);
-			//			inspectors.addTab("attrib", null, getAttributeSplitPane1(), null);
+			inspectors.addTab("Attributes", null, getAttributeSplitPane1(), null);
 			inspectors.addKeyListener(this);
 		}
 		return inspectors;
@@ -780,6 +785,18 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return nodesActivities;
 	}
+	
+	private JScrollPane getRoles() {
+		if (roles == null) {
+			roles = new JScrollPane();
+			roles.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			roles.setViewportView(getRolesList());
+		}
+		return roles;
+	}
+	
+	
+	
 	private JScrollPane getNodes() {
 		if (nodes == null) {
 			nodes = new JScrollPane();
@@ -922,7 +939,46 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		return nodeActivitiesList;
 	}
+	
+	private JList getRolesList() {
+		if (rolesList == null) {
+			rolesListModel = new DefaultListModel();
+			rolesList = new JList();
+			rolesList.setModel(rolesListModel);
+			rolesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			rolesList.setName("Roles");
+			rolesList.addMouseListener(new MouseListener() {
 
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount()==2) {
+						int index = rolesList.locationToIndex(e.getPoint());
+						String elementAt = (String) rolesListModel.getElementAt(index);;
+						rolesList.ensureIndexIsVisible(index);
+						app.netSearchSubstring(elementAt, false, "type");
+						app.setPickID(elementAt.hashCode());
+						app.resetCam();
+						app.setInflateGroup(null);
+					}
+				}
+				public void mouseEntered(MouseEvent e) {
+				}
+				public void mouseExited(MouseEvent e) {
+				}
+				public void mousePressed(MouseEvent e) {
+				}
+				public void mouseReleased(MouseEvent e) {
+				}
+
+			});
+			rolesList.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent e) {
+					String out = (String) rolesList.getSelectedValue();
+					if (out!=null) app.setPickID(out.hashCode());
+				}
+			});
+		}
+		return rolesList;
+	}
 
 	private JList getNetList() {
 		if (netList == null) {
@@ -1667,9 +1723,9 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 
 	public void updateUI(NetStack n) {
 		//		initNetList(n);
-		initNodeList(n.getGlobal());
+		initNodeLists(n.getGlobal());
 		//		initEdgeList(n.view);
-		//		initAttList();
+		initAttList();
 		setCounter();
 		initSliders();
 		initCheckboxes();
@@ -1708,18 +1764,25 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 	}
 
-	private void initNodeList(Net n) {
+	
+	private void initNodeLists(Net n) {
 		nodePersonListModel.clear();
 		nodePlacesListModel.clear();
 		nodeActivitiesListModel.clear();
 		TreeSet<String> persons = new TreeSet<String>();
 		TreeSet<String> places = new TreeSet<String>();
 		TreeSet<String> activities = new TreeSet<String>();
+		TreeSet<String> roles = new TreeSet<String>();
 		for (Node tmp:n.nNodes) {
 			if (tmp.hasAttribute("type")&&(tmp.getAttribute("type").contains("Person")||tmp.getAttribute("type").contains("Social Body"))) persons.add(tmp.name);
 			if (tmp.hasAttribute("type")&&tmp.getAttribute("type").contains("Place")) places.add(tmp.name);
 			if (tmp.hasAttribute("type")&&tmp.getAttribute("type").contains("Activity")) activities.add(tmp.name);
 		}
+		
+		for (Edge tmp:n.nEdges) {
+			if (tmp.hasAttribute("type")) roles.add(tmp.getAttribute("type"));
+		}
+		
 		for (String tmp : persons) {
 			nodePersonListModel.addElement(tmp);
 		}
@@ -1728,6 +1791,9 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 		for (String tmp : activities) {
 			nodeActivitiesListModel.addElement(tmp);
+		}
+		for (String tmp : roles) {
+			if (!rolesListModel.contains(tmp)) rolesListModel.addElement(tmp);
 		}
 	}
 
