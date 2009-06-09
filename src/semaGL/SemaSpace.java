@@ -296,9 +296,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 				if (repNeighbors) layout.layoutRepNeighbors(repellStrength/4f, standardNodeDistance, ns.getView());
 
 				float inf = inflatetime-elapsedtime;
-				if (inflateGroup!=null&&inflateGroup.nNodes.size()>0&&(inf > 0&&inflate)&&ns.getView().eTable.size()>1&&ns.getView().fNodes.size()>1) {
+				if (getInflateGroup()!=null&&getInflateGroup().nNodes.size()>0&&(inf > 0&&inflate)&&ns.getView().eTable.size()>1&&ns.getView().fNodes.size()>1) {
 					float r = elapsedtime/inflatetime;
-					layout.layoutInflate(Math.max(ns.getView().eTable.size(),100)*(1-r),inflateGroup);
+					layout.layoutInflate(Math.max(ns.getView().eTable.size(),100)*(1-r),getInflateGroup());
 					str = 0.3f;
 					rep = false;
 				}
@@ -1027,6 +1027,17 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		netInit(result);
 	}
 	/**
+	 * generate view through substring search in node names
+	 * @param text
+	 * @param add
+	 * @param attribute
+	 */
+	public void netSearchSubstring(String text, boolean add, String attribute) {
+		Net result = ns.search(text, searchdepth, add, attribute);
+		ns.setView(result);
+		netInit(result);
+	}
+	/**
 	 * generate view from whole network
 	 */
 	public void netShowAll(){
@@ -1083,7 +1094,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	private void initInflate(Net net) {
 		if (net==null||net.nNodes.size()==0) return;
-		inflateGroup = net;
+		setInflateGroup(net);
 		setInflate(true);
 	}
 	public void setAgeThresh(int age) {
@@ -1603,6 +1614,14 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public boolean isExhibitionMode() {
 		return exhibitionMode;
+	}
+
+	public void setInflateGroup(Net inflateGroup) {
+		this.inflateGroup = inflateGroup;
+	}
+
+	public Net getInflateGroup() {
+		return inflateGroup;
 	}
 
 }
