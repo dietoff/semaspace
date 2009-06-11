@@ -589,7 +589,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		inflate=true;
 	}
 
-	private void initNet( Net inflNet) {
+	public void initNet() {
 		initTree=true;
 		Net view = ns.getView();
 		view.updateNet();
@@ -1036,7 +1036,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (pickeds.size()>0){
 			Net result = view.generateSearchNet(ns.global,pickeds, searchdepth);
 			ns.setView(result);
-			initNet(result);
+			initNet();
 		}
 	}
 
@@ -1048,7 +1048,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void netSearchSubstring(String text, boolean add) {
 		Net result = ns.search(text, searchdepth, add, getAttribute());
 		ns.setView(result);
-		initNet(result);
+		initNet();
 	}
 
 	/**
@@ -1060,7 +1060,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void netSearchSubstring(String text, boolean add, String attribute) {
 		Net result = ns.search(text, searchdepth, add, attribute);
 		ns.setView(result);
-		initNet(result);
+		initNet();
 	}
 
 	/**
@@ -1079,7 +1079,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		}
 		ns.getView().distances.clear();
 		ns.getView().app.clearFrames(ns.getView());
-		initNet( ns.getView());
+		initNet();
 	}
 
 	/**
@@ -1090,7 +1090,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		int ID = 0;
 		Node n = (Node)ns.global.nNodes.toArray()[ID];
 		Net net = netStartNode(n, add);
-		initNet( net);
+		initNet();
 	}
 
 	/**
@@ -1124,7 +1124,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			Node res = (Node) ns.global.nNodes.toArray()[ID];
 			net = netStartNode(res, add);
 		}
-		initNet(net);
+		initNet();
 	}
 
 	/**
@@ -1135,7 +1135,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void netStartString(String text, boolean add) {
 		Net search = ns.search(text, searchdepth, add);
 		ns.setView(search);
-		initNet(search);
+		initNet();
 	}
 
 	/**

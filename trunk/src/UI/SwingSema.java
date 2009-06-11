@@ -9,6 +9,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
 import java.awt.Event;
 
 import javax.swing.DefaultListModel;
@@ -43,6 +44,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.table.DefaultTableModel;
 
 import com.jtattoo.plaf.fast.FastLookAndFeel;
@@ -163,6 +165,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JLabel depthLabel;
 	private JSlider depth;
 	private SimButton searchButton;
+	private SimButton exportWhole;
 	private JLabel jLabel20;
 	private JSlider maxRepSlider;
 	private JCheckBox fadeLabels;
@@ -184,7 +187,6 @@ public class SwingSema implements SemaListener, KeyListener {
 	private SimButton simButton17;
 	private SimButton saveNetButton;
 	private JLabel jLabel15;
-	private JLabel jLabel12;
 	private JLabel jLabel14;
 	private JLabel jLabel13;
 	private SimButton simButton14;
@@ -254,8 +256,8 @@ public class SwingSema implements SemaListener, KeyListener {
 		fullscreen = Boolean.parseBoolean(Messages.getString("fullscreen"));
 		//Set Look & Feel
 		try {
-			//						MetalLookAndFeel.setCurrentTheme(new SemaTheme());
-			//						UIManager.setLookAndFeel(new MetalLookAndFeel());
+//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
+//			UIManager.setLookAndFeel(new MetalLookAndFeel());
 
 			Properties props = new Properties();
 			props.put("controlTextFont", "Dialog 10");
@@ -264,7 +266,6 @@ public class SwingSema implements SemaListener, KeyListener {
 			props.put("menuTextFont", "Dialog 10");
 			props.put("windowTitleFont", "Dialog bold 10");
 			props.put("subTextFont", "Dialog 8");
-
 			props.put("backgroundColor","250 250 250");
 			props.put("controlBackgroundColor","220 220 220");
 			props.put("controlDarkShadowColor","20 20 20");
@@ -274,7 +275,6 @@ public class SwingSema implements SemaListener, KeyListener {
 			props.put("focusCellColor", "255 110 90"); 
 			props.put("selectionForegroundColor", "255 110 90"); 
 			props.put("buttonBackgroundColor", "200 200 200");
-
 			props.put("focusColor", "255 110 90"); 
 			props.put("rolloverColor", "255 110 90"); 
 			props.put("rolloverColorLight", "255 110 90"); 
@@ -372,7 +372,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			AttributeSplitPane1 = new JSplitPane();
 			AttributeSplitPane1.setDividerLocation(100);
 			AttributeSplitPane1.setDividerSize(2);
-			AttributeSplitPane1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			AttributeSplitPane1.setBorder(null);
 			//	AttributeSplitPane1.setBackground(new java.awt.Color(192,192,192));
 			AttributeSplitPane1.add(getNodeAttPane(), JSplitPane.RIGHT);
 			AttributeSplitPane1.add(getEdgeAttPane(), JSplitPane.LEFT);
@@ -414,8 +414,9 @@ public class SwingSema implements SemaListener, KeyListener {
 	private SimButton getClear() {
 		if (clear == null) {
 			clear = new SimButton();
-			clear.setText("delete by att");
+			clear.setText("remove by att");
 			clear.setBounds(2, 83, 67, 15);
+			clear.setVisible(false);
 			clear.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.delNodesAtt();
@@ -428,12 +429,12 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JCheckBox getClusters() {
 		if (clusters == null) {
 			clusters = new JCheckBox();
-			clusters.setText("on");
+			clusters.setText("clusters");
 			clusters.setSelected(app.isCluster());
 			clusters.setMargin(new java.awt.Insets(0,0,0,0));
 			clusters.setContentAreaFilled(false);
 			clusters.setFont(new java.awt.Font("Dialog",0,10));
-			clusters.setBounds(145, 59, 33, 17);
+			clusters.setBounds(39, 229, 60, 17);
 			clusters.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setCluster(clusters.isSelected());
@@ -488,11 +489,13 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JTabbedPane getControlPanel() {
 		if (controlPanel == null) {
 			controlPanel = new JTabbedPane();
+			controlPanel.setBorder(null);
 			controlPanel.setMinimumSize(new Dimension(217, 320));
 			controlPanel.addTab("files", null, getFile(), null);
 			controlPanel.addTab("view", null, getDataTab(), null);
 			controlPanel.addTab("render", null, getViewTab(), null);
 			controlPanel.addTab("layout", null, getLayoutTab(), null);
+			controlPanel.setSelectedComponent(getDataTab());
 		}
 		return controlPanel;
 	}
@@ -531,6 +534,13 @@ public class SwingSema implements SemaListener, KeyListener {
 			dataTab.add(getSimButton14());
 			dataTab.add(getJLabel13());
 			dataTab.add(getSimButton17());
+			dataTab.add(getJCheckBox());
+			dataTab.add(getTreeBox());
+			dataTab.add(getTimelineBox());
+			dataTab.add(getClusters());
+			dataTab.add(getJLabel11());
+			dataTab.add(getSimButton5());
+			dataTab.add(getSimButton4());
 		}
 		return dataTab;
 	}
@@ -666,6 +676,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			edgeAttList = new JList();
 			edgeAttList.setModel(edgeAttModel);
 			edgeAttList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			edgeAttList.setBorder(null);
 			edgeAttList.setName("edgeAttributes");
 			edgeAttList.addListSelectionListener(new ListSelectionListener() {
 				public void valueChanged(ListSelectionEvent e) {
@@ -676,7 +687,7 @@ public class SwingSema implements SemaListener, KeyListener {
 							change = false;
 							if (nodeAttModel.contains(out)) nodeAttList.setSelectedValue(out, true);
 							else nodeAttList.setSelectedIndex(0);
-//							getSearchTerm().setText("");
+							//							getSearchTerm().setText("");
 						} else change = true;
 					} 
 					//					textHilight();
@@ -772,7 +783,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			elimButton1.setVerticalAlignment(SwingConstants.CENTER);
 			elimButton1.setVerticalTextPosition(SwingConstants.CENTER);
 			elimButton1.setToolTipText("remove leave nodes");
-			elimButton1.setBounds(73, 190, 67, 15);
+			elimButton1.setBounds(73, 169, 67, 15);
 			elimButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netRemoveLeafs();
@@ -800,7 +811,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			expand2.setText("picked");
 			expand2.setVerticalAlignment(SwingConstants.CENTER);
 			expand2.setVerticalTextPosition(SwingConstants.CENTER);
-			expand2.setBounds(144, 114, 67, 15);
+			expand2.setBounds(144, 112, 67, 15);
 			expand2.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netExpandPickedNodes(); //  Auto-generated Event stub actionPerformed()
@@ -817,7 +828,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			expandnet.setVerticalTextPosition(SwingConstants.CENTER);
 			expandnet.setFont(new java.awt.Font("Dialog",0,10));
 			expandnet.setMargin(new java.awt.Insets(2,2,2,2));
-			expandnet.setBounds(2, 114, 67, 15);
+			expandnet.setBounds(2, 112, 67, 15);
 			expandnet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.netExpandAll();
@@ -829,14 +840,14 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JCheckBox getFadeLabelsBox() {
 		if(fadeLabels == null) {
 			fadeLabels = new JCheckBox();
-			fadeLabels.setText("fade l");
+			fadeLabels.setText("labels");
 			fadeLabels.setMargin(new java.awt.Insets(0,0,0,0));
 			fadeLabels.setContentAreaFilled(false);
 			fadeLabels.setFont(new java.awt.Font("Dialog",0,10));
 			fadeLabels.setBounds(60, 1, 51, 17);
 			fadeLabels.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.fadeLabels=fadeLabels.isSelected();
+					app.fadeLabels=!fadeLabels.isSelected();
 				}
 			});
 		}
@@ -846,7 +857,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JCheckBox getFadeNodes() {
 		if (fadenodes == null) {
 			fadenodes = new JCheckBox();
-			fadenodes.setText("fade n");
+			fadenodes.setText("fade");
 			fadenodes.setMargin(new java.awt.Insets(0,0,0,0));
 			fadenodes.setContentAreaFilled(false);
 			fadenodes.setFont(new java.awt.Font("Dialog",0,10));
@@ -871,9 +882,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			file.add(getSaveNetButton());
 			file.add(getClear());
 			file.add(getSimButton11());
-			file.add(getJCheckBox1());
 			file.add(getJLabel14());
-			file.add(getJLabel12());
 			file.add(getJLabel15());
 			file.add(getSimButton15());
 			file.add(getSimButton15x());
@@ -882,6 +891,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			file.add(getJLabel18());
 			file.add(getSimButton18());
 			file.add(getSimButton19());
+			file.add(getExportWhole());
 		}
 		return file;
 	}
@@ -927,7 +937,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JCheckBox getForceBox() {
 		if (forceBox == null) {
 			forceBox = new JCheckBox();
-			forceBox.setText("layout on/off");
+			forceBox.setText("freeze");
 			forceBox.setToolTipText("Force driven Layout active");
 			forceBox.setSelected(app.getCalc());
 			forceBox.setMargin(new java.awt.Insets(0,0,0,0));
@@ -937,13 +947,13 @@ public class SwingSema implements SemaListener, KeyListener {
 			forceBox.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.setCalc(!app.getCalc());
-					forceBox.setSelected(app.getCalc());
+					forceBox.setSelected(!app.getCalc());
 				}
 			});
 		}
 		return forceBox;
 	}
-	
+
 	private JLabel getForces() {
 		if (forces == null) {
 			forces = new JLabel();
@@ -956,9 +966,9 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JLabel getGroup() {
 		if (group == null) {
 			group = new JLabel();
-			group.setText("radius");
+			group.setText("cluster rad");
 			group.setFont(new java.awt.Font("Dialog",0,10));
-			group.setBounds(151, 80, 30, 13);
+			group.setBounds(151, 80, 72, 13);
 		}
 		return group;
 	}
@@ -999,10 +1009,11 @@ public class SwingSema implements SemaListener, KeyListener {
 		if (inspectors == null) {
 			inspectors = new JTabbedPane();
 			inspectors.setPreferredSize(new java.awt.Dimension(212, 160));
-			inspectors.addTab("net", null, getNets(), null);
-			inspectors.addTab("node", null, getNodes(), null);
-			inspectors.addTab("edge", null, getEdgeWndSplitPane(), null);
+			inspectors.addTab("nets", null, getNets(), null);
+			inspectors.addTab("nodes", null, getNodes(), null);
+			inspectors.addTab("edges", null, getEdgeWndSplitPane(), null);
 			inspectors.addTab("attrib", null, getAttributeSplitPane1(), null);
+			inspectors.setSelectedComponent(getAttributeSplitPane1());
 			inspectors.addKeyListener(this);
 		}
 		return inspectors;
@@ -1027,7 +1038,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			draw3d.setMargin(new java.awt.Insets(0,0,0,0));
 			draw3d.setContentAreaFilled(false);
 			draw3d.setFont(new java.awt.Font("Dialog",0,10));
-			draw3d.setBounds(0, 41, 60, 17);
+			draw3d.setBounds(1, 229, 60, 17);
 			draw3d.setSelected(!app.get3D());
 			draw3d.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1045,7 +1056,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			directedGraph.setMargin(new java.awt.Insets(0,0,0,0));
 			directedGraph.setContentAreaFilled(false);
 			directedGraph.setFont(new java.awt.Font("Dialog",0,10));
-			directedGraph.setBounds(119, 36, 92, 17);
+			directedGraph.setBounds(2, 191, 92, 17);
 			directedGraph.setSelected(app.directed);
 			directedGraph.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1175,32 +1186,23 @@ public class SwingSema implements SemaListener, KeyListener {
 			jLabel11 = new JLabel();
 			jLabel11.setText("viewpoint");
 			jLabel11.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel11.setBounds(0, 190, 73, 14);
+			jLabel11.setBounds(2, 255, 73, 14);
 		}
 		return jLabel11;
-	}
-	private JLabel getJLabel12() {
-		if(jLabel12 == null) {
-			jLabel12 = new JLabel();
-			jLabel12.setText("delete");
-			jLabel12.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel12.setBounds(2, 65, 210, 14);
-		}
-		return jLabel12;
 	}
 	private JLabel getJLabel13() {
 		if(jLabel13 == null) {
 			jLabel13 = new JLabel();
 			jLabel13.setText("expand");
 			jLabel13.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel13.setBounds(0, 95, 210, 14);
+			jLabel13.setBounds(2, 93, 210, 14);
 		}
 		return jLabel13;
 	}
 	private JLabel getJLabel14() {
 		if(jLabel14 == null) {
 			jLabel14 = new JLabel();
-			jLabel14.setText("source files");
+			jLabel14.setText("load network");
 			jLabel14.setFont(new java.awt.Font("Dialog",1,11));
 			jLabel14.setBounds(2, 0, 210, 14);
 		}
@@ -1211,7 +1213,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jLabel15 = new JLabel();
 			jLabel15.setText("subnets");
 			jLabel15.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel15.setBounds(2, 108, 210, 14);
+			jLabel15.setBounds(2, 63, 210, 14);
 		}
 		return jLabel15;
 	}
@@ -1238,7 +1240,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jLabel18 = new JLabel();
 			jLabel18.setText("export");
 			jLabel18.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel18.setBounds(2, 175, 60, 14);
+			jLabel18.setBounds(2, 109, 60, 14);
 		}
 		return jLabel18;
 	}
@@ -1256,7 +1258,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jLabel2 = new JLabel();
 			jLabel2.setText("remove");
 			jLabel2.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel2.setBounds(1, 133, 51, 14);
+			jLabel2.setBounds(2, 131, 51, 14);
 		}
 		return jLabel2;
 	}
@@ -1311,7 +1313,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jLabel7 = new JLabel();
 			jLabel7.setText("pick steps");
 			jLabel7.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel7.setBounds(146, 231, 49, 13);
+			jLabel7.setBounds(146, 206, 49, 13);
 		}
 		return jLabel7;
 	}
@@ -1321,6 +1323,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jLabel8.setText("locks");
 			jLabel8.setFont(new java.awt.Font("Dialog",1,11));
 			jLabel8.setBounds(0, 255, 51, 14);
+			jLabel8.setVisible(false);
 		}
 		return jLabel8;
 	}
@@ -1362,7 +1365,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jSlider1.setToolTipText("searchdepth");
 			jSlider1.setOpaque(false);
 			jSlider1.setName("jSlider1");
-			jSlider1.setBounds(0, 214, 134, 35);
+			jSlider1.setBounds(0, 189, 140, 35);
 			jSlider1.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.setPickdepth(jSlider1.getValue());
@@ -1499,9 +1502,6 @@ public class SwingSema implements SemaListener, KeyListener {
 			layoutTab.add(getPushLabel11());
 			layoutTab.add(getStrengthLabel());
 			layoutTab.add(getForces());
-			layoutTab.add(getClusters());
-			layoutTab.add(getTimelineBox());
-			layoutTab.add(getTreeBox());
 			layoutTab.add(getRepNeighbors());
 			layoutTab.add(getRepellBox1());
 			layoutTab.add(getJLabel3());
@@ -1513,7 +1513,6 @@ public class SwingSema implements SemaListener, KeyListener {
 			layoutTab.add(getBoxLayout());
 			layoutTab.add(getCircle());
 			layoutTab.add(getShuffleButton());
-			layoutTab.add(getJCheckBox());
 			layoutTab.add(getJSlider6());
 			layoutTab.add(getJLabel20());
 		}
@@ -1522,7 +1521,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JButton getLoadNet() {
 		if(loadNet == null) {
 			loadNet = new SimButton();
-			loadNet.setText("add net");
+			loadNet.setText("add relations");
 			loadNet.setBounds(2, 18, 67, 15);
 
 			loadNet.addActionListener(new ActionListener() {
@@ -1535,7 +1534,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private SimButton getLoadNodeAtt() {
 		if(loadNodeAtt == null) {
 			loadNodeAtt = new SimButton();
-			loadNodeAtt.setText("add attrib");
+			loadNodeAtt.setText("add nodes");
 			loadNodeAtt.setBounds(73, 18, 67, 15);
 			loadNodeAtt.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
@@ -1600,6 +1599,7 @@ public class SwingSema implements SemaListener, KeyListener {
 
 			nodeAttList.setName("nodeAttributes");
 			nodeAttList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			nodeAttList.setBorder(null);
 			nodeAttList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 				public void valueChanged(
 						javax.swing.event.ListSelectionEvent e) {
@@ -1610,7 +1610,7 @@ public class SwingSema implements SemaListener, KeyListener {
 							change = false;
 							if (edgeAttModel.contains(out))	edgeAttList.setSelectedValue(out, true);
 							else edgeAttList.setSelectedIndex(0);
-//							getSearchTerm().setText("");
+							//							getSearchTerm().setText("");
 						} else change = true;
 					}
 				}
@@ -1645,6 +1645,28 @@ public class SwingSema implements SemaListener, KeyListener {
 					if (out!=null) app.setPickID(out.hashCode());
 				}
 			});
+			nodeList.addMouseListener(new MouseListener() {
+
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount()==2) {
+						int index = nodeList.locationToIndex(e.getPoint());
+						String elementAt = (String) nodeListModel.getElementAt(index);;
+						nodeList.ensureIndexIsVisible(index);
+						app.netSearchSubstring(elementAt, false);
+						app.setPickID(elementAt.hashCode());
+						app.resetCam();
+					}
+				}
+				public void mouseEntered(MouseEvent e) {
+				}
+				public void mouseExited(MouseEvent e) {
+				}
+				public void mousePressed(MouseEvent e) {
+				}
+				public void mouseReleased(MouseEvent e) {
+				}
+			}
+			);
 		}
 		return nodeList;
 	}
@@ -1758,9 +1780,9 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JLabel getPushLabel11() {
 		if (pushLabel11 == null) {
 			pushLabel11 = new JLabel();
-			pushLabel11.setText("inflate");
+			pushLabel11.setText("perm. inflate");
 			pushLabel11.setFont(new java.awt.Font("Dialog",0,10));
-			pushLabel11.setBounds(151, 24, 32, 13);
+			pushLabel11.setBounds(151, 24, 72, 13);
 		}
 		return pushLabel11;
 	}
@@ -1890,7 +1912,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(saveNet == null) {
 			saveNet = new SimButton();
 			saveNet.setText("visible net");
-			saveNet.setBounds(2, 195, 67, 15);
+			saveNet.setBounds(2, 129, 67, 15);
 			saveNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 
@@ -1915,11 +1937,11 @@ public class SwingSema implements SemaListener, KeyListener {
 
 						if (saveFile.getFileFilter() instanceof SemaInlineFilter) {
 							if (!filename.endsWith(".txt")) filename += ".txt";
-							app.ns.exportNet(filename , false);
+							app.ns.exportNet(filename , false, true);
 						}
 						if (saveFile.getFileFilter() instanceof SemaTableFilter) {
 							if (!filename.endsWith(".tab")) filename += ".tab";
-							app.ns.exportNet(filename , true);
+							app.ns.exportNet(filename , true, true);
 						}
 
 						if (saveFile.getFileFilter() instanceof GmlFilter) {
@@ -1960,7 +1982,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			search = new JLabel();
 			search.setText("filter / search");
 			search.setFont(new java.awt.Font("Dialog",1,11));
-			search.setBounds(0, 0, 210, 14);
+			search.setBounds(2, 0, 210, 14);
 			//			search.setBackground(new java.awt.Color(192,192,192));
 		}
 		return search;
@@ -1993,9 +2015,9 @@ public class SwingSema implements SemaListener, KeyListener {
 			searchTerm.addKeyListener(new KeyAdapter() {
 				public void keyReleased(java.awt.event.KeyEvent e) {
 					if (e.getKeyCode()==10) {
-					app.netSearchSubstring(searchTerm.getText(),add.isSelected());
-					searchTerm.setText("");
-					fade(false);
+						app.netSearchSubstring(searchTerm.getText(),add.isSelected());
+						searchTerm.setText("");
+						fade(false);
 					}
 					textHilight();
 				}
@@ -2044,7 +2066,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private SimButton getSetImgDir() {
 		if(imgDir == null) {
 			imgDir = new SimButton();
-			imgDir.setText("img dir");
+			imgDir.setText("set img dir");
 			imgDir.setBounds(144, 18, 67, 15);
 			imgDir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
@@ -2096,7 +2118,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton1.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton1.setFont(new java.awt.Font("Dialog",0,10));
 			simButton1.setToolTipText("remove the picked node");
-			simButton1.setBounds(2, 152, 67, 15);
+			simButton1.setBounds(2, 150, 67, 15);
 			simButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delSelected();
@@ -2126,7 +2148,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(simButton11 == null) {
 			simButton11 = new SimButton();
 			simButton11.setText("delete all");
-			simButton11.setBounds(73, 83, 67, 15);
+			simButton11.setBounds(2, 37, 67, 15);
 			simButton11.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.clearNets();
@@ -2146,6 +2168,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton12.setFont(new java.awt.Font("Dialog",0,10));
 			simButton12.setToolTipText("remove framed Graphelements");
 			simButton12.setBounds(73, 171, 67, 15);
+			simButton12.setVisible(false);
 			simButton12.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delFramed(false);
@@ -2164,6 +2187,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton13.setFont(new java.awt.Font("Dialog",0,10));
 			simButton13.setToolTipText("remove graphElements not framed");
 			simButton13.setBounds(144, 171, 67, 15);
+			simButton13.setVisible(false);
 			simButton13.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delFramed(true);
@@ -2180,7 +2204,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton14.setVerticalAlignment(SwingConstants.CENTER);
 			simButton14.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton14.setFont(new java.awt.Font("Dialog",0,10));
-			simButton14.setBounds(73, 114, 67, 15);
+			simButton14.setBounds(73, 112, 67, 15);
 			simButton14.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.netExpandFramed(); //  Auto-generated Event stub actionPerformed()
@@ -2194,7 +2218,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(saveNetButton == null) {
 			saveNetButton = new SimButton();
 			saveNetButton.setText("save");
-			saveNetButton.setBounds(2, 128, 67, 15);
+			saveNetButton.setBounds(2, 83, 67, 15);
 			saveNetButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					app.saveNet();
@@ -2208,7 +2232,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(simButton15 == null) {
 			simButton15 = new SimButton();
 			simButton15.setText("remove");
-			simButton15.setBounds(73, 128, 67, 15);
+			simButton15.setBounds(73, 83, 67, 15);
 			simButton15.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					app.removeNet((String)netList.getSelectedValue());
@@ -2222,10 +2246,11 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(simButton16 == null) {
 			simButton16 = new SimButton();
 			simButton16.setText("show");
-			simButton16.setBounds(2, 147, 67, 15);
+			simButton16.setBounds(144, 83, 67, 15);
 			simButton16.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					app.setView((String)netList.getSelectedValue());
+					app.initNet();
 				}
 			});
 		}
@@ -2241,6 +2266,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton17.setFont(new java.awt.Font("Dialog",0,10));
 			simButton17.setToolTipText("remove clusters");
 			simButton17.setBounds(1, 190, 67, 15);
+			simButton17.setVisible(false);
 			simButton17.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.netRemoveClusters();
@@ -2280,7 +2306,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(simButton19 == null) {
 			simButton19 = new SimButton();
 			simButton19.setText("image");
-			simButton19.setBounds(73, 195, 67, 15);
+			simButton19.setBounds(144, 129, 67, 15);
 			simButton19.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					boolean calc = app.calculate;
@@ -2322,7 +2348,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			SimButton2.setVerticalTextPosition(SwingConstants.CENTER);
 			SimButton2.setFont(new java.awt.Font("Dialog",0,10));
 			SimButton2.setToolTipText("remove isolated nodes");
-			SimButton2.setBounds(2, 171, 67, 15);
+			SimButton2.setBounds(2, 169, 67, 15);
 			SimButton2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delIsolated();
@@ -2340,6 +2366,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton2.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton2.setFont(new java.awt.Font("Dialog",0,10));
 			simButton2.setBounds(144, 273, 67, 15);
+			simButton2.setVisible(false);
 			simButton2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.locksRemove();
@@ -2357,6 +2384,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton3.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton3.setFont(new java.awt.Font("Dialog",0,10));
 			simButton3.setBounds(73, 273, 67, 15);
+			simButton3.setVisible(false);
 			simButton3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.lockAll();
@@ -2372,7 +2400,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton4.setText("reset");
 			simButton4.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton4.setToolTipText("set the camera to 0,0");
-			simButton4.setBounds(1, 209, 65, 15);
+			simButton4.setBounds(2, 274, 65, 15);
 			simButton4.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.resetCam();
@@ -2387,7 +2415,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton5.setText("to picked");
 			simButton5.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton5.setToolTipText("set the camera to selected node");
-			simButton5.setBounds(71, 209, 65, 15);
+			simButton5.setBounds(72, 274, 65, 15);
 			simButton5.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.camOnSelected();
@@ -2404,7 +2432,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton7.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton7.setFont(new java.awt.Font("Dialog",0,10));
 			simButton7.setToolTipText("remove all nodes from view");
-			simButton7.setBounds(144, 190, 67, 15);
+			simButton7.setBounds(144, 169, 67, 15);
 			simButton7.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delAll();
@@ -2421,7 +2449,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton8.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton8.setFont(new java.awt.Font("Dialog",0,10));
 			simButton8.setToolTipText("remove nodes within pickrange");
-			simButton8.setBounds(73, 152, 67, 15);
+			simButton8.setBounds(73, 150, 67, 15);
 			simButton8.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delRegion(false);
@@ -2438,7 +2466,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton9.setVerticalTextPosition(SwingConstants.CENTER);
 			simButton9.setFont(new java.awt.Font("Dialog",0,10));
 			simButton9.setToolTipText("remove the nodes outside the pickregion");
-			simButton9.setBounds(144, 152, 67, 15);
+			simButton9.setBounds(144, 150, 67, 15);
 			simButton9.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.delRegion(true);
@@ -2575,7 +2603,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			timeBox.setMargin(new java.awt.Insets(0,0,0,0));
 			timeBox.setContentAreaFilled(false);
 			timeBox.setFont(new java.awt.Font("Dialog",0,10));
-			timeBox.setBounds(61, 41, 61, 17);
+			timeBox.setBounds(101, 229, 61, 17);
 			timeBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setTime(timeBox.isSelected());
@@ -2593,7 +2621,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			treeBox.setMargin(new java.awt.Insets(0,0,0,0));
 			treeBox.setContentAreaFilled(false);
 			treeBox.setFont(new java.awt.Font("Dialog",0,10));
-			treeBox.setBounds(145, 41, 49, 17);
+			treeBox.setBounds(164, 229, 49, 17);
 			treeBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setTree(treeBox.isSelected());
@@ -2657,9 +2685,6 @@ public class SwingSema implements SemaListener, KeyListener {
 			viewTab.add(getJLabel9());
 			viewTab.add(getJSlider2());
 			viewTab.add(getJLabel10());
-			viewTab.add(getSimButton4());
-			viewTab.add(getSimButton5());
-			viewTab.add(getJLabel11());
 			viewTab.add(getJCheckBox2x());
 			viewTab.add(getDrawClusters());
 			viewTab.add(getJLabel16());
@@ -2669,6 +2694,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			viewTab.add(getJCheckBox2xxx());
 			viewTab.add(getJSlider5());
 			viewTab.add(getJLabel19());
+			viewTab.add(getJCheckBox1());
 		}
 		return viewTab;
 	}
@@ -2707,8 +2733,8 @@ public class SwingSema implements SemaListener, KeyListener {
 		drawedges.setSelected(app.isEdges());
 		draw3d.setSelected(!app.get3D());
 		fadenodes.setSelected(app.fadeNodes);
-		fadeLabels.setSelected(app.fadeLabels);
-		forceBox.setSelected(app.getCalc());
+		fadeLabels.setSelected(!app.fadeLabels);
+		forceBox.setSelected(!app.getCalc());
 		renderTextures.setSelected(app.textures);
 		directedGraph.setSelected(app.directed);
 		drawclusters.setSelected(app.drawClusters);
@@ -2904,9 +2930,9 @@ public class SwingSema implements SemaListener, KeyListener {
 				fade(true);
 			}
 		} else
-			{
-				fade(false);
-			}
+		{
+			fade(false);
+		}
 	}
 	public void updateUI(NetStack n) {
 		initNetList(n);
@@ -2916,5 +2942,57 @@ public class SwingSema implements SemaListener, KeyListener {
 		setCounter();
 		initSliders();
 		initCheckboxes();
+	}
+	
+	private SimButton getExportWhole() {
+		if(exportWhole == null) {
+			exportWhole = new SimButton();
+			exportWhole.setText("whole net");
+			exportWhole.setBounds(73, 129, 67, 15);
+			exportWhole.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					
+					boolean calc = app.calculate;
+					boolean rnd = app.render;
+					app.calculate = false;
+					app.render = false;
+					
+					saveFile.resetChoosableFileFilters();
+					saveFile.addChoosableFileFilter(new GmlFilter());
+					saveFile.addChoosableFileFilter(new GraphMLFilter());
+					saveFile.addChoosableFileFilter(new SemaTableFilter());
+					saveFile.addChoosableFileFilter(new SemaInlineFilter());
+					
+					int returnVal = saveFile.showSaveDialog(saveFile);
+					
+					app.calculate=calc;
+					app.render=rnd;
+					
+					if (returnVal == JFileChooser.APPROVE_OPTION) {
+						String filename = saveFile.getSelectedFile().toString();
+						
+						if (saveFile.getFileFilter() instanceof SemaInlineFilter) {
+							if (!filename.endsWith(".txt")) filename += ".txt";
+							app.ns.exportNet(filename , false, false);
+						}
+						if (saveFile.getFileFilter() instanceof SemaTableFilter) {
+							if (!filename.endsWith(".tab")) filename += ".tab";
+							app.ns.exportNet(filename , true, false);
+						}
+						
+						if (saveFile.getFileFilter() instanceof GmlFilter) {
+							if (!filename.endsWith(".gml")) filename += ".gml";
+							app.ns.exportGML(filename);
+						}
+						if (saveFile.getFileFilter() instanceof GraphMLFilter) {
+							if (!filename.endsWith(".graphml")) filename += ".graphml";
+							app.ns.exportGraphML(filename);
+						}
+					}
+					
+				}
+			});
+		}
+		return exportWhole;
 	}
 }	
