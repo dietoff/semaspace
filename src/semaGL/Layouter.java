@@ -262,17 +262,16 @@ public class Layouter {
 
 		}
 	}
-	public void layoutInflate(float st_, Net net2) {
-		if (net2==null) return;
+	public void layoutInflate(float st_, Net net) {
+		if (net==null) return;
 		float strength = st_;
-		BBox3D bounds = BBox3D.calcBounds(net2.nNodes);
+		BBox3D bounds = BBox3D.calcBounds(net.nNodes);
 		layoutCenterOnPivot();
-		if (net2.fNodes.size()==1) return;
-		for (Node nodeRef: net2.fNodes) {
+		if (net.fNodes.size()==1) return;
+		for (Node nodeRef: net.fNodes) {
 			if (!nodeRef.isLocked()) {
 				Vector3D trans= new Vector3D();
 				Vector3D corr= new Vector3D();
-				//			if (nodeRef.adList.size()>0){
 				trans.setXYZ(nodeRef.pos);
 				trans.normalize();
 				trans.mult(strength);
@@ -283,6 +282,7 @@ public class Layouter {
 			}
 		}
 	}
+	
 	//in work, not finished ...
 	public void layoutInflateLocal(float st_, HashSet<Node> nodes) {
 		float strength = st_;

@@ -11,8 +11,8 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
 public class SemaTheme extends DefaultMetalTheme {
     private final ColorUIResource primary1 = new ColorUIResource(255, 150, 110);
     private final ColorUIResource primary2 = new ColorUIResource(255, 150, 110);
-    private final ColorUIResource primary3 = new ColorUIResource(255, 170, 90);
-
+    private final ColorUIResource primary3 = new ColorUIResource(255, 110, 90);
+    
     private final ColorUIResource secondary1 = new ColorUIResource(30,30, 30 );
     private final ColorUIResource secondary2 = new ColorUIResource(220,220,220);
     private final ColorUIResource secondary3 = new ColorUIResource(240, 240, 240);

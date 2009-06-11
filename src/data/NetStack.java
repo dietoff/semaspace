@@ -208,13 +208,15 @@ public class NetStack {
 	 * @param filename
 	 * @param tab
 	 */
-	public void exportNet(String filename, boolean tab) {
+	public void exportNet(String filename, boolean tab, boolean _view) {
+		Net export;
+		if (_view) export = view; else export = global;
 		if (!tab){
-			loader.saveNet(filename, view);
-			loader.saveNodeData(filename+".n", view); 
+			loader.saveNet(filename, export);
+			loader.saveNodeData(filename+".n", export); 
 		} else {
 			loader.saveNetTab(filename, view);
-			loader.saveNodeDataTab(filename+".n", view); 
+			loader.saveNodeDataTab(filename+".n", export); 
 		}
 
 	}
