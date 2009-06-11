@@ -23,8 +23,9 @@ public class BBox3D {
 	
 	public static BBox3D calcBounds(HashSet<Node> net) {
 		BBox3D bounds = new BBox3D();
-		bounds.max.setXYZ(0,0,0);
-		bounds.min.setXYZ(0,0,0);
+		float maxValue = Float.MAX_VALUE;
+		bounds.max.setXYZ(-maxValue,-maxValue,-maxValue);
+		bounds.min.setXYZ(maxValue,maxValue,maxValue);
 		bounds.size.setXYZ(0,0,0);
 		for (Node nodeRef: net) {
 			bounds.max.setX(Math.max(nodeRef.pos.x, bounds.max.x));

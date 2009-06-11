@@ -1,5 +1,6 @@
 package data;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -21,7 +22,14 @@ public abstract class GraphElement {
 	public HashMap<String,String> attributes;
 	public boolean rollover;
 	public boolean colored = false;
-
+	public boolean fade = false;
+	
+	// timestamps in years for now
+	int timeStart = 0;
+	int timeEnd = Integer.MAX_VALUE;
+	
+	
+	
 	GraphElement() {
 		this(null,"");
 	}

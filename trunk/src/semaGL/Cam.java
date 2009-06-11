@@ -89,7 +89,17 @@ public class Cam {
 //		gl.glRotatef(-zRot, 0, 0, 1);
 		gl.glTranslatef(-camLocal.x,-camLocal.y,-camLocal.z);
 		gl.glGetFloatv(GL.GL_MODELVIEW_MATRIX, modelview,0);
-		
+	}
+	
+	void posAbsolute(GLAutoDrawable space, float dist_, Vector3D focus_) {
+		final GL gl = gLDrawable.getGL();
+		gl.glMatrixMode(GL.GL_MODELVIEW);
+		dist=dist_;
+		camLocal.setXYZ(focus_);
+		gl.glLoadIdentity(); //overwrite new
+		gl.glTranslatef(0, 0, -dist);
+		gl.glTranslatef(-camLocal.x,-camLocal.y,-camLocal.z);
+		gl.glGetFloatv(GL.GL_MODELVIEW_MATRIX, modelview,0);
 	}
 	
 	public float distToCam(Vector3D midP) {

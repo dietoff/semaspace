@@ -134,9 +134,11 @@ public class NetLoader {
 			{			
 				if (i==0){
 					fields=cols.clone();
-					for (int j=2; i<fields.length;i++) {
-						String s = fields[j];
-						r.edgeattributes.add(s.toLowerCase());
+					if (fields.length>2){
+						for (int j=2; i<fields.length;i++) {
+							String s = fields[j];
+							r.edgeattributes.add(s.toLowerCase());
+						}
 					}
 				} else {
 
