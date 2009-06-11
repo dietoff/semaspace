@@ -59,6 +59,12 @@ public class FileIO {
 			}
 		}
 	}
+	
+	/**
+	 * load textures thread
+	 * @author d
+	 *
+	 */
 	class LoadTexturesUrl extends Thread {
 		Net net; 
 		int size;
@@ -81,11 +87,14 @@ public class FileIO {
 			{
 				if (!running) return;
 				try {
-					if (!loadTexture(loc+"/"+n.getName()+".png", n)&&!loadTexture(loc+"/"+n.getName()+".jpg", n)) {
+					String name = n.getName();
+					// replace forbidden characters
+					String replaced = name.replaceAll("[/*\\<:>|\" ]", "_");
+					
+					if (!loadTexture(loc+"/"+replaced+".png", n)&&!loadTexture(loc+"/"+replaced+".jpg", n)) {
 						BufferedImage img = loadTextureUrl(n, size);
-						if (img!=null) saveBufferedImage(img, loc+"/"+n.getName()+".png");
+						if (img!=null) saveBufferedImage(img, loc+"/"+replaced+".png");
 					}
-					//					while(n.newTex){ };
 				} catch (IOException e) {
 				}
 			}

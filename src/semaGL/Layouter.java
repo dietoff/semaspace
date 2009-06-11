@@ -263,6 +263,7 @@ public class Layouter {
 		}
 	}
 	public void layoutInflate(float st_, Net net2) {
+		if (net2==null) return;
 		float strength = st_;
 		BBox3D bounds = BBox3D.calcBounds(net2.nNodes);
 		layoutCenterOnPivot();
@@ -382,7 +383,7 @@ public class Layouter {
 			n.pos.setXYZ(Integer.MAX_VALUE/(float)n.getId(),Integer.MAX_VALUE/((float)String.valueOf(n.getId()+3).hashCode()), Func.rnd(-randPos,randPos));
 		}
 	}
-	public void layoutNodePosRandomize(){
+	public void layoutRandomize(){
 		for (Node n :net.fNodes) {
 			float randPos = (float)Math.sqrt(net.fNodes.size())*50f+50f;
 			n.pos.setXYZ(Func.rnd(-randPos,randPos), Func.rnd(-randPos,randPos), Func.rnd(-randPos,randPos));
@@ -626,8 +627,10 @@ public class Layouter {
 			if (app.isGroups()) {layout.renderGroups(gl,nr, view,fonttype);
 			layout.renderGroupLabels(gl, nr, view,fonttype);}
 			if (app.isEdges()) layout.renderEdges(gl, nr, fonttype);
-			layout.renderNodes(gl,nr, fonttype);
+			layout.renderNodes(gl, nr, fonttype);
+			//nr.renderBounds(gl, view.nNodes);
 			layout.renderLabels(gl,nr, fonttype);
+			
 		}
 		else {
 			if (!app.isTree()) layout.renderClusters(gl, nr);
