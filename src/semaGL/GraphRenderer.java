@@ -118,7 +118,7 @@ public class GraphRenderer {
 	 * @param fast
 	 */
 	synchronized void renderEdgeLabels(GL gl, Edge e, int Text, boolean fast) {
-		float[] color = e.color;
+		float[] color = e.getColor();
 		int font = Text;
 		Node a = e.getA();
 		Node b = e.getB();
@@ -212,8 +212,8 @@ public class GraphRenderer {
 			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
 			gl.glLineWidth(app.edgewidth);
 			gl.glBegin(GL.GL_LINES);
-			float[] aCol = e.color.clone();
-			float[] bCol = e.color.clone();
+			float[] aCol = e.getColor().clone();
+			float[] bCol = e.getColor().clone();
 
 			if (e.colored) {
 				bCol[3]=1f;
@@ -225,8 +225,8 @@ public class GraphRenderer {
 			}
 			
 			if (app.inheritEdgeColorFromNodes) {
-				aCol = e.getA().color.clone();
-				bCol = e.getB().color.clone();
+				aCol = e.getA().getColor().clone();
+				bCol = e.getB().getColor().clone();
 			}
 
 			if (e.fade) {
@@ -378,7 +378,7 @@ public class GraphRenderer {
 		gl.glPushMatrix();
 		gl.glScalef(size, size, size);
 
-		float[] color = n.color;
+		float[] color = n.getColor();
 
 		if (n.fade) {
 			color[3]=0.1f;
@@ -397,14 +397,14 @@ public class GraphRenderer {
 		// textures
 		if (n.textures[0]!=0){
 			gl.glBindTexture(GL.GL_TEXTURE_2D, n.textures[0]);
-			gl.glColor4f(1f,1f,1f,n.color[3]);
+			gl.glColor4f(1f,1f,1f,n.getColor()[3]);
 			//				gl.glColor4f(1f,1f,1f,pickColor[3]); //pick color 
 		}
 		
 		
 
 		//split quad or solid quad
-		float[] color2 = n.color2;
+		float[] color2 = n.getColor2();
 		if (color2 !=null) {
 			FuncGL.triangle1(gl);
 			if (n.fade) color2[3]=0.1f;
@@ -468,7 +468,7 @@ public class GraphRenderer {
 
 		float distToCam = app.cam.distToCam(n.pos);
 		String att="";
-		float[] textcolor = {n.color[0]/2f, n.color[1]/2f, n.color[2]/2f, 1};
+		float[] textcolor = {n.getColor()[0]/2f, n.getColor()[1]/2f, n.getColor()[2]/2f, 1};
 
 		if (app.fadeLabels&&n.pickColor[3]==0&&!n.rollover&&!n.isFrame()) {
 			font=3;

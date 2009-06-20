@@ -184,6 +184,14 @@ public class NetLoader {
 		if (tmp==null) return;
 		if (tmp.hasAttribute("function")) tmp.setAltName(tmp.getAttribute("function"));
 		if (tmp.hasAttribute("name")) tmp.setAltName(tmp.getAttribute("name"));
+		if (tmp.hasAttribute("color")) {
+			tmp.setAssignedColor(Func.parseColorInt(tmp.getAttribute("color"),16));
+			tmp.removeAttribute("color");
+		}
+		if (tmp.hasAttribute("color2")) {
+			tmp.setAssignedColor2(Func.parseColorInt(tmp.getAttribute("color2"),16));
+			tmp.removeAttribute("color2");
+		}
 		if (tmp.hasAttribute("type")) tmp.setAltName(tmp.getAttribute("type"));
 		if (tmp.hasAttribute("role")) tmp.setAltName(tmp.getAttribute("role"));
 		if (tmp.hasAttribute("similarity"))
@@ -234,7 +242,7 @@ public class NetLoader {
 		for (int i=0; i<lines.length; i++){
 			String cols[] = lines[i].split(separator);
 			String col1 = "";
-			if (cols[0].length()>1) col1 = cols[0].trim();
+			if (cols[0].length()>0) col1 = cols[0].trim();
 			if (col1.length()>0) tmp = n.addNode(col1);
 
 			if (tmp!=null){
@@ -288,7 +296,7 @@ public class NetLoader {
 		// chain attributes
 		if (tmp.hasAttribute(key)) {
 			String attribute = tmp.getAttribute(key);
-			if (!attribute.contains(value)) tmp.setAttribute(key, attribute+"; "+value);
+			if (!attribute.contains(value)) tmp.setAttribute(key, attribute+app.splitAttribute+value);
 		} 
 		else 
 		{
@@ -300,8 +308,14 @@ public class NetLoader {
 
 	public void parseNodeAttributes(Node tmp, Net n) {
 		if (tmp.hasAttribute("name")) tmp.altName=tmp.getAttribute("name");
-		if (tmp.hasAttribute("color")) tmp.setColor(Func.parseColorInt(tmp.getAttribute("color")));
-		if (tmp.hasAttribute("color2")) tmp.setColor2(Func.parseColorInt(tmp.getAttribute("color2")));
+		if (tmp.hasAttribute("color")) {
+			tmp.setAssignedColor(Func.parseColorInt(tmp.getAttribute("color"),16));
+			tmp.removeAttribute("color");
+		}
+		if (tmp.hasAttribute("color2")) {
+			tmp.setAssignedColor2(Func.parseColorInt(tmp.getAttribute("color2"),16));
+			tmp.removeAttribute("color2");
+		}
 		if (tmp.hasAttribute("project")) tmp.altName=tmp.getAttribute("project");
 		if (tmp.hasAttribute("person")) tmp.altName=tmp.getAttribute("person");
 		if (tmp.hasAttribute("group")) tmp.partOfGroup=true; else tmp.partOfGroup=false;

@@ -162,7 +162,7 @@ public abstract class FTFont
 	/**
 	 * Prechaches the most recently used chars
 	 */
-	private void precache()
+	protected void precache()
 	{
 //		for (int i = 0; i < DEFAULTCHAR.length; i++)
 //			this.checkGlyph(DEFAULTCHAR[i]);

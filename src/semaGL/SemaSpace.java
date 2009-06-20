@@ -171,6 +171,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private List<SemaListener> _listeners = new ArrayList<SemaListener>();
 	private boolean SHIFT;
 	private Net inflateGroup;
+	String fontFam = Messages.getString("FontFamily");
+	public String splitAttribute = "; ";
 
 	public SemaSpace(){
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
@@ -537,6 +539,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	private void initFonts() {
 
+		/*
 		try {
 			InputStream is = getClass().getClassLoader().getResourceAsStream("Tall Films Expanded.ttf");
 			font = Font.createFont(Font.TRUETYPE_FONT, is);
@@ -547,9 +550,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			e.printStackTrace();
 		} catch (FontFormatException e) {
 			e.printStackTrace();
-		}
+		}*/
+		
 
-		//		font = Font.decode("Arial Narrow").deriveFont(172f); //$NON-NLS-1$
+		font = Font.decode(fontFam).deriveFont(1f); //$NON-NLS-1$
 		FontRenderContext context = FTFont.STANDARDCONTEXT;
 
 		if (textureFont) {

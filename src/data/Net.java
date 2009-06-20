@@ -408,7 +408,7 @@ public class Net {
 		for (Node n:nNodes) {
 			if (n.partOfGroup) {
 				String groupname = n.attributes.get("group");
-				String gps[] = groupname.split(",");
+				String gps[] = groupname.split(app.splitAttribute);
 
 				Net grp;
 				for (String gn:gps){

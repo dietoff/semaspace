@@ -215,7 +215,7 @@ public class NetStack {
 			loader.saveNet(filename, export);
 			loader.saveNodeData(filename+".n", export); 
 		} else {
-			loader.saveNetTab(filename, view);
+			loader.saveNetTab(filename, export);
 			loader.saveNodeDataTab(filename+".n", export); 
 		}
 

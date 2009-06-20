@@ -115,7 +115,6 @@ public class Node extends GraphElement {
 	public int inOut() {
 		return adList.size()+inList.size();
 	}
-
 }
 
 

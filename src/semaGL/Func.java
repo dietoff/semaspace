@@ -6,6 +6,12 @@ public class Func {
 		int val = Integer.parseInt(attribute);
 		return parseColorInt(val);
 	}
+	
+	public static float[] parseColorInt(String attribute, int radix) {
+		int val = Integer.parseInt(attribute, radix);
+		return parseColorInt(val);
+	}
+	
 	public static float[] parseColorInt(int attribute) {
 		int val = attribute;
 		float r = ((val>>16)&0xff)/255f;

@@ -568,12 +568,12 @@ public class Layouter {
 		Vector3D dist = new Vector3D();
 		net.repNodes.clear();
 		for (Node tmp: net.fNodes) {
-			if (tmp.color[3]>0.2)net.repNodes.add(tmp);
+			if (tmp.getColor()[3]>0.2)net.repNodes.add(tmp);
 		}
 
 		for (Node a: net.fNodes) {
 			for (Node b: net.fNodes) {
-				if ((a!=b)&&(a.color[3]>0.2&&b.color[3]>0.2)) {
+				if ((a!=b)&&(a.getColor()[3]>0.2&&b.getColor()[3]>0.2)) {
 					repFrucht(abstand, strength, dist, a, b, app.getRepellMax()); 
 				}
 			}
@@ -774,7 +774,7 @@ public class Layouter {
 		float[] pickHSV = new float[3];
 		pickHSV = Func.RGBtoHSV(app.pickGradStart);
 
-		if (m.hasAttribute("color")) m.setColor(Func.parseColorInt(m.getAttribute("color")));
+		if (m.hasAttribute("color")) m.setColor(Func.parseColorInt(m.getAttribute("color"),16));
 		else {
 			float[] color = Func.colorGrad(level, nodeHSV, pickHSV);
 			m.setColor(color);
