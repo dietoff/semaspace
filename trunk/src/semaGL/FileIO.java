@@ -220,25 +220,6 @@ public class FileIO {
 		else return null;
 	}
 
-	//	public static String readCachedPage(String filename) throws IOException {
-	//		String page;
-	//		page = org.apache.commons.lang.StringEscapeUtils.unescapeHtml(FileIO.fileRead(filename));
-	//		return page;
-	//	}
-
-	static void saveImg(String folder, Node node) throws IOException {
-		Node n = node;
-		URL url = new URL(n.imgurl);
-
-		if (n!=null&&!FileIO.loadTexture(folder+"/"+n.getId()+".jpg",n)&&n.imgurl!=null) {
-
-			BufferedImage image = ImageIO.read(url);
-			GraphicsConfiguration gc = getDefaultConfiguration();
-			String filename = folder+n.name+".jpg";
-			ImageIO.write(copyBufImage(image, gc.createCompatibleImage(64, 64, 1)), "jpeg", new File(filename));
-			saveImg(folder,n);
-		}
-	}
 
 	static boolean saveBufferedImage(BufferedImage img, String filename) {
 		if (img!=null)

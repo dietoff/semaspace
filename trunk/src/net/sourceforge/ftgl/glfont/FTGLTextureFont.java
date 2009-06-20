@@ -1,6 +1,7 @@
 /* $Id: FTGLTextureFont.java,v 1.3 2004/11/18 17:55:46 joda Exp $ */
 package net.sourceforge.ftgl.glfont;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Shape;
 import java.awt.font.FontRenderContext;
@@ -63,7 +64,7 @@ public class FTGLTextureFont extends FTFont
 	 * A value to be added to the height and width to ensure that glyphs don't overlap in the
 	 * texture
 	 */
-	private int padding = 5;
+	private int padding = 3;
 
 	/**
 	 * 
@@ -258,10 +259,22 @@ public class FTGLTextureFont extends FTFont
 		ByteBuffer pixels =  BufferUtil.newByteBuffer(totalMemory);
 		this.gl.glGenTextures(1, textID,0);
 		this.gl.glBindTexture(GL.GL_TEXTURE_2D, textID[0]);
+//		this.gl.glTexParameterfv(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_BORDER_COLOR, Color.white.getRGBComponents(null),0);
 		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, GL.GL_CLAMP);
 		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, GL.GL_CLAMP);
 		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR);
 		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR_MIPMAP_LINEAR);
+		/* if( gl.isExtensionAvailable("GL_EXT_texture_filter_anisotropic") )   
+		  {
+		    float max[] = new float[1];
+		    gl.glGetFloatv( GL.GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, max, 0 );
+
+		    gl.glTexParameterf( GL.GL_TEXTURE_2D, 
+		                        GL.GL_TEXTURE_MAX_ANISOTROPY_EXT, 
+		                        max[0] );
+		  }
+	*/
+		
 		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_GENERATE_MIPMAP, GL.GL_TRUE);
 		this.gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_ALPHA, this.textureWidth, this.textureHeight, 0, GL.GL_ALPHA,
 			GL.GL_UNSIGNED_BYTE, pixels);

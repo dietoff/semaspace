@@ -24,6 +24,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.*;
 
 import java.awt.Dimension;
@@ -251,13 +252,14 @@ public class SwingSema implements SemaListener, KeyListener {
 	protected boolean change=true;
 
 	private boolean fullscreen=false;
+	private FileFilter fileOpenFilter;
 
 	{
 		fullscreen = Boolean.parseBoolean(Messages.getString("fullscreen"));
 		//Set Look & Feel
 		try {
-//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
-//			UIManager.setLookAndFeel(new MetalLookAndFeel());
+			//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
+			//			UIManager.setLookAndFeel(new MetalLookAndFeel());
 
 			Properties props = new Properties();
 			props.put("controlTextFont", "Dialog 10");
@@ -1922,33 +1924,46 @@ public class SwingSema implements SemaListener, KeyListener {
 					app.render = false;
 
 					saveFile.resetChoosableFileFilters();
+					
+					
+					saveFile.resetChoosableFileFilters();
 					saveFile.addChoosableFileFilter(new GmlFilter());
 					saveFile.addChoosableFileFilter(new GraphMLFilter());
-					saveFile.addChoosableFileFilter(new SemaTableFilter());
-					saveFile.addChoosableFileFilter(new SemaInlineFilter());
+
+					if (fileOpenFilter==null){
+						saveFile.addChoosableFileFilter(new SemaTableFilter());
+						saveFile.addChoosableFileFilter(new SemaInlineFilter());
+					} 
+					else 
+					{
+						if (fileOpenFilter instanceof SemaTableFilter) saveFile.addChoosableFileFilter(new SemaInlineFilter());
+						if (fileOpenFilter instanceof SemaInlineFilter) saveFile.addChoosableFileFilter(new SemaTableFilter());
+						saveFile.addChoosableFileFilter(fileOpenFilter);
+					}
 
 					int returnVal = saveFile.showSaveDialog(saveFile);
-
+					fileOpenFilter = saveFile.getFileFilter();
 					app.calculate=calc;
 					app.render=rnd;
 
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
-
-						if (saveFile.getFileFilter() instanceof SemaInlineFilter) {
+						
+						
+						if (fileOpenFilter instanceof SemaInlineFilter) {
 							if (!filename.endsWith(".txt")) filename += ".txt";
 							app.ns.exportNet(filename , false, true);
 						}
-						if (saveFile.getFileFilter() instanceof SemaTableFilter) {
+						if (fileOpenFilter instanceof SemaTableFilter) {
 							if (!filename.endsWith(".tab")) filename += ".tab";
 							app.ns.exportNet(filename , true, true);
 						}
 
-						if (saveFile.getFileFilter() instanceof GmlFilter) {
+						if (fileOpenFilter instanceof GmlFilter) {
 							if (!filename.endsWith(".gml")) filename += ".gml";
 							app.ns.exportGML(filename);
 						}
-						if (saveFile.getFileFilter() instanceof GraphMLFilter) {
+						if (fileOpenFilter instanceof GraphMLFilter) {
 							if (!filename.endsWith(".graphml")) filename += ".graphml";
 							app.ns.exportGraphML(filename);
 						}
@@ -2308,26 +2323,38 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton19.setText("image");
 			simButton19.setBounds(144, 129, 67, 15);
 			simButton19.addActionListener(new ActionListener() {
+				private FileFilter lastImageFilter;
+
 				public void actionPerformed(ActionEvent evt) {
 					boolean calc = app.calculate;
 					boolean rnd = app.render;
 					app.calculate = false;
 					app.render = false;
 					saveFile.resetChoosableFileFilters();
-					if (app.enableSvg) saveFile.addChoosableFileFilter(new SVGFilter());
-					saveFile.addChoosableFileFilter(new TGAFilter());
+
+					if (lastImageFilter == null) {
+						saveFile.addChoosableFileFilter(new TGAFilter());
+						saveFile.addChoosableFileFilter(new SVGFilter());
+					} 
+					else 
+					{
+						if (lastImageFilter instanceof SVGFilter) saveFile.addChoosableFileFilter(new TGAFilter());
+						if (lastImageFilter instanceof TGAFilter && app.enableSvg) saveFile.addChoosableFileFilter(new SVGFilter());
+						saveFile.setFileFilter(lastImageFilter);
+					}
 					int returnVal = saveFile.showSaveDialog(saveFile);
+					lastImageFilter = saveFile.getFileFilter();
 					app.calculate=calc;
 					app.render=rnd;
 
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
 
-						if (app.enableSvg&&saveFile.getFileFilter() instanceof SVGFilter) {
+						if (app.enableSvg&&lastImageFilter instanceof SVGFilter) {
 							if (!filename.endsWith(".svg")) filename+=".svg";
 							app.exportSVG (filename);
 						}
-						if (saveFile.getFileFilter() instanceof TGAFilter) {
+						if (lastImageFilter instanceof TGAFilter) {
 							if (!filename.endsWith(".tga")) filename+=".tga";
 							app.screenshot(app.shotres, app.shotres, filename);
 						}
@@ -2703,12 +2730,12 @@ public class SwingSema implements SemaListener, KeyListener {
 		nodeAttModel.clear();
 		nodeAttModel.addElement("none");
 		for (String s : app.ns.global.nodeattributes) {
-			nodeAttModel.addElement(s);
+			if (s!="id"&&!s.contentEquals("color")&&s!="color2") nodeAttModel.addElement(s);
 		}
 		edgeAttModel.clear();
 		edgeAttModel.addElement("none");
 		for (String s : app.ns.global.edgeattributes) {
-			edgeAttModel.addElement(s);
+			if (s!="id"&&!s.contentEquals("color")&&s!="color2") edgeAttModel.addElement(s);
 		}
 
 		String att = app.getAttribute();
@@ -2758,8 +2785,6 @@ public class SwingSema implements SemaListener, KeyListener {
 		openPicDir = new JFileChooser();
 		openPicDir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		saveFile = new JFileChooser();
-		saveFile.addChoosableFileFilter(new SemaTableFilter());
-		saveFile.addChoosableFileFilter(new SemaInlineFilter());
 	}
 
 	private void initNetList(NetStack n) {
@@ -2841,19 +2866,27 @@ public class SwingSema implements SemaListener, KeyListener {
 		app.render = false;
 
 		openFile.resetChoosableFileFilters();
-		openFile.addChoosableFileFilter(new SemaTableFilter());
-		openFile.addChoosableFileFilter(new SemaInlineFilter());
-
+		if (fileOpenFilter == null) {
+			openFile.addChoosableFileFilter(new SemaTableFilter());
+			openFile.addChoosableFileFilter(new SemaInlineFilter());
+		}
+		else
+		{
+			if (fileOpenFilter instanceof SemaTableFilter) openFile.addChoosableFileFilter(new SemaInlineFilter());
+			if (fileOpenFilter instanceof SemaInlineFilter) openFile.addChoosableFileFilter(new SemaTableFilter());
+			openFile.addChoosableFileFilter(fileOpenFilter);
+		}
 		int returnVal = openFile.showOpenDialog(openFile);
+		fileOpenFilter = openFile.getFileFilter();
 		app.calculate=calc;
 		app.render=rnd;
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File filename =openFile.getSelectedFile();
-			if (openFile.getFileFilter() instanceof SemaInlineFilter) {
+			if (fileOpenFilter instanceof SemaInlineFilter) {
 				app.loadNetwork(filename, false);
 			} else
-				if (openFile.getFileFilter() instanceof SemaTableFilter) {
+				if (fileOpenFilter instanceof SemaTableFilter) {
 					app.loadNetwork(filename, true);
 				}
 			setCounter();
@@ -2867,15 +2900,26 @@ public class SwingSema implements SemaListener, KeyListener {
 		app.render = false;
 
 		openFile.resetChoosableFileFilters();
-		openFile.addChoosableFileFilter(new SemaTableFilter());
-		openFile.addChoosableFileFilter(new SemaInlineFilter());
 
+		if (fileOpenFilter==null){
+			openFile.addChoosableFileFilter(new SemaTableFilter());
+			openFile.addChoosableFileFilter(new SemaInlineFilter());
+		} 
+		else
+		{
+			if (fileOpenFilter instanceof SemaTableFilter) openFile.addChoosableFileFilter(new SemaInlineFilter());
+			if (fileOpenFilter instanceof SemaInlineFilter) openFile.addChoosableFileFilter(new SemaTableFilter());
+			openFile.addChoosableFileFilter(fileOpenFilter);
+		}
 		int returnVal = openFile.showOpenDialog(openFile);
+		fileOpenFilter = openFile.getFileFilter();
+
+
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			if (openFile.getFileFilter() instanceof SemaInlineFilter) {
+			if (fileOpenFilter instanceof SemaInlineFilter) {
 				app.nodeListLoad(openFile.getSelectedFile(), false);
 			} else
-				if (openFile.getFileFilter() instanceof SemaTableFilter) {
+				if (fileOpenFilter instanceof SemaTableFilter) {
 					app.nodeListLoad(openFile.getSelectedFile(), true);
 				}
 
@@ -2943,7 +2987,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		initSliders();
 		initCheckboxes();
 	}
-	
+
 	private SimButton getExportWhole() {
 		if(exportWhole == null) {
 			exportWhole = new SimButton();
@@ -2951,45 +2995,54 @@ public class SwingSema implements SemaListener, KeyListener {
 			exportWhole.setBounds(73, 129, 67, 15);
 			exportWhole.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					
+
 					boolean calc = app.calculate;
 					boolean rnd = app.render;
 					app.calculate = false;
 					app.render = false;
-					
+
 					saveFile.resetChoosableFileFilters();
 					saveFile.addChoosableFileFilter(new GmlFilter());
 					saveFile.addChoosableFileFilter(new GraphMLFilter());
-					saveFile.addChoosableFileFilter(new SemaTableFilter());
-					saveFile.addChoosableFileFilter(new SemaInlineFilter());
-					
+
+					if (fileOpenFilter==null){
+						saveFile.addChoosableFileFilter(new SemaTableFilter());
+						saveFile.addChoosableFileFilter(new SemaInlineFilter());
+					} 
+					else 
+					{
+						if (fileOpenFilter instanceof SemaTableFilter) saveFile.addChoosableFileFilter(new SemaInlineFilter());
+						if (fileOpenFilter instanceof SemaInlineFilter) saveFile.addChoosableFileFilter(new SemaTableFilter());
+						saveFile.addChoosableFileFilter(fileOpenFilter);
+					}
+
 					int returnVal = saveFile.showSaveDialog(saveFile);
-					
+					fileOpenFilter = saveFile.getFileFilter();
 					app.calculate=calc;
 					app.render=rnd;
-					
+
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
-						
-						if (saveFile.getFileFilter() instanceof SemaInlineFilter) {
+
+						if (fileOpenFilter instanceof SemaInlineFilter) {
 							if (!filename.endsWith(".txt")) filename += ".txt";
 							app.ns.exportNet(filename , false, false);
 						}
-						if (saveFile.getFileFilter() instanceof SemaTableFilter) {
+						if (fileOpenFilter instanceof SemaTableFilter) {
 							if (!filename.endsWith(".tab")) filename += ".tab";
 							app.ns.exportNet(filename , true, false);
 						}
-						
-						if (saveFile.getFileFilter() instanceof GmlFilter) {
+
+						if (fileOpenFilter instanceof GmlFilter) {
 							if (!filename.endsWith(".gml")) filename += ".gml";
 							app.ns.exportGML(filename);
 						}
-						if (saveFile.getFileFilter() instanceof GraphMLFilter) {
+						if (fileOpenFilter instanceof GraphMLFilter) {
 							if (!filename.endsWith(".graphml")) filename += ".graphml";
 							app.ns.exportGraphML(filename);
 						}
 					}
-					
+
 				}
 			});
 		}

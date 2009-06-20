@@ -3,16 +3,16 @@ package data;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
-
+import java.util.Random;
 import semaGL.*;
 
 
 public abstract class GraphElement {
 	public int id; 
 	public float[] defaultcolor ={.5f,.5f,.5f,0.7f}; //free
-	public float[] color ={.5f,.5f,.5f,0.7f}; //free
+	private float[] color ={.5f,.5f,.5f,0.7f}; //free
 	public float[] textColor ={0f,0f,0f,0.8f};
-	public float[] color2 = null;
+	private float[] defaultcolor2 = null;
 	public float[] white ={1f,1f,1f,0.8f};
 	private boolean frame = false;
 	public float alpha=0.8f;
@@ -48,31 +48,30 @@ public abstract class GraphElement {
 		col[3]=Math.min(1,Math.max(0,alpha));
 
 		if (app.getAttribute().contentEquals("none")) {
-			color = col;
+			setColor(col);
 			colored = false;
 			return;
 		}
 		if (attributes!=null){
 			String a = attributes.get(app.getAttribute());
 			if (a!=null) {
-				color = colorFunction(attributes.get(app.getAttribute()));
+				setColor(colorFunction(attributes.get(app.getAttribute())));
 				colored = true;
 				alpha = 0.7f;
 			} else {
-				color = col;
+				setColor(col);
 				colored = false;
 			}
 		}  else {
-			color = col;
+			setColor(col);
 			colored = false;
 		}
 		return;
 	}
 	public static float[] colorFunction(String param) {
-		int h = param.hashCode();
-		int rot =    (h << (32-17)) | (h >>> 17);
-//		return Func.parseColorInt(String.valueOf(param.hashCode()*726.12344381f).hashCode());
-		return Func.parseColorInt(rot);
+		Random generator = new Random(param.hashCode());
+		int col = generator.nextInt(0x777777);
+		return Func.parseColorInt(col);
 	}
 
 
@@ -116,6 +115,11 @@ public abstract class GraphElement {
 	public boolean hasAttribute(String key) {
 		return attributes.containsKey(key);
 	}
+	
+	public String removeAttribute(String key) {
+		return attributes.remove(key);
+	}
+	
 	public String getAttribute(String key) {
 		return attributes.get(key);
 	}
@@ -124,19 +128,23 @@ public abstract class GraphElement {
 	}
 
 	public float[] getNodeColor() {
-		return color;
+		return getColor();
 	}
-	public void setColor(float[] nodeColor2) {
-		this.color = nodeColor2;
+	public void setColor(float[] col) {
+		this.color = col;
 	}
 
-	public void setColor2(float[] nodeColor_) {
-		this.color2 = nodeColor_;
+	public void setAssignedColor2(float[] col) {
+		this.defaultcolor2 = col;
+	}
+	
+	public void setAssignedColor(float[] col) {
+		this.defaultcolor = col;
 	}
 
 	public void setAlpha(float alpha_) {
 		alpha=alpha_;
-		color[3]= alpha;
+		getColor()[3]= alpha;
 	}
 	public String getAltName() {
 		return altName;
@@ -155,5 +163,11 @@ public abstract class GraphElement {
 
 	public void setFrame(boolean b) {
 		frame  = b;
+	}
+	public float[] getColor() {
+		return color;
+	}
+	public float[] getColor2() {
+		return defaultcolor2;
 	}
 }
