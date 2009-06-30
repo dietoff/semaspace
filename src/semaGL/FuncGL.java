@@ -5,7 +5,6 @@ import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
-import java.text.Normalizer.Form;
 //import java.text.Normalizer.Form;
 import javax.media.opengl.GL;
 import sun.text.Normalizer;
@@ -140,8 +139,8 @@ public class FuncGL {
 	}
 
 	static void renderStrokeString( SemaSpace app, int font, String string, float offset, float offsety) {
-		String normalize = Normalizer.normalize(string, Form.NFD, 0);
-//		String normalize = Normalizer.normalize(string, Normalizer.DECOMP, 0);
+//		String normalize = Normalizer.normalize(string, Form.NFD, 0);
+		String normalize = Normalizer.normalize(string, Normalizer.DECOMP, 0);
 		GL gl=app.glD.getGL();
 		stroke(app, font, normalize, offset, offsety, gl);
 	}
