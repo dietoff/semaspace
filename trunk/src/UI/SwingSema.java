@@ -1040,7 +1040,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			draw3d.setMargin(new java.awt.Insets(0,0,0,0));
 			draw3d.setContentAreaFilled(false);
 			draw3d.setFont(new java.awt.Font("Dialog",0,10));
-			draw3d.setBounds(1, 229, 60, 17);
+			draw3d.setBounds(1, 229, 45, 17);
 			draw3d.setSelected(!app.get3D());
 			draw3d.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
