@@ -162,10 +162,11 @@ public class NetLoader {
 									String key = fields[j].toLowerCase().trim();
 									String value = cols[j].trim();
 
-									addAttribute(r, tmp, value, key);
-
-									r.edgeattributes.add(key);
-									parseEdgeAttributes(tmp);
+									if (value!=null||value.length()>0) {
+										addAttribute(r, tmp, value, key);
+										r.edgeattributes.add(key);
+										parseEdgeAttributes(tmp);
+									}
 								}
 							}
 						}
@@ -280,9 +281,8 @@ public class NetLoader {
 				if (tmp!=null){
 					for (int j=1; j<cols.length;j++) {
 						String value = cols[j].trim();
-						if (value.length()>0) {
+						if (value!=null||value.length()>0) {
 							String key = fields[j].toLowerCase().trim();
-
 							addAttribute(n, tmp, value, key);
 							parseNodeAttributes(tmp, n);
 						}
