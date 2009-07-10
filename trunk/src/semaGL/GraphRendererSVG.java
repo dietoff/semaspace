@@ -39,8 +39,7 @@ public class GraphRendererSVG {
 	public GraphRendererSVG (SemaSpace app_){
 		app=app_;
 		net = app.ns.getView();
-		circles = Boolean.parseBoolean(Messages.getString("SVGNodesCircles"));
-		nodeAligned = Boolean.parseBoolean(Messages.getString("SVGNodesAligned"));
+		circles = app.getSvgNodeCircles();
 	}
 
 
@@ -114,7 +113,7 @@ public class GraphRendererSVG {
 		int font = app.fonttype;
 		BasicStroke sngl = new BasicStroke(1f);
 		BasicStroke dbl = new BasicStroke(2f); 
-		Font ef = new Font(app.fontFam,Font.PLAIN, (int)(app.getLabelsize()));
+		Font ef = new Font(app.getFontFam(),Font.PLAIN, (int)(app.getLabelsize()));
 
 		AffineTransform id = new AffineTransform();
 		id.setToIdentity();
@@ -156,7 +155,7 @@ public class GraphRendererSVG {
 		}
 
 		// clusters
-		if (app.cluster&&app.drawClusters){
+		if (app.isCluster()&&app.drawClusters){
 			for (Node n: net.nNodes) {
 				if (n.cluster.size()>1) {
 					float[] col = GraphElement.colorFunction(n.name);
@@ -255,18 +254,18 @@ public class GraphRendererSVG {
 							if (!app.isTree()&&!app.labelsEdgeDir) {
 								g2d.translate((int)(size/2),-(int)(size/2));
 							}
-							if (app.tilt) {
+							if (app.isTilt()) {
 								g2d.rotate(-0.436332312998582);
 							} 
 
 							int fntsize = (int)((app.getLabelsize()+n.size()*app.getLabelVar())*1.5f);
-							Font varFont = new Font(app.fontFam,Font.PLAIN, fntsize);
+							Font varFont = new Font(app.getFontFam(),Font.PLAIN, fntsize);
 							FontRenderContext frc = g2d.getFontRenderContext();
 							TextLayout tl = new TextLayout(sp[i],varFont,frc);
 
 							if (app.isTree()&&app.ns.view.distances.getNodeDistance(n)>0) alignLabel(g2d, n.pos, n.size(), tl);
 							else
-								if (app.labelsEdgeDir&&!app.tilt){
+								if (app.labelsEdgeDir&&!app.isTilt()){
 									if (n.adList.size()==1) {
 										Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
 										alignLabel(g2d, sub, n.size(), tl);

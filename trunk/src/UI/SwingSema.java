@@ -1862,11 +1862,11 @@ public class SwingSema implements SemaListener, KeyListener {
 			repellBox1.setContentAreaFilled(false);
 			repellBox1.setFont(new java.awt.Font("Dialog",0,10));
 			repellBox1.setBounds(0, 119, 33, 17);
-			repellBox1.setSelected(app.repell);
+			repellBox1.setSelected(app.isRepell());
 			repellBox1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.repell=!app.repell;
-					repellBox1.setSelected(app.repell);
+					app.setRepell(!app.isRepell());
+					repellBox1.setSelected(app.isRepell());
 				}
 			});
 		}
@@ -2349,7 +2349,7 @@ public class SwingSema implements SemaListener, KeyListener {
 					else 
 					{
 						if (lastImageFilter instanceof SVGFilter) saveFile.addChoosableFileFilter(new TGAFilter());
-						if (lastImageFilter instanceof TGAFilter && app.enableSvg) saveFile.addChoosableFileFilter(new SVGFilter());
+						if (lastImageFilter instanceof TGAFilter && app.isEnableSvg()) saveFile.addChoosableFileFilter(new SVGFilter());
 						saveFile.setFileFilter(lastImageFilter);
 					}
 					int returnVal = saveFile.showSaveDialog(saveFile);
@@ -2360,7 +2360,7 @@ public class SwingSema implements SemaListener, KeyListener {
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
 
-						if (app.enableSvg&&lastImageFilter instanceof SVGFilter) {
+						if (app.isEnableSvg()&&lastImageFilter instanceof SVGFilter) {
 							if (!filename.endsWith(".svg")) filename+=".svg";
 							app.exportSVG (filename);
 						}
@@ -2608,7 +2608,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			texButton1.setBounds(0, 0, 0, 0);
 			texButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.fileIO.loadTexturesUrl( app.texfolder, app.ns.view, app.thumbsize);
+					app.fileIO.loadTexturesUrl( app.getTexfolder(), app.ns.view, app.getThumbsize());
 				}
 			});
 		}
@@ -2625,7 +2625,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			tiltBox.setBounds(173, 22, 50, 14);
 			tiltBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.tilt=tiltBox.isSelected();
+					app.setTilt(tiltBox.isSelected());
 				}
 			});
 		}
@@ -2760,8 +2760,8 @@ public class SwingSema implements SemaListener, KeyListener {
 	}
 
 	private void initCheckboxes() {
-		tiltBox.setSelected(app.tilt);
-		repellBox1.setSelected(app.repell);
+		tiltBox.setSelected(app.isTilt());
+		repellBox1.setSelected(app.isRepell());
 		repNeighbors.setSelected(app.isRepN());
 		treeBox.setSelected(app.isTree());
 		timeBox.setSelected(app.isTime());
@@ -2965,7 +2965,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		int returnVal = openPicDir.showOpenDialog(openPicDir);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			app.setTexFolder(openPicDir.getSelectedFile().getAbsolutePath()+"/");
-			app.fileIO.loadTextures(app.texfolder, app.ns.view);
+			app.fileIO.loadTextures(app.getTexfolder(), app.ns.view);
 		}
 		app.calculate=calc;
 		app.render=rnd;

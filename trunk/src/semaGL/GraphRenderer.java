@@ -145,7 +145,7 @@ public class GraphRenderer {
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
 		if (font<2) 
-			if (app.tilt) gl.glRotatef(25, 0, 0, 1);
+			if (app.isTilt()) gl.glRotatef(25, 0, 0, 1);
 
 			else {
 				float advance = alignLabel(gl,dir, 0, font, app.getLabelsize(), rText);
@@ -210,7 +210,7 @@ public class GraphRenderer {
 		{
 			// draw actual edge
 			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
-			gl.glLineWidth(app.edgewidth);
+			gl.glLineWidth(app.getEdgewidth());
 			gl.glBegin(GL.GL_LINES);
 			float[] aCol = e.getColor().clone();
 			float[] bCol = e.getColor().clone();
@@ -219,12 +219,12 @@ public class GraphRenderer {
 				bCol[3]=1f;
 				aCol[3]=1f;
 			} else {
-				float f = app.edgeAlpha;
+				float f = app.getEdgeAlpha();
 				aCol[3] = e.getA().alpha*f;
 				bCol[3] = e.getB().alpha*f;
 			}
 			
-			if (app.inheritEdgeColorFromNodes) {
+			if (app.isInheritEdgeColorFromNodes()) {
 				aCol = e.getA().getColor().clone();
 				bCol = e.getB().getColor().clone();
 			}
@@ -313,7 +313,7 @@ public class GraphRenderer {
 		gl.glTranslatef(n.pos.x, n.pos.y, n.pos.z);
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
-		if (font<2&&app.tilt) gl.glRotatef(25, 0, 0, 1);
+		if (font<2&&app.isTilt()) gl.glRotatef(25, 0, 0, 1);
 		FuncGL.renderText(app, n.name, textcolor, 1.5f*app.getLabelsize()+n.size()*app.getLabelVar(), font, n.id, distToCam, true, false); //dont draw the text if alpha is too low
 		// reset all transformations
 		gl.glPopMatrix();
@@ -372,7 +372,7 @@ public class GraphRenderer {
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
 		float size = n.size();
-		if (n.textures[0]!=0) size*=app.picSize;
+		if (n.textures[0]!=0) size*=app.getPicSize();
 		//		if (colored) size*=2;
 		//draw node
 		gl.glPushMatrix();
@@ -503,7 +503,7 @@ public class GraphRenderer {
 				alignLabel(gl,n.pos, n.size(), font, fsize, split[0]);
 			} else
 			{
-				if (app.tilt) gl.glRotatef(25, 0, 0, 1); 
+				if (app.isTilt()) gl.glRotatef(25, 0, 0, 1); 
 				else
 				{
 

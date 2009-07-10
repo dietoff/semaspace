@@ -27,7 +27,7 @@ public class Layouter {
 	Layouter (SemaSpace app_) {
 		app= app_;
 		replist = new HashMap<String, nodeTuple>();
-		edgeTresh=Integer.parseInt(Messages.getString("edgeTresholdRepell"));
+		edgeTresh= app.edgeThreshold;
 	}
 
 	public void applyAttributeColors() {
@@ -42,7 +42,7 @@ public class Layouter {
 
 		for (Node n :net.nNodes) {
 			//	calculate hue based on network distance from selected node
-			float max = app.pickdepth;
+			float max = app.getPickdepth();
 			float grad = n.pickDistance/max;
 			float hue = pickHSV[0]+grad*(nodeHSV[0]-pickHSV[0]);
 			float[] result = new float[3];
@@ -72,13 +72,13 @@ public class Layouter {
 	}
 
 	private float spiral_angle(Node n, int i) {
-		return (float)Math.sqrt(app.clusterRad*i+n.getSize())*75f;
+		return (float)Math.sqrt(app.getClusterRad()*i+n.getSize())*75f;
 	}
 	private float spiral_rad(Node n, int i) {
-		return app.standardNodeDistance/2f+(float)Math.sqrt(app.clusterRad*i+n.getSize())*10f;
+		return app.getStandardNodeDistance()/2f+(float)Math.sqrt(app.getClusterRad()*i+n.getSize())*10f;
 	}
 	private float circle_rad(Node n, int i) {
-		return app.standardNodeDistance/2f+(float)Math.sqrt(app.clusterRad*n.cluster.size())*4f;
+		return app.getStandardNodeDistance()/2f+(float)Math.sqrt(app.getClusterRad()*n.cluster.size())*4f;
 	}
 
 	private float calcDist(Node a, Node b, float offset, float val) {
@@ -327,8 +327,8 @@ public class Layouter {
 
 		while (next.size()>0) {
 			for (Node m:next){
-				if (radial) layoutConstrainCircle(m, 0, 0, innerRad+level*app.radialDist);
-				else m.pos.y = level *app.radialDist;
+				if (radial) layoutConstrainCircle(m, 0, 0, innerRad+level*app.getRadialDist());
+				else m.pos.y = level *app.getRadialDist();
 				if (!all.containsKey(m.name)){
 					nextTmp.addAll(m.adList);
 					setNodeColor(level, m);
@@ -781,7 +781,7 @@ public class Layouter {
 		if (nodes!=null&&nodes.size()>1) offset = 0.15f;
 		for (Node n:net.nNodes) {
 			if (net.distances.contains(n)) {
-				layoutConstrainCircle(n, 0, 0, (net.distances.getNodeDistance(n)+offset)*(app.radialDist));
+				layoutConstrainCircle(n, 0, 0, (net.distances.getNodeDistance(n)+offset)*(app.getRadialDist()));
 			}
 		}
 	}
@@ -820,7 +820,7 @@ public class Layouter {
 		int step=0;
 		boolean y= false;
 		Vector3D cursor = new Vector3D(0,0,0);
-		float abstand = app.boxdist;
+		float abstand = app.getBoxdist();
 		Iterator<Node> it = nodes.iterator();
 		Node last=null;
 		int max = 1;
