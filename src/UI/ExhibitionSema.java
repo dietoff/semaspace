@@ -1816,11 +1816,11 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			repellBox1.setContentAreaFilled(false);
 			repellBox1.setFont(new java.awt.Font("Dialog",0,10));
 			repellBox1.setBounds(0, 119, 33, 17);
-			repellBox1.setSelected(app.repell);
+			repellBox1.setSelected(app.isRepell());
 			repellBox1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.repell=!app.repell;
-					repellBox1.setSelected(app.repell);
+					app.setRepell(!app.isRepell());
+					repellBox1.setSelected(app.isRepell());
 				}
 			});
 		}
@@ -2520,7 +2520,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			texButton1.setBounds(0, 0, 0, 0);
 			texButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.fileIO.loadTexturesUrl( app.texfolder, app.ns.view, app.thumbsize);
+					app.fileIO.loadTexturesUrl( app.getTexfolder(), app.ns.view, app.getThumbsize());
 				}
 			});
 		}
@@ -2537,7 +2537,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			tiltBox.setBounds(58, 226, 50, 14);
 			tiltBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.tilt=tiltBox.isSelected();
+					app.setTilt(tiltBox.isSelected());
 				}
 			});
 		}
@@ -2657,7 +2657,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	 * initialize values of the checkboxes
 	 */
 	private void initCheckboxes() {
-		tiltBox.setSelected(app.tilt);
+		tiltBox.setSelected(app.isTilt());
 		draw3d.setSelected(!app.get3D());
 		radLabels.setSelected(app.isLabelsEdgeDir());
 		fadeLabels.setSelected(!app.fadeLabels);
@@ -2869,7 +2869,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		int returnVal = openPicDir.showOpenDialog(openPicDir);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			app.setTexFolder(openPicDir.getSelectedFile().getAbsolutePath()+"/");
-			app.fileIO.loadTextures(app.texfolder, app.ns.view);
+			app.fileIO.loadTextures(app.getTexfolder(), app.ns.view);
 		}
 		app.calculate=calc;
 		app.render=rnd;

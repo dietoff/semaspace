@@ -54,31 +54,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private static final long serialVersionUID = -1864003907508879499L;
 	GLUT glut = new GLUT();
 	//	HashSet<String> map = Messages.getArray("map");
-	String filename = Messages.getString("defaultFilename"); //$NON-NLS-1$
-	public String texfolder = Messages.getString("textureDirectory"); //$NON-NLS-1$
 	String cacheDir = "./cache/"; //$NON-NLS-1$
 	public  String texurl = "http://"; //$NON-NLS-1$
-	int searchdepth = Integer.parseInt(Messages.getString("searchdepth"));
 	private  boolean changed=false;
 	public  boolean fadeEdges=false;
 	public  boolean fadeNodes=false;
-	float standardNodeDistance = Float.parseFloat(Messages.getString("standardNodeDistance"));
-	float repellDist = Float.parseFloat(Messages.getString("repellDistance"));
-	public float nodeSize = Float.parseFloat(Messages.getString("nodeSize"));
-	int picSize = Integer.parseInt(Messages.getString("picSize"));
-	float strength = Float.parseFloat(Messages.getString("edgeStrength"));
-	private float val = Float.parseFloat(Messages.getString("valenceFactor"));
-	float repellStrength = Float.parseFloat(Messages.getString("repellStrength"));
-	public float clusterRad= Float.parseFloat(Messages.getString("clusterRadius"));
-	public float radialDist = Float.parseFloat(Messages.getString("radialLayoutDistance"));
-	public float boxdist = Float.parseFloat(Messages.getString("boxLayoutDistance"));
 	String url;
 	String nodeUrl;
 	String edgeUrl;
-	int pickdepth = Integer.parseInt(Messages.getString("pickDistance"));
-	long inflatetime = Long.parseLong(Messages.getString("inflateTimeMs"));
 	int fonttype = 1;
-	float edgewidth = Float.parseFloat(Messages.getString("edgeWidth"));
 	float textwidth = 0.8f;
 	public float[] pickGradEnd = {0f,1f,0f,0f};
 	public float[] frameColor={0f,0f,1f,0.8f};
@@ -88,9 +72,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public float[] edgeColor = {0.7f,0.7f,1f,0.8f};
 	boolean opt = false; //optimized repelling
 	boolean layout2d = true;
-	private boolean exhibitionMode = Boolean.parseBoolean(Messages.getString("exhibitionMode"));
 	public boolean animated=false;
-	public boolean repell = Boolean.parseBoolean(Messages.getString("repellOn"));
 	boolean distance = true;
 	boolean inflate = true;
 	public int pickID=-1;
@@ -115,9 +97,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private float h;
 	int viewPort[] = new int[4];
 	long starttime, elapsedtime, lasttime, deltatime, currenttime;
-	boolean cluster=Boolean.parseBoolean(Messages.getString("layoutClusters"));
 	private boolean FOG = true;
-	private int loadMethod = Integer.parseInt(Messages.getString("loadMethod")); //0 = local file, 1 = http, 2 = jar
 	boolean select;
 	private float FOV = 70f;
 	public GLAutoDrawable glD;
@@ -126,7 +106,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private GLU glu;
 	public FileIO fileIO;
 	public int ageThresh=Integer.MAX_VALUE;
-	float perminflate= Float.parseFloat(Messages.getString("permanentInflate"));
 	public Texture tex;
 	public boolean texRead= false;
 	public boolean render= true;
@@ -138,30 +117,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public Layouter layout;
 	public GraphRenderer renderer;
 	private String attribute="none"; //$NON-NLS-1$
-	public int thumbsize = Integer.parseInt(Messages.getString("thumbnailRes"));
 	public Graphics2D j2d;
 	private boolean timeline;
-	private float invar= Float.parseFloat(Messages.getString("nodeSizeInDegreeVariance"));
-	private float outvar= Float.parseFloat(Messages.getString("nodeSizeOutDegreeVariance"));;
-	private boolean textures= Boolean.parseBoolean(Messages.getString("textures"));
 	private Font font;
 	FTFont outlinefont;
 	FTFont hiQfont;
-	private boolean textureFont= Boolean.parseBoolean(Messages.getString("useTextureFonts"));
-	private float labelsize= Float.parseFloat(Messages.getString("labelSize"));
-	private float labelVar= Float.parseFloat(Messages.getString("labelSizeVariance"));
 	private boolean initTree;
-	public boolean inheritEdgeColorFromNodes = Boolean.parseBoolean(Messages.getString("inheritEdgeColorFromNodes"));
-	public boolean drawClusters= Boolean.parseBoolean(Messages.getString("clusters"));
 	public NetStack ns;
-	public boolean tilt = Boolean.parseBoolean(Messages.getString("tiltedLabels"));
 	int screenshotcounter = 0;
-	public int shotres = Integer.parseInt(Messages.getString("screenshotResolution"));
-	public float maxLabelRenderDistance = Float.parseFloat(Messages.getString("maxLabelRenderDistance"));
 	private boolean tabular = false;
-	public float edgeAlpha = Float.parseFloat(Messages.getString("edgeAlpha"));
-	private boolean groups =  Boolean.parseBoolean(Messages.getString("drawGroups"));
-	public boolean enableSvg =  Boolean.parseBoolean(Messages.getString("enableSVGexport"));
 	private boolean SVGexport;
 	private String svgFile;
 	boolean labelsEdgeDir=true;
@@ -171,10 +135,83 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private List<SemaListener> _listeners = new ArrayList<SemaListener>();
 	private boolean SHIFT;
 	private Net inflateGroup;
-	String fontFam = Messages.getString("FontFamily");
 	public String splitAttribute = "; ";
+	private float edgeAlpha;
+	private boolean groups;
+	private boolean enableSvg;
+	private String fontFam;
+	float maxLabelRenderDistance;
+	public int shotres;
+	private boolean textureFont;
+	private float labelsize;
+	private float labelVar;
+	private boolean inheritEdgeColorFromNodes;
+	public boolean drawClusters;
+	private boolean tilt;
+	private float invar;
+	private float outvar;
+	private boolean textures;
+	private int loadMethod;
+	private boolean cluster;
+	private float perminflate;
+	private int thumbsize;
+	private String filename;
+	private String texfolder;
+	private int searchdepth;
+	private float standardNodeDistance;
+	private float repellDist;
+	private float nodeSize;
+	private int picSize;
+	private float strength;
+	private float val;
+	private float repellStrength;
+	private float clusterRad;
+	private float radialDist;
+	private float boxdist;
+	private int pickdepth;
+	private long inflatetime;
+	private float edgewidth;
+	private boolean exhibitionMode;
+	private boolean repell;
+	private boolean svgNodeCircles;
+	public int edgeThreshold;
 
 	public SemaSpace(){
+		loadSemaParameters();
+		fileIO = new FileIO(this);
+		ns = (new NetStack(this));
+		layout = new Layouter(this);
+		renderer = new GraphRenderer(this);
+		if (isEnableSvg()) SVGrenderer = new GraphRendererSVG(this);
+		initFonts();
+		netLoad();
+	}
+
+	private void loadSemaParameters() {
+		edgeThreshold = Integer.parseInt(Messages.getString("edgeTresholdRepell"));
+		setSvgNodeCircles(Boolean.parseBoolean(Messages.getString("SVGNodesCircles")));
+		exhibitionMode = Boolean.parseBoolean(Messages.getString("exhibitionMode"));
+		setRepell(Boolean.parseBoolean(Messages.getString("repellOn")));
+		filename = Messages.getString("defaultFilename"); //$NON-NLS-1$
+		setTexfolder(Messages.getString("textureDirectory")); //$NON-NLS-1$
+		searchdepth = Integer.parseInt(Messages.getString("searchdepth"));
+		setStandardNodeDistance(Float.parseFloat(Messages.getString("standardNodeDistance")));
+		setRepellDist(Float.parseFloat(Messages.getString("repellDistance")));
+		setNodeSize(Float.parseFloat(Messages.getString("nodeSize")));
+		picSize = Integer.parseInt(Messages.getString("picSize"));
+		strength = Float.parseFloat(Messages.getString("edgeStrength"));
+		val = Float.parseFloat(Messages.getString("valenceFactor"));
+		repellStrength = Float.parseFloat(Messages.getString("repellStrength"));
+		clusterRad= Float.parseFloat(Messages.getString("clusterRadius"));
+		setRadialDist(Float.parseFloat(Messages.getString("radialLayoutDistance")));
+		setBoxdist(Float.parseFloat(Messages.getString("boxLayoutDistance")));
+		pickdepth = Integer.parseInt(Messages.getString("pickDistance"));
+		setInflatetime(Long.parseLong(Messages.getString("inflateTimeMs")));
+		setEdgewidth(Float.parseFloat(Messages.getString("edgeWidth")));
+		setPerminflate(Float.parseFloat(Messages.getString("permanentInflate")));
+		setThumbsize(Integer.parseInt(Messages.getString("thumbnailRes")));
+		cluster=Boolean.parseBoolean(Messages.getString("layoutClusters"));
+		loadMethod = Integer.parseInt(Messages.getString("loadMethod")); //0 = local file, 1 = http, 2 = jar
 		Color.decode(Messages.getString("pickGradientFar")).getComponents(pickGradEnd);
 		Color.decode(Messages.getString("pickGradientCenter")).getComponents(pickGradStart);
 		Color.decode(Messages.getString("rollOverColor")).getComponents(rollOverColor);
@@ -184,13 +221,21 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		Color.decode(Messages.getString("frameColor")).getComponents(frameColor);
 		labelsEdgeDir = (Boolean.parseBoolean(Messages.getString("labelsEdgeDir")));
 		repellMax = (int) Float.parseFloat(Messages.getString("repellMaxDist"));
-		fileIO = new FileIO(this);
-		ns = (new NetStack(this));
-		layout = new Layouter(this);
-		renderer = new GraphRenderer(this);
-		if (enableSvg) SVGrenderer = new GraphRendererSVG(this);
-		initFonts();
-		netLoad();
+		setEdgeAlpha(Float.parseFloat(Messages.getString("edgeAlpha")));
+		groups =  Boolean.parseBoolean(Messages.getString("drawGroups"));
+		setEnableSvg(Boolean.parseBoolean(Messages.getString("enableSVGexport")));
+		setFontFam(Messages.getString("FontFamily"));
+		shotres = Integer.parseInt(Messages.getString("screenshotResolution"));
+		maxLabelRenderDistance = Float.parseFloat(Messages.getString("maxLabelRenderDistance"));
+		textureFont= Boolean.parseBoolean(Messages.getString("useTextureFonts"));
+		labelsize= Float.parseFloat(Messages.getString("labelSize"));
+		labelVar= Float.parseFloat(Messages.getString("labelSizeVariance"));
+		setInheritEdgeColorFromNodes(Boolean.parseBoolean(Messages.getString("inheritEdgeColorFromNodes")));
+		drawClusters= Boolean.parseBoolean(Messages.getString("clusters"));
+		setTilt(Boolean.parseBoolean(Messages.getString("tiltedLabels")));
+		invar= Float.parseFloat(Messages.getString("nodeSizeInDegreeVariance"));
+		outvar= Float.parseFloat(Messages.getString("nodeSizeOutDegreeVariance"));;
+		textures= Boolean.parseBoolean(Messages.getString("textures"));
 	}
 
 	public void addEdge(String a, String b) {
@@ -419,7 +464,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public float getDistance() {
-		return standardNodeDistance;
+		return getStandardNodeDistance();
 	}
 
 	public String getEdgeUrl() {
@@ -455,7 +500,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public float getPermInflate() {
-		return perminflate;
+		return getPerminflate();
 	}
 
 	public int getPickdepth() {
@@ -484,7 +529,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public float getRepell() {
-		return  repellDist;
+		return  getRepellDist();
 	}
 
 	public int getRepellMax() {
@@ -496,7 +541,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public float getSize() {
-		return nodeSize;
+		return getNodeSize();
 	}
 
 	public float getSquareness() {
@@ -518,7 +563,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		Net view = ns.getView();
 		for (int i=0;i<50;i++){
 			layout.layoutInflate(100,ns.getView());
-			layout.layoutDistance(standardNodeDistance, getVal(), 1, view); 
+			layout.layoutDistance(getStandardNodeDistance(), getVal(), 1, view); 
 		}
 		inflate = false;
 		resetCam();
@@ -553,7 +598,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		}*/
 
 
-		font = Font.decode(fontFam).deriveFont(1f); //$NON-NLS-1$
+		font = Font.decode(getFontFam()).deriveFont(1f); //$NON-NLS-1$
 		FontRenderContext context = FTFont.STANDARDCONTEXT;
 
 		if (textureFont) {
@@ -716,7 +761,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void layout() {
 		float str = strength;
-		boolean rep = repell;
+		boolean rep = isRepell();
 
 		layout.setNet(ns.getView());
 
@@ -726,19 +771,19 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 		else {
 			if (calculate) {
-				if (repNeighbors) layout.layoutRepNeighbors(repellStrength/4f, standardNodeDistance, ns.getView());
+				if (repNeighbors) layout.layoutRepNeighbors(repellStrength/4f, getStandardNodeDistance(), ns.getView());
 
 
 				if (inflate) inflate();
 
 
-				if (perminflate>0) layout.layoutInflate(perminflate*100f, ns.getView());
+				if (getPerminflate()>0) layout.layoutInflate(getPerminflate()*100f, ns.getView());
 
-				if (distance) layout.layoutDistance(standardNodeDistance , getVal(), str, ns.getView()); 
+				if (distance) layout.layoutDistance(getStandardNodeDistance() , getVal(), str, ns.getView()); 
 
 				if (changed&&!layout2d) changed = false;
 
-				if (rep) layout.layoutRepell(repellDist,repellStrength, ns.getView());
+				if (rep) layout.layoutRepell(getRepellDist(),repellStrength, ns.getView());
 
 				layout.layoutLockPlace(ns.getView());
 
@@ -748,7 +793,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 				if (layout2d) layout.layoutFlat();
 
-				float inf = inflatetime-elapsedtime;
+				float inf = getInflatetime()-elapsedtime;
 				if (inf>0) resetCam();
 			}
 		}
@@ -765,28 +810,28 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		updateUI();
 	}
 	public void layoutForce() {
-		float tmp = perminflate;
-		boolean rep = repell;
+		float tmp = getPerminflate();
+		boolean rep = isRepell();
 		calculate = true;
-		repell = false;
-		perminflate=50;
+		setRepell(false);
+		setPerminflate(50);
 		for (int i=0; i<15; i++) layout(); //inflate
-		perminflate=tmp;
+		setPerminflate(tmp);
 		for (int i=0; i<Math.max(5, (int)(30000f/ns.getView().nEdges.size())); i++) layout(); //distance, no repell
-		repell=rep;
+		setRepell(rep);
 		for (int i=0; i<15; i++) layout(); //repell
 		calculate = false;
 		updateUI();
 	}
 
 	private void layoutTreeSequence(float str, boolean rep) {
-		if (calculate&&distance&&!initTree) layout.layoutDistanceTree(standardNodeDistance, getVal(), str); // +nets.view.nNodes.size()/5
-		if (calculate&&rep&&!initTree) layout.layoutRepFruchtermannRadial(repellDist,repellStrength);
+		if (calculate&&distance&&!initTree) layout.layoutDistanceTree(getStandardNodeDistance(), getVal(), str); // +nets.view.nNodes.size()/5
+		if (calculate&&rep&&!initTree) layout.layoutRepFruchtermannRadial(getRepellDist(),repellStrength);
 
 		if (initTree) {
 			for (int i=0;i<50;i++) {
 				layout.layoutDistanceTree(0, 1, 0.5f);
-				layout.initRadial(0, 0, radialDist);
+				layout.initRadial(0, 0, getRadialDist());
 				layout.layoutEgocentric();
 			}
 			initTree = false;
@@ -1163,7 +1208,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			}
 		}
 		if (!isTextures()) return;
-		fileIO.loadTexturesUrl(texfolder, ns.getView(), thumbsize);
+		fileIO.loadTexturesUrl(getTexfolder(), ns.getView(), getThumbsize());
 	}
 
 	public void removeNet(String net) {
@@ -1176,7 +1221,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void render(GL gl){
-		if (enableSvg&&SVGexport) {
+		if (isEnableSvg()&&SVGexport) {
 			SVGexport=false;
 			SVGrenderer.renderSVG(gl, ns.getView(), fonttype, svgFile);
 		}
@@ -1366,7 +1411,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		searchdepth = value;
 	}
 	public void setDistance(float f) {
-		standardNodeDistance = f;
+		setStandardNodeDistance(f);
 	}
 
 	public void setEdges(boolean edges) {
@@ -1424,7 +1469,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void setPermInflate(float f) {
-		perminflate=f;
+		setPerminflate(f);
 	}
 
 	public void setPickdepth(int pickdepth) {
@@ -1454,7 +1499,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void setRepell(float value) {
-		repellDist = value;
+		setRepellDist(value);
 
 	}
 
@@ -1476,7 +1521,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void setSize(float f) {
-		nodeSize = f;
+		setNodeSize(f);
 	}
 
 	public void setStrength(float f) {
@@ -1501,7 +1546,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void setTexFolder(String file2) {
-		texfolder = file2;
+		setTexfolder(file2);
 	}
 
 	public void setTime(boolean selected) {
@@ -1623,11 +1668,143 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void setTextures(boolean textures) {
 		this.textures = textures;
-		 reloadTextures();
+		reloadTextures();
 	}
 
 	public boolean isTextures() {
 		return textures;
+	}
+
+	public boolean isRepell() {
+		return repell;
+	}
+
+	public void setTilt(boolean tilt) {
+		this.tilt = tilt;
+	}
+
+	public boolean isTilt() {
+		return tilt;
+	}
+
+	public void setTexfolder(String texfolder) {
+		this.texfolder = texfolder;
+	}
+
+	public String getTexfolder() {
+		return texfolder;
+	}
+
+	public void setThumbsize(int thumbsize) {
+		this.thumbsize = thumbsize;
+	}
+
+	public int getThumbsize() {
+		return thumbsize;
+	}
+
+	public void setEnableSvg(boolean enableSvg) {
+		this.enableSvg = enableSvg;
+	}
+
+	public boolean isEnableSvg() {
+		return enableSvg;
+	}
+
+	public void setEdgewidth(float edgewidth) {
+		this.edgewidth = edgewidth;
+	}
+
+	public float getEdgewidth() {
+		return edgewidth;
+	}
+
+	public void setEdgeAlpha(float edgeAlpha) {
+		this.edgeAlpha = edgeAlpha;
+	}
+
+	public float getEdgeAlpha() {
+		return edgeAlpha;
+	}
+
+	public void setInheritEdgeColorFromNodes(boolean inheritEdgeColorFromNodes) {
+		this.inheritEdgeColorFromNodes = inheritEdgeColorFromNodes;
+	}
+
+	public boolean isInheritEdgeColorFromNodes() {
+		return inheritEdgeColorFromNodes;
+	}
+
+	public void setFontFam(String fontFam) {
+		this.fontFam = fontFam;
+	}
+
+	public String getFontFam() {
+		return fontFam;
+	}
+
+	public void setStandardNodeDistance(float standardNodeDistance) {
+		this.standardNodeDistance = standardNodeDistance;
+	}
+
+	public float getStandardNodeDistance() {
+		return standardNodeDistance;
+	}
+
+	public void setRadialDist(float radialDist) {
+		this.radialDist = radialDist;
+	}
+
+	public float getRadialDist() {
+		return radialDist;
+	}
+
+	public void setBoxdist(float boxdist) {
+		this.boxdist = boxdist;
+	}
+
+	public float getBoxdist() {
+		return boxdist;
+	}
+
+	public void setRepellDist(float repellDist) {
+		this.repellDist = repellDist;
+	}
+
+	public float getRepellDist() {
+		return repellDist;
+	}
+
+	public void setInflatetime(long inflatetime) {
+		this.inflatetime = inflatetime;
+	}
+
+	public long getInflatetime() {
+		return inflatetime;
+	}
+
+	public void setPerminflate(float perminflate) {
+		this.perminflate = perminflate;
+	}
+
+	public float getPerminflate() {
+		return perminflate;
+	}
+
+	public void setSvgNodeCircles(boolean svgNodeCircles) {
+		this.svgNodeCircles = svgNodeCircles;
+	}
+
+	public boolean getSvgNodeCircles() {
+		return svgNodeCircles;
+	}
+
+	public void setNodeSize(float nodeSize) {
+		this.nodeSize = nodeSize;
+	}
+
+	public float getNodeSize() {
+		return nodeSize;
 	}
 
 }

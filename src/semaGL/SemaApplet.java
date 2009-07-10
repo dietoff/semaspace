@@ -66,12 +66,12 @@ public class SemaApplet extends JApplet {
 		if (font!=null) space.setFonttype(Integer.parseInt(font));
 		if (attractS!=null) space.setAttractStr(Float.parseFloat(attractS));
 		if (repellS!=null) space.setRepellStr(Float.parseFloat(repellS));
-		if (pickdepth!=null) space.pickdepth = Integer.parseInt(pickdepth);
-		if (distance!=null) space.standardNodeDistance = Float.parseFloat(distance);
-		if (radialDist!=null) space.radialDist = Float.parseFloat(radialDist);
-		if (repellDist!=null) space.repellDist = Float.parseFloat(repellDist);
-		if (perminflate!=null) space.perminflate = Integer.parseInt(perminflate);
-		if (inflateTime!=null) space.inflatetime = Integer.parseInt(inflateTime);
+		if (pickdepth!=null) space.setPickdepth(Integer.parseInt(pickdepth));
+		if (distance!=null) space.setStandardNodeDistance(Float.parseFloat(distance));
+		if (radialDist!=null) space.setRadialDist(Float.parseFloat(radialDist));
+		if (repellDist!=null) space.setRepellDist(Float.parseFloat(repellDist));
+		if (perminflate!=null) space.setPerminflate(Integer.parseInt(perminflate));
+		if (inflateTime!=null) space.setInflatetime(Integer.parseInt(inflateTime));
 		if (valenceFact!=null) space.setVal(Float.parseFloat(valenceFact));
 	}
 }
