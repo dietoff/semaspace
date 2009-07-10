@@ -216,8 +216,9 @@ public class SwingSema implements SemaListener, KeyListener {
 	private SimButton simButton7;
 	private JCheckBox add;
 	private JLabel jLabel11;
-	private SimButton simButton5;
-	private SimButton simButton4;
+	private JLabel jLabel12;
+	private SimButton camonSelectedB;
+	private SimButton resetViewB;
 	private JTextField searchTerm;
 	private JPanel dataTab;
 	private JScrollPane nodes;
@@ -242,8 +243,8 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JLabel jLabel9;
 	private JSlider picSizeSlider;
 	private JLabel jLabel8;
-	private SimButton simButton3;
-	private SimButton simButton2;
+	private SimButton lockAllB;
+	private SimButton removeLocksB;
 	private SimButton simButton1;
 	private JLabel jLabel7;
 	private JSlider jSlider1;
@@ -524,8 +525,8 @@ public class SwingSema implements SemaListener, KeyListener {
 			dataTab.add(getJLabel2());
 			dataTab.add(getJSlider1());
 			dataTab.add(getJLabel7());
-			dataTab.add(getSimButton2x());
-			dataTab.add(getSimButton3());
+			dataTab.add(getRemoveLocks());
+			dataTab.add(getLockAllB());
 			dataTab.add(getJLabel8());
 			dataTab.add(getJCheckBox2());
 			dataTab.add(getSimButton7());
@@ -540,9 +541,10 @@ public class SwingSema implements SemaListener, KeyListener {
 			dataTab.add(getTreeBox());
 			dataTab.add(getTimelineBox());
 			dataTab.add(getClusters());
-			dataTab.add(getJLabel11());
-			dataTab.add(getSimButton5());
-			dataTab.add(getSimButton4());
+			dataTab.add(getViewpoint());
+			dataTab.add(getLocks());
+			dataTab.add(getCamOnSelectedB());
+			dataTab.add(getResetViewB());
 		}
 		return dataTab;
 	}
@@ -1099,24 +1101,24 @@ public class SwingSema implements SemaListener, KeyListener {
 		}
 		return add;
 	}
-	private JCheckBox getJCheckBox2x() {
+	private JCheckBox getRenderTextures() {
 		if(renderTextures == null) {
 			renderTextures = new JCheckBox();
 			renderTextures.setText("textures");
 			renderTextures.setMargin(new java.awt.Insets(0,0,0,0));
 			renderTextures.setContentAreaFilled(false);
-			renderTextures.setSelected(app.textures);
+			renderTextures.setSelected(app.isTextures());
 			renderTextures.setFont(new java.awt.Font("Dialog",0,10));
 			renderTextures.setBounds(1, 36, 62, 17);
 			renderTextures.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.textures=renderTextures.isSelected();
+					app.setTextures(renderTextures.isSelected());
 				}
 			});
 		}
 		return renderTextures;
 	}
-	private JCheckBox getJCheckBox2xxx() {
+	private JCheckBox getDrawGroups() {
 		if(drawgroups == null) {
 			drawgroups = new JCheckBox();
 			drawgroups.setText("groups");
@@ -1183,15 +1185,26 @@ public class SwingSema implements SemaListener, KeyListener {
 		}
 		return jLabel10;
 	}
-	private JLabel getJLabel11() {
+	private JLabel getViewpoint() {
 		if(jLabel11 == null) {
 			jLabel11 = new JLabel();
 			jLabel11.setText("viewpoint");
 			jLabel11.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel11.setBounds(2, 255, 73, 14);
+			jLabel11.setBounds(2, 274, 73, 14);
 		}
 		return jLabel11;
 	}
+	
+	private JLabel getLocks() {
+		if(jLabel12 == null) {
+			jLabel12 = new JLabel();
+			jLabel12.setText("nodePos");
+			jLabel12.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel12.setBounds(2, 255, 73, 14);
+		}
+		return jLabel12;
+	}
+	
 	private JLabel getJLabel13() {
 		if(jLabel13 == null) {
 			jLabel13 = new JLabel();
@@ -1968,7 +1981,6 @@ public class SwingSema implements SemaListener, KeyListener {
 							app.ns.exportGraphML(filename);
 						}
 					}
-
 				}
 			});
 		}
@@ -2036,8 +2048,6 @@ public class SwingSema implements SemaListener, KeyListener {
 					}
 					textHilight();
 				}
-
-
 			});
 		}
 		return searchTerm;
@@ -2385,71 +2395,71 @@ public class SwingSema implements SemaListener, KeyListener {
 		return SimButton2;
 	}
 
-	private SimButton getSimButton2x() {
-		if(simButton2 == null) {
-			simButton2 = new SimButton();
-			simButton2.setText("free all");
-			simButton2.setVerticalAlignment(SwingConstants.CENTER);
-			simButton2.setVerticalTextPosition(SwingConstants.CENTER);
-			simButton2.setFont(new java.awt.Font("Dialog",0,10));
-			simButton2.setBounds(144, 273, 67, 15);
-			simButton2.setVisible(false);
-			simButton2.addActionListener(new ActionListener() {
+	private SimButton getRemoveLocks() {
+		if(removeLocksB == null) {
+			removeLocksB = new SimButton();
+			removeLocksB.setText("free all");
+			removeLocksB.setVerticalAlignment(SwingConstants.CENTER);
+			removeLocksB.setVerticalTextPosition(SwingConstants.CENTER);
+			removeLocksB.setFont(new java.awt.Font("Dialog",0,10));
+			removeLocksB.setBounds(144, 255, 67, 15);
+//			removeLocksB.setVisible(false);
+			removeLocksB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.locksRemove();
 				}
 			});
 		}
-		return simButton2;
+		return removeLocksB;
 	}
 
-	private SimButton getSimButton3() {
-		if(simButton3 == null) {
-			simButton3 = new SimButton();
-			simButton3.setText("lock all");
-			simButton3.setVerticalAlignment(SwingConstants.CENTER);
-			simButton3.setVerticalTextPosition(SwingConstants.CENTER);
-			simButton3.setFont(new java.awt.Font("Dialog",0,10));
-			simButton3.setBounds(73, 273, 67, 15);
-			simButton3.setVisible(false);
-			simButton3.addActionListener(new ActionListener() {
+	private SimButton getLockAllB() {
+		if(lockAllB == null) {
+			lockAllB = new SimButton();
+			lockAllB.setText("lock all");
+			lockAllB.setVerticalAlignment(SwingConstants.CENTER);
+			lockAllB.setVerticalTextPosition(SwingConstants.CENTER);
+			lockAllB.setFont(new java.awt.Font("Dialog",0,10));
+			lockAllB.setBounds(73, 255, 67, 15);
+//			lockAllB.setVisible(false);
+			lockAllB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.lockAll();
 				}
 			});
 		}
-		return simButton3;
+		return lockAllB;
 	}
 
-	private SimButton getSimButton4() {
-		if(simButton4 == null) {
-			simButton4 = new SimButton();
-			simButton4.setText("reset");
-			simButton4.setFont(new Font("Dialog",Font.PLAIN,10));
-			simButton4.setToolTipText("set the camera to 0,0");
-			simButton4.setBounds(2, 274, 65, 15);
-			simButton4.addMouseListener(new MouseAdapter() {
+	private SimButton getResetViewB() {
+		if(resetViewB == null) {
+			resetViewB = new SimButton();
+			resetViewB.setText("reset");
+			resetViewB.setFont(new Font("Dialog",Font.PLAIN,10));
+			resetViewB.setToolTipText("set the camera to 0,0");
+			resetViewB.setBounds(73, 274, 67, 15);
+			resetViewB.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.resetCam();
 				}
 			});
 		}
-		return simButton4;
+		return resetViewB;
 	}
-	private SimButton getSimButton5() {
-		if(simButton5 == null) {
-			simButton5 = new SimButton();
-			simButton5.setText("to picked");
-			simButton5.setFont(new Font("Dialog",Font.PLAIN,10));
-			simButton5.setToolTipText("set the camera to selected node");
-			simButton5.setBounds(72, 274, 65, 15);
-			simButton5.addMouseListener(new MouseAdapter() {
+	private SimButton getCamOnSelectedB() {
+		if(camonSelectedB == null) {
+			camonSelectedB = new SimButton();
+			camonSelectedB.setText("to picked");
+			camonSelectedB.setFont(new Font("Dialog",Font.PLAIN,10));
+			camonSelectedB.setToolTipText("set the camera to selected node");
+			camonSelectedB.setBounds(144, 274, 67, 15);
+			camonSelectedB.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.camOnSelected();
 				}
 			});
 		}
-		return simButton5;
+		return camonSelectedB;
 	}
 	private SimButton getSimButton7() {
 		if(simButton7 == null) {
@@ -2712,13 +2722,13 @@ public class SwingSema implements SemaListener, KeyListener {
 			viewTab.add(getJLabel9());
 			viewTab.add(getJSlider2());
 			viewTab.add(getJLabel10());
-			viewTab.add(getJCheckBox2x());
-			viewTab.add(getDrawClusters());
+			viewTab.add(getRenderTextures());
+//			viewTab.add(getDrawClusters());
 			viewTab.add(getJLabel16());
 			viewTab.add(getJSlider3());
 			viewTab.add(getJSlider4());
 			viewTab.add(getJLabel17());
-			viewTab.add(getJCheckBox2xxx());
+			viewTab.add(getDrawGroups());
 			viewTab.add(getJSlider5());
 			viewTab.add(getJLabel19());
 			viewTab.add(getJCheckBox1());
@@ -2762,9 +2772,9 @@ public class SwingSema implements SemaListener, KeyListener {
 		fadenodes.setSelected(app.fadeNodes);
 		fadeLabels.setSelected(!app.fadeLabels);
 		forceBox.setSelected(!app.getCalc());
-		renderTextures.setSelected(app.textures);
+		renderTextures.setSelected(app.isTextures());
 		directedGraph.setSelected(app.directed);
-		drawclusters.setSelected(app.drawClusters);
+//		drawclusters.setSelected(app.drawClusters);
 		jFileFormat.setSelected(app.isTabular());
 		drawgroups.setSelected(app.isGroups());
 		radLabels.setSelected(app.isLabelsEdgeDir());

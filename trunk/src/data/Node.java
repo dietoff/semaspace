@@ -11,6 +11,7 @@ import nehe.TextureReader.Texture;
 
 public class Node extends GraphElement {
 	public Vector3D pos = new Vector3D(0, 0, 0);
+	public Vector3D lockedPos = new Vector3D(0, 0, 0);
 	private float size;
 	public float[] pickColor ={1f,0.9f,0f,0.0f}; //this is the color of the selection frame
 	public HashSet<Node> adList;
@@ -114,6 +115,11 @@ public class Node extends GraphElement {
 
 	public int inOut() {
 		return adList.size()+inList.size();
+	}
+
+	public void lock(Vector3D pos2) {
+		lockedPos = pos2.copy();
+		locked = true;
 	}
 }
 

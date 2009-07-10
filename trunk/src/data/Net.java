@@ -28,7 +28,7 @@ public class Net {
 	private HashMap<Integer, Edge> eTableID;
 	HashMap<String, Node> nTable; 							//hashtable for name lookup
 	private HashMap<Integer, Node> nTableID; 				//hashtable for id lookup
-	public HashMap<Node, Vector3D> posTable;						//hashtable for locked positions
+//	public HashMap<Node, Vector3D> posTable;						//hashtable for locked positions
 	public HashMap<Node, Float> timeTable;
 	//	BBox3D bounds;
 	int depth= 1;
@@ -46,7 +46,7 @@ public class Net {
 	public Net(SemaSpace app_) {
 		app = app_;
 		nTable = new HashMap<String, Node>(); 
-		posTable = new HashMap<Node, Vector3D>();
+//		posTable = new HashMap<Node, Vector3D>();
 
 		distances = new DistanceTable(this);
 		timeTable = new HashMap<Node, Float>();
@@ -388,8 +388,6 @@ public class Net {
 				comp.addAll(bref.inList);
 				if (comp.size()==1&&!bref.partOfGroup) {
 					n.cluster.add(bref);
-					posTable.remove(bref);
-					bref.setLocked(false);
 				}
 			}
 

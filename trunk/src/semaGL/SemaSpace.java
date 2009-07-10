@@ -143,7 +143,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean timeline;
 	private float invar= Float.parseFloat(Messages.getString("nodeSizeInDegreeVariance"));
 	private float outvar= Float.parseFloat(Messages.getString("nodeSizeOutDegreeVariance"));;
-	public boolean textures= Boolean.parseBoolean(Messages.getString("textures"));
+	private boolean textures= Boolean.parseBoolean(Messages.getString("textures"));
 	private Font font;
 	FTFont outlinefont;
 	FTFont hiQfont;
@@ -551,7 +551,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		}*/
-		
+
 
 		font = Font.decode(fontFam).deriveFont(1f); //$NON-NLS-1$
 		FontRenderContext context = FTFont.STANDARDCONTEXT;
@@ -601,7 +601,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		layout.setNet(view);
 		if (layout2d) layout.layoutBox(view.nNodes);
 		else layout.layoutRandomize();
-		layout.layoutLocksRemove();
+		//		layout.layoutLocksRemove();
 		updatePick(-1);
 		if (tree) layout.layoutTree(radial);
 		reloadTextures();
@@ -894,10 +894,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			picked.pos.y = (float)Math.cos(cam.getXRot()*TWO_PI/360)*localY;
 			picked.pos.z = (float)Math.sin(cam.getXRot()*TWO_PI/360)*localY-(float)Math.sin(cam.getYRot()*TWO_PI/360)*localX+cam.getZ();
 
-			//			if (evt.isShiftDown()) 
-			//			if (!layout.isLocked(picked))
-			if (!evt.isAltDown()) layout.layoutLockNode(picked,picked.pos, ns.getView());
-			else layout.layoutLockRemove(picked,ns.getView());
+			if (!evt.isAltDown()) picked.lock(picked.pos);
+			else picked.setLocked(false);
 		}
 
 		else {
@@ -1164,7 +1162,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 				n.deleteTexture(gl);
 			}
 		}
-		if (!textures) return;
+		if (!isTextures()) return;
 		fileIO.loadTexturesUrl(texfolder, ns.getView(), thumbsize);
 	}
 
@@ -1621,6 +1619,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	void updateUI() {
 		fireSemaEvent(SemaEvent.UpdateUI);
+	}
+
+	public void setTextures(boolean textures) {
+		this.textures = textures;
+		 reloadTextures();
+	}
+
+	public boolean isTextures() {
+		return textures;
 	}
 
 }

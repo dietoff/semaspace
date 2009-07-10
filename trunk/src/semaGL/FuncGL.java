@@ -140,7 +140,8 @@ public class FuncGL {
 
 	static void renderStrokeString( SemaSpace app, int font, String string, float offset, float offsety) {
 //		String normalize = Normalizer.normalize(string, Form.NFD, 0);
-		String normalize = Normalizer.normalize(string, Normalizer.DECOMP, 0);
+//		String normalize = Normalizer.normalize(string, Normalizer.DECOMP, 0);
+		String normalize = UmlautToAscii.umlautToAscii(string);
 		GL gl=app.glD.getGL();
 		stroke(app, font, normalize, offset, offsety, gl);
 	}
@@ -193,6 +194,17 @@ public class FuncGL {
 		gl.glBegin(GL.GL_TRIANGLES);
 		gl.glVertex3f(pos.x-dir.x-size*dn.y,pos.y-dir.y+size*dn.x,pos.z-dir.z);
 		gl.glVertex3f(pos.x-dir.x+size*dn.y,pos.y-dir.y-size*dn.x,pos.z-dir.z);
+		gl.glVertex3f(pos.x,pos.y,pos.z);
+		gl.glEnd();
+	}
+	
+	static void symArrowHead2(GL gl, float size, Vector3D pos, Vector3D dir) {
+		Vector3D dn = dir.copy();
+		dn.normalize();
+		gl.glBegin(GL.GL_TRIANGLES);
+		gl.glVertex3f(pos.x-dir.x-size*dn.y,pos.y-dir.y+size*dn.x,pos.z-dir.z);
+		gl.glVertex3f(pos.x-dir.x+size*dn.y,pos.y-dir.y-size*dn.x,pos.z-dir.z);
+		gl.glColor4i(255, 255, 255, 0);
 		gl.glVertex3f(pos.x,pos.y,pos.z);
 		gl.glEnd();
 	}

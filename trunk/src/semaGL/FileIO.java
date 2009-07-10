@@ -54,7 +54,7 @@ public class FileIO {
 			System.out.println("LoadTextures.run()");
 			for (Node n:net.nNodes)
 			{
-				if (!running) return;
+				if (!running||!app.isTextures()) return;
 				loadTexture(loc+"/"+n.getId()+".jpg", n);
 			}
 		}
@@ -85,7 +85,7 @@ public class FileIO {
 			running = true;
 			for (Node n:net.nNodes)
 			{
-				if (!running) return;
+				if (!running||!app.isTextures()) return;
 				try {
 					String name = n.getName();
 					// replace forbidden characters
@@ -198,6 +198,7 @@ public class FileIO {
 		if (node.hasAttribute("url")&&!node.hasTexture()) {
 
 			BufferedImage image = ImageIO.read(new URL(node.getAttribute("url")));
+			if (image==null) return null;
 			float scalex = size/(float)image.getWidth();
 			float scaley = size/(float)image.getHeight();
 
