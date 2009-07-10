@@ -327,14 +327,13 @@ public class GraphRenderer {
 	 */
 	synchronized void renderGroups(GL gl, HashSet<Node> nodes, Node center){
 		float[] col = GraphElement.colorFunction(center.name);
-		col[3]=Math.min(center.alpha, 0.15f);
+		col[3]=Math.min(center.alpha, 0.20f);
 		float[] white = {1,1,1,0};
 		float[] col2 = col.clone();
 		col2[3]=0;
 
 		gl.glPushMatrix();
-		gl.glColor4fv(col, 0);
-		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
+		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
 
 		Vector3D D;
 		for (Node bref : nodes){
@@ -342,9 +341,10 @@ public class GraphRenderer {
 				D = bref.pos.copy();
 				D.sub(center.pos); 
 				D.mult(-1);
-				//				FuncGL.symArrowHead(gl, bref.size()*1.5f, center.pos, D);
-				gl.glLineWidth(5);
-				FuncGL.drawLine(gl, center.pos, bref.pos, white, col);
+				gl.glColor4fv(col, 0);
+				FuncGL.symArrowHead2(gl, bref.size()*1.5f, center.pos, D);
+//				gl.glLineWidth(5);
+//				FuncGL.drawLine(gl, center.pos, bref.pos, white, col);
 			}
 		}
 		gl.glPopMatrix();

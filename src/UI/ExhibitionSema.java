@@ -1012,12 +1012,12 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			renderTextures.setText("textures");
 			renderTextures.setMargin(new java.awt.Insets(0,0,0,0));
 			renderTextures.setContentAreaFilled(false);
-			renderTextures.setSelected(app.textures);
+			renderTextures.setSelected(app.isTextures());
 			renderTextures.setFont(new java.awt.Font("Dialog",0,10));
 			renderTextures.setBounds(1, 36, 62, 17);
 			renderTextures.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.textures=renderTextures.isSelected();
+					app.setTextures(renderTextures.isSelected());
 				}
 			});
 		}

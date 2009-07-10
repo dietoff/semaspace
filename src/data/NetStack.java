@@ -95,7 +95,7 @@ public class NetStack {
 	 * @param tab
 	 */
 	public void nodeListParse(String unparsed, boolean tab) {
-		if (tab) loader.nodelistLoad2(unparsed, global); else loader.nodelistLoad(unparsed, global);
+		if (tab) loader.nodelistLoadTab(unparsed, global); else loader.nodelistLoad(unparsed, global);
 	}
 	
 	/**

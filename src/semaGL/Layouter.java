@@ -345,29 +345,21 @@ public class Layouter {
 		//		disturbNodes(0.001f);
 	}
 
-	public void layoutLockNode(Node node, Vector3D vector3D, Net net) {
-		net.posTable.put(node, vector3D.copy());
-		node.setLocked(true);
-	}
-
 	public void layoutLockPlace(Net net2) {
-		Set<Entry<Node, Vector3D>> locks = net2.posTable.entrySet();
-		for (Entry<Node, Vector3D> n:locks) {
-			n.getKey().pos.setXYZ(n.getValue());
+		for (Node n:net.fNodes) {
+			if (n.isLocked()) n.pos = n.lockedPos.copy();
 		}
 	}
 	public void layoutLockRemove(Node picked, Net net2) {
-		net2.posTable.remove(picked);
 		picked.setLocked(false);
 	}
 	public void layoutLocksAll() {
 		for (Node n:net.fNodes) {
-			net.posTable.put(n, n.pos.copy());
+			n.lockedPos= n.pos.copy();
 			n.setLocked(true);
 		}
 	}
 	public void layoutLocksRemove() {
-		net.posTable.clear();
 		for (Node n:net.nNodes) n.setLocked(false);
 	}
 	public void layoutNodePosJitter(float m) {

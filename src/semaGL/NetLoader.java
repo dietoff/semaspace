@@ -11,6 +11,7 @@ import data.Edge;
 import data.GraphElement;
 import data.Net;
 import data.Node;
+import data.Vector3D;
 
 public class NetLoader {
 	SemaSpace app;
@@ -64,7 +65,7 @@ public class NetLoader {
 	 */
 	public Net edgelistLoadTab(String file, Net global) {
 		Net edges = null;
-		if (file!=null&&file.length()>0)  edges = edgelistParse2(file, global); 
+		if (file!=null&&file.length()>0)  edges = edgelistParseTab(file, global); 
 		return edges;
 	}
 
@@ -121,7 +122,7 @@ public class NetLoader {
 	 * @param content
 	 * @param global 
 	 */
-	Net edgelistParse2(String content, Net global) {
+	Net edgelistParseTab(String content, Net global) {
 		Net r= new Net(app);
 		Edge tmp = null;
 		String lines[]= content.trim().split(lineBreak);
@@ -136,7 +137,7 @@ public class NetLoader {
 					fields=cols.clone();
 					if (fields.length>2){
 						for (int j=2; i<fields.length;i++) {
-							String s = fields[j];
+							String s = fields[j].trim();
 							r.edgeattributes.add(s.toLowerCase());
 						}
 					}
@@ -159,10 +160,10 @@ public class NetLoader {
 						if (cols.length>2) {
 							for (int j=2; j<cols.length; j++){
 								if (cols[j].length()>0) {
-									String key = fields[j].toLowerCase().trim();
+									String key = fields[j];
 									String value = cols[j].trim();
 
-									if (value!=null||value.length()>0) {
+									if (value!=null&&value.length()>0) {
 										addAttribute(r, tmp, value, key);
 										r.edgeattributes.add(key);
 										parseEdgeAttributes(tmp);
@@ -224,16 +225,16 @@ public class NetLoader {
 	 * @param file_
 	 * @param n
 	 */
-	public void nodelistLoad2(File file_, Net n) {
+	public void nodelistLoadTab(File file_, Net n) {
 		String file = FileIO.loadFile(file_);
-		nodelistLoad2(file, n);
+		nodelistLoadTab(file, n);
 	}
 	/**
 	 * @param file_
 	 * @param n
 	 */
-	public void nodelistLoad2(String file, Net n) {
-		if  (file!=null&&file.length()>0)  nodelistParse2(file, n);
+	public void nodelistLoadTab(String file, Net n) {
+		if  (file!=null&&file.length()>0)  nodelistParseTab(file, n);
 	}
 
 
@@ -253,8 +254,11 @@ public class NetLoader {
 						String key = val[0].toLowerCase().trim();
 						String value = val[1].trim();
 						if (key.length()>0&&value.length()>0) {
-
-							addAttribute(n, tmp, value, key);
+							if (key.contentEquals("pos")) {
+								setLockPos(tmp,cols[1].trim());
+							} else {
+								addAttribute(n, tmp, value, key);
+							}
 							parseNodeAttributes(tmp, n);
 						}
 					}
@@ -264,7 +268,7 @@ public class NetLoader {
 	}
 
 	//second format: the first line specifies the name of the attribute
-	public void nodelistParse2(String file, Net n) {
+	public void nodelistParseTab(String file, Net n) {
 		Node tmp= null;
 		String lines[]= file.trim().split(lineBreak);
 		String fields[] = null;
@@ -278,17 +282,37 @@ public class NetLoader {
 				for (String s:fields) n.nodeattributes.add(s.toLowerCase().trim());
 			} else {
 				tmp = n.hasNode(cols[0].trim());
+
 				if (tmp!=null){
 					for (int j=1; j<cols.length;j++) {
 						String value = cols[j].trim();
-						if (value!=null||value.length()>0) {
+						if (value!=null&&value.length()>0) {
 							String key = fields[j].toLowerCase().trim();
-							addAttribute(n, tmp, value, key);
+							if (key.contentEquals("pos")) {
+								setLockPos(tmp,cols[1].trim());
+							} else {
+								addAttribute(n, tmp, value, key);
+							}
 							parseNodeAttributes(tmp, n);
 						}
 					}
 				}
 			}
+		}
+	}
+
+	private void setLockPos(Node tmp, String trim) {
+		String pos[] = trim.split(",");
+		if (pos.length<3) return;
+		try {
+			tmp.pos.x = Float.parseFloat(pos[0]);
+			tmp.pos.y = Float.parseFloat(pos[1]);
+			tmp.pos.z = Float.parseFloat(pos[2]);
+			tmp.setLocked(true);
+			tmp.lockedPos= new Vector3D (tmp.pos.x,tmp.pos.y,tmp.pos.z);
+
+		} catch (NumberFormatException e) {
+			System.out.println("bad node position: "+trim);
 		}
 	}
 
@@ -345,6 +369,28 @@ public class NetLoader {
 		FileIO.fileWrite(filename, outString); 
 	}
 
+	public void saveNodeData( String filename, Net net){
+		StringBuffer sb = new StringBuffer();
+
+		for (Node n :net.nNodes){
+//			sb.append(n.name); //+"\t"+nRef.altName+"\t";
+//			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) sb.append("\tname="+n.altName);
+
+			if (n.isLocked()) sb.append("pos="+n.lockedPos.x+","+n.lockedPos.y+","+n.lockedPos.z);
+			
+			if (n.attributes.size()>1) {
+				String attributes = "";
+				for (Entry ent:n.attributes.entrySet()) {
+					if (ent.getKey()!="id") attributes+="\t"+ent.getKey()+"="+ent.getValue();
+				}
+				sb.append(attributes);
+			}
+			sb.append("\n");
+		}
+		String outString = sb.toString();
+		FileIO.fileWrite(filename, outString); 
+	}
+
 	public void saveNetTab(String filename, Net net) {
 		StringBuffer sb = new StringBuffer();
 		TreeSet<String> attrib = new TreeSet<String>();
@@ -367,25 +413,6 @@ public class NetLoader {
 		FileIO.fileWrite(filename, outString); 
 	}
 
-	public void saveNodeData( String filename, Net net){
-		StringBuffer sb = new StringBuffer();
-
-		for (Node n :net.nNodes){
-			sb.append(n.name); //+"\t"+nRef.altName+"\t";
-			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) sb.append("\tname="+n.altName);
-			if (n.attributes.size()>1) {
-				String attributes = "";
-				for (Entry ent:n.attributes.entrySet()) {
-					if (ent.getKey()!="id") attributes+="\t"+ent.getKey()+"="+ent.getValue();
-				}
-				sb.append(attributes);
-			}
-			sb.append("\n");
-		}
-		String outString = sb.toString();
-		FileIO.fileWrite(filename, outString); 
-	}
-
 	public void saveNodeDataTab( String filename, Net net){
 
 		StringBuffer sb = new StringBuffer();
@@ -393,12 +420,15 @@ public class NetLoader {
 		for (Node e :net.nNodes) attrib.addAll(e.attributes.keySet());
 		attrib.remove("id");
 
-		sb.append("node");
+		sb.append("id\tpos");
 		for (String l:attrib) sb.append("\t"+l);
 		sb.append("\n");
 
 		for (Node n :net.nNodes){
 			sb.append(n.name); 
+			sb.append("\t");
+			if (n.isLocked()) sb.append(n.lockedPos.x+","+n.lockedPos.y+","+n.lockedPos.z);
+
 			for (String l:attrib) {
 				sb.append("\t");
 				if (l!="id"&&n.attributes!=null&&n.attributes.containsKey(l)) sb.append(n.attributes.get(l));
