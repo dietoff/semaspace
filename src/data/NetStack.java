@@ -8,16 +8,17 @@ import java.util.Set;
 
 import semaGL.FileIO;
 import semaGL.NetLoader;
+import semaGL.SemaParameters;
 import semaGL.SemaSpace;
 
 public class NetStack {
 	HashMap<String,HashSet<Edge>> nets;
-	SemaSpace app;
+	SemaParameters app;
 	public Net global;
 	public Net view;
 	private NetLoader loader;
 
-	public NetStack(SemaSpace app_) {
+	public NetStack(SemaParameters app_) {
 		nets = new HashMap<String, HashSet<Edge>>();
 		nets.put("none", new HashSet<Edge>());
 		app = app_;

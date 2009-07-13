@@ -18,15 +18,15 @@ import data.Vector3D;
 public class FuncGL {
 	private static int strokefont = GLUT.STROKE_ROMAN;
 	private static int fontOffset;
-	SemaSpace app;
+	SemaParameters app;
 	private TextRenderer renderer;
 
-	FuncGL(SemaSpace space) {
+	FuncGL(SemaParameters space) {
 		app=space;
 		
 	}
 
-	static void renderText( SemaSpace app, String text, float[] textColor, float offset , int font, int id, float distToCam, boolean centerOnNode, boolean fast) {
+	static void renderText( SemaParameters app, String text, float[] textColor, float offset , int font, int id, float distToCam, boolean centerOnNode, boolean fast) {
 
 		switch (font){
 		case 0:
@@ -41,10 +41,10 @@ public class FuncGL {
 		}
 	}
 
-	static void renderBtxt(SemaSpace app, String text, float[] textColor, int id, float offset, float distToCam) {
-		GL gl=app.glD.getGL();
+	static void renderBtxt(SemaParameters app, String text, float[] textColor, int id, float offset, float distToCam) {
+		GL gl=app.getGL();
 		gl.glPushMatrix();
-		float h = app.glD.getHeight();
+		float h = app.getGlD().getHeight();
 		gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
 		int font =	GLUT.BITMAP_HELVETICA_12;
 
@@ -76,8 +76,8 @@ public class FuncGL {
 		gl.glPopMatrix();
 	}
 
-	static void renderHiqTxt( SemaSpace app, String text, float[] textColor, int id, float offset, boolean center) {
-		GL gl=app.glD.getGL();
+	static void renderHiqTxt( SemaParameters p, String text, float[] textColor, int id, float offset, boolean center) {
+		GL gl=p.getGL();
 
 		gl.glPushMatrix();
 		//		gl.glLoadName(id);
@@ -91,7 +91,7 @@ public class FuncGL {
 			gl.glTranslatef(0, -60f, 0);
 			
 			gl.glPushMatrix();
-				FTBBox box = app.hiQfont.getBBox(lines[i]);
+				FTBBox box = p.getApp().hiQfont.getBBox(lines[i]);
 				gl.glTranslatef(box.lowerX,box.lowerY,0);
 				gl.glScalef(box.getWidth()/2f,box.getHeight()/2f,0);
 				gl.glColor4f(1,1,1,0.9f);
@@ -105,17 +105,17 @@ public class FuncGL {
 			
 			gl.glLineWidth(0.5f);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
-			if (app.outlinefont!=null) app.outlinefont.render(lines[i]);
+			if (p.getApp().outlinefont!=null) p.getApp().outlinefont.render(lines[i]);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
-			app.hiQfont.render(lines[i]);
+			p.getApp().hiQfont.render(lines[i]);
 			gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
 		}
-		gl.glLineWidth(app.textwidth);
+		gl.glLineWidth(p.textwidth);
 		gl.glPopMatrix();
 	}
 	
-	static void renderTxt(SemaSpace app, String text, float[] textColor, int id, float offset, boolean center, boolean fast) {
-		GL gl=app.glD.getGL();
+	static void renderTxt(SemaParameters app, String text, float[] textColor, int id, float offset, boolean center, boolean fast) {
+		GL gl=app.getGL();
 		gl.glLoadName(id);
 		int fontsize = 8;
 		int off = fontsize;
@@ -138,15 +138,15 @@ public class FuncGL {
 		}
 	}
 
-	static void renderStrokeString( SemaSpace app, int font, String string, float offset, float offsety) {
+	static void renderStrokeString( SemaParameters app, int font, String string, float offset, float offsety) {
 //		String normalize = Normalizer.normalize(string, Form.NFD, 0);
 //		String normalize = Normalizer.normalize(string, Normalizer.DECOMP, 0);
 		String normalize = UmlautToAscii.umlautToAscii(string);
-		GL gl=app.glD.getGL();
+		GL gl=app.getGL();
 		stroke(app, font, normalize, offset, offsety, gl);
 	}
 
-	private static void stroke(SemaSpace app, int font, String string,
+	private static void stroke(SemaParameters app, int font, String string,
 			float offset, float offsety, GL gl) {
 		gl.glPushMatrix();
 		gl.glTranslatef(offset*10f, offsety*10f, 0);
@@ -156,7 +156,7 @@ public class FuncGL {
 		gl.glPopMatrix();
 	}
 
-	static float stringlength (SemaSpace app, String st){
+	static float stringlength (SemaParameters app, String st){
 		return app.glut.glutStrokeLengthf(strokefont, st);
 	}
 

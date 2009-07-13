@@ -251,12 +251,9 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JList netList;
 	private DefaultListModel netListModel;
 	protected boolean change=true;
-
-	private boolean fullscreen=false;
 	private FileFilter fileOpenFilter;
 
 	{
-		fullscreen = Boolean.parseBoolean(Messages.getString("fullscreen"));
 		//Set Look & Feel
 		try {
 			//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
@@ -328,18 +325,18 @@ public class SwingSema implements SemaListener, KeyListener {
 
 	private void fade(boolean f) {
 		fadenodes.setSelected(f);
-		app.fadeNodes=f;
+		app.p.fadeNodes=f;
 	}
 
 
 	private void fullscreen(Boolean _f) {
 
-		if (_f==fullscreen) return;
-		fullscreen = _f;
+		if (_f==app.p.fullscreen) return;
+		app.p.fullscreen = _f;
 
 		getMainWindow().dispose();
 
-		if (fullscreen)
+		if (app.p.fullscreen)
 		{
 			enterFullscreen();
 		}
@@ -433,14 +430,14 @@ public class SwingSema implements SemaListener, KeyListener {
 		if (clusters == null) {
 			clusters = new JCheckBox();
 			clusters.setText("clusters");
-			clusters.setSelected(app.isCluster());
+			clusters.setSelected(app.p.isCluster());
 			clusters.setMargin(new java.awt.Insets(0,0,0,0));
 			clusters.setContentAreaFilled(false);
 			clusters.setFont(new java.awt.Font("Dialog",0,10));
 			clusters.setBounds(39, 229, 60, 17);
 			clusters.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setCluster(clusters.isSelected());
+					app.p.setCluster(clusters.isSelected());
 					app.ns.view.updateNet();
 				}
 			});
@@ -555,7 +552,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			depth.setName("depth");
 			depth.setMaximum(10);
 			depth.setPaintLabels(true);
-			depth.setValue((int) (app.getDepth()));
+			depth.setValue((int) (app.p.getDepth()));
 			depth.setMajorTickSpacing(1);
 			depth.setPaintTrack(false);
 			depth.setSnapToTicks(true);
@@ -566,7 +563,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			depth.setBounds(0, 59, 140, 31);
 			depth.addChangeListener(new ChangeListener() {
 				public void stateChanged(javax.swing.event.ChangeEvent e) {
-					app.setDepth(depth.getValue());
+					app.p.setDepth(depth.getValue());
 				}
 			});
 		}
@@ -638,7 +635,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			drawclusters.setBounds(72, 36, 59, 17);
 			drawclusters.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.drawClusters=drawclusters.isSelected();
+					app.p.drawClusters=drawclusters.isSelected();
 				}
 			});
 		}
@@ -663,10 +660,10 @@ public class SwingSema implements SemaListener, KeyListener {
 			drawedges.setContentAreaFilled(false);
 			drawedges.setFont(new java.awt.Font("Dialog",0,10));
 			drawedges.setBounds(144, 36, 50, 17);
-			drawedges.setSelected(app.isEdges());
+			drawedges.setSelected(app.p.isEdges());
 			drawedges.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setEdges(drawedges.isSelected());
+					app.p.setEdges(drawedges.isSelected());
 				}
 			});
 		}
@@ -687,7 +684,7 @@ public class SwingSema implements SemaListener, KeyListener {
 					String out = (String) edgeAttList.getSelectedValue();
 					if (out!=null) {
 						if (change) {
-							app.setAttribute(out);
+							app.p.setAttribute(out);
 							change = false;
 							if (nodeAttModel.contains(out)) nodeAttList.setSelectedValue(out, true);
 							else nodeAttList.setSelectedIndex(0);
@@ -851,7 +848,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			fadeLabels.setBounds(60, 1, 51, 17);
 			fadeLabels.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.fadeLabels=!fadeLabels.isSelected();
+					app.p.fadeLabels=!fadeLabels.isSelected();
 				}
 			});
 		}
@@ -866,10 +863,10 @@ public class SwingSema implements SemaListener, KeyListener {
 			fadenodes.setContentAreaFilled(false);
 			fadenodes.setFont(new java.awt.Font("Dialog",0,10));
 			fadenodes.setBounds(2, 1, 52, 17);
-			fadenodes.setSelected(app.fadeNodes);
+			fadenodes.setSelected(app.p.fadeNodes);
 			fadenodes.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.fadeNodes=fadenodes.isSelected();
+					app.p.fadeNodes=fadenodes.isSelected();
 					app.layout.applyPickColors();
 				}
 			});
@@ -924,7 +921,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			fontslider.setName("fontslider");
 			fontslider.setPaintTrack(false);
 			fontslider.setPaintTicks(true);
-			fontslider.setValue(app.getFonttype());
+			fontslider.setValue(app.p.getFonttype());
 			fontslider.setPreferredSize(new java.awt.Dimension(20,40));
 			fontslider.setInverted(true);
 			fontslider.setValue(1);
@@ -932,7 +929,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			fontslider.setBounds(0, 20, 103, 30);
 			fontslider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setFonttype(fontslider.getValue());
+					app.p.setFonttype(fontslider.getValue());
 				}
 			});
 		}
@@ -943,15 +940,15 @@ public class SwingSema implements SemaListener, KeyListener {
 			forceBox = new JCheckBox();
 			forceBox.setText("freeze");
 			forceBox.setToolTipText("Force driven Layout active");
-			forceBox.setSelected(app.getCalc());
+			forceBox.setSelected(app.p.getCalc());
 			forceBox.setMargin(new java.awt.Insets(0,0,0,0));
 			forceBox.setContentAreaFilled(false);
 			forceBox.setFont(new java.awt.Font("Dialog",0,10));
 			forceBox.setBounds(133, 1, 85, 17);
 			forceBox.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setCalc(!app.getCalc());
-					forceBox.setSelected(!app.getCalc());
+					app.p.setCalc(!app.p.getCalc());
+					forceBox.setSelected(!app.p.getCalc());
 				}
 			});
 		}
@@ -988,7 +985,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			groupRadius.setBounds(0, 79, 151, 16);
 			groupRadius.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setClusterRad(groupRadius.getValue()/10f); //  Auto-generated Event stub stateChanged()
+					app.p.setClusterRad(groupRadius.getValue()/10f); //  Auto-generated Event stub stateChanged()
 				}
 			});
 		}
@@ -1043,11 +1040,11 @@ public class SwingSema implements SemaListener, KeyListener {
 			draw3d.setContentAreaFilled(false);
 			draw3d.setFont(new java.awt.Font("Dialog",0,10));
 			draw3d.setBounds(1, 229, 45, 17);
-			draw3d.setSelected(!app.get3D());
+			draw3d.setSelected(!app.p.get3D());
 			draw3d.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.toggle3D();
-					draw3d.setSelected(!app.get3D());
+					draw3d.setSelected(!app.p.get3D());
 				}
 			});
 		}
@@ -1061,11 +1058,11 @@ public class SwingSema implements SemaListener, KeyListener {
 			directedGraph.setContentAreaFilled(false);
 			directedGraph.setFont(new java.awt.Font("Dialog",0,10));
 			directedGraph.setBounds(2, 191, 92, 17);
-			directedGraph.setSelected(app.directed);
+			directedGraph.setSelected(app.p.directed);
 			directedGraph.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.directed=directedGraph.isSelected();
-					app.ns.view.updateAdLists(app.directed);
+					app.p.directed=directedGraph.isSelected();
+					app.ns.view.updateAdLists(app.p.directed);
 					app.updatePick();
 				}
 			});
@@ -1107,7 +1104,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			renderTextures.setText("textures");
 			renderTextures.setMargin(new java.awt.Insets(0,0,0,0));
 			renderTextures.setContentAreaFilled(false);
-			renderTextures.setSelected(app.isTextures());
+			renderTextures.setSelected(app.p.isTextures());
 			renderTextures.setFont(new java.awt.Font("Dialog",0,10));
 			renderTextures.setBounds(1, 36, 62, 17);
 			renderTextures.addActionListener(new ActionListener() {
@@ -1128,7 +1125,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			drawgroups.setBounds(144, 18, 58, 17);
 			drawgroups.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setGroups(drawgroups.isSelected());
+					app.p.setGroups(drawgroups.isSelected());
 				}
 			});
 		}
@@ -1139,12 +1136,12 @@ public class SwingSema implements SemaListener, KeyListener {
 			jFileFormat = new JCheckBox();
 			jFileFormat.setText("tabular file format");
 			jFileFormat.setFont(new java.awt.Font("Dialog",0,10));
-			jFileFormat.setSelected(app.isTabular());
+			jFileFormat.setSelected(app.p.isTabular());
 			jFileFormat.setBounds(-1, 33, 120, 23);
 			jFileFormat.setVisible(false);
 			jFileFormat.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setTabular(jFileFormat.isSelected());
+					app.p.setTabular(jFileFormat.isSelected());
 				}
 			});
 		}
@@ -1194,7 +1191,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		}
 		return jLabel11;
 	}
-	
+
 	private JLabel getLocks() {
 		if(jLabel12 == null) {
 			jLabel12 = new JLabel();
@@ -1204,7 +1201,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		}
 		return jLabel12;
 	}
-	
+
 	private JLabel getJLabel13() {
 		if(jLabel13 == null) {
 			jLabel13 = new JLabel();
@@ -1217,9 +1214,9 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JLabel getJLabel14() {
 		if(jLabel14 == null) {
 			jLabel14 = new JLabel();
-			jLabel14.setText("load network");
+			jLabel14.setText("load");
 			jLabel14.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel14.setBounds(2, 0, 210, 14);
+			jLabel14.setBounds(0, 0, 210, 14);
 		}
 		return jLabel14;
 	}
@@ -1228,7 +1225,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jLabel15 = new JLabel();
 			jLabel15.setText("subnets");
 			jLabel15.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel15.setBounds(2, 63, 210, 14);
+			jLabel15.setBounds(0, 89, 210, 14);
 		}
 		return jLabel15;
 	}
@@ -1253,9 +1250,9 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JLabel getJLabel18() {
 		if(jLabel18 == null) {
 			jLabel18 = new JLabel();
-			jLabel18.setText("export");
+			jLabel18.setText("save ");
 			jLabel18.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel18.setBounds(2, 109, 60, 14);
+			jLabel18.setBounds(0, 42, 60, 14);
 		}
 		return jLabel18;
 	}
@@ -1369,7 +1366,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JSlider getJSlider1() {
 		if(jSlider1 == null) {
 			jSlider1 = new JSlider();
-			jSlider1.setValue((int)(app.getPickdepth()));
+			jSlider1.setValue((int)(app.p.getPickdepth()));
 			jSlider1.setMaximum(6);
 			jSlider1.setInverted(false);
 			jSlider1.setMajorTickSpacing(1);
@@ -1383,7 +1380,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jSlider1.setBounds(0, 189, 140, 35);
 			jSlider1.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setPickdepth(jSlider1.getValue());
+					app.p.setPickdepth(jSlider1.getValue());
 					app.updatePick();
 				}
 			});
@@ -1401,7 +1398,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jSlider2.setBounds(1, 110, 140, 16);
 			jSlider2.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setInVar(jSlider2.getValue()/10f);
+					app.p.setInVar(jSlider2.getValue()/10f);
 				}
 			});
 		}
@@ -1418,7 +1415,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jSlider3.setBounds(1, 150, 140, 16);
 			jSlider3.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setLabelsize(jSlider3.getValue()/10f);
+					app.p.setLabelsize(jSlider3.getValue()/10f);
 				}
 			});
 		}
@@ -1435,7 +1432,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jSlider4.setBounds(1, 170, 140, 16);
 			jSlider4.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setLabelVar(jSlider4.getValue()/10f);
+					app.p.setLabelVar(jSlider4.getValue()/10f);
 				}
 			});
 		}
@@ -1452,7 +1449,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			jSlider5.setBounds(1, 130, 140, 16);
 			jSlider5.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setOutVar(jSlider5.getValue()/10f);
+					app.p.setOutVar(jSlider5.getValue()/10f);
 				}
 			});
 		}
@@ -1469,7 +1466,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			maxRepSlider.setBounds(1, 136, 151, 16);
 			maxRepSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setRepellMax(maxRepSlider.getValue());
+					app.p.setRepellMax(maxRepSlider.getValue());
 				}
 			});
 		}
@@ -1536,8 +1533,8 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JButton getLoadNet() {
 		if(loadNet == null) {
 			loadNet = new SimButton();
-			loadNet.setText("add relations");
-			loadNet.setBounds(2, 18, 67, 15);
+			loadNet.setText("network");
+			loadNet.setBounds(0, 18, 67, 15);
 
 			loadNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
@@ -1549,8 +1546,8 @@ public class SwingSema implements SemaListener, KeyListener {
 	private SimButton getLoadNodeAtt() {
 		if(loadNodeAtt == null) {
 			loadNodeAtt = new SimButton();
-			loadNodeAtt.setText("add nodes");
-			loadNodeAtt.setBounds(73, 18, 67, 15);
+			loadNodeAtt.setText("node atts.");
+			loadNodeAtt.setBounds(71, 18, 67, 15);
 			loadNodeAtt.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					loadNodeAttributes();
@@ -1573,7 +1570,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			mainWindow.setSize(1000,600);
 			mainWindow.setContentPane(getJSplitPane());
 			initFileChoosers();
-			if (fullscreen) enterFullscreen(); 
+			if (app.p.fullscreen) enterFullscreen(); 
 			mainWindow.addKeyListener(this);
 		}
 		return mainWindow;
@@ -1621,7 +1618,7 @@ public class SwingSema implements SemaListener, KeyListener {
 					String out = (String) nodeAttList.getSelectedValue();
 					if (out!=null) {
 						if (change) {
-							app.setAttribute(out);
+							app.p.setAttribute(out);
 							change = false;
 							if (edgeAttModel.contains(out))	edgeAttList.setSelectedValue(out, true);
 							else edgeAttList.setSelectedIndex(0);
@@ -1697,7 +1694,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JCheckBox getNoRender() {
 		if (noRender == null) {
 			noRender = new JCheckBox();
-			noRender.setSelected(app.isRender());
+			noRender.setSelected(app.p.isRender());
 			noRender.setText("render on / off");
 			noRender.setToolTipText("allows to speed up operations by interupting rendering");
 			noRender.setMargin(new java.awt.Insets(0,0,0,0));
@@ -1706,7 +1703,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			noRender.setBounds(1, 18, 93, 17);
 			noRender.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setRender(noRender.isSelected()); 
+					app.p.setRender(noRender.isSelected()); 
 				}
 			});
 		}
@@ -1767,7 +1764,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			picSizeSlider.setBounds(1, 90, 140, 16);
 			picSizeSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setPicSize(picSizeSlider.getValue());
+					app.p.setPicSize(picSizeSlider.getValue());
 				}
 			});
 		}
@@ -1813,7 +1810,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			pushSlider.setBounds(0, 152, 151, 16);
 			pushSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setRepell((float)pushSlider.getValue());
+					app.p.setRepellDist((float)pushSlider.getValue());
 				}
 			});
 		}
@@ -1830,7 +1827,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			radLabels.setBounds(173, 37, 50, 14);
 			radLabels.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setLabelsEdgeDir(radLabels.isSelected());
+					app.p.setLabelsEdgeDir(radLabels.isSelected());
 				}
 			});
 		}
@@ -1862,11 +1859,11 @@ public class SwingSema implements SemaListener, KeyListener {
 			repellBox1.setContentAreaFilled(false);
 			repellBox1.setFont(new java.awt.Font("Dialog",0,10));
 			repellBox1.setBounds(0, 119, 33, 17);
-			repellBox1.setSelected(app.isRepell());
+			repellBox1.setSelected(app.p.isRepell());
 			repellBox1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setRepell(!app.isRepell());
-					repellBox1.setSelected(app.isRepell());
+					app.p.setRepell(!app.p.isRepell());
+					repellBox1.setSelected(app.p.isRepell());
 				}
 			});
 		}
@@ -1878,13 +1875,13 @@ public class SwingSema implements SemaListener, KeyListener {
 			repellStSlider = new JSlider();
 			repellStSlider.setMaximum(100);
 			repellStSlider.setOpaque(false);
-			repellStSlider.setValue((int)(app.getRepStr()*100));
+			repellStSlider.setValue((int)(app.p.getRepStr()*100));
 			repellStSlider.setToolTipText("set repell strength factor");
 			repellStSlider.setName("rep. st.");
 			repellStSlider.setBounds(0, 168, 151, 16);
 			repellStSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setRepStr((float)repellStSlider.getValue()/100f);
+					app.p.setRepStr((float)repellStSlider.getValue()/100f);
 				}
 			});
 		}
@@ -1895,15 +1892,15 @@ public class SwingSema implements SemaListener, KeyListener {
 		if (repNeighbors == null) {
 			repNeighbors = new JCheckBox();
 			repNeighbors.setText("local on");
-			repNeighbors.setSelected(app.isRepN());
+			repNeighbors.setSelected(app.p.isRepN());
 			repNeighbors.setMargin(new java.awt.Insets(0,0,0,0));
 			repNeighbors.setContentAreaFilled(false);
 			repNeighbors.setFont(new java.awt.Font("Dialog",0,10));
 			repNeighbors.setBounds(61, 119, 59, 17);
 			repNeighbors.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setRepN(!app.isRepN());
-					repNeighbors.setSelected(app.isRepN());
+					app.p.setRepN(!app.p.isRepN());
+					repNeighbors.setSelected(app.p.isRepN());
 				}
 			});
 		}
@@ -1927,60 +1924,10 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(saveNet == null) {
 			saveNet = new SimButton();
 			saveNet.setText("visible net");
-			saveNet.setBounds(2, 129, 67, 15);
+			saveNet.setBounds(0, 62, 67, 15);
 			saveNet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-
-					boolean calc = app.calculate;
-					boolean rnd = app.render;
-					app.calculate = false;
-					app.render = false;
-
-					saveFile.resetChoosableFileFilters();
-					
-					
-					saveFile.resetChoosableFileFilters();
-					saveFile.addChoosableFileFilter(new GmlFilter());
-					saveFile.addChoosableFileFilter(new GraphMLFilter());
-
-					if (fileOpenFilter==null){
-						saveFile.addChoosableFileFilter(new SemaTableFilter());
-						saveFile.addChoosableFileFilter(new SemaInlineFilter());
-					} 
-					else 
-					{
-						if (fileOpenFilter instanceof SemaTableFilter) saveFile.addChoosableFileFilter(new SemaInlineFilter());
-						if (fileOpenFilter instanceof SemaInlineFilter) saveFile.addChoosableFileFilter(new SemaTableFilter());
-						saveFile.addChoosableFileFilter(fileOpenFilter);
-					}
-
-					int returnVal = saveFile.showSaveDialog(saveFile);
-					fileOpenFilter = saveFile.getFileFilter();
-					app.calculate=calc;
-					app.render=rnd;
-
-					if (returnVal == JFileChooser.APPROVE_OPTION) {
-						String filename = saveFile.getSelectedFile().toString();
-						
-						
-						if (fileOpenFilter instanceof SemaInlineFilter) {
-							if (!filename.endsWith(".txt")) filename += ".txt";
-							app.ns.exportNet(filename , false, true);
-						}
-						if (fileOpenFilter instanceof SemaTableFilter) {
-							if (!filename.endsWith(".tab")) filename += ".tab";
-							app.ns.exportNet(filename , true, true);
-						}
-
-						if (fileOpenFilter instanceof GmlFilter) {
-							if (!filename.endsWith(".gml")) filename += ".gml";
-							app.ns.exportGML(filename);
-						}
-						if (fileOpenFilter instanceof GraphMLFilter) {
-							if (!filename.endsWith(".graphml")) filename += ".graphml";
-							app.ns.exportGraphML(filename);
-						}
-					}
+					saveNet(true);
 				}
 			});
 		}
@@ -2093,6 +2040,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			imgDir = new SimButton();
 			imgDir.setText("set img dir");
 			imgDir.setBounds(144, 18, 67, 15);
+			imgDir.setVisible(false);
 			imgDir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					setImageDir();
@@ -2173,7 +2121,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(simButton11 == null) {
 			simButton11 = new SimButton();
 			simButton11.setText("delete all");
-			simButton11.setBounds(2, 37, 67, 15);
+			simButton11.setBounds(144, 177, 67, 15);
 			simButton11.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.clearNets();
@@ -2242,8 +2190,8 @@ public class SwingSema implements SemaListener, KeyListener {
 	private SimButton getSimButton15() {
 		if(saveNetButton == null) {
 			saveNetButton = new SimButton();
-			saveNetButton.setText("save");
-			saveNetButton.setBounds(2, 83, 67, 15);
+			saveNetButton.setText("store");
+			saveNetButton.setBounds(0, 109, 67, 15);
 			saveNetButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					app.saveNet();
@@ -2257,7 +2205,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(simButton15 == null) {
 			simButton15 = new SimButton();
 			simButton15.setText("remove");
-			simButton15.setBounds(73, 83, 67, 15);
+			simButton15.setBounds(71, 109, 67, 15);
 			simButton15.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					app.removeNet((String)netList.getSelectedValue());
@@ -2271,7 +2219,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(simButton16 == null) {
 			simButton16 = new SimButton();
 			simButton16.setText("show");
-			simButton16.setBounds(144, 83, 67, 15);
+			simButton16.setBounds(142, 109, 67, 15);
 			simButton16.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					app.setView((String)netList.getSelectedValue());
@@ -2309,17 +2257,17 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton18.setVisible(false);
 			simButton18.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					boolean calc = app.calculate;
-					boolean rnd = app.render;
-					app.calculate = false;
-					app.render = false;
+					boolean calc = app.p.calculate;
+					boolean rnd = app.p.render;
+					app.p.calculate = false;
+					app.p.render = false;
 					int returnVal = saveFile.showSaveDialog(saveFile);
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
 						if (!filename.endsWith(".tga")) filename+=".tga";
-						app.calculate=calc;
-						app.render=rnd;
-						app.screenshot(app.shotres, app.shotres, filename);
+						app.p.calculate=calc;
+						app.p.render=rnd;
+						app.screenshot(app.p.shotres, app.p.shotres, filename);
 					}
 				}
 			});
@@ -2331,15 +2279,15 @@ public class SwingSema implements SemaListener, KeyListener {
 		if(simButton19 == null) {
 			simButton19 = new SimButton();
 			simButton19.setText("image");
-			simButton19.setBounds(144, 129, 67, 15);
+			simButton19.setBounds(142, 62, 67, 15);
 			simButton19.addActionListener(new ActionListener() {
 				private FileFilter lastImageFilter;
 
 				public void actionPerformed(ActionEvent evt) {
-					boolean calc = app.calculate;
-					boolean rnd = app.render;
-					app.calculate = false;
-					app.render = false;
+					boolean calc = app.p.calculate;
+					boolean rnd = app.p.render;
+					app.p.calculate = false;
+					app.p.render = false;
 					saveFile.resetChoosableFileFilters();
 
 					if (lastImageFilter == null) {
@@ -2349,24 +2297,24 @@ public class SwingSema implements SemaListener, KeyListener {
 					else 
 					{
 						if (lastImageFilter instanceof SVGFilter) saveFile.addChoosableFileFilter(new TGAFilter());
-						if (lastImageFilter instanceof TGAFilter && app.isEnableSvg()) saveFile.addChoosableFileFilter(new SVGFilter());
+						if (lastImageFilter instanceof TGAFilter && app.p.isEnableSvg()) saveFile.addChoosableFileFilter(new SVGFilter());
 						saveFile.setFileFilter(lastImageFilter);
 					}
 					int returnVal = saveFile.showSaveDialog(saveFile);
 					lastImageFilter = saveFile.getFileFilter();
-					app.calculate=calc;
-					app.render=rnd;
+					app.p.calculate=calc;
+					app.p.render=rnd;
 
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
 
-						if (app.isEnableSvg()&&lastImageFilter instanceof SVGFilter) {
+						if (app.p.isEnableSvg()&&lastImageFilter instanceof SVGFilter) {
 							if (!filename.endsWith(".svg")) filename+=".svg";
 							app.exportSVG (filename);
 						}
 						if (lastImageFilter instanceof TGAFilter) {
 							if (!filename.endsWith(".tga")) filename+=".tga";
-							app.screenshot(app.shotres, app.shotres, filename);
+							app.screenshot(app.p.shotres, app.p.shotres, filename);
 						}
 					}
 
@@ -2403,7 +2351,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			removeLocksB.setVerticalTextPosition(SwingConstants.CENTER);
 			removeLocksB.setFont(new java.awt.Font("Dialog",0,10));
 			removeLocksB.setBounds(144, 255, 67, 15);
-//			removeLocksB.setVisible(false);
+			//			removeLocksB.setVisible(false);
 			removeLocksB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.locksRemove();
@@ -2421,7 +2369,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			lockAllB.setVerticalTextPosition(SwingConstants.CENTER);
 			lockAllB.setFont(new java.awt.Font("Dialog",0,10));
 			lockAllB.setBounds(73, 255, 67, 15);
-//			lockAllB.setVisible(false);
+			//			lockAllB.setVisible(false);
 			lockAllB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.lockAll();
@@ -2532,7 +2480,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			sizeSlider.setBounds(1, 70, 140, 16);
 			sizeSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setSize((float)sizeSlider.getValue());
+					app.p.setSize((float)sizeSlider.getValue());
 				}
 			});
 		}
@@ -2572,7 +2520,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			strengthSlider.setBounds(0, 217, 151, 16);
 			strengthSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setStrength((float)strengthSlider.getValue()/100f);
+					app.p.setStrength((float)strengthSlider.getValue()/100f);
 				}
 			});
 		}
@@ -2608,7 +2556,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			texButton1.setBounds(0, 0, 0, 0);
 			texButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.fileIO.loadTexturesUrl( app.getTexfolder(), app.ns.view, app.getThumbsize());
+					app.fileIO.loadTexturesUrl( app.p.getTexfolder(), app.ns.view, app.p.getThumbsize());
 				}
 			});
 		}
@@ -2625,7 +2573,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			tiltBox.setBounds(173, 22, 50, 14);
 			tiltBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setTilt(tiltBox.isSelected());
+					app.p.setTilt(tiltBox.isSelected());
 				}
 			});
 		}
@@ -2636,14 +2584,14 @@ public class SwingSema implements SemaListener, KeyListener {
 		if (timeBox == null) {
 			timeBox = new JCheckBox();
 			timeBox.setText("timeline");
-			timeBox.setSelected(app.isTime());
+			timeBox.setSelected(app.p.isTime());
 			timeBox.setMargin(new java.awt.Insets(0,0,0,0));
 			timeBox.setContentAreaFilled(false);
 			timeBox.setFont(new java.awt.Font("Dialog",0,10));
 			timeBox.setBounds(101, 229, 61, 17);
 			timeBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setTime(timeBox.isSelected());
+					app.p.setTime(timeBox.isSelected());
 				}
 			});
 		}
@@ -2654,7 +2602,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		if (treeBox == null) {
 			treeBox = new JCheckBox();
 			treeBox.setText("radial");
-			treeBox.setSelected(app.isTree());
+			treeBox.setSelected(app.p.isTree());
 			treeBox.setMargin(new java.awt.Insets(0,0,0,0));
 			treeBox.setContentAreaFilled(false);
 			treeBox.setFont(new java.awt.Font("Dialog",0,10));
@@ -2701,7 +2649,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			valenzSlider.setBounds(0, 201, 151, 16);
 			valenzSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setVal((float)valenzSlider.getValue()/100f);
+					app.p.setVal((float)valenzSlider.getValue()/100f);
 				}
 			});
 		}
@@ -2723,7 +2671,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			viewTab.add(getJSlider2());
 			viewTab.add(getJLabel10());
 			viewTab.add(getRenderTextures());
-//			viewTab.add(getDrawClusters());
+			//			viewTab.add(getDrawClusters());
 			viewTab.add(getJLabel16());
 			viewTab.add(getJSlider3());
 			viewTab.add(getJSlider4());
@@ -2740,7 +2688,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		nodeAttModel.clear();
 		nodeAttModel.addElement("none");
 		for (String s : app.ns.global.nodeattributes) {
-			if (s!="id"&&!s.contentEquals("color")&&s!="color2") nodeAttModel.addElement(s);
+			if (s!="id"&&!s.contentEquals("color")&&s!="color2"&&!s.contentEquals("pos")) nodeAttModel.addElement(s);
 		}
 		edgeAttModel.clear();
 		edgeAttModel.addElement("none");
@@ -2748,10 +2696,10 @@ public class SwingSema implements SemaListener, KeyListener {
 			if (s!="id"&&!s.contentEquals("color")&&s!="color2") edgeAttModel.addElement(s);
 		}
 
-		String att = app.getAttribute();
+		String att = app.p.getAttribute();
 		if (att!=null) {
-			edgeAttList.setSelectedValue(app.getAttribute(), true);
-			nodeAttList.setSelectedValue(app.getAttribute(), true);
+			edgeAttList.setSelectedValue(app.p.getAttribute(), true);
+			nodeAttList.setSelectedValue(app.p.getAttribute(), true);
 		}
 		else {
 			edgeAttList.setSelectedValue(0, true);
@@ -2760,24 +2708,24 @@ public class SwingSema implements SemaListener, KeyListener {
 	}
 
 	private void initCheckboxes() {
-		tiltBox.setSelected(app.isTilt());
-		repellBox1.setSelected(app.isRepell());
-		repNeighbors.setSelected(app.isRepN());
-		treeBox.setSelected(app.isTree());
-		timeBox.setSelected(app.isTime());
-		clusters.setSelected(app.isCluster());
-		noRender.setSelected(app.isRender());
-		drawedges.setSelected(app.isEdges());
-		draw3d.setSelected(!app.get3D());
-		fadenodes.setSelected(app.fadeNodes);
-		fadeLabels.setSelected(!app.fadeLabels);
-		forceBox.setSelected(!app.getCalc());
-		renderTextures.setSelected(app.isTextures());
-		directedGraph.setSelected(app.directed);
-//		drawclusters.setSelected(app.drawClusters);
-		jFileFormat.setSelected(app.isTabular());
-		drawgroups.setSelected(app.isGroups());
-		radLabels.setSelected(app.isLabelsEdgeDir());
+		tiltBox.setSelected(app.p.isTilt());
+		repellBox1.setSelected(app.p.isRepell());
+		repNeighbors.setSelected(app.p.isRepN());
+		treeBox.setSelected(app.p.isTree());
+		timeBox.setSelected(app.p.isTime());
+		clusters.setSelected(app.p.isCluster());
+		noRender.setSelected(app.p.isRender());
+		drawedges.setSelected(app.p.isEdges());
+		draw3d.setSelected(!app.p.get3D());
+		fadenodes.setSelected(app.p.fadeNodes);
+		fadeLabels.setSelected(!app.p.fadeLabels);
+		forceBox.setSelected(!app.p.getCalc());
+		renderTextures.setSelected(app.p.isTextures());
+		directedGraph.setSelected(app.p.directed);
+		//		drawclusters.setSelected(app.drawClusters);
+		jFileFormat.setSelected(app.p.isTabular());
+		drawgroups.setSelected(app.p.isGroups());
+		radLabels.setSelected(app.p.isLabelsEdgeDir());
 	}
 
 	private void initEdgeList(Net globalNet) {
@@ -2816,21 +2764,21 @@ public class SwingSema implements SemaListener, KeyListener {
 	}
 
 	private void initSliders() {
-		depth.setValue((int) (app.getDepth()));
-		fontslider.setValue(app.getFonttype());
-		sizeSlider.setValue((int)(app.getSize()));
-		valenzSlider.setValue((int)(app.getVal()*100));
-		groupRadius.setValue((int)(app.getClusterRad()*10));
-		pushSlider.setValue((int)(app.getRepell()));
-		stretchSlider.setValue((int)(app.getPermInflate()*100f));
-		strengthSlider.setValue((int)(app.getStrength()*100f));
-		distanceSlider.setValue((int)app.getDistance());
-		picSizeSlider.setValue(app.getPicSize());
-		maxRepSlider.setValue((int)app.getRepellMax());
-		jSlider2.setValue((int)(app.getInVar()*10f));
-		jSlider5.setValue((int)(app.getOutVar()*10f));
-		jSlider3.setValue((int)(app.getLabelsize()*10f));
-		jSlider4.setValue((int)(app.getLabelVar()*10f));
+		depth.setValue((int) (app.p.getDepth()));
+		fontslider.setValue(app.p.getFonttype());
+		sizeSlider.setValue((int)(app.p.getSize()));
+		valenzSlider.setValue((int)(app.p.getVal()*100));
+		groupRadius.setValue((int)(app.p.getClusterRad()*10));
+		pushSlider.setValue((int)(app.p.getRepell()));
+		stretchSlider.setValue((int)(app.p.getPermInflate()*100f));
+		strengthSlider.setValue((int)(app.p.getStrength()*100f));
+		distanceSlider.setValue((int)app.p.getDistance());
+		picSizeSlider.setValue(app.p.getPicSize());
+		maxRepSlider.setValue((int)app.p.getRepellMax());
+		jSlider2.setValue((int)(app.p.getInVar()*10f));
+		jSlider5.setValue((int)(app.p.getOutVar()*10f));
+		jSlider3.setValue((int)(app.p.getLabelsize()*10f));
+		jSlider4.setValue((int)(app.p.getLabelVar()*10f));
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -2870,44 +2818,52 @@ public class SwingSema implements SemaListener, KeyListener {
 	}
 
 	private void loadNetwork() {
-		boolean calc = app.calculate;
-		boolean rnd = app.render;
-		app.calculate = false;
-		app.render = false;
+		boolean calc = app.p.calculate;
+		boolean rnd = app.p.render;
+		app.p.calculate = false;
+		app.p.render = false;
 
 		openFile.resetChoosableFileFilters();
 		if (fileOpenFilter == null) {
+			openFile.addChoosableFileFilter(new SemaProjectFileFilter());
 			openFile.addChoosableFileFilter(new SemaTableFilter());
 			openFile.addChoosableFileFilter(new SemaInlineFilter());
 		}
 		else
 		{
-			if (fileOpenFilter instanceof SemaTableFilter) openFile.addChoosableFileFilter(new SemaInlineFilter());
-			if (fileOpenFilter instanceof SemaInlineFilter) openFile.addChoosableFileFilter(new SemaTableFilter());
+			if (!(fileOpenFilter instanceof SemaTableFilter)) openFile.addChoosableFileFilter(new SemaTableFilter());
+			if (!(fileOpenFilter instanceof SemaInlineFilter)) openFile.addChoosableFileFilter(new SemaInlineFilter());
+			if (!(fileOpenFilter instanceof SemaProjectFileFilter)) openFile.addChoosableFileFilter(new SemaProjectFileFilter());
 			openFile.addChoosableFileFilter(fileOpenFilter);
 		}
 		int returnVal = openFile.showOpenDialog(openFile);
 		fileOpenFilter = openFile.getFileFilter();
-		app.calculate=calc;
-		app.render=rnd;
+		app.p.calculate=calc;
+		app.p.render=rnd;
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File filename =openFile.getSelectedFile();
+
+			if (fileOpenFilter instanceof SemaProjectFileFilter) {
+				app.loadProject(filename);
+			} 
+			
 			if (fileOpenFilter instanceof SemaInlineFilter) {
 				app.loadNetwork(filename, false);
-			} else
-				if (fileOpenFilter instanceof SemaTableFilter) {
-					app.loadNetwork(filename, true);
-				}
+			} 
+
+			if (fileOpenFilter instanceof SemaTableFilter) {
+				app.loadNetwork(filename, true);
+			}
 			setCounter();
 		}
 	}
 
 	private void loadNodeAttributes() {
-		boolean calc = app.calculate;
-		boolean rnd = app.render;
-		app.calculate = false;
-		app.render = false;
+		boolean calc = app.p.calculate;
+		boolean rnd = app.p.render;
+		app.p.calculate = false;
+		app.p.render = false;
 
 		openFile.resetChoosableFileFilters();
 
@@ -2934,8 +2890,8 @@ public class SwingSema implements SemaListener, KeyListener {
 				}
 
 			setCounter();
-			app.calculate=calc;
-			app.render=rnd;
+			app.p.calculate=calc;
+			app.p.render=rnd;
 		}
 	}
 
@@ -2958,17 +2914,17 @@ public class SwingSema implements SemaListener, KeyListener {
 	}
 
 	private void setImageDir() {
-		boolean calc = app.calculate;
-		boolean rnd = app.render;
-		app.calculate = false;
-		app.render = false;
+		boolean calc = app.p.calculate;
+		boolean rnd = app.p.render;
+		app.p.calculate = false;
+		app.p.render = false;
 		int returnVal = openPicDir.showOpenDialog(openPicDir);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			app.setTexFolder(openPicDir.getSelectedFile().getAbsolutePath()+"/");
-			app.fileIO.loadTextures(app.getTexfolder(), app.ns.view);
+			app.p.setTexFolder(openPicDir.getSelectedFile().getAbsolutePath()+"/");
+			app.fileIO.loadTextures(app.p.getTexfolder(), app.ns.view);
 		}
-		app.calculate=calc;
-		app.render=rnd;
+		app.p.calculate=calc;
+		app.p.render=rnd;
 	}
 	public void setMsg(String msg){
 		getJTextFieldMsg().setText(msg);
@@ -2979,8 +2935,8 @@ public class SwingSema implements SemaListener, KeyListener {
 	private void textHilight() {
 		app.clearFrames(app.ns.view);
 		if (searchTerm.getText().length()>0) {
-			app.findSubstringAttributes(searchTerm.getText(), app.getAttribute());
-			if (app.isExhibitionMode()) {
+			app.findSubstringAttributes(searchTerm.getText(), app.p.getAttribute());
+			if (app.p.isExhibitionMode()) {
 				fade(true);
 			}
 		} else
@@ -3001,61 +2957,69 @@ public class SwingSema implements SemaListener, KeyListener {
 	private SimButton getExportWhole() {
 		if(exportWhole == null) {
 			exportWhole = new SimButton();
-			exportWhole.setText("whole net");
-			exportWhole.setBounds(73, 129, 67, 15);
+			exportWhole.setText("global net");
+			exportWhole.setBounds(71, 62, 67, 15);
 			exportWhole.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-
-					boolean calc = app.calculate;
-					boolean rnd = app.render;
-					app.calculate = false;
-					app.render = false;
-
-					saveFile.resetChoosableFileFilters();
-					saveFile.addChoosableFileFilter(new GmlFilter());
-					saveFile.addChoosableFileFilter(new GraphMLFilter());
-
-					if (fileOpenFilter==null){
-						saveFile.addChoosableFileFilter(new SemaTableFilter());
-						saveFile.addChoosableFileFilter(new SemaInlineFilter());
-					} 
-					else 
-					{
-						if (fileOpenFilter instanceof SemaTableFilter) saveFile.addChoosableFileFilter(new SemaInlineFilter());
-						if (fileOpenFilter instanceof SemaInlineFilter) saveFile.addChoosableFileFilter(new SemaTableFilter());
-						saveFile.addChoosableFileFilter(fileOpenFilter);
-					}
-
-					int returnVal = saveFile.showSaveDialog(saveFile);
-					fileOpenFilter = saveFile.getFileFilter();
-					app.calculate=calc;
-					app.render=rnd;
-
-					if (returnVal == JFileChooser.APPROVE_OPTION) {
-						String filename = saveFile.getSelectedFile().toString();
-
-						if (fileOpenFilter instanceof SemaInlineFilter) {
-							if (!filename.endsWith(".txt")) filename += ".txt";
-							app.ns.exportNet(filename , false, false);
-						}
-						if (fileOpenFilter instanceof SemaTableFilter) {
-							if (!filename.endsWith(".tab")) filename += ".tab";
-							app.ns.exportNet(filename , true, false);
-						}
-
-						if (fileOpenFilter instanceof GmlFilter) {
-							if (!filename.endsWith(".gml")) filename += ".gml";
-							app.ns.exportGML(filename);
-						}
-						if (fileOpenFilter instanceof GraphMLFilter) {
-							if (!filename.endsWith(".graphml")) filename += ".graphml";
-							app.ns.exportGraphML(filename);
-						}
-					}
-
+					saveNet(false); 
 				}
 			});
 		}
 		return exportWhole;
+	}
+
+
+	protected void saveNet(boolean b) {
+		boolean calc = app.p.calculate;
+		boolean rnd = app.p.render;
+		app.p.calculate = false;
+		app.p.render = false;
+
+		saveFile.resetChoosableFileFilters();
+		saveFile.addChoosableFileFilter(new GmlFilter());
+		saveFile.addChoosableFileFilter(new GraphMLFilter());
+
+		if (fileOpenFilter==null){
+			saveFile.addChoosableFileFilter(new SemaTableFilter());
+			saveFile.addChoosableFileFilter(new SemaInlineFilter());
+			saveFile.addChoosableFileFilter(new SemaProjectFileFilter());
+		} 
+		else 
+		{
+			if (!(fileOpenFilter instanceof SemaTableFilter)) saveFile.addChoosableFileFilter(new SemaTableFilter());
+			if (!(fileOpenFilter instanceof SemaInlineFilter)) saveFile.addChoosableFileFilter(new SemaInlineFilter());
+			if (!(fileOpenFilter instanceof SemaProjectFileFilter)) saveFile.addChoosableFileFilter(new SemaProjectFileFilter());
+			saveFile.addChoosableFileFilter(fileOpenFilter);
+		}
+
+		int returnVal = saveFile.showSaveDialog(saveFile);
+		fileOpenFilter = saveFile.getFileFilter();
+		app.p.calculate=calc;
+		app.p.render=rnd;
+
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			String filename = saveFile.getSelectedFile().toString();
+			if (fileOpenFilter instanceof SemaProjectFileFilter) {
+//				if (!filename.endsWith(".sema")) filename += ".sema";
+				app.saveProject(saveFile.getSelectedFile(),b);
+			}
+			if (fileOpenFilter instanceof SemaInlineFilter) {
+				if (!filename.endsWith(".txt")) filename += ".txt";
+				app.ns.exportNet(filename, false, b);
+			}
+			if (fileOpenFilter instanceof SemaTableFilter) {
+				if (!filename.endsWith(".tab")) filename += ".tab";
+				app.ns.exportNet(filename, true, b);
+			}
+
+			if (fileOpenFilter instanceof GmlFilter) {
+				if (!filename.endsWith(".gml")) filename += ".gml";
+				app.ns.exportGML(filename);
+			}
+			if (fileOpenFilter instanceof GraphMLFilter) {
+				if (!filename.endsWith(".graphml")) filename += ".graphml";
+				app.ns.exportGraphML(filename);
+			}
+		}
 	}
 }	

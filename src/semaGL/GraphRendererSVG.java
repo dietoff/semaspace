@@ -31,14 +31,14 @@ import data.Vector3D;
 
 
 public class GraphRendererSVG {
-	private SemaSpace app;
+	private SemaParameters app;
 	private Net net;
 	boolean circles= false;
 	private boolean nodeAligned= false;
 
-	public GraphRendererSVG (SemaSpace app_){
+	public GraphRendererSVG (SemaParameters app_){
 		app=app_;
-		net = app.ns.getView();
+		net = app.getView();
 		circles = app.getSvgNodeCircles();
 	}
 
@@ -122,6 +122,23 @@ public class GraphRendererSVG {
 		t.setToIdentity();
 		t.translate(-origX, -origY);
 		g2d.setTransform(t);
+
+
+		// Groups 
+		if (app.isGroups()) {
+			Node n;
+			Font large = new Font(app.getFontFam(),Font.PLAIN, (int)(app.getLabelsize()*10f));
+			g2d.setFont(large);
+			for (String m:net.groups.keySet()) {
+				Net group1 = net.groups.get(m);
+				n = group1.hasNode(m);
+				float[] c = GraphElement.colorFunction(n.name);
+				g2d.setPaint(new Color (c[0],c[1],c[2],c[3]));
+				g2d.translate(n.pos.x, n.pos.y);
+				g2d.drawString(n.getName(), 0, 0);
+				g2d.setTransform(t);
+			}
+		}
 
 		// edges
 		for (Edge e: net.nEdges) {
@@ -263,7 +280,7 @@ public class GraphRendererSVG {
 							FontRenderContext frc = g2d.getFontRenderContext();
 							TextLayout tl = new TextLayout(sp[i],varFont,frc);
 
-							if (app.isTree()&&app.ns.view.distances.getNodeDistance(n)>0) alignLabel(g2d, n.pos, n.size(), tl);
+							if (app.isTree()&&app.getView().distances.getNodeDistance(n)>0) alignLabel(g2d, n.pos, n.size(), tl);
 							else
 								if (app.labelsEdgeDir&&!app.isTilt()){
 									if (n.adList.size()==1) {

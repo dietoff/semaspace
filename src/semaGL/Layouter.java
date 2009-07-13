@@ -16,7 +16,7 @@ import semaGL.SemaSpace;
 public class Layouter {
 
 
-	private SemaSpace app;
+	private SemaParameters app;
 	protected Net net;
 	private float innerRad=100;
 	private boolean first=true;
@@ -24,15 +24,15 @@ public class Layouter {
 	private int a=0;
 	private int edgeTresh=2000;
 
-	Layouter (SemaSpace app_) {
+	Layouter (SemaParameters app_) {
 		app= app_;
 		replist = new HashMap<String, nodeTuple>();
 		edgeTresh= app.edgeThreshold;
 	}
 
 	public void applyAttributeColors() {
-		for (Node n:app.ns.getView().nNodes) n.genColorFromAtt();
-		for (Edge e:app.ns.getView().nEdges) e.genColorFromAtt();
+		for (Node n:app.getView().nNodes) n.genColorFromAtt();
+		for (Edge e:app.getView().nEdges) e.genColorFromAtt();
 	}
 	public void applyPickColors() {
 		float[] nodeHSV = new float[3];
@@ -160,8 +160,8 @@ public class Layouter {
 	 * @param gl
 	 */
 	public void clustersSetup(GL gl){
-		float xRot = app.cam.getYRot();		//should be global camera orientation
-		float yRot = app.cam.getXRot();
+		float xRot = app.getApp().cam.getYRot();		//should be global camera orientation
+		float yRot = app.getApp().cam.getXRot();
 
 
 		for (Node aref:net.fNodes) {
@@ -255,8 +255,8 @@ public class Layouter {
 	}
 
 	public void layoutFlat(){
-		app.setYRotNew(0f);
-		app.setXRotNew(0f);
+		app.getApp().setYRotNew(0f);
+		app.getApp().setXRotNew(0f);
 		for (Node nref:net.fNodes) {
 			nref.pos.z=0f;
 

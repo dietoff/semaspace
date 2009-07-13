@@ -871,15 +871,15 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			forceBox = new JCheckBox();
 			forceBox.setText("animate");
 			forceBox.setToolTipText("Force driven Layout active");
-			forceBox.setSelected(app.getCalc());
+			forceBox.setSelected(app.p.getCalc());
 			forceBox.setMargin(new java.awt.Insets(0,0,0,0));
 			forceBox.setContentAreaFilled(false);
 			forceBox.setFont(new java.awt.Font("Dialog",0,10));
 			forceBox.setBounds(2, 204, 85, 17);
 			forceBox.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setCalc(!app.getCalc());
-					forceBox.setSelected(app.getCalc());
+					app.setCalc(!app.p.getCalc());
+					forceBox.setSelected(app.p.getCalc());
 				}
 			});
 		}
@@ -977,11 +977,11 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			draw3d.setContentAreaFilled(false);
 			draw3d.setFont(new java.awt.Font("Dialog",0,10));
 			draw3d.setBounds(58, 184, 42, 17);
-			draw3d.setSelected(!app.get3D());
+			draw3d.setSelected(!app.p.get3D());
 			draw3d.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.toggle3D();
-					draw3d.setSelected(!app.get3D());
+					draw3d.setSelected(!app.p.get3D());
 				}
 			});
 		}
@@ -1832,7 +1832,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			repellStSlider = new JSlider();
 			repellStSlider.setMaximum(100);
 			repellStSlider.setOpaque(false);
-			repellStSlider.setValue((int)(app.getRepStr()*100));
+			repellStSlider.setValue((int)(app.p.getRepStr()*100));
 			repellStSlider.setToolTipText("set repell strength factor");
 			repellStSlider.setName("rep. st.");
 			repellStSlider.setBounds(0, 168, 151, 16);
@@ -2250,15 +2250,15 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			simButton18.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					boolean calc = app.calculate;
-					boolean rnd = app.render;
+					boolean rnd = ;
 					app.calculate = false;
-					app.render = false;
+					 = false;
 					int returnVal = saveFile.showSaveDialog(saveFile);
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
 						if (!filename.endsWith(".tga")) filename+=".tga";
 						app.calculate=calc;
-						app.render=rnd;
+						=rnd;
 						app.screenshot(app.shotres, app.shotres, filename);
 					}
 				}
@@ -2520,7 +2520,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			texButton1.setBounds(0, 0, 0, 0);
 			texButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.fileIO.loadTexturesUrl( app.getTexfolder(), app.ns.view, app.getThumbsize());
+					app.fileIO.loadTexturesUrl( app.p.getTexfolder(), app.ns.view, app.p.getThumbsize());
 				}
 			});
 		}
@@ -2642,10 +2642,10 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			edgeAttModel.addElement(s);
 		}
 
-		String att = app.getAttribute();
+		String att = app.p.getAttribute();
 		if (att!=null) {
-			edgeAttList.setSelectedValue(app.getAttribute(), true);
-			nodeAttList.setSelectedValue(app.getAttribute(), true);
+			edgeAttList.setSelectedValue(app.p.getAttribute(), true);
+			nodeAttList.setSelectedValue(app.p.getAttribute(), true);
 		}
 		else {
 			edgeAttList.setSelectedValue(0, true);
@@ -2658,7 +2658,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	 */
 	private void initCheckboxes() {
 		tiltBox.setSelected(app.isTilt());
-		draw3d.setSelected(!app.get3D());
+		draw3d.setSelected(!app.p.get3D());
 		radLabels.setSelected(app.isLabelsEdgeDir());
 		fadeLabels.setSelected(!app.fadeLabels);
 		clusters.setSelected(app.isCluster());
@@ -2742,7 +2742,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 	}
 	private void initSliders() {
-		searchsteps.getModel().setValue(new Integer(app.getDepth()));
+		searchsteps.getModel().setValue(new Integer(app.p.getDepth()));
 		/*		sizeSlider.setValue((int)(app.getSize()));
 		valenzSlider.setValue((int)(app.getVal()*100));
 		groupRadius.setValue((int)(app.getClusterRad()*10));
@@ -2790,9 +2790,9 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 	private void loadNetwork() {
 		boolean calc = app.calculate;
-		boolean rnd = app.render;
+		boolean rnd = ;
 		app.calculate = false;
-		app.render = false;
+		 = false;
 
 		openFile.resetChoosableFileFilters();
 		openFile.addChoosableFileFilter(new SemaTableFilter());
@@ -2800,7 +2800,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 
 		int returnVal = openFile.showOpenDialog(openFile);
 		app.calculate=calc;
-		app.render=rnd;
+		=rnd;
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File filename =openFile.getSelectedFile();
@@ -2815,9 +2815,9 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 	private void loadNodeAttributes() {
 		boolean calc = app.calculate;
-		boolean rnd = app.render;
+		boolean rnd = ;
 		app.calculate = false;
-		app.render = false;
+		 = false;
 
 		openFile.resetChoosableFileFilters();
 		openFile.addChoosableFileFilter(new SemaTableFilter());
@@ -2834,7 +2834,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 
 			setCounter();
 			app.calculate=calc;
-			app.render=rnd;
+			=rnd;
 		}
 	}
 
@@ -2863,16 +2863,16 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 	private void setImageDir() {
 		boolean calc = app.calculate;
-		boolean rnd = app.render;
+		boolean rnd = ;
 		app.calculate = false;
-		app.render = false;
+		 = false;
 		int returnVal = openPicDir.showOpenDialog(openPicDir);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			app.setTexFolder(openPicDir.getSelectedFile().getAbsolutePath()+"/");
-			app.fileIO.loadTextures(app.getTexfolder(), app.ns.view);
+			app.fileIO.loadTextures(app.p.getTexfolder(), app.ns.view);
 		}
 		app.calculate=calc;
-		app.render=rnd;
+		=rnd;
 	}
 	public void setMsg(String msg){
 		getJTextFieldMsg().setText(msg);
@@ -2885,7 +2885,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	private void textHilight() {
 		app.clearFrames(app.ns.global);
 		if (searchTerm.getText().length()>0) {
-			app.findSubstringAttributes(searchTerm.getText(), app.getAttribute());
+			app.findSubstringAttributes(searchTerm.getText(), app.p.getAttribute());
 			if (app.isExhibitionMode()) {
 				fade(true);
 			}

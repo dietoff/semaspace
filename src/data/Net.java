@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 
 import semaGL.FileIO;
 import semaGL.Func;
-import semaGL.SemaSpace;
+import semaGL.SemaParameters;
 import semaGL.WildcardToRegex;
 
 /**
@@ -19,7 +19,7 @@ import semaGL.WildcardToRegex;
  *
  */
 public class Net {
-	public SemaSpace app;
+	public SemaParameters app;
 	public HashSet<Node> nNodes;
 	public HashSet<Edge> nEdges;
 	public HashSet<Node> fNodes;
@@ -43,7 +43,7 @@ public class Net {
 	private String value;
 	public DistanceTable distances;
 
-	public Net(SemaSpace app_) {
+	public Net(SemaParameters app_) {
 		app = app_;
 		nTable = new HashMap<String, Node>(); 
 //		posTable = new HashMap<Node, Vector3D>();

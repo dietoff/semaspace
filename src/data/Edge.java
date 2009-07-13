@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.media.opengl.GL;
 
 import semaGL.Func;
+import semaGL.SemaParameters;
 import semaGL.SemaSpace;
 
 
@@ -20,13 +21,13 @@ public class Edge extends GraphElement{
 	private boolean picked = false;
 	private float property = -1f;
 
-	Edge(SemaSpace app_, Node a_, Node b_)  {
+	Edge(SemaParameters app_, Node a_, Node b_)  {
 		this(app_,a_,b_,"");
 	}
 
-	public Edge(SemaSpace app_, Node a_, Node b_, String id) {
-		super(app_);
-		app = app_;
+	public Edge(SemaParameters app, Node a_, Node b_, String id) {
+		super(app);
+		app = app;
 		a = a_;	
 		b = b_;
 		name = Edge.edgeName(a,b,id);
@@ -110,7 +111,7 @@ public class Edge extends GraphElement{
 			ages = new ArrayList<Integer>();
 			text = new ArrayList<String>();
 		}
-		int rgb = Func.packColors(age, col);
+		int rgb = Func.packColors( col);
 		ages.add(age);
 		addText(Integer.toString(rgb));
 	}
