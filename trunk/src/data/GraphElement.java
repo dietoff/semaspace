@@ -18,7 +18,7 @@ public abstract class GraphElement {
 	public float alpha=0.8f;
 	public String name;
 	public String altName;
-	SemaSpace app;
+	SemaParameters app;
 	public HashMap<String,String> attributes;
 	public boolean rollover;
 	public boolean colored = false;
@@ -29,15 +29,11 @@ public abstract class GraphElement {
 	int timeEnd = Integer.MAX_VALUE;
 	
 	
-	
-	GraphElement() {
-		this(null,"");
+	GraphElement(SemaParameters app2) {
+		this(app2,"");
 	}
-	GraphElement(SemaSpace app_) {
-		this(app_,"");
-	}
-	GraphElement(SemaSpace app_, String name_) {
-		app = app_;
+	GraphElement(SemaParameters app2, String name_) {
+		app = app2;
 		setName(name_);
 		setAltName(name_); //by default altname = name
 		attributes = new HashMap<String, String>();		

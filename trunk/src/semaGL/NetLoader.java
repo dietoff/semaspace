@@ -14,13 +14,13 @@ import data.Node;
 import data.Vector3D;
 
 public class NetLoader {
-	SemaSpace app;
+	SemaParameters app;
 	private String lineBreak = "\r\n|\n|\r";
 	private String separator = "\t";
 	private String value = "=";
 
-	public NetLoader(SemaSpace app_){
-		app = app_;
+	public NetLoader(SemaParameters app2){
+		app = app2;
 	}
 
 	/**

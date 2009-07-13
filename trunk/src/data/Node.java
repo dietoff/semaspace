@@ -6,7 +6,7 @@ package data;
 import java.util.HashSet;
 
 import javax.media.opengl.GL;
-import semaGL.SemaSpace;
+import semaGL.SemaParameters;
 import nehe.TextureReader.Texture;
 
 public class Node extends GraphElement {
@@ -30,11 +30,11 @@ public class Node extends GraphElement {
 	public boolean group = false;
 
 
-	Node(SemaSpace app_, String n_, float x, float y, float z) {
-		this(app_,n_, new Vector3D(x,y,z));
+	Node (SemaParameters app, String n_, float x, float y, float z) {
+		this(app,n_, new Vector3D(x,y,z));
 	}
 
-	Node(SemaSpace app_, String n_, Vector3D pos_) {
+	Node (SemaParameters app_, String n_, Vector3D pos_) {
 		super(app_,n_);
 		defaultcolor = app.nodeColor.clone();
 		pos.setXYZ(pos_);

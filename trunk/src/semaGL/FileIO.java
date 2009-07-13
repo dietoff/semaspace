@@ -234,12 +234,12 @@ public class FileIO {
 	}
 
 	HttpClient httpClient;
-	private SemaSpace app;
+	private SemaParameters app;
 	private LoadTexturesUrl t1;
 	private LoadTextures t2;
 
-	public FileIO(SemaSpace app_){
-		app= app_;
+	public FileIO(SemaParameters par){
+		app= par;
 		httpClient = new HttpClient();
 	}
 

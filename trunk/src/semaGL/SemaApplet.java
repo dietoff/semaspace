@@ -56,22 +56,22 @@ public class SemaApplet extends JApplet {
 		String inflateTime = getParameter("inflateTime");
 		String valenceFact = getParameter("valence");
 		
-		if (urlpath!=null) space.setUrl(urlpath);
-		if (nodeurl!=null) space.setNodeUrl(nodeurl);
-		if (edgeurl!=null) space.setEdgeUrl(edgeurl);
-		if (radial != null) space.setRadial(Boolean.parseBoolean(radial));
+		if (urlpath!=null) space.p.setUrl(urlpath);
+		if (nodeurl!=null) space.p.setNodeUrl(nodeurl);
+		if (edgeurl!=null) space.p.setEdgeUrl(edgeurl);
+		if (radial != null) space.p.setRadial(Boolean.parseBoolean(radial));
 		if (tree != null) space.setTree(Boolean.parseBoolean(tree));
-		if (cluster != null) space.setCluster(Boolean.parseBoolean(cluster));
-		if (repell!=null) space.setRepell(Boolean.parseBoolean(repell));
-		if (font!=null) space.setFonttype(Integer.parseInt(font));
-		if (attractS!=null) space.setAttractStr(Float.parseFloat(attractS));
-		if (repellS!=null) space.setRepellStr(Float.parseFloat(repellS));
-		if (pickdepth!=null) space.setPickdepth(Integer.parseInt(pickdepth));
-		if (distance!=null) space.setStandardNodeDistance(Float.parseFloat(distance));
-		if (radialDist!=null) space.setRadialDist(Float.parseFloat(radialDist));
-		if (repellDist!=null) space.setRepellDist(Float.parseFloat(repellDist));
-		if (perminflate!=null) space.setPerminflate(Integer.parseInt(perminflate));
-		if (inflateTime!=null) space.setInflatetime(Integer.parseInt(inflateTime));
-		if (valenceFact!=null) space.setVal(Float.parseFloat(valenceFact));
+		if (cluster != null) space.p.setCluster(Boolean.parseBoolean(cluster));
+		if (repell!=null) space.p.setRepell(Boolean.parseBoolean(repell));
+		if (font!=null) space.p.setFonttype(Integer.parseInt(font));
+		if (attractS!=null) space.p.setAttractStr(Float.parseFloat(attractS));
+		if (repellS!=null) space.p.setRepellStr(Float.parseFloat(repellS));
+		if (pickdepth!=null) space.p.setPickdepth(Integer.parseInt(pickdepth));
+		if (distance!=null) space.p.setStandardNodeDistance(Float.parseFloat(distance));
+		if (radialDist!=null) space.p.setRadialDist(Float.parseFloat(radialDist));
+		if (repellDist!=null) space.p.setRepellDist(Float.parseFloat(repellDist));
+		if (perminflate!=null) space.p.setPerminflate(Integer.parseInt(perminflate));
+		if (inflateTime!=null) space.p.setInflatetime(Integer.parseInt(inflateTime));
+		if (valenceFact!=null) space.p.setVal(Float.parseFloat(valenceFact));
 	}
 }
