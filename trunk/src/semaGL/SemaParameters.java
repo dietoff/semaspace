@@ -4,9 +4,14 @@ import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.Properties;
+import java.util.Vector;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import com.sun.opengl.util.GLUT;
@@ -104,76 +109,106 @@ public class SemaParameters {
 	private boolean svgNodeCircles;
 	public int edgeThreshold;
 	private SemaSpace app;
+	private boolean startWhole=false;
 
 
-	public  SemaParameters(SemaSpace semaSpace, String file) {
+	public  SemaParameters(SemaSpace semaSpace) {
 		setApp(semaSpace);
-		loadSemaParameters(file);
 	}
 
 	public SemaParameters loadSemaParameters(String file) {
 		Properties props = new Properties();
 		try {
 			FileInputStream fi = new FileInputStream(file);
+			URL tst = new URL("messages.properties");
+			InputStream str = tst.openStream();
 			props.load(fi);
-			fullscreen = Boolean.parseBoolean(props.getProperty("fullscreen"));
-			tabular = Boolean.parseBoolean(props.getProperty("tabularFileFormat"));
-			edgeThreshold = Integer.parseInt(props.getProperty("edgeTresholdRepell"));
-			setSvgNodeCircles(Boolean.parseBoolean(props.getProperty("SVGNodesCircles")));
-			exhibitionMode = Boolean.parseBoolean(props.getProperty("exhibitionMode"));
-			setRepell(Boolean.parseBoolean(props.getProperty("repellOn")));
-			setFilename(props.getProperty("defaultFilename")); //$NON-NLS-1$
-			setTexfolder(props.getProperty("textureDirectory")); //$NON-NLS-1$
-			searchdepth = Integer.parseInt(props.getProperty("searchdepth"));
-			setStandardNodeDistance(Float.parseFloat(props.getProperty("standardNodeDistance")));
-			setRepellDist(Float.parseFloat(props.getProperty("repellDistance")));
-			setNodeSize(Float.parseFloat(props.getProperty("nodeSize")));
-			picSize = Integer.parseInt(props.getProperty("picSize"));
-			strength = Float.parseFloat(props.getProperty("edgeStrength"));
-			val = Float.parseFloat(props.getProperty("valenceFactor"));
-			repellStrength = Float.parseFloat(props.getProperty("repellStrength"));
-			clusterRad= Float.parseFloat(props.getProperty("clusterRadius"));
-			setRadialDist(Float.parseFloat(props.getProperty("radialLayoutDistance")));
-			setBoxdist(Float.parseFloat(props.getProperty("boxLayoutDistance")));
-			pickdepth = Integer.parseInt(props.getProperty("pickDistance"));
-			setInflatetime(Long.parseLong(props.getProperty("inflateTimeMs")));
-			setEdgewidth(Float.parseFloat(props.getProperty("edgeWidth")));
-			setPerminflate(Float.parseFloat(props.getProperty("permanentInflate")));
-			setThumbsize(Integer.parseInt(props.getProperty("thumbnailRes")));
-			cluster=Boolean.parseBoolean(props.getProperty("layoutClusters"));
-			loadMethod = Integer.parseInt(props.getProperty("loadMethod")); //0 = local file, 1 = http, 2 = jar
-			Color.decode(props.getProperty("pickGradientFar")).getComponents(pickGradEnd);
-			Color.decode(props.getProperty("pickGradientCenter")).getComponents(pickGradStart);
-			Color.decode(props.getProperty("rollOverColor")).getComponents(rollOverColor);
-			Color.decode(props.getProperty("nodeColor")).getComponents(nodeColor);
-			nodeColor[3]=Float.parseFloat(props.getProperty("nodeAlpha"));
-			Color.decode(props.getProperty("edgeColor")).getComponents(edgeColor);
-			Color.decode(props.getProperty("frameColor")).getComponents(frameColor);
-			labelsEdgeDir = (Boolean.parseBoolean(props.getProperty("labelsEdgeDir")));
-			repellMax = (int) Float.parseFloat(props.getProperty("repellMaxDist"));
-			setEdgeAlpha(Float.parseFloat(props.getProperty("edgeAlpha")));
-			groups =  Boolean.parseBoolean(props.getProperty("drawGroups"));
-			setEnableSvg(Boolean.parseBoolean(props.getProperty("enableSVGexport")));
-			setFontFam(props.getProperty("FontFamily"));
-			shotres = Integer.parseInt(props.getProperty("screenshotResolution"));
-			maxLabelRenderDistance = Float.parseFloat(props.getProperty("maxLabelRenderDistance"));
-			textureFont= Boolean.parseBoolean(props.getProperty("useTextureFonts"));
-			labelsize= Float.parseFloat(props.getProperty("labelSize"));
-			labelVar= Float.parseFloat(props.getProperty("labelSizeVariance"));
-			setInheritEdgeColorFromNodes(Boolean.parseBoolean(props.getProperty("inheritEdgeColorFromNodes")));
-			drawClusters= Boolean.parseBoolean(props.getProperty("clusters"));
-			setTilt(Boolean.parseBoolean(props.getProperty("tiltedLabels")));
-			invar= Float.parseFloat(props.getProperty("nodeSizeInDegreeVariance"));
-			outvar= Float.parseFloat(props.getProperty("nodeSizeOutDegreeVariance"));;
-			textures= Boolean.parseBoolean(props.getProperty("textures"));
+			loadParams(props);
 		} catch (IOException e) {
 			System.out.println("File not found: "+file);
 		}
 		return this;
 	}
+	
+	public SemaParameters loadSemaParameters(URL file) {
+		Properties props = new Properties();
+		try {
+			InputStream str = file.openStream();
+			props.load(str);
+			loadParams(props);
+		} catch (IOException e) {
+			System.out.println("URL not found: "+file);
+		}
+		return this;
+	}
+	
+	public SemaParameters loadSemaParametersJar(String file) {
+		Properties props = new Properties();
+		try {
+			InputStream is = getClass().getClassLoader().getResourceAsStream(file);
+			props.load(is);
+			loadParams(props);
+		} catch (IOException e) {
+			System.out.println("Ressource not found: "+file);
+		}
+		return this;
+	}
+	private void loadParams(Properties props) {
+		setStartWhole(Boolean.parseBoolean(props.getProperty("showWholeNetOnStart")));
+		fullscreen = Boolean.parseBoolean(props.getProperty("fullscreen"));
+		tabular = Boolean.parseBoolean(props.getProperty("tabularFileFormat"));
+		edgeThreshold = Integer.parseInt(props.getProperty("edgeTresholdRepell"));
+		setSvgNodeCircles(Boolean.parseBoolean(props.getProperty("SVGNodesCircles")));
+		exhibitionMode = Boolean.parseBoolean(props.getProperty("exhibitionMode"));
+		setRepell(Boolean.parseBoolean(props.getProperty("repellOn")));
+		setFilename(props.getProperty("defaultFilename")); //$NON-NLS-1$
+		setTexfolder(props.getProperty("textureDirectory")); //$NON-NLS-1$
+		searchdepth = Integer.parseInt(props.getProperty("searchdepth"));
+		setStandardNodeDistance(Float.parseFloat(props.getProperty("standardNodeDistance")));
+		setRepellDist(Float.parseFloat(props.getProperty("repellDistance")));
+		setNodeSize(Float.parseFloat(props.getProperty("nodeSize")));
+		picSize = Integer.parseInt(props.getProperty("picSize"));
+		strength = Float.parseFloat(props.getProperty("edgeStrength"));
+		val = Float.parseFloat(props.getProperty("valenceFactor"));
+		repellStrength = Float.parseFloat(props.getProperty("repellStrength"));
+		clusterRad= Float.parseFloat(props.getProperty("clusterRadius"));
+		setRadialDist(Float.parseFloat(props.getProperty("radialLayoutDistance")));
+		setBoxdist(Float.parseFloat(props.getProperty("boxLayoutDistance")));
+		pickdepth = Integer.parseInt(props.getProperty("pickDistance"));
+		setInflatetime(Long.parseLong(props.getProperty("inflateTimeMs")));
+		setEdgewidth(Float.parseFloat(props.getProperty("edgeWidth")));
+		setPerminflate(Float.parseFloat(props.getProperty("permanentInflate")));
+		setThumbsize(Integer.parseInt(props.getProperty("thumbnailRes")));
+		cluster=Boolean.parseBoolean(props.getProperty("layoutClusters"));
+		loadMethod = Integer.parseInt(props.getProperty("loadMethod")); //0 = local file, 1 = http, 2 = jar
+		Color.decode(props.getProperty("pickGradientFar")).getComponents(pickGradEnd);
+		Color.decode(props.getProperty("pickGradientCenter")).getComponents(pickGradStart);
+		Color.decode(props.getProperty("rollOverColor")).getComponents(rollOverColor);
+		Color.decode(props.getProperty("nodeColor")).getComponents(nodeColor);
+		nodeColor[3]=Float.parseFloat(props.getProperty("nodeAlpha"));
+		Color.decode(props.getProperty("edgeColor")).getComponents(edgeColor);
+		Color.decode(props.getProperty("frameColor")).getComponents(frameColor);
+		labelsEdgeDir = (Boolean.parseBoolean(props.getProperty("labelsEdgeDir")));
+		repellMax = (int) Float.parseFloat(props.getProperty("repellMaxDist"));
+		setEdgeAlpha(Float.parseFloat(props.getProperty("edgeAlpha")));
+		groups =  Boolean.parseBoolean(props.getProperty("drawGroups"));
+		setEnableSvg(Boolean.parseBoolean(props.getProperty("enableSVGexport")));
+		setFontFam(props.getProperty("FontFamily"));
+		shotres = Integer.parseInt(props.getProperty("screenshotResolution"));
+		maxLabelRenderDistance = Float.parseFloat(props.getProperty("maxLabelRenderDistance"));
+		textureFont= Boolean.parseBoolean(props.getProperty("useTextureFonts"));
+		labelsize= Float.parseFloat(props.getProperty("labelSize"));
+		labelVar= Float.parseFloat(props.getProperty("labelSizeVariance"));
+		setInheritEdgeColorFromNodes(Boolean.parseBoolean(props.getProperty("inheritEdgeColorFromNodes")));
+		drawClusters= Boolean.parseBoolean(props.getProperty("clusters"));
+		setTilt(Boolean.parseBoolean(props.getProperty("tiltedLabels")));
+		invar= Float.parseFloat(props.getProperty("nodeSizeInDegreeVariance"));
+		outvar= Float.parseFloat(props.getProperty("nodeSizeOutDegreeVariance"));;
+		textures= Boolean.parseBoolean(props.getProperty("textures"));
+	}
 
 	public void storeSemaParameters(String file) {
-		Properties props = new Properties();
+		Properties props = new SortedProperties();
 		
 		//general + files
 		props.setProperty("exhibitionMode", String.valueOf(exhibitionMode));
@@ -185,7 +220,8 @@ public class SemaParameters {
 		props.setProperty("screenshotResolution",""+shotres);
 		props.setProperty("searchdepth", ""+searchdepth);
 		props.setProperty("pickDistance",""+pickdepth);
-		
+		props.setProperty("showWholeNetOnStart",""+isStartWhole());
+
 		//forces & layout
 		props.setProperty("edgeTresholdRepell", String.valueOf(edgeThreshold));
 		props.setProperty("repellOn",""+repell);
@@ -722,4 +758,25 @@ public class SemaParameters {
 		return app.ns.getView();
 	}
 
+	public void setStartWhole(boolean startWhole) {
+		this.startWhole = startWhole;
+	}
+
+	public boolean isStartWhole() {
+		return startWhole;
+	}
+
 }
+
+class SortedProperties extends Properties {
+	  public Enumeration keys() {
+	     Enumeration keysEnum = super.keys();
+	     Vector<String> keyList = new Vector<String>();
+	     while(keysEnum.hasMoreElements()){
+	       keyList.add((String)keysEnum.nextElement());
+	     }
+	     Collections.sort(keyList);
+	     return keyList.elements();
+	  }
+	  
+	}

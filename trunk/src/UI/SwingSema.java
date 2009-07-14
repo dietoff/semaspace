@@ -608,7 +608,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			distanceSlider.setBounds(0, 235, 151, 16);
 			distanceSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setDistance((float)distanceSlider.getValue());
+					app.p.setStandardNodeDistance((float)distanceSlider.getValue());
 				}
 			});
 		}
@@ -2124,7 +2124,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			simButton11.setBounds(144, 177, 67, 15);
 			simButton11.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.clearNets();
+					app.ns.clear();
 					updateUI(app.ns);
 				}
 			});
@@ -2194,7 +2194,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			saveNetButton.setBounds(0, 109, 67, 15);
 			saveNetButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					app.saveNet();
+					app.storeNet();
 				}
 			});
 		}
@@ -2537,7 +2537,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			stretchSlider.setBounds(0, 21, 151, 16);
 			stretchSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setPermInflate(stretchSlider.getValue()/100f); //  Auto-generated Event stub stateChanged()
+					app.p.setPermInflate(stretchSlider.getValue()/100f); //  Auto-generated Event stub stateChanged()
 				}
 			});
 		}
