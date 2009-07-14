@@ -1,0 +1,13 @@
+id	pos
+"tall films" font by Graham Meade	
+used Libraries	
+jftg font library	
+nehe GLdisplay	
+a fast, simple graph editor	
+Apache Batik SVG	
+LBI for Media.Art.Research.	
+Gerhard Dirmoser	
+by	
+SemaSpace	
+Dietmar Offenhuber	
+jTattoo Swing LAF by Michael Hagen	

@@ -303,7 +303,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		mainWindow.setResizable(false);
 		mainWindow.setVisible(true);
 		mainWindow.validate();
-		if (app.isExhibitionMode()) {
+		if (app.p.isExhibitionMode()) {
 			GraphicsDevice device = getDevice();
 			if (device.isFullScreenSupported()) device.setFullScreenWindow(mainWindow);
 		}
@@ -330,7 +330,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 
 	private void fade(boolean f) {
-		app.fadeNodes=f;
+		app.p.fadeNodes=f;
 	}
 
 
@@ -431,14 +431,14 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		if (clusters == null) {
 			clusters = new JCheckBox();
 			clusters.setText("clusters");
-			clusters.setSelected(app.isCluster());
+			clusters.setSelected(app.p.isCluster());
 			clusters.setMargin(new java.awt.Insets(0,0,0,0));
 			clusters.setContentAreaFilled(false);
 			clusters.setFont(new java.awt.Font("Dialog",0,10));
 			clusters.setBounds(157, 184, 59, 17);
 			clusters.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setCluster(clusters.isSelected());
+					app.p.setCluster(clusters.isSelected());
 					app.ns.view.updateNet();
 				}
 			});
@@ -567,7 +567,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			distanceSlider.setBounds(0, 235, 151, 16);
 			distanceSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setDistance((float)distanceSlider.getValue());
+					app.p.setDistance((float)distanceSlider.getValue());
 				}
 			});
 		}
@@ -593,7 +593,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			drawclusters.setBounds(72, 36, 59, 17);
 			drawclusters.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.drawClusters=drawclusters.isSelected();
+					app.p.drawClusters=drawclusters.isSelected();
 				}
 			});
 		}
@@ -618,10 +618,10 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			drawedges.setContentAreaFilled(false);
 			drawedges.setFont(new java.awt.Font("Dialog",0,10));
 			drawedges.setBounds(144, 36, 50, 17);
-			drawedges.setSelected(app.isEdges());
+			drawedges.setSelected(app.p.isEdges());
 			drawedges.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setEdges(drawedges.isSelected());
+					app.p.setEdges(drawedges.isSelected());
 				}
 			});
 		}
@@ -641,7 +641,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 					String out = (String) edgeAttList.getSelectedValue();
 					if (out!=null) {
 						if (change) {
-							app.setAttribute(out);
+							app.p.setAttribute(out);
 							change = false;
 							if (nodeAttModel.contains(out)) nodeAttList.setSelectedValue(out, true);
 							else nodeAttList.setSelectedIndex(0);
@@ -807,7 +807,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			fadeLabels.setBounds(100, 184, 52, 17);
 			fadeLabels.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.fadeLabels=!fadeLabels.isSelected();
+					app.p.fadeLabels=!fadeLabels.isSelected();
 				}
 			});
 		}
@@ -878,7 +878,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			forceBox.setBounds(2, 204, 85, 17);
 			forceBox.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setCalc(!app.p.getCalc());
+					app.p.setCalc(!app.p.getCalc());
 					forceBox.setSelected(app.p.getCalc());
 				}
 			});
@@ -917,7 +917,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			groupRadius.setBounds(0, 79, 151, 16);
 			groupRadius.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setClusterRad(groupRadius.getValue()/10f); //  Auto-generated Event stub stateChanged()
+					app.p.setClusterRad(groupRadius.getValue()/10f); //  Auto-generated Event stub stateChanged()
 				}
 			});
 		}
@@ -1012,7 +1012,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			renderTextures.setText("textures");
 			renderTextures.setMargin(new java.awt.Insets(0,0,0,0));
 			renderTextures.setContentAreaFilled(false);
-			renderTextures.setSelected(app.isTextures());
+			renderTextures.setSelected(app.p.isTextures());
 			renderTextures.setFont(new java.awt.Font("Dialog",0,10));
 			renderTextures.setBounds(1, 36, 62, 17);
 			renderTextures.addActionListener(new ActionListener() {
@@ -1033,7 +1033,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			drawgroups.setBounds(144, 18, 58, 17);
 			drawgroups.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setGroups(drawgroups.isSelected());
+					app.p.setGroups(drawgroups.isSelected());
 				}
 			});
 		}
@@ -1045,12 +1045,12 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			jFileFormat = new JCheckBox();
 			jFileFormat.setText("tabular file format");
 			jFileFormat.setFont(new java.awt.Font("Dialog",0,10));
-			jFileFormat.setSelected(app.isTabular());
+			jFileFormat.setSelected(app.p.isTabular());
 			jFileFormat.setBounds(-1, 33, 120, 23);
 			jFileFormat.setVisible(false);
 			jFileFormat.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setTabular(jFileFormat.isSelected());
+					app.p.setTabular(jFileFormat.isSelected());
 				}
 			});
 		}
@@ -1239,7 +1239,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	private JSlider getJSlider1() {
 		if(jSlider1 == null) {
 			jSlider1 = new JSlider();
-			jSlider1.setValue((int)(app.getPickdepth()));
+			jSlider1.setValue((int)(app.p.getPickdepth()));
 			jSlider1.setMaximum(6);
 			jSlider1.setInverted(false);
 			jSlider1.setMajorTickSpacing(1);
@@ -1253,7 +1253,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			jSlider1.setBounds(0, 214, 134, 35);
 			jSlider1.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setPickdepth(jSlider1.getValue());
+					app.p.setPickdepth(jSlider1.getValue());
 					app.updatePick();
 				}
 			});
@@ -1271,7 +1271,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			jSlider2.setBounds(1, 110, 140, 16);
 			jSlider2.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setInVar(jSlider2.getValue()/10f);
+					app.p.setInVar(jSlider2.getValue()/10f);
 				}
 			});
 		}
@@ -1288,7 +1288,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			jSlider3.setBounds(1, 150, 140, 16);
 			jSlider3.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setLabelsize(jSlider3.getValue()/10f);
+					app.p.setLabelsize(jSlider3.getValue()/10f);
 				}
 			});
 		}
@@ -1305,7 +1305,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			jSlider4.setBounds(1, 170, 140, 16);
 			jSlider4.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setLabelVar(jSlider4.getValue()/10f);
+					app.p.setLabelVar(jSlider4.getValue()/10f);
 				}
 			});
 		}
@@ -1322,7 +1322,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			jSlider5.setBounds(1, 130, 140, 16);
 			jSlider5.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setOutVar(jSlider5.getValue()/10f);
+					app.p.setOutVar(jSlider5.getValue()/10f);
 				}
 			});
 		}
@@ -1339,7 +1339,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			maxRepSlider.setBounds(1, 136, 151, 16);
 			maxRepSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setRepellMax(maxRepSlider.getValue());
+					app.p.setRepellMax(maxRepSlider.getValue());
 				}
 			});
 		}
@@ -1497,7 +1497,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 					String out = (String) nodeAttList.getSelectedValue();
 					if (out!=null) {
 						if (change) {
-							app.setAttribute(out);
+							app.p.setAttribute(out);
 							change = false;
 							if (edgeAttModel.contains(out))	edgeAttList.setSelectedValue(out, true);
 							else edgeAttList.setSelectedIndex(0);
@@ -1651,7 +1651,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	private JCheckBox getNoRender() {
 		if (noRender == null) {
 			noRender = new JCheckBox();
-			noRender.setSelected(app.isRender());
+			noRender.setSelected(app.p.isRender());
 			noRender.setText("render on / off");
 			noRender.setToolTipText("allows to speed up operations by interupting rendering");
 			noRender.setMargin(new java.awt.Insets(0,0,0,0));
@@ -1660,7 +1660,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			noRender.setBounds(1, 18, 93, 17);
 			noRender.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setRender(noRender.isSelected()); 
+					app.p.setRender(noRender.isSelected()); 
 				}
 			});
 		}
@@ -1719,7 +1719,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			picSizeSlider.setBounds(1, 90, 140, 16);
 			picSizeSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setPicSize(picSizeSlider.getValue());
+					app.p.setPicSize(picSizeSlider.getValue());
 				}
 			});
 		}
@@ -1768,7 +1768,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			pushSlider.setBounds(0, 152, 151, 16);
 			pushSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setRepell((float)pushSlider.getValue());
+					app.p.setRepell((float)pushSlider.getValue());
 				}
 			});
 		}
@@ -1785,7 +1785,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			radLabels.setBounds(100, 226, 62, 14);
 			radLabels.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setLabelsEdgeDir(radLabels.isSelected());
+					app.p.setLabelsEdgeDir(radLabels.isSelected());
 				}
 			});
 		}
@@ -1816,11 +1816,11 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			repellBox1.setContentAreaFilled(false);
 			repellBox1.setFont(new java.awt.Font("Dialog",0,10));
 			repellBox1.setBounds(0, 119, 33, 17);
-			repellBox1.setSelected(app.isRepell());
+			repellBox1.setSelected(app.p.isRepell());
 			repellBox1.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.setRepell(!app.isRepell());
-					repellBox1.setSelected(app.isRepell());
+					app.p.setRepell(!app.p.isRepell());
+					repellBox1.setSelected(app.p.isRepell());
 				}
 			});
 		}
@@ -1838,7 +1838,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			repellStSlider.setBounds(0, 168, 151, 16);
 			repellStSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setRepStr((float)repellStSlider.getValue()/100f);
+					app.p.setRepStr((float)repellStSlider.getValue()/100f);
 				}
 			});
 		}
@@ -1849,15 +1849,15 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		if (repNeighbors == null) {
 			repNeighbors = new JCheckBox();
 			repNeighbors.setText("local on");
-			repNeighbors.setSelected(app.isRepN());
+			repNeighbors.setSelected(app.p.isRepN());
 			repNeighbors.setMargin(new java.awt.Insets(0,0,0,0));
 			repNeighbors.setContentAreaFilled(false);
 			repNeighbors.setFont(new java.awt.Font("Dialog",0,10));
 			repNeighbors.setBounds(61, 119, 59, 17);
 			repNeighbors.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setRepN(!app.isRepN());
-					repNeighbors.setSelected(app.isRepN());
+					app.p.setRepN(!app.p.isRepN());
+					repNeighbors.setSelected(app.p.isRepN());
 				}
 			});
 		}
@@ -1987,7 +1987,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			searchsteps.addChangeListener(new ChangeListener(){
 
 				public void stateChanged(ChangeEvent e) {
-					app.setDepth((Integer)searchsteps.getModel().getValue());
+					app.p.setDepth((Integer)searchsteps.getModel().getValue());
 				}
 
 			});
@@ -2249,17 +2249,15 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			simButton18.setVisible(false);
 			simButton18.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					boolean calc = app.calculate;
-					boolean rnd = ;
-					app.calculate = false;
-					 = false;
+					boolean calc = app.p.calculate;
+					app.p.calculate = false;
+					 
 					int returnVal = saveFile.showSaveDialog(saveFile);
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
 						if (!filename.endsWith(".tga")) filename+=".tga";
-						app.calculate=calc;
-						=rnd;
-						app.screenshot(app.shotres, app.shotres, filename);
+						app.p.calculate=calc;
+						app.screenshot(app.p.shotres, app.p.shotres, filename);
 					}
 				}
 			});
@@ -2442,7 +2440,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			sizeSlider.setBounds(1, 70, 140, 16);
 			sizeSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setSize((float)sizeSlider.getValue());
+					app.p.setSize((float)sizeSlider.getValue());
 				}
 			});
 		}
@@ -2483,7 +2481,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			strengthSlider.setBounds(0, 217, 151, 16);
 			strengthSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setStrength((float)strengthSlider.getValue()/100f);
+					app.p.setStrength((float)strengthSlider.getValue()/100f);
 				}
 			});
 		}
@@ -2501,7 +2499,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			stretchSlider.setBounds(0, 21, 151, 16);
 			stretchSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setPermInflate(stretchSlider.getValue()/100f); //  Auto-generated Event stub stateChanged()
+					app.p.setPermInflate(stretchSlider.getValue()/100f); //  Auto-generated Event stub stateChanged()
 				}
 			});
 		}
@@ -2537,7 +2535,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			tiltBox.setBounds(58, 226, 50, 14);
 			tiltBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setTilt(tiltBox.isSelected());
+					app.p.setTilt(tiltBox.isSelected());
 				}
 			});
 		}
@@ -2548,14 +2546,14 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		if (timeBox == null) {
 			timeBox = new JCheckBox();
 			timeBox.setText("timeline");
-			timeBox.setSelected(app.isTime());
+			timeBox.setSelected(app.p.isTime());
 			timeBox.setMargin(new java.awt.Insets(0,0,0,0));
 			timeBox.setContentAreaFilled(false);
 			timeBox.setFont(new java.awt.Font("Dialog",0,10));
 			timeBox.setBounds(61, 41, 61, 17);
 			timeBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.setTime(timeBox.isSelected());
+					app.p.setTime(timeBox.isSelected());
 				}
 			});
 		}
@@ -2566,7 +2564,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		if (treeBox == null) {
 			treeBox = new JCheckBox();
 			treeBox.setText("radial");
-			treeBox.setSelected(app.isTree());
+			treeBox.setSelected(app.p.isTree());
 			treeBox.setMargin(new java.awt.Insets(0,0,0,0));
 			treeBox.setContentAreaFilled(false);
 			treeBox.setFont(new java.awt.Font("Dialog",0,10));
@@ -2598,7 +2596,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			valenzSlider.setBounds(0, 201, 151, 16);
 			valenzSlider.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
-					app.setVal((float)valenzSlider.getValue()/100f);
+					app.p.setVal((float)valenzSlider.getValue()/100f);
 				}
 			});
 		}
@@ -2657,11 +2655,11 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	 * initialize values of the checkboxes
 	 */
 	private void initCheckboxes() {
-		tiltBox.setSelected(app.isTilt());
+		tiltBox.setSelected(app.p.isTilt());
 		draw3d.setSelected(!app.p.get3D());
-		radLabels.setSelected(app.isLabelsEdgeDir());
-		fadeLabels.setSelected(!app.fadeLabels);
-		clusters.setSelected(app.isCluster());
+		radLabels.setSelected(app.p.isLabelsEdgeDir());
+		fadeLabels.setSelected(!app.p.fadeLabels);
+		clusters.setSelected(app.p.isCluster());
 		/*		repellBox1.setSelected(app.repell);
 		repNeighbors.setSelected(app.isRepN());
 		treeBox.setSelected(app.isTree());
@@ -2783,24 +2781,21 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		mainWindow.setResizable(true);
 		mainWindow.setVisible(true);
 		mainWindow.validate();
-		if (app.isExhibitionMode()) {
+		if (app.p.isExhibitionMode()) {
 			GraphicsDevice device = getDevice();
 			device.setFullScreenWindow(null);
 		}
 	}
 	private void loadNetwork() {
-		boolean calc = app.calculate;
-		boolean rnd = ;
-		app.calculate = false;
-		 = false;
+		boolean calc = app.p.calculate;
+		app.p.calculate = false;
 
 		openFile.resetChoosableFileFilters();
 		openFile.addChoosableFileFilter(new SemaTableFilter());
 		openFile.addChoosableFileFilter(new SemaInlineFilter());
 
 		int returnVal = openFile.showOpenDialog(openFile);
-		app.calculate=calc;
-		=rnd;
+		app.p.calculate=calc;
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File filename =openFile.getSelectedFile();
@@ -2814,10 +2809,8 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		}
 	}
 	private void loadNodeAttributes() {
-		boolean calc = app.calculate;
-		boolean rnd = ;
-		app.calculate = false;
-		 = false;
+		boolean calc = app.p.calculate;
+		app.p.calculate = false;
 
 		openFile.resetChoosableFileFilters();
 		openFile.addChoosableFileFilter(new SemaTableFilter());
@@ -2833,8 +2826,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 				}
 
 			setCounter();
-			app.calculate=calc;
-			=rnd;
+			app.p.calculate=calc;
 		}
 	}
 
@@ -2862,17 +2854,14 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		getMainWindow().setTitle(title);
 	}
 	private void setImageDir() {
-		boolean calc = app.calculate;
-		boolean rnd = ;
-		app.calculate = false;
-		 = false;
+		boolean calc = app.p.calculate;
+		app.p.calculate = false;
 		int returnVal = openPicDir.showOpenDialog(openPicDir);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			app.setTexFolder(openPicDir.getSelectedFile().getAbsolutePath()+"/");
+			app.p.setTexFolder(openPicDir.getSelectedFile().getAbsolutePath()+"/");
 			app.fileIO.loadTextures(app.p.getTexfolder(), app.ns.view);
 		}
-		app.calculate=calc;
-		=rnd;
+		app.p.calculate=calc;
 	}
 	public void setMsg(String msg){
 		getJTextFieldMsg().setText(msg);
@@ -2886,7 +2875,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		app.clearFrames(app.ns.global);
 		if (searchTerm.getText().length()>0) {
 			app.findSubstringAttributes(searchTerm.getText(), app.p.getAttribute());
-			if (app.isExhibitionMode()) {
+			if (app.p.isExhibitionMode()) {
 				fade(true);
 			}
 		} else

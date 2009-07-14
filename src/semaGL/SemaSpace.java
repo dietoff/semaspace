@@ -97,10 +97,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean inflate= false;
 	private boolean changed=false;
 	private boolean pressed=false;
-	private String path="";
 
 	public SemaSpace(){
-		p = new SemaParameters(this, "messages.properties");
+		p = new SemaParameters(this);
+		p.loadSemaParametersJar("messages.properties");
 		fileIO = new FileIO(p);
 		ns = (new NetStack(p));
 		layout = new Layouter(p);
@@ -213,10 +213,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		for (Edge e:ns.getView().nEdges){
 			e.setFrame(false);
 		}
-	}
-
-	public void clearNets() {
-		ns.clear();
 	}
 
 	void clearPick() {
@@ -374,18 +370,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		fireSemaEvent(semaEventCode).setContent(msg);
 	}
 
-
-
-	public float getDistance() {
-		return p.getStandardNodeDistance();
-	}
-
-
-	public float getPermInflate() {
-		return p.getPerminflate();
-	}
-
-
 	public Node getPicked() {
 		Node picked = null;
 		if (p.pickID!=-1) {
@@ -404,22 +388,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		return result;
 	}
 
-
-	public float getRepell() {
-		return  p.getRepellDist();
-	}
-
-
-	public float getSize() {
-		return p.getNodeSize();
-	}
-
-
 	public float getSquareness() {
 		return Math.max(h, 1f/h);
 	}
-
-
 
 	public void inflate() {
 		Net view = ns.getView();
@@ -464,6 +435,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			break;
 		}
 	}
+
 	public void keyReleased(KeyEvent evt) {
 		CTRL = evt.isControlDown();
 		SHIFT = evt.isShiftDown();
@@ -510,6 +482,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			break;
 		}
 	}
+
 	public void keyTyped(KeyEvent evt) {
 	}
 
@@ -548,10 +521,13 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 				if (p.layout2d) layout.layoutFlat();
 
 				float inf = p.getInflatetime()-elapsedtime;
-				if (inf>0) resetCam();
+				if (inf>0) {
+					resetCam();
+				}
 			}
 		}
 	}
+
 	public void layoutBox() {
 		layout.layoutBox(ns.getView().fNodes);
 		p.calculate = false;
@@ -759,6 +735,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		ns.global.altNameByAttribute(attribute);
 		return attribute;
 	}
+
 	public void netExpandAll() {
 		netExpandNodes(ns.getView().nNodes);
 	}
@@ -800,7 +777,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void netLoad() {
-		clearNets();
+		ns.clear();
 		switch (p.loadMethod) {
 		case 0:
 			loadNetwork(new File(p.getFilename()), p.isTabular());
@@ -812,7 +789,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			loadNetworkJar(p.getFilename(), p.isTabular());
 			break;
 		} 
-		netStartRandom(false);
+		if (p.isStartWhole()) netShowAll(); else
+			netStartRandom(false);
 	}
 
 	public void netRemoveClusters() {
@@ -971,6 +949,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (!p.isTextures()) return;
 		fileIO.loadTexturesUrl(p.getTexfolder(), ns.getView(), p.getThumbsize());
 	}
+
 	public void removeNet(String net) {
 		ns.removeSubnet(net);
 		updateUI();
@@ -1051,7 +1030,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	@SuppressWarnings("unchecked")
-	public void saveNet() {
+	public void storeNet() {
 		ns.addSubnet((HashSet<Edge>) ns.getView().nEdges.clone());
 		updateUI();
 	}
@@ -1138,15 +1117,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			}
 		}
 		return overID;
-	}
-
-
-	public void setDistance(float f) {
-		p.setStandardNodeDistance(f);
-	}
-
-	public void setPermInflate(float f) {
-		p.setPerminflate(f);
 	}
 
 
