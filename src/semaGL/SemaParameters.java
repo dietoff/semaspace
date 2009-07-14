@@ -75,7 +75,7 @@ public class SemaParameters {
 	float maxLabelRenderDistance;
 	public int shotres;
 	public boolean fullscreen;
-	boolean textureFont;
+	boolean textureFont=false;
 	private float labelsize;
 	private float labelVar;
 	private boolean inheritEdgeColorFromNodes;
@@ -120,8 +120,6 @@ public class SemaParameters {
 		Properties props = new Properties();
 		try {
 			FileInputStream fi = new FileInputStream(file);
-			URL tst = new URL("messages.properties");
-			InputStream str = tst.openStream();
 			props.load(fi);
 			loadParams(props);
 		} catch (IOException e) {

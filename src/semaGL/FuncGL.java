@@ -105,7 +105,10 @@ public class FuncGL {
 			
 			gl.glLineWidth(0.5f);
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
-			if (p.getApp().outlinefont!=null) p.getApp().outlinefont.render(lines[i]);
+//			gl.glColor4f(0,0,0,1);
+			if (p.getApp().outlinefont!=null) {
+				p.getApp().outlinefont.render(lines[i]);
+			}
 			gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
 			p.getApp().hiQfont.render(lines[i]);
 			gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
