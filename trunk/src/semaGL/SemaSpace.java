@@ -146,9 +146,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	private void initFonts() {
-
 		/*
 		try {
+//			InputStream is = getClass().getClassLoader().getResourceAsStream("machtgth.ttf");
 			InputStream is = getClass().getClassLoader().getResourceAsStream("Tall Films Expanded.ttf");
 			font = Font.createFont(Font.TRUETYPE_FONT, is);
 
@@ -159,7 +159,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		}*/
-
 
 		font = Font.decode(p.getFontFam()).deriveFont(1f); //$NON-NLS-1$
 		FontRenderContext context = FTFont.STANDARDCONTEXT;
