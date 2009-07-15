@@ -100,7 +100,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public SemaSpace(){
 		p = new SemaParameters(this);
-		p.loadSemaParametersJar("messages.properties");
+		p.loadSemaParametersJar("sema.config");
 		fileIO = new FileIO(p);
 		ns = (new NetStack(p));
 		layout = new Layouter(p);
