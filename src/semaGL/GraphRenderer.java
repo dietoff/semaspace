@@ -348,7 +348,7 @@ public class GraphRenderer {
 				D.sub(center.pos); 
 				D.mult(-1);
 				gl.glColor4fv(col, 0);
-				FuncGL.symArrowHead2(gl, bref.size()*1.5f, center.pos, D);
+				FuncGL.groupArrow(gl, bref.size()*1.5f, center.pos, D);
 //				gl.glLineWidth(5);
 //				FuncGL.drawLine(gl, center.pos, bref.pos, white, col);
 			}

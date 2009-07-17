@@ -133,10 +133,20 @@ public class GraphRendererSVG {
 				Net group1 = net.groups.get(m);
 				n = group1.hasNode(m);
 				float[] c = GraphElement.colorFunction(n.name);
-				g2d.setPaint(new Color (c[0],c[1],c[2],c[3]));
+				g2d.setPaint(new Color(c[0],c[1],c[2],c[3]));
 				g2d.translate(n.pos.x, n.pos.y);
 				g2d.drawString(n.getName(), 0, 0);
 				g2d.setTransform(t);
+				Vector3D D;
+				for (Node bref : group1.nNodes){
+					if (bref!=n){
+						D = bref.pos.copy();
+						D.sub(n.pos); 
+						D.mult(-1);
+						g2d.setPaint(new Color(c[0],c[1],c[2],0.1f));
+						groupArrow(g2d, bref.size()*1.5f, n.pos, D);
+					}
+				}
 			}
 		}
 
@@ -169,6 +179,9 @@ public class GraphRendererSVG {
 			if (a.getPickColor()[3]>0||b.getPickColor()[3]>0)
 				g2d.setPaint(new Color(a.pickColor[0],a.pickColor[1],a.pickColor[2],1));
 			g2d.drawLine((int)start.x,(int)start.y,(int)end.x,(int)end.y);
+			if (app.directed){
+				arrowHeadEmpty(g2d, 20, end, DN);
+			};
 		}
 
 		// clusters
@@ -321,6 +334,30 @@ public class GraphRendererSVG {
 		}
 	}
 
+	static void arrowHeadEmpty(Graphics2D g2d, float size, Vector3D pos, Vector3D dir) {
+		Vector3D v1 = new Vector3D(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
+		Vector3D v2 = new Vector3D(pos.x-size*dir.x+size*0.3f*dir.y,pos.y-size*dir.y-size*0.3f*dir.x,pos.z-size*dir.z);
+		Vector3D v3 = new Vector3D(pos.x,pos.y,pos.z);
+		Polygon arrow = new Polygon();
+		arrow.addPoint((int)v1.x, (int)v1.y);
+		arrow.addPoint((int)v2.x, (int)v2.y);
+		arrow.addPoint((int)v3.x, (int)v3.y);
+		g2d.fillPolygon(arrow);
+	}
+
+	static void groupArrow(Graphics2D g2d, float size, Vector3D pos, Vector3D dir) {
+		Vector3D dn = dir.copy();
+		dn.normalize();
+		Vector3D v1 = new Vector3D(pos.x-dir.x-size*dn.y,pos.y-dir.y+size*dn.x,pos.z-dir.z);
+		Vector3D v2 = new Vector3D(pos.x-dir.x+size*dn.y,pos.y-dir.y-size*dn.x,pos.z-dir.z);
+		//white
+		Vector3D v3 = new Vector3D(pos.x,pos.y,pos.z);
+		Polygon arrow = new Polygon();
+		arrow.addPoint((int)v1.x, (int)v1.y);
+		arrow.addPoint((int)v2.x, (int)v2.y);
+		arrow.addPoint((int)v3.x, (int)v3.y);
+		g2d.fillPolygon(arrow);
+	}
 
 	private void alignLabel(Graphics2D g2d, Vector3D n, float margin, TextLayout tl) {
 		float angle = (float) (Math.atan(n.y/n.x));
