@@ -9,7 +9,7 @@ public class SVGFilter extends FileFilter {
 
 	@Override
 	public boolean accept(File f) {
-		return f.toString().endsWith(".svg");
+		return true;
 	}
 
 	@Override

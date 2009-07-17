@@ -78,7 +78,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public boolean moved=false;
 	public Layouter layout;
 	public GraphRenderer renderer;
-	private String attribute="none"; //$NON-NLS-1$
 	public Graphics2D j2d;
 	private boolean timeline;
 	private Font font;
@@ -267,7 +266,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		Net view = ns.getView();
 
 		for (Node n:view.nNodes) {
-			if (n.hasAttribute(attribute)) ne.add(n);
+			if (n.hasAttribute(p.getAttribute())) ne.add(n);
 		}
 		if (p.directed) {
 			for (Node n:ne) {
@@ -731,6 +730,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	private String nameCurrentAttribute() {
+		String attribute = p.getAttribute();
 		ns.global.altNameByAttribute(attribute);
 		return attribute;
 	}
@@ -788,7 +788,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			loadNetworkJar(p.getFilename(), p.isTabular());
 			break;
 		} 
-		if (p.isStartWhole()) netShowAll(); else
+		if (p.isStartWhole()) {
+			netShowAll();
+			p.setStartWhole(false);
+		} else
 			netStartRandom(false);
 	}
 
@@ -853,12 +856,12 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	 * generate view from whole network
 	 */
 	public void netShowAll(){
-		if (attribute == "none") { //$NON-NLS-1$
+		if (p.getAttribute() == "none") { //$NON-NLS-1$
 			ns.setView(ns.global.clone());}
 		else {
 			ns.setView(new Net(p));
 			for (Node n:ns.global.nNodes) {
-				if (n.hasAttribute(attribute)) {
+				if (n.hasAttribute(p.getAttribute())) {
 					ns.getView().addNode(n);
 				}
 			}
@@ -893,10 +896,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	 */
 	public void netStartRandom(boolean add) {
 		Net net;
-		if (attribute!="none") { //$NON-NLS-1$
+		if (p.getAttribute()!="none") { //$NON-NLS-1$
 			HashSet<Node> hs = new HashSet<Node>();
 			for (Node n:ns.global.nNodes) {
-				if (n.hasAttribute(attribute)) hs.add(n);
+				if (n.hasAttribute(p.getAttribute())) hs.add(n);
 			}
 			if (hs.size()==0) return;
 			int ID = (int)(Math.random()*hs.size());
@@ -992,13 +995,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void renderPbuffer(GL gl, int width, int height) {
 		if (height <= 0) height = 1;
-
 		initGLsettings(gl);
 		reloadTextures();
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glLoadIdentity();
 		glu.gluPerspective(p.FOV, 1, p.znear, p.zfar);
+		boolean r = p.render;
+		p.render=true;
 		render(gl);
+		p.render= r;
 	}
 
 	public void resetCam() {
@@ -1036,8 +1041,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void screenshot (int width, int height, String filename2) {
 		if (!GLDrawableFactory.getFactory().canCreateGLPbuffer()) return;
-		boolean f = p.layout2d;
-		p.layout2d = false;
+//		boolean f = p.layout2d;
+//		p.layout2d = false;
 
 		GLCapabilities caps = new GLCapabilities();
 		GLPbuffer pbuffer = GLDrawableFactory.getFactory().createGLPbuffer(caps, null, width, height, null);
@@ -1046,7 +1051,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		moved = false;
 
 		updateFonts(gl, new GLU());
-
 		renderPbuffer(gl, width, height);
 
 		try {
@@ -1063,7 +1067,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 		updateFonts(gl, glu);
 
-		p.layout2d = f;
+//		p.layout2d = f;
 	}
 
 	void select(){

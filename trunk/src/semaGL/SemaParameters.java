@@ -151,6 +151,7 @@ public class SemaParameters {
 		}
 		return this;
 	}
+
 	private void loadParams(Properties props) {
 		setStartWhole(Boolean.parseBoolean(props.getProperty("showWholeNetOnStart")));
 		fullscreen = Boolean.parseBoolean(props.getProperty("fullscreen"));

@@ -9,7 +9,7 @@ public class TGAFilter extends FileFilter {
 
 	@Override
 	public boolean accept(File f) {
-		return f.toString().endsWith(".tga");
+		return true;
 	}
 
 	@Override

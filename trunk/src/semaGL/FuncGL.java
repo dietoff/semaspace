@@ -201,7 +201,7 @@ public class FuncGL {
 		gl.glEnd();
 	}
 	
-	static void symArrowHead2(GL gl, float size, Vector3D pos, Vector3D dir) {
+	static void groupArrow(GL gl, float size, Vector3D pos, Vector3D dir) {
 		Vector3D dn = dir.copy();
 		dn.normalize();
 		gl.glBegin(GL.GL_TRIANGLES);

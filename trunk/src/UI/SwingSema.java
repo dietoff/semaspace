@@ -2296,10 +2296,11 @@ public class SwingSema implements SemaListener, KeyListener {
 					} 
 					else 
 					{
-						if (lastImageFilter instanceof SVGFilter) saveFile.addChoosableFileFilter(new TGAFilter());
-						if (lastImageFilter instanceof TGAFilter && app.p.isEnableSvg()) saveFile.addChoosableFileFilter(new SVGFilter());
+						if (!(lastImageFilter instanceof SVGFilter)) saveFile.addChoosableFileFilter(new SVGFilter());
+						if (!(lastImageFilter instanceof TGAFilter && app.p.isEnableSvg())) saveFile.addChoosableFileFilter(new TGAFilter());
 						saveFile.setFileFilter(lastImageFilter);
 					}
+					
 					int returnVal = saveFile.showSaveDialog(saveFile);
 					lastImageFilter = saveFile.getFileFilter();
 					app.p.calculate=calc;
