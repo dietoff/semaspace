@@ -184,8 +184,8 @@ public class GraphRendererSVG {
 				g2d.translate(start.x,	start.y);
 				Vector3D segment = D.copy();
 				segment.mult(0.1f);
-				g2d.setStroke(sngl);
-				for (int i=0; i<9; i++) {
+				g2d.setStroke(dbl);
+				for (int i=0; i<10; i++) {
 					float[] interpolatedColor = Func.interpolateRGB(i/10f, Func.RGBtoHSV(b.pickColor), Func.RGBtoHSV(a.pickColor));
 					Color paint = new Color(interpolatedColor[0],interpolatedColor[1],interpolatedColor[2],interpolatedColor[3]);
 					g2d.setPaint(paint);
@@ -309,7 +309,7 @@ public class GraphRendererSVG {
 
 					if ((n.pickColor[3]>0.2f&&app.fadeLabels)||(n.getColor()[3]>0.2&&!app.fadeLabels)  &&txt.length()>0) {
 						for (int i = 0; i<sp.length; i++){
-							//							for (int i = 0; i<1; i++){
+//														for (int i = 0; i<1; i++){
 							g2d.translate((int)(n.pos.x), (int)(n.pos.y));
 							if (!app.isTree()&&!app.labelsEdgeDir) {
 								g2d.translate((int)(size/2),-(int)(size/2));
@@ -326,11 +326,11 @@ public class GraphRendererSVG {
 							if (app.isTree()&&app.getView().distances.getNodeDistance(n)>0) alignLabel(g2d, n.pos, n.size(), tl);
 							else
 								if (app.labelsEdgeDir&&!app.isTilt()){
-									if (n.adList.size()==1) {
+									if (n.adList.size()==1&&n.inList.size()==0) {
 										Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
 										alignLabel(g2d, sub, n.size(), tl);
 									} else
-										if (n.inList.size()==1) {
+										if (n.inList.size()==1&&n.inList.size()==0) {
 											Vector3D sub = Vector3D.sub(n.pos, n.inList.iterator().next().pos);
 											alignLabel(g2d, sub, n.size(), tl);
 										}
@@ -339,7 +339,7 @@ public class GraphRendererSVG {
 											g2d.translate(-advance, -n.size()/2f);
 										}
 								}
-
+							
 							if (font==0) {
 								g2d.setPaint(new Color(1f,1f,1f));
 								g2d.setStroke(five);
