@@ -514,7 +514,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 				layout.layoutGroups(ns.getView());
 
-				if (timeline) layout.layoutTimeline();
+				if (p.isTime()) {
+					layout.layoutTimeline();
+				}
 
 				if (p.layout2d) layout.layoutFlat();
 
@@ -1265,6 +1267,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			String filename = parent+sep+p.getFilename();
 			p.setFilename(filename);
 		}
+		initFonts();
+		updateFonts(this.glD.getGL(), glu);
 		netLoad();
 	}
 
@@ -1288,5 +1292,12 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (!path.endsWith(".sema")) path+=".sema";
 		p.storeSemaParameters(path);
 		ns.exportNet(parent+File.separatorChar+base , true, view);
+	}
+
+	public void setTimeline(boolean selected) {
+//		if (selected!=p.isTime()) {
+//			if (selected) layout.initTimeline();
+			p.setTime(selected);
+//		}
 	}
 }

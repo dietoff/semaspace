@@ -46,9 +46,9 @@ public class Layouter {
 			float grad = n.pickDistance/max;
 			float hue = pickHSV[0]+grad*(nodeHSV[0]-pickHSV[0]);
 			float[] result = new float[3];
-			result = Func.HSVtoRGB(hue,nodeHSV[1],nodeHSV[2]);
+			result = Func.HSVtoRGB(hue,nodeHSV[1],nodeHSV[2],0.8f);
 			//	set the color of the selection frame			
-			float alpha= Math.max(0f,max-n.pickDistance+1); 
+			float alpha= Math.max(0f,Math.min(1,max-n.pickDistance+1)); 
 			result[3]= alpha;
 			n.setPickColor(result);
 
@@ -785,6 +785,10 @@ public class Layouter {
 			}
 		}
 	}
+	
+	public void initTimeline() {
+		
+	}
 
 	public void layoutTimeline() {
 		net.clearClusters();
@@ -793,11 +797,21 @@ public class Layouter {
 		TreeSet<Float> b = new TreeSet<Float>();
 		b.addAll(time);
 		Float midpoint = (b.last()-b.first())/2f+b.first();
-
+		HashMap<Float,Integer> counter = new HashMap<Float,Integer>();
+		
 		for (Node n:net.nNodes) {
-			if (n.getTime()!=null) {
-				n.pos.setX( (n.getTime()-midpoint)*100f);
-				n.pos.y*=.9f;
+			Float t = n.getTime();
+			if (t!=null) {
+				n.pos.setX( (t-midpoint)*100f);
+				if (counter.containsKey(t)) {
+					Integer numOccurancesAtT = counter.get(t);
+					n.pos.y = numOccurancesAtT*app.getNodeSize()*5f;
+					numOccurancesAtT++;
+					counter.put(t, numOccurancesAtT);
+				} else {
+					counter.put(t, 1);
+					n.pos.y=0f;
+				}
 			}
 		}
 	}

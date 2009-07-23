@@ -23,8 +23,18 @@ public class Func {
 	static float[] colorGrad(int level, float[] nodeHSV, float[] pickHSV) {
 		float grad = level/5f;
 		float hue = pickHSV[0]+grad*(nodeHSV[0]-pickHSV[0]);
-		float[] result = HSVtoRGB(hue,nodeHSV[1],nodeHSV[2]);
-		float[] color = {result[0], result[1], result[2],0.8f};
+		float[] result = HSVtoRGB(hue,nodeHSV[1],nodeHSV[2], nodeHSV[3]);
+		float[] color = {result[0], result[1], result[2],result[3]};
+		return color;
+	}
+	
+	static float[] interpolateRGB(float grad, float[] nodeHSV, float[] pickHSV) {
+		float hue = pickHSV[0]+grad*(nodeHSV[0]-pickHSV[0]);
+		float sat = pickHSV[1]+grad*(nodeHSV[1]-pickHSV[1]);
+		float val = pickHSV[2]+grad*(nodeHSV[2]-pickHSV[2]);
+		float alpha = pickHSV[3]+grad*(nodeHSV[3]-pickHSV[3]);
+		float[] result = HSVtoRGB(hue,sat,val, alpha);
+		float[] color = {result[0], result[1], result[2],result[3]};
 		return color;
 	}
 	
@@ -50,7 +60,8 @@ public class Func {
 		float R = col[0];
 		float G = col[1];
 		float B = col[2];
-		float[] HSV = new float[3];
+		float A = col[3];
+		float[] HSV = new float[4];
 		float H = 0, S = 0, V = 0;
 		float cMax = 1f;
 		float cHi = Math.max(R,Math.max(G,B));	// highest color value
@@ -80,11 +91,11 @@ public class Func {
 				hh= hh + 6;
 			H = hh / 6;
 		}
-		HSV[0] = H; HSV[1] = S; HSV[2] = V;
+		HSV[0] = H; HSV[1] = S; HSV[2] = V; HSV[3]=col[3];
 		return HSV;
 	}
 	
-	static float[] HSVtoRGB (float h, float s, float v) {
+	static float[] HSVtoRGB (float h, float s, float v, float a) {
 		// h,s,v in [0,1]
 		float rr = 0, gg = 0, bb = 0;
 		float hh = (6 * h) % 6;                 
@@ -104,7 +115,7 @@ public class Func {
 		float r = rr;
 		float g = gg;
 		float b = bb;
-		float rgb[] = {r,g,b,1};
+		float rgb[] = {r,g,b,a};
 		return rgb;
 	}
 	//generate random number
