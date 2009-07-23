@@ -2592,7 +2592,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			timeBox.setBounds(101, 229, 61, 17);
 			timeBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					app.p.setTime(timeBox.isSelected());
+					app.setTimeline(timeBox.isSelected());
 				}
 			});
 		}
@@ -2826,9 +2826,9 @@ public class SwingSema implements SemaListener, KeyListener {
 
 		openFile.resetChoosableFileFilters();
 		if (fileOpenFilter == null) {
-			openFile.addChoosableFileFilter(new SemaProjectFileFilter());
 			openFile.addChoosableFileFilter(new SemaTableFilter());
 			openFile.addChoosableFileFilter(new SemaInlineFilter());
+			openFile.addChoosableFileFilter(new SemaProjectFileFilter());
 		}
 		else
 		{
