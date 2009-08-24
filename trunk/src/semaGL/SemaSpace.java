@@ -9,28 +9,20 @@ import javax.media.opengl.GLException;
 import javax.media.opengl.GLPbuffer;
 import javax.media.opengl.glu.GLU;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 import java.util.Random;
-
 import javax.swing.SwingUtilities;
-
 
 import nehe.TextureReader.Texture;
 import UI.SemaEvent;
@@ -420,6 +412,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		reloadTextures();
 		updateUI();
 		initInflate();
+		layout.applyPickColors();
 	}
 
 	public void keyPressed(KeyEvent evt) {
@@ -498,9 +491,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			if (p.calculate) {
 				if (p.repNeighbors) layout.layoutRepNeighbors(p.repellStrength/4f, p.getStandardNodeDistance(), ns.getView());
 
-
 				if (inflate) inflate();
-
 
 				if (p.getPerminflate()>0) layout.layoutInflate(p.getPerminflate()*100f, ns.getView());
 
@@ -521,7 +512,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 				if (p.layout2d) layout.layoutFlat();
 
 				float inf = p.getInflatetime()-elapsedtime;
-				if (inf>0) {
+				if (inf>-500) {
 					resetCam();
 				}
 			}
@@ -794,7 +785,13 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			netShowAll();
 			p.setStartWhole(false);
 		} else
-			netStartRandom(false);
+			if (p.pickID!=-1) {
+				Node n = getPicked();
+				netStartNode(n, false);
+				initNet();
+			} else {
+				netStartRandom(false);
+			}
 	}
 
 	public void netRemoveClusters() {
@@ -1043,8 +1040,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void screenshot (int width, int height, String filename2) {
 		if (!GLDrawableFactory.getFactory().canCreateGLPbuffer()) return;
-//		boolean f = p.layout2d;
-//		p.layout2d = false;
+		//		boolean f = p.layout2d;
+		//		p.layout2d = false;
 
 		GLCapabilities caps = new GLCapabilities();
 		GLPbuffer pbuffer = GLDrawableFactory.getFactory().createGLPbuffer(caps, null, width, height, null);
@@ -1069,7 +1066,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 		updateFonts(gl, glu);
 
-//		p.layout2d = f;
+		//		p.layout2d = f;
 	}
 
 	void select(){
@@ -1295,9 +1292,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void setTimeline(boolean selected) {
-//		if (selected!=p.isTime()) {
-//			if (selected) layout.initTimeline();
-			p.setTime(selected);
-//		}
+		//		if (selected!=p.isTime()) {
+		//			if (selected) layout.initTimeline();
+		p.setTime(selected);
+		//		}
 	}
 }

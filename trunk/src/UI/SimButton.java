@@ -30,7 +30,7 @@ public class SimButton extends JButton {
 
 		borderC = new ColorUIResource(148, 148, 148);
 		rolloverC = new ColorUIResource(255, 110, 90);
-		backgC = new ColorUIResource(200, 200, 200);
+		backgC = new ColorUIResource(220, 220, 220);
 		
 //		borderC = MetalLookAndFeel.getCurrentTheme().getControlDarkShadow();
 //		rolloverC = new ColorUIResource(255, 170, 90);
@@ -40,7 +40,7 @@ public class SimButton extends JButton {
 		
 		setMargin(new Insets(2,2,2,2));
 //		this.setBorder(new LineBorder(borderC, 1, false));
-		this.setBorder(null);
+//		this.setBorder(null);
 		this.setFont(new java.awt.Font("Dialog",0,10));
 //		this.setVerticalAlignment(SwingConstants.TOP);
 		this.setHorizontalAlignment(SwingConstants.LEFT);

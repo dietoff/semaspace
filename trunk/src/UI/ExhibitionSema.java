@@ -255,7 +255,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	private DefaultTableModel RoleModel;
 
 	{
-		fullscreen = Boolean.parseBoolean(Messages.getString("fullscreen"));
+		
 		//Set Look & Feel
 		try {
 			//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
@@ -1418,6 +1418,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			mainWindow.setSize(1000,600);
 			mainWindow.setContentPane(getJSplitPane());
 			initFileChoosers();
+			fullscreen = app.p.fullscreen;
 			if (fullscreen) enterFullscreen(); 
 			mainWindow.addKeyListener(this);
 		}

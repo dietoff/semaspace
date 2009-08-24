@@ -27,6 +27,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.*;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -1984,8 +1985,19 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JTextField getSearchTerm() {
 		if (searchTerm == null) {
 			searchTerm = new JTextField();
-			searchTerm.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+//			searchTerm.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+			searchTerm.setBorder(BorderFactory.createLineBorder(new Color(150,150,150)));
 			searchTerm.setBounds(2, 19, 116, 15);
+			
+			searchTerm.addMouseListener(new MouseAdapter() {
+				public void mouseExited(MouseEvent evt) {
+					searchTerm.setBackground(new Color(255,255,255));
+				}
+				public void mouseEntered(MouseEvent evt) {
+					searchTerm.setBackground(new Color(255,110,90));
+				}
+			});
+			
 			searchTerm.addKeyListener(new KeyAdapter() {
 				public void keyReleased(java.awt.event.KeyEvent e) {
 					if (e.getKeyCode()==10) {
