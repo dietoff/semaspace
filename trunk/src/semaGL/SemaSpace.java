@@ -71,7 +71,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public Layouter layout;
 	public GraphRenderer renderer;
 	public Graphics2D j2d;
-	private boolean timeline;
 	private Font font;
 	FTFont outlinefont;
 	FTFont hiQfont;
@@ -511,11 +510,11 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 				if (p.layout2d) layout.layoutFlat();
 
-				float inf = p.getInflatetime()-elapsedtime;
-				if (inf>-500) {
-					resetCam();
-				}
 			}
+		}
+		float inf = p.getInflatetime()-elapsedtime;
+		if (inf>-500) {
+			resetCam();
 		}
 	}
 
@@ -1146,19 +1145,45 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void setTree(boolean selected) {
-		if (!p.tree&&selected) initTree = true;
-		p.tree = selected;
+		if (p.tree==selected) return;
+
+		if (p.tree&&!selected) {
+
+			if (p.isCluster()){
+				ns.getView().findClusters();
+				layout.clustersSetup(glD.getGL());
+				updatePick();
+			}
+		}
+
+		if (!p.tree&&selected) {
+			p.tree = selected;
+			initTree = true;
+			HashSet<Node> set = ns.getView().distances.getNodesAtDistance(0);
+			if (set != null) ns.getView().clearClusters(); 
+			else return;
+		}
+
+		p.tree=selected;
+		fireSemaEvent(SemaEvent.UpdateUI);
+		initInflate();
+		return;
+		/*
+
 		HashSet<Node> set = ns.getView().distances.getNodesAtDistance(0);
-		if (p.tree&&set != null) ns.getView().clearClusters();
+		if (selected&&set != null) ns.getView().clearClusters();
 		else {
 			ns.getView().findClusters();
 			layout.clustersSetup(glD.getGL());
 			updatePick();
-			if (p.tree) {
+			if (selected) {
 				p.tree=false;
 				fireSemaEvent(SemaEvent.UpdateUI);
 			}
 		}
+		if (p.tree!=selected) initInflate();
+		p.tree = selected;
+		 */
 	}
 
 	public void setView(String net) {
