@@ -572,7 +572,7 @@ public class Layouter {
 		}
 	}
 	public void layoutTree(boolean radial) {
-		app.setCluster(false);
+//		app.setCluster(false);
 		int i=0;
 		int total = 0;
 
