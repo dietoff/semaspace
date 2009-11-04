@@ -446,8 +446,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			System.out.println("inflate = true"); //$NON-NLS-1$
 			break;
 		case KeyEvent.VK_F3:
-			SVGrenderer.circles=!SVGrenderer.circles;
-			System.out.println("SVG circles = "+SVGrenderer.circles);
+//			SVGrenderer.circles=!SVGrenderer.circles;
+//			System.out.println("SVG circles = "+SVGrenderer.circles);
 			break;
 		case KeyEvent.VK_F4: 
 			layout.layoutLocksRemove();
