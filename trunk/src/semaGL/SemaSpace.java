@@ -15,6 +15,9 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -23,6 +26,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import javax.swing.SwingUtilities;
+
+import sun.nio.cs.ext.ISCII91;
 
 import nehe.TextureReader.Texture;
 import UI.SemaEvent;
@@ -88,9 +93,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean changed=false;
 	private boolean pressed=false;
 
-	public SemaSpace(){
+	public SemaSpace(String string){
 		p = new SemaParameters(this);
-		p.loadSemaParametersJar("sema.config");
+		p.loadSemaParametersJar(string);
 		fileIO = new FileIO(p);
 		ns = (new NetStack(p));
 		layout = new Layouter(p);
@@ -190,8 +195,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void camOnSelected() {
 		zInc = 300;
 		zoomNew = zInc;
-		Node picked = getPicked();
-		if (picked != null) focus.setXYZ(picked.pos.copy()); else focus.setXYZ(0,0,0);
+		GraphElement picked = getPicked();
+		if (picked != null) focus.setXYZ(picked.getPos().copy()); else focus.setXYZ(0,0,0);
 		cam.posAbsolute(glD,0f,0f,zInc,focus);
 	}
 
@@ -359,10 +364,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		fireSemaEvent(semaEventCode).setContent(msg);
 	}
 
-	public Node getPicked() {
-		Node picked = null;
+	public GraphElement getPicked() {
+		GraphElement picked = null;
 		if (p.pickID!=-1) {
-			picked = ns.global.getNodeByID(p.pickID);
+			picked = ns.global.getByID(p.pickID);
 		}
 		return picked;
 	}
@@ -436,6 +441,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			ns.view.updateNet();
 			break;
 		case KeyEvent.VK_SPACE:
+//			browserCall(); 
 			break;
 		case KeyEvent.VK_F1:
 			String name = nameCurrentAttribute();
@@ -445,31 +451,45 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			inflate=true;
 			System.out.println("inflate = true"); //$NON-NLS-1$
 			break;
-		case KeyEvent.VK_F3:
-//			SVGrenderer.circles=!SVGrenderer.circles;
-//			System.out.println("SVG circles = "+SVGrenderer.circles);
-			break;
 		case KeyEvent.VK_F4: 
 			layout.layoutLocksRemove();
-			break;
-		case KeyEvent.VK_F5: 
-			break;
-		case KeyEvent.VK_F6:
-			break;
-		case KeyEvent.VK_F7:
-			break;
-		case KeyEvent.VK_F8: 
-			break;
-		case KeyEvent.VK_F9: 
 			break;
 		case KeyEvent.VK_ENTER:
 			if (evt.isAltDown()) fireSemaEvent(SemaEvent.EnterFullscreen);
 			break;
-		case KeyEvent.VK_F11: 
-			break;
 		case KeyEvent.VK_ESCAPE:
 			fireSemaEvent(SemaEvent.LeaveFullscreen);
 			break;
+		}
+	}
+
+	public void browserCall() {
+		try {
+			GraphElement picked = getPicked();
+			if (!(picked instanceof Node)&&!(picked instanceof Edge)) return;
+			String query ="";
+			String eVal = "";
+			String aVal = "";
+			String bVal = "";
+			if (picked instanceof Node) {
+				Node a = (Node)picked;
+				if (a.hasAttribute("type")) aVal = "type1="+a.getAttribute("type")+"&value1="+a.getAttribute("id");;
+				query = aVal;
+			} 
+			if (picked instanceof Edge) {
+				Node a = ((Edge)picked).getA();
+				Node b = ((Edge)picked).getB();
+				if (picked.hasAttribute("role")) eVal = "type2=content_role&value2="+picked.getAttribute("role");
+				if (a.hasAttribute("type")) aVal = "type1="+a.getAttribute("type")+"&value1="+a.getAttribute("id");
+				if (b.hasAttribute("type")) bVal = "type3="+b.getAttribute("type")+"&value3="+b.getAttribute("id");
+				query = aVal+"&"+eVal+"&"+bVal;
+			} 
+			String rep = query.replaceAll(" ", "+");//.replaceAll("[\\s| ]", "+");
+			java.awt.Desktop.getDesktop().browse(new URI("http://143.50.30.21/vis/semaspace.php?"+rep));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
 		}
 	}
 
@@ -662,11 +682,11 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			float localX = cam.getX()+dragX*screenfactor;
 			float localY = cam.getY()-dragY*screenfactor;
 
-			picked.pos.x = (float)Math.cos(cam.getYRot()*TWO_PI/360)*localX;
-			picked.pos.y = (float)Math.cos(cam.getXRot()*TWO_PI/360)*localY;
-			picked.pos.z = (float)Math.sin(cam.getXRot()*TWO_PI/360)*localY-(float)Math.sin(cam.getYRot()*TWO_PI/360)*localX+cam.getZ();
+			picked.getPos().x = (float)Math.cos(cam.getYRot()*TWO_PI/360)*localX;
+			picked.getPos().y = (float)Math.cos(cam.getXRot()*TWO_PI/360)*localY;
+			picked.getPos().z = (float)Math.sin(cam.getXRot()*TWO_PI/360)*localY-(float)Math.sin(cam.getYRot()*TWO_PI/360)*localX+cam.getZ();
 
-			if (!evt.isAltDown()) picked.lock(picked.pos);
+			if (!evt.isAltDown()) picked.lock(picked.getPos());
 			else picked.setLocked(false);
 		}
 
@@ -785,7 +805,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			p.setStartWhole(false);
 		} else
 			if (p.pickID!=-1) {
-				Node n = getPicked();
+				Node n = (Node) getPicked();
 				netStartNode(n, false);
 				initNet();
 			} else {
@@ -807,7 +827,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	 * @param add - add to existing view
 	 */
 	public void netSearchPicked(boolean add) {
-		Node picked = getPicked();
+		Node picked = (Node)getPicked();
 		if (picked!=null) {
 			netStartString(picked.name, add);
 		}

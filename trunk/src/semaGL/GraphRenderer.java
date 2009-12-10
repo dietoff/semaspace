@@ -75,7 +75,7 @@ public class GraphRenderer {
 	 */
 	private boolean outsideView(Node n) {
 		Vector3D p = par.getCam().getFocalPoint();
-		float d = Vector3D.distance(n.pos, p);
+		float d = Vector3D.distance(n.getPos(), p);
 		//		float d = pos.magnitude();
 		if (d>par.getCam().getDist()*par.getSquareness()) return true; else return false;
 	}
@@ -129,11 +129,11 @@ public class GraphRenderer {
 		if (e.alpha<0.2) return;
 		
 		if ((e.isPicked()||e.rollover)&&font==3) font=2;
-		Vector3D dir = b.pos.copy();
-		dir.sub(a.pos); //direction of the edge
+		Vector3D dir = b.getPos().copy();
+		dir.sub(a.getPos()); //direction of the edge
 		Vector3D midP = dir.copy();
 		midP.mult(0.5f);
-		midP.add(a.pos);
+		midP.add(a.getPos());
 		float distToCam = par.getCam().distToCam(midP);
 		if (distToCam>par.maxLabelRenderDistance) return; 
 
@@ -173,12 +173,12 @@ public class GraphRenderer {
 		float af = a.size(); //length of "arrowheads"
 		float bf = b.size();
 
-		Vector3D D = Vector3D.sub(b.pos, a.pos);
+		Vector3D D = Vector3D.sub(b.getPos(), a.getPos());
 		Vector3D DN= D.copy();
 		DN.normalize();
 
-		Vector3D start = a.pos.copy();
-		Vector3D end = b.pos.copy();
+		Vector3D start = a.getPos().copy();
+		Vector3D end = b.getPos().copy();
 		start.add(Vector3D.mult(DN, af));
 		end.sub(Vector3D.mult(DN, bf));
 
@@ -275,15 +275,15 @@ public class GraphRenderer {
 		gl.glPushMatrix();
 		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
 		gl.glBegin(GL.GL_TRIANGLE_FAN);
-		gl.glVertex3f(center.pos.x, center.pos.y, center.pos.z);
+		gl.glVertex3f(center.getPos().x, center.getPos().y, center.getPos().z);
 		for (Node bref : nodes){
 			if (bref != center) {
 				if (jcount==0) tmp=bref;
-				gl.glVertex3f(bref.pos.x, bref.pos.y, bref.pos.z);
+				gl.glVertex3f(bref.getPos().x, bref.getPos().y, bref.getPos().z);
 				jcount++;
 			}
 		}
-		gl.glVertex3f(tmp.pos.x, tmp.pos.y, tmp.pos.z);
+		gl.glVertex3f(tmp.getPos().x, tmp.getPos().y, tmp.getPos().z);
 		gl.glEnd();
 		gl.glPopMatrix();
 	}
@@ -302,7 +302,7 @@ public class GraphRenderer {
 
 		if (par.layout2d&&outsideView(n)) return;
 
-		float distToCam = par.getCam().distToCam(n.pos);
+		float distToCam = par.getCam().distToCam(n.getPos());
 		//		float[] textcolor = {n.color[0]/2f, n.color[1]/2f, n.color[2]/2f, 1};
 		float[] textcolor = GraphElement.colorFunction(n.name);
 		n.textColor[3]=1;
@@ -310,7 +310,7 @@ public class GraphRenderer {
 		//transform model
 		float xRot = par.getCam().getYRot();		//should be global camera orientation
 		float yRot = par.getCam().getXRot();
-		gl.glTranslatef(n.pos.x, n.pos.y, n.pos.z);
+		gl.glTranslatef(n.getPos().x, n.getPos().y, n.getPos().z);
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
 		if (font<2&&par.isTilt()) gl.glRotatef(25, 0, 0, 1);
@@ -344,11 +344,11 @@ public class GraphRenderer {
 		Vector3D D;
 		for (Node bref : nodes){
 			if (bref!=center){
-				D = bref.pos.copy();
-				D.sub(center.pos); 
+				D = bref.getPos().copy();
+				D.sub(center.getPos()); 
 				D.mult(-1);
 				gl.glColor4fv(col, 0);
-				FuncGL.groupArrow(gl, bref.size()*1.5f, center.pos, D);
+				FuncGL.groupArrow(gl, bref.size()*1.5f, center.getPos(), D);
 //				gl.glLineWidth(5);
 //				FuncGL.drawLine(gl, center.pos, bref.pos, white, col);
 			}
@@ -374,7 +374,7 @@ public class GraphRenderer {
 		//transform model
 		float xRot = par.getCam().getYRot();		//should be global camera orientation
 		float yRot = par.getCam().getXRot();
-		gl.glTranslatef(n.pos.x, n.pos.y, n.pos.z);
+		gl.glTranslatef(n.getPos().x, n.getPos().y, n.getPos().z);
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
 		float size = n.size();
@@ -472,7 +472,7 @@ public class GraphRenderer {
 	public synchronized void renderNodeLabels(GL gl, Node n, int font, boolean fast){
 		if (par.layout2d&&outsideView(n)) return;
 
-		float distToCam = par.getCam().distToCam(n.pos);
+		float distToCam = par.getCam().distToCam(n.getPos());
 		String att="";
 		float[] textcolor = {n.getColor()[0]/2f, n.getColor()[1]/2f, n.getColor()[2]/2f, 1};
 
@@ -496,7 +496,7 @@ public class GraphRenderer {
 		//transform model
 		float xRot = par.getCam().getYRot();		//should be global camera orientation
 		float yRot = par.getCam().getXRot();
-		gl.glTranslatef(n.pos.x, n.pos.y, n.pos.z);
+		gl.glTranslatef(n.getPos().x, n.getPos().y, n.getPos().z);
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
 
@@ -506,7 +506,7 @@ public class GraphRenderer {
 		if (font<2){
 
 			if (par.isTree()&&par.getApp().ns.view.distances.getNodeDistance(n)>0) {
-				alignLabel(gl,n.pos, n.size(), font, fsize, split[0]);
+				alignLabel(gl,n.getPos(), n.size(), font, fsize, split[0]);
 			} else
 			{
 				if (par.isTilt()) gl.glRotatef(25, 0, 0, 1); 
@@ -516,12 +516,12 @@ public class GraphRenderer {
 					if (par.isLabelsEdgeDir()){
 						n.getDegree();
 						if (n.adList.size()==1&&n.inList.size()==0) {
-							Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
+							Vector3D sub = Vector3D.sub(n.getPos(), n.adList.iterator().next().getPos());
 							alignLabel(gl, sub, n.size(), font, fsize, split[0]);
 
 						} else
 							if (n.inList.size()==1&&n.adList.size()==0) {
-								Vector3D sub = Vector3D.sub(n.pos, n.inList.iterator().next().pos);
+								Vector3D sub = Vector3D.sub(n.getPos(), n.inList.iterator().next().getPos());
 								alignLabel(gl, sub, n.size(), font, fsize, split[0]);
 							}
 							else {

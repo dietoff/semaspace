@@ -24,7 +24,7 @@ public class SemaApplet extends JApplet {
 //		}
 		setSize(1000, 700);
 		GLDisplayPanel semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
-		SemaSpace space = new SemaSpace();
+		SemaSpace space = new SemaSpace("sema.config");
 		semaGLDisplay.addGLEventListener(space);
 		SwingSema application = new SwingSema();
 		application.setSema(space);

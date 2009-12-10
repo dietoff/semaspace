@@ -11,6 +11,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseListener;
 import java.awt.Event;
+import java.awt.Desktop;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
@@ -54,6 +55,9 @@ import semaGL.*;
 import UI.SimButton;
 import java.awt.BorderLayout;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 
 
@@ -70,21 +74,21 @@ import java.io.File;
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
 
-public class ExhibitionSema implements SemaListener, KeyListener {
+public class NetzpioniereSema implements SemaListener, KeyListener {
 	/**
 	 * Launches this application
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			private ExhibitionSema application;
+			private NetzpioniereSema application;
 			private SemaSpace space;
 			private GLDisplayPanel semaGLDisplay;
 
 			public void run() {
-				space = new SemaSpace();
+				space = new SemaSpace("netzpioniere.config");
 				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
 				semaGLDisplay.addGLEventListener(space);
-				application = new ExhibitionSema();
+				application = new NetzpioniereSema();
 				space.addSemaListener(application);
 				application.setSema(space);
 				application.getMainWindow().setVisible(true);
@@ -142,6 +146,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	private JLabel valenzLabel;
 	private JSlider strengthSlider;
 	private JSlider stretchSlider;
+	private SimButton simButton3;
 	private JSlider repellStSlider;
 	private JSlider pushSlider;
 	private JSlider groupRadius;
@@ -533,7 +538,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			depthLabel = new JLabel();
 			depthLabel.setText("steps");
 			depthLabel.setFont(new java.awt.Font("Dialog",0,10));
-			depthLabel.setBounds(191, 51, 33, 13);
+			depthLabel.setBounds(185, 51, 33, 13);
 		}
 		return depthLabel;
 	}
@@ -847,6 +852,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			file.add(getJLabel12());
 			file.add(getJLabel14());
 			file.add(getExpandnet());
+			file.add(getSimButton3x());
 		}
 		return file;
 	}
@@ -982,6 +988,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.toggle3D();
 					draw3d.setSelected(!app.p.get3D());
+					app.resetCam();
 				}
 			});
 		}
@@ -1980,7 +1987,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 						new Integer[] { 0,1,2,3,4,5});
 			searchsteps = new JSpinner();
 			searchsteps.setModel(searchstepsModel);
-			searchsteps.setBounds(151, 49, 35, 16);
+			searchsteps.setBounds(145, 50, 35, 15);
 			JFormattedTextField textField = ((JSpinner.DefaultEditor)searchsteps.getEditor()).getTextField();
 			textField.setEditable(false);
 			textField.setBackground(Color.white);
@@ -2357,7 +2364,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 			simButton5.setText("focus picked");
 			simButton5.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton5.setToolTipText("set the camera to selected node");
-			simButton5.setBounds(72, 250, 65, 15);
+			simButton5.setBounds(72, 250, 68, 15);
 			simButton5.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.camOnSelected();
@@ -2760,6 +2767,7 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 	}
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
+		
 		case KeyEvent.VK_F12:
 			fullscreen(true);
 			break;
@@ -2893,5 +2901,21 @@ public class ExhibitionSema implements SemaListener, KeyListener {
 		setCounter();
 		initSliders();
 		initCheckboxes();
+	}
+	
+	private SimButton getSimButton3x() {
+		if(simButton3 == null) {
+			simButton3 = new SimButton();
+			simButton3.setText("open selected in browser");
+			simButton3.setFont(new Font("Dialog",Font.PLAIN,10));
+			simButton3.setToolTipText("inspect selected relation in the indy tool");
+			simButton3.setBounds(2, 270, 200, 15);
+			simButton3.addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent e) {
+					app.browserCall();
+				}
+			});
+		}
+		return simButton3;
 	}
 }	

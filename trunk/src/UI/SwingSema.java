@@ -81,7 +81,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			private GLDisplayPanel semaGLDisplay;
 
 			public void run() {
-				space = new SemaSpace();
+				space = new SemaSpace("sema.config");
 				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
 				semaGLDisplay.addGLEventListener(space);
 				application = new SwingSema();

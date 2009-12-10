@@ -81,7 +81,7 @@ public class JuryExhibitionSema implements SemaListener, KeyListener {
 			private GLDisplayPanel semaGLDisplay;
 
 			public void run() {
-				space = new SemaSpace();
+				space = new SemaSpace("sema.config");
 				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
 				semaGLDisplay.addGLEventListener(space);
 				application = new JuryExhibitionSema();
@@ -142,6 +142,7 @@ public class JuryExhibitionSema implements SemaListener, KeyListener {
 	private JLabel valenzLabel;
 	private JSlider strengthSlider;
 	private JSlider stretchSlider;
+	private SimButton simButton3;
 	private JSlider repellStSlider;
 	private JSlider pushSlider;
 	private JSlider groupRadius;
@@ -847,6 +848,7 @@ public class JuryExhibitionSema implements SemaListener, KeyListener {
 			file.add(getJLabel12());
 			file.add(getJLabel14());
 			file.add(getExpandnet());
+			file.add(getSimButton3x());
 //			file.add(getTimelineBox());
 		}
 		return file;
@@ -983,6 +985,7 @@ public class JuryExhibitionSema implements SemaListener, KeyListener {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.toggle3D();
 					draw3d.setSelected(!app.p.get3D());
+					app.resetCam();
 				}
 			});
 		}
@@ -2898,5 +2901,21 @@ public class JuryExhibitionSema implements SemaListener, KeyListener {
 		setCounter();
 		initSliders();
 		initCheckboxes();
+	}
+	
+	private SimButton getSimButton3x() {
+		if(simButton3 == null) {
+			simButton3 = new SimButton();
+			simButton3.setText("open selected in browser");
+			simButton3.setFont(new Font("Dialog",Font.PLAIN,10));
+			simButton3.setToolTipText("inspect selected relation in the indy tool");
+			simButton3.setBounds(2, 270, 200, 15);
+			simButton3.addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent e) {
+					app.browserCall();
+				}
+			});
+		}
+		return simButton3;
 	}
 }	

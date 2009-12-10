@@ -130,11 +130,11 @@ public class Net {
 			return null;
 		}
 		if (nTable.containsKey(name1)&&!nTable.containsKey(name2)){
-			nTable.put(name2,tmpNode=addNode(name2, nTable.get(name1).pos.copy().mult(1.5f)));
+			nTable.put(name2,tmpNode=addNode(name2, nTable.get(name1).getPos().copy().mult(1.5f)));
 			nTableID.put(tmpNode.getId(), tmpNode);
 		}
 		if (nTable.containsKey(name2)&&!nTable.containsKey(name1)){
-			nTable.put(name1,tmpNode=addNode(name1, nTable.get(name2).pos.copy().mult(1.5f)));
+			nTable.put(name1,tmpNode=addNode(name1, nTable.get(name2).getPos().copy().mult(1.5f)));
 			nTableID.put(tmpNode.getId(), tmpNode);
 		}
 		if (!nTable.containsKey(name1)&&!nTable.containsKey(name2)){
@@ -235,7 +235,7 @@ public class Net {
 			float rnd = ((float)Math.random()-0.5f)*0.3f;
 			float rnd2 = ((float)Math.random()-0.5f)*0.3f;
 			float rnd3 = ((float)Math.random()-0.5f)*0.3f;
-			nTable.put(name,tmpNode=addNode(name, ref.pos.x+rnd,ref.pos.y+rnd2,ref.pos.z+rnd3));
+			nTable.put(name,tmpNode=addNode(name, ref.getPos().x+rnd,ref.getPos().y+rnd2,ref.getPos().z+rnd3));
 			nTableID.put(tmpNode.getId(), tmpNode);
 		} else tmpNode=nTable.get(name);
 		return tmpNode;
@@ -576,7 +576,7 @@ public class Net {
 				else  {
 					if (att.contains(subString)){
 						searchNodes.add(n);
-						n.pos.setXYZ(0, 0, 0);
+						n.getPos().setXYZ(0, 0, 0);
 					}
 				}
 			}
@@ -625,7 +625,7 @@ public class Net {
 		Node selected = nTableID.get(pickID_);
 		if (selected==null)  return new Vector3D(0f,0f,0f);
 		else
-			return selected.pos;
+			return selected.getPos();
 	}
 	public GraphElement getByID(int overID) {
 		Node n = getNodeByID(overID);

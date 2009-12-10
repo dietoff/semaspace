@@ -93,7 +93,7 @@ public class Layouter {
 	public Vector3D calcPivot(Net net2) {
 		Vector3D pivot = new Vector3D();
 		for (Node nodeRef: net2.nNodes){
-			pivot.add(nodeRef.pos);
+			pivot.add(nodeRef.getPos());
 		}
 		pivot.div(net.nNodes.size());
 		return pivot;
@@ -101,7 +101,7 @@ public class Layouter {
 	public Vector3D calcPivot(HashSet<Node> nodes) {
 		Vector3D pivot = new Vector3D();
 		for (Node nodeRef: nodes){
-			pivot.add(nodeRef.pos);
+			pivot.add(nodeRef.getPos());
 		}
 		pivot.div(nodes.size());
 		return pivot;
@@ -117,13 +117,13 @@ public class Layouter {
 			if (bref != null) {
 				gl.glPushMatrix();
 				gl.glLoadIdentity();
-				gl.glTranslatef(aref.pos.x, aref.pos.y, aref.pos.z);
+				gl.glTranslatef(aref.getPos().x, aref.getPos().y, aref.getPos().z);
 				//				gl.glRotatef(xRot, 0, 1, 0);
 				//				gl.glRotatef(yRot, 1, 0, 0);
 				gl.glRotatef(90+360*jcount/rad, 0, 0, 1);
 				gl.glTranslatef(-clusterDist, 0, 0);
 				gl.glGetFloatv(GL.GL_MODELVIEW_MATRIX, matrix, 0);
-				bref.pos.setXYZ(matrix[12], matrix[13], matrix[14]);
+				bref.getPos().setXYZ(matrix[12], matrix[13], matrix[14]);
 				gl.glPopMatrix();
 				jcount++;
 			}
@@ -144,11 +144,11 @@ public class Layouter {
 				r=spiral_rad(aref, i);
 				gl.glPushMatrix();
 				gl.glLoadIdentity();
-				gl.glTranslatef(aref.pos.x, aref.pos.y, aref.pos.z);
+				gl.glTranslatef(aref.getPos().x, aref.getPos().y, aref.getPos().z);
 				gl.glRotatef(spiral_angle(aref, i), 0, 0, 1);
 				gl.glTranslatef(-r, 0, 0);
 				gl.glGetFloatv(GL.GL_MODELVIEW_MATRIX, matrix, 0);
-				bref.pos.setXYZ(matrix[12], matrix[13], matrix[14]);
+				bref.getPos().setXYZ(matrix[12], matrix[13], matrix[14]);
 				gl.glPopMatrix();
 			}
 		}
@@ -186,16 +186,16 @@ public class Layouter {
 		else 
 			v= calcPivot(net);
 		for (Node nref: net.nNodes) {
-			nref.pos.sub(v);
+			nref.getPos().sub(v);
 		}
 	}
 
 	public void layoutConstrainCircle (Node n, float x_, float y_, float rad) {
 		Vector3D center = new Vector3D(x_,y_,0);
-		Vector3D sub = n.pos.sub(n.pos,center);
+		Vector3D sub = n.getPos().sub(n.getPos(),center);
 		sub.normalize();
 		sub.mult(rad);
-		n.pos.setXYZ(center.add(center, sub));
+		n.getPos().setXYZ(center.add(center, sub));
 	}
 
 	public void layoutConstrainCircle (HashSet<Node> nodes) {
@@ -205,10 +205,10 @@ public class Layouter {
 
 		Vector3D center = new Vector3D(0,0,0);
 		for (Node n:nodes){
-			Vector3D sub = n.pos.sub(n.pos,center);
+			Vector3D sub = n.getPos().sub(n.getPos(),center);
 			sub.normalize();
 			sub.mult(rad);
-			n.pos.setXYZ(center.add(center, sub));
+			n.getPos().setXYZ(center.add(center, sub));
 		}
 	}
 
@@ -258,7 +258,7 @@ public class Layouter {
 		app.getApp().setYRotNew(0f);
 		app.getApp().setXRotNew(0f);
 		for (Node nref:net.fNodes) {
-			nref.pos.z=0f;
+			nref.getPos().z=0f;
 
 		}
 	}
@@ -272,13 +272,13 @@ public class Layouter {
 			if (!nodeRef.isLocked()) {
 				Vector3D trans= new Vector3D();
 				Vector3D corr= new Vector3D();
-				trans.setXYZ(nodeRef.pos);
+				trans.setXYZ(nodeRef.getPos());
 				trans.normalize();
 				trans.mult(strength);
 				corr.setXYZ(bounds.size);
 				corr.normalize();
 				trans.setXYZ(trans.x*(1-corr.x),trans.y*(1-corr.y),trans.z*(1-corr.z));
-				nodeRef.pos.add(trans);
+				nodeRef.getPos().add(trans);
 			}
 		}
 	}
@@ -289,14 +289,14 @@ public class Layouter {
 		Vector3D trans= new Vector3D();
 		Vector3D piv = calcPivot(nodes);
 		for (Node tmp: nodes) {
-			trans.setXYZ(tmp.pos);
+			trans.setXYZ(tmp.getPos());
 			trans.sub(piv);
 			trans.normalize();
 			trans.mult(strength);
 			//			corr.setXYZ(bounds.size);
 			//			corr.normalize();
 			//			trans.setXYZ(trans.x*(1-corr.x),trans.y*(1-corr.y),trans.z*(1-corr.z));
-			tmp.pos.add(trans);
+			tmp.getPos().add(trans);
 			//			}
 		}
 	}
@@ -313,11 +313,11 @@ public class Layouter {
 			if (n.inList.size()==0&&n.adList.size()>=0) {
 				if (radial) layoutConstrainCircle(n, 0, 0, innerRad);
 				else {
-					n.pos.y = 0;
+					n.getPos().y = 0;
 				}
 				next.addAll(n.adList);
 				all.put(n.name,n);
-				if (first) for (Node nn:n.adList) nn.pos.setXYZ(n.pos);
+				if (first) for (Node nn:n.adList) nn.getPos().setXYZ(n.getPos());
 				setNodeColor(level, n);
 				i++;
 			}
@@ -328,11 +328,11 @@ public class Layouter {
 		while (next.size()>0) {
 			for (Node m:next){
 				if (radial) layoutConstrainCircle(m, 0, 0, innerRad+level*app.getRadialDist());
-				else m.pos.y = level *app.getRadialDist();
+				else m.getPos().y = level *app.getRadialDist();
 				if (!all.containsKey(m.name)){
 					nextTmp.addAll(m.adList);
 					setNodeColor(level, m);
-					if (first) for (Node nn:m.adList) nn.pos.setXYZ(m.pos);
+					if (first) for (Node nn:m.adList) nn.getPos().setXYZ(m.getPos());
 				}
 				all.put(m.name, m);
 			}
@@ -347,7 +347,7 @@ public class Layouter {
 
 	public void layoutLockPlace(Net net2) {
 		for (Node n:net.fNodes) {
-			if (n.isLocked()) n.pos = n.lockedPos.copy();
+			if (n.isLocked()) n.setPos(n.lockedPos.copy());
 		}
 	}
 	public void layoutLockRemove(Node picked, Net net2) {
@@ -355,7 +355,7 @@ public class Layouter {
 	}
 	public void layoutLocksAll() {
 		for (Node n:net.fNodes) {
-			n.lockedPos= n.pos.copy();
+			n.lockedPos= n.getPos().copy();
 			n.setLocked(true);
 		}
 	}
@@ -364,27 +364,27 @@ public class Layouter {
 	}
 	public void layoutNodePosJitter(float m) {
 		for (Node n:net.nNodes) {
-			n.pos.x *=(1+(Math.random()-0.5f)*m);
-			n.pos.y *=(1+(Math.random()-0.5f)*m);
-			n.pos.z *=(1+(Math.random()-0.5f)*m);
+			n.getPos().x *=(1+(Math.random()-0.5f)*m);
+			n.getPos().y *=(1+(Math.random()-0.5f)*m);
+			n.getPos().z *=(1+(Math.random()-0.5f)*m);
 		}
 	}
 	public void layoutNodePosPlace(){
 		for (Node n :net.fNodes) {
 			float randPos = net.fNodes.size()*10f+50f;
-			n.pos.setXYZ(Integer.MAX_VALUE/(float)n.getId(),Integer.MAX_VALUE/((float)String.valueOf(n.getId()+3).hashCode()), Func.rnd(-randPos,randPos));
+			n.getPos().setXYZ(Integer.MAX_VALUE/(float)n.getId(),Integer.MAX_VALUE/((float)String.valueOf(n.getId()+3).hashCode()), Func.rnd(-randPos,randPos));
 		}
 	}
 	public void layoutRandomize(){
 		for (Node n :net.fNodes) {
 			float randPos = (float)Math.sqrt(net.fNodes.size())*50f+50f;
-			n.pos.setXYZ(Func.rnd(-randPos,randPos), Func.rnd(-randPos,randPos), Func.rnd(-randPos,randPos));
+			n.getPos().setXYZ(Func.rnd(-randPos,randPos), Func.rnd(-randPos,randPos), Func.rnd(-randPos,randPos));
 		}
 	}
 
 	public void layoutNodePosZNoise() {
 		for (Node n:net.fNodes) {
-			n.pos.z+=(Math.random()-0.5)*2;
+			n.getPos().z+=(Math.random()-0.5)*2;
 		}
 	}
 
@@ -441,8 +441,8 @@ public class Layouter {
 		Node b = n.getB();
 
 		if (a.adList.size()+a.inList.size()==0||b.adList.size()+b.inList.size()==0) max = 0;
-		dist.setXYZ(b.pos);
-		dist.sub(a.pos);
+		dist.setXYZ(b.getPos());
+		dist.sub(a.getPos());
 		float d = dist.magnitude()+0.000000001f;
 		float radius = calcClusterDistance(a)+calcClusterDistance(b)+abstand;
 		float f=0;
@@ -455,8 +455,8 @@ public class Layouter {
 				f = 0.1f/d;
 			}
 			dist.mult(f*strength);
-			b.pos.add(dist);
-			a.pos.sub(dist);
+			b.getPos().add(dist);
+			a.getPos().sub(dist);
 		} 
 
 		if (d>radius*5) replist.remove(n.getName()); 
@@ -484,8 +484,8 @@ public class Layouter {
 	private float repFrucht(float abstand, float strength, Vector3D dist,
 			Node a, Node b, int max) {
 		if (a.adList.size()+a.inList.size()==0||b.adList.size()+b.inList.size()==0) max = 0;
-		dist.setXYZ(b.pos);
-		dist.sub(a.pos);
+		dist.setXYZ(b.getPos());
+		dist.sub(a.getPos());
 		float d = dist.magnitude()+0.000000001f;
 		float radius = calcClusterDistance(a)+calcClusterDistance(b)+abstand;
 		float f=0;
@@ -498,8 +498,8 @@ public class Layouter {
 				f = 0.1f/d;
 			}
 			dist.mult(f*strength);
-			b.pos.add(dist);
-			a.pos.sub(dist);
+			b.getPos().add(dist);
+			a.getPos().sub(dist);
 		}
 		return d;
 	}
@@ -519,14 +519,14 @@ public class Layouter {
 				for (Node b: tmp) {
 					for (Node c: tmp) {
 						if (b!=c&&net2.fNodes.contains(b)&&net2.fNodes.contains(c)&&!b.adList.contains(c)&&!c.adList.contains(b)) {
-							dist .setXYZ(c.pos);
-							dist.sub(b.pos);
+							dist .setXYZ(c.getPos());
+							dist.sub(b.getPos());
 							float d = dist.magnitude();
 							float radius=2*calcDist(a, b, offset, app.getVal())/tmp.size();
 							if (d<radius) {
 								dist.mult((1-(d/radius))*strength); 
-								c.pos.add(dist);
-								b.pos.sub(dist);
+								c.getPos().add(dist);
+								b.getPos().sub(dist);
 							}
 						}
 					}
@@ -540,16 +540,16 @@ public class Layouter {
 		for (Node n1ref: net.fNodes) {
 			for (Node n2ref: net.fNodes) {
 				if (n1ref!=n2ref) {
-					dist.setXYZ(n2ref.pos);
-					dist.sub(n1ref.pos);
+					dist.setXYZ(n2ref.getPos());
+					dist.sub(n1ref.getPos());
 					//					dist.normalize();
 					float d = dist.magnitude();
 					float radius = calcClusterDistance(n1ref)+calcClusterDistance(n2ref)+abstand;
 					float f = 1-(d/radius);
 					if (d<radius) {
 						dist.mult(f*strength); 
-						n2ref.pos.add(dist);
-						n1ref.pos.sub(dist);
+						n2ref.getPos().add(dist);
+						n1ref.getPos().sub(dist);
 					}
 				}
 			}
@@ -591,12 +591,12 @@ public class Layouter {
 				if (radial) {
 					layoutConstrainCircle(n, 0, 0, innerRad);
 					float alpha = ((float)i/(float)total)*app.TWO_PI;
-					n.pos.x=(float)Math.cos(alpha)*innerRad;
-					n.pos.y=(float)Math.sin(alpha)*innerRad;
+					n.getPos().x=(float)Math.cos(alpha)*innerRad;
+					n.getPos().y=(float)Math.sin(alpha)*innerRad;
 				}
 				else {
-					n.pos.y = 0;
-					n.pos.x = i*100;
+					n.getPos().y = 0;
+					n.getPos().x = i*100;
 				}
 				i++;
 			}
@@ -802,15 +802,15 @@ public class Layouter {
 		for (Node n:net.nNodes) {
 			Float t = n.getTime();
 			if (t!=null) {
-				n.pos.setX( (t-midpoint)*100f);
+				n.getPos().setX( (t-midpoint)*100f);
 				if (counter.containsKey(t)) {
 					Integer numOccurancesAtT = counter.get(t);
-					n.pos.y = numOccurancesAtT*app.getNodeSize()*5f;
+					n.getPos().y = numOccurancesAtT*app.getNodeSize()*5f;
 					numOccurancesAtT++;
 					counter.put(t, numOccurancesAtT);
 				} else {
 					counter.put(t, 1);
-					n.pos.y=0f;
+					n.getPos().y=0f;
 				}
 			}
 		}
@@ -821,7 +821,7 @@ public class Layouter {
 		for (String n:net.groups.keySet()) {
 			Net group = net.groups.get(n);
 			Vector3D center = calcPivot(group.nNodes);
-			group.hasNode(n).pos.setXYZ(center);
+			group.hasNode(n).getPos().setXYZ(center);
 
 			//					layoutDistance(app.nodeSize*4f, 0, 1f, group);
 			//		layoutRepell(app.nodeSize*4f, .5f, group);
@@ -841,7 +841,7 @@ public class Layouter {
 		int direction= 0;
 		while (total<nodes.size()) {
 			last = it.next();
-			last.pos.setXYZ(cursor);
+			last.getPos().setXYZ(cursor);
 			oneStep(direction, cursor, abstand);
 			step++;
 			total++;
@@ -888,7 +888,7 @@ public class Layouter {
 			for (Node n:first) {
 				y = (float) (yn + Math.sin(alpha*i)*rad);
 				x = (float) (xn + Math.cos(alpha*i)*rad);
-				n.pos.setXY(x, y);
+				n.getPos().setXY(x, y);
 				i++;
 			}
 		}
