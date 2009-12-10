@@ -37,47 +37,47 @@ public class Edge extends GraphElement{
 
 	public void chain(float d, float att) {
 		//		d*=2f;
-		Vector3D D = a.pos.copy();
-		D.sub(b.pos);
+		Vector3D D = a.getPos().copy();
+		D.sub(b.getPos());
 		float faktor =  d-D.magnitude();
 		if (isPartofTriangle) d/=2f;
 		if (Math.abs(faktor) > 0.1) {
 			Vector3D DN= D.copy();
 			DN.normalize();
 			DN.mult(faktor*att/2);
-			a.pos.add(DN);
-			b.pos.sub(DN);
+			a.getPos().add(DN);
+			b.getPos().sub(DN);
 		}
 	}
 
 	public void chainA(float d, float att) {
 		//d*=2f;
-		Vector3D D = a.pos.copy();
-		D.sub(b.pos);
+		Vector3D D = a.getPos().copy();
+		D.sub(b.getPos());
 		float faktor =  d-D.magnitude();
 		if (isPartofTriangle) d/=2f;
 		if (Math.abs(faktor) > 0.1) {
 			Vector3D DN= D.copy();
 			DN.normalize();
 			DN.mult(faktor*att/2);
-			if (!a.isLocked()) a.pos.add(DN);
+			if (!a.isLocked()) a.getPos().add(DN);
 			DN.mult(0.1f);
-			if (!b.isLocked()) b.pos.sub(DN);
+			if (!b.isLocked()) b.getPos().sub(DN);
 		}
 	}
 	public void chainB(float d, float att) {
 		//d*=2f;
-		Vector3D D = a.pos.copy();
-		D.sub(b.pos);
+		Vector3D D = a.getPos().copy();
+		D.sub(b.getPos());
 		float faktor =  d-D.magnitude();
 		if (isPartofTriangle) d/=2f;
 		if (Math.abs(faktor) > 0.1) {
 			Vector3D DN= D.copy();
 			DN.normalize();
 			DN.mult(faktor*att/2);
-			if (!b.isLocked()) b.pos.sub(DN);
+			if (!b.isLocked()) b.getPos().sub(DN);
 			DN.mult(0.1f);
-			if (!a.isLocked()) a.pos.add(DN);
+			if (!a.isLocked()) a.getPos().add(DN);
 		}
 	}
 
@@ -156,5 +156,9 @@ public class Edge extends GraphElement{
 	}
 	public void setB(Node n) {
 		b = n;
+	}
+	public Vector3D getPos() {
+		Vector3D p = Vector3D.midPoint(a.getPos(), b.getPos());
+		return p;
 	}
 }

@@ -305,11 +305,11 @@ public class NetLoader {
 		String pos[] = trim.split(",");
 		if (pos.length<3) return;
 		try {
-			tmp.pos.x = Float.parseFloat(pos[0]);
-			tmp.pos.y = Float.parseFloat(pos[1]);
-			tmp.pos.z = Float.parseFloat(pos[2]);
+			tmp.getPos().x = Float.parseFloat(pos[0]);
+			tmp.getPos().y = Float.parseFloat(pos[1]);
+			tmp.getPos().z = Float.parseFloat(pos[2]);
 			tmp.setLocked(true);
-			tmp.lockedPos= new Vector3D (tmp.pos.x,tmp.pos.y,tmp.pos.z);
+			tmp.lockedPos= new Vector3D (tmp.getPos().x,tmp.getPos().y,tmp.getPos().z);
 
 		} catch (NumberFormatException e) {
 			System.out.println("bad node position: "+trim);
@@ -491,8 +491,8 @@ public class NetLoader {
 		for (Node n :net.nNodes){
 			String altName = FileIO.HTMLEntityEncode(n.altName.replace('\"', '\''));
 			sb.append("\tnode\t[\n\troot_index\t"+n.genId()+"\n\tid\t"+n.genId()+"\n");
-			sb.append("\tgraphics\t[\n\t\tx\t"+n.pos.x+"\n");
-			sb.append("\t\ty\t"+n.pos.y+"\n");
+			sb.append("\tgraphics\t[\n\t\tx\t"+n.getPos().x+"\n");
+			sb.append("\t\ty\t"+n.getPos().y+"\n");
 			sb.append("\t\ttype\t\"ellipse\"\n");
 			sb.append("\t\toutline_width\t0\n");
 			sb.append("\t]\n");

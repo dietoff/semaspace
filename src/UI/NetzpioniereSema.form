@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Form builder="jigloo" ide="eclipse" laf="com.jtattoo.plaf.fast.FastLookAndFeel" style="Swing" version="4.5.3">
+<NonVisualComponents>
+		<Component class="UNKNOWN" name="Non-visual components" style="0">
+			<SubComponents>
+				<Component class="apple.awt.CGraphicsEnvironment" name="%0.%0.%0.%0.%38.environment" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="apple.awt.CGraphicsEnvironment" name="%25.environment" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="apple.awt.CGraphicsEnvironment" name="%0.%0.%75.environment" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="nodeActivitiesListModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="netListModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="nodePlacesListModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="edgeAttModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="nodeListModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="nodePersonListModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="nodeAttModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="rolesListModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.table.DefaultTableModel" name="eTableModel" style="0">
+					<Properties>
+						<Property name="columnCount" type="int" value="2"/>
+					</Properties>
+				</Component>
+				<Component class="java.awt.GraphicsDevice" name="%25.device" style="0">
+					<Properties>
+					</Properties>
+					<SubComponents>
+						<Component class="java.awt.Window" name="%25.device.fullScreenWindow">
+						</Component>
+					</SubComponents>
+				</Component>
+				<Component class="java.awt.GraphicsDevice" name="%0.%0.%0.%38.device" style="0">
+					<Properties>
+						<Property name="fullScreenWindow" value="null"/>
+					</Properties>
+					<SubComponents>
+						<Component class="java.awt.Window" name="%0.%0.%0.%38.device.fullScreenWindow">
+						</Component>
+					</SubComponents>
+				</Component>
+				<Component class="java.awt.GraphicsDevice" name="%0.%0.%75.devices" style="0">
+					<Properties>
+					</Properties>
+					<SubComponents>
+						<Component class="java.awt.Window" name="%0.%0.%75.devices.fullScreenWindow">
+						</Component>
+					</SubComponents>
+				</Component>
+				<Component class="java.awt.GraphicsDevice" name="%25.devices" style="0">
+					<Properties>
+					</Properties>
+					<SubComponents>
+						<Component class="java.awt.Window" name="%25.devices.fullScreenWindow">
+						</Component>
+					</SubComponents>
+				</Component>
+				<Component class="java.awt.GraphicsDevice" name="%0.%75.device" style="0">
+					<Properties>
+						<Property name="fullScreenWindow" value="null"/>
+					</Properties>
+					<SubComponents>
+						<Component class="java.awt.Window" name="%0.%75.device.fullScreenWindow">
+						</Component>
+					</SubComponents>
+				</Component>
+				<Component class="java.awt.GraphicsDevice" name="%0.%0.%0.%0.%38.devices" style="0">
+					<Properties>
+					</Properties>
+					<SubComponents>
+						<Component class="java.awt.Window" name="%0.%0.%0.%0.%38.devices.fullScreenWindow">
+						</Component>
+					</SubComponents>
+				</Component>
+				<Component class="javax.swing.KeyStroke" name="keyStroke_IL2" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.KeyStroke" name="keyStroke_IL1" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.KeyStroke" name="keyStroke_IL4" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.KeyStroke" name="keyStroke_IL3" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.KeyStroke" name="keyStroke_IL" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.Properties" name="%0.%0.props" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.SpinnerListModel" name="%0.%25.%0.%0.%0.%15.searchstepsModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.lang.String" name="%2.%83.title" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.lang.String" name="%63.title" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%31.roles" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%31.persons" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%0.%83.activities" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%0.%83.places" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%0.%83.persons" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%0.%83.roles" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%31.activities" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%31.places" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%72.sorted" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+			</SubComponents>
+		</Component></NonVisualComponents>
+	<Component class="javax.swing.JFrame" name="mainWindow">
+		<Events>
+			<EventHandlerClass listener="java.awt.event.KeyListener" listenerElement="mainWindow"/>
+		</Events>
+		<Properties>
+			<Property name="defaultCloseOperation" type="int" value="3"/>
+			<Property name="title" type="String" value="SemaSpace"/>
+			<Property name="resizable" type="boolean" value="false"/>
+			<Property name="undecorated" type="boolean" value="true"/>
+			<Property name="extendedState" type="int" value="6"/>
+			<Property name="size" type="Dimension">
+				<Dimension value="[1000, 600]"/>
+			</Property>
+			<Property name="visible" type="boolean" value="true"/>
+			<Property name="preferredSize" type="Dimension">
+				<Dimension value="[1000, 600]"/>
+			</Property>
+		</Properties>
+		<SubComponents>
+			<Component class="javax.swing.JSplitPane" name="jSplitPane">
+				<Events>
+					<EventHandlerClass listener="java.awt.event.KeyListener" listenerElement="jSplitPane"/>
+				</Events>
+				<Properties>
+					<Property name="dividerSize" type="int" value="0"/>
+					<Property name="resizeWeight" type="double" value="0.0"/>
+					<Property name="preferredSize" type="Dimension">
+						<Dimension value="[1000, 800]"/>
+					</Property>
+				</Properties>
+				<SubComponents>
+					<Component class="javax.swing.JSplitPane" name="jSplitPane1">
+						<Events>
+							<EventHandlerClass listener="java.awt.event.KeyListener" listenerElement="jSplitPane1"/>
+						</Events>
+						<Properties>
+							<Property name="orientation" type="int" value="0"/>
+							<Property name="dividerSize" type="int" value="0"/>
+							<Property name="minimumSize" type="Dimension">
+								<Dimension value="[230, 400]"/>
+							</Property>
+							<Property class="javax.swing.border.EmptyBorder" name="border">
+								<Property name="borderInsets" type="Insets">
+								<Insets value="[0, 0, 0, 0]"/>
+							</Property>
+							</Property>
+						</Properties>
+						<SubComponents>
+							<Component class="javax.swing.JTabbedPane" name="controlPanel">
+								<Properties>
+									<Property name="minimumSize" type="Dimension">
+										<Dimension value="[217, 320]"/>
+									</Property>
+								</Properties>
+								<SubComponents>
+									<Component class="javax.swing.JPanel" name="file">
+										<Layout class="Absolute">
+										</Layout>
+										<Properties>
+											<Property name="layout"/>
+										</Properties>
+										<SubComponents>
+											<Component class="javax.swing.JCheckBox" name="jFileFormat">
+												<Events>
+													<EventHandler event="actionPerformed" handler="jFileFormatActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="tabular file format"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="visible" type="boolean" value="false"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[-1, 33, 120, 23]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="simButton18">
+												<Events>
+													<EventHandler event="actionPerformed" handler="simButton18ActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="tga file"/>
+													<Property name="visible" type="boolean" value="false"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[74, 195, 67, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JLabel" name="search">
+												<Properties>
+													<Property name="text" type="String" value="filter / search"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="11" strikeout="false" style="1" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 4, 210, 14]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JTextField" name="searchTerm">
+												<Events>
+													<EventHandler event="keyReleased" handler="searchTermKeyReleasedinline" listener="java.awt.event.KeyListener"/>
+												</Events>
+												<Properties>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 25, 116, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JCheckBox" name="add">
+												<Properties>
+													<Property name="text" type="String" value="add"/>
+													<Property name="selected" type="boolean" value="false"/>
+													<Property name="margin" type="Insets">
+														<Insets value="[0, 0, 0, 0]"/>
+													</Property>
+													<Property name="contentAreaFilled" type="boolean" value="false"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[175, 25, 39, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="searchButton">
+												<Events>
+													<EventHandler event="actionPerformed" handler="searchButtonActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="search"/>
+													<Property name="verticalAlignment" type="int" value="0"/>
+													<Property name="verticalTextPosition" type="int" value="0"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[124, 25, 45, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JLabel" name="depthLabel">
+												<Properties>
+													<Property name="text" type="String" value="steps"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[185, 51, 33, 13]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JCheckBox" name="draw3d">
+												<Events>
+													<EventHandler event="actionPerformed" handler="draw3dActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="3D"/>
+													<Property name="margin" type="Insets">
+														<Insets value="[0, 0, 0, 0]"/>
+													</Property>
+													<Property name="contentAreaFilled" type="boolean" value="false"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[58, 184, 42, 17]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JCheckBox" name="treeBox">
+												<Events>
+													<EventHandler event="actionPerformed" handler="treeBoxActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="radial"/>
+													<Property name="margin" type="Insets">
+														<Insets value="[0, 0, 0, 0]"/>
+													</Property>
+													<Property name="contentAreaFilled" type="boolean" value="false"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 184, 49, 17]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JCheckBox" name="fadeLabels">
+												<Events>
+													<EventHandler event="actionPerformed" handler="fadeLabelsActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="labels"/>
+													<Property name="margin" type="Insets">
+														<Insets value="[0, 0, 0, 0]"/>
+													</Property>
+													<Property name="contentAreaFilled" type="boolean" value="false"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[100, 184, 52, 17]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JCheckBox" name="forceBox">
+												<Events>
+													<EventHandler event="actionPerformed" handler="forceBoxActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="animate"/>
+													<Property name="margin" type="Insets">
+														<Insets value="[0, 0, 0, 0]"/>
+													</Property>
+													<Property name="contentAreaFilled" type="boolean" value="false"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="toolTipText" type="String" value="Force driven Layout active"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 204, 85, 17]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JCheckBox" name="tiltBox">
+												<Events>
+													<EventHandler event="actionPerformed" handler="tiltBoxActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="25°"/>
+													<Property name="margin" type="Insets">
+														<Insets value="[0, 0, 0, 0]"/>
+													</Property>
+													<Property name="contentAreaFilled" type="boolean" value="false"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[58, 226, 50, 14]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JCheckBox" name="radLabels">
+												<Events>
+													<EventHandler event="actionPerformed" handler="radLabelsActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="radial"/>
+													<Property name="margin" type="Insets">
+														<Insets value="[0, 0, 0, 0]"/>
+													</Property>
+													<Property name="contentAreaFilled" type="boolean" value="false"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[100, 226, 62, 14]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JLabel" name="jLabel1">
+												<Properties>
+													<Property name="text" type="String" value="labelstyle"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 227, 50, 13]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JCheckBox" name="clusters">
+												<Events>
+													<EventHandler event="actionPerformed" handler="clustersActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="clusters"/>
+													<Property name="margin" type="Insets">
+														<Insets value="[0, 0, 0, 0]"/>
+													</Property>
+													<Property name="contentAreaFilled" type="boolean" value="false"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[157, 184, 59, 17]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JLabel" name="jLabel11">
+												<Properties>
+													<Property name="text" type="String" value="viewpoint"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="11" strikeout="false" style="1" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[40, 315, 73, 14]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="simButton4">
+												<Events>
+													<EventHandler event="mousePressed" handler="simButton4MousePressedinline" listener="java.awt.event.MouseListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="reset cam"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="toolTipText" type="String" value="set the camera to 0,0"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 250, 65, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="simButton5">
+												<Events>
+													<EventHandler event="mousePressed" handler="simButton5MousePressedinline" listener="java.awt.event.MouseListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="focus picked"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="toolTipText" type="String" value="set the camera to selected node"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[72, 250, 68, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="simButton11">
+												<Events>
+													<EventHandler event="actionPerformed" handler="simButton11ActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="all"/>
+													<Property name="verticalAlignment" type="int" value="0"/>
+													<Property name="verticalTextPosition" type="int" value="0"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="toolTipText" type="String" value="remove all nodes from view"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[72, 141, 67, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="simButton15">
+												<Events>
+													<EventHandler event="actionPerformed" handler="simButton15ActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="leaf nodes"/>
+													<Property name="verticalAlignment" type="int" value="0"/>
+													<Property name="verticalTextPosition" type="int" value="0"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="toolTipText" type="String" value="remove leave nodes"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 141, 68, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="simButton16">
+												<Events>
+													<EventHandler event="actionPerformed" handler="simButton16ActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="unselected"/>
+													<Property name="verticalAlignment" type="int" value="0"/>
+													<Property name="verticalTextPosition" type="int" value="0"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="toolTipText" type="String" value="remove the nodes outside the pickregion"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[72, 123, 67, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="simButton19">
+												<Events>
+													<EventHandler event="actionPerformed" handler="simButton19ActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="selected"/>
+													<Property name="verticalAlignment" type="int" value="0"/>
+													<Property name="verticalTextPosition" type="int" value="0"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="toolTipText" type="String" value="remove nodes within pickrange"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 123, 67, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="seachSelButton">
+												<Events>
+													<EventHandler event="actionPerformed" handler="seachSelButtonActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="picked"/>
+													<Property name="verticalAlignment" type="int" value="0"/>
+													<Property name="verticalTextPosition" type="int" value="0"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[72, 50, 67, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="randomCenter">
+												<Events>
+													<EventHandler event="actionPerformed" handler="randomCenterActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="random"/>
+													<Property name="verticalAlignment" type="int" value="0"/>
+													<Property name="verticalTextPosition" type="int" value="0"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 50, 67, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JSpinner" name="searchsteps">
+												<Events>
+													<EventHandler event="stateChanged" handler="searchstepsStateChangedinline" listener="javax.swing.event.ChangeListener"/>
+												</Events>
+												<Properties>
+													<Property name="model"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[145, 50, 35, 15]"/>
+													</Property>
+												</Properties>
+												<SubComponents>
+													<Component class="javax.swing.JComponent" name="searchsteps.editor">
+														<Properties>
+														</Properties>
+													</Component>
+												</SubComponents>
+											</Component>
+											<Component class="javax.swing.JLabel" name="jLabel12">
+												<Properties>
+													<Property name="text" type="String" value="remove"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="11" strikeout="false" style="1" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[5, 105, 210, 14]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JLabel" name="jLabel14">
+												<Properties>
+													<Property name="text" type="String" value="display"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="11" strikeout="false" style="1" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[6, 163, 210, 14]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="expandnet">
+												<Events>
+													<EventHandler event="actionPerformed" handler="expandnetActionPerformedinline" listener="java.awt.event.ActionListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="expand all"/>
+													<Property name="verticalAlignment" type="int" value="0"/>
+													<Property name="verticalTextPosition" type="int" value="0"/>
+													<Property name="margin" type="Insets">
+														<Insets value="[2, 2, 2, 2]"/>
+													</Property>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 68, 67, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+											<Component class="UI.SimButton" name="simButton3">
+												<Events>
+													<EventHandler event="mousePressed" handler="simButton3MousePressedinline" listener="java.awt.event.MouseListener"/>
+												</Events>
+												<Properties>
+													<Property name="text" type="String" value="open selected in browser"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
+													<Property name="toolTipText" type="String" value="inspect selected relation in the indy tool"/>
+													<Property name="bounds" type="Rectangle">
+														<Rectangle value="[2, 270, 200, 15]"/>
+													</Property>
+												</Properties>
+											</Component>
+										</SubComponents>
+									</Component>
+								</SubComponents>
+							</Component>
+							<Component class="javax.swing.JTabbedPane" name="inspectors">
+								<Events>
+									<EventHandlerClass listener="java.awt.event.KeyListener" listenerElement="jSplitPane1"/>
+								</Events>
+								<Properties>
+									<Property name="preferredSize" type="Dimension">
+										<Dimension value="[212, 160]"/>
+									</Property>
+								</Properties>
+								<SubComponents>
+									<Component class="javax.swing.JScrollPane" name="nodesPersons">
+										<Properties>
+											<Property class="javax.swing.border.EmptyBorder" name="border">
+												<Property name="borderInsets" type="Insets">
+												<Insets value="[0, 0, 0, 0]"/>
+											</Property>
+											</Property>
+										</Properties>
+										<SubComponents>
+											<Component class="javax.swing.JScrollBar" name="nodesPersons.horizontalScrollBar">
+												<Properties>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JScrollBar" name="nodesPersons.verticalScrollBar">
+												<Properties>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JList" name="nodePersonsList">
+												<Events>
+													<EventHandler event="mouseExited" handler="nodePersonsListMouseExitedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseClicked" handler="nodePersonsListMouseClickedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseReleased" handler="nodePersonsListMouseReleasedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseEntered" handler="nodePersonsListMouseEnteredinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mousePressed" handler="nodePersonsListMousePressedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="valueChanged" handler="nodePersonsListValueChangedinline" listener="javax.swing.event.ListSelectionListener"/>
+												</Events>
+												<Properties>
+													<Property name="model"/>
+													<Property name="selectionMode" type="int" value="0"/>
+													<Property name="name" type="String" value="nodes"/>
+												</Properties>
+											</Component>
+										</SubComponents>
+									</Component>
+									<Component class="javax.swing.JScrollPane" name="nodesPlaces">
+										<Properties>
+											<Property class="javax.swing.border.EmptyBorder" name="border">
+												<Property name="borderInsets" type="Insets">
+												<Insets value="[0, 0, 0, 0]"/>
+											</Property>
+											</Property>
+										</Properties>
+										<SubComponents>
+											<Component class="javax.swing.JScrollBar" name="nodesPlaces.horizontalScrollBar">
+												<Properties>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JScrollBar" name="nodesPlaces.verticalScrollBar">
+												<Properties>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JList" name="nodePlacesList">
+												<Events>
+													<EventHandler event="mouseExited" handler="nodePlacesListMouseExitedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseClicked" handler="nodePlacesListMouseClickedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseReleased" handler="nodePlacesListMouseReleasedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseEntered" handler="nodePlacesListMouseEnteredinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mousePressed" handler="nodePlacesListMousePressedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="valueChanged" handler="nodePlacesListValueChangedinline" listener="javax.swing.event.ListSelectionListener"/>
+												</Events>
+												<Properties>
+													<Property name="model"/>
+													<Property name="selectionMode" type="int" value="0"/>
+													<Property name="name" type="String" value="nodes"/>
+												</Properties>
+											</Component>
+										</SubComponents>
+									</Component>
+									<Component class="javax.swing.JScrollPane" name="nodesActivities">
+										<Properties>
+											<Property class="javax.swing.border.EmptyBorder" name="border">
+												<Property name="borderInsets" type="Insets">
+												<Insets value="[0, 0, 0, 0]"/>
+											</Property>
+											</Property>
+										</Properties>
+										<SubComponents>
+											<Component class="javax.swing.JScrollBar" name="nodesActivities.horizontalScrollBar">
+												<Properties>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JScrollBar" name="nodesActivities.verticalScrollBar">
+												<Properties>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JList" name="nodeActivitiesList">
+												<Events>
+													<EventHandler event="mouseExited" handler="nodeActivitiesListMouseExitedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseClicked" handler="nodeActivitiesListMouseClickedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseReleased" handler="nodeActivitiesListMouseReleasedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseEntered" handler="nodeActivitiesListMouseEnteredinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mousePressed" handler="nodeActivitiesListMousePressedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="valueChanged" handler="nodeActivitiesListValueChangedinline" listener="javax.swing.event.ListSelectionListener"/>
+												</Events>
+												<Properties>
+													<Property name="model"/>
+													<Property name="selectionMode" type="int" value="0"/>
+													<Property name="name" type="String" value="nodes"/>
+												</Properties>
+											</Component>
+										</SubComponents>
+									</Component>
+									<Component class="javax.swing.JScrollPane" name="roles">
+										<Properties>
+											<Property class="javax.swing.border.EmptyBorder" name="border">
+												<Property name="borderInsets" type="Insets">
+												<Insets value="[0, 0, 0, 0]"/>
+											</Property>
+											</Property>
+										</Properties>
+										<SubComponents>
+											<Component class="javax.swing.JScrollBar" name="roles.horizontalScrollBar">
+												<Properties>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JScrollBar" name="roles.verticalScrollBar">
+												<Properties>
+												</Properties>
+											</Component>
+											<Component class="javax.swing.JList" name="rolesList">
+												<Events>
+													<EventHandler event="mouseExited" handler="rolesListMouseExitedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseClicked" handler="rolesListMouseClickedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseReleased" handler="rolesListMouseReleasedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseEntered" handler="rolesListMouseEnteredinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mousePressed" handler="rolesListMousePressedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="valueChanged" handler="rolesListValueChangedinline" listener="javax.swing.event.ListSelectionListener"/>
+												</Events>
+												<Properties>
+													<Property name="model"/>
+													<Property name="selectionMode" type="int" value="0"/>
+													<Property name="name" type="String" value="Roles"/>
+												</Properties>
+											</Component>
+										</SubComponents>
+									</Component>
+									<Component class="javax.swing.JSplitPane" name="AttributeSplitPane1">
+										<Properties>
+											<Property name="dividerLocation" type="int" value="100"/>
+											<Property name="dividerSize" type="int" value="2"/>
+											<Property class="javax.swing.border.EmptyBorder" name="border">
+												<Property name="borderInsets" type="Insets">
+												<Insets value="[0, 0, 0, 0]"/>
+											</Property>
+											</Property>
+										</Properties>
+										<SubComponents>
+											<Component class="javax.swing.JScrollPane" name="nodeAttPane">
+												<Properties>
+												</Properties>
+												<SubComponents>
+													<Component class="javax.swing.JScrollBar" name="nodeAttPane.horizontalScrollBar">
+														<Properties>
+														</Properties>
+													</Component>
+													<Component class="javax.swing.JScrollBar" name="nodeAttPane.verticalScrollBar">
+														<Properties>
+														</Properties>
+													</Component>
+													<Component class="javax.swing.JList" name="nodeAttList">
+														<Events>
+															<EventHandler event="valueChanged" handler="nodeAttListValueChangedinline" listener="javax.swing.event.ListSelectionListener"/>
+														</Events>
+														<Properties>
+															<Property name="model"/>
+															<Property name="selectionMode" type="int" value="0"/>
+															<Property name="name" type="String" value="nodeAttributes"/>
+														</Properties>
+													</Component>
+												</SubComponents>
+											</Component>
+											<Component class="javax.swing.JScrollPane" name="edgeAttPane">
+												<Properties>
+												</Properties>
+												<SubComponents>
+													<Component class="javax.swing.JScrollBar" name="edgeAttPane.horizontalScrollBar">
+														<Properties>
+														</Properties>
+													</Component>
+													<Component class="javax.swing.JScrollBar" name="edgeAttPane.verticalScrollBar">
+														<Properties>
+														</Properties>
+													</Component>
+													<Component class="javax.swing.JList" name="edgeAttList">
+														<Events>
+															<EventHandler event="valueChanged" handler="edgeAttListValueChangedinline" listener="javax.swing.event.ListSelectionListener"/>
+														</Events>
+														<Properties>
+															<Property name="model"/>
+															<Property name="selectionMode" type="int" value="0"/>
+															<Property name="name" type="String" value="edgeAttributes"/>
+														</Properties>
+													</Component>
+												</SubComponents>
+											</Component>
+										</SubComponents>
+									</Component>
+								</SubComponents>
+							</Component>
+						</SubComponents>
+					</Component>
+					<Component class="javax.swing.JPanel" name="dummyPanel">
+						<Layout class="Absolute">
+						</Layout>
+						<Properties>
+							<Property name="preferredSize" type="Dimension">
+								<Dimension value="[600, 10]"/>
+							</Property>
+							<Property name="layout"/>
+						</Properties>
+						<SubComponents>
+							<Component class="javax.swing.JLabel" name="jLabel6">
+								<Layout class="Absolute">
+								</Layout>
+								<Properties>
+									<Property name="text" type="String" value="openGL error!"/>
+									<Property name="font" type="Font">
+										<Font name="Dialog" size="36" strikeout="false" style="0" underline="false"/>
+									</Property>
+									<Property name="layout" value="null"/>
+									<Property name="bounds" type="Rectangle">
+										<Rectangle value="[33, 28, 224, 47]"/>
+									</Property>
+								</Properties>
+							</Component>
+						</SubComponents>
+					</Component>
+				</SubComponents>
+			</Component>
+		</SubComponents>
+	</Component>
+</Form>

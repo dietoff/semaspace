@@ -8,6 +8,7 @@ import semaGL.*;
 
 
 public abstract class GraphElement {
+	private Vector3D pos = new Vector3D(0, 0, 0);
 	public int id; 
 	public float[] defaultcolor ={.5f,.5f,.5f,0.7f}; //free
 	private float[] color ={.5f,.5f,.5f,0.7f}; //free
@@ -165,5 +166,11 @@ public abstract class GraphElement {
 	}
 	public float[] getColor2() {
 		return defaultcolor2;
+	}
+	public void setPos(Vector3D pos) {
+		this.pos = pos;
+	}
+	public Vector3D getPos() {
+		return pos;
 	}
 }

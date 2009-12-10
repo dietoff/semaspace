@@ -138,17 +138,17 @@ public class GraphRendererSVG {
 				n = group1.hasNode(m);
 				float[] c = GraphElement.colorFunction(n.name);
 				g2d.setPaint(new Color(c[0],c[1],c[2],c[3]));
-				g2d.translate(n.pos.x, n.pos.y);
+				g2d.translate(n.getPos().x, n.getPos().y);
 				g2d.drawString(n.getName(), 0, 0);
 				g2d.setTransform(t);
 				Vector3D D;
 				for (Node bref : group1.nNodes){
 					if (bref!=n){
-						D = bref.pos.copy();
-						D.sub(n.pos); 
+						D = bref.getPos().copy();
+						D.sub(n.getPos()); 
 						D.mult(-1);
 						g2d.setPaint(new Color(c[0],c[1],c[2],0.1f));
-						groupArrow(g2d, bref.size()*1.5f, n.pos, D);
+						groupArrow(g2d, bref.size()*1.5f, n.getPos(), D);
 					}
 				}
 			}
@@ -163,12 +163,12 @@ public class GraphRendererSVG {
 			float af = a.size(); 
 			float bf = b.size(); 
 
-			Vector3D D = Vector3D.sub(b.pos, a.pos);
+			Vector3D D = Vector3D.sub(b.getPos(), a.getPos());
 			Vector3D DN= D.copy();
 			DN.normalize();
 
-			Vector3D start = a.pos.copy();
-			Vector3D end = b.pos.copy();
+			Vector3D start = a.getPos().copy();
+			Vector3D end = b.getPos().copy();
 			start.add(Vector3D.mult(DN, af));
 			end.sub(Vector3D.mult(DN, bf));
 
@@ -218,13 +218,13 @@ public class GraphRendererSVG {
 					float[] col = GraphElement.colorFunction(n.name);
 					col[3]=Math.min(n.alpha, 0.05f);
 					Polygon2D p = new Polygon2D();
-					p.addPoint(n.pos.x, n.pos.y);
+					p.addPoint(n.getPos().x, n.getPos().y);
 					for (Node c:n.cluster){
-						p.addPoint(c.pos.x, c.pos.y);
+						p.addPoint(c.getPos().x, c.getPos().y);
 					}
 					Node c= n.cluster.iterator().next();
-					p.addPoint(c.pos.x, c.pos.y);
-					p.addPoint(n.pos.x, n.pos.y);
+					p.addPoint(c.getPos().x, c.getPos().y);
+					p.addPoint(n.getPos().x, n.getPos().y);
 					g2d.setPaint(new Color(col[0],col[1],col[2],col[3]));
 					g2d.fill(p);
 				}
@@ -239,14 +239,14 @@ public class GraphRendererSVG {
 			g2d.setPaint(new Color(n.getColor()[0],n.getColor()[1],n.getColor()[2],n.getColor()[3]));
 
 			if (circles) {
-				g2d.fillOval((int)(n.pos.x)-(int)(size/2), (int)(n.pos.y)-(int)(size/2), (int)size, (int)size);
+				g2d.fillOval((int)(n.getPos().x)-(int)(size/2), (int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
 			}
 			else {
-				g2d.fillRect((int)(n.pos.x)-(int)(size/2), (int)(n.pos.y)-(int)(size/2), (int)size, (int)size);
+				g2d.fillRect((int)(n.getPos().x)-(int)(size/2), (int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
 			}
 			if (n.pickColor[3]>0) {
 				g2d.setPaint(new Color(n.pickColor[0],n.pickColor[1],n.pickColor[2],1));
-				g2d.drawRect((int)(n.pos.x)-(int)(size/2), (int)(n.pos.y)-(int)(size/2), (int)size, (int)size);
+				g2d.drawRect((int)(n.getPos().x)-(int)(size/2), (int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
 			}
 		}
 
@@ -260,14 +260,14 @@ public class GraphRendererSVG {
 					Node a = e.getA();
 					Node b = e.getB();
 
-					Vector3D midP = Vector3D.midPoint(a.pos,b.pos);
+					Vector3D midP = Vector3D.midPoint(a.getPos(),b.getPos());
 					TextLayout tl = new TextLayout(txt,ef,g2d.getFontRenderContext());
 
 					g2d.setPaint(new Color(e.getColor()[0],e.getColor()[1],e.getColor()[2],e.getColor()[3]));
 
 					g2d.translate((midP.x),(midP.y));
 
-					Vector3D sub = Vector3D.sub(a.pos, b.pos);
+					Vector3D sub = Vector3D.sub(a.getPos(), b.getPos());
 					float angle = (float) (Math.atan(sub.y/sub.x));
 					g2d.rotate(angle);
 					g2d.translate(0, -2);
@@ -310,7 +310,7 @@ public class GraphRendererSVG {
 					if ((n.pickColor[3]>0.2f&&app.fadeLabels)||(n.getColor()[3]>0.2&&!app.fadeLabels)  &&txt.length()>0) {
 						for (int i = 0; i<sp.length; i++){
 //														for (int i = 0; i<1; i++){
-							g2d.translate((int)(n.pos.x), (int)(n.pos.y));
+							g2d.translate((int)(n.getPos().x), (int)(n.getPos().y));
 							if (!app.isTree()&&!app.labelsEdgeDir) {
 								g2d.translate((int)(size/2),-(int)(size/2));
 							}
@@ -323,15 +323,15 @@ public class GraphRendererSVG {
 							FontRenderContext frc = g2d.getFontRenderContext();
 							TextLayout tl = new TextLayout(sp[i],varFont,frc);
 
-							if (app.isTree()&&app.getView().distances.getNodeDistance(n)>0) alignLabel(g2d, n.pos, n.size(), tl);
+							if (app.isTree()&&app.getView().distances.getNodeDistance(n)>0) alignLabel(g2d, n.getPos(), n.size(), tl);
 							else
 								if (app.labelsEdgeDir&&!app.isTilt()){
 									if (n.adList.size()==1&&n.inList.size()==0) {
-										Vector3D sub = Vector3D.sub(n.pos, n.adList.iterator().next().pos);
+										Vector3D sub = Vector3D.sub(n.getPos(), n.adList.iterator().next().getPos());
 										alignLabel(g2d, sub, n.size(), tl);
 									} else
 										if (n.inList.size()==1&&n.inList.size()==0) {
-											Vector3D sub = Vector3D.sub(n.pos, n.inList.iterator().next().pos);
+											Vector3D sub = Vector3D.sub(n.getPos(), n.inList.iterator().next().getPos());
 											alignLabel(g2d, sub, n.size(), tl);
 										}
 										else {

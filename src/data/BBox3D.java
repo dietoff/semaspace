@@ -28,12 +28,12 @@ public class BBox3D {
 		bounds.min.setXYZ(maxValue,maxValue,maxValue);
 		bounds.size.setXYZ(0,0,0);
 		for (Node nodeRef: net) {
-			bounds.max.setX(Math.max(nodeRef.pos.x, bounds.max.x));
-			bounds.max.setY(Math.max(nodeRef.pos.y, bounds.max.y));
-			bounds.max.setZ(Math.max(nodeRef.pos.z, bounds.max.z));
-			bounds.min.setX(Math.min(nodeRef.pos.x, bounds.min.x));
-			bounds.min.setY(Math.min(nodeRef.pos.y, bounds.min.y));
-			bounds.min.setZ(Math.min(nodeRef.pos.z, bounds.min.z));
+			bounds.max.setX(Math.max(nodeRef.getPos().x, bounds.max.x));
+			bounds.max.setY(Math.max(nodeRef.getPos().y, bounds.max.y));
+			bounds.max.setZ(Math.max(nodeRef.getPos().z, bounds.max.z));
+			bounds.min.setX(Math.min(nodeRef.getPos().x, bounds.min.x));
+			bounds.min.setY(Math.min(nodeRef.getPos().y, bounds.min.y));
+			bounds.min.setZ(Math.min(nodeRef.getPos().z, bounds.min.z));
 		}
 		bounds.size.setXYZ(bounds.max);
 		bounds.size.sub(bounds.min);

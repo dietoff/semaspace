@@ -10,7 +10,6 @@ import semaGL.SemaParameters;
 import nehe.TextureReader.Texture;
 
 public class Node extends GraphElement {
-	public Vector3D pos = new Vector3D(0, 0, 0);
 	public Vector3D lockedPos = new Vector3D(0, 0, 0);
 	private float size;
 	public float[] pickColor ={1f,0.9f,0f,0.0f}; //this is the color of the selection frame
@@ -37,7 +36,7 @@ public class Node extends GraphElement {
 	Node (SemaParameters app_, String n_, Vector3D pos_) {
 		super(app_,n_);
 		defaultcolor = app.nodeColor.clone();
-		pos.setXYZ(pos_);
+		getPos().setXYZ(pos_);
 		adList = new HashSet<Node>();
 		inList = new HashSet<Node>();
 		cluster= new HashSet<Node>();
