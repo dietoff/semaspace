@@ -464,6 +464,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void browserCall() {
+		String url = System.getProperty("indiUrl");
 		try {
 			GraphElement picked = getPicked();
 			if (!(picked instanceof Node)&&!(picked instanceof Edge)) return;
@@ -485,7 +486,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 				query = aVal+"&"+eVal+"&"+bVal;
 			} 
 			String rep = query.replaceAll(" ", "+");//.replaceAll("[\\s| ]", "+");
-			java.awt.Desktop.getDesktop().browse(new URI("http://143.50.30.21/vis/semaspace.php?"+rep));
+			java.awt.Desktop.getDesktop().browse(new URI(url+rep));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (URISyntaxException e1) {
