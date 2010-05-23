@@ -85,10 +85,21 @@ public class NetLoader {
 			{
 				String col1 = cols[0].trim();
 				String col2 = cols[1].trim();
+				/*
+				Edge e = r.getEdge(col1, col2, "");
+				if (e!=null) {
+					String w = e.getAttribute("weight");
+					if (w!=null) { 
+						int weight = Integer.parseInt(w);
+						weight++;
+						e.setAttribute("weight",""+weight);
+					}
+				} else*/
 				tmp = r.addEdge (col1,col2);
 				if (tmp!=null){
 					// database id as first attribute
 					tmp.setAttribute("id", tmp.name);
+//					tmp.setAttribute("weight", 1);
 					r.edgeattributes.add("id");
 
 					// db id as first attribute
@@ -136,7 +147,7 @@ public class NetLoader {
 				if (i==0){
 					fields=cols.clone();
 					if (fields.length>2){
-						for (int j=2; i<fields.length;i++) {
+						for (int j=2; j<fields.length;j++) {
 							String s = fields[j].trim();
 							r.edgeattributes.add(s.toLowerCase());
 						}
@@ -373,11 +384,11 @@ public class NetLoader {
 		StringBuffer sb = new StringBuffer();
 
 		for (Node n :net.nNodes){
-//			sb.append(n.name); //+"\t"+nRef.altName+"\t";
-//			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) sb.append("\tname="+n.altName);
+			//			sb.append(n.name); //+"\t"+nRef.altName+"\t";
+			//			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) sb.append("\tname="+n.altName);
 
 			if (n.isLocked()) sb.append("pos="+n.lockedPos.x+","+n.lockedPos.y+","+n.lockedPos.z);
-			
+
 			if (n.attributes.size()>1) {
 				String attributes = "";
 				for (Entry ent:n.attributes.entrySet()) {
