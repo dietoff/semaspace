@@ -1,14 +1,14 @@
 #Fat Jar Configuration File
-#Tue Jun 02 16:12:22 CEST 2009
+#Wed Dec 16 16:34:09 EST 2009
 onejar.license.required=false
 manifest.classpath=.
 manifest.removesigners=true
-onejar.checkbox=true
-jarname=/Users/d/Desktop/sema.jar
-manifest.mergeall=true
-manifest.mainclass=UI.SwingSema
+onejar.checkbox=false
+jarname=/Users/d/semaspace/release/sema_np.jar
+manifest.mergeall=false
+manifest.mainclass=UI.NetzpioniereSema
 manifest.file=<createnew>
 jarname.isextern=true
 onejar.expand=
-excludes=<po|SemaSpace>~.svn/;<po|SemaSpace>~.DS_Store;<po|SemaSpace>~LABTSEC_.ttf;<po|SemaSpace>~machtgth.ttf
+excludes=<po|SemaSpace>~sema.config;<jar|gluegen-rt.jar>;<jar|jogl.jar>;<jar|batik-svggen.jar>;<jar|batik-dom.jar>;<jar|batik-awt-util.jar>;<jar|batik.jar>;<jar|batik-util.jar>;<jar|batik-svg-dom.jar>;<jar|batik-parser.jar>;<jar|batik-xml.jar>;<jar|batik-anim.jar>;<jar|batik-bridge.jar>;<jar|batik-codec.jar>;<jar|batik-css.jar>;<jar|batik-ext.jar>;<jar|batik-extension.jar>;<jar|batik-gui-util.jar>;<jar|batik-gvt.jar>;<jar|batik-script.jar>;<jar|batik-swing.jar>;<jar|batik-transcoder.jar>;<jar|js.jar>;<jar|pdf-transcoder.jar>;<jar|xalan-2.6.0.jar>;<jar|xerces_2_5_0.jar>;<jar|xml-apis-ext.jar>;<jar|xml-apis.jar>
 includes=

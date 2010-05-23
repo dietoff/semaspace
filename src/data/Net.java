@@ -28,7 +28,7 @@ public class Net {
 	private HashMap<Integer, Edge> eTableID;
 	HashMap<String, Node> nTable; 							//hashtable for name lookup
 	private HashMap<Integer, Node> nTableID; 				//hashtable for id lookup
-//	public HashMap<Node, Vector3D> posTable;						//hashtable for locked positions
+	//	public HashMap<Node, Vector3D> posTable;						//hashtable for locked positions
 	public HashMap<Node, Float> timeTable;
 	//	BBox3D bounds;
 	int depth= 1;
@@ -46,7 +46,7 @@ public class Net {
 	public Net(SemaParameters app_) {
 		app = app_;
 		nTable = new HashMap<String, Node>(); 
-//		posTable = new HashMap<Node, Vector3D>();
+		//		posTable = new HashMap<Node, Vector3D>();
 
 		distances = new DistanceTable(this);
 		timeTable = new HashMap<Node, Float>();
@@ -87,25 +87,36 @@ public class Net {
 
 	/**
 	 * add an edge to the network using existing nodes with id (for example a timestamp)
+	 * if edge exists, 
 	 * @param n1 (Node)
 	 * @param n2 (Node)
 	 * @param timestamp (String)
 	 */
 	public Edge addEdge(Node aref, Node bref, String id){
-		Edge newEdge;
+		Edge newEdge; 
 		String name = Edge.edgeName(aref,bref,id);
 		boolean dir = app.directed;
+		Edge edge = eTable.get(name);
 		if (eTable.containsKey(name)) { //check if edge exists
-			return eTable.get(name);
+			/*String w = edge.getAttribute("weight");
+
+			if (w!=null) { 
+				int weight = Integer.parseInt(w);
+				weight++;
+				edge.setAttribute("weight",""+weight);
+			} 
+			}
+			 */
+			return edge;
 		} else  //add a new edge.
 		{
-			newEdge = new Edge(app, aref, bref, id);
-			addEdge(newEdge);
+			edge = new Edge(app, aref, bref, id);
+			addEdge(edge);
 
 			//			aref.adList.add(bref);
 			//			if (!dir) bref.adList.add(aref); else bref.inList.add(aref);
 
-			return eTable.get(name);
+			return edge;
 		}
 	}
 
@@ -170,6 +181,11 @@ public class Net {
 	public Node hasNode(String name){
 		return nTable.get(name);
 	}
+	
+	public Edge getEdge(String a, String b, String id){
+		return eTable.get(a+"@"+b+"@"+id);
+	}
+	
 	/**
 	 * Adds an existing node to the network
 	 * @param node
@@ -602,7 +618,7 @@ public class Net {
 			if (att!=null) {
 				att = att.toLowerCase();
 				e.setFrame(false);
-				
+
 				if (!app.isExhibitionMode()) {
 					if (att.matches(subString)) result.addEdge(e);
 				} else

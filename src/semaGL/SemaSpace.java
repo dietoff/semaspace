@@ -465,6 +465,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void browserCall() {
 		String url = System.getProperty("indiUrl");
+		System.out.println(url);
 		try {
 			GraphElement picked = getPicked();
 			if (!(picked instanceof Node)&&!(picked instanceof Edge)) return;
