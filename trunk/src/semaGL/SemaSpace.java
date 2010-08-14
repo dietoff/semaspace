@@ -124,7 +124,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		gl.glEnable(GL.GL_TEXTURE_2D);								// Enable Texture Mapping
 		gl.glShadeModel(GL.GL_SMOOTH);              				// Enable Smooth Shading
 		gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST); // Really Nice Perspective Calculations
-		gl.glClearColor(1f, 1f, 1f, 1f);   
+		gl.glClearColor(p.background[0],p.background[1],p.background[2],p.background[3]);   
 		gl.glEnable(GL.GL_BLEND);
 		gl.glEnable(GL.GL_CULL_FACE);
 		gl.glDisable(GL.GL_DEPTH_TEST);
@@ -986,8 +986,8 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			SVGexport=false;
 			SVGrenderer.renderSVG(gl, ns.getView(), p.fonttype, svgFilename);
 		}
-
 		if (!p.render) return;
+		
 		if (p.FOG&&!p.layout2d) gl.glEnable(GL.GL_FOG); else gl.glDisable(GL.GL_FOG);
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 		cam.posIncrement(gl, yRotInc, xRotInc, zInc, focus); 
