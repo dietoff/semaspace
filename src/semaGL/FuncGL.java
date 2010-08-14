@@ -130,8 +130,8 @@ public class FuncGL {
 			gl.glScalef(scale, scale, scale);
 			gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
 			if (!fast) {
-				gl.glLineWidth(5);
-				gl.glColor4f(1f,1f,1f,1f);
+				gl.glLineWidth(app.textwidth*4);
+				gl.glColor4f(app.background[0],app.background[1],app.background[2],app.background[3]);
 				renderStrokeString( app, strokefont, lines[i], off, off-2*i*fontsize); // Print GL Text To The Screen
 			}
 			gl.glLineWidth(app.textwidth);

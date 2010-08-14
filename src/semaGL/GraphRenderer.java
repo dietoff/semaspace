@@ -123,7 +123,7 @@ public class GraphRenderer {
 		Node a = e.getA();
 		Node b = e.getB();
 
-		float[] textcolor = {color [0]/2f, color[1]/2f, color[2]/2f, 0.5f};
+		float[] textcolor = {color [0]*0.8f, color[1]*0.8f, color[2]*0.8f, 1f};
 		if (par.fadeLabels&&!e.rollover&&!e.isPicked()&&!e.isFrame()&&!(a.getPickColor()[3]>0&&b.getPickColor()[3]>0)) return;
 
 		if (e.alpha<0.2) return;
@@ -474,7 +474,7 @@ public class GraphRenderer {
 
 		float distToCam = par.getCam().distToCam(n.getPos());
 		String att="";
-		float[] textcolor = {n.getColor()[0]/2f, n.getColor()[1]/2f, n.getColor()[2]/2f, 1};
+		float[] textcolor = {n.getColor()[0]*0.8f, n.getColor()[1]*0.8f, n.getColor()[2]*0.8f, 1};
 
 		if (par.fadeLabels&&n.pickColor[3]==0&&!n.rollover&&!n.isFrame()) {
 			font=3;
