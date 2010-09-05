@@ -31,7 +31,7 @@ public class SemaParameters {
 	String edgeUrl;
 	int fonttype = 1;
 	float textwidth = 1.5f;
-	public float[] background = {.9f,.9f,.9f,.9f};
+	public float[] background = {1f,1f,1f,1f};
 	public float[] pickGradEnd = {0f,1f,0f,0f};
 	public float[] frameColor={0f,0f,1f,0.8f};
 	float[] pickGradStart ={1f,0f,0f,0.8f};
@@ -193,7 +193,7 @@ public class SemaParameters {
 		Color.decode(props.getProperty("nodeColor","0x8888ff")).getComponents(nodeColor);
 		p=props.getProperty("nodeAlpha","0.9");if (p!=null)  nodeColor[3]=Float.parseFloat(p);
 		Color.decode(props.getProperty("edgeColor","0x8888ff")).getComponents(edgeColor);
-		Color.decode(props.getProperty("backgroundColor","0xdddddd")).getComponents(background);
+		Color.decode(props.getProperty("backgroundColor","0xffffff")).getComponents(background);
 		Color.decode(props.getProperty("frameColor","0x0088ff")).getComponents(frameColor);
 		labelsEdgeDir = (Boolean.parseBoolean(props.getProperty("labelsEdgeDir","True")));
 		p= props.getProperty("repellMaxDist","1000"); if (p!=null) repellMax = (int) Float.parseFloat(p);
@@ -296,6 +296,9 @@ public class SemaParameters {
 
 	public boolean get3D() {
 		return layout2d;
+	}
+	public void set3D (boolean val) {
+		 layout2d = !val;
 	}
 
 	public int getAgeThresh() {

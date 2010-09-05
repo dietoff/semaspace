@@ -117,6 +117,10 @@ public abstract class GraphElement {
 		return attributes.remove(key);
 	}
 	
+	public void removeAllAttributes() {
+		attributes.clear();	
+	}
+	
 	public String getAttribute(String key) {
 		return attributes.get(key);
 	}

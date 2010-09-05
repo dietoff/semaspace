@@ -181,11 +181,11 @@ public class Net {
 	public Node hasNode(String name){
 		return nTable.get(name);
 	}
-	
+
 	public Edge getEdge(String a, String b, String id){
 		return eTable.get(a+"@"+b+"@"+id);
 	}
-	
+
 	/**
 	 * Adds an existing node to the network
 	 * @param node
@@ -784,5 +784,12 @@ public class Net {
 			if (e.hasAttribute(attribute)) e.altName=e.getAttribute(attribute);
 		}
 	}
-
+	public void removeNodeAttributes() {
+		for (Node n:nNodes) n.removeAllAttributes();
+		nodeattributes.clear();
+	}
+	public void removeEdgeAttributes() {
+		for (Edge e:nEdges) e.removeAllAttributes();
+		edgeattributes.clear();
+	}
 }
