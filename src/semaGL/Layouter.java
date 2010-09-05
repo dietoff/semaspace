@@ -53,7 +53,7 @@ public class Layouter {
 			n.setPickColor(result);
 
 			//			set the alpha of the node color	based on selection		
-			if (app.fadeNodes&&!n.rollover&&!n.isFrame()) n.setAlpha(Math.max(0.05f,alpha)); else n.setAlpha(app.nodeColor[3]);
+			if (app.fadeNodes&&!n.rollover&&!n.isFrame()) n.setAlpha(Math.max(0.19f,alpha)); else n.setAlpha(app.nodeColor[3]);
 
 			n.genColorFromAtt();
 		}

@@ -84,7 +84,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	int screenshotcounter = 0;
 	private boolean SVGexport;
 	private String svgFilename;
-	private GraphRendererSVG SVGrenderer;
+	private GraphRendererSVG SVGrenderer = null;
 	private List<SemaListener> _listeners = new ArrayList<SemaListener>();
 	private boolean SHIFT;
 	public String splitAttribute = "; ";
@@ -92,6 +92,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean inflate= false;
 	private boolean changed=false;
 	private boolean pressed=false;
+	private boolean locksActive = true;
+	private boolean enableChangeLocks=false;
+	private boolean reset=false;
 
 	public SemaSpace(String string){
 		p = new SemaParameters(this);
@@ -194,7 +197,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void camOnSelected() {
 		zInc = 300;
-		zoomNew = zInc;
+		setZoom(zInc);
 		GraphElement picked = getPicked();
 		if (picked != null) focus.setXYZ(picked.getPos().copy()); else focus.setXYZ(0,0,0);
 		cam.posAbsolute(glD,0f,0f,zInc,focus);
@@ -441,7 +444,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			ns.view.updateNet();
 			break;
 		case KeyEvent.VK_SPACE:
-//			browserCall(); 
+			//			browserCall(); 
 			break;
 		case KeyEvent.VK_F1:
 			String name = nameCurrentAttribute();
@@ -452,7 +455,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			System.out.println("inflate = true"); //$NON-NLS-1$
 			break;
 		case KeyEvent.VK_F4: 
-			layout.layoutLocksRemove();
+			setLocksActive(!isLocksActive());
 			break;
 		case KeyEvent.VK_ENTER:
 			if (evt.isAltDown()) fireSemaEvent(SemaEvent.EnterFullscreen);
@@ -522,7 +525,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 				if (rep) layout.layoutRepell(p.getRepellDist(), p.repellStrength, ns.getView());
 
-				layout.layoutLockPlace(ns.getView());
+				if (isLocksActive() ) layout.layoutLockPlace(ns.getView());
 
 				layout.layoutGroups(ns.getView());
 
@@ -531,7 +534,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 				}
 
 				if (p.layout2d) layout.layoutFlat();
-
+				if (reset) {
+					reset=false;
+					resetCam();
+					};
 			}
 		}
 		float inf = p.getInflatetime()-elapsedtime;
@@ -660,6 +666,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void mouseClicked(MouseEvent evt) {
 		if (evt.getClickCount() == 2) netExpandPickedNodes();
 		updatePick();
+//		p.fadeNodes=false;
 	}
 
 	public void mouseDragged(MouseEvent evt) {
@@ -688,16 +695,18 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			picked.getPos().y = (float)Math.cos(cam.getXRot()*TWO_PI/360)*localY;
 			picked.getPos().z = (float)Math.sin(cam.getXRot()*TWO_PI/360)*localY-(float)Math.sin(cam.getYRot()*TWO_PI/360)*localX+cam.getZ();
 
-			if (!evt.isAltDown()) picked.lock(picked.getPos());
-			else picked.setLocked(false);
+			if (enableChangeLocks) {
+				if (!evt.isAltDown()) picked.lock(picked.getPos());
+				else picked.setLocked(false);
+			}
 		}
 
 		else {
 			//zoom
 			if (SwingUtilities.isRightMouseButton(evt)) {
-				zoomNew *= 1-(diffy*0.08f*deltatime) ;
-				zoomNew = Math.min(zoomNew, p.zfar);
-				zoomNew = Math.max(zoomNew, p.znear);
+				setZoom(getZoom() * (1-(diffy*0.08f*deltatime)));
+				setZoom(Math.min(getZoom(), p.zfar));
+				setZoom(Math.max(getZoom(), p.znear));
 			}
 			else 
 				//rotate (only in 3d mode)
@@ -708,7 +717,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			//drag cam (only in 2d mode)
 				else {
 					Vector3D offV = new Vector3D(diffx,-diffy,0f);
-					offV.mult(zoomNew*2f);
+					offV.mult(getZoom()*2f);
 					focus.add(offV);
 				}
 		}
@@ -738,9 +747,10 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		int notches = e.getWheelRotation();
-		zoomNew *= 1-(notches*0.001f*deltatime) ;
-		zoomNew = Math.min(zoomNew, p.zfar);
-		zoomNew = Math.max(zoomNew, p.znear);
+		setZoom(getZoom() * (1-(notches*0.001f*deltatime)));
+		setZoom(Math.min(getZoom(), p.zfar));
+		setZoom(Math.max(getZoom(), p.znear));
+		
 	}
 
 	private String nameCurrentAttribute() {
@@ -803,7 +813,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			break;
 		} 
 		if (p.isStartWhole()) {
-			netShowAll();
+			netShowAllCurrentAttribute();
 			p.setStartWhole(false);
 		} else
 			if (p.pickID!=-1) {
@@ -873,9 +883,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	/**
-	 * generate view from whole network
+	 * generate view from whole network containing only active attributes
 	 */
-	public void netShowAll(){
+	public void netShowAllCurrentAttribute(){
 		if (p.getAttribute() == "none") { //$NON-NLS-1$
 			ns.setView(ns.global.clone());}
 		else {
@@ -890,6 +900,17 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		clearFrames(ns.getView());
 		initNet();
 	}
+
+	/**
+	 * generate view from whole network
+	 */
+	public void netShowAll() {
+		ns.setView(ns.global.clone());
+		ns.getView().distances.clear();
+		clearFrames(ns.getView());
+		initNet();
+	}
+
 	/**
 	 * view from first node in nodearray
 	 * @param add- add to existing view
@@ -987,7 +1008,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			SVGrenderer.renderSVG(gl, ns.getView(), p.fonttype, svgFilename);
 		}
 		if (!p.render) return;
-		
+
 		if (p.FOG&&!p.layout2d) gl.glEnable(GL.GL_FOG); else gl.glDisable(GL.GL_FOG);
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 		cam.posIncrement(gl, yRotInc, xRotInc, zInc, focus); 
@@ -1026,6 +1047,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		p.render= r;
 	}
 
+	public void prepResetCam() {
+		reset=true;
+	}
 	public void resetCam() {
 		if (cam==null) return;
 		BBox3D bounds = BBox3D.calcBounds(ns.getView().nNodes);
@@ -1034,7 +1058,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		float tan = (float)Math.tan(p.FOV/2);
 		zInc = Math.max(300, size/tan);
 		//		} else zInc = 300;
-		zoomNew = zInc;
+		setZoom(zInc);
 		focus.setXYZ(bounds.center.x,bounds.center.y, bounds.center.z);
 		cam.posAbsolute(glD,zInc,focus);
 	}
@@ -1288,12 +1312,12 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		elapsedtime = currenttime-starttime;
 		deltatime = currenttime-lasttime;
 		lasttime = currenttime;
-		zInc = (zoomNew-cam.getDist());
+		zInc = (getZoom()-cam.getDist());
 		xRotInc = (xRotNew-cam.getXRot());
 		yRotInc = (yRotNew-cam.getYRot());
 	}
 
-	void updateUI() {
+	public void updateUI() {
 		fireSemaEvent(SemaEvent.UpdateUI);
 	}
 
@@ -1343,5 +1367,21 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		//			if (selected) layout.initTimeline();
 		p.setTime(selected);
 		//		}
+	}
+
+	public void setLocksActive(boolean locksActive) {
+		this.locksActive = locksActive;
+	}
+
+	public boolean isLocksActive() {
+		return locksActive;
+	}
+
+	public void setZoom(float zoomNew) {
+		this.zoomNew = zoomNew;
+	}
+
+	public float getZoom() {
+		return zoomNew;
 	}
 }

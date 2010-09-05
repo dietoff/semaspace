@@ -2072,7 +2072,7 @@ public class JuryExhibitionSema implements SemaListener, KeyListener {
 			showAll.setBounds(72, 68, 67, 15);
 			showAll.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.netShowAll(); //  Auto-generated Event stub actionPerformed()
+					app.netShowAllCurrentAttribute(); //  Auto-generated Event stub actionPerformed()
 				}
 			});
 		}

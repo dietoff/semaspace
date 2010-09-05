@@ -99,7 +99,7 @@ public class NetLoader {
 				if (tmp!=null){
 					// database id as first attribute
 					tmp.setAttribute("id", tmp.name);
-//					tmp.setAttribute("weight", 1);
+					//					tmp.setAttribute("weight", 1);
 					r.edgeattributes.add("id");
 
 					// db id as first attribute
@@ -384,8 +384,8 @@ public class NetLoader {
 		StringBuffer sb = new StringBuffer();
 
 		for (Node n :net.nNodes){
-			//			sb.append(n.name); //+"\t"+nRef.altName+"\t";
-			//			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) sb.append("\tname="+n.altName);
+			sb.append(n.name+"\t"); //+"\t"+nRef.altName+"\t";
+			if (n.altName!=""&&n.altName.hashCode()!=n.name.hashCode()) sb.append("\tname="+n.altName);
 
 			if (n.isLocked()) sb.append("pos="+n.lockedPos.x+","+n.lockedPos.y+","+n.lockedPos.z);
 

@@ -45,7 +45,7 @@ public class GraphRenderer {
 		gl.glPushMatrix();
 		gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
 		gl.glPolygonMode(GL.GL_FRONT, GL.GL_LINE);
-		gl.glLineWidth(1.5f);
+		gl.glLineWidth(2.5f);
 		gl.glScalef(1.25f, 1.25f, 1.25f);
 		FuncGL.quad(gl);
 		gl.glPopMatrix();
@@ -384,6 +384,10 @@ public class GraphRenderer {
 		gl.glPushMatrix();
 		gl.glScalef(size, size, size);
 
+		if (n.rollover||n.pickColor[3]>0) {
+			gl.glScalef(2f,2f,2f);
+		}
+		
 		float[] color = n.getColor();
 
 		if (n.fade) {
@@ -409,6 +413,7 @@ public class GraphRenderer {
 		
 		
 
+
 		//split quad or solid quad
 		float[] color2 = n.getColor2();
 		if (color2 !=null) {
@@ -427,14 +432,15 @@ public class GraphRenderer {
 			gl.glColor4fv(n.pickColor,0);
 			FuncGL.quad(gl);	
 		}
-
+		
+		// pick mark
 		if (n.isLocked()) {
 			gl.glPushMatrix();
 			gl.glLineWidth(1.5f);
 			gl.glTranslatef(0, 1, 0);
 			gl.glBegin(GL.GL_LINES);
 			gl.glVertex3f(0,0,0);
-			gl.glVertex3f(0,1,0);
+			gl.glVertex3f(0,0.333f,0);
 			gl.glEnd();
 			gl.glPopMatrix();
 		}
