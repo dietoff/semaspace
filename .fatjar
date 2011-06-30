@@ -1,14 +1,14 @@
 #Fat Jar Configuration File
-#Wed Sep 22 16:01:46 EDT 2010
+#Sat Oct 09 18:38:19 CEST 2010
 onejar.license.required=false
 manifest.classpath=.
 manifest.removesigners=true
 onejar.checkbox=false
-jarname=/Users/d/semaspace/semaAusst/semaAusst.jar
+jarname=/Users/d/semaspace/sema.jar
 manifest.mergeall=false
-manifest.mainclass=UI.BerlinAusstSema
+manifest.mainclass=UI.SwingSema
 manifest.file=<createnew>
 jarname.isextern=true
 onejar.expand=
-excludes=<po|SemaSpace>~berlinAusstSema.config;<po|SemaSpace>~berlinSema.config;<po|SemaSpace>~data.tab;<po|SemaSpace>~data.tab.n;<po|SemaSpace>~JuriesArtists.tab;<po|SemaSpace>~JuriesArtists.tab.n;<po|SemaSpace>~LABTSEC_.ttf;<po|SemaSpace>~machtgth.ttf;<po|SemaSpace>~netzpioniere.config;<po|SemaSpace>~sema.config;<po|SemaSpace>~Tall Films Expanded.ttf;<jar|batik-svggen.jar>;<jar|batik-dom.jar>;<jar|batik-awt-util.jar>;<jar|batik.jar>;<jar|batik-util.jar>;<jar|batik-svg-dom.jar>;<jar|batik-parser.jar>;<jar|batik-xml.jar>;<jar|batik-anim.jar>;<jar|batik-bridge.jar>;<jar|batik-codec.jar>;<jar|batik-css.jar>;<jar|batik-ext.jar>;<jar|batik-extension.jar>;<jar|batik-gui-util.jar>;<jar|batik-gvt.jar>;<jar|batik-script.jar>;<jar|batik-swing.jar>;<jar|batik-transcoder.jar>;<jar|js.jar>;<jar|pdf-transcoder.jar>;<jar|xalan-2.6.0.jar>;<jar|xerces_2_5_0.jar>;<jar|xml-apis-ext.jar>;<jar|xml-apis.jar>
+excludes=<po|SemaSpace>~berlinAusstSema.config;<po|SemaSpace>~berlinSema.config;<po|SemaSpace>~JuriesArtists.tab;<po|SemaSpace>~JuriesArtists.tab.n;<po|SemaSpace>~LABTSEC_.ttf;<po|SemaSpace>~machtgth.ttf;<po|SemaSpace>~netzpioniere.config;<po|SemaSpace>~sema.config;<po|SemaSpace>~Tall Films Expanded.ttf
 includes=
