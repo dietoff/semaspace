@@ -1,52 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><Form builder="jigloo" ide="eclipse" laf="com.jtattoo.plaf.fast.FastLookAndFeel" style="Swing" version="4.4.4">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Form builder="jigloo" ide="eclipse" laf="com.jtattoo.plaf.fast.FastLookAndFeel" style="Swing" version="4.6.2">
 <NonVisualComponents>
 		<Component class="UNKNOWN" name="Non-visual components" style="0">
 			<SubComponents>
-				<Component class="apple.awt.CGraphicsEnvironment" name="%35.environment" style="0">
-					<Properties>
-					</Properties>
-				</Component>
-				<Component class="javax.swing.DefaultListModel" name="nodeAttModel" style="0">
-					<Properties>
-					</Properties>
-				</Component>
-				<Component class="javax.swing.DefaultListModel" name="netListModel" style="0">
-					<Properties>
-					</Properties>
-				</Component>
-				<Component class="javax.swing.DefaultListModel" name="edgeAttModel" style="0">
-					<Properties>
-					</Properties>
-				</Component>
-				<Component class="javax.swing.DefaultListModel" name="nodeListModel" style="0">
-					<Properties>
-					</Properties>
-				</Component>
-				<Component class="javax.swing.table.DefaultTableModel" name="eTableModel" style="0">
-					<Properties>
-						<Property name="columnCount" type="int" value="2"/>
-					</Properties>
-				</Component>
-				<Component class="java.awt.GraphicsDevice" name="%35.devices" style="0">
-					<Properties>
-					</Properties>
-					<SubComponents>
-						<Component class="java.awt.Window" name="%35.devices.fullScreenWindow">
-						</Component>
-					</SubComponents>
-				</Component>
-				<Component class="java.awt.GraphicsDevice" name="%35.device" style="0">
-					<Properties>
-					</Properties>
-					<SubComponents>
-						<Component class="java.awt.Window" name="%35.device.fullScreenWindow">
-						</Component>
-					</SubComponents>
-				</Component>
-				<Component class="javax.swing.KeyStroke" name="keyStroke_IL" style="0">
-					<Properties>
-					</Properties>
-				</Component>
 				<Component class="javax.swing.KeyStroke" name="keyStroke_IL2" style="0">
 					<Properties>
 					</Properties>
@@ -55,19 +10,84 @@
 					<Properties>
 					</Properties>
 				</Component>
+				<Component class="javax.swing.KeyStroke" name="keyStroke_IL4" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.KeyStroke" name="keyStroke_IL3" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.lang.String" name="%36.title" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="apple.awt.CGraphicsEnvironment" name="%17.environment" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%0.%50.sorted" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.awt.GraphicsDevice" name="%17.devices" style="0">
+					<Properties>
+					</Properties>
+					<SubComponents>
+						<Component class="java.awt.Window" name="%17.devices.fullScreenWindow">
+						</Component>
+					</SubComponents>
+				</Component>
+				<Component class="java.util.TreeSet" name="%40.sorted" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.table.DefaultTableModel" name="eTableModel" style="0">
+					<Properties>
+						<Property name="columnCount" type="int" value="2"/>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="netListModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.awt.GraphicsDevice" name="%17.device" style="0">
+					<Properties>
+					</Properties>
+					<SubComponents>
+						<Component class="java.awt.Window" name="%17.device.fullScreenWindow">
+						</Component>
+					</SubComponents>
+				</Component>
 				<Component class="java.util.Properties" name="%0.%0.props" style="0">
 					<Properties>
 					</Properties>
 				</Component>
-				<Component class="java.lang.String" name="%4.%24.title" style="0">
+				<Component class="java.lang.String" name="%4.%50.title" style="0">
 					<Properties>
 					</Properties>
 				</Component>
-				<Component class="java.util.TreeSet" name="%1.%24.sorted" style="0">
+				<Component class="javax.swing.DefaultListModel" name="edgeAttModel" style="0">
 					<Properties>
 					</Properties>
 				</Component>
-				<Component class="java.util.TreeSet" name="%0.%24.sorted" style="0">
+				<Component class="javax.swing.KeyStroke" name="keyStroke_IL" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="nodeListModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="javax.swing.DefaultListModel" name="nodeAttModel" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%42.sorted" style="0">
+					<Properties>
+					</Properties>
+				</Component>
+				<Component class="java.util.TreeSet" name="%1.%50.sorted" style="0">
 					<Properties>
 					</Properties>
 				</Component>
@@ -80,9 +100,9 @@
 		<Properties>
 			<Property name="defaultCloseOperation" type="int" value="3"/>
 			<Property name="title" type="String" value="SemaSpace"/>
-			<Property name="resizable" type="boolean" value="false"/>
-			<Property name="undecorated" type="boolean" value="true"/>
-			<Property name="extendedState" type="int" value="6"/>
+			<Property name="resizable" type="boolean" value="true"/>
+			<Property name="undecorated" type="boolean" value="false"/>
+			<Property name="extendedState" type="int" value="0"/>
 			<Property name="size" type="Dimension">
 				<Dimension value="[1000, 600]"/>
 			</Property>
@@ -114,12 +134,12 @@
 							<Property name="minimumSize" type="Dimension">
 								<Dimension value="[230, 400]"/>
 							</Property>
+							<Property name="doubleBuffered" type="boolean" value="true"/>
 							<Property class="javax.swing.border.EmptyBorder" name="border">
 								<Property name="borderInsets" type="Insets">
 								<Insets value="[0, 0, 0, 0]"/>
 							</Property>
 							</Property>
-							<Property name="doubleBuffered" type="boolean" value="true"/>
 						</Properties>
 						<SubComponents>
 							<Component class="javax.swing.JSplitPane" name="jSplitPane2">
@@ -140,7 +160,11 @@
 											<Property name="minimumSize" type="Dimension">
 												<Dimension value="[217, 320]"/>
 											</Property>
-											<Property name="border"/>
+											<Property class="javax.swing.border.EmptyBorder" name="border">
+												<Property name="borderInsets" type="Insets">
+												<Insets value="[1, 1, 1, 1]"/>
+											</Property>
+											</Property>
 										</Properties>
 										<SubComponents>
 											<Component class="javax.swing.JPanel" name="file">
@@ -333,6 +357,24 @@
 															</Property>
 														</Properties>
 													</Component>
+													<Component class="javax.swing.JCheckBox" name="jCheckBox2">
+														<Events>
+															<EventHandler event="actionPerformed" handler="fullscreenhandler method" listener="java.awt.event.ActionListener"/>
+														</Events>
+														<Properties>
+															<Property name="text" type="String" value="fullscreen"/>
+															<Property name="margin" type="Insets">
+																<Insets value="[0, 0, 0, 0]"/>
+															</Property>
+															<Property name="contentAreaFilled" type="boolean" value="false"/>
+															<Property name="font" type="Font">
+																<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+															</Property>
+															<Property name="bounds" type="Rectangle">
+																<Rectangle value="[148, 271, 76, 19]"/>
+															</Property>
+														</Properties>
+													</Component>
 												</SubComponents>
 											</Component>
 											<Component class="javax.swing.JPanel" name="dataTab">
@@ -348,12 +390,16 @@
 													<Component class="javax.swing.JTextField" name="searchTerm">
 														<Events>
 															<EventHandler event="keyReleased" handler="searchTermKeyReleasedinline" listener="java.awt.event.KeyListener"/>
+															<EventHandler event="mouseExited" handler="searchTermMouseExitedinline" listener="java.awt.event.MouseListener"/>
+															<EventHandler event="mouseEntered" handler="searchTermMouseEnteredinline" listener="java.awt.event.MouseListener"/>
 														</Events>
 														<Properties>
-															<Property class="javax.swing.border.EmptyBorder" name="border">
-																<Property name="borderInsets" type="Insets">
-																<Insets value="[0, 0, 0, 0]"/>
+															<Property class="javax.swing.border.LineBorder" name="border">
+																<Property name="lineColor" type="Color">
+																<Color blue="96" green="96" red="96"/>
 															</Property>
+																<Property name="thickness" type="int" value="1"/>
+																<Property name="roundedCorners" type="boolean" value="false"/>
 															</Property>
 															<Property name="bounds" type="Rectangle">
 																<Rectangle value="[2, 19, 116, 15]"/>
@@ -382,15 +428,15 @@
 														</Events>
 														<Properties>
 															<Property name="value" type="int" value="50"/>
+															<Property name="font" type="Font">
+																<Font name="Dialog" size="9" strikeout="false" style="0" underline="false"/>
+															</Property>
 															<Property name="maximum" type="int" value="10"/>
 															<Property name="inverted" type="boolean" value="false"/>
 															<Property name="majorTickSpacing" type="int" value="1"/>
 															<Property name="snapToTicks" type="boolean" value="true"/>
 															<Property name="paintTrack" type="boolean" value="false"/>
 															<Property name="paintLabels" type="boolean" value="true"/>
-															<Property name="font" type="Font">
-																<Font name="Dialog" size="9" strikeout="false" style="0" underline="false"/>
-															</Property>
 															<Property name="toolTipText" type="String" value="searchdepth"/>
 															<Property name="opaque" type="boolean" value="false"/>
 															<Property name="name" type="String" value="depth"/>
@@ -582,15 +628,15 @@
 															<EventHandler event="stateChanged" handler="jSlider1StateChangedinline" listener="javax.swing.event.ChangeListener"/>
 														</Events>
 														<Properties>
+															<Property name="font" type="Font">
+																<Font name="Dialog" size="9" strikeout="false" style="0" underline="false"/>
+															</Property>
 															<Property name="maximum" type="int" value="6"/>
 															<Property name="inverted" type="boolean" value="false"/>
 															<Property name="majorTickSpacing" type="int" value="1"/>
 															<Property name="snapToTicks" type="boolean" value="true"/>
 															<Property name="paintTrack" type="boolean" value="false"/>
 															<Property name="paintLabels" type="boolean" value="true"/>
-															<Property name="font" type="Font">
-																<Font name="Dialog" size="9" strikeout="false" style="0" underline="false"/>
-															</Property>
 															<Property name="toolTipText" type="String" value="searchdepth"/>
 															<Property name="opaque" type="boolean" value="false"/>
 															<Property name="name" type="String" value="jSlider1"/>
@@ -1642,6 +1688,9 @@
 												</Events>
 												<Properties>
 													<Property name="value" type="int" value="1"/>
+													<Property name="font" type="Font">
+														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
+													</Property>
 													<Property name="maximum" type="int" value="3"/>
 													<Property name="minimum" type="int" value="0"/>
 													<Property name="inverted" type="boolean" value="true"/>
@@ -1649,9 +1698,6 @@
 													<Property name="snapToTicks" type="boolean" value="true"/>
 													<Property name="paintTicks" type="boolean" value="true"/>
 													<Property name="paintTrack" type="boolean" value="false"/>
-													<Property name="font" type="Font">
-														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
-													</Property>
 													<Property name="toolTipText" type="String" value="font"/>
 													<Property name="preferredSize" type="Dimension">
 														<Dimension value="[20, 40]"/>
@@ -1810,12 +1856,12 @@
 											</Component>
 											<Component class="javax.swing.JList" name="nodeList">
 												<Events>
-													<EventHandler event="valueChanged" handler="nodeListValueChangedinline" listener="javax.swing.event.ListSelectionListener"/>
-													<EventHandler event="mouseReleased" handler="nodeListMouseReleasedinline" listener="java.awt.event.MouseListener"/>
-													<EventHandler event="mouseClicked" handler="nodeListMouseClickedinline" listener="java.awt.event.MouseListener"/>
 													<EventHandler event="mouseExited" handler="nodeListMouseExitedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseClicked" handler="nodeListMouseClickedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="mouseReleased" handler="nodeListMouseReleasedinline" listener="java.awt.event.MouseListener"/>
 													<EventHandler event="mouseEntered" handler="nodeListMouseEnteredinline" listener="java.awt.event.MouseListener"/>
 													<EventHandler event="mousePressed" handler="nodeListMousePressedinline" listener="java.awt.event.MouseListener"/>
+													<EventHandler event="valueChanged" handler="nodeListValueChangedinline" listener="javax.swing.event.ListSelectionListener"/>
 												</Events>
 												<Properties>
 													<Property name="model"/>
@@ -1945,7 +1991,11 @@
 										<Properties>
 											<Property name="dividerLocation" type="int" value="100"/>
 											<Property name="dividerSize" type="int" value="2"/>
-											<Property name="border"/>
+											<Property class="javax.swing.border.EmptyBorder" name="border">
+												<Property name="borderInsets" type="Insets">
+												<Insets value="[0, 0, 0, 0]"/>
+											</Property>
+											</Property>
 										</Properties>
 										<SubComponents>
 											<Component class="javax.swing.JScrollPane" name="nodeAttPane">

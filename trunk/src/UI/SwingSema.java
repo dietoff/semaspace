@@ -141,6 +141,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JLabel valenzLabel;
 	private JSlider strengthSlider;
 	private JSlider stretchSlider;
+	private JCheckBox jCheckBox2;
 	private JSlider repellStSlider;
 	private JSlider pushSlider;
 	private JSlider groupRadius;
@@ -894,6 +895,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			file.add(getSimButton18());
 			file.add(getSimButton19());
 			file.add(getExportWhole());
+			file.add(getJCheckBox2x());
 		}
 		return file;
 	}
@@ -3034,5 +3036,23 @@ public class SwingSema implements SemaListener, KeyListener {
 				app.ns.exportGraphML(filename);
 			}
 		}
+	}
+	
+	private JCheckBox getJCheckBox2x() {
+		if(jCheckBox2 == null) {
+			jCheckBox2 = new JCheckBox();
+			jCheckBox2.setText("fullscreen");
+			jCheckBox2.setSelected(app.p.fullscreen);
+			jCheckBox2.setMargin(new java.awt.Insets(0,0,0,0));
+			jCheckBox2.setContentAreaFilled(false);
+			jCheckBox2.setFont(new java.awt.Font("Dialog",0,10));
+			jCheckBox2.setBounds(148, 271, 76, 19);
+			jCheckBox2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					fullscreen(jCheckBox2.isSelected());
+				}
+			});
+		}
+		return jCheckBox2;
 	}
 }	
