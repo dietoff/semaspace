@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Shape;
 import java.awt.font.FontRenderContext;
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
+
 import net.sourceforge.ftgl.glyph.FTGlyph;
 import net.sourceforge.ftgl.glyph.FTOutlineGlyph;
 
@@ -67,7 +69,7 @@ public class FTGLOutlineFont extends FTFont
 	 */
 	public void render(String string)
 	{
-		this.gl.glPushAttrib(GL.GL_ENABLE_BIT | GL.GL_HINT_BIT | GL.GL_LINE_BIT | GL.GL_COLOR_BUFFER_BIT);
+		this.gl.glPushAttrib(GL2.GL_ENABLE_BIT | GL2.GL_HINT_BIT | GL2.GL_LINE_BIT | GL.GL_COLOR_BUFFER_BIT);
 
 		this.gl.glDisable(GL.GL_TEXTURE_2D);
 

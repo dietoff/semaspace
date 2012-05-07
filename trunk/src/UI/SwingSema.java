@@ -78,18 +78,18 @@ public class SwingSema implements SemaListener, KeyListener {
 		SwingUtilities.invokeLater(new Runnable() {
 			private SwingSema application;
 			private SemaSpace space;
-			private GLDisplayPanel semaGLDisplay;
+//			private GLDisplayPanel semaGLDisplay;
 
 			public void run() {
 				space = new SemaSpace("sema.config");
-				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
-				semaGLDisplay.addGLEventListener(space);
+//				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
+//				semaGLDisplay.addGLEventListener(space);
 				application = new SwingSema();
 				space.addSemaListener(application);
 				application.setSema(space);
 				application.getMainWindow().setVisible(true);
-				application.jSplitPane.setRightComponent(semaGLDisplay.getJPanel());
-				semaGLDisplay.start();
+				application.jSplitPane.setRightComponent(space.getJPanel());
+//				semaGLDisplay.start();
 			}
 		});
 	}

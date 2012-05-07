@@ -1,6 +1,0 @@
-
-netzpioniere
-
-java.awt.Desktop.getDesktop().browse(new URI("http://www.your.url")); 
-
-http://www.croftsoft.com/library/tutorials/browser/

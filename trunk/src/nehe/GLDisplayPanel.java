@@ -1,10 +1,11 @@
 package nehe;
 
-import com.sun.opengl.util.FPSAnimator;
+import com.jogamp.opengl.util.FPSAnimator;
 
 import javax.swing.*;
 import javax.imageio.ImageIO;
 import javax.media.opengl.*;
+import javax.media.opengl.awt.GLCanvas;
 
 
 import java.awt.*;
@@ -36,7 +37,8 @@ public class GLDisplayPanel {
 	}
 
 	private GLDisplayPanel() {
-		glCanvas = new GLCanvas(new GLCapabilities());
+		GLProfile pr = GLProfile.get(GLProfile.GL2);
+		glCanvas = new GLCanvas(new GLCapabilities(pr));
 		glCanvas.setIgnoreRepaint( true );
 		glCanvas.addGLEventListener( helpOverlayGLEventListener );
 		frame = new JPanel();
@@ -45,7 +47,7 @@ public class GLDisplayPanel {
 		addKeyListener( new MyKeyAdapter());
 
 		animator = new FPSAnimator( glCanvas, 60 );
-		animator.setRunAsFastAsPossible(false);
+//		animator.setRunAsFastAsPossible(false);
 	}
 	public JPanel getJPanel() {
 		return frame;
@@ -219,7 +221,7 @@ public class GLDisplayPanel {
 
 		public void displayChanged( GLAutoDrawable glDrawable, boolean b, boolean b1 ) {
 			for ( int i = 0; i < eventListeners.size(); i++ ) {
-				( (GLEventListener) eventListeners.get( i ) ).displayChanged( glDrawable, b, b1 );
+				( (MyHelpOverlayGLEventListener) eventListeners.get( i ) ).displayChanged( glDrawable, b, b1 );
 			}
 		}
 
@@ -234,5 +236,14 @@ public class GLDisplayPanel {
 				( (GLEventListener) eventListeners.get( i ) ).reshape( glDrawable, i0, i1, i2, i3 );
 			}
 		}
+
+		public void dispose(GLAutoDrawable arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+
+	public void addMouseWheelListener(MouseWheelListener w) {
+		glCanvas.addMouseWheelListener(w);
 	}
 }

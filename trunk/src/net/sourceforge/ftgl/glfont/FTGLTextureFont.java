@@ -10,13 +10,15 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
-import com.sun.opengl.util.BufferUtil;
 import javax.imageio.ImageIO;
 import java.awt.image.PixelGrabber;
 import java.io.IOException;
 import javax.media.opengl.GL;
-import com.sun.opengl.util.texture.Texture;
-import com.sun.opengl.util.texture.TextureData;
+import javax.media.opengl.GL2;
+
+import com.jogamp.opengl.util.GLBuffers;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureData;
 import net.sourceforge.ftgl.FTBBox;
 import net.sourceforge.ftgl.glyph.FTGlyph;
 import net.sourceforge.ftgl.glyph.FTTextureGlyph;
@@ -256,12 +258,12 @@ public class FTGLTextureFont extends FTFont
 		
 		// memset( textureMemory, 0, totalMemory);
 		int[] textID = new int[1];;
-		ByteBuffer pixels =  BufferUtil.newByteBuffer(totalMemory);
+		ByteBuffer pixels =  GLBuffers.newDirectByteBuffer(totalMemory);
 		this.gl.glGenTextures(1, textID,0);
 		this.gl.glBindTexture(GL.GL_TEXTURE_2D, textID[0]);
 //		this.gl.glTexParameterfv(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_BORDER_COLOR, Color.white.getRGBComponents(null),0);
-		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, GL.GL_CLAMP);
-		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, GL.GL_CLAMP);
+		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, GL2.GL_CLAMP);
+		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, GL2.GL_CLAMP);
 		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR);
 		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR_MIPMAP_LINEAR);
 		/* if( gl.isExtensionAvailable("GL_EXT_texture_filter_anisotropic") )   
@@ -275,7 +277,7 @@ public class FTGLTextureFont extends FTFont
 		  }
 	*/
 		
-		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_GENERATE_MIPMAP, GL.GL_TRUE);
+		this.gl.glTexParameteri(GL.GL_TEXTURE_2D, GL2.GL_GENERATE_MIPMAP, GL.GL_TRUE);
 		this.gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_ALPHA, this.textureWidth, this.textureHeight, 0, GL.GL_ALPHA,
 			GL.GL_UNSIGNED_BYTE, pixels);
 
@@ -291,7 +293,7 @@ public class FTGLTextureFont extends FTFont
 	public void render(final String string)
 	{
 		assert renderTexture(0);
-		this.gl.glPushAttrib(GL.GL_ENABLE_BIT | GL.GL_COLOR_BUFFER_BIT);
+		this.gl.glPushAttrib(GL2.GL_ENABLE_BIT | GL2.GL_COLOR_BUFFER_BIT);
 
 		this.gl.glEnable(GL.GL_BLEND);
 		this.gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA); // GL_ONE
@@ -310,14 +312,14 @@ public class FTGLTextureFont extends FTFont
 	{
 		if (index>=0 && index < this.textureIDList.size())
 		{
-			this.gl.glPushAttrib(GL.GL_ENABLE_BIT | GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_CURRENT_BIT);
+			this.gl.glPushAttrib(GL2.GL_ENABLE_BIT | GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT | GL2.GL_CURRENT_BIT);
 
 			this.gl.glEnable(GL.GL_BLEND);
 			this.gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA); // GL_ONE
 			this.gl.glDepthFunc(GL.GL_ALWAYS);
 			int textureID = ((int[])this.textureIDList.get(index))[0];
 			int[] activeTextureID = new int[1];
-			this.gl.glGetIntegerv(GL.GL_TEXTURE_2D_STACK_BINDING_MESAX, activeTextureID,0);
+			this.gl.glGetIntegerv(GL2.GL_TEXTURE_BINDING_2D, activeTextureID,0);
 			if(activeTextureID[0] != textureID)
 			{
 				this.gl.glBindTexture(GL.GL_TEXTURE_2D, textureID);
@@ -326,14 +328,14 @@ public class FTGLTextureFont extends FTFont
 			float sizeY = (sizeX/this.textureWidth)*this.textureHeight;
 			sizeX /= 2f;
 			sizeY /= 2f;
-			this.gl.glBegin(GL.GL_QUADS);
+			this.gl.glBegin(GL2.GL_QUADS);
 			this.gl.glColor4f(1f,0f,0f,1f);
 			this.gl.glVertex2f(-sizeX, -sizeY);
 			this.gl.glVertex2f(-sizeX, sizeY);
 			this.gl.glVertex2f(sizeX, sizeY);
 			this.gl.glVertex2f(sizeX, -sizeY);
 			this.gl.glEnd();
-			this.gl.glBegin(GL.GL_QUADS);
+			this.gl.glBegin(GL2.GL_QUADS);
 			this.gl.glTexCoord2f( 0f, 0f);
 			this.gl.glVertex2f(-sizeX, -sizeY);
 

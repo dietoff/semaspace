@@ -5,6 +5,7 @@ import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 
 import net.sourceforge.ftgl.util.Vector3f;
 
@@ -149,15 +150,15 @@ public class FTBBox
 					  this.upperX + "|" + this.upperY + "|" + this.upperZ + "]";
 	}
 
-	public static boolean renderBBox(GL gl, Vector3f pos, FTBBox box)
+	public static boolean renderBBox(GL2 gl, Vector3f pos, FTBBox box)
 	{
 		gl.glPushMatrix();
 		gl.glTranslated(pos.x, pos.y, pos.z);
 		gl.glBitmap(0, 0, 0f, 0f, pos.x, pos.y, (byte[])null,0);
 		//TODO: Move to correct raster position
-		gl.glPushAttrib(GL.GL_CURRENT_BIT | GL.GL_LIGHTING_BIT | GL.GL_COLOR_BUFFER_BIT);
+		gl.glPushAttrib(GL2.GL_CURRENT_BIT | GL2.GL_LIGHTING_BIT | GL.GL_COLOR_BUFFER_BIT);
 		gl.glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
-		gl.glDisable(GL.GL_LIGHTING);
+		gl.glDisable(GL2.GL_LIGHTING);
 		gl.glDisable(GL.GL_BLEND);
 		// Draw the front face
 		gl.glBegin(GL.GL_LINE_LOOP);

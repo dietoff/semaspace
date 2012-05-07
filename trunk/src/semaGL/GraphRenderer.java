@@ -3,6 +3,7 @@ package semaGL;
 import java.util.HashSet;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 import javax.media.opengl.glu.*;
 
 
@@ -22,7 +23,7 @@ public class GraphRenderer {
 		par=app_;
 	}
 
-	private float alignLabel(GL gl, Vector3D n, float nSize, int font, float fsize, String split) {
+	private float alignLabel(GL2 gl, Vector3D n, float nSize, int font, float fsize, String split) {
 
 		float angle = (float) ((Math.atan(n.y/n.x))/(2*Math.PI)*360f); // this has to be fixed for 3D
 		float advance = getAdvance(nSize, font, fsize, split);
@@ -41,10 +42,10 @@ public class GraphRenderer {
 	 * render frame around node
 	 * @param gl
 	 */
-	private void drawFrame(GL gl) {
+	private void drawFrame(GL2 gl) {
 		gl.glPushMatrix();
 		gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
-		gl.glPolygonMode(GL.GL_FRONT, GL.GL_LINE);
+		gl.glPolygonMode(GL.GL_FRONT, GL2.GL_LINE);
 		gl.glLineWidth(2.5f);
 		gl.glScalef(1.25f, 1.25f, 1.25f);
 		FuncGL.quad(gl);
@@ -52,7 +53,7 @@ public class GraphRenderer {
 	}
 
 	/**
-	 * Get the Advance (horizontal length) of a jftgl string 
+	 * Get the Advance (horizontal length) of a jftGL2 string 
 	 * @param nSize
 	 * @param font
 	 * @param fsize
@@ -86,16 +87,16 @@ public class GraphRenderer {
 	 * @param pos
 	 * @return
 	 */
-	public double[] project2screen(GL gl, Vector3D pos) {
+	public double[] project2screen(GL2 gl, Vector3D pos) {
 		gl.glGetIntegerv(GL.GL_VIEWPORT, view,0);
-		gl.glGetDoublev(GL.GL_PROJECTION_MATRIX, projection,0);
-		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, model,0);
+		gl.glGetDoublev(GL2.GL_PROJECTION_MATRIX, projection,0);
+		gl.glGetDoublev(GL2.GL_MODELVIEW_MATRIX, model,0);
 		double[] winPos = new double[3];
 		glu.gluUnProject(pos.x, pos.y, pos.z, model, 0, projection, 0, view, 0, winPos,0);
 		return winPos;
 	}
 
-	void renderBounds(GL gl, HashSet<Node> nodes){
+	void renderBounds(GL2 gl, HashSet<Node> nodes){
 		gl.glPushMatrix();
 //		gl.glLoadIdentity();
 		BBox3D bounds = BBox3D.calcBounds(nodes);
@@ -104,7 +105,7 @@ public class GraphRenderer {
 		gl.glScalef(bounds.size.x/2f, bounds.size.y/2f, bounds.size.z/2f);
 //		System.out.println(bounds.center.x+" "+bounds.center.y+" "+bounds.center.z);
 		gl.glColor4f(255,0,1,255);
-		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
+		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_LINE);
 		gl.glColor4fv(par.frameColor,0);
 		FuncGL.quad(gl);
 		gl.glPopMatrix();
@@ -117,7 +118,7 @@ public class GraphRenderer {
 	 * @param Text
 	 * @param fast
 	 */
-	synchronized void renderEdgeLabels(GL gl, Edge e, int Text, boolean fast) {
+	synchronized void renderEdgeLabels(GL2 gl, Edge e, int Text, boolean fast) {
 		float[] color = e.getColor();
 		int font = Text;
 		Node a = e.getA();
@@ -165,7 +166,7 @@ public class GraphRenderer {
 	 * @param gl
 	 * @param e
 	 */
-	synchronized void renderEdges(GL gl, Edge e){
+	synchronized void renderEdges(GL2 gl, Edge e){
 		e.genColorFromAtt();
 
 		Node a = e.getA();
@@ -186,16 +187,16 @@ public class GraphRenderer {
 		gl.glLoadName(e.id);
 
 		//draw edge
-		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
+		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_LINE);
 		if  (e.isPartofTriangle){
-			gl.glEnable(GL.GL_LINE_STIPPLE);
+			gl.glEnable(GL2.GL_LINE_STIPPLE);
 			gl.glLineStipple (5, (short)0xAAAA);
 		}
 
 		//edge or nodes picked: 
 		if (e.isPicked()||(a.getPickColor()[3]>0||b.getPickColor()[3]>0)||e.rollover||e.isFrame())
 		{
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
+			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_LINE);
 			gl.glLineWidth(2.5f);
 			if (e.isPicked()) 
 				FuncGL.drawLine(gl, start, end,par.pickGradStart,par.pickGradStart);
@@ -209,7 +210,7 @@ public class GraphRenderer {
 		else 
 		{
 			// draw actual edge
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
+			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_LINE);
 			gl.glLineWidth(par.getEdgewidth());
 			gl.glBegin(GL.GL_LINES);
 			float[] aCol = e.getColor().clone();
@@ -235,24 +236,24 @@ public class GraphRenderer {
 			}
 			
 			FuncGL.drawLine(gl, start, end, aCol, bCol);
-			gl.glDisable(GL.GL_LINE_STIPPLE);
+			gl.glDisable(GL2.GL_LINE_STIPPLE);
 			
 			e.alpha = (bCol[3]+aCol[3]) / 2f;
 		}
 
 		// draw property vector 
 		if (e.getProperty()!=-1) {
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
+			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_LINE);
 			FuncGL.propertyVector(gl, e.getProperty(), 3f, end, DN);
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
+			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_FILL);
 			FuncGL.propertyVector(gl, e.getProperty(), 3f, end, DN);
 		}
 
 		//draw arrowhead
 		if (par.directed){
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
+			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_FILL);
 			FuncGL.arrowHead(gl,10,end,DN);
-			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_LINE);
+			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_LINE);
 			FuncGL.arrowHeadEmpty(gl,10,end,DN);
 			//			gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
 			//			FuncGL.arrowHead(gl,20,end,DN);
@@ -266,14 +267,14 @@ public class GraphRenderer {
 	 * @param nodes
 	 * @param center
 	 */
-	synchronized void renderFan(GL gl, HashSet<Node> nodes, Node center) {
+	synchronized void renderFan(GL2 gl, HashSet<Node> nodes, Node center) {
 		float[] col = Func.parseColorInt(center.name.hashCode()+"");
 		col[3]=Math.min(center.alpha, 0.05f);
 		gl.glColor4fv(col, 0);
 		Node tmp=null;
 		int jcount=0;
 		gl.glPushMatrix();
-		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
+		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_FILL);
 		gl.glBegin(GL.GL_TRIANGLE_FAN);
 		gl.glVertex3f(center.getPos().x, center.getPos().y, center.getPos().z);
 		for (Node bref : nodes){
@@ -298,7 +299,7 @@ public class GraphRenderer {
 	 * @param n
 	 * @param font
 	 */
-	public synchronized void renderGroupLabels(GL gl, Node n, int font){
+	public synchronized void renderGroupLabels(GL2 gl, Node n, int font){
 
 		if (par.layout2d&&outsideView(n)) return;
 
@@ -331,7 +332,7 @@ public class GraphRenderer {
 	 * @param nodes
 	 * @param center
 	 */
-	synchronized void renderGroups(GL gl, HashSet<Node> nodes, Node center){
+	synchronized void renderGroups(GL2 gl, HashSet<Node> nodes, Node center){
 		float[] col = GraphElement.colorFunction(center.name);
 		col[3]=Math.min(center.alpha, 0.20f);
 		float[] white = {1,1,1,0};
@@ -339,7 +340,7 @@ public class GraphRenderer {
 		col2[3]=0;
 
 		gl.glPushMatrix();
-		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL);
+		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_FILL);
 
 		Vector3D D;
 		for (Node bref : nodes){
@@ -360,7 +361,7 @@ public class GraphRenderer {
 	 * @param gl
 	 * @param n
 	 */
-	synchronized void renderNode(GL gl, Node n) {
+	synchronized void renderNode(GL2 gl, Node n) {
 		if (par.layout2d&&outsideView(n)) return;
 
 		if (n.newTex=true&&n.tex!=null){
@@ -395,11 +396,11 @@ public class GraphRenderer {
 		}
 		
 		gl.glColor4fv(color,0);
-		gl.glPolygonMode(GL.GL_FRONT, GL.GL_LINE);
+		gl.glPolygonMode(GL.GL_FRONT, GL2.GL_LINE);
 		gl.glLineWidth(1f);
 		FuncGL.quad(gl);
 
-		gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
+		gl.glPolygonMode(GL.GL_FRONT, GL2.GL_FILL);
 		gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
 
 		//			gl.glColor4fv(pickColor,0); //pick color
@@ -427,7 +428,7 @@ public class GraphRenderer {
 		//pick frame
 		if (n.pickColor[3]>0){
 			gl.glBindTexture(GL.GL_TEXTURE_2D, 0);
-			gl.glPolygonMode(GL.GL_FRONT, GL.GL_LINE);
+			gl.glPolygonMode(GL.GL_FRONT, GL2.GL_LINE);
 			gl.glLineWidth(2.5f);
 			gl.glColor4fv(n.pickColor,0);
 			FuncGL.quad(gl);	
@@ -475,7 +476,7 @@ public class GraphRenderer {
 	 * @param font
 	 * @param fast
 	 */
-	public synchronized void renderNodeLabels(GL gl, Node n, int font, boolean fast){
+	public synchronized void renderNodeLabels(GL2 gl, Node n, int font, boolean fast){
 		if (par.layout2d&&outsideView(n)) return;
 
 		float distToCam = par.getCam().distToCam(n.getPos());

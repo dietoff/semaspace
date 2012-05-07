@@ -4,6 +4,8 @@ package net.sourceforge.ftgl.glyph;
 import java.awt.Shape;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
+
 import net.sourceforge.ftgl.FTContour;
 import net.sourceforge.ftgl.FTGlyphContainer;
 import net.sourceforge.ftgl.FTMesh;
@@ -60,7 +62,7 @@ public class FTPolyGlyph extends FTGlyph
 		vectoriser.makeMesh(1.0);
 
 		this.glList = this.gl.glGenLists(1);			//TODO verify list!
-		this.gl.glNewList(this.glList, GL.GL_COMPILE);
+		this.gl.glNewList(this.glList, GL2.GL_COMPILE);
 
 		this.gl.glNormal3d(0.0, 0.0, 1.0);
 

@@ -1,14 +1,14 @@
 #Fat Jar Configuration File
-#Sat Oct 09 18:38:19 CEST 2010
+#Mon May 07 11:48:18 EDT 2012
 onejar.license.required=false
 manifest.classpath=.
 manifest.removesigners=true
 onejar.checkbox=false
-jarname=/Users/d/semaspace/sema.jar
+jarname=/Users/d/Sites/jogl20/semaWeb.jar
 manifest.mergeall=false
-manifest.mainclass=UI.SwingSema
+manifest.mainclass=UI.NetzpioniereSema
 manifest.file=<createnew>
 jarname.isextern=true
 onejar.expand=
-excludes=<po|SemaSpace>~berlinAusstSema.config;<po|SemaSpace>~berlinSema.config;<po|SemaSpace>~JuriesArtists.tab;<po|SemaSpace>~JuriesArtists.tab.n;<po|SemaSpace>~LABTSEC_.ttf;<po|SemaSpace>~machtgth.ttf;<po|SemaSpace>~netzpioniere.config;<po|SemaSpace>~sema.config;<po|SemaSpace>~Tall Films Expanded.ttf
-includes=
+excludes=<po|SemaSpace>~berlinAusstSema.config;<po|SemaSpace>~berlinSema.config;<po|SemaSpace>~LABTSEC_.ttf;<po|SemaSpace>~machtgth.ttf;<po|SemaSpace>~netzpioniere.config;<po|SemaSpace>~sema.config;<po|SemaSpace>~Tall Films Expanded.ttf;<jar|jogl.all.jar>;<jar|gluegen-gl.jar>;<jar|gluegen.jar>;<jar|jogl.util.jar>
+includes=<inc|SemaSpace/src>~berlinAusstSema.config;<inc|SemaSpace/src>~berlinSema.config;<inc|SemaSpace/src>~netzpioniere.config;<inc|SemaSpace/src>~sema.config

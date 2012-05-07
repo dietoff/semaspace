@@ -5,6 +5,8 @@ import java.awt.Shape;
 import java.awt.geom.PathIterator;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
+
 import net.sourceforge.ftgl.FTContour;
 import net.sourceforge.ftgl.FTGlyphContainer;
 import net.sourceforge.ftgl.FTMesh;
@@ -60,7 +62,7 @@ public class FTExtrdGlyph extends FTGlyph
 
 		int tesselationIndex;
 		this.glList = this.gl.glGenLists(1); // TODO verifyList();
-		this.gl.glNewList(this.glList, GL.GL_COMPILE);
+		this.gl.glNewList(this.glList, GL2.GL_COMPILE);
 
 		vectoriser.makeMesh(1.0);
 		this.gl.glNormal3d(0.0, 0.0, 1.0);
@@ -107,7 +109,7 @@ public class FTExtrdGlyph extends FTGlyph
 			int numberOfPoints = contour.pointCount();
 
 			Vector3f oldNormal = FTExtrdGlyph.getNormal(contour.getPoint(numberOfPoints-1), contour.getPoint(0));
-			this.gl.glBegin(GL.GL_QUAD_STRIP);
+			this.gl.glBegin(GL2.GL_QUAD_STRIP);
 			for (int j = 0; j <= numberOfPoints; ++j)
 			{
 				int index = (j == numberOfPoints) ? 0 : j;
@@ -140,7 +142,7 @@ public class FTExtrdGlyph extends FTGlyph
 					}
 					normal = flatNormal;
 					gl.glEnd();
-					gl.glBegin(GL.GL_QUAD_STRIP);
+					gl.glBegin(GL2.GL_QUAD_STRIP);
 				}
 
 				this.gl.glNormal3f(normal.x, normal.y, 0.0f);
@@ -168,8 +170,8 @@ public class FTExtrdGlyph extends FTGlyph
 
 	private boolean displayNormals(FTVectoriser vectoriser)
 	{
-		gl.glPushAttrib(GL.GL_CURRENT_BIT | GL.GL_LIGHTING_BIT);
-		gl.glDisable(GL.GL_LIGHTING);
+		gl.glPushAttrib(GL2.GL_CURRENT_BIT | GL2.GL_LIGHTING_BIT);
+		gl.glDisable(GL2.GL_LIGHTING);
 		gl.glColor3f(1.0f, 0.0f, 0.0f);
 		gl.glBegin(GL.GL_LINES);
 		for (int c = 0; c < vectoriser.contourCount(); ++c)

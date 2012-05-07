@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.Map.Entry;
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 
 import data.*;
 import semaGL.SemaSpace;
@@ -107,7 +108,7 @@ public class Layouter {
 		return pivot;
 	}
 
-	private void clusterCircle(final GL gl, float xRot, float yRot, Node aref) {
+	private void clusterCircle(final GL2 gl, float xRot, float yRot, Node aref) {
 		aref.spiralcluster=false;
 		int jcount=0;
 		float matrix[] = new float[16];
@@ -122,19 +123,19 @@ public class Layouter {
 				//				gl.glRotatef(yRot, 1, 0, 0);
 				gl.glRotatef(90+360*jcount/rad, 0, 0, 1);
 				gl.glTranslatef(-clusterDist, 0, 0);
-				gl.glGetFloatv(GL.GL_MODELVIEW_MATRIX, matrix, 0);
+				gl.glGetFloatv(GL2.GL_MODELVIEW_MATRIX, matrix, 0);
 				bref.getPos().setXYZ(matrix[12], matrix[13], matrix[14]);
 				gl.glPopMatrix();
 				jcount++;
 			}
 		}
 	}
-	private void clusterSpiral(final GL gl, float xRot, float yRot, Node aref) {
+	private void clusterSpiral(final GL2 gl, float xRot, float yRot, Node aref) {
 		aref.spiralcluster=true;
 		glSpiral(gl, aref, aref.cluster);
 	}
 
-	void glSpiral(final GL gl,  Node aref, HashSet<Node> cluster) {
+	void glSpiral(final GL2 gl,  Node aref, HashSet<Node> cluster) {
 		int i=0;
 		float r=0;
 		float matrix[] = new float[16];
@@ -147,7 +148,7 @@ public class Layouter {
 				gl.glTranslatef(aref.getPos().x, aref.getPos().y, aref.getPos().z);
 				gl.glRotatef(spiral_angle(aref, i), 0, 0, 1);
 				gl.glTranslatef(-r, 0, 0);
-				gl.glGetFloatv(GL.GL_MODELVIEW_MATRIX, matrix, 0);
+				gl.glGetFloatv(GL2.GL_MODELVIEW_MATRIX, matrix, 0);
 				bref.getPos().setXYZ(matrix[12], matrix[13], matrix[14]);
 				gl.glPopMatrix();
 			}
@@ -159,7 +160,7 @@ public class Layouter {
 	 * layout the leaf clusters
 	 * @param gl
 	 */
-	public void clustersSetup(GL gl){
+	public void clustersSetup(GL2 gl){
 		float xRot = app.getApp().cam.getYRot();		//should be global camera orientation
 		float yRot = app.getApp().cam.getXRot();
 
@@ -611,7 +612,7 @@ public class Layouter {
 	 * @param view
 	 * @param nr
 	 */
-	void render(GL gl, int fonttype, Net view, GraphRenderer nr){
+	void render(GL2 gl, int fonttype, Net view, GraphRenderer nr){
 
 		Layouter layout = this;
 		if (app.layout2d){
@@ -638,7 +639,7 @@ public class Layouter {
 	 * @param gl
 	 * @param nr
 	 */
-	void renderClusters(GL gl, GraphRenderer nr) {
+	void renderClusters(GL2 gl, GraphRenderer nr) {
 		clustersSetup( gl );
 		HashSet<Node>cl=null;
 		for (Node n:net.fNodes) {
@@ -656,7 +657,7 @@ public class Layouter {
 	 * @param nr
 	 * @param text
 	 */
-	public  void renderEdges(GL gl, GraphRenderer nr, int text) {
+	public  void renderEdges(GL2 gl, GraphRenderer nr, int text) {
 		for (Edge eref: net.nEdges) {
 			nr.renderEdges(gl, eref);
 		}
@@ -667,7 +668,7 @@ public class Layouter {
 	 * @param nr
 	 * @param text
 	 */
-	public  void renderEdges3D(GL gl, GraphRenderer nr, int text) {
+	public  void renderEdges3D(GL2 gl, GraphRenderer nr, int text) {
 		for (Edge eref: net.nEdges) {
 			nr.renderEdges(gl, eref);
 			nr.renderEdgeLabels(gl, eref, text, false);
@@ -679,7 +680,7 @@ public class Layouter {
 	 * @param nr
 	 * @param text
 	 */
-	void renderLabels(GL gl, GraphRenderer nr, int text) {
+	void renderLabels(GL2 gl, GraphRenderer nr, int text) {
 		//		boolean fast = (net.nNodes.size()>edgeTresh);
 		boolean fast = false;
 		for (Edge eref: net.nEdges) nr.renderEdgeLabels(gl, eref, text, fast);
@@ -692,7 +693,7 @@ public class Layouter {
 	 * @param nr
 	 * @param text
 	 */
-	public  void renderNodes(GL gl, GraphRenderer nr,  int text) {
+	public  void renderNodes(GL2 gl, GraphRenderer nr,  int text) {
 		applyPickColors();
 		for (Node n: net.nNodes) {
 			nr.renderNode(gl, n);
@@ -704,7 +705,7 @@ public class Layouter {
 	 * @param nr
 	 * @param text
 	 */
-	public  void renderNodes3D(GL gl, GraphRenderer nr,  int text) {
+	public  void renderNodes3D(GL2 gl, GraphRenderer nr,  int text) {
 		applyPickColors();
 		for (Node n: net.nNodes) {
 			nr.renderNode(gl, n);
@@ -718,7 +719,7 @@ public class Layouter {
 	 * @param net
 	 * @param fonttype
 	 */
-	public void renderGroups(GL gl, GraphRenderer nr, Net net, int fonttype) {
+	public void renderGroups(GL2 gl, GraphRenderer nr, Net net, int fonttype) {
 		for (String n:net.groups.keySet()) {
 			Net group = net.groups.get(n);
 			Node center = group.hasNode(n);
@@ -742,7 +743,7 @@ public class Layouter {
 	 * @param net
 	 * @param fonttype
 	 */
-	public void renderGroupLabels(GL gl, GraphRenderer nr, Net net, int fonttype) {
+	public void renderGroupLabels(GL2 gl, GraphRenderer nr, Net net, int fonttype) {
 		Node center;
 		for (String m:net.groups.keySet()) {
 			Net group1 = net.groups.get(m);

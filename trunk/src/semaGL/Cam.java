@@ -1,6 +1,7 @@
 package semaGL;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.glu.GLU;
 
@@ -30,7 +31,7 @@ public class Cam {
 	
 	Cam (GLAutoDrawable space,float FOV , float xwinkel, float ywinkel, float dist, Vector3D lookAt, float znear_, float zfar_) {
 		gLDrawable = space;
-		final GL gl = gLDrawable.getGL();
+		final GL2 gl = gLDrawable.getGL().getGL2();
 		final GLU glu = new GLU();
 		camLocal.setXYZ(0, 0, 0);
 		yRot += xwinkel;
@@ -39,14 +40,14 @@ public class Cam {
 		h = gLDrawable.getWidth()/gLDrawable.getHeight();
 		this.znear = znear_;
 		this.zfar = zfar_;
-		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glLoadIdentity();
 		glu.gluPerspective(FOV, h, znear, zfar);
-		gl.glMatrixMode(GL.GL_MODELVIEW);
+		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		gl.glLoadIdentity();
 	}
 	
-	void posIncrement(GL gl, float yrot, float xrot, float dist_, Vector3D focus_) {
+	void posIncrement(GL2 gl, float yrot, float xrot, float dist_, Vector3D focus_) {
 		xRot+=xrot;
 		yRot+=yrot;
 		
@@ -65,19 +66,19 @@ public class Cam {
 		tmpPos.sub(camLocal);
 		tmpPos.mult(.5f);
 		camLocal.add(tmpPos);
-		gl.glMatrixMode(GL.GL_MODELVIEW);
+		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		gl.glLoadIdentity(); //overwrite new
 		gl.glTranslatef(0, 0, -dist);
 		gl.glRotatef(-xRot, 1, 0, 0);
 		gl.glRotatef(-yRot, 0, 1, 0); // TODO change axis to get local coordinates
 //		gl.glRotatef(-zRot, 0, 0, 1);
 		gl.glTranslatef(-camLocal.x,-camLocal.y,-camLocal.z);
-		gl.glGetFloatv(GL.GL_MODELVIEW_MATRIX, modelview,0);
+		gl.glGetFloatv(GL2.GL_MODELVIEW_MATRIX, modelview,0);
 		
 	}
 	void posAbsolute(GLAutoDrawable space, float yrot, float xrot, float dist_, Vector3D focus_) {
-		final GL gl = gLDrawable.getGL();
-		gl.glMatrixMode(GL.GL_MODELVIEW);
+		final GL2 gl = gLDrawable.getGL().getGL2();
+		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		xRot=xrot;
 		yRot=yrot;
 		dist=dist_;
@@ -88,18 +89,18 @@ public class Cam {
 		gl.glRotatef(-yRot, 0, 1, 0); // TODO change axis to get local coordinates
 //		gl.glRotatef(-zRot, 0, 0, 1);
 		gl.glTranslatef(-camLocal.x,-camLocal.y,-camLocal.z);
-		gl.glGetFloatv(GL.GL_MODELVIEW_MATRIX, modelview,0);
+		gl.glGetFloatv(GL2.GL_MODELVIEW_MATRIX, modelview,0);
 	}
 	
 	void posAbsolute(GLAutoDrawable space, float dist_, Vector3D focus_) {
-		final GL gl = gLDrawable.getGL();
-		gl.glMatrixMode(GL.GL_MODELVIEW);
+		final GL2 gl = gLDrawable.getGL().getGL2();
+		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		dist=dist_;
 		camLocal.setXYZ(focus_);
 		gl.glLoadIdentity(); //overwrite new
 		gl.glTranslatef(0, 0, -dist);
 		gl.glTranslatef(-camLocal.x,-camLocal.y,-camLocal.z);
-		gl.glGetFloatv(GL.GL_MODELVIEW_MATRIX, modelview,0);
+		gl.glGetFloatv(GL2.GL_MODELVIEW_MATRIX, modelview,0);
 	}
 	
 	public float distToCam(Vector3D midP) {

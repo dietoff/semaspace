@@ -1,8 +1,10 @@
 package nehe;
 
-import com.sun.opengl.util.BufferUtil;
 
 import javax.imageio.ImageIO;
+
+import com.jogamp.opengl.util.GLBuffers;
+
 import java.awt.image.BufferedImage;
 import java.awt.image.PixelGrabber;
 import java.io.IOException;
@@ -42,8 +44,8 @@ public class TextureReader {
         }
 
         int bytesPerPixel = storeAlphaChannel ? 4 : 3;
-        ByteBuffer unpackedPixels = BufferUtil.newByteBuffer(packedPixels.length * bytesPerPixel);
-
+        ByteBuffer unpackedPixels = GLBuffers.newDirectByteBuffer(packedPixels.length * bytesPerPixel);
+        
         for (int row = img.getHeight() - 1; row >= 0; row--) {
             for (int col = 0; col < img.getWidth(); col++) {
                 int packedPixel = packedPixels[row * img.getWidth() + col];

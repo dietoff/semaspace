@@ -1,9 +1,10 @@
 package nehe;
 
-import com.sun.opengl.util.GLUT;
-import com.sun.opengl.util.BufferUtil;
+import com.jogamp.opengl.util.GLBuffers;
+import com.jogamp.opengl.util.gl2.GLUT;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
@@ -39,27 +40,27 @@ public class HelpOverlay implements GLEventListener {
     }
 
     public void display(GLAutoDrawable glDrawable) {
-        GL gl = glDrawable.getGL();
+        GL2 gl = glDrawable.getGL().getGL2();
 
         // Store old matrices
-        gl.glMatrixMode(GL.GL_MODELVIEW);
+        gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glPushMatrix();
         gl.glLoadIdentity();
-        gl.glMatrixMode(GL.GL_PROJECTION);
+        gl.glMatrixMode(GL2.GL_PROJECTION);
         gl.glPushMatrix();
         gl.glLoadIdentity();
 
         gl.glViewport(0, 0, glDrawable.getWidth(), glDrawable.getHeight());
 
         // Store enabled state and disable lighting, texture mapping and the depth buffer
-        gl.glPushAttrib(GL.GL_ENABLE_BIT);
+        gl.glPushAttrib(GL2.GL_ENABLE_BIT);
         gl.glDisable(GL.GL_BLEND);
-        gl.glDisable(GL.GL_LIGHTING);
+        gl.glDisable(GL2.GL_LIGHTING);
         gl.glDisable(GL.GL_TEXTURE_2D);
         gl.glDisable(GL.GL_DEPTH_TEST);
 
         // Retrieve the current viewport and switch to orthographic mode
-        IntBuffer viewPort = BufferUtil.newIntBuffer(4);
+        IntBuffer viewPort =  (IntBuffer) GLBuffers.newDirectGLBuffer(GL2.GL_INT,4);
         gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort);
         glu.gluOrtho2D(0, viewPort.get(2), viewPort.get(3), 0);
 
@@ -106,7 +107,7 @@ public class HelpOverlay implements GLEventListener {
 
         // Restore old matrices
         gl.glPopMatrix();
-        gl.glMatrixMode(GL.GL_MODELVIEW);
+        gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glPopMatrix();
     }
 
@@ -159,4 +160,9 @@ public class HelpOverlay implements GLEventListener {
         );
 
     }
+
+	public void dispose(GLAutoDrawable arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }

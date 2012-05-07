@@ -1,9 +1,12 @@
 package nehe;
 
-import com.sun.opengl.util.FPSAnimator;
+import com.jogamp.opengl.util.FPSAnimator;
 
 import javax.swing.*;
 import javax.media.opengl.*;
+import javax.media.opengl.awt.GLCanvas;
+
+import semaGL.SemaSpace;
 
 
 import java.awt.*;
@@ -39,7 +42,8 @@ public class GLDisplay {
     }
 
     private GLDisplay( String title, int width, int height, boolean fullscreen ) {
-        glCanvas = new GLCanvas(new GLCapabilities());
+    	GLProfile pr = GLProfile.get(GLProfile.GL2);
+        glCanvas = new GLCanvas(new GLCapabilities(pr));
         glCanvas.setSize( width, height );
         glCanvas.setIgnoreRepaint( true );
         glCanvas.addGLEventListener( helpOverlayGLEventListener );
@@ -55,7 +59,7 @@ public class GLDisplay {
         this.height = height;
 
         animator = new FPSAnimator( glCanvas, 0 );
-        animator.setRunAsFastAsPossible(true);
+//        animator.setRunAsFastAsPossible(true);
     }
 
     public void start() {
@@ -263,7 +267,7 @@ public class GLDisplay {
 
         public void displayChanged( GLAutoDrawable glDrawable, boolean b, boolean b1 ) {
             for ( int i = 0; i < eventListeners.size(); i++ ) {
-                ( (GLEventListener) eventListeners.get( i ) ).displayChanged( glDrawable, b, b1 );
+                ( (MyHelpOverlayGLEventListener) eventListeners.get( i ) ).displayChanged( glDrawable, b, b1 );
             }
         }
 
@@ -278,5 +282,15 @@ public class GLDisplay {
                 ( (GLEventListener) eventListeners.get( i ) ).reshape( glDrawable, i0, i1, i2, i3 );
             }
         }
+
+		public void dispose(GLAutoDrawable arg0) {
+			// TODO Auto-generated method stub
+			
+		}
     }
+
+	public void addMouseWheelListener(MouseWheelListener l) {
+		 glCanvas.addMouseWheelListener( l );
+		
+	}
 }

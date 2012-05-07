@@ -10,6 +10,7 @@ import java.awt.geom.Point2D;
 import java.util.Iterator;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 import javax.media.opengl.glu.GLU;
 import net.sourceforge.ftgl.FTBBox;
 import net.sourceforge.ftgl.FTGlyphContainer;
@@ -62,7 +63,7 @@ public abstract class FTFont
 	protected int err; // TODO was FT_ERROR
 
 	/** The gl context. */
-	protected GL gl;
+	protected GL2 gl;
 	/** The glu context. */
 	protected GLU glu;
 
@@ -134,7 +135,7 @@ public abstract class FTFont
 	 * @param gl The new gl context.
 	 * @param glu The new glu context.
 	 */
-	public void setGLGLU(GL gl, GLU glu)
+	public void setGLGLU(GL2 gl, GLU glu)
 	{
 		this.gl = gl;
 		this.glu = glu;
@@ -322,7 +323,7 @@ public abstract class FTFont
 		if (glyph == null)
 		{
 			glyph = this.makeGlyph(outline, 0.0f);
-			if (this.gl != null) glyph.setGLGLU(this.getGL(), this.glu);
+			if (this.gl != null) glyph.setGLGLU(this.getGL().getGL2(), this.glu);
 			this.glyphCache.add(glyph, glyphCode);
 			FTBBox box = glyph.getBBox();
 			if (this.ascender < box.upperY)  this.ascender  = box.upperY;

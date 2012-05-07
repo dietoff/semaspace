@@ -32,14 +32,24 @@
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/xerces_2_5_0.jar"/>
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/xml-apis-ext.jar"/>
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/xml-apis.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/jogl.jar">
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/jogl2.0/jogl.all.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/d/Documents/workspace_java/SemaSpace/lib"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="SemaSpace/lib/jogl2.0"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/gluegen-rt.jar">
+	<classpathentry kind="lib" path="lib/jogl2.0/gluegen-gl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/d/Documents/workspace_java/SemaSpace/lib"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="SemaSpace/lib/jogl2.0"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/jogl2.0/gluegen.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="SemaSpace/lib/jogl2.0"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/jogl2.0/jogl.util.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="SemaSpace/lib/jogl2.0"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

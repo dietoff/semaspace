@@ -11,6 +11,8 @@ import java.awt.image.Raster;
 import java.awt.image.SampleModel;
 import java.nio.ByteBuffer;
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
+
 import net.sourceforge.ftgl.FTGlyphContainer;
 
 /**
@@ -146,7 +148,7 @@ public class FTBitmapGlyph extends FTGlyph
 		{
 			this.gl.glBitmap(0, 0, 0.0f, 0.0f, (float) (x + this.offsetX), (float) (y - this.offsetY), (byte []) null,0 );
 
-			this.gl.glPixelStorei(GL.GL_UNPACK_ROW_LENGTH, destPitch);
+			this.gl.glPixelStorei(GL2.GL_UNPACK_ROW_LENGTH, destPitch);
 			this.gl.glBitmap(destWidth, destHeight, 0.0f, 0.0f, 0.0f, 0.0f, data);
 
 			this.gl.glBitmap(0, 0, 0.0f, 0.0f, (float) (-x - this.offsetX), (float) (-y + this.offsetY), (byte []) null ,0);

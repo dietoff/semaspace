@@ -13,8 +13,9 @@ import java.util.Properties;
 import java.util.Vector;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
-import com.sun.opengl.util.GLUT;
+import com.jogamp.opengl.util.gl2.GLUT;
 
 import data.Net;
 import data.Vector3D;
@@ -44,7 +45,7 @@ public class SemaParameters {
 	boolean distance = true;
 	public int pickID=-1;
 	public boolean calculate = true;
-	int fogMode[] = {GL.GL_EXP, GL.GL_EXP2, GL.GL_LINEAR};	// Storage For Three Types Of Fog ( new )
+	int fogMode[] = {GL2.GL_EXP, GL2.GL_EXP2, GL2.GL_LINEAR};	// Storage For Three Types Of Fog ( new )
 	int fogfilter = 2;								// Which Fog Mode To Use      ( new )
 	float fogColor[] = {0.9f, 0.9f, 0.9f, 1.0f};		// Fog Color   
 	float znear = 10.0f;
@@ -142,6 +143,7 @@ public class SemaParameters {
 	}
 
 	public SemaParameters loadSemaParametersJar(String file) {
+		
 		Properties props = new Properties();
 		try {
 			InputStream is = getClass().getClassLoader().getResourceAsStream(file);
