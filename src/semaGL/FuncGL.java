@@ -7,12 +7,15 @@ import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 //import java.text.Normalizer.Form;
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
+
 import sun.text.Normalizer;
 import nehe.TextureReader.Texture;
 import net.sourceforge.ftgl.FTBBox;
-import com.sun.opengl.util.BufferUtil;
-import com.sun.opengl.util.GLUT;
-import com.sun.opengl.util.j2d.TextRenderer;
+
+import com.jogamp.opengl.util.GLBuffers;
+import com.jogamp.opengl.util.gl2.GLUT;
+import com.jogamp.opengl.util.awt.TextRenderer;
 import data.Vector3D;
 
 public class FuncGL {
@@ -42,7 +45,7 @@ public class FuncGL {
 	}
 
 	static void renderBtxt(SemaParameters app, String text, float[] textColor, int id, float offset, float distToCam) {
-		GL gl=app.getGL();
+		GL2 gl=app.getGL().getGL2();
 		gl.glPushMatrix();
 		float h = app.getGlD().getHeight();
 		gl.glColor4f(textColor[0],textColor[1],textColor[2],textColor[3]);
@@ -50,7 +53,7 @@ public class FuncGL {
 
 		String[] lines = text.split("\n"); 
 		float pos[] = new float[4];
-		gl.glGetFloatv( GL.GL_CURRENT_RASTER_POSITION, pos, 0 );
+		gl.glGetFloatv( GL2.GL_CURRENT_RASTER_POSITION, pos, 0 );
 		float factor = pos[3]/h;
 
 		for (int i = 0; i<lines.length; i++){
@@ -60,7 +63,7 @@ public class FuncGL {
 			if (app.layout2d) { 
 				//paint background frame
 				int len = app.glut.glutBitmapLength(font, lines[i]);
-				gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
+				gl.glPolygonMode(GL.GL_FRONT, GL2.GL_FILL);
 				//				gl.glColor4f(.9f, .9f, .9f, textColor[3]);
 				gl.glColor4f(1f, 1f, 1f, 0.9f);
 				gl.glRecti((int)offset, (int)(-factor*(i*25f+7)), (int)(offset+factor*len*1.4f),(int)(factor*(-i*25f+18)));
@@ -77,13 +80,12 @@ public class FuncGL {
 	}
 
 	static void renderHiqTxt( SemaParameters p, String text, float[] textColor, int id, float offset, boolean center) {
-		GL gl=p.getGL();
-
+		GL2 gl=p.getGL().getGL2();
 		gl.glPushMatrix();
 		//		gl.glLoadName(id);
 		float scale = offset*0.025f;
 		gl.glScalef(scale, scale, scale);
-		gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
+		gl.glPolygonMode(GL.GL_FRONT, GL2.GL_FILL);
 
 		String[] lines = text.split("\n"); 
 		if (!center) gl.glTranslatef(40, 90, 0);
@@ -118,7 +120,7 @@ public class FuncGL {
 	}
 	
 	static void renderTxt(SemaParameters app, String text, float[] textColor, int id, float offset, boolean center, boolean fast) {
-		GL gl=app.getGL();
+		GL2 gl=app.getGL().getGL2();
 		gl.glLoadName(id);
 		int fontsize = 8;
 		int off = fontsize;
@@ -128,7 +130,7 @@ public class FuncGL {
 			gl.glPushMatrix();
 			float scale = offset*0.01f;
 			gl.glScalef(scale, scale, scale);
-			gl.glPolygonMode(GL.GL_FRONT, GL.GL_FILL);
+			gl.glPolygonMode(GL.GL_FRONT, GL2.GL_FILL);
 			if (!fast) {
 				gl.glLineWidth(app.textwidth*4);
 				gl.glColor4f(app.background[0],app.background[1],app.background[2],app.background[3]);
@@ -145,12 +147,12 @@ public class FuncGL {
 //		String normalize = Normalizer.normalize(string, Form.NFD, 0);
 //		String normalize = Normalizer.normalize(string, Normalizer.DECOMP, 0);
 		String normalize = UmlautToAscii.umlautToAscii(string);
-		GL gl=app.getGL();
+		GL2 gl=app.getGL().getGL2();
 		stroke(app, font, normalize, offset, offsety, gl);
 	}
 
 	private static void stroke(SemaParameters app, int font, String string,
-			float offset, float offsety, GL gl) {
+			float offset, float offsety, GL2 gl) {
 		gl.glPushMatrix();
 		gl.glTranslatef(offset*10f, offsety*10f, 0);
 
@@ -163,7 +165,7 @@ public class FuncGL {
 		return app.glut.glutStrokeLengthf(strokefont, st);
 	}
 
-	static void drawLine(GL gl, Vector3D start, Vector3D end, float[] startc, float[] endc) {
+	static void drawLine(GL2 gl, Vector3D start, Vector3D end, float[] startc, float[] endc) {
 		gl.glBegin(GL.GL_LINES);
 		gl.glColor4fv(startc,0);
 		gl.glVertex3f(start.x,start.y,start.z);
@@ -172,8 +174,8 @@ public class FuncGL {
 		gl.glEnd();
 	}
 
-	static void propertyVector(GL gl, float size, float width, Vector3D pos, Vector3D dir) {
-		gl.glBegin(GL.GL_POLYGON);
+	static void propertyVector(GL2 gl, float size, float width, Vector3D pos, Vector3D dir) {
+		gl.glBegin(GL2.GL_POLYGON);
 		//		gl.glVertex3f(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
 		gl.glVertex3f(pos.x-size*dir.x-width*dir.y,pos.y-size*dir.y+width*dir.x,pos.z-size*dir.z);
 		//		gl.glVertex3f(pos.x-(size-width)*dir.x,pos.y-(size-width)*dir.y,pos.z-(size-width)*dir.z);
@@ -184,14 +186,14 @@ public class FuncGL {
 		gl.glEnd();
 	}
 
-	static void arrowHead(GL gl, float size, Vector3D pos, Vector3D dir) {
+	static void arrowHead(GL2 gl, float size, Vector3D pos, Vector3D dir) {
 		gl.glBegin(GL.GL_TRIANGLES);
 		gl.glVertex3f(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
 		gl.glVertex3f(pos.x-size*dir.x+size*0.3f*dir.y,pos.y-size*dir.y-size*0.3f*dir.x,pos.z-size*dir.z);
 		gl.glVertex3f(pos.x,pos.y,pos.z);
 		gl.glEnd();
 	}
-	static void symArrowHead(GL gl, float size, Vector3D pos, Vector3D dir) {
+	static void symArrowHead(GL2 gl, float size, Vector3D pos, Vector3D dir) {
 		Vector3D dn = dir.copy();
 		dn.normalize();
 		gl.glBegin(GL.GL_TRIANGLES);
@@ -201,7 +203,7 @@ public class FuncGL {
 		gl.glEnd();
 	}
 	
-	static void groupArrow(GL gl, float size, Vector3D pos, Vector3D dir) {
+	static void groupArrow(GL2 gl, float size, Vector3D pos, Vector3D dir) {
 		Vector3D dn = dir.copy();
 		dn.normalize();
 		gl.glBegin(GL.GL_TRIANGLES);
@@ -212,7 +214,7 @@ public class FuncGL {
 		gl.glEnd();
 	}
 	
-	static void arrowHeadEmpty(GL gl, float size, Vector3D pos, Vector3D dir) {
+	static void arrowHeadEmpty(GL2 gl, float size, Vector3D pos, Vector3D dir) {
 		gl.glBegin(GL.GL_LINE_STRIP);
 		gl.glVertex3f(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
 		gl.glVertex3f(pos.x-size*dir.x+size*0.3f*dir.y,pos.y-size*dir.y-size*0.3f*dir.x,pos.z-size*dir.z);
@@ -220,31 +222,31 @@ public class FuncGL {
 		gl.glEnd();
 	}
 
-	static void printString(GL gl, String s) {
-		ByteBuffer str = BufferUtil.newByteBuffer(s.length());
+	static void printString(GL2 gl, String s) {
+		ByteBuffer str = GLBuffers.newDirectByteBuffer(s.length());
 		str.put(s.getBytes());
 		str.rewind();
 
-		gl.glPushAttrib(GL.GL_LIST_BIT);
+		gl.glPushAttrib(GL2.GL_LIST_BIT);
 		gl.glListBase(fontOffset);
 		gl.glCallLists(s.length(), GL.GL_UNSIGNED_BYTE, str);
 		gl.glPopAttrib();
 	}
 
-	static void makeRasterFont(GL gl) {
+	static void makeRasterFont(GL2 gl) {
 		int i;
 		gl.glPixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
 
 		fontOffset = gl.glGenLists(128);
 		for (i = 32; i < 127; i++) {
-			gl.glNewList(i + fontOffset, GL.GL_COMPILE);
+			gl.glNewList(i + fontOffset, GL2.GL_COMPILE);
 			gl.glBitmap(8, 13, 0.0f, 2.0f, 10.0f, 0.0f, rasters[i - 32], 0);
 			gl.glEndList();
 		}
 	}
 
-	static void quad(GL gl) {
-		gl.glBegin(GL.GL_QUADS);           	// Draw A Quad
+	static void quad(GL2 gl) {
+		gl.glBegin(GL2.GL_QUADS);           	// Draw A Quad
 		gl.glNormal3f(0.0f, 0.0f, 1.0f);
 		gl.glTexCoord2f(0.0f, 0.0f);
 		gl.glVertex3f(-1.0f, -1.0f, 0.0f);
@@ -257,8 +259,8 @@ public class FuncGL {
 		gl.glEnd();							// Done Drawing The Quad
 	}
 
-	static void triangle1(GL gl) {
-		gl.glBegin(GL.GL_TRIANGLES);           	// Draw A Quad
+	static void triangle1(GL2 gl) {
+		gl.glBegin(GL2.GL_TRIANGLES);           	// Draw A Quad
 		gl.glNormal3f(0.0f, 0.0f, 1.0f);
 		gl.glTexCoord2f(0.0f, 0.0f);
 		gl.glVertex3f(-1.0f, -1.0f, 0.0f);
@@ -268,8 +270,8 @@ public class FuncGL {
 		gl.glVertex3f(1.0f, 1.0f, 0.0f);
 		gl.glEnd();							// Done Drawing The Quad
 	}
-	static void triangle2(GL gl) {
-		gl.glBegin(GL.GL_TRIANGLES);           	// Draw A Quad
+	static void triangle2(GL2 gl) {
+		gl.glBegin(GL2.GL_TRIANGLES);           	// Draw A Quad
 		gl.glNormal3f(0.0f, 0.0f, 1.0f);
 		gl.glTexCoord2f(1.0f, 1.0f);
 		gl.glVertex3f(1.0f, 1.0f, 0.0f);

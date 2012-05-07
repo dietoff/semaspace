@@ -4,6 +4,8 @@ package net.sourceforge.ftgl.glyph;
 import java.awt.Shape;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
+
 import net.sourceforge.ftgl.FTContour;
 import net.sourceforge.ftgl.FTGlyphContainer;
 import net.sourceforge.ftgl.FTVectoriser;
@@ -52,7 +54,7 @@ public class FTOutlineGlyph extends FTGlyph
 		}
 
 		this.glList = this.gl.glGenLists(1); // TODO verifyList!
-		this.gl.glNewList(this.glList, GL.GL_COMPILE);
+		this.gl.glNewList(this.glList, GL2.GL_COMPILE);
 		for (int c = 0; c < numContours; ++c)
 		{
 			final FTContour contour = vectoriser.contour(c);

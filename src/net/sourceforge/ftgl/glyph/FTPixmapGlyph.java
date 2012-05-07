@@ -15,6 +15,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 
 /**
  * FTPixmapGlyph is a specialisation of FTGlyph for creating pixmaps.
@@ -85,7 +86,7 @@ public class FTPixmapGlyph extends FTGlyph
 
 			// Get the current glColor.
 			float[] ftglColour = new float[4];
-			this.gl.glGetFloatv( GL.GL_CURRENT_COLOR, ftglColour,0);
+			this.gl.glGetFloatv( GL2.GL_CURRENT_COLOR, ftglColour,0);
 
 			byte redComponent =   (byte)(ftglColour[0] * 255.0f + 0.5f);
 			byte greenComponent = (byte)(ftglColour[1] * 255.0f + 0.5f);
@@ -169,7 +170,7 @@ public class FTPixmapGlyph extends FTGlyph
 			// Move the glyph origin
 			this.gl.glBitmap( 0, 0, 0.0f, 0.0f, (float)x + this.offsetX, (float)y + this.offsetY, (byte[])null,0);
 
-			this.gl.glPixelStorei(GL.GL_UNPACK_ROW_LENGTH, 0);
+			this.gl.glPixelStorei(GL2.GL_UNPACK_ROW_LENGTH, 0);
 			data.rewind();
 			this.gl.glDrawPixels( destWidth, destHeight, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, this.data);
 

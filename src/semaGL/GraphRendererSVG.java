@@ -114,8 +114,8 @@ public class GraphRendererSVG {
 
 	public void paintSVG(Graphics2D g2d, float origX, float origY) {
 		int font = app.fonttype;
-		BasicStroke sngl = new BasicStroke(1f);
-		BasicStroke dbl = new BasicStroke(2f); 
+		BasicStroke sngl = new BasicStroke(2f);
+		BasicStroke dbl = new BasicStroke(4f); 
 		BasicStroke five = new BasicStroke(5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND); 
 		Font ef = new Font(app.getFontFam(),Font.PLAIN, (int)(app.getLabelsize()));
 
@@ -138,7 +138,7 @@ public class GraphRendererSVG {
 				n = group1.hasNode(m);
 				float[] c = GraphElement.colorFunction(n.name);
 				g2d.setPaint(new Color(c[0],c[1],c[2],c[3]));
-				g2d.translate(n.getPos().x, n.getPos().y);
+				g2d.translate(n.getPos().x, -n.getPos().y);
 				g2d.drawString(n.getName(), 0, 0);
 				g2d.setTransform(t);
 				Vector3D D;
@@ -147,7 +147,7 @@ public class GraphRendererSVG {
 						D = bref.getPos().copy();
 						D.sub(n.getPos()); 
 						D.mult(-1);
-						g2d.setPaint(new Color(c[0],c[1],c[2],0.1f));
+						g2d.setPaint(new Color(c[0],c[1],c[2],0.25f));
 						groupArrow(g2d, bref.size()*1.5f, n.getPos(), D);
 					}
 				}
@@ -172,16 +172,18 @@ public class GraphRendererSVG {
 			start.add(Vector3D.mult(DN, af));
 			end.sub(Vector3D.mult(DN, bf));
 
-			//white background
+			
+			//white background 
 			g2d.setStroke(dbl);
+			
 			g2d.setPaint(new Color(1,1,1,e.getColor()[3]));
-			Line2D line = new Line2D.Float(start.x,start.y,end.x,end.y);
+			Line2D line = new Line2D.Float(start.x,-start.y,end.x,-end.y);
 			g2d.draw(line);
 			//picked
 			boolean picked = a.getPickColor()[3]>0||b.getPickColor()[3]>0;
 			if (picked){
 
-				g2d.translate(start.x,	start.y);
+				g2d.translate(start.x,	-start.y);
 				Vector3D segment = D.copy();
 				segment.mult(0.1f);
 				g2d.setStroke(dbl);
@@ -189,8 +191,8 @@ public class GraphRendererSVG {
 					float[] interpolatedColor = Func.interpolateRGB(i/10f, Func.RGBtoHSV(b.pickColor), Func.RGBtoHSV(a.pickColor));
 					Color paint = new Color(interpolatedColor[0],interpolatedColor[1],interpolatedColor[2],interpolatedColor[3]);
 					g2d.setPaint(paint);
-					line = new Line2D.Float(0,0,segment.x,segment.y); g2d.draw(line);
-					g2d.translate(segment.x,segment.y);
+					line = new Line2D.Float(0,0,segment.x,-segment.y); g2d.draw(line);
+					g2d.translate(segment.x,-segment.y);
 				}
 				g2d.setTransform(t);
 				if (app.directed) {
@@ -203,10 +205,10 @@ public class GraphRendererSVG {
 				//actual stroke
 				g2d.setStroke(sngl);
 				g2d.setPaint(new Color(e.getColor()[0],e.getColor()[1],e.getColor()[2],e.getColor()[3]));
-				line = new Line2D.Float(start.x,start.y,end.x,end.y);
+				line = new Line2D.Float(start.x,-start.y,end.x,-end.y);
 				g2d.draw(line);
 				if (app.directed){
-					arrowHeadEmpty(g2d, 10, end, DN);
+					arrowHeadEmpty(g2d, 20, end, DN);
 				};
 			};
 		}
@@ -216,15 +218,15 @@ public class GraphRendererSVG {
 			for (Node n: net.nNodes) {
 				if (n.cluster.size()>1) {
 					float[] col = GraphElement.colorFunction(n.name);
-					col[3]=Math.min(n.alpha, 0.05f);
+					col[3]=Math.min(n.alpha, 0.1f);
 					Polygon2D p = new Polygon2D();
-					p.addPoint(n.getPos().x, n.getPos().y);
+					p.addPoint(n.getPos().x, -n.getPos().y);
 					for (Node c:n.cluster){
-						p.addPoint(c.getPos().x, c.getPos().y);
+						p.addPoint(c.getPos().x, -c.getPos().y);
 					}
 					Node c= n.cluster.iterator().next();
-					p.addPoint(c.getPos().x, c.getPos().y);
-					p.addPoint(n.getPos().x, n.getPos().y);
+					p.addPoint(c.getPos().x, -c.getPos().y);
+					p.addPoint(n.getPos().x, -n.getPos().y);
 					g2d.setPaint(new Color(col[0],col[1],col[2],col[3]));
 					g2d.fill(p);
 				}
@@ -239,14 +241,14 @@ public class GraphRendererSVG {
 			g2d.setPaint(new Color(n.getColor()[0],n.getColor()[1],n.getColor()[2],n.getColor()[3]));
 
 			if (circles) {
-				g2d.fillOval((int)(n.getPos().x)-(int)(size/2), (int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
+				g2d.fillOval((int)(n.getPos().x)-(int)(size/2), -(int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
 			}
 			else {
-				g2d.fillRect((int)(n.getPos().x)-(int)(size/2), (int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
+				g2d.fillRect((int)(n.getPos().x)-(int)(size/2), -(int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
 			}
 			if (n.pickColor[3]>0) {
 				g2d.setPaint(new Color(n.pickColor[0],n.pickColor[1],n.pickColor[2],1));
-				g2d.drawRect((int)(n.getPos().x)-(int)(size/2), (int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
+				g2d.drawRect((int)(n.getPos().x)-(int)(size/2), -(int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
 			}
 		}
 
@@ -265,10 +267,10 @@ public class GraphRendererSVG {
 
 					g2d.setPaint(new Color(e.getColor()[0],e.getColor()[1],e.getColor()[2],e.getColor()[3]));
 
-					g2d.translate((midP.x),(midP.y));
+					g2d.translate((midP.x),-(midP.y));
 
 					Vector3D sub = Vector3D.sub(a.getPos(), b.getPos());
-					float angle = (float) (Math.atan(sub.y/sub.x));
+					float angle = (float) (Math.atan(-sub.y/sub.x));
 					g2d.rotate(angle);
 					g2d.translate(0, -2);
 
@@ -281,7 +283,7 @@ public class GraphRendererSVG {
 							Shape outline = tl.getOutline(id);
 							g2d.setStroke(five);
 							g2d.draw(outline);
-							g2d.setPaint(new Color((e.getColor()[0]*0.5f),(e.getColor()[1]*0.5f),(e.getColor()[2]*0.5f),e.getColor()[3]));
+							g2d.setPaint(new Color((e.getColor()[0]),(e.getColor()[1]),(e.getColor()[2]),e.getColor()[3]));
 							g2d.setStroke(sngl);
 							g2d.fill(outline);
 
@@ -310,7 +312,7 @@ public class GraphRendererSVG {
 					if ((n.pickColor[3]>0.2f&&app.fadeLabels)||(n.getColor()[3]>0.2&&!app.fadeLabels)  &&txt.length()>0) {
 						for (int i = 0; i<sp.length; i++){
 //														for (int i = 0; i<1; i++){
-							g2d.translate((int)(n.getPos().x), (int)(n.getPos().y));
+							g2d.translate((int)(n.getPos().x), (int)(-n.getPos().y));
 							if (!app.isTree()&&!app.labelsEdgeDir) {
 								g2d.translate((int)(size/2),-(int)(size/2));
 							}
@@ -330,7 +332,7 @@ public class GraphRendererSVG {
 										Vector3D sub = Vector3D.sub(n.getPos(), n.adList.iterator().next().getPos());
 										alignLabel(g2d, sub, n.size(), tl);
 									} else
-										if (n.inList.size()==1&&n.inList.size()==0) {
+										if (n.inList.size()==1&&n.adList.size()==0) {
 											Vector3D sub = Vector3D.sub(n.getPos(), n.inList.iterator().next().getPos());
 											alignLabel(g2d, sub, n.size(), tl);
 										}
@@ -346,14 +348,14 @@ public class GraphRendererSVG {
 								g2d.translate(0, i*fntsize);
 								Shape outline = tl.getOutline(id);
 								g2d.draw(outline);
-								g2d.setPaint(new Color((n.getColor()[0]*0.5f),(n.getColor()[1]*0.5f),(n.getColor()[2]*0.5f),n.getColor()[3]));
+								g2d.setPaint(new Color((n.getColor()[0]),(n.getColor()[1]),(n.getColor()[2]),n.getColor()[3]));
 								g2d.setStroke(sngl);
 								g2d.fill(outline);
 							} else {
 								g2d.setPaint(new Color(255,255,255,255));
 								g2d.fillRect(0, i*fntsize-(int)tl.getAscent(), (int)tl.getAdvance(), (int)(tl.getAscent()));
 								g2d.setFont(varFont);
-								g2d.setPaint(new Color((n.getColor()[0]*0.5f),(n.getColor()[1]*0.5f),(n.getColor()[2]*0.5f),n.getColor()[3]));
+								g2d.setPaint(new Color((n.getColor()[0]),(n.getColor()[1]),(n.getColor()[2]),n.getColor()[3]));
 								g2d.drawString(sp[i], 0, i*fntsize);
 							}
 							g2d.setTransform(t);
@@ -365,9 +367,9 @@ public class GraphRendererSVG {
 	}
 
 	static void arrowHeadEmpty(Graphics2D g2d, float size, Vector3D pos, Vector3D dir) {
-		Vector3D v1 = new Vector3D(pos.x-size*dir.x,pos.y-size*dir.y,pos.z-size*dir.z);
-		Vector3D v2 = new Vector3D(pos.x-size*dir.x+size*0.3f*dir.y,pos.y-size*dir.y-size*0.3f*dir.x,pos.z-size*dir.z);
-		Vector3D v3 = new Vector3D(pos.x,pos.y,pos.z);
+		Vector3D v1 = new Vector3D(pos.x-size*dir.x,-pos.y+size*dir.y,pos.z-size*dir.z);
+		Vector3D v2 = new Vector3D(pos.x-size*dir.x-size*0.3f*dir.y,-pos.y+size*dir.y-size*0.3f*dir.x,pos.z-size*dir.z);
+		Vector3D v3 = new Vector3D(pos.x,-pos.y,pos.z);
 		Polygon2D arrow = new Polygon2D();
 		arrow.addPoint(v1.x, v1.y);
 		arrow.addPoint(v2.x, v2.y);
@@ -376,12 +378,16 @@ public class GraphRendererSVG {
 	}
 
 	static void groupArrow(Graphics2D g2d, float size, Vector3D pos, Vector3D dir) {
-		Vector3D dn = dir.copy();
+		Vector3D posc = pos.copy();
+		Vector3D dirc = dir.copy();
+		posc.y=-posc.y;
+		dirc.y=-dirc.y;
+		Vector3D dn = dirc.copy();
 		dn.normalize();
-		Vector3D v1 = new Vector3D(pos.x-dir.x-size*dn.y,pos.y-dir.y+size*dn.x,pos.z-dir.z);
-		Vector3D v2 = new Vector3D(pos.x-dir.x+size*dn.y,pos.y-dir.y-size*dn.x,pos.z-dir.z);
+		Vector3D v1 = new Vector3D(posc.x-dirc.x-size*dn.y,posc.y-dirc.y+size*dn.x,posc.z-dirc.z);
+		Vector3D v2 = new Vector3D(posc.x-dirc.x+size*dn.y,posc.y-dirc.y-size*dn.x,posc.z-dirc.z);
 		//white
-		Vector3D v3 = new Vector3D(pos.x,pos.y,pos.z);
+		Vector3D v3 = new Vector3D(posc.x,posc.y,posc.z);
 		Polygon2D arrow = new Polygon2D();
 		arrow.addPoint(v1.x, v1.y);
 		arrow.addPoint(v2.x, v2.y);
@@ -390,7 +396,7 @@ public class GraphRendererSVG {
 	}
 
 	private void alignLabel(Graphics2D g2d, Vector3D n, float margin, TextLayout tl) {
-		float angle = (float) (Math.atan(n.y/n.x));
+		float angle = (float) (Math.atan(-n.y/n.x));
 		g2d.rotate(angle);
 		float marg = margin+5;
 		if (n.x<0) {

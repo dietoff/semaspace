@@ -6,6 +6,8 @@ package data;
 import java.util.HashSet;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
+
 import semaGL.SemaParameters;
 import nehe.TextureReader.Texture;
 
@@ -73,7 +75,7 @@ public class Node extends GraphElement {
 		if (textures[0]!=0) return true; else return false;
 	}
 
-	public void deleteTexture(GL gl){
+	public void deleteTexture(GL2 gl){
 		gl.glDeleteTextures(1, textures, 0);
 		newTex = false;
 		tex=null;

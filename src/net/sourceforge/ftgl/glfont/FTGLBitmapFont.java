@@ -6,6 +6,8 @@ import java.awt.Shape;
 import java.awt.font.FontRenderContext;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
+
 import net.sourceforge.ftgl.glyph.FTBitmapGlyph;
 import net.sourceforge.ftgl.glyph.FTGlyph;
 
@@ -70,10 +72,10 @@ public class FTGLBitmapFont extends FTFont
 	 */
 	public void render(String string)
 	{
-		this.gl.glPushClientAttrib(GL.GL_CLIENT_PIXEL_STORE_BIT);
-		this.gl.glPushAttrib(GL.GL_ENABLE_BIT);
+		this.gl.glPushClientAttrib(GL2.GL_CLIENT_PIXEL_STORE_BIT);
+		this.gl.glPushAttrib(GL2.GL_ENABLE_BIT);
 
-		this.gl.glPixelStorei(GL.GL_UNPACK_LSB_FIRST, GL.GL_FALSE);
+		this.gl.glPixelStorei(GL2.GL_UNPACK_LSB_FIRST, GL.GL_FALSE);
 		this.gl.glPixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
 
 		this.gl.glDisable(GL.GL_BLEND);

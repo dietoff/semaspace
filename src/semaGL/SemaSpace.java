@@ -1,14 +1,22 @@
 package semaGL;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLDrawableFactory;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.media.opengl.GLPbuffer;
+import javax.media.opengl.GLProfile;
 import javax.media.opengl.glu.GLU;
+import com.jogamp.opengl.util.GLBuffers;
+import com.jogamp.opengl.util.gl2.GLUT;
+import com.jogamp.opengl.util.awt.Screenshot;
+import javax.media.opengl.fixedfunc.GLLightingFunc;
+import javax.media.opengl.fixedfunc.GLMatrixFunc;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.*;
@@ -29,12 +37,12 @@ import javax.swing.SwingUtilities;
 
 import sun.nio.cs.ext.ISCII91;
 
+import nehe.GLDisplay;
+import nehe.GLDisplayPanel;
 import nehe.TextureReader.Texture;
 import UI.SemaEvent;
 import UI.SemaListener;
-import com.sun.opengl.util.BufferUtil;
-import com.sun.opengl.util.GLUT;
-import com.sun.opengl.util.Screenshot;
+
 
 import data.BBox3D;
 import data.Edge;
@@ -93,10 +101,20 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	private boolean changed=false;
 	private boolean pressed=false;
 	private boolean locksActive = true;
-	private boolean enableChangeLocks=false;
+	private boolean enableChangeLocks=true;
 	private boolean reset=false;
+	private GLDisplayPanel canvas;
 
 	public SemaSpace(String string){
+		canvas = GLDisplayPanel.createGLDisplay("SemaSpace");
+		
+		canvas.addGLEventListener(this);
+		canvas.addMouseMotionListener(this);
+		canvas.addMouseListener(this);
+		canvas.addMouseWheelListener(this);
+		canvas.addKeyListener(this);
+        
+        
 		p = new SemaParameters(this);
 		p.loadSemaParametersJar(string);
 		fileIO = new FileIO(p);
@@ -106,27 +124,30 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (p.isEnableSvg()) SVGrenderer = new GraphRendererSVG(p);
 		initFonts();
 		netLoad();
+		canvas.start();
 	}
 
 	public void init(GLAutoDrawable gLDrawable) {
 		glD = gLDrawable;
-		GL gl = gLDrawable.getGL();
+		GL2 gl = gLDrawable.getGL().getGL2();
 		glu = new GLU();
+		/*
 		gLDrawable.addMouseListener(this);
 		gLDrawable.addMouseMotionListener(this);
 		gLDrawable.addMouseWheelListener(this);
 		gLDrawable.addKeyListener(this);
+		*/
 		initGLsettings(gl);
 		cam = new Cam(gLDrawable,p.FOV,0,0,zInc,focus,p.znear,p.zfar);
 		updateFonts(gl, glu);
 		starttime = System.currentTimeMillis();
 	}
 
-	private void initGLsettings(GL gl) {
+	private void initGLsettings(GL2 gl) {
 		gl.setSwapInterval(0);
 		gl.glEnable(GL.GL_TEXTURE_2D);								// Enable Texture Mapping
-		gl.glShadeModel(GL.GL_SMOOTH);              				// Enable Smooth Shading
-		gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST); // Really Nice Perspective Calculations
+		gl.glShadeModel(GL2.GL_SMOOTH);              				// Enable Smooth Shading
+		gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST); // Really Nice Perspective Calculations
 		gl.glClearColor(p.background[0],p.background[1],p.background[2],p.background[3]);   
 		gl.glEnable(GL.GL_BLEND);
 		gl.glEnable(GL.GL_CULL_FACE);
@@ -134,13 +155,13 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);	// Set The Blending Function For Translucency (new ) GL_ONE
 		gl.glEnable(GL.GL_LINE_SMOOTH);
 		gl.glHint(GL.GL_LINE_SMOOTH_HINT, GL.GL_DONT_CARE);
-		gl.glFogi(GL.GL_FOG_MODE, p.fogMode[p.fogfilter]);				// Fog Mode
-		gl.glFogfv(GL.GL_FOG_COLOR, p.fogColor, 0);					// Set Fog Color
-		gl.glFogf(GL.GL_FOG_DENSITY, 0.0005f);						// How Dense Will The Fog Be
-		gl.glHint(GL.GL_FOG_HINT, GL.GL_DONT_CARE);					// Fog Hint Value
-		gl.glFogf(GL.GL_FOG_START, 1000f);							// Fog Start Depth
-		gl.glFogf(GL.GL_FOG_END, 10000f);							// Fog End Depth
-		if (p.FOG) gl.glEnable(GL.GL_FOG);							// Enables GL.GL_FOG
+		gl.glFogi(GL2.GL_FOG_MODE, p.fogMode[p.fogfilter]);				// Fog Mode
+		gl.glFogfv(GL2.GL_FOG_COLOR, p.fogColor, 0);					// Set Fog Color
+		gl.glFogf(GL2.GL_FOG_DENSITY, 0.0005f);						// How Dense Will The Fog Be
+		gl.glHint(GL2.GL_FOG_HINT, GL.GL_DONT_CARE);					// Fog Hint Value
+		gl.glFogf(GL2.GL_FOG_START, 1000f);							// Fog Start Depth
+		gl.glFogf(GL2.GL_FOG_END, 10000f);							// Fog End Depth
+		if (p.FOG) gl.glEnable(GL2.GL_FOG);							// Enables GL.GL_FOG
 	}
 
 	private void initFonts() {
@@ -175,7 +196,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			updateTime();
 			layout();
 			//			if (calculate&&(deltatime > 1000)) calculate=false;
-			render(gLDrawable.getGL());
+			render(gLDrawable.getGL().getGL2());
 		}
 		catch (ConcurrentModificationException e) {
 		}
@@ -984,7 +1005,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public void reloadTextures() {
 		if (glD!=null) {
-			GL gl = glD.getGL();
+			GL2 gl = glD.getGL().getGL2();
 			for (Node n:ns.global.nNodes) {
 				n.deleteTexture(gl);
 			}
@@ -1002,14 +1023,14 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		_listeners.remove( l );
 	}
 
-	public void render(GL gl){
+	public void render(GL2 gl){
 		if (p.isEnableSvg()&&SVGexport) {
 			SVGexport=false;
 			SVGrenderer.renderSVG(gl, ns.getView(), p.fonttype, svgFilename);
 		}
 		if (!p.render) return;
 
-		if (p.FOG&&!p.layout2d) gl.glEnable(GL.GL_FOG); else gl.glDisable(GL.GL_FOG);
+		if (p.FOG&&!p.layout2d) gl.glEnable(GL2.GL_FOG); else gl.glDisable(GL2.GL_FOG);
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 		cam.posIncrement(gl, yRotInc, xRotInc, zInc, focus); 
 		layout.render(gl, p.fonttype, ns.view, renderer);
@@ -1034,11 +1055,11 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		statusMsg();
 	}
 
-	public void renderPbuffer(GL gl, int width, int height) {
+	public void renderPbuffer(GL2 gl, int width, int height) {
 		if (height <= 0) height = 1;
 		initGLsettings(gl);
 		reloadTextures();
-		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glLoadIdentity();
 		glu.gluPerspective(p.FOV, 1, p.znear, p.zfar);
 		boolean r = p.render;
@@ -1064,15 +1085,15 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height) {
-		GL gl = gLDrawable.getGL();
+		GL2 gl = gLDrawable.getGL().getGL2();
 		glu = new GLU();
 		if (height <= 0) height = 1;
 		h = (float)width/height;
 		gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
-		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glLoadIdentity();
 		glu.gluPerspective(p.FOV, h, p.znear, p.zfar);
-		gl.glMatrixMode(GL.GL_MODELVIEW);
+		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		updateUI();
 	}
@@ -1084,14 +1105,16 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	}
 
 	public void screenshot (int width, int height, String filename2) {
-		if (!GLDrawableFactory.getFactory().canCreateGLPbuffer()) return;
+		GLProfile pr = GLProfile.get(GLProfile.GL2);
+		
+		if (!GLDrawableFactory.getFactory(pr).canCreateGLPbuffer(GLProfile.getDefaultDesktopDevice())) return;
 		//		boolean f = p.layout2d;
 		//		p.layout2d = false;
 
-		GLCapabilities caps = new GLCapabilities();
-		GLPbuffer pbuffer = GLDrawableFactory.getFactory().createGLPbuffer(caps, null, width, height, null);
+		GLCapabilities caps = new GLCapabilities(pr);
+		GLPbuffer pbuffer = GLDrawableFactory.getFactory(pr).createGLPbuffer(GLProfile.getDefaultDesktopDevice(),caps, null, width, height, null);
 		pbuffer.getContext().makeCurrent();
-		GL gl = pbuffer.getGL();
+		GL2 gl = pbuffer.getGL().getGL2();
 		moved = false;
 
 		updateFonts(gl, new GLU());
@@ -1123,20 +1146,20 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (select) updatePick(p.pickID);
 	}
 
-	int selectCoord(GL gl){
+	int selectCoord(GL2 gl){
 		GLU glu = new GLU();
 
 		int buffsize = (ns.getView().nNodes.size()+ns.getView().nEdges.size())*4;
 		double x = mouseX, y = mouseY;
-		IntBuffer selectBuffer = BufferUtil.newIntBuffer(buffsize);
+		IntBuffer selectBuffer =  (IntBuffer) GLBuffers.newDirectGLBuffer(GL2.GL_INT,buffsize);
 		int hits = 0;
 		gl.glSelectBuffer(buffsize, selectBuffer);
 
-		gl.glRenderMode(GL.GL_SELECT);
+		gl.glRenderMode(GL2.GL_SELECT);
 		gl.glInitNames();
 		gl.glPushName(0);
 
-		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glPushMatrix();
 		gl.glLoadIdentity();
 		glu.gluPickMatrix(x, glD.getHeight() - y, 5.0d, 5.0d, viewPort, 0);
@@ -1147,9 +1170,9 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		layout.renderNodes(gl, renderer, 0); //render the nets.viewwork 
 		if (p.edges) layout.renderEdges(gl, renderer, 0);
 
-		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glPopMatrix();
-		hits = gl.glRenderMode(GL.GL_RENDER);
+		hits = gl.glRenderMode(GL2.GL_RENDER);
 		int overID=-1;
 		if (hits!=0){
 			float z1=0;
@@ -1197,7 +1220,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 			if (p.isCluster()){
 				ns.getView().findClusters();
-				layout.clustersSetup(glD.getGL());
+				layout.clustersSetup(glD.getGL().getGL2());
 				updatePick();
 			}
 		}
@@ -1281,7 +1304,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		if (!p.layout2d) layout.layoutRandomize();
 	}
 
-	private void updateFonts(GL gl, GLU glu) {
+	private void updateFonts(GL2 gl, GLU glu) {
 		if (hiQfont!=null){
 			hiQfont.setGLGLU(gl, glu);
 			hiQfont.faceSize(70f);
@@ -1336,7 +1359,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			p.setFilename(filename);
 		}
 		initFonts();
-		updateFonts(this.glD.getGL(), glu);
+		updateFonts(this.glD.getGL().getGL2(), glu);
 		netLoad();
 	}
 
@@ -1383,5 +1406,14 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 	public float getZoom() {
 		return zoomNew;
+	}
+
+	public void dispose(GLAutoDrawable arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Component getJPanel() {
+		return canvas.getJPanel();
 	}
 }

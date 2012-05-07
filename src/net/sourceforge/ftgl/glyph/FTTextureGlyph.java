@@ -9,7 +9,8 @@ import java.awt.Shape;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import javax.media.opengl.GL;
-import com.sun.opengl.util.BufferUtil;
+import javax.media.opengl.GL2;
+
 import net.sourceforge.ftgl.FTGlyphContainer;
 import net.sourceforge.ftgl.util.Vector3f;
 
@@ -112,16 +113,16 @@ public class FTTextureGlyph extends FTGlyph
 //		image.getRGB(0, 0, this.destWidth, this.destHeight, rgbarray, 0, this.destWidth);
 
 		
-		ByteBuffer pix = BufferUtil.newByteBuffer(this.destWidth*this.destHeight);
+		ByteBuffer pix = ByteBuffer.allocate(this.destWidth*this.destHeight);
 		
 		for(int i = 0; i < this.destHeight; i++)
 			for (int j = 0; j < this.destWidth; j++)
 				pix.put(i*this.destWidth + j, (byte) image.getRGB(j, i));
 		if(this.destWidth != 0 && this.destHeight != 0)
 		{
-			this.gl.glPushClientAttrib( GL.GL_CLIENT_PIXEL_STORE_BIT);
-			this.gl.glPixelStorei(GL.GL_UNPACK_LSB_FIRST, GL.GL_FALSE);
-			this.gl.glPixelStorei(GL.GL_UNPACK_ROW_LENGTH, 0);
+			this.gl.glPushClientAttrib( GL2.GL_CLIENT_PIXEL_STORE_BIT);
+			this.gl.glPixelStorei(GL2.GL_UNPACK_LSB_FIRST, GL.GL_FALSE);
+			this.gl.glPixelStorei(GL2.GL_UNPACK_ROW_LENGTH, 0);
 			this.gl.glPixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
 
 			this.gl.glBindTexture(GL.GL_TEXTURE_2D, this.glTextureID);
@@ -157,13 +158,13 @@ public class FTTextureGlyph extends FTGlyph
 	{
 		if (this.destWidth == 0 || this.destHeight == 0) return this.advance;
 
-		this.gl.glGetIntegerv(GL.GL_TEXTURE_2D_ARRAY_EXT, this.activeTextureID,0);
+		this.gl.glGetIntegerv(GL.GL_TEXTURE_2D_ARRAY, this.activeTextureID,0);
 		if(this.activeTextureID[0] != this.glTextureID)
 		{
 			this.gl.glBindTexture(GL.GL_TEXTURE_2D, this.glTextureID);
 		}
 
-		this.gl.glBegin(GL.GL_QUADS);
+		this.gl.glBegin(GL2.GL_QUADS);
 		this.gl.glTexCoord2f( this.uv[0].x, this.uv[0].y);
 		this.gl.glVertex2f( (float)x + this.pos.x, (float)y + this.pos.y);
 

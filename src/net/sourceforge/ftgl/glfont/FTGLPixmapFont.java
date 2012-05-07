@@ -8,6 +8,8 @@ import java.awt.Shape;
 import java.awt.font.FontRenderContext;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
+
 import net.sourceforge.ftgl.glyph.FTGlyph;
 import net.sourceforge.ftgl.glyph.FTPixmapGlyph;
 
@@ -86,8 +88,8 @@ public class FTGLPixmapFont extends FTFont
 	 */
 	public void render(String string)
 	{
-		this.gl.glPushAttrib( GL.GL_ENABLE_BIT | GL.GL_PIXEL_MODE_BIT | GL.GL_COLOR_BUFFER_BIT);
-		this.gl.glPushClientAttrib( GL.GL_CLIENT_PIXEL_STORE_BIT);
+		this.gl.glPushAttrib( GL2.GL_ENABLE_BIT | GL2.GL_PIXEL_MODE_BIT | GL.GL_COLOR_BUFFER_BIT);
+		this.gl.glPushClientAttrib( GL2.GL_CLIENT_PIXEL_STORE_BIT);
 
 		this.gl.glEnable(GL.GL_BLEND);
 		this.gl.glBlendFunc( GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);

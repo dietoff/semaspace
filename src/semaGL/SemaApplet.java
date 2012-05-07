@@ -5,7 +5,7 @@ import javax.swing.JSplitPane;
 import nehe.GLDisplayPanel;
 import UI.SwingSema;
 
-import com.sun.opengl.util.FPSAnimator;
+import com.jogamp.opengl.util.FPSAnimator;
 
 public class SemaApplet extends JApplet {
 	private FPSAnimator animator;

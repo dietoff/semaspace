@@ -5,13 +5,18 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseListener;
 import java.awt.Event;
+import java.awt.FlowLayout;
 import java.awt.Desktop;
+
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
@@ -74,27 +79,33 @@ import java.net.URISyntaxException;
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
 
-public class NetzpioniereSema implements SemaListener, KeyListener {
+public class BerlinSema implements SemaListener, KeyListener {
 	/**
 	 * Launches this application
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			private NetzpioniereSema application;
+			private BerlinSema application;
 			private SemaSpace space;
-			private GLDisplayPanel semaGLDisplay;
+//			private GLDisplayPanel semaGLDisplay;
+			
 
 			public void run() {
-				space = new SemaSpace("netzpioniere.config");
-				application = new NetzpioniereSema();
+				space = new SemaSpace("berlinSema.config");
+//				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
+//				semaGLDisplay.addGLEventListener(space);
+				application = new BerlinSema();
 				space.addSemaListener(application);
 				application.setSema(space);
 				application.getMainWindow().setVisible(true);
 				application.jSplitPane.setRightComponent(space.getJPanel());
+//				semaGLDisplay.start();
 			}
 		});
 	}
 	SemaSpace app = null;  //  @jve:decl-index=0:
+	private String nodeset1;
+	private String nodeset2;
 	private JMenuBar jJMenuBar = null;
 	private JList edgeAttList;
 	private JScrollPane edgeAttPane;
@@ -143,6 +154,22 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private JLabel valenzLabel;
 	private JSlider strengthSlider;
 	private JSlider stretchSlider;
+	private JSlider zoom;
+	private JPanel jPanel3;
+	private JLabel jLabel21;
+	private SimButton simButton26;
+	private JLabel jLabel18;
+	private JPanel jPanel2;
+	private JPanel jPanel1;
+	private JLabel jLabel15;
+	private JLabel jLabel1;
+	private SimButton simButton25;
+	private JLabel jLabel8;
+	private SimButton simButton24;
+	private SimButton simButton23;
+	private SimButton simButton22;
+	private SimButton simButton21;
+	private SimButton simButton20;
 	private SimButton simButton3;
 	private JSlider repellStSlider;
 	private JSlider pushSlider;
@@ -161,7 +188,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private SimButton SimButton2;
 	private SimButton expandnet;
 	private SimButton expand2;
-	private SimButton showAll;
+	private SimButton shownet;
 	private SimButton interrupt;
 	private SimButton elimButton1;
 	private JLabel jLabel20;
@@ -229,7 +256,6 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private JTextField searchTerm;
 	private JLabel search;
 	private JCheckBox forceBox;
-	private JLabel jLabel1;
 	private JLabel jLabel10;
 	private JSlider jSlider2;
 	private JLabel jLabel9;
@@ -253,11 +279,10 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private JList rolesList;
 	private DefaultListModel rolesListModel;
 	private JScrollPane roles;
-
-	private DefaultTableModel RoleModel;
+	private boolean alternatePos;
 
 	{
-		
+
 		//Set Look & Feel
 		try {
 			//			MetalLookAndFeel.setCurrentTheme(new SemaTheme());
@@ -361,7 +386,8 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			add.setMargin(new java.awt.Insets(0,0,0,0));
 			add.setContentAreaFilled(false);
 			add.setFont(new java.awt.Font("Dialog",0,10));
-			add.setBounds(175, 25, 39, 15);
+			add.setBounds(178, 17, 39, 15);
+			add.setVisible(false);
 		}
 		return add;
 	}
@@ -395,6 +421,14 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			//	AttributeSplitPane1.setBackground(new java.awt.Color(192,192,192));
 			AttributeSplitPane1.add(getNodeAttPane(), JSplitPane.RIGHT);
 			AttributeSplitPane1.add(getEdgeAttPane(), JSplitPane.LEFT);
+			AttributeSplitPane1.addComponentListener(new ComponentAdapter() {
+				public void componentHidden(ComponentEvent evt) {
+					attributeTabHidden(evt, "none");
+				}
+				public void componentShown(ComponentEvent evt) {
+					attributeTabShown(evt, "none");
+				}
+			});
 		}
 		return AttributeSplitPane1;
 	}
@@ -437,7 +471,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			clusters.setMargin(new java.awt.Insets(0,0,0,0));
 			clusters.setContentAreaFilled(false);
 			clusters.setFont(new java.awt.Font("Dialog",0,10));
-			clusters.setBounds(157, 184, 59, 17);
+			clusters.setBounds(151, 191, 59, 17);
 			clusters.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.p.setCluster(clusters.isSelected());
@@ -480,7 +514,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 			jSplitPane1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 			jSplitPane1.setDividerSize(0);
-//			jSplitPane1.setDoubleBuffered(true);
+			//			jSplitPane1.setDoubleBuffered(true);
 			jSplitPane1.setMinimumSize(new java.awt.Dimension(230, 400));
 			jSplitPane1.add(getControlPanel(), JSplitPane.TOP);
 			jSplitPane1.add(getInspectors(), JSplitPane.BOTTOM);
@@ -492,8 +526,8 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private JTabbedPane getControlPanel() {
 		if (controlPanel == null) {
 			controlPanel = new JTabbedPane();
-			controlPanel.setMinimumSize(new Dimension(217, 320));
-			controlPanel.addTab("files", null, getFile(), null);
+			controlPanel.setMinimumSize(new Dimension(217, 345));
+			controlPanel.addTab("WeltWissenNetz Berlin | SemaSpace", null, getFile(), null);
 			//			controlPanel.addTab("view", null, getDataTab(), null);
 			//			controlPanel.addTab("render", null, getViewTab(), null);
 			//			controlPanel.addTab("layout", null, getLayoutTab(), null);
@@ -508,13 +542,11 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			dataTab.setFont(new java.awt.Font("Dialog",0,10));
 			dataTab.add(getElimButton1());
 			dataTab.add(getInterrupt());
-			dataTab.add(getShowAll());
 			dataTab.add(getExpand2());
 			dataTab.add(getSimButton1());
 			dataTab.add(getSimButton2());
 			dataTab.add(getJLabel2());
-			dataTab.add(getJSlider1());
-			dataTab.add(getJLabel7());
+			
 			dataTab.add(getSimButton2x());
 			dataTab.add(getSimButton3());
 			dataTab.add(getJLabel8());
@@ -535,7 +567,8 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			depthLabel = new JLabel();
 			depthLabel.setText("steps");
 			depthLabel.setFont(new java.awt.Font("Dialog",0,10));
-			depthLabel.setBounds(185, 51, 33, 13);
+			depthLabel.setBounds(185, 40, 33, 13);
+			depthLabel.setVisible(false);
 		}
 		return depthLabel;
 	}
@@ -645,6 +678,10 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 						if (change) {
 							app.p.setAttribute(out);
 							change = false;
+							if (app.p.isExhibitionMode()&&!out.contentEquals("none")) {
+								fade(true);
+							} else fade(false);
+							
 							if (nodeAttModel.contains(out)) nodeAttList.setSelectedValue(out, true);
 							else nodeAttList.setSelectedIndex(0);
 							//							getSearchTerm().setText("");
@@ -781,6 +818,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		}
 		return expand2;
 	}
+	
 	private SimButton getExpandnet() {
 		if (expandnet == null) {
 			expandnet = new SimButton();
@@ -790,6 +828,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			expandnet.setFont(new java.awt.Font("Dialog",0,10));
 			expandnet.setMargin(new java.awt.Insets(2,2,2,2));
 			expandnet.setBounds(2, 68, 67, 15);
+			expandnet.setVisible(false);
 			expandnet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.netExpandAll();
@@ -799,6 +838,8 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		return expandnet;
 	}
 
+	
+	
 	private JCheckBox getFadeLabelsBox() {
 		if(fadeLabels == null) {
 			fadeLabels = new JCheckBox();
@@ -806,7 +847,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			fadeLabels.setMargin(new java.awt.Insets(0,0,0,0));
 			fadeLabels.setContentAreaFilled(false);
 			fadeLabels.setFont(new java.awt.Font("Dialog",0,10));
-			fadeLabels.setBounds(100, 184, 52, 17);
+			fadeLabels.setBounds(151, 175, 60, 17);
 			fadeLabels.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.p.fadeLabels=!fadeLabels.isSelected();
@@ -820,40 +861,49 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		if(file == null) {
 			file = new JPanel();
 			file.setLayout(null);
+			file.setPreferredSize(new java.awt.Dimension(226, 342));
+			file.setFont(new java.awt.Font("Dialog",1,12));
 			file.add(getJFileFormat());
 			file.add(getSimButton18());
 			file.add(getSearch());
 			file.add(getSearchTerm());
 			file.add(getAdd());
 			file.add(getSearchButton());
-			file.add(getShowAll());
 			file.add(getDepthLabel());
 			file.add(getJCheckBox());
 			file.add(getTreeBox());
 			file.add(getFadeLabelsBox());
 			file.add(getForceBox());
 			file.add(getTiltBox());
+			file.add(getJSlider1());
+			file.add(getJSlider1());
+			file.add(getJLabel7());
 			file.add(getRadbox());
-			file.add(getJLabel1());
 			file.add(getClusters());
 			file.add(getJLabel11());
 			file.add(getSimButton4());
 			file.add(getSimButton5());
-			file.add(getSimButton11());
-			file.add(getSimButton15());
-			file.add(getSimButton16());
-			file.add(getSimButton19());
+//			file.add(removeLabel());
+//			file.add(getRemoveAll());
+//			file.add(getRemoveLeaf());
+//			file.add(getRemoveUnsel());
+//			file.add(getRemoveSel());
 			file.add(getSeachSelButton());
 			file.add(getRandomCenter());
 			file.add(getSearchsteps());
-			file.add(getJLabel12());
 			file.add(getJLabel14());
 			file.add(getExpandnet());
-			file.add(getSimButton3x());
+			file.add(getJPanel3());
+			file.add(getSimButton20());
+			file.add(getSimButton21());
+			file.add(getJPanel2());
+			file.add(getJPanel1());
+			file.add(getJLabel15());
+			file.add(getJLabel21());
 		}
 		return file;
 	}
-	
+
 	private JMenu getFileMenu() {
 		if (fileMenu == null) {
 			fileMenu = new JMenu();
@@ -866,9 +916,9 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		}
 		return fileMenu;
 	}
-	
-	
-	
+
+
+
 	private JCheckBox getForceBox() {
 		if (forceBox == null) {
 			forceBox = new JCheckBox();
@@ -878,7 +928,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			forceBox.setMargin(new java.awt.Insets(0,0,0,0));
 			forceBox.setContentAreaFilled(false);
 			forceBox.setFont(new java.awt.Font("Dialog",0,10));
-			forceBox.setBounds(2, 204, 85, 17);
+			forceBox.setBounds(71, 190, 85, 17);
 			forceBox.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.p.setCalc(!app.p.getCalc());
@@ -944,20 +994,20 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private JTabbedPane getInspectors() {
 		if (inspectors == null) {
 			inspectors = new JTabbedPane();
-			inspectors.setPreferredSize(new java.awt.Dimension(212, 160));
+			inspectors.setPreferredSize(new java.awt.Dimension(212, 140));
 			//			inspectors.addTab("net", null, getNets(), null);
-			//			inspectors.addTab("node", null, getNodes(), null);
-			inspectors.addTab("Actors", null, getNodesPersons(), null);
-			inspectors.addTab("Places", null, getNodesPlaces(), null);
-			inspectors.addTab("Activities", null, getNodesActivities(), null);
-			inspectors.addTab("Roles", null, getRoles(), null);
+			inspectors.addTab("Participant", null, getNodes(), null);
+			inspectors.addTab("Cooperation", null, getNodesPersons(), null);
+			inspectors.addTab("Place", null, getNodesPlaces(), null);
+			inspectors.addTab("Discipline", null, getNodesActivities(), null);
+			inspectors.addTab("Institution", null, getRoles(), null);
 			//			inspectors.addTab("edge", null, getEdgeWndSplitPane(), null);
 			inspectors.addTab("Attributes", null, getAttributeSplitPane1(), null);
 			inspectors.addKeyListener(this);
 		}
 		return inspectors;
 	}
-	
+
 	private SimButton getInterrupt() {
 		if (interrupt == null) {
 			interrupt = new SimButton();
@@ -980,11 +1030,14 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			draw3d.setContentAreaFilled(false);
 			draw3d.setFont(new java.awt.Font("Dialog",0,10));
 			draw3d.setBounds(58, 184, 42, 17);
+			draw3d.setVisible(false);
 			draw3d.setSelected(!app.p.get3D());
 			draw3d.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.toggle3D();
+					
 					draw3d.setSelected(!app.p.get3D());
+					if(app.p.get3D()) app.setLocksActive(false);
 					app.resetCam();
 				}
 			});
@@ -1077,15 +1130,6 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		}
 		return jJMenuBar;
 	}
-	private JLabel getJLabel1() {
-		if (jLabel1 == null) {
-			jLabel1 = new JLabel();
-			jLabel1.setText("labelstyle");
-			jLabel1.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel1.setBounds(2, 227, 50, 13);
-		}
-		return jLabel1;
-	}
 	private JLabel getJLabel10() {
 		if(jLabel10 == null) {
 			jLabel10 = new JLabel();
@@ -1101,10 +1145,11 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			jLabel11.setText("viewpoint");
 			jLabel11.setFont(new java.awt.Font("Dialog",1,11));
 			jLabel11.setBounds(40, 315, 73, 14);
+			jLabel11.setVisible(false);
 		}
 		return jLabel11;
 	}
-	private JLabel getJLabel12() {
+	private JLabel removeLabel() {
 		if(jLabel12 == null) {
 			jLabel12 = new JLabel();
 			jLabel12.setText("remove");
@@ -1125,9 +1170,9 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private JLabel getJLabel14() {
 		if(jLabel14 == null) {
 			jLabel14 = new JLabel();
-			jLabel14.setText("display");
+			jLabel14.setText("connection degree (pick steps)");
 			jLabel14.setFont(new java.awt.Font("Dialog",1,11));
-			jLabel14.setBounds(6, 163, 210, 14);
+			jLabel14.setBounds(2, 213, 210, 14);
 		}
 		return jLabel14;
 	}
@@ -1216,9 +1261,9 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private JLabel getJLabel7() {
 		if(jLabel7 == null) {
 			jLabel7 = new JLabel();
-			jLabel7.setText("pick steps");
-			jLabel7.setFont(new java.awt.Font("Dialog",0,10));
-			jLabel7.setBounds(146, 231, 49, 13);
+			jLabel7.setText("<HTML>(please select <BR>a network node)</HTML>");
+			jLabel7.setFont(new java.awt.Font("Dialog",0,9));
+			jLabel7.setBounds(150, 228, 74, 34);
 		}
 		return jLabel7;
 	}
@@ -1251,10 +1296,10 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			jSlider1.setPaintTrack(false);
 			jSlider1.setPaintLabels(true);
 			jSlider1.setFont(new java.awt.Font("Dialog",0,9));
-			jSlider1.setToolTipText("searchdepth");
+			jSlider1.setToolTipText("pickdepth");
 			jSlider1.setOpaque(false);
 			jSlider1.setName("jSlider1");
-			jSlider1.setBounds(0, 214, 134, 35);
+			jSlider1.setBounds(2, 227, 136, 25);
 			jSlider1.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					app.p.setPickdepth(jSlider1.getValue());
@@ -1418,13 +1463,17 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		if (mainWindow == null) {
 			mainWindow = new JFrame();
 			mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			mainWindow.setTitle("SemaSpace");
+			mainWindow.setTitle("SemaSpace Network Browser");
 			mainWindow.setSize(1000,600);
 			mainWindow.setContentPane(getJSplitPane());
 			initFileChoosers();
 			fullscreen = app.p.fullscreen;
 			if (fullscreen) enterFullscreen(); 
 			mainWindow.addKeyListener(this);
+//			nodeset1 = app.fileIO.getPage("http://www2.hu-berlin.de/facingscience/accounts/csv/nodes.php?file=tab.n");
+//			nodeset2 = app.fileIO.getPage("http://www2.hu-berlin.de/facingscience/accounts/csv/disciplinenodes.php");
+			nodeset1 = app.fileIO.getPage("http://www.facingscience.net/facingscience.tab.n");
+			nodeset2 = app.fileIO.getPage("http://www.facingscience.net/disciplines.tab.n");
 		}
 		return mainWindow;
 	}
@@ -1452,42 +1501,51 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		}
 		return nets;
 	}
-	private JList getNodeActivitiesList() {
-		if (nodeActivitiesList == null) {
-			nodeActivitiesListModel = new DefaultListModel();
-			nodeActivitiesList = new JList();
-			nodeActivitiesList.setModel(nodeActivitiesListModel);
-			nodeActivitiesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			nodeActivitiesList.setName("nodes");
-			nodeActivitiesList.addMouseListener(new MouseListener() {
-
-				public void mouseClicked(MouseEvent e) {
-					if (e.getClickCount()==2) {
-						int index = nodeActivitiesList.locationToIndex(e.getPoint());
-						String elementAt = (String) nodeActivitiesListModel.getElementAt(index);;
-						nodeActivitiesList.ensureIndexIsVisible(index);
-						postListAction(elementAt);
-					}
-				}
-				public void mouseEntered(MouseEvent e) {
-				}
-				public void mouseExited(MouseEvent e) {
-				}
-				public void mousePressed(MouseEvent e) {
-				}
-				public void mouseReleased(MouseEvent e) {
-				}
-
-			});
-			nodeActivitiesList.addListSelectionListener(new ListSelectionListener() {
-				public void valueChanged(ListSelectionEvent e) {
-					String out = (String) nodeActivitiesList.getSelectedValue();
-					if (out!=null) app.setPickID(out.hashCode());
-				}
-			});
+	/**
+	 * populate the nodelists in the interface
+	 * @param net
+	 */
+	private void initNodeLists(Net net) {
+		nodePersonListModel.clear();
+		nodePlacesListModel.clear();
+		nodeActivitiesListModel.clear();
+		nodeListModel.clear();
+		TreeSet<String> persons = new TreeSet<String>();
+		TreeSet<String> nodes = new TreeSet<String>();
+		TreeSet<String> places = new TreeSet<String>();
+		TreeSet<String> activities = new TreeSet<String>();
+		TreeSet<String> roles = new TreeSet<String>();
+		for (Node tmp:net.nNodes) {
+			if (tmp.hasAttribute("cooperation")) persons.add(tmp.getAttribute("cooperation"));
+			if (tmp.hasAttribute("location")) places.add(tmp.getAttribute("location"));
+			if (tmp.hasAttribute("disciplin")) activities.add(tmp.getAttribute("disciplin"));
+			if (tmp.hasAttribute("institution")) roles.add(tmp.getAttribute("institution"));
+			nodes.add(tmp.getName());
 		}
-		return nodeActivitiesList;
+		/*
+		for (Edge tmp:net.nEdges) {
+		}
+		 */
+		
+		for (String tmp : nodes) {
+			nodeListModel.addElement(tmp);
+		}
+		
+		for (String tmp : persons) {
+			nodePersonListModel.addElement(tmp);
+		}
+		for (String tmp : places) {
+			nodePlacesListModel.addElement(tmp);
+		}
+		for (String tmp : activities) {
+			nodeActivitiesListModel.addElement(tmp);
+		}
+		for (String tmp : roles) {
+			if (!rolesListModel.contains(tmp)) rolesListModel.addElement(tmp);
+		}
 	}
+
+
 	private JList getNodeAttList() {
 		if(nodeAttList == null) {
 			nodeAttModel =  new DefaultListModel();
@@ -1496,6 +1554,8 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 
 			nodeAttList.setName("nodeAttributes");
 			nodeAttList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			
+			
 			nodeAttList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 				public void valueChanged(
 						javax.swing.event.ListSelectionEvent e) {
@@ -1506,6 +1566,9 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 							change = false;
 							if (edgeAttModel.contains(out))	edgeAttList.setSelectedValue(out, true);
 							else edgeAttList.setSelectedIndex(0);
+							if (app.p.isExhibitionMode()&&!out.contentEquals("none")) {
+								fade(true);
+							} else fade(false);
 							//							getSearchTerm().setText("");
 						} else change = true;
 					}
@@ -1520,13 +1583,6 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		}
 		return nodeAttList;
 	}
-	private JScrollPane getNodeAttPane() {
-		if(nodeAttPane == null) {
-			nodeAttPane = new JScrollPane();
-			nodeAttPane.setViewportView(getNodeAttList());
-		}
-		return nodeAttPane;
-	}
 	private JList getNodeList() {
 		if (nodeList == null) {
 			nodeListModel = new DefaultListModel();
@@ -1538,11 +1594,51 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 				public void valueChanged(ListSelectionEvent e) {
 					String out = (String) nodeList.getSelectedValue();
 					if (out!=null) app.setPickID(out.hashCode());
+					if (app.p.isExhibitionMode()) {
+						fade(true);
+					}
 				}
 			});
 		}
 		return nodeList;
 	}
+	private JList getNodeActivitiesList() {
+		if (nodeActivitiesList == null) {
+			nodeActivitiesListModel = new DefaultListModel();
+			nodeActivitiesList = new JList();
+			nodeActivitiesList.setModel(nodeActivitiesListModel);
+			nodeActivitiesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			nodeActivitiesList.setName("nodes");
+			final String attribute = "disciplin";
+
+			nodeActivitiesList.addMouseListener(new MouseListener() {
+
+				public void mouseClicked(MouseEvent e) {
+					JList list = nodeActivitiesList;
+					DefaultListModel listmodel = nodeActivitiesListModel;
+					doubleClickInList(list, listmodel, attribute, e);
+				}
+				public void mouseEntered(MouseEvent e) {
+				}
+				public void mouseExited(MouseEvent e) {
+				}
+				public void mousePressed(MouseEvent e) {
+				}
+				public void mouseReleased(MouseEvent e) {
+				}
+
+			});
+			nodeActivitiesList.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent e) {
+					String out = (String) nodeActivitiesList.getSelectedValue();
+					selectInList(attribute, out);
+				}
+			});
+		}
+		return nodeActivitiesList;
+	}
+
+
 	private JList getNodePersonsList() {
 		if (nodePersonsList == null) {
 			nodePersonListModel = new DefaultListModel();
@@ -1550,15 +1646,14 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			nodePersonsList.setModel(nodePersonListModel);
 			nodePersonsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			nodePersonsList.setName("nodes");
+			final String attribute = "cooperation";
+			
 			nodePersonsList.addMouseListener(new MouseListener() {
 
 				public void mouseClicked(MouseEvent e) {
-					if (e.getClickCount()==2) {
-						int index = nodePersonsList.locationToIndex(e.getPoint());
-						String elementAt = (String) nodePersonListModel.getElementAt(index);;
-						nodePersonsList.ensureIndexIsVisible(index);
-						postListAction(elementAt);
-					}
+					JList list = nodePersonsList;
+					DefaultListModel listmodel = nodePersonListModel;
+					doubleClickInList(list, listmodel, attribute, e);
 				}
 
 				public void mouseEntered(MouseEvent e) {
@@ -1574,7 +1669,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			nodePersonsList.addListSelectionListener(new ListSelectionListener() {
 				public void valueChanged(ListSelectionEvent e) {
 					String out = (String) nodePersonsList.getSelectedValue();
-					if (out!=null) app.setPickID(out.hashCode());
+					selectInList(attribute, out);
 				}
 			});
 		}
@@ -1587,15 +1682,16 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			nodePlacesList.setModel(nodePlacesListModel);
 			nodePlacesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			nodePlacesList.setName("nodes");
+			final String attribute = "location";
+
 			nodePlacesList.addMouseListener(new MouseListener() {
 
 				public void mouseClicked(MouseEvent e) {
-					if (e.getClickCount()==2) {
-						int index = nodePlacesList.locationToIndex(e.getPoint());
-						String elementAt = (String) nodePlacesListModel.getElementAt(index);;
-						nodePlacesList.ensureIndexIsVisible(index);
-						postListAction(elementAt);
-					}
+
+					JList list = nodePlacesList;
+					DefaultListModel listmodel = nodePlacesListModel;
+					doubleClickInList(list, listmodel, attribute, e);
+
 				}
 				public void mouseEntered(MouseEvent e) {
 				}
@@ -1610,13 +1706,86 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			nodePlacesList.addListSelectionListener(new ListSelectionListener() {
 				public void valueChanged(ListSelectionEvent e) {
 					String out = (String) nodePlacesList.getSelectedValue();
-					if (out!=null) app.setPickID(out.hashCode());
-
+					selectInList(attribute, out);
 				}
 			});
 		}
 		return nodePlacesList;
 	}
+	private JList getRolesList() {
+		if (rolesList == null) {
+			rolesListModel = new DefaultListModel();
+			rolesList = new JList();
+			rolesList.setModel(rolesListModel);
+			rolesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			rolesList.setName("Institution");
+
+			final String attribute = "institution";
+			rolesList.addMouseListener(new MouseListener() {
+
+				public void mouseClicked(MouseEvent e) {
+					JList list = rolesList;
+					DefaultListModel listmodel = rolesListModel;
+					doubleClickInList(list, listmodel, attribute, e);
+				}
+
+				public void mouseEntered(MouseEvent e) {
+				}
+				public void mouseExited(MouseEvent e) {
+				}
+				public void mousePressed(MouseEvent e) {
+				}
+				public void mouseReleased(MouseEvent e) {
+				}
+
+			});
+			rolesList.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent e) {
+					String out = (String) rolesList.getSelectedValue();
+					selectInList(attribute, out);
+				}
+
+				
+			});
+		}
+		return rolesList;
+	}
+
+
+	private void doubleClickInList(final JList list,
+			final DefaultListModel listmodel,
+			final String attribute, MouseEvent e) {
+		int index = list.locationToIndex(e.getPoint());
+		String elementAt = (String) listmodel.getElementAt(index);
+		list.ensureIndexIsVisible(index);
+
+		if (e.getClickCount()==2) {
+			app.netSearchSubstring(elementAt, false, attribute);
+			app.setPickID(elementAt.hashCode());
+			fade(false);
+			app.setLocksActive(false);
+			app.resetCam();
+		}
+	}
+	
+	private void selectInList( String attribute, String out) {
+		if (out!=null) {
+			app.findSubstringAttributes(out, attribute);
+			if (app.p.isExhibitionMode()) {
+				fade(true);
+			}
+		}
+	}
+
+	private JScrollPane getNodeAttPane() {
+		if(nodeAttPane == null) {
+			nodeAttPane = new JScrollPane();
+			nodeAttPane.setViewportView(getNodeAttList());
+		}
+		return nodeAttPane;
+	}
+
+
 	private JScrollPane getNodes() {
 		if (nodes == null) {
 			nodes = new JScrollPane();
@@ -1625,33 +1794,96 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		}
 		return nodes;
 	}
+	private void attributeTabShown(ComponentEvent evt, String attribute) {
+//		app.p.setAttribute(attribute);
+		app.p.setAttribute("none");
+		fade(false);
+	}
+
+
+	private void attributeTabHidden(ComponentEvent evt, String attribute) {
+	}
+
+
 	private JScrollPane getNodesActivities() {
+		final String attribute = "disciplin";
 		if (nodesActivities == null) {
 			nodesActivities = new JScrollPane();
 			nodesActivities.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			nodesActivities.setPreferredSize(new java.awt.Dimension(224, 212));
+			nodesActivities.addComponentListener(new ComponentAdapter() {
+				public void componentHidden(ComponentEvent evt) {
+					attributeTabHidden(evt, attribute);
+				}
+				public void componentShown(ComponentEvent evt) {
+					attributeTabShown(evt, attribute);
+				}
+			});
 			nodesActivities.setViewportView(getNodeActivitiesList());
 		}
 		return nodesActivities;
 	}
 
-
 	private JScrollPane getNodesPersons() {
+		final String attribute = "cooperation";
 		if (nodesPersons == null) {
 			nodesPersons = new JScrollPane();
 			nodesPersons.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			
+			nodesPersons.addComponentListener(new ComponentAdapter() {
+				public void componentHidden(ComponentEvent evt) {
+					attributeTabHidden(evt, attribute);
+				}
+				public void componentShown(ComponentEvent evt) {
+					attributeTabShown(evt, attribute);
+				}
+			});
+			
 			nodesPersons.setViewportView(getNodePersonsList());
 		}
 		return nodesPersons;
 	}
 
 	private JScrollPane getNodesPlaces() {
+		final String attribute = "location";
 		if (nodesPlaces == null) {
 			nodesPlaces = new JScrollPane();
 			nodesPlaces.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			
+			nodesPlaces.addComponentListener(new ComponentAdapter() {
+				public void componentHidden(ComponentEvent evt) {
+					attributeTabHidden(evt, attribute);
+				}
+				public void componentShown(ComponentEvent evt) {
+					attributeTabShown(evt, attribute);
+				}
+			});
+			
 			nodesPlaces.setViewportView(getNodePlacesList());
 		}
 		return nodesPlaces;
 	}
+
+	private JScrollPane getRoles() {
+		final String attribute = "institution";
+		if (roles == null) {
+			roles = new JScrollPane();
+			roles.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			
+			roles.addComponentListener(new ComponentAdapter() {
+				public void componentHidden(ComponentEvent evt) {
+					attributeTabHidden(evt, attribute);
+				}
+				public void componentShown(ComponentEvent evt) {
+					attributeTabShown(evt, attribute);
+				}
+			});
+			
+			roles.setViewportView(getRolesList());
+		}
+		return roles;
+	}
+
 
 	private JCheckBox getNoRender() {
 		if (noRender == null) {
@@ -1761,7 +1993,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		return pushLabel11;
 	}
 
-	
+
 	private JSlider getPushSlider() {
 		if (pushSlider == null) {
 			pushSlider = new JSlider();
@@ -1783,11 +2015,11 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private JCheckBox getRadbox() {
 		if(radLabels == null) {
 			radLabels = new JCheckBox();
-			radLabels.setText("radial");
+			radLabels.setText("rad. labels");
 			radLabels.setMargin(new java.awt.Insets(0,0,0,0));
 			radLabels.setContentAreaFilled(false);
 			radLabels.setFont(new java.awt.Font("Dialog",0,10));
-			radLabels.setBounds(100, 226, 62, 14);
+			radLabels.setBounds(71, 175, 72, 14);
 			radLabels.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.p.setLabelsEdgeDir(radLabels.isSelected());
@@ -1803,7 +2035,8 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			randomCenter.setVerticalAlignment(SwingConstants.CENTER);
 			randomCenter.setVerticalTextPosition(SwingConstants.CENTER);
 			randomCenter.setText("random");
-			randomCenter.setBounds(2, 50, 67, 15);
+			randomCenter.setBounds(2, 49, 67, 15);
+			randomCenter.setVisible(false);
 			randomCenter.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netStartRandom(add.isSelected());
@@ -1812,7 +2045,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		}
 		return randomCenter;
 	}
-	
+
 	private JCheckBox getRepellBox1() {
 		if (repellBox1 == null) {
 			repellBox1 = new JCheckBox();
@@ -1869,54 +2102,6 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		return repNeighbors;
 	}
 
-	private JScrollPane getRoles() {
-		if (roles == null) {
-			roles = new JScrollPane();
-			roles.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-			roles.setViewportView(getRolesList());
-		}
-		return roles;
-	}
-
-	private JList getRolesList() {
-		if (rolesList == null) {
-			rolesListModel = new DefaultListModel();
-			rolesList = new JList();
-			rolesList.setModel(rolesListModel);
-			rolesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			rolesList.setName("Roles");
-			rolesList.addMouseListener(new MouseListener() {
-
-				public void mouseClicked(MouseEvent e) {
-					if (e.getClickCount()==2) {
-						int index = rolesList.locationToIndex(e.getPoint());
-						String elementAt = (String) rolesListModel.getElementAt(index);;
-						rolesList.ensureIndexIsVisible(index);
-						app.netSearchSubstring(elementAt, false, "type");
-						app.setPickID(elementAt.hashCode());
-						app.resetCam();
-					}
-				}
-				public void mouseEntered(MouseEvent e) {
-				}
-				public void mouseExited(MouseEvent e) {
-				}
-				public void mousePressed(MouseEvent e) {
-				}
-				public void mouseReleased(MouseEvent e) {
-				}
-
-			});
-			rolesList.addListSelectionListener(new ListSelectionListener() {
-				public void valueChanged(ListSelectionEvent e) {
-					String out = (String) rolesList.getSelectedValue();
-					if (out!=null) app.setPickID(out.hashCode());
-				}
-			});
-		}
-		return rolesList;
-	}
-
 	private JMenuItem getSaveMenuItem() {
 		if (saveMenuItem == null) {
 			saveMenuItem = new JMenuItem();
@@ -1937,7 +2122,8 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			seachSelButton.setText("picked");
 			seachSelButton.setVerticalAlignment(SwingConstants.CENTER);
 			seachSelButton.setVerticalTextPosition(SwingConstants.CENTER);
-			seachSelButton.setBounds(72, 50, 67, 15);
+			seachSelButton.setBounds(72, 38, 67, 15);
+			seachSelButton.setVisible(false);
 			seachSelButton.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.netSearchPickedMultiple(add.isSelected());
@@ -1950,9 +2136,9 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private JLabel getSearch() {
 		if(search == null) {
 			search = new JLabel();
-			search.setText("filter / search");
+			search.setText("display options");
 			search.setFont(new java.awt.Font("Dialog",1,11));
-			search.setBounds(2, 4, 210, 14);
+			search.setBounds(2, 132, 210, 14);
 		}
 		return search;
 	}
@@ -1964,7 +2150,8 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			searchButton.setVerticalAlignment(SwingConstants.CENTER);
 			searchButton.setVerticalTextPosition(SwingConstants.CENTER);
 			searchButton.setFont(new java.awt.Font("Dialog",0,10));
-			searchButton.setBounds(124, 25, 45, 15);
+			searchButton.setBounds(124, 17, 45, 15);
+			searchButton.setVisible(false);
 			searchButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.netSearchSubstring(searchTerm.getText(), add.isSelected());
@@ -1984,7 +2171,8 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 						new Integer[] { 0,1,2,3,4,5});
 			searchsteps = new JSpinner();
 			searchsteps.setModel(searchstepsModel);
-			searchsteps.setBounds(145, 50, 35, 15);
+			searchsteps.setBounds(145, 38, 35, 15);
+			searchsteps.setVisible(false);
 			JFormattedTextField textField = ((JSpinner.DefaultEditor)searchsteps.getEditor()).getTextField();
 			textField.setEditable(false);
 			textField.setBackground(Color.white);
@@ -2006,7 +2194,8 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		if(searchTerm == null) {
 			searchTerm = new JTextField();
 			//			searchTerm.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-			searchTerm.setBounds(2, 25, 116, 15);
+			searchTerm.setBounds(2, 17, 116, 15);
+			searchTerm.setVisible(false);
 			searchTerm.addKeyListener(new KeyAdapter() {
 				public void keyReleased(KeyEvent e) {
 					if (e.getKeyCode()==10) {
@@ -2058,22 +2247,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		return selectBButton;
 	}
 
-	private SimButton getShowAll() {
-		if (showAll == null) {
-			showAll = new SimButton();
-			showAll.setFont(new java.awt.Font("Dialog",0,10));
-			showAll.setVerticalAlignment(SwingConstants.CENTER);
-			showAll.setVerticalTextPosition(SwingConstants.CENTER);
-			showAll.setText("show all");
-			showAll.setBounds(72, 68, 67, 15);
-			showAll.addActionListener(new ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					app.netShowAllCurrentAttribute(); //  Auto-generated Event stub actionPerformed()
-				}
-			});
-		}
-		return showAll;
-	}
+
 
 	private SimButton getShuffleButton() {
 		if (shuffleButton == null) {
@@ -2125,7 +2299,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		return simButton10;
 	}
 
-	private SimButton getSimButton11() {
+	private SimButton getRemoveAll() {
 		if(simButton11 == null) {
 			simButton11 = new SimButton();
 			simButton11.setText("all");
@@ -2195,7 +2369,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		}
 		return simButton14;
 	}
-	private SimButton getSimButton15() {
+	private SimButton getRemoveLeaf() {
 		if(simButton15 == null) {
 			simButton15 = new SimButton();
 			simButton15.setText("leaf nodes");
@@ -2212,7 +2386,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		}
 		return simButton15;
 	}
-	private SimButton getSimButton16() {
+	private SimButton getRemoveUnsel() {
 		if(simButton16 == null) {
 			simButton16 = new SimButton();
 			simButton16.setText("unselected");
@@ -2256,7 +2430,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 				public void actionPerformed(ActionEvent evt) {
 					boolean calc = app.p.calculate;
 					app.p.calculate = false;
-					 
+
 					int returnVal = saveFile.showSaveDialog(saveFile);
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						String filename = saveFile.getSelectedFile().toString();
@@ -2269,7 +2443,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		}
 		return simButton18;
 	}
-	private SimButton getSimButton19() {
+	private SimButton getRemoveSel() {
 		if(simButton19 == null) {
 			simButton19 = new SimButton();
 			simButton19.setText("selected");
@@ -2342,10 +2516,10 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private SimButton getSimButton4() {
 		if(simButton4 == null) {
 			simButton4 = new SimButton();
-			simButton4.setText("reset cam");
+			simButton4.setText("zoom all");
 			simButton4.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton4.setToolTipText("set the camera to 0,0");
-			simButton4.setBounds(2, 250, 65, 15);
+			simButton4.setBounds(2, 152, 65, 15);
 			simButton4.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.resetCam();
@@ -2358,10 +2532,10 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private SimButton getSimButton5() {
 		if(simButton5 == null) {
 			simButton5 = new SimButton();
-			simButton5.setText("focus picked");
+			simButton5.setText("zoom picked");
 			simButton5.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton5.setToolTipText("set the camera to selected node");
-			simButton5.setBounds(72, 250, 68, 15);
+			simButton5.setBounds(72, 152, 80, 15);
 			simButton5.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.camOnSelected();
@@ -2533,11 +2707,11 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	private JCheckBox getTiltBox() {
 		if(tiltBox == null) {
 			tiltBox = new JCheckBox();
-			tiltBox.setText("25¡");
+			tiltBox.setText("25¡ labels");
 			tiltBox.setMargin(new java.awt.Insets(0,0,0,0));
 			tiltBox.setContentAreaFilled(false);
 			tiltBox.setFont(new java.awt.Font("Dialog",0,10));
-			tiltBox.setBounds(58, 226, 50, 14);
+			tiltBox.setBounds(3, 175, 65, 14);
 			tiltBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.p.setTilt(tiltBox.isSelected());
@@ -2574,6 +2748,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			treeBox.setContentAreaFilled(false);
 			treeBox.setFont(new java.awt.Font("Dialog",0,10));
 			treeBox.setBounds(2, 184, 49, 17);
+			treeBox.setVisible(false);
 			treeBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					app.setTree(treeBox.isSelected());
@@ -2637,11 +2812,13 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		nodeAttModel.clear();
 		nodeAttModel.addElement("none");
 		for (String s : app.ns.global.nodeattributes) {
+			if (!(s.contentEquals("pos")||s.contentEquals("color")||s.contentEquals("id")))
 			nodeAttModel.addElement(s);
 		}
 		edgeAttModel.clear();
 		edgeAttModel.addElement("none");
 		for (String s : app.ns.global.edgeattributes) {
+			if (!(s.contentEquals("pos")||s.contentEquals("color")||s.contentEquals("id")))
 			edgeAttModel.addElement(s);
 		}
 
@@ -2663,7 +2840,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		tiltBox.setSelected(app.p.isTilt());
 		draw3d.setSelected(!app.p.get3D());
 		radLabels.setSelected(app.p.isLabelsEdgeDir());
-		fadeLabels.setSelected(!app.p.fadeLabels);
+		fadeLabels.setSelected(app.p.fadeLabels);
 		clusters.setSelected(app.p.isCluster());
 		/*		repellBox1.setSelected(app.repell);
 		repNeighbors.setSelected(app.isRepN());
@@ -2709,43 +2886,10 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			netListModel.addElement(tmp);
 		}
 	}
-	/**
-	 * populate the nodelists in the interface
-	 * @param net
-	 */
-	private void initNodeLists(Net net) {
-		nodePersonListModel.clear();
-		nodePlacesListModel.clear();
-		nodeActivitiesListModel.clear();
-		TreeSet<String> persons = new TreeSet<String>();
-		TreeSet<String> places = new TreeSet<String>();
-		TreeSet<String> activities = new TreeSet<String>();
-		TreeSet<String> roles = new TreeSet<String>();
-		for (Node tmp:net.nNodes) {
-			if (tmp.hasAttribute("type")&&(tmp.getAttribute("type").contains("Person")||tmp.getAttribute("type").contains("Social Body"))) persons.add(tmp.name);
-			if (tmp.hasAttribute("type")&&tmp.getAttribute("type").contains("Place")) places.add(tmp.name);
-			if (tmp.hasAttribute("type")&&tmp.getAttribute("type").contains("Activity")) activities.add(tmp.name);
-		}
-		
-		for (Edge tmp:net.nEdges) {
-			if (tmp.hasAttribute("type")) roles.add(tmp.getAttribute("type"));
-		}
-		
-		for (String tmp : persons) {
-			nodePersonListModel.addElement(tmp);
-		}
-		for (String tmp : places) {
-			nodePlacesListModel.addElement(tmp);
-		}
-		for (String tmp : activities) {
-			nodeActivitiesListModel.addElement(tmp);
-		}
-		for (String tmp : roles) {
-			if (!rolesListModel.contains(tmp)) rolesListModel.addElement(tmp);
-		}
-	}
 	private void initSliders() {
 		searchsteps.getModel().setValue(new Integer(app.p.getDepth()));
+		getSearchsteps().getEditor().setPreferredSize(new java.awt.Dimension(19, 13));
+		getZoom().setValue((int)app.getZoom());
 		/*		sizeSlider.setValue((int)(app.getSize()));
 		valenzSlider.setValue((int)(app.getVal()*100));
 		groupRadius.setValue((int)(app.getClusterRad()*10));
@@ -2764,7 +2908,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 	}
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
-		
+
 		case KeyEvent.VK_F12:
 			fullscreen(true);
 			break;
@@ -2899,20 +3043,305 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 		initSliders();
 		initCheckboxes();
 	}
-	
+
 	private SimButton getSimButton3x() {
 		if(simButton3 == null) {
 			simButton3 = new SimButton();
-			simButton3.setText("open selected in browser");
+			simButton3.setText("legend of abbreviations");
 			simButton3.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton3.setToolTipText("inspect selected relation in the indy tool");
-			simButton3.setBounds(2, 270, 200, 15);
+			simButton3.setBounds(2, 19, 135, 15);
 			simButton3.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
-					app.browserCall();
+					try {
+						java.awt.Desktop.getDesktop().browse(new URI("http://www2.hu-berlin.de/facingscience/legende.php"));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			});
 		}
 		return simButton3;
 	}
+	
+	private SimButton getSimButton20() {
+		if(simButton20 == null) {
+			simButton20 = new SimButton();
+			simButton20.setText("show all");
+			simButton20.setVerticalAlignment(SwingConstants.CENTER);
+			simButton20.setVerticalTextPosition(SwingConstants.CENTER);
+			simButton20.setMargin(new java.awt.Insets(2,2,2,2));
+			simButton20.setFont(new java.awt.Font("Dialog",0,10));
+			simButton20.setBounds(157, 152, 65, 15);
+			simButton20.setVisible(true);
+			simButton20.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.netShowAll();
+					fade(false);
+					app.setLocksActive(true);
+				}
+			});
+		}
+		return simButton20;
+	}
+	
+	private SimButton getSimButton21() {
+		if(simButton21 == null) {
+			simButton21 = new SimButton();
+			simButton21.setText("expand all");
+			simButton21.setVerticalAlignment(SwingConstants.CENTER);
+			simButton21.setVerticalTextPosition(SwingConstants.CENTER);
+			simButton21.setMargin(new java.awt.Insets(2,2,2,2));
+			simButton21.setFont(new java.awt.Font("Dialog",0,10));
+			simButton21.setBounds(2, 68, 67, 15);
+			simButton21.setVisible(false);
+			simButton21.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.netExpandAll();
+				}
+			});
+		}
+		return simButton21;
+	}
+	
+	private SimButton getSimButton22() {
+		if(simButton22 == null) {
+			simButton22 = new SimButton();
+			simButton22.setText("dynamic view sorted by node density (3d)");
+			simButton22.setVerticalAlignment(SwingConstants.CENTER);
+			simButton22.setVerticalTextPosition(SwingConstants.CENTER);
+			simButton22.setMargin(new java.awt.Insets(2,2,2,2));
+			simButton22.setFont(new java.awt.Font("Dialog",0,10));
+			simButton22.setBounds(2, 58, 219, 15);
+			simButton22.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.p.set3D(false);
+					app.setLocksActive(false);
+					app.toggle3D();
+					app.prepResetCam();
+				}
+			});
+		}
+		return simButton22;
+	}
+	
+	private SimButton getSimButton23() {
+		if(simButton23 == null) {
+			simButton23 = new SimButton();
+			simButton23.setText("dynamic view sorted by node density (2d)");
+			simButton23.setVerticalAlignment(SwingConstants.CENTER);
+			simButton23.setVerticalTextPosition(SwingConstants.CENTER);
+			simButton23.setMargin(new java.awt.Insets(2,2,2,2));
+			simButton23.setFont(new java.awt.Font("Dialog",0,10));
+			simButton23.setBounds(2, 39, 219, 15);
+			simButton23.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					app.p.set3D(true);
+					app.toggle3D();
+					app.setLocksActive(false);
+					app.prepResetCam();
+				}
+			});
+		}
+		return simButton23;
+	}
+	
+	private SimButton getSimButton24() {
+		if(simButton24 == null) {
+			simButton24 = new SimButton();
+			simButton24.setText("topographic view sorted by location (2d)");
+			simButton24.setVerticalAlignment(SwingConstants.CENTER);
+			simButton24.setVerticalTextPosition(SwingConstants.CENTER);
+			simButton24.setMargin(new java.awt.Insets(2,2,2,2));
+			simButton24.setFont(new java.awt.Font("Dialog",0,10));
+			simButton24.setBounds(2, 20, 219, 15);
+			simButton24.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (alternatePos) {
+						app.locksRemove();
+						app.ns.nodeListParse(nodeset1, true);
+						app.ns.getView().updateNet();
+						app.updateUI();
+						alternatePos=false;
+					}
+					app.setLocksActive(true);
+					app.p.set3D(true);
+					app.toggle3D();
+					app.prepResetCam();
+				}
+			});
+		}
+		return simButton24;
+	}
+	
+	private JSlider getZoom() {
+		if(zoom == null) {
+			zoom = new JSlider();
+			zoom.setBounds(2, 105, 210, 14);
+			zoom.setMaximum(1000);
+			zoom.setMinimum(5);
+			zoom.setPreferredSize(new java.awt.Dimension(214, 14));
+			zoom.setValue((int)app.getZoom());
+			zoom.addChangeListener(new ChangeListener() {
+				public void stateChanged(ChangeEvent evt) {
+					app.setZoom(zoom.getValue());
+				}
+			});
+		}
+		return zoom;
+	}
+	
+	private JLabel getJLabel8x() {
+		if(jLabel8 == null) {
+			jLabel8 = new JLabel();
+			jLabel8.setText("zoom");
+			jLabel8.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel8.setBounds(2, 85, 210, 14);
+		}
+		return jLabel8;
+	}
+	
+	private SimButton getSimButton25() {
+		if(simButton25 == null) {
+			simButton25 = new SimButton();
+			simButton25.setText("view by disciplines (3d)");
+			simButton25.setVerticalAlignment(SwingConstants.CENTER);
+			simButton25.setVerticalTextPosition(SwingConstants.CENTER);
+			simButton25.setMargin(new java.awt.Insets(2,2,2,2));
+			simButton25.setFont(new java.awt.Font("Dialog",0,10));
+			simButton25.setBounds(2, 77, 219, 15);
+			simButton25.addActionListener(new ActionListener() {
+				
+
+				public void actionPerformed(ActionEvent e) {
+					if (!alternatePos) {
+						app.locksRemove();
+						app.ns.global.removeNodeAttributes();
+						app.ns.nodeListParse(nodeset2, true);
+						app.ns.getView().updateNet();
+						app.updateUI();
+						alternatePos=true;
+					}
+					app.p.set3D(false);
+					app.setLocksActive(true);
+					app.toggle3D();
+					app.prepResetCam();
+				}
+			});
+		}
+		return simButton25;
+	}
+	
+	private JLabel getJLabel1() {
+		if(jLabel1 == null) {
+			jLabel1 = new JLabel();
+			jLabel1.setText("help (in browser)");
+			jLabel1.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel1.setBounds(2, 0, 210, 14);
+		}
+		return jLabel1;
+	}
+	
+	private JLabel getJLabel15() {
+		if(jLabel15 == null) {
+			jLabel15 = new JLabel();
+			jLabel15.setText("search & highlight parameters");
+			jLabel15.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel15.setBounds(2, 301, 210, 14);
+		}
+		return jLabel15;
+	}
+	
+	private JPanel getJPanel1() {
+		if(jPanel1 == null) {
+			jPanel1 = new JPanel();
+			FlowLayout jPanel1Layout = new FlowLayout();
+			jPanel1Layout.setAlignment(FlowLayout.LEFT);
+			jPanel1Layout.setHgap(0);
+			jPanel1Layout.setVgap(2);
+			jPanel1Layout.setAlignOnBaseline(true);
+			jPanel1.setLayout(jPanel1Layout);
+			jPanel1.setBounds(5, 95, 210, 34);
+			jPanel1.setAlignmentX(0.0f);
+			jPanel1.add(getJLabel8x());
+			jPanel1.add(getZoom());
+		}
+		return jPanel1;
+	}
+	
+	private JPanel getJPanel2() {
+		if(jPanel2 == null) {
+			jPanel2 = new JPanel();
+			jPanel2.setLayout(null);
+			jPanel2.setBounds(0, 0, 226, 95);
+			jPanel2.add(getJLabel18());
+			jPanel2.add(getSimButton22());
+			jPanel2.add(getSimButton23());
+			jPanel2.add(getSimButton25());
+			jPanel2.add(getSimButton24());
+		}
+		return jPanel2;
+	}
+	
+	private JLabel getJLabel18() {
+		if(jLabel18 == null) {
+			jLabel18 = new JLabel();
+			jLabel18.setText("analytic views (2d & 3d)");
+			jLabel18.setFont(new java.awt.Font("Dialog",1,11));
+			jLabel18.setBounds(5, 0, 210, 14);
+		}
+		return jLabel18;
+	}
+	
+	private SimButton getSimButton26() {
+		if(simButton26 == null) {
+			simButton26 = new SimButton();
+			simButton26.setText("instructions");
+			simButton26.setFont(new Font("Dialog",Font.PLAIN,10));
+			simButton26.setToolTipText("inspect selected relation in the indy tool");
+			simButton26.setBounds(142, 19, 80, 15);
+			simButton26.addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent e) {
+					try {
+						java.awt.Desktop.getDesktop().browse(new URI("http://www2.hu-berlin.de/facingscience/semadoku.html"));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+		}
+		return simButton26;
+	}
+	
+	private JLabel getJLabel21() {
+		if(jLabel21 == null) {
+			jLabel21 = new JLabel();
+			jLabel21.setText("<HTML>double click on a parameter selects a subnet<BR>display option \"show all\" disables subnet</HTML>");
+			jLabel21.setFont(new java.awt.Font("Dialog",0,9));
+			jLabel21.setBounds(2, 315, 220, 27);
+		}
+		return jLabel21;
+	}
+	
+	private JPanel getJPanel3() {
+		if(jPanel3 == null) {
+			jPanel3 = new JPanel();
+			jPanel3.setBounds(0, 262, 227, 38);
+			jPanel3.setLayout(null);
+			jPanel3.setVisible(false);
+			jPanel3.add(getJLabel1());
+			jPanel3.add(getSimButton26());
+			jPanel3.add(getSimButton3x());
+		}
+		return jPanel3;
+	}
+
 }	

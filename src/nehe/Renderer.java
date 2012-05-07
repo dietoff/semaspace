@@ -1,8 +1,8 @@
 package nehe;
 
-import com.sun.opengl.util.BufferUtil;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
@@ -25,7 +25,7 @@ class Renderer implements GLEventListener {
 
     private int emptyTexture(GL gl) {  // Create An Empty Texture
         // Create Storage Space For Texture Data (128x128x4)
-        ByteBuffer data = BufferUtil.newByteBuffer(128 * 128 * 4); 
+        ByteBuffer data = ByteBuffer.allocate(128 * 128 * 4); 
         data.limit(data.capacity());
 
         int[] txtnumber = new int[1];
@@ -79,7 +79,7 @@ class Renderer implements GLEventListener {
         reduceToUnit(out); // Normalize The Vectors
     }
 
-    private void processHelix(GL gl, GLU glu) {  // Draws A Helix
+    private void processHelix(GL2 gl, GLU glu) {  // Draws A Helix
         float x;      // Helix x Coordinate
         float y;      // Helix y Coordinate
         float z;      // Helix z Coordinate
@@ -106,14 +106,14 @@ class Renderer implements GLEventListener {
         gl.glRotatef(angle / 2.0f, 1, 0, 0); // Rotate By angle/2 On The X-Axis
         gl.glRotatef(angle / 3.0f, 0, 1, 0); // Rotate By angle/3 On The Y-Axis
 
-        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_AMBIENT_AND_DIFFUSE, 
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, 
                 glfMaterialColor, 0);
         
-        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_SPECULAR, specular, 0);
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, specular, 0);
 
         r = 1.5f;  // Radius
 
-        gl.glBegin(GL.GL_QUADS);  // Begin Drawing Quads
+        gl.glBegin(GL2.GL_QUADS);  // Begin Drawing Quads
         for (phi = 0; phi <= 360; phi += 20.0)  // 360 Degrees In Steps Of 20
         {
             // 360 Degrees * Number Of Twists In Steps Of 20
@@ -199,26 +199,26 @@ class Renderer implements GLEventListener {
         gl.glPopMatrix(); // Pop The Matrix
     }
 
-    private void viewOrtho(GL gl)  // Set Up An Ortho View
+    private void viewOrtho(GL2 gl)  // Set Up An Ortho View
     {
-        gl.glMatrixMode(GL.GL_PROJECTION);  // Select Projection
+        gl.glMatrixMode(GL2.GL_PROJECTION);  // Select Projection
         gl.glPushMatrix();      // Push The Matrix
         gl.glLoadIdentity();      // Reset The Matrix
         gl.glOrtho(0, 640, 480, 0, -1, 1);  // Select Ortho Mode (640x480)
-        gl.glMatrixMode(GL.GL_MODELVIEW);  // Select Modelview Matrix
+        gl.glMatrixMode(GL2.GL_MODELVIEW);  // Select Modelview Matrix
         gl.glPushMatrix();      // Push The Matrix
         gl.glLoadIdentity();      // Reset The Matrix
     }
 
-    private void viewPerspective(GL gl)    // Set Up A Perspective View
+    private void viewPerspective(GL2 gl)    // Set Up A Perspective View
     {
-        gl.glMatrixMode(GL.GL_PROJECTION);  // Select Projection
+        gl.glMatrixMode(GL2.GL_PROJECTION);  // Select Projection
         gl.glPopMatrix();      // Pop The Matrix
-        gl.glMatrixMode(GL.GL_MODELVIEW);  // Select Modelview
+        gl.glMatrixMode(GL2.GL_MODELVIEW);  // Select Modelview
         gl.glPopMatrix();      // Pop The Matrix
     }
 
-    private void renderToTexture(GL gl, GLU glu) // Renders To A Texture
+    private void renderToTexture(GL2 gl, GLU glu) // Renders To A Texture
     {
         gl.glViewport(0, 0, 128, 128);    // Set Our Viewport (Match Texture Size)
 
@@ -237,14 +237,14 @@ class Renderer implements GLEventListener {
         gl.glViewport(0, 0, 640, 480);  // Set Viewport (0,0 to 640x480)
     }
 
-    private void drawBlur(GL gl, int times, float inc)  // Draw The Blurred Image
+    private void drawBlur(GL2 gl, int times, float inc)  // Draw The Blurred Image
     {
         float spost = 0.0f;  // Starting Texture Coordinate Offset
         float alpha = 0.2f;  // Starting Alpha Value
 
         // Disable AutoTexture Coordinates
-        gl.glDisable(GL.GL_TEXTURE_GEN_S);
-        gl.glDisable(GL.GL_TEXTURE_GEN_T);
+        gl.glDisable(GL2.GL_TEXTURE_GEN_S);
+        gl.glDisable(GL2.GL_TEXTURE_GEN_T);
 
         gl.glEnable(GL.GL_TEXTURE_2D);  // Enable 2D Texture Mapping
         gl.glDisable(GL.GL_DEPTH_TEST);  // Disable Depth Testing
@@ -255,7 +255,7 @@ class Renderer implements GLEventListener {
 
         float alphainc = alpha / times;  // alphainc=0.2f / Times To Render Blur
 
-        gl.glBegin(GL.GL_QUADS);  // Begin Drawing Quads
+        gl.glBegin(GL2.GL_QUADS);  // Begin Drawing Quads
         for (int num = 0; num < times; num++)  // Number Of Times To Render Blur
         {
             gl.glColor4f(1.0f, 1.0f, 1.0f, alpha); // Set The Alpha Value (Starts At 0.2)
@@ -292,7 +292,7 @@ class Renderer implements GLEventListener {
     }
 
     public void init(GLAutoDrawable drawable) {
-        GL gl = drawable.getGL();
+        GL2 gl = drawable.getGL().getGL2();
 
         // Start Of User Initialization
         angle = 0.0f;  // Set Starting Angle To Zero
@@ -315,24 +315,24 @@ class Renderer implements GLEventListener {
         // And More Ambient Light
         float[] lmodel_ambient = new float[]{0.2f, 0.2f, 0.2f, 1.0f};      
         // Set The Ambient Light Model
-        gl.glLightModelfv(GL.GL_LIGHT_MODEL_AMBIENT, lmodel_ambient, 0);    
+        gl.glLightModelfv(GL2.GL_LIGHT_MODEL_AMBIENT, lmodel_ambient, 0);    
 
         // Set The Global Ambient Light Model
-        gl.glLightModelfv(GL.GL_LIGHT_MODEL_AMBIENT, global_ambient, 0);    
+        gl.glLightModelfv(GL2.GL_LIGHT_MODEL_AMBIENT, global_ambient, 0);    
         // Set The Lights Position
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, light0pos, 0);        
+        gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_POSITION, light0pos, 0);        
         // Set The Ambient Light
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, light0ambient, 0);      
+        gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_AMBIENT, light0ambient, 0);      
         // Set The Diffuse Light
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, light0diffuse, 0);      
+        gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_DIFFUSE, light0diffuse, 0);      
         // Set Up Specular Lighting
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, light0specular, 0);      
-        gl.glEnable(GL.GL_LIGHTING);  // Enable Lighting
-        gl.glEnable(GL.GL_LIGHT0);  // Enable Light0
+        gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_SPECULAR, light0specular, 0);      
+        gl.glEnable(GL2.GL_LIGHTING);  // Enable Lighting
+        gl.glEnable(GL2.GL_LIGHT0);  // Enable Light0
 
-        gl.glShadeModel(GL.GL_SMOOTH);  // Select Smooth Shading
+        gl.glShadeModel(GL2.GL_SMOOTH);  // Select Smooth Shading
 
-        gl.glMateriali(GL.GL_FRONT, GL.GL_SHININESS, 128);
+        gl.glMateriali(GL.GL_FRONT, GL2.GL_SHININESS, 128);
         gl.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);  // Set The Clear Color To Black
     }
 
@@ -345,7 +345,7 @@ class Renderer implements GLEventListener {
         update(currentTime - previousTime);
         previousTime = currentTime;
 
-        GL gl = drawable.getGL();
+        GL2 gl = drawable.getGL().getGL2();
         gl.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);  // Set The Clear Color To Black
         // Clear Screen And Depth Buffer
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);    
@@ -361,16 +361,16 @@ class Renderer implements GLEventListener {
                         int ystart,
                         int width,
                         int height) {
-        GL gl = drawable.getGL();
+        GL2 gl = drawable.getGL().getGL2();
 
         height = (height == 0) ? 1 : height;
 
         gl.glViewport(0, 0, width, height);
-        gl.glMatrixMode(GL.GL_PROJECTION);
+        gl.glMatrixMode(GL2.GL_PROJECTION);
         gl.glLoadIdentity();
 
         glu.gluPerspective(50, (float) width / height, 5, 2000);
-        gl.glMatrixMode(GL.GL_MODELVIEW);
+        gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
     }
 
@@ -378,6 +378,11 @@ class Renderer implements GLEventListener {
                                boolean modeChanged,
                                boolean deviceChanged) {
     }
+
+	public void dispose(GLAutoDrawable arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 
