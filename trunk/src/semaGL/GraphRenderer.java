@@ -98,12 +98,12 @@ public class GraphRenderer {
 
 	void renderBounds(GL2 gl, HashSet<Node> nodes){
 		gl.glPushMatrix();
-//		gl.glLoadIdentity();
+		//		gl.glLoadIdentity();
 		BBox3D bounds = BBox3D.calcBounds(nodes);
 		gl.glTranslatef(bounds.center.x, bounds.center.y, bounds.center.z);
-//		gl.glScalef(30,30, 1);
+		//		gl.glScalef(30,30, 1);
 		gl.glScalef(bounds.size.x/2f, bounds.size.y/2f, bounds.size.z/2f);
-//		System.out.println(bounds.center.x+" "+bounds.center.y+" "+bounds.center.z);
+		//		System.out.println(bounds.center.x+" "+bounds.center.y+" "+bounds.center.z);
 		gl.glColor4f(255,0,1,255);
 		gl.glPolygonMode(GL.GL_FRONT_AND_BACK, GL2.GL_LINE);
 		gl.glColor4fv(par.frameColor,0);
@@ -128,7 +128,7 @@ public class GraphRenderer {
 		if (par.fadeLabels&&!e.rollover&&!e.isPicked()&&!e.isFrame()&&!(a.getPickColor()[3]>0&&b.getPickColor()[3]>0)) return;
 
 		if (e.alpha<0.2) return;
-		
+
 		if ((e.isPicked()||e.rollover)&&font==3) font=2;
 		Vector3D dir = b.getPos().copy();
 		dir.sub(a.getPos()); //direction of the edge
@@ -224,7 +224,7 @@ public class GraphRenderer {
 				aCol[3] = e.getA().alpha*f;
 				bCol[3] = e.getB().alpha*f;
 			}
-			
+
 			if (par.isInheritEdgeColorFromNodes()) {
 				aCol = e.getA().getColor().clone();
 				bCol = e.getB().getColor().clone();
@@ -234,10 +234,10 @@ public class GraphRenderer {
 				bCol[3]=0.1f;
 				aCol[3]=0.1f;
 			}
-			
+
 			FuncGL.drawLine(gl, start, end, aCol, bCol);
 			gl.glDisable(GL2.GL_LINE_STIPPLE);
-			
+
 			e.alpha = (bCol[3]+aCol[3]) / 2f;
 		}
 
@@ -315,12 +315,12 @@ public class GraphRenderer {
 		gl.glRotatef(xRot, 0, 1, 0);
 		gl.glRotatef(yRot, 1, 0, 0);
 		if (font<2&&par.isTilt()) gl.glRotatef(25, 0, 0, 1);
-		
+
 		float size = 10f*par.getLabelsize();
 		String name = n.name;
 		float advance = getAdvance(0, font, size,name)/2f;
 		gl.glTranslatef(advance/2f,0, 0);
-		
+
 		FuncGL.renderText(par, name, textcolor, size, font, n.id, distToCam, true, false); //dont draw the text if alpha is too low
 		// reset all transformations
 		gl.glPopMatrix();
@@ -350,8 +350,8 @@ public class GraphRenderer {
 				D.mult(-1);
 				gl.glColor4fv(col, 0);
 				FuncGL.groupArrow(gl, bref.size()*1.5f, center.getPos(), D);
-//				gl.glLineWidth(5);
-//				FuncGL.drawLine(gl, center.pos, bref.pos, white, col);
+				//				gl.glLineWidth(5);
+				//				FuncGL.drawLine(gl, center.pos, bref.pos, white, col);
 			}
 		}
 		gl.glPopMatrix();
@@ -388,13 +388,13 @@ public class GraphRenderer {
 		if (n.rollover||n.pickColor[3]>0) {
 			gl.glScalef(2f,2f,2f);
 		}
-		
+
 		float[] color = n.getColor();
 
 		if (n.fade) {
 			color[3]=0.1f;
 		}
-		
+
 		gl.glColor4fv(color,0);
 		gl.glPolygonMode(GL.GL_FRONT, GL2.GL_LINE);
 		gl.glLineWidth(1f);
@@ -411,8 +411,8 @@ public class GraphRenderer {
 			gl.glColor4f(1f,1f,1f,n.getColor()[3]);
 			//				gl.glColor4f(1f,1f,1f,pickColor[3]); //pick color 
 		}
-		
-		
+
+
 
 
 		//split quad or solid quad
@@ -433,7 +433,7 @@ public class GraphRenderer {
 			gl.glColor4fv(n.pickColor,0);
 			FuncGL.quad(gl);	
 		}
-		
+
 		// pick mark
 		if (n.isLocked()) {
 			gl.glPushMatrix();
@@ -535,6 +535,9 @@ public class GraphRenderer {
 								float advance = getAdvance(n.size(), font, fsize, split[0])/2f;
 								gl.glTranslatef(advance+n.size()/2f, n.size()/2f, 0);
 							}
+					} else {
+						float advance = getAdvance(n.size(), font, fsize, split[0])/2f;
+						gl.glTranslatef(advance+n.size()/2f, n.size()/2f, 0);
 					}
 				}
 			}

@@ -78,18 +78,18 @@ public class SwingSema implements SemaListener, KeyListener {
 		SwingUtilities.invokeLater(new Runnable() {
 			private SwingSema application;
 			private SemaSpace space;
-//			private GLDisplayPanel semaGLDisplay;
+			//			private GLDisplayPanel semaGLDisplay;
 
 			public void run() {
 				space = new SemaSpace("sema.config");
-//				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
-//				semaGLDisplay.addGLEventListener(space);
+				//				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
+				//				semaGLDisplay.addGLEventListener(space);
 				application = new SwingSema();
 				space.addSemaListener(application);
 				application.setSema(space);
 				application.getMainWindow().setVisible(true);
 				application.jSplitPane.setRightComponent(space.getJPanel());
-//				semaGLDisplay.start();
+				//				semaGLDisplay.start();
 			}
 		});
 	}
@@ -254,6 +254,8 @@ public class SwingSema implements SemaListener, KeyListener {
 	private DefaultListModel netListModel;
 	protected boolean change=true;
 	private FileFilter fileOpenFilter;
+	private File lastOpenDir = null;
+	private File lastSaveDir = null;
 
 	{
 		//Set Look & Feel
@@ -941,13 +943,13 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JCheckBox getForceBox() {
 		if (forceBox == null) {
 			forceBox = new JCheckBox();
-			forceBox.setText("freeze");
+			forceBox.setText("pause");
 			forceBox.setToolTipText("Force driven Layout active");
 			forceBox.setSelected(app.p.getCalc());
 			forceBox.setMargin(new java.awt.Insets(0,0,0,0));
 			forceBox.setContentAreaFilled(false);
 			forceBox.setFont(new java.awt.Font("Dialog",0,10));
-			forceBox.setBounds(133, 1, 85, 17);
+			forceBox.setBounds(172, 1, 51, 17);
 			forceBox.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					app.p.setCalc(!app.p.getCalc());
@@ -1170,7 +1172,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JLabel getJLabel1() {
 		if (jLabel1 == null) {
 			jLabel1 = new JLabel();
-			jLabel1.setText("labelstyle");
+			jLabel1.setText("labelstyle:");
 			jLabel1.setFont(new java.awt.Font("Dialog",0,10));
 			jLabel1.setBounds(117, 29, 50, 13);
 		}
@@ -1568,6 +1570,17 @@ public class SwingSema implements SemaListener, KeyListener {
 	public JFrame getMainWindow() {
 		if (mainWindow == null) {
 			mainWindow = new JFrame();
+
+			new  FileDrop( mainWindow, new FileDrop.Listener()
+			{   public void  filesDropped( java.io.File[] files )
+			{   
+				// handle file drop
+				final File droppedFile = files[0];
+				if(droppedFile.getName().endsWith(".sema")){
+					app.loadProject(droppedFile);
+				}
+			}}); 
+
 			mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			mainWindow.setTitle("SemaSpace");
 			mainWindow.setSize(1000,600);
@@ -1578,7 +1591,6 @@ public class SwingSema implements SemaListener, KeyListener {
 		}
 		return mainWindow;
 	}
-
 
 	private JList getNetList() {
 		if (netList == null) {
@@ -1681,7 +1693,7 @@ public class SwingSema implements SemaListener, KeyListener {
 				public void mouseReleased(MouseEvent e) {
 				}
 			}
-			);
+					);
 		}
 		return nodeList;
 	}
@@ -1823,7 +1835,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JCheckBox getRadbox() {
 		if(radLabels == null) {
 			radLabels = new JCheckBox();
-			radLabels.setText("rad");
+			radLabels.setText("radial");
 			radLabels.setMargin(new java.awt.Insets(0,0,0,0));
 			radLabels.setContentAreaFilled(false);
 			radLabels.setFont(new java.awt.Font("Dialog",0,10));
@@ -1987,10 +1999,10 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JTextField getSearchTerm() {
 		if (searchTerm == null) {
 			searchTerm = new JTextField();
-//			searchTerm.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+			//			searchTerm.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 			searchTerm.setBorder(BorderFactory.createLineBorder(new Color(150,150,150)));
 			searchTerm.setBounds(2, 19, 116, 15);
-			
+
 			searchTerm.addMouseListener(new MouseAdapter() {
 				public void mouseExited(MouseEvent evt) {
 					searchTerm.setBackground(new Color(255,255,255));
@@ -1999,7 +2011,7 @@ public class SwingSema implements SemaListener, KeyListener {
 					searchTerm.setBackground(new Color(255,110,90));
 				}
 			});
-			
+
 			searchTerm.addKeyListener(new KeyAdapter() {
 				public void keyReleased(java.awt.event.KeyEvent e) {
 					if (e.getKeyCode()==10) {
@@ -2314,7 +2326,7 @@ public class SwingSema implements SemaListener, KeyListener {
 						if (!(lastImageFilter instanceof TGAFilter && app.p.isEnableSvg())) saveFile.addChoosableFileFilter(new TGAFilter());
 						saveFile.setFileFilter(lastImageFilter);
 					}
-					
+
 					int returnVal = saveFile.showSaveDialog(saveFile);
 					lastImageFilter = saveFile.getFileFilter();
 					app.p.calculate=calc;
@@ -2581,7 +2593,7 @@ public class SwingSema implements SemaListener, KeyListener {
 	private JCheckBox getTiltBox() {
 		if(tiltBox == null) {
 			tiltBox = new JCheckBox();
-			tiltBox.setText("25¡");
+			tiltBox.setText("tilted");
 			tiltBox.setMargin(new java.awt.Insets(0,0,0,0));
 			tiltBox.setContentAreaFilled(false);
 			tiltBox.setFont(new java.awt.Font("Dialog",0,10));
@@ -2851,6 +2863,10 @@ public class SwingSema implements SemaListener, KeyListener {
 			if (!(fileOpenFilter instanceof SemaProjectFileFilter)) openFile.addChoosableFileFilter(new SemaProjectFileFilter());
 			openFile.addChoosableFileFilter(fileOpenFilter);
 		}
+		if (lastOpenDir!=null){
+			openFile.setCurrentDirectory(lastOpenDir);
+			lastSaveDir = lastOpenDir;
+		}
 		int returnVal = openFile.showOpenDialog(openFile);
 		fileOpenFilter = openFile.getFileFilter();
 		app.p.calculate=calc;
@@ -2862,7 +2878,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			if (fileOpenFilter instanceof SemaProjectFileFilter) {
 				app.loadProject(filename);
 			} 
-			
+
 			if (fileOpenFilter instanceof SemaInlineFilter) {
 				app.loadNetwork(filename, false);
 			} 
@@ -2871,6 +2887,7 @@ public class SwingSema implements SemaListener, KeyListener {
 				app.loadNetwork(filename, true);
 			}
 			setCounter();
+			lastOpenDir=openFile.getCurrentDirectory();
 		}
 	}
 
@@ -2892,6 +2909,11 @@ public class SwingSema implements SemaListener, KeyListener {
 			if (fileOpenFilter instanceof SemaInlineFilter) openFile.addChoosableFileFilter(new SemaTableFilter());
 			openFile.addChoosableFileFilter(fileOpenFilter);
 		}
+
+		if (lastOpenDir!=null){
+			openFile.setCurrentDirectory(lastOpenDir);
+		}
+
 		int returnVal = openFile.showOpenDialog(openFile);
 		fileOpenFilter = openFile.getFileFilter();
 
@@ -2905,6 +2927,7 @@ public class SwingSema implements SemaListener, KeyListener {
 				}
 
 			setCounter();
+			lastOpenDir=openFile.getCurrentDirectory();
 			app.p.calculate=calc;
 			app.p.render=rnd;
 		}
@@ -3007,6 +3030,7 @@ public class SwingSema implements SemaListener, KeyListener {
 			saveFile.addChoosableFileFilter(fileOpenFilter);
 		}
 
+		if (lastSaveDir !=null) saveFile.setCurrentDirectory(lastSaveDir);
 		int returnVal = saveFile.showSaveDialog(saveFile);
 		fileOpenFilter = saveFile.getFileFilter();
 		app.p.calculate=calc;
@@ -3015,7 +3039,7 @@ public class SwingSema implements SemaListener, KeyListener {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			String filename = saveFile.getSelectedFile().toString();
 			if (fileOpenFilter instanceof SemaProjectFileFilter) {
-//				if (!filename.endsWith(".sema")) filename += ".sema";
+				//				if (!filename.endsWith(".sema")) filename += ".sema";
 				app.saveProject(saveFile.getSelectedFile(),b);
 			}
 			if (fileOpenFilter instanceof SemaInlineFilter) {
@@ -3035,9 +3059,10 @@ public class SwingSema implements SemaListener, KeyListener {
 				if (!filename.endsWith(".graphml")) filename += ".graphml";
 				app.ns.exportGraphML(filename);
 			}
+			lastSaveDir = saveFile.getCurrentDirectory();
 		}
 	}
-	
+
 	private JCheckBox getJCheckBox2x() {
 		if(jCheckBox2 == null) {
 			jCheckBox2 = new JCheckBox();

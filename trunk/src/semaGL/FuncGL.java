@@ -96,7 +96,7 @@ public class FuncGL {
 				FTBBox box = p.getApp().hiQfont.getBBox(lines[i]);
 				gl.glTranslatef(box.lowerX,box.lowerY,0);
 				gl.glScalef(box.getWidth()/2f,box.getHeight()/2f,0);
-				gl.glColor4f(1,1,1,0.9f);
+				gl.glColor4f(1,1,1,0.8f);
 				gl.glTranslatef(1f,1f,0);
 				quad(gl);
 			gl.glPopMatrix();

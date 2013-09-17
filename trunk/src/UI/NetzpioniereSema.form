@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Form builder="jigloo" ide="eclipse" laf="com.jtattoo.plaf.fast.FastLookAndFeel" style="Swing" version="4.5.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Form builder="jigloo" ide="eclipse" laf="com.jtattoo.plaf.fast.FastLookAndFeel" style="Swing" version="4.6.6">
 <NonVisualComponents>
 		<Component class="UNKNOWN" name="Non-visual components" style="0">
 			<SubComponents>
@@ -233,6 +233,8 @@
 									<Component class="javax.swing.JPanel" name="file">
 										<Layout class="Absolute">
 										</Layout>
+										<Events>
+										</Events>
 										<Properties>
 											<Property name="layout"/>
 										</Properties>
@@ -503,7 +505,7 @@
 													</Property>
 													<Property name="toolTipText" type="String" value="set the camera to selected node"/>
 													<Property name="bounds" type="Rectangle">
-														<Rectangle value="[72, 250, 68, 15]"/>
+														<Rectangle value="[72, 250, 80, 15]"/>
 													</Property>
 												</Properties>
 											</Component>
@@ -652,11 +654,11 @@
 												</Events>
 												<Properties>
 													<Property name="text" type="String" value="expand all"/>
-													<Property name="verticalAlignment" type="int" value="0"/>
-													<Property name="verticalTextPosition" type="int" value="0"/>
 													<Property name="margin" type="Insets">
 														<Insets value="[2, 2, 2, 2]"/>
 													</Property>
+													<Property name="verticalAlignment" type="int" value="0"/>
+													<Property name="verticalTextPosition" type="int" value="0"/>
 													<Property name="font" type="Font">
 														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
 													</Property>
@@ -676,7 +678,7 @@
 													</Property>
 													<Property name="toolTipText" type="String" value="inspect selected relation in the indy tool"/>
 													<Property name="bounds" type="Rectangle">
-														<Rectangle value="[2, 270, 200, 15]"/>
+														<Rectangle value="[2, 270, 150, 15]"/>
 													</Property>
 												</Properties>
 											</Component>

@@ -32,25 +32,15 @@
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/xerces_2_5_0.jar"/>
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/xml-apis-ext.jar"/>
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/xml-apis.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/jogl2.0/jogl.all.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="SemaSpace/lib/jogl2.0"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/jogl2.0/gluegen-gl.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="SemaSpace/lib/jogl2.0"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/jogl2.0/gluegen.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="SemaSpace/lib/jogl2.0"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/jogl2.0/jogl.util.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="SemaSpace/lib/jogl2.0"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="lib/filedrop.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/jogl-all-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/jogl-all.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/gluegen-rt-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/gluegen.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/gluegen-rt-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/gluegen-rt-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/jogl-all-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/jogl-all-natives-windows-i586.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

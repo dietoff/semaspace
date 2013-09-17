@@ -92,14 +92,13 @@ public class BerlinAusstSema implements SemaListener, KeyListener {
 
 			public void run() {
 				space = new SemaSpace("berlinAusstSema.config");
-				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
-				semaGLDisplay.addGLEventListener(space);
+//				semaGLDisplay = GLDisplayPanel.createGLDisplay("SemaSpace");
+//				semaGLDisplay.addGLEventListener(space);
 				application = new BerlinAusstSema();
 				space.addSemaListener(application);
 				application.setSema(space);
 				application.getMainWindow().setVisible(true);
-				application.jSplitPane.setRightComponent(semaGLDisplay.getJPanel());
-				semaGLDisplay.start();
+				application.jSplitPane.setRightComponent(space.getJPanel());
 			}
 		});
 	}

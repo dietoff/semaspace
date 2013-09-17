@@ -77,13 +77,13 @@ public class GraphRendererSVG {
 
 
 	private void createSVG(String filename)
-	throws UnsupportedEncodingException, SVGGraphics2DIOException {
+			throws UnsupportedEncodingException, SVGGraphics2DIOException {
 
 		BBox3D bbx = BBox3D.calcBounds(net.nNodes);
 
 		// Get a DOMImplementation.
 		DOMImplementation domImpl =
-			GenericDOMImplementation.getDOMImplementation();
+				GenericDOMImplementation.getDOMImplementation();
 
 		// Create an instance of org.w3c.dom.Document.
 		String svgNS = "http://www.w3.org/2000/svg";
@@ -114,11 +114,11 @@ public class GraphRendererSVG {
 
 	public void paintSVG(Graphics2D g2d, float origX, float origY) {
 		int font = app.fonttype;
-		BasicStroke sngl = new BasicStroke(2f);
-		BasicStroke dbl = new BasicStroke(4f); 
-		BasicStroke five = new BasicStroke(5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND); 
-		Font ef = new Font(app.getFontFam(),Font.PLAIN, (int)(app.getLabelsize()));
-
+		BasicStroke sngl = new BasicStroke(1f,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL);
+		BasicStroke dbl = new BasicStroke(2f,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL); 
+		Font ef = new Font(app.getFontFam(),Font.PLAIN, (int)(app.getLabelsize()*1.5));
+		Font edge = new Font(app.getFontFam(),Font.PLAIN, 4);
+		
 		AffineTransform id = new AffineTransform();
 		id.setToIdentity();
 
@@ -172,10 +172,10 @@ public class GraphRendererSVG {
 			start.add(Vector3D.mult(DN, af));
 			end.sub(Vector3D.mult(DN, bf));
 
-			
+
 			//white background 
 			g2d.setStroke(dbl);
-			
+
 			g2d.setPaint(new Color(1,1,1,e.getColor()[3]));
 			Line2D line = new Line2D.Float(start.x,-start.y,end.x,-end.y);
 			g2d.draw(line);
@@ -197,7 +197,7 @@ public class GraphRendererSVG {
 				g2d.setTransform(t);
 				if (app.directed) {
 					g2d.setPaint(new Color(b.pickColor[0],b.pickColor[1],b.pickColor[2],b.pickColor[3]));
-					arrowHeadEmpty(g2d, 10, end, DN);
+					arrowHeadEmpty(g2d, 7, end, DN);
 				}
 			}
 			else
@@ -208,7 +208,7 @@ public class GraphRendererSVG {
 				line = new Line2D.Float(start.x,-start.y,end.x,-end.y);
 				g2d.draw(line);
 				if (app.directed){
-					arrowHeadEmpty(g2d, 20, end, DN);
+					arrowHeadEmpty(g2d, 7, end, DN);
 				};
 			};
 		}
@@ -233,37 +233,18 @@ public class GraphRendererSVG {
 			}
 		}
 
-		// nodes
-		for (Node n: net.nNodes) {
-			n.genColorFromAtt();
-			float size = n.size()*2f;
-
-			g2d.setPaint(new Color(n.getColor()[0],n.getColor()[1],n.getColor()[2],n.getColor()[3]));
-
-			if (circles) {
-				g2d.fillOval((int)(n.getPos().x)-(int)(size/2), -(int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
-			}
-			else {
-				g2d.fillRect((int)(n.getPos().x)-(int)(size/2), -(int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
-			}
-			if (n.pickColor[3]>0) {
-				g2d.setPaint(new Color(n.pickColor[0],n.pickColor[1],n.pickColor[2],1));
-				g2d.drawRect((int)(n.getPos().x)-(int)(size/2), -(int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
-			}
-		}
-
 		if (font!=3){
 			// edge labels
 			for (Edge e: net.nEdges) {
 				String txt = e.genTextSelAttributes();
 				if (txt.length()>0){
 
-					g2d.setFont(ef);
+					g2d.setFont(edge);
 					Node a = e.getA();
 					Node b = e.getB();
 
 					Vector3D midP = Vector3D.midPoint(a.getPos(),b.getPos());
-					TextLayout tl = new TextLayout(txt,ef,g2d.getFontRenderContext());
+					TextLayout tl = new TextLayout(txt,edge,g2d.getFontRenderContext());
 
 					g2d.setPaint(new Color(e.getColor()[0],e.getColor()[1],e.getColor()[2],e.getColor()[3]));
 
@@ -278,20 +259,23 @@ public class GraphRendererSVG {
 					g2d.translate(-advance, 0);
 
 					if (e.getColor()[3]>0.2f&& txt.length()>0){
+						/*
 						if (font==0){
 							g2d.setPaint(new Color(1f,1f,1f));
 							Shape outline = tl.getOutline(id);
-							g2d.setStroke(five);
+							g2d.setStroke(dbl);
 							g2d.draw(outline);
 							g2d.setPaint(new Color((e.getColor()[0]),(e.getColor()[1]),(e.getColor()[2]),e.getColor()[3]));
 							g2d.setStroke(sngl);
 							g2d.fill(outline);
 
-						} else {
+						} else 
+						 */
+						{
 							//white background
-							//							g2d.setPaint(new Color(255,255,255,255));
-							//							g2d.fillRect(0, -(int)tl.getAscent(), (int)tl.getAdvance(), (int)(tl.getAscent()));
-							g2d.setFont(ef);
+							g2d.setPaint(new Color(255,255,255,255));
+							g2d.fillRect(0, -(int)tl.getAscent(), (int)tl.getAdvance(), (int)(tl.getAscent()));
+							g2d.setFont(edge);
 							g2d.setPaint(new Color(e.getColor()[0],e.getColor()[1],e.getColor()[2],e.getColor()[3]));
 							g2d.drawString(txt, 0, 0);
 						}
@@ -300,6 +284,25 @@ public class GraphRendererSVG {
 				}
 			}
 
+			// nodes
+			for (Node n: net.nNodes) {
+				n.genColorFromAtt();
+				float size = n.size()*2f;
+
+				g2d.setPaint(new Color(n.getColor()[0],n.getColor()[1],n.getColor()[2],n.getColor()[3]));
+
+				if (circles) {
+					g2d.fillOval((int)(n.getPos().x)-(int)(size/2), -(int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
+				}
+				else {
+					g2d.fillRect((int)(n.getPos().x)-(int)(size/2), -(int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
+				}
+				if (n.pickColor[3]>0) {
+					g2d.setPaint(new Color(n.pickColor[0],n.pickColor[1],n.pickColor[2],1));
+					g2d.drawRect((int)(n.getPos().x)-(int)(size/2),-(int)(n.getPos().y)-(int)(size/2), (int)size, (int)size);
+				}
+			}
+			
 			// node labels
 			for (Node n: net.nNodes) {
 				String txt = n.genTextSelAttributes();
@@ -311,7 +314,7 @@ public class GraphRendererSVG {
 
 					if ((n.pickColor[3]>0.2f&&app.fadeLabels)||(n.getColor()[3]>0.2&&!app.fadeLabels)  &&txt.length()>0) {
 						for (int i = 0; i<sp.length; i++){
-//														for (int i = 0; i<1; i++){
+							//														for (int i = 0; i<1; i++){
 							g2d.translate((int)(n.getPos().x), (int)(-n.getPos().y));
 							if (!app.isTree()&&!app.labelsEdgeDir) {
 								g2d.translate((int)(size/2),-(int)(size/2));
@@ -320,12 +323,15 @@ public class GraphRendererSVG {
 								g2d.rotate(-0.436332312998582);
 							} 
 
-							int fntsize = (int)((app.getLabelsize()+n.size()*app.getLabelVar())*1.5f);
+							int fntsize = (int)(((app.getLabelsize()+n.size()*app.getLabelVar())));
+							if (i==0) fntsize= (int)(fntsize*1.25);
 							Font varFont = new Font(app.getFontFam(),Font.PLAIN, fntsize);
 							FontRenderContext frc = g2d.getFontRenderContext();
 							TextLayout tl = new TextLayout(sp[i],varFont,frc);
 
-							if (app.isTree()&&app.getView().distances.getNodeDistance(n)>0) alignLabel(g2d, n.getPos(), n.size(), tl);
+							if (app.isTree()&&app.getView().distances.getNodeDistance(n)>0) {
+								alignLabel(g2d, n.getPos(), n.size(), tl);
+							}
 							else
 								if (app.labelsEdgeDir&&!app.isTilt()){
 									if (n.adList.size()==1&&n.inList.size()==0) {
@@ -341,23 +347,26 @@ public class GraphRendererSVG {
 											g2d.translate(-advance, -n.size()/2f);
 										}
 								}
+							if (!app.labelsEdgeDir&&!app.isTilt()){
+								float advance = tl.getAdvance()/2f;
+								g2d.translate(-advance, -n.size()/2f);
+							}
 							
 							if (font==0) {
 								g2d.setPaint(new Color(1f,1f,1f));
-								g2d.setStroke(five);
+								g2d.setStroke(dbl);
 								g2d.translate(0, i*fntsize);
 								Shape outline = tl.getOutline(id);
 								g2d.draw(outline);
-								g2d.setPaint(new Color((n.getColor()[0]),(n.getColor()[1]),(n.getColor()[2]),n.getColor()[3]));
-								g2d.setStroke(sngl);
-								g2d.fill(outline);
+								//g2d.setStroke(sngl);
+								//g2d.fill(outline);
 							} else {
-								g2d.setPaint(new Color(255,255,255,255));
-								g2d.fillRect(0, i*fntsize-(int)tl.getAscent(), (int)tl.getAdvance(), (int)(tl.getAscent()));
-								g2d.setFont(varFont);
-								g2d.setPaint(new Color((n.getColor()[0]),(n.getColor()[1]),(n.getColor()[2]),n.getColor()[3]));
-								g2d.drawString(sp[i], 0, i*fntsize);
+								g2d.setPaint(new Color(255,255,255,160));
+								g2d.fillRect(0, i*fntsize-(int)tl.getAscent()+(int)(fntsize*.2), (int)tl.getAdvance(), (int)(tl.getAscent()));
 							}
+							g2d.setFont(varFont);
+							g2d.setPaint(new Color((n.getColor()[0]),(n.getColor()[1]),(n.getColor()[2]),n.getColor()[3]));
+							g2d.drawString(sp[i], 0, i*fntsize);
 							g2d.setTransform(t);
 						}
 					}

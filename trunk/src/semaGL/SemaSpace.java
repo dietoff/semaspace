@@ -10,9 +10,12 @@ import javax.media.opengl.GLException;
 import javax.media.opengl.GLPbuffer;
 import javax.media.opengl.GLProfile;
 import javax.media.opengl.glu.GLU;
+
 import com.jogamp.opengl.util.GLBuffers;
+import com.jogamp.opengl.util.GLReadBufferUtil;
 import com.jogamp.opengl.util.gl2.GLUT;
-import com.jogamp.opengl.util.awt.Screenshot;
+//import com.jogamp.opengl.util.awt.Screenshot;
+
 import javax.media.opengl.fixedfunc.GLLightingFunc;
 import javax.media.opengl.fixedfunc.GLMatrixFunc;
 
@@ -33,10 +36,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
 import javax.swing.SwingUtilities;
 
 import sun.nio.cs.ext.ISCII91;
-
 import nehe.GLDisplay;
 import nehe.GLDisplayPanel;
 import nehe.TextureReader.Texture;
@@ -51,7 +54,6 @@ import data.Net;
 import data.NetStack;
 import data.Node;
 import data.Vector3D;
-
 import net.sourceforge.ftgl.glfont.FTFont;
 import net.sourceforge.ftgl.glfont.FTGLOutlineFont;
 import net.sourceforge.ftgl.glfont.FTGLPolygonFont;
@@ -65,6 +67,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public GLAutoDrawable glD;
 	private GLU glu;
 	String file[];
+	String lastDir = "";
 	private float yRotInc, xRotInc = 0;
 	private float yRotNew, xRotNew = 0;
 	private float mouseY=0, newY=0;
@@ -184,6 +187,7 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 
 		if (p.textureFont) {
 			hiQfont = new FTGLTextureFont(font,context); 
+			outlinefont = null;
 		}
 		else {
 			hiQfont = new FTGLPolygonFont(font,context);
@@ -630,6 +634,13 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			p.loadMethod = 0;
 			p.setFilename(file.getAbsolutePath());
 		}
+		
+		
+		File node = new File(file.getParent()+file.separator+"colors.n"); //load colors
+		System.out.println(node.getAbsolutePath());
+		if (node.exists()) 	cont = FileIO.loadFile(node);
+		ns.nodeListParse(cont, tab);
+		
 		return success;
 	}
 
@@ -670,7 +681,6 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 			return success;
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -1107,12 +1117,12 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 	public void screenshot (int width, int height, String filename2) {
 		GLProfile pr = GLProfile.get(GLProfile.GL2);
 		
-		if (!GLDrawableFactory.getFactory(pr).canCreateGLPbuffer(GLProfile.getDefaultDesktopDevice())) return;
+		if (!GLDrawableFactory.getFactory(pr).canCreateGLPbuffer(GLProfile.getDefaultDevice(), pr)) return;
 		//		boolean f = p.layout2d;
 		//		p.layout2d = false;
 
 		GLCapabilities caps = new GLCapabilities(pr);
-		GLPbuffer pbuffer = GLDrawableFactory.getFactory(pr).createGLPbuffer(GLProfile.getDefaultDesktopDevice(),caps, null, width, height, null);
+		GLPbuffer pbuffer = GLDrawableFactory.getFactory(pr).createGLPbuffer(GLProfile.getDefaultDevice(),caps, null, width, height, null);
 		pbuffer.getContext().makeCurrent();
 		GL2 gl = pbuffer.getGL().getGL2();
 		moved = false;
@@ -1121,19 +1131,20 @@ public class SemaSpace implements GLEventListener, MouseListener, MouseMotionLis
 		renderPbuffer(gl, width, height);
 
 		try {
-			Screenshot.writeToTargaFile(new File(filename2), width, height);
+			GLReadBufferUtil screenshot = new GLReadBufferUtil(true, false);
+			screenshot.write(new File(filename2));
+			//Screenshot.writeToTargaFile(new File(filename2), width, height);
 		} catch (GLException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		} 
+		
 		pbuffer.destroy();
 		screenshotcounter++;
 
 		glD.getContext().makeCurrent();
 
 		updateFonts(gl, glu);
-
+		
 		//		p.layout2d = f;
 	}
 

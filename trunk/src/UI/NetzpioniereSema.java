@@ -2361,7 +2361,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			simButton5.setText("focus picked");
 			simButton5.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton5.setToolTipText("set the camera to selected node");
-			simButton5.setBounds(72, 250, 68, 15);
+			simButton5.setBounds(72, 250, 80, 15);
 			simButton5.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.camOnSelected();
@@ -2906,7 +2906,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			simButton3.setText("open selected in browser");
 			simButton3.setFont(new Font("Dialog",Font.PLAIN,10));
 			simButton3.setToolTipText("inspect selected relation in the indy tool");
-			simButton3.setBounds(2, 270, 200, 15);
+			simButton3.setBounds(2, 270, 150, 15);
 			simButton3.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					app.browserCall();

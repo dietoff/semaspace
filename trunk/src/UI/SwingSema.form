@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Form builder="jigloo" ide="eclipse" laf="com.jtattoo.plaf.fast.FastLookAndFeel" style="Swing" version="4.6.2">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Form builder="jigloo" ide="eclipse" laf="com.jtattoo.plaf.fast.FastLookAndFeel" style="Swing" version="4.6.6">
 <NonVisualComponents>
 		<Component class="UNKNOWN" name="Non-visual components" style="0">
 			<SubComponents>
@@ -134,12 +134,12 @@
 							<Property name="minimumSize" type="Dimension">
 								<Dimension value="[230, 400]"/>
 							</Property>
-							<Property name="doubleBuffered" type="boolean" value="true"/>
 							<Property class="javax.swing.border.EmptyBorder" name="border">
 								<Property name="borderInsets" type="Insets">
 								<Insets value="[0, 0, 0, 0]"/>
 							</Property>
 							</Property>
+							<Property name="doubleBuffered" type="boolean" value="true"/>
 						</Properties>
 						<SubComponents>
 							<Component class="javax.swing.JSplitPane" name="jSplitPane2">
@@ -565,11 +565,11 @@
 														</Events>
 														<Properties>
 															<Property name="text" type="String" value="all"/>
-															<Property name="verticalAlignment" type="int" value="0"/>
-															<Property name="verticalTextPosition" type="int" value="0"/>
 															<Property name="margin" type="Insets">
 																<Insets value="[2, 2, 2, 2]"/>
 															</Property>
+															<Property name="verticalAlignment" type="int" value="0"/>
+															<Property name="verticalTextPosition" type="int" value="0"/>
 															<Property name="font" type="Font">
 																<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
 															</Property>
@@ -1699,10 +1699,10 @@
 													<Property name="paintTicks" type="boolean" value="true"/>
 													<Property name="paintTrack" type="boolean" value="false"/>
 													<Property name="toolTipText" type="String" value="font"/>
+													<Property name="opaque" type="boolean" value="false"/>
 													<Property name="preferredSize" type="Dimension">
 														<Dimension value="[20, 40]"/>
 													</Property>
-													<Property name="opaque" type="boolean" value="false"/>
 													<Property name="name" type="String" value="fontslider"/>
 													<Property name="bounds" type="Rectangle">
 														<Rectangle value="[0, 20, 103, 30]"/>
@@ -1711,7 +1711,7 @@
 											</Component>
 											<Component class="javax.swing.JLabel" name="jLabel1">
 												<Properties>
-													<Property name="text" type="String" value="labelstyle"/>
+													<Property name="text" type="String" value="labelstyle:"/>
 													<Property name="font" type="Font">
 														<Font name="Dialog" size="10" strikeout="false" style="0" underline="false"/>
 													</Property>
@@ -1725,7 +1725,7 @@
 													<EventHandler event="actionPerformed" handler="forceBoxActionPerformedinline" listener="java.awt.event.ActionListener"/>
 												</Events>
 												<Properties>
-													<Property name="text" type="String" value="freeze"/>
+													<Property name="text" type="String" value="pause"/>
 													<Property name="margin" type="Insets">
 														<Insets value="[0, 0, 0, 0]"/>
 													</Property>
@@ -1735,7 +1735,7 @@
 													</Property>
 													<Property name="toolTipText" type="String" value="Force driven Layout active"/>
 													<Property name="bounds" type="Rectangle">
-														<Rectangle value="[133, 1, 85, 17]"/>
+														<Rectangle value="[172, 1, 51, 17]"/>
 													</Property>
 												</Properties>
 											</Component>
@@ -1744,7 +1744,7 @@
 													<EventHandler event="actionPerformed" handler="tiltBoxActionPerformedinline" listener="java.awt.event.ActionListener"/>
 												</Events>
 												<Properties>
-													<Property name="text" type="String" value="25°"/>
+													<Property name="text" type="String" value="tilted"/>
 													<Property name="margin" type="Insets">
 														<Insets value="[0, 0, 0, 0]"/>
 													</Property>
@@ -1762,7 +1762,7 @@
 													<EventHandler event="actionPerformed" handler="radLabelsActionPerformedinline" listener="java.awt.event.ActionListener"/>
 												</Events>
 												<Properties>
-													<Property name="text" type="String" value="rad"/>
+													<Property name="text" type="String" value="radial"/>
 													<Property name="margin" type="Insets">
 														<Insets value="[0, 0, 0, 0]"/>
 													</Property>
