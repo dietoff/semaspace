@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseListener;
 import java.awt.Event;
 import java.awt.Desktop;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
@@ -32,16 +33,23 @@ import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagLayout;
+
 import javax.swing.JSplitPane;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JCheckBox;
+
 import nehe.GLDisplayPanel;
+
 import javax.swing.JTextField;
 import javax.swing.JSlider;
+
 import java.awt.Font;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.TreeSet;
+
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -53,6 +61,7 @@ import com.jtattoo.plaf.fast.FastLookAndFeel;
 import data.*;
 import semaGL.*;
 import UI.SimButton;
+
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.IOException;
@@ -85,6 +94,7 @@ public class NetzpioniereSema implements SemaListener, KeyListener {
 			private GLDisplayPanel semaGLDisplay;
 
 			public void run() {
+				System.setProperty("indiUrl","http://143.50.30.21/node/17?");
 				space = new SemaSpace("netzpioniere.config");
 				application = new NetzpioniereSema();
 				space.addSemaListener(application);
