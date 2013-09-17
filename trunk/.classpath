@@ -33,14 +33,15 @@
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/xml-apis-ext.jar"/>
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="lib/filedrop.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/jogl-all-natives-macosx-universal.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/jogl-all.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/gluegen-rt-natives-macosx-universal.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/gluegen-rt.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/gluegen.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/gluegen-rt-natives-windows-amd64.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/gluegen-rt-natives-windows-i586.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/jogl-all-natives-windows-amd64.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/jogamp-all-platforms/jar/jogl-all-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jogamp/gluegen-rt-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="lib/jogamp/gluegen-rt-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jogamp/gluegen-rt-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jogamp/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="lib/jogamp/gluegen.jar"/>
+	<classpathentry kind="lib" path="lib/jogamp/jogl-all-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="lib/jogamp/jogl-all-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jogamp/jogl-all-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jogamp/jogl-all-noawt.jar"/>
+	<classpathentry kind="lib" path="lib/jogamp/jogl-all.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
