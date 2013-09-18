@@ -159,6 +159,17 @@ public class FTTextureGlyph extends FTGlyph
 		if (this.destWidth == 0 || this.destHeight == 0) return this.advance;
 
 		this.gl.glGetIntegerv(GL.GL_TEXTURE_2D_ARRAY, this.activeTextureID,0);
+		
+		if( gl.isExtensionAvailable("GL_EXT_texture_filter_anisotropic") )   
+		  {
+		    float max[] = new float[1];
+		    gl.glGetFloatv( GL.GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, max, 0 );
+
+		    gl.glTexParameterf( GL.GL_TEXTURE_2D, 
+		                        GL.GL_TEXTURE_MAX_ANISOTROPY_EXT, 
+		                        max[0] );
+		  }
+		gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR_MIPMAP_LINEAR);
 		if(this.activeTextureID[0] != this.glTextureID)
 		{
 			this.gl.glBindTexture(GL.GL_TEXTURE_2D, this.glTextureID);

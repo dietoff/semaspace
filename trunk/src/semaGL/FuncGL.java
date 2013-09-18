@@ -90,12 +90,12 @@ public class FuncGL {
 		String[] lines = text.split("\n"); 
 		if (!center) gl.glTranslatef(40, 90, 0);
 		for (int i = 0; i<lines.length; i++){
-			gl.glTranslatef(0, -60f, 0);
-			
+			gl.glTranslatef(0, -65f, 0);
 			gl.glPushMatrix();
 				FTBBox box = p.getApp().hiQfont.getBBox(lines[i]);
-				gl.glTranslatef(box.lowerX,box.lowerY,0);
-				gl.glScalef(box.getWidth()/2f,box.getHeight()/2f,0);
+				float border = box.getHeight()*.05f;
+				gl.glTranslatef(box.lowerX-border,box.lowerY-border,0);
+				gl.glScalef(box.getWidth()/2f+border,box.getHeight()/2f+border,0);
 				gl.glColor4f(1,1,1,0.8f);
 				gl.glTranslatef(1f,1f,0);
 				quad(gl);

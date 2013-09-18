@@ -42,6 +42,7 @@ public class GLDisplayPanel {
 		glCanvas.setIgnoreRepaint( true );
 		glCanvas.addGLEventListener( helpOverlayGLEventListener );
 		frame = new JPanel();
+		frame.setPreferredSize(new Dimension(770,600));
 		frame.setLayout( new BorderLayout() );
 		frame.add( glCanvas, BorderLayout.CENTER );
 		addKeyListener( new MyKeyAdapter());
@@ -56,13 +57,12 @@ public class GLDisplayPanel {
 	public void start() {
 		try {
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			frame.setSize( frame.getPreferredSize() );
-			frame.setLocation(
-					( screenSize.width - frame.getWidth() ) / 2,
-					( screenSize.height - frame.getHeight() ) / 2
-			);
-			frame.setVisible( true );
-
+//			frame.setSize( frame.getPreferredSize() );
+//			frame.setLocation(
+//					( screenSize.width - frame.getWidth() ) / 2,
+//					( screenSize.height - frame.getHeight() ) / 2
+//			);
+			frame.setVisible(true);
 			glCanvas.requestFocus();
 
 			animator.start();
