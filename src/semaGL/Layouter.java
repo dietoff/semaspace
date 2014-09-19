@@ -2,12 +2,15 @@ package semaGL;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.Map.Entry;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 
@@ -401,11 +404,13 @@ public class Layouter {
 
 	private void layoutRepFruchtermann(float abstand, float strength, Net net ){
 		Vector3D dist = new Vector3D();
-
-		for (Node a: net.fNodes) {
-			for (Node b: net.fNodes) {
+		//ArrayList<Node> list = new ArrayList<Node>(net.fNodes);
+		//Collections.shuffle(list);
+		Object[] nodes = net.fNodes.toArray();
+		for (Object a: nodes) {
+			for (Object b: nodes) {
 				if (a!=b) {
-					repFrucht(abstand, strength, dist, a, b, app.getRepellMax()); 
+					repFrucht(abstand, strength, dist,(Node) a,(Node) b, app.getRepellMax()); 
 				}
 			}
 		}
@@ -490,14 +495,16 @@ public class Layouter {
 		float d = dist.magnitude()+0.000000001f;
 		float radius = calcClusterDistance(a)+calcClusterDistance(b)+abstand;
 		float f=0;
-
+		
+	
 		if (d<Math.max(max,radius)) {
 			if (d<radius) {
 				f = 1-(d/radius);
 			}
 			else {
-				f = 0.1f/d;
+				f = 10f/(d*d);
 			}
+
 			dist.mult(f*strength);
 			b.getPos().add(dist);
 			a.getPos().sub(dist);
@@ -564,6 +571,10 @@ public class Layouter {
 			if (tmp.getColor()[3]>0.2)net.repNodes.add(tmp);
 		}
 
+		
+		//ArrayList<Node> list = new ArrayList<Node>(net.fNodes);
+		//Collections.shuffle(list);
+		
 		for (Node a: net.fNodes) {
 			for (Node b: net.fNodes) {
 				if ((a!=b)&&(a.getColor()[3]>0.2&&b.getColor()[3]>0.2)) {

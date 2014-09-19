@@ -11,7 +11,6 @@
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/batik-awt-util.jar"/>
 	<classpathentry kind="lib" path="lib/batik-1.7/batik.jar"/>
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/batik-util.jar"/>
-	<classpathentry kind="lib" path="/Users/d/Documents/workspace_java/SemaSpace/lib/JTattoo.jar"/>
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/batik-svg-dom.jar"/>
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/batik-parser.jar"/>
 	<classpathentry kind="lib" path="lib/batik-1.7/lib/batik-xml.jar"/>
@@ -43,5 +42,6 @@
 	<classpathentry kind="lib" path="lib/jogamp/jogl-all-natives-windows-i586.jar"/>
 	<classpathentry kind="lib" path="lib/jogamp/jogl-all-noawt.jar"/>
 	<classpathentry kind="lib" path="lib/jogamp/jogl-all.jar"/>
+	<classpathentry kind="lib" path="lib/JTattoo.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
