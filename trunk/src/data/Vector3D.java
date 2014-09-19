@@ -60,6 +60,10 @@ public final class Vector3D {
 	public float magnitude() {
 		return (float) Math.sqrt(x * x + y * y + z * z);
 	}
+	
+	public float magnitudesq() {
+		return (float) x * x + y * y + z * z;
+	}
 
 	public Vector3D copy() {
 		return new Vector3D(x, y, z);
